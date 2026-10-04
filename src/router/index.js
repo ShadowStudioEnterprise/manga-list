@@ -1,11 +1,12 @@
 import { defineRouter } from '#q-app'
-import { routes, handleHotUpdate } from 'vue-router/auto-routes'
 import {
   createMemoryHistory,
   createRouter,
   createWebHashHistory,
   createWebHistory,
 } from 'vue-router'
+import routes from './routes'
+import { useAuthStore } from '@/stores/auth-store'
 
 /*
  * If not building with SSR mode, you can
@@ -16,7 +17,7 @@ import {
  * with the Router instance.
  */
 
-export default defineRouter((/* { store, ssrContext } */) => {
+export default defineRouter(({ store }) => {
   const createHistory = import.meta.env.QUASAR_SERVER
     ? createMemoryHistory
     : import.meta.env.QUASAR_VUE_ROUTER_MODE === 'history'
@@ -24,7 +25,11 @@ export default defineRouter((/* { store, ssrContext } */) => {
       : createWebHashHistory
 
   const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
+    scrollBehavior: (to, _from, savedPosition) => {
+      if (savedPosition) return savedPosition
+      if (to.hash) return { el: to.hash, top: 88, behavior: 'smooth' }
+      return { left: 0, top: 0 }
+    },
     routes,
 
     // Leave this as is and make changes in quasar.conf.js instead!
@@ -33,10 +38,32 @@ export default defineRouter((/* { store, ssrContext } */) => {
     history: createHistory(import.meta.env.QUASAR_VUE_ROUTER_BASE),
   })
 
-  // enable HMR for it
-  if (import.meta.hot) {
-    handleHotUpdate(Router)
-  }
+  Router.beforeEach(async (to) => {
+    const authStore = useAuthStore(store)
+
+    try {
+      await authStore.initialize()
+    } catch {
+      if (to.meta.requiresAuth) {
+        return { path: '/login', query: { sessionError: '1', redirect: to.fullPath } }
+      }
+
+      return true
+    }
+
+    if (to.meta.requiresAuth && !authStore.user) {
+      return {
+        path: '/login',
+        query: to.fullPath !== '/library' ? { redirect: to.fullPath } : undefined,
+      }
+    }
+
+    if (to.meta.guestOnly && authStore.user) {
+      return '/library'
+    }
+
+    return true
+  })
 
   return Router
 })

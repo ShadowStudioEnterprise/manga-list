@@ -1,0 +1,58 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            src-pwa/package-lock.json
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install dependencies
+        run: |
+          npm ci
+          npm ci --prefix src-pwa
+          npm install --global firebase-tools@15.32.1
+          npx playwright install --with-deps chromium
+      - name: Check formatting and lint
+        run: npm run lint:check
+      - name: Run regression tests
+        run: npm test
+      - name: Test Firestore rules
+        run: firebase emulators:exec --project demo-mangalist --only firestore "npm run test:rules"
+      - name: Test browser flows against emulators
+        run: npm run test:e2e
+      - name: Build SPA and PWA with demo configuration
+        env:
+          VITE_FIREBASE_API_KEY: demo-mangalist-key
+          VITE_FIREBASE_AUTH_DOMAIN: demo-mangalist.firebaseapp.com
+          VITE_FIREBASE_PROJECT_ID: demo-mangalist
+          VITE_FIREBASE_STORAGE_BUCKET: demo-mangalist.appspot.com
+          VITE_FIREBASE_MESSAGING_SENDER_ID: '123456789'
+          VITE_FIREBASE_APP_ID: '1:123456789:web:demo'
+        run: |
+          npm run build
+          npm run build:pwa

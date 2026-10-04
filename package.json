@@ -1,39 +1,47 @@
 {
   "name": "manga-list",
   "version": "0.0.1",
-  "description": "A Quasar Project",
-  "productName": "Manga List",
+  "description": "Biblioteca privada y sincronizada para seguir mangas, manhwas y manhuas.",
+  "productName": "MangaList",
   "author": "shadowstudio <35380219+ShadowStudioEnterprise@users.noreply.github.com>",
   "type": "module",
   "private": true,
   "scripts": {
-    "lint": "prettier --write \"**/*.{js,vue,css,scss,html,md,json}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
-    "lint:check": "prettier \"**/*.{js,vue,css,scss,html,md,json}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\"",
+    "test": "node --experimental-vm-modules --test tests/*.test.js",
+    "test:rules": "node --experimental-vm-modules --test tests/firestore/*.test.js",
+    "test:e2e": "node tests/e2e/run.js",
+    "lint": "prettier --write \"**/*.{js,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\"",
+    "lint:check": "prettier --check \"**/*.{js,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\"",
     "dev": "quasar dev",
     "build": "quasar build",
+    "build:pwa": "quasar build -m pwa",
+    "deploy:hosting": "firebase deploy --only hosting --project mangalist-61bb8",
     "postinstall": "quasar prepare --silent"
   },
   "dependencies": {
-    "vue-i18n": "^11.3.0",
-    "pinia": "^4.0.2",
     "@quasar/extras": "^2.0.4",
+    "firebase": "^12.18.0",
+    "pinia": "^4.0.2",
     "quasar": "^2.27.0",
     "vue": "^3.5.22",
+    "vue-i18n": "^11.3.0",
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
-    "@intlify/unplugin-vue-i18n": "^11.0.0",
     "@eslint/js": "^10.0.1",
+    "@firebase/rules-unit-testing": "^5.0.2",
+    "@intlify/unplugin-vue-i18n": "^11.0.0",
+    "@playwright/test": "^1.63.0",
+    "@quasar/app-vite": "^3.8.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "autoprefixer": "^10.4.27",
     "eslint": "^10.8.0",
     "eslint-plugin-vue": "^10.8.0",
     "globals": "^17.4.0",
-    "vite-plugin-checker": "^0.14.5",
-    "vue-eslint-parser": "^10.4.0",
-    "@vue/eslint-config-prettier": "^10.2.0",
+    "postcss": "^8.5.8",
     "prettier": "^3.8.1",
-    "@quasar/app-vite": "^3.8.1",
-    "autoprefixer": "^10.4.27",
-    "postcss": "^8.5.8"
+    "vite-plugin-checker": "^0.14.5",
+    "vue-eslint-parser": "^10.4.0"
   },
   "keywords": [
     "quasar",
@@ -45,6 +53,6 @@
     "vuejs"
   ],
   "engines": {
-    "node": ">= 26 || ^24 || ^22.12"
+    "node": "^22.22 || ^24 || ^26"
   }
 }

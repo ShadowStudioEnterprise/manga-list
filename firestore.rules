@@ -1,0 +1,129 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isOwner(userId) {
+      return request.auth != null && request.auth.uid == userId;
+    }
+
+    function userDocumentHasValidShape(data) {
+      return data.keys().hasAll(['createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['createdAt', 'updatedAt'])
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Firestore rules have no loops. Keep the bounded checks inline to stay
+    // below the expression budget even with 20 genres and 10 sources.
+    function validGenres(genres) {
+      return (genres.size() <= 0 || genres[0].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 1 || genres[1].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 2 || genres[2].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 3 || genres[3].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 4 || genres[4].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 5 || genres[5].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 6 || genres[6].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 7 || genres[7].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 8 || genres[8].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 9 || genres[9].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 10 || genres[10].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 11 || genres[11].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 12 || genres[12].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 13 || genres[13].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 14 || genres[14].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 15 || genres[15].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 16 || genres[16].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 17 || genres[17].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 18 || genres[18].matches('(?s)^.{1,60}$'))
+        && (genres.size() <= 19 || genres[19].matches('(?s)^.{1,60}$'));
+    }
+
+    function sourceScore(source) {
+      // Every required field is accessed below; size excludes additional fields.
+      // matches() also rejects incorrect types and missing fields.
+      // 0 = valid alternative, 1 = valid primary, 2 = invalid source.
+      // Combining validation and counting avoids a second pass through the list.
+      return (source.size() == 4
+        && source.id.matches('(?s)^.{1,100}$')
+        && source.name.matches('(?s)^.{1,100}$')
+        && source.url.size() <= 2048
+        && source.url.matches('^https?://.+')
+        && source.isPrimary is bool) ? (source.isPrimary ? 1 : 0) : 2;
+    }
+
+    function validSources(sources) {
+      return (sources.size() <= 0 ? 0 : sourceScore(sources[0]))
+        + (sources.size() <= 1 ? 0 : sourceScore(sources[1]))
+        + (sources.size() <= 2 ? 0 : sourceScore(sources[2]))
+        + (sources.size() <= 3 ? 0 : sourceScore(sources[3]))
+        + (sources.size() <= 4 ? 0 : sourceScore(sources[4]))
+        + (sources.size() <= 5 ? 0 : sourceScore(sources[5]))
+        + (sources.size() <= 6 ? 0 : sourceScore(sources[6]))
+        + (sources.size() <= 7 ? 0 : sourceScore(sources[7]))
+        + (sources.size() <= 8 ? 0 : sourceScore(sources[8]))
+        + (sources.size() <= 9 ? 0 : sourceScore(sources[9])) <= 1;
+    }
+
+    function mangaHasValidShape(data) {
+      // All thirteen fields are required below; extra fields are rejected.
+      return data.size() == 13
+        && data.schemaVersion == 1
+        && data.name.matches('(?s)^.{1,200}$')
+        && data.normalizedName.matches('(?s)^.{1,250}$')
+        && data.chapter.matches('(?s)^.{1,64}$')
+        && data.type in ['manga', 'manhwa', 'manhua', 'other']
+        && data.genres is list
+        && data.genres.size() <= 20
+        && validGenres(data.genres)
+        && data.readingStatus in ['following', 'pending', 'completed', 'dropped']
+        && data.publicationStatus in [
+          'publishing',
+          'completed',
+          'hiatus',
+          'cancelled',
+          'author_abandoned',
+          'unknown'
+        ]
+        && data.sources is list
+        && data.sources.size() <= 10
+        && validSources(data.sources)
+        && data.notes is string
+        && data.notes.size() <= 5000
+        && data.favorite is bool
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    match /users/{userId} {
+      allow read, delete: if isOwner(userId);
+
+      allow create: if isOwner(userId)
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.updatedAt == request.time
+        && userDocumentHasValidShape(request.resource.data);
+
+      allow update: if isOwner(userId)
+        && request.resource.data.createdAt == resource.data.createdAt
+        && request.resource.data.updatedAt == request.time
+        && userDocumentHasValidShape(request.resource.data);
+
+      match /mangas/{mangaId} {
+        allow read, delete: if isOwner(userId);
+
+        allow create: if isOwner(userId)
+          && request.resource.data.createdAt == request.time
+          && request.resource.data.updatedAt == request.time
+          && mangaHasValidShape(request.resource.data);
+
+        allow update: if isOwner(userId)
+          && request.resource.data.createdAt == resource.data.createdAt
+          && request.resource.data.updatedAt == request.time
+          && mangaHasValidShape(request.resource.data);
+      }
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
