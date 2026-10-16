@@ -318,8 +318,10 @@ src/
   transacción. Conserva cambios remotos en otros campos; si el mismo campo cambió en otro
   dispositivo, avisa y permite cargar la versión actual con confirmación antes de descartar el
   borrador local. El editor manual de capítulos también detecta estos conflictos.
-- El borrado de cuenta reautentica primero, elimina obras en lotes y finalmente elimina Firebase
-  Authentication. Si la sesión es antigua o la contraseña no es válida, la operación se detiene.
+- El borrado de cuenta reautentica, bloquea nuevas escrituras con un marcador irreversible,
+  elimina obras en lotes de 400 leídos del servidor y finalmente elimina Authentication.
+  Conserva un registro mínimo de bloqueo; si se interrumpe, requiere reintento desde Ajustes.
+  Consulta las [decisiones y límites del borrado](docs/technical-review-2026-10-16.md).
 - Si más adelante se añaden subcolecciones, el borrado debe migrarse a una Cloud Function/Admin
   SDK o a la extensión oficial **Delete User Data** para hacerlo recursivo.
 
@@ -365,3 +367,9 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 - Portadas y metadatos externos opcionales.
 - Extensión de navegador reutilizando la ruta `/add` y los parsers aislados.
 - División adicional del bundle del SDK Firebase si el tamaño inicial se vuelve relevante.
+
+## Revisión técnica del 16/10/2026
+
+- [Cambios, modelo de concurrencia y borrado seguro](docs/technical-review-2026-10-16.md).
+- [Resultados de verificación](docs/verification-2026-10-16.md).
+- [Roadmap priorizado y criterios de aceptación](docs/roadmap.md).
