@@ -13,6 +13,7 @@ import { useSettingsStore } from '@/stores/settings-store'
 import { compareChapters } from '@/utils/chapter-utils'
 
 let stopMangaListener = null
+let subscriptionVersion = 0
 
 const DEFAULT_FILTERS = Object.freeze({
   readingStatus: '',
@@ -81,7 +82,7 @@ export const useMangaStore = defineStore('mangas', {
   state: () => ({
     mangas: [],
     loading: false,
-    error: null,
+    syncError: null,
     searchQuery: '',
     filters: { ...DEFAULT_FILTERS },
     subscribedUid: null,
@@ -151,36 +152,38 @@ export const useMangaStore = defineStore('mangas', {
       }
 
       this.unsubscribe()
+      const version = subscriptionVersion
       this.loading = true
-      this.error = null
+      this.syncError = null
       this.subscribedUid = uid
 
       try {
         stopMangaListener = subscribeToMangas(
           uid,
           (mangas) => {
-            if (this.subscribedUid !== uid) {
+            if (this.subscribedUid !== uid || version !== subscriptionVersion) {
               return
             }
 
             this.mangas = mangas
+            this.syncError = null
             this.loading = false
           },
           (error) => {
-            if (this.subscribedUid !== uid) {
+            if (this.subscribedUid !== uid || version !== subscriptionVersion) {
               return
             }
 
             const appError = toAppError(error, 'No se ha podido sincronizar la biblioteca.')
             stopMangaListener = null
             this.subscribedUid = null
-            this.error = appError.message
+            this.syncError = appError.message
             this.loading = false
           },
         )
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido abrir la biblioteca.')
-        this.error = appError.message
+        this.syncError = appError.message
         this.loading = false
         this.subscribedUid = null
         throw appError
@@ -188,12 +191,13 @@ export const useMangaStore = defineStore('mangas', {
     },
 
     unsubscribe() {
+      subscriptionVersion += 1
       stopMangaListener?.()
       stopMangaListener = null
       this.subscribedUid = null
       this.mangas = []
       this.loading = false
-      this.error = null
+      this.syncError = null
       this.searchQuery = ''
       this.filters = { ...DEFAULT_FILTERS }
     },
@@ -215,60 +219,51 @@ export const useMangaStore = defineStore('mangas', {
     },
 
     async createManga(uid, data) {
-      this.error = null
-
       try {
         return await createMangaDocument(uid, data)
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido guardar la obra.')
-        this.error = appError.message
         throw appError
       }
     },
 
     async findDuplicates(uid, name) {
-      this.error = null
-
       try {
         return await findMangasByNormalizedName(uid, name)
       } catch (error) {
         const appError = toAppError(error, 'No se han podido comprobar posibles duplicados.')
-        this.error = appError.message
         throw appError
       }
     },
 
     async updateManga(uid, id, data, options) {
-      this.error = null
-
       try {
         return await updateMangaDocument(uid, id, data, options)
       } catch (error) {
         const appError = toAppError(error, 'No se han podido guardar los cambios.')
-        this.error = appError.message
         throw appError
       }
     },
 
     async deleteManga(uid, id) {
-      this.error = null
-
       try {
         await deleteMangaDocument(uid, id)
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido eliminar la obra.')
-        this.error = appError.message
         throw appError
       }
     },
 
     async toggleFavorite(uid, manga) {
-      return this.updateManga(uid, manga.id, { favorite: manga.favorite !== true })
+      return this.updateManga(
+        uid,
+        manga.id,
+        { favorite: manga.favorite !== true },
+        { expectedValues: { favorite: manga.favorite === true } },
+      )
     },
 
     async changeChapter(uid, manga, direction) {
-      this.error = null
-
       try {
         const chapter = await changeMangaChapter(uid, manga.id, direction)
         return { changed: true, chapter, requiresManual: false }
@@ -279,7 +274,6 @@ export const useMangaStore = defineStore('mangas', {
           return { changed: false, chapter: manga.chapter, requiresManual: true }
         }
 
-        this.error = appError.message
         throw appError
       }
     },

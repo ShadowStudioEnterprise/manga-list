@@ -25,9 +25,14 @@
 
     <MangaFilters class="q-mt-lg" />
 
-    <q-banner v-if="mangaStore.error" rounded class="bg-red-1 text-negative q-mb-lg">
+    <q-banner
+      v-if="mangaStore.syncError"
+      rounded
+      role="alert"
+      class="bg-red-1 text-negative q-mb-lg"
+    >
       <template #avatar><q-icon name="cloud_off" /></template>
-      {{ mangaStore.error }}
+      {{ mangaStore.syncError }}
       <template #action>
         <q-btn flat no-caps color="negative" label="Reintentar" @click="retrySubscription" />
       </template>
@@ -114,6 +119,10 @@ function resetFilters() {
 }
 
 function retrySubscription() {
-  if (authStore.user?.uid) mangaStore.subscribe(authStore.user.uid)
+  try {
+    if (authStore.user?.uid) mangaStore.subscribe(authStore.user.uid)
+  } catch {
+    // subscribe records the failure in the banner.
+  }
 }
 </script>

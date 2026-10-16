@@ -11,9 +11,13 @@
       <q-skeleton type="rect" height="380px" class="rounded-borders" />
     </div>
 
-    <q-banner v-else-if="mangaStore.error && !manga" rounded class="bg-red-1 text-negative q-mt-xl">
+    <q-banner
+      v-else-if="mangaStore.syncError && !manga"
+      rounded
+      class="bg-red-1 text-negative q-mt-xl"
+    >
       <template #avatar><q-icon name="cloud_off" /></template>
-      {{ mangaStore.error }}
+      {{ mangaStore.syncError }}
       <template #action>
         <q-btn flat no-caps color="negative" label="Reintentar" @click="retrySubscription" />
       </template>
@@ -110,6 +114,10 @@ function reloadCurrentVersion() {
 }
 
 function retrySubscription() {
-  if (authStore.user?.uid) mangaStore.subscribe(authStore.user.uid)
+  try {
+    if (authStore.user?.uid) mangaStore.subscribe(authStore.user.uid)
+  } catch {
+    // subscribe records the failure in the banner.
+  }
 }
 </script>
