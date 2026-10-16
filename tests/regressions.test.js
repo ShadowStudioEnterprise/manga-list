@@ -11,6 +11,7 @@ import { exportLibraryToCsv, exportLibraryToJson } from '../src/services/export-
 import { authDestination, authRoute } from '../src/utils/auth-redirect.js'
 import { createMangaEdit, conflictingMangaFields } from '../src/utils/manga-edit.js'
 import { loadModule } from './helpers/load-module.js'
+import * as firebaseAuth from 'firebase/auth'
 
 const example = () => ({ ...createEmptyManga(), id: 'nano', name: 'Nano Machine', chapter: '276' })
 
@@ -43,6 +44,7 @@ test('Quasar exposes the documented Firebase dotenv values, including numeric se
       Object.keys(fixture).map((key) => [key, JSON.parse(definitions[`import.meta.env.${key}`])]),
     )
     let receivedConfig
+    let authOptions
     const boot = await loadModule(
       'src/boot/firebase.js',
       {
@@ -54,7 +56,14 @@ test('Quasar exposes the documented Firebase dotenv values, including numeric se
             return {}
           },
         },
-        'firebase/auth': { getAuth: () => ({}), connectAuthEmulator() {} },
+        'firebase/auth': {
+          ...firebaseAuth,
+          initializeAuth: (_app, options) => {
+            authOptions = options
+            return {}
+          },
+          connectAuthEmulator() {},
+        },
         'firebase/firestore': { getFirestore: () => ({}), connectFirestoreEmulator() {} },
       },
       env,
@@ -62,6 +71,11 @@ test('Quasar exposes the documented Firebase dotenv values, including numeric se
     assert.equal(boot.isFirebaseConfigured, true)
     assert.equal(receivedConfig.messagingSenderId, fixture.VITE_FIREBASE_MESSAGING_SENDER_ID)
     assert.equal(receivedConfig.apiKey, fixture.VITE_FIREBASE_API_KEY)
+    assert.deepEqual(authOptions.persistence, [
+      firebaseAuth.browserLocalPersistence,
+      firebaseAuth.inMemoryPersistence,
+    ])
+    assert.equal(authOptions.popupRedirectResolver, firebaseAuth.browserPopupRedirectResolver)
   } finally {
     assert.equal(dirname(resolve(folder)), resolve(tmpdir()))
     assert.ok(basename(folder).startsWith('mangalist-env-'))
@@ -84,7 +98,8 @@ test('emulators require development mode and a demo project', async () => {
   const overrides = {
     'firebase/app': { getApp: () => ({}), getApps: () => [], initializeApp: () => ({}) },
     'firebase/auth': {
-      getAuth: () => ({}),
+      ...firebaseAuth,
+      initializeAuth: () => ({}),
       connectAuthEmulator: (...args) => connections.push(args),
     },
     'firebase/firestore': {

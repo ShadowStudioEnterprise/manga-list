@@ -1,6 +1,12 @@
 import { defineBoot } from '#q-app'
 import { getApp, getApps, initializeApp } from 'firebase/app'
-import { connectAuthEmulator, getAuth } from 'firebase/auth'
+import {
+  browserLocalPersistence,
+  browserPopupRedirectResolver,
+  connectAuthEmulator,
+  initializeAuth,
+  inMemoryPersistence,
+} from 'firebase/auth'
 import { connectFirestoreEmulator, getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = Object.freeze(
@@ -37,7 +43,14 @@ export const firebaseApp = isFirebaseConfigured
     : initializeApp(firebaseConfig)
   : null
 
-export const auth = firebaseApp ? getAuth(firebaseApp) : null
+// Choose persistence before initialization. Starting with getAuth's IndexedDB
+// defaults and then moving to localStorage can sign another tab out during migration.
+export const auth = firebaseApp
+  ? initializeAuth(firebaseApp, {
+      persistence: [browserLocalPersistence, inMemoryPersistence],
+      popupRedirectResolver: browserPopupRedirectResolver,
+    })
+  : null
 export const db = firebaseApp ? getFirestore(firebaseApp) : null
 
 // Emulator connections are opt-in, development-only, and require a demo project.

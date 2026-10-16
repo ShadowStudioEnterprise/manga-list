@@ -5,7 +5,16 @@ import {
   reauthenticateWithCredential,
   reauthenticateWithPopup,
 } from 'firebase/auth'
-import { collection, deleteDoc, doc, getDocs, limit, query, writeBatch } from 'firebase/firestore'
+import {
+  collection,
+  doc,
+  getDocsFromServer,
+  limit,
+  query,
+  runTransaction,
+  serverTimestamp,
+  writeBatch,
+} from 'firebase/firestore'
 import { auth, db, requireFirebase } from '@/boot/firebase'
 import { createAppError, toAppError } from '@/utils/firebase-errors'
 
@@ -65,6 +74,21 @@ export async function reauthenticateCurrentUser(options = {}) {
   }
 }
 
+// Retain this marker after Auth deletion: other sessions can still hold valid
+// tokens. Removing it would let those sessions recreate orphaned manga data.
+async function beginAccountDeletion(uid) {
+  const reference = doc(db, 'users', uid)
+  await runTransaction(db, async (transaction) => {
+    const snapshot = await transaction.get(reference)
+    if (snapshot.data()?.status === 'deleting') return
+    transaction.set(reference, {
+      createdAt: snapshot.exists() ? snapshot.data().createdAt : serverTimestamp(),
+      updatedAt: serverTimestamp(),
+      status: 'deleting',
+    })
+  })
+}
+
 export async function deleteUserFirestoreData(uid, onProgress) {
   requireFirebase()
 
@@ -73,12 +97,18 @@ export async function deleteUserFirestoreData(uid, onProgress) {
   }
 
   const normalizedUid = uid.trim()
+  if (auth.currentUser?.uid !== normalizedUid) {
+    throw createAppError('app/invalid-account', 'La sesión no coincide con la cuenta a eliminar.')
+  }
   const mangasReference = collection(db, 'users', normalizedUid, 'mangas')
   let deletedCount = 0
+  let deletionStarted = false
 
   try {
+    await beginAccountDeletion(normalizedUid)
+    deletionStarted = true
     while (true) {
-      const snapshot = await getDocs(query(mangasReference, limit(DELETE_BATCH_SIZE)))
+      const snapshot = await getDocsFromServer(query(mangasReference, limit(DELETE_BATCH_SIZE)))
 
       if (snapshot.empty) {
         break
@@ -100,10 +130,10 @@ export async function deleteUserFirestoreData(uid, onProgress) {
       }
     }
 
-    await deleteDoc(doc(db, 'users', normalizedUid))
     return deletedCount
   } catch (error) {
     const appError = toAppError(error, 'No se han podido eliminar todos los datos de la cuenta.')
+    appError.deletionStarted = deletionStarted
     appError.deletedCount = deletedCount
     appError.partialDataDeletion = deletedCount > 0
     throw appError
@@ -123,8 +153,9 @@ export async function deleteCurrentAccount(options = {}) {
   let firestoreDataDeleted = false
 
   try {
-    if (normalizedOptions.reauthenticate !== false) {
-      await reauthenticateCurrentUser(normalizedOptions)
+    await reauthenticateCurrentUser(normalizedOptions)
+    if (auth.currentUser !== user) {
+      throw createAppError('app/invalid-account', 'La sesión cambió durante la confirmación.')
     }
 
     await deleteUserFirestoreData(user.uid, normalizedOptions.onProgress)
@@ -132,6 +163,7 @@ export async function deleteCurrentAccount(options = {}) {
     await deleteUser(user)
   } catch (error) {
     const appError = toAppError(error, 'No se ha podido eliminar la cuenta.')
+    appError.deletionStarted = appError.deletionStarted || firestoreDataDeleted
     appError.firestoreDataDeleted = firestoreDataDeleted
     throw appError
   }
