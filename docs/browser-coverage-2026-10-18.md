@@ -9,6 +9,7 @@ No prueba producción, OAuth Google real ni instalación en dispositivos.
 | ---------------------------------------------------------------- | ---------------------- | ------------- |
 | Registro, bookmarklet, recuperación y persistencia de sesión     | Sí                     | Sí            |
 | Dos pestañas: campos distintos y conflicto del mismo campo       | Sí                     | Sí            |
+| Historial Atrás/Adelante y cancelación de capítulo sin guardar   | Sí                     | Sí            |
 | Importación, exportación y aislamiento por cuenta                | Sí                     | Sí            |
 | Exportación rechazada sin conexión y recuperación                | Sí                     | Sí            |
 | Borradores opcionales, recuperación y limpieza al guardar/salir  | Sí                     | Sí            |
@@ -19,7 +20,7 @@ No prueba producción, OAuth Google real ni instalación en dispositivos.
 | Medición de 100/1000 obras con CDP                               | Sí                     | Sin cobertura |
 | Worker compilado, actualización pasiva con dos pestañas          | Sí, suite PWA separada | Sin cobertura |
 
-Firefox comparte los nueve escenarios portables de `library.spec.js`. No se duplica su
+Firefox comparte los diez escenarios portables de `library.spec.js`. No se duplica su
 implementación: una corrección en el flujo se comprueba en ambos motores. El caso de permisos
 del portapapeles lleva una etiqueta explícita `@chromium-only`; el archivo de escala conserva
 su alcance Chromium porque usa CDP. No se fingen métricas ni permisos equivalentes en Firefox.
@@ -72,8 +73,9 @@ Firefox. Tras sustituir la suposición de retorno circular por navegación hacia
 prueba de teclado se repitió en ambos motores y pasó 2/2. CI vuelve a ejecutar los 21
 escenarios juntos sobre el commit publicado. Spark, formato y ESLint pasan localmente.
 
-La repetición Firefox mostró un aviso de Vue Router sobre `history.state`; la navegación,
-la restauración del foco y el cierre con Escape pasaron. No se ha silenciado el aviso ni
-se atribuye su causa a código de aplicación sin una reproducción específica. Su revisión,
-junto al aviso de ResizeObserver ya documentado, sigue pendiente. No se cambia el rechazo
-de errores no controlados del navegador.
+La repetición Firefox mostró un aviso de Vue Router sobre `history.state`. La
+[reproducción posterior](navigation-history-2026-10-18.md) identifica un `goto` redundante
+en la prueba de teclado, lo retira y añade un control que rechaza ese aviso. Los nuevos
+escenarios de historial elevan la suite a 23 casos (13 Chromium y 10 Firefox). El aviso de
+ResizeObserver conserva su revisión pendiente; no se cambia el rechazo de errores no
+controlados del navegador.

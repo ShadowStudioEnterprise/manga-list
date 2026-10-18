@@ -185,3 +185,12 @@ detalla el fallo inicial de la suposición de retorno circular del foco, la repe
 del teclado en ambos motores y el aviso de Vue Router pendiente de revisión. CDP, permisos
 de portapapeles y ciclo PWA conservan su alcance Chromium. No se añaden servicios ni se
 modifican cuentas, reglas o configuración de producción.
+
+## Historial: causa del aviso y regresión de navegación
+
+La [reproducción específica en Firefox](navigation-history-2026-10-18.md) muestra que un
+`goto` de prueba redundante sobre la ruta actual dejaba `history.state` en `null`. Se retira
+y se rechaza `VUE_ROUTER_R0121` en todas las páginas de la suite portátil. Dos escenarios
+nuevos comprueban cancelación con Escape sin guardar el capítulo, foco, Atrás/Adelante y
+recarga. Resultado local: 23/23 recorridos (13 Chromium y 10 Firefox), Spark, formato y
+ESLint correctos. No se cambia el router de la aplicación ni se silencia el aviso.

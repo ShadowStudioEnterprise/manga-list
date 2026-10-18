@@ -6,11 +6,16 @@ import AxeBuilder from '@axe-core/playwright'
 
 let runtimeErrors
 let externalRequests
+let routingWarnings
 const password = 'Local-test-123!'
 
 test.beforeEach(async ({ context, page }) => {
   runtimeErrors = []
   externalRequests = []
+  routingWarnings = []
+  context.on('console', (message) => {
+    if (message.text().includes('VUE_ROUTER_R0121')) routingWarnings.push(message.text())
+  })
   page.on('pageerror', (error) => runtimeErrors.push(error.message))
   // Fail closed if a misconfiguration tries to reach a live backend.
   await context.route('**/*', (route) => {
@@ -26,6 +31,7 @@ test.beforeEach(async ({ context, page }) => {
 test.afterEach(() => {
   expect(runtimeErrors).toEqual([])
   expect(externalRequests).toEqual([])
+  expect(routingWarnings).toEqual([])
 })
 
 async function register(page, { currentPage = false } = {}) {
@@ -248,7 +254,7 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
   // Seed one work; the interaction under test below uses the keyboard only.
   await addManga(page, 'Prueba de teclado', '12')
-  await page.goto('/#/library')
+  await expect.poll(() => page.evaluate(() => history.state?.current)).toBe('/library')
   const chapter = page.getByRole('button', { name: 'Editar capítulo actual: 12', exact: true })
   await expect(chapter).toBeVisible()
   await tabTo(page, chapter)
@@ -270,6 +276,57 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(
     page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
   ).toBeVisible()
+})
+
+test('router history survives dialog cancellation and browser back and forward without saving edits', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 })
+  await register(page)
+  await addManga(page, 'Historial conservado', '12')
+  const libraryState = await page.evaluate(() => ({
+    current: history.state?.current,
+    position: history.state?.position,
+  }))
+  expect(libraryState.current).toBe('/library')
+  expect(Number.isInteger(libraryState.position)).toBe(true)
+
+  const chapter = page.getByRole('button', { name: 'Editar capítulo actual: 12', exact: true })
+  await chapter.click()
+  const dialog = page.getByRole('dialog', { name: 'Actualizar capítulo' })
+  await expect(dialog).toBeVisible()
+  await dialog.getByLabel('Capítulo *', { exact: true }).fill('999')
+  await page.keyboard.press('Escape')
+  await expect(dialog).toHaveCount(0)
+  await expect(chapter).toBeFocused()
+  expect(
+    await page.evaluate(() => ({
+      current: history.state?.current,
+      position: history.state?.position,
+    })),
+  ).toEqual(libraryState)
+
+  await page.getByRole('link', { name: 'Añadir', exact: true }).click()
+  await expect(page.getByLabel('Nombre *', { exact: true })).toBeVisible()
+  await expect.poll(() => page.evaluate(() => history.state?.current)).toBe('/add')
+  expect(await page.evaluate(() => history.state.position)).toBe(libraryState.position + 1)
+
+  await page.goBack()
+  await expect(page).toHaveURL(/#\/library$/)
+  await expect(chapter).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Editar capítulo actual: 999', exact: true }),
+  ).toHaveCount(0)
+  await expect.poll(() => page.evaluate(() => history.state?.position)).toBe(libraryState.position)
+  await page.goForward()
+  await expect(page).toHaveURL(/#\/add$/)
+  await expect(page.getByLabel('Nombre *', { exact: true })).toBeVisible()
+  await expect.poll(() => page.evaluate(() => history.state?.current)).toBe('/add')
+  await page.goBack()
+  await expect(chapter).toBeVisible()
+  await page.reload()
+  await expect(chapter).toBeVisible()
+  await expect.poll(() => page.evaluate(() => history.state?.current)).toBe('/library')
 })
 
 test('optional drafts survive reload, require recovery and clear after save or logout', async ({
