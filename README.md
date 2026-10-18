@@ -381,3 +381,5 @@ Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles 
 [Revisión y control continuo de dependencias](docs/dependencies-2026-10-18.md).
 
 [Importación recuperable: reintentos, recarga y límites](docs/import-recovery.md).
+
+[Estado de sincronización y procedencia de las copias](docs/synchronization-and-export.md).

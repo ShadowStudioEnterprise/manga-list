@@ -6,6 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  getDocsFromServer,
   limit,
   onSnapshot,
   query,
@@ -345,13 +346,17 @@ export function subscribeToMangas(uid, onData, onError) {
   }
   stop = onSnapshot(
     collectionReference,
+    { includeMetadataChanges: true },
     (snapshot) => {
       if (stopped) return
       if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments) {
         fail(createAppError('app/library-budget'))
         return
       }
-      onData(snapshot.docs.map(deserializeManga))
+      onData(snapshot.docs.map(deserializeManga), {
+        fromCache: snapshot.metadata?.fromCache !== false,
+        hasPendingWrites: snapshot.metadata?.hasPendingWrites !== false,
+      })
     },
     (error) => {
       fail(error)
@@ -361,6 +366,36 @@ export function subscribeToMangas(uid, onData, onError) {
   return () => {
     stopped = true
     stop()
+  }
+}
+
+export async function fetchLibraryForExport(uid) {
+  try {
+    const { auth } = requireFirebase()
+    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
+    sparkBudget.take('read')
+    const snapshot = await getDocsFromServer(
+      query(getMangaCollection(uid), limit(SPARK_LIMITS.libraryDocuments + 1)),
+    )
+    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
+    if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments)
+      throw createAppError('app/library-budget')
+    if (snapshot.metadata?.fromCache !== false || snapshot.metadata?.hasPendingWrites !== false) {
+      throw createAppError('app/export-not-confirmed')
+    }
+    return {
+      mangas: snapshot.docs.map(deserializeManga),
+      verification: {
+        source: 'server',
+        observedAtClient: new Date().toISOString(),
+        hasPendingWrites: false,
+      },
+    }
+  } catch (error) {
+    throw toAppError(
+      sparkBudget.record(error),
+      'No se ha podido confirmar la copia con el servidor.',
+    )
   }
 }
 

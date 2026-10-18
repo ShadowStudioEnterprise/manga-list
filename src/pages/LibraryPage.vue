@@ -24,6 +24,9 @@
     </section>
 
     <MangaFilters class="q-mt-lg" />
+    <p v-if="!mangaStore.syncError" role="status" class="text-caption text-grey-7">
+      {{ mangaStore.syncStatusMessage }}
+    </p>
 
     <q-banner
       v-if="mangaStore.syncError"
@@ -49,7 +52,14 @@
     </div>
 
     <MangaEmptyState
-      v-else-if="displayedMangas.length === 0"
+      v-else-if="
+        displayedMangas.length === 0 &&
+        mangaStore.snapshotReceived &&
+        !mangaStore.snapshotFromCache &&
+        !mangaStore.hasPendingWrites &&
+        mangaStore.pendingOperations === 0 &&
+        !mangaStore.syncError
+      "
       :filtered="hasActiveFilters && mangaStore.mangas.length > 0"
       @reset="resetFilters"
     />

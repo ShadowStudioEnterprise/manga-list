@@ -149,7 +149,8 @@ test('oversized listener rejects partial data and unsubscribes; quota blocks rec
         return {}
       },
       query: () => ({}),
-      onSnapshot: (_ref, data, error) => {
+      onSnapshot: (_ref, options, data, error) => {
+        assert.equal(options.includeMetadataChanges, true)
         subscriptions++
         receive = data
         fail = error

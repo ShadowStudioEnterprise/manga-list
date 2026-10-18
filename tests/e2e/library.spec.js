@@ -162,6 +162,8 @@ test('invalid import rows remain errors, successful import resets, export preser
   await page.getByRole('button', { name: 'Descargar JSON' }).click()
   const download = await downloadPromise
   const exported = JSON.parse(await readFile(await download.path(), 'utf8'))
+  expect(exported.formatVersion).toBe(2)
+  expect(exported.verification).toMatchObject({ source: 'server', hasPendingWrites: false })
   const records = Array.isArray(exported) ? exported : exported.mangas
   expect(records).toHaveLength(1)
   expect(records[0]).toMatchObject({ name: 'Valid Manga', chapter: '24' })
@@ -196,6 +198,48 @@ test('invalid import rows remain errors, successful import resets, export preser
   await expect(page).toHaveURL(/#\/login/)
   await register(page)
   await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
+})
+
+test('offline export never downloads a cache copy and recovers after the connection returns', async ({
+  page,
+  context,
+}) => {
+  test.setTimeout(90000)
+  await register(page)
+  await addManga(page, 'Offline export')
+  await page.goto('/#/settings/import-export')
+  // Hash navigation returns before its lazy module finishes loading.
+  await expect(
+    page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
+  ).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Descargar JSON', exact: true })).toBeEnabled()
+  await expect(page.getByRole('status')).toContainText('Última instantánea')
+  // WebChannel probes Google when its transport fails. Keep this exact probe
+  // blocked; all other external requests still fail the global isolation check.
+  await context.route('https://www.google.com/images/cleardot.gif*', (route) => route.abort())
+  const downloads = []
+  page.on('download', (download) => downloads.push(download))
+  await context.setOffline(true)
+  try {
+    await expect(page.getByRole('status')).toContainText('Mostrando datos locales', {
+      timeout: 30000,
+    })
+    await page.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
+    await expect(
+      page
+        .locator('.q-notification__message')
+        .filter({ hasText: /no está disponible|confirmar.*servidor/ }),
+    ).toBeVisible({ timeout: 30000 })
+    expect(downloads).toHaveLength(0)
+  } finally {
+    await context.setOffline(false)
+  }
+  await expect(page.getByRole('status')).toContainText('Última instantánea', { timeout: 30000 })
+  const nextDownload = page.waitForEvent('download')
+  await page.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
+  const data = JSON.parse(await readFile(await (await nextDownload).path(), 'utf8'))
+  expect(data.verification.source).toBe('server')
+  expect(data.mangas[0].name).toBe('Offline export')
 })
 
 test('mobile library supports manual chapters and confirmed deletion', async ({

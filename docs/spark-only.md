@@ -151,3 +151,5 @@ La retirada del marcador requiere una decisión separada sobre sesiones antiguas
   estrategia de rollback que preserve el bloqueo de marcadores.
 
 La recuperación de importaciones usa las mismas rutas y cuotas de Spark; ver [identidades, costes y límites](import-recovery.md).
+
+La descarga ahora realiza una lectura adicional acotada del servidor y rechaza caché o cambios pendientes; ver [coste, formatos y límites](synchronization-and-export.md).

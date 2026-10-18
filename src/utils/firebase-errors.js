@@ -3,6 +3,8 @@ const ERROR_MESSAGES = Object.freeze({
     'Firebase no está configurado. Revisa las variables de entorno de la aplicación.',
   'app/invalid-account': 'No se ha podido identificar la cuenta actual.',
   'app/invalid-manga': 'Los datos de la obra no son válidos.',
+  'app/export-not-confirmed':
+    'La copia contiene datos locales o cambios pendientes. Espera a confirmar el guardado antes de descargar.',
   'app/import-identity-unavailable':
     'Este navegador no permite preparar una importación recuperable. Usa una conexión segura y un navegador compatible.',
   'app/invalid-import-identity':

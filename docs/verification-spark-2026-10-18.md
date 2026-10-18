@@ -41,8 +41,8 @@ puntual, no una garantía frente a futuros cambios administrativos.
 | Verificación                              | Resultado                                                                                                     |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `npm run check:spark`                     | Correcto: inventario/configuración/SDK/workflows compatibles                                                  |
-| `npm test`                                | 37/37: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
-| `npm run test:rules` en emulador Standard | 12/12: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
+| `npm test`                                | 42/42: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
+| `npm run test:rules` en emulador Standard | 13/13: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
 | `npm run test:e2e`                        | 5/5 Chromium: sesión, dos pestañas, importación/exportación, móvil y borrado Auth local                       |
 | `npm run lint:check`                      | Correcto                                                                                                      |
 | `npm run build` y `npm run build:pwa`     | Correcto con configuración `demo-mangalist`; no despliegan                                                    |
@@ -125,3 +125,30 @@ Esta recuperación solo reconoce IDs del flujo v1 mientras la obra siga existien
 archivos modificados, borrados de obras e importaciones antiguas tienen los límites
 explicados en el documento. Cada fila añade lectura transaccional y consume presupuesto
 local de lectura, además del permiso de escritura. No se garantiza evitar cuotas agotadas.
+
+## Estado de sincronización y exportación H6
+
+Se incorporan [metadatos y copia comprobada](synchronization-and-export.md). El listener
+solicita eventos de metadatos y la UI distingue caché, cambios pendientes y última copia
+recibida del servidor. Una caché vacía no certifica que la biblioteca esté vacía.
+
+La descarga realiza una lectura acotada de servidor, comprueba cuenta/metadatos/tamaño
+antes de descargar y no sustituye un fallo por la lista local. JSON usa un contenedor v2
+con `mangas` y procedencia; CSV añade columnas de procedencia. Ambos siguen siendo
+reimportables. La hora es del cliente, sin certificación, y la copia solo cubre obras.
+
+Resultados locales: 42 pruebas y 13 pruebas de reglas correctas. Los cinco E2E existentes
+pasaron en la suite; el nuevo caso de desconexión/reconexión pasó de forma aislada tras
+ajustar la espera de la navegación y la selección del aviso. En ese caso no se descarga
+sin red y se obtiene una copia con procedencia al volver la conexión. El sondeo externo
+conocido del SDK se aborta expresamente; el resto de destinos externos siguen provocando
+fallo de aislamiento. CI volverá a ejecutar los seis escenarios juntos.
+
+Spark, formato y ESLint correctos. Se repiten las compilaciones con configuración demo.
+No se cambia la persistencia de Firestore ni se promete conservar datos/formularios después
+de cerrar o recargar. La consulta adicional consume cuota y sigue sujeta a los límites de Spark.
+
+Se refuerza además el seguimiento de operaciones en curso por UID, manteniéndolo al
+reiniciar el listener de la misma cuenta. La regresión comprueba que una eliminación
+aún no resuelta bloquea la confirmación aunque los metadatos de la consulta no marquen
+cambios, sin trasladar ese estado a otra cuenta. La batería actual suma 42 pruebas.

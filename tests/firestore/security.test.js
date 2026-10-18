@@ -420,6 +420,27 @@ test('recovered and concurrent imports keep one document per row, preserve edits
   )
 })
 
+test('export reads the current server state with explicit metadata and obeys account isolation', async () => {
+  const alice = dbFor('alice')
+  await setDoc(reference(alice), manga())
+  const auth = { currentUser: { uid: 'alice' } }
+  const service = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: alice, requireFirebase: () => ({ auth }) },
+  })
+  const first = await service.fetchLibraryForExport('alice')
+  assert.equal(first.mangas.length, 1)
+  assert.equal(first.verification.source, 'server')
+  assert.equal(first.verification.hasPendingWrites, false)
+  await updateDoc(reference(alice), { chapter: '300', updatedAt: serverTimestamp() })
+  const current = await service.fetchLibraryForExport('alice')
+  assert.equal(current.mangas[0].chapter, '300')
+  assert.equal(first.mangas[0].chapter, '276')
+  const wrong = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('bob'), requireFirebase: () => ({ auth }) },
+  })
+  await assert.rejects(wrong.fetchLibraryForExport('alice'), { code: 'permission-denied' })
+})
+
 test('simultaneous chapter transactions do not lose increments or unrelated fields', async () => {
   const alice = dbFor('alice')
   await setDoc(reference(alice), manga())
