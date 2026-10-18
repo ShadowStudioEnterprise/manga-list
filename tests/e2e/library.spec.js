@@ -486,6 +486,115 @@ test('bookmarklet survives recovery and registration, then session persists acro
   await expect(page.getByText('1 obras disponibles', { exact: true })).toBeVisible()
 })
 
+test('password recovery keeps responses generic and rejects invalid or reused reset codes', async ({
+  page,
+  context,
+  request,
+}, testInfo) => {
+  let blockedHealthProbes = 0
+  // WebChannel can probe connectivity when password reset interrupts its transport.
+  // Abort only this exact probe; every other external request still fails isolation.
+  await context.route(/^https:\/\/www\.google\.com\/images\/cleardot\.gif(?:\?.*)?$/, (route) => {
+    blockedHealthProbes++
+    return route.abort()
+  })
+  const email = await register(page)
+  await addManga(page, 'Biblioteca conservada al recuperar', '12')
+  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
+  await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
+  const notice = page.getByText(
+    'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.',
+    { exact: true },
+  )
+  const missingEmail = `missing-${randomUUID()}@example.test`
+  await page.getByLabel('Correo electrónico', { exact: true }).fill(missingEmail)
+  await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
+  await expect(notice).toBeVisible()
+  await expect(notice).toHaveCount(0)
+  await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
+  await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
+  await expect(notice).toBeVisible()
+
+  // The test-only admin endpoint and action API are hardcoded to the demo emulator.
+  // Do not follow redirects or derive these URLs/keys from a production environment.
+  const codesResponse = await request.get(
+    'http://127.0.0.1:9199/emulator/v1/projects/demo-mangalist/oobCodes',
+    { maxRedirects: 0 },
+  )
+  expect(codesResponse.status()).toBe(200)
+  const { oobCodes = [] } = await codesResponse.json()
+  expect(oobCodes.filter((entry) => entry.email === missingEmail)).toHaveLength(0)
+  const resets = oobCodes.filter(
+    (entry) => entry.email === email && entry.requestType === 'PASSWORD_RESET',
+  )
+  expect(resets).toHaveLength(1)
+  const code = resets[0].oobCode
+  expect(typeof code).toBe('string')
+  const resetURL =
+    'http://127.0.0.1:9199/identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=demo-mangalist-key'
+  const newPassword = 'Recovered-local-456!'
+  const invalid = await request.post(resetURL, {
+    data: { oobCode: `invalid-${randomUUID()}`, newPassword },
+    maxRedirects: 0,
+  })
+  expect(invalid.status()).toBe(400)
+  expect((await invalid.json()).error.message).toBe('INVALID_OOB_CODE')
+  const confirmed = await request.post(resetURL, {
+    data: { oobCode: code, newPassword },
+    maxRedirects: 0,
+  })
+  expect(confirmed.status()).toBe(200)
+  expect((await confirmed.json()).email).toBe(email)
+  const reused = await request.post(resetURL, {
+    data: { oobCode: code, newPassword: 'Must-not-replace-789!' },
+    maxRedirects: 0,
+  })
+  expect(reused.status()).toBe(400)
+  expect((await reused.json()).error.message).toBe('INVALID_OOB_CODE')
+
+  await page.getByRole('link', { name: 'Volver al login', exact: true }).click()
+  await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
+  await page.getByLabel('Contraseña', { exact: true }).fill(password)
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(
+    page
+      .locator('.q-notification__message')
+      .filter({ hasText: /contraseña.*no.*correct|contraseña no es correcta/ }),
+  ).toBeVisible()
+  await expect(page).toHaveURL(/#\/login/)
+  await page.getByLabel('Contraseña', { exact: true }).fill(newPassword)
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(
+    page.getByRole('heading', { name: 'Biblioteca conservada al recuperar', exact: true }),
+  ).toBeVisible()
+  await page.reload()
+  await expect(
+    page.getByRole('heading', { name: 'Biblioteca conservada al recuperar', exact: true }),
+  ).toBeVisible()
+  await expect(
+    page.getByRole('button', { name: 'Editar capítulo actual: 12', exact: true }),
+  ).toBeVisible()
+  const path = testInfo.outputPath('password-recovery-summary.json')
+  await writeFile(
+    path,
+    JSON.stringify(
+      {
+        mode: 'demo-emulators-only',
+        knownAndUnknownNoticeMatch: true,
+        invalidAndReusedCodesRejected: true,
+        oldPasswordRejected: true,
+        recoveredLibrarySurvivesReload: true,
+        blockedHealthProbes,
+      },
+      null,
+      2,
+    ),
+  )
+  await testInfo.attach('password-recovery-summary', { path, contentType: 'application/json' })
+})
+
 test('two tabs preserve unrelated edits and show a recoverable same-field conflict', async ({
   page,
   context,

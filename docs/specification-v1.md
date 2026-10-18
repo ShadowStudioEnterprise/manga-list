@@ -35,6 +35,11 @@ Los casos de CI con emuladores no constituyen aceptación operativa en producci�
 Authentication proporciona el UID. Firestore usa `users/{uid}` y
 `users/{uid}/mangas/{id}`; no existen bibliotecas compartidas ni perfiles públicos.
 
+La [recuperación de contraseña emulada](password-recovery-emulator.md) verifica el texto
+genérico de la solicitud, códigos inválidos/reutilizados y cambio de credenciales sin perder
+la biblioteca. Confirma por REST local; no sustituye aceptación de correo, página de acción
+alojada ni revocación de otras sesiones en producción.
+
 Las obras tienen exactamente los campos del esquema 1 definidos en las reglas:
 
 | Campo                    | Contrato de escritura                                                                          |

@@ -208,3 +208,13 @@ Se añaden transiciones sobre biblioteca y formulario con campos sin guardar en 
 sin recargar entre anchos. La matriz pasa a 25 recorridos. Dispositivos, zoom del sistema y
 arrastre continuo siguen fuera de esta comprobación. No se modifican SDK, reglas, cuotas,
 servicios, facturación ni producción.
+
+## H1: recuperación de credenciales en emuladores
+
+La [prueba de recuperación](password-recovery-emulator.md) solicita el enlace desde la app,
+confirma el código por REST local y comprueba códigos inválidos/reutilizados, rechazo de
+contraseña anterior, acceso con la nueva y biblioteca conservada tras recarga. La repetición
+dirigida pasa 2/2 en Chromium y Firefox; se aborta y contabiliza el sondeo WebChannel exacto
+identificado en el primer ensayo, manteniendo el rechazo de cualquier otra petición externa.
+La matriz pasa a 27 casos. No se envía correo real ni se valida la página alojada o la
+revocación de otras sesiones. H1 operativo sigue pendiente de autorización y aceptación.

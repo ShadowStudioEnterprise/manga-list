@@ -227,11 +227,15 @@ El acceso OAuth con una cuenta real de Google requiere una comprobación manual 
 
 La [matriz de navegadores y sus límites](docs/browser-coverage-2026-10-18.md) distingue los
 escenarios compartidos de los permisos de portapapeles, las métricas CDP y el ciclo PWA,
-que se mantienen solo en Chromium. Firefox ejecuta once recorridos adicionales, incluido
+que se mantienen solo en Chromium. Firefox ejecuta doce recorridos adicionales, incluido
 el [historial Atrás/Adelante y la cancelación sin guardar](docs/navigation-history-2026-10-18.md).
 
 Los [cambios de ancho con la página abierta](docs/live-resize-2026-10-18.md) comprueban
 biblioteca y formulario sin recarga; las notificaciones de error ResizeObserver hacen fallar la suite.
+
+La [recuperación de contraseña en emuladores](docs/password-recovery-emulator.md) comprueba
+credenciales y códigos de un solo uso mediante confirmación REST local. No valida el correo
+ni la página de acción reales de Firebase.
 
 Referencias: [servidor de pruebas de Playwright](https://playwright.dev/docs/test-webserver),
 [emulador de Authentication](https://firebase.google.com/docs/emulator-suite/connect_auth) y
@@ -378,7 +382,7 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 ## Siguientes mejoras recomendadas
 
 - Ampliar la cobertura de normalización y casos de importación.
-- Ampliar los tests E2E a otros navegadores y al flujo de recuperación de contraseña completo.
+- Ampliar los tests E2E a otros navegadores y completar la aceptación real de recuperación de contraseña, con autorización para producción.
 - Revisar App Check y controles de abuso compatibles con Spark antes de abrir el registro a gran escala, con autorización separada para cambios remotos.
 - Borrado Spark reanudable desde el cliente y asistencia manual autorizada; sin Cloud Functions ni servicios de pago.
 - Portadas y metadatos externos opcionales.

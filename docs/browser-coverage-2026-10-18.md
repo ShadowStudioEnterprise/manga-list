@@ -5,23 +5,24 @@ No prueba producción, OAuth Google real ni instalación en dispositivos.
 
 ## Matriz que ejecuta CI
 
-| Escenarios                                                       | Chromium               | Firefox       |
-| ---------------------------------------------------------------- | ---------------------- | ------------- |
-| Registro, bookmarklet, recuperación y persistencia de sesión     | Sí                     | Sí            |
-| Dos pestañas: campos distintos y conflicto del mismo campo       | Sí                     | Sí            |
-| Historial Atrás/Adelante y cancelación de capítulo sin guardar   | Sí                     | Sí            |
-| Cambios de ancho sin recarga y campos sin guardar                | Sí                     | Sí            |
-| Importación, exportación y aislamiento por cuenta                | Sí                     | Sí            |
-| Exportación rechazada sin conexión y recuperación                | Sí                     | Sí            |
-| Borradores opcionales, recuperación y limpieza al guardar/salir  | Sí                     | Sí            |
-| Capítulos y borrado confirmado en ancho móvil                    | Sí                     | Sí            |
-| Borrado de cuenta: contraseña errónea y finalización en emulador | Sí                     | Sí            |
-| Axe a 320/768/1280 píxeles y recorrido de teclado                | Sí                     | Sí            |
-| Copiar versión con permisos reales y portapapeles denegado       | Sí                     | Sin cobertura |
-| Medición de 100/1000 obras con CDP                               | Sí                     | Sin cobertura |
-| Worker compilado, actualización pasiva con dos pestañas          | Sí, suite PWA separada | Sin cobertura |
+| Escenarios                                                        | Chromium               | Firefox       |
+| ----------------------------------------------------------------- | ---------------------- | ------------- |
+| Registro, bookmarklet, recuperación y persistencia de sesión      | Sí                     | Sí            |
+| Recuperación con código emulado, rechazo y cambio de credenciales | Sí                     | Sí            |
+| Dos pestañas: campos distintos y conflicto del mismo campo        | Sí                     | Sí            |
+| Historial Atrás/Adelante y cancelación de capítulo sin guardar    | Sí                     | Sí            |
+| Cambios de ancho sin recarga y campos sin guardar                 | Sí                     | Sí            |
+| Importación, exportación y aislamiento por cuenta                 | Sí                     | Sí            |
+| Exportación rechazada sin conexión y recuperación                 | Sí                     | Sí            |
+| Borradores opcionales, recuperación y limpieza al guardar/salir   | Sí                     | Sí            |
+| Capítulos y borrado confirmado en ancho móvil                     | Sí                     | Sí            |
+| Borrado de cuenta: contraseña errónea y finalización en emulador  | Sí                     | Sí            |
+| Axe a 320/768/1280 píxeles y recorrido de teclado                 | Sí                     | Sí            |
+| Copiar versión con permisos reales y portapapeles denegado        | Sí                     | Sin cobertura |
+| Medición de 100/1000 obras con CDP                                | Sí                     | Sin cobertura |
+| Worker compilado, actualización pasiva con dos pestañas           | Sí, suite PWA separada | Sin cobertura |
 
-Firefox comparte los once escenarios portables de `library.spec.js`. No se duplica su
+Firefox comparte los doce escenarios portables de `library.spec.js`. No se duplica su
 implementación: una corrección en el flujo se comprueba en ambos motores. El caso de permisos
 del portapapeles lleva una etiqueta explícita `@chromium-only`; el archivo de escala conserva
 su alcance Chromium porque usa CDP. No se fingen métricas ni permisos equivalentes en Firefox.
@@ -81,3 +82,8 @@ escenarios de historial elevan esa revisión a 23 casos. La continuación de
 [redimensionamiento en vivo](live-resize-2026-10-18.md) corrige el aviso reproducido al
 cambiar la altura de cabecera y añade su captura explícita: la suite suma 25 casos
 (14 Chromium y 11 Firefox). No se permite el aviso para superar las pruebas.
+
+La [recuperación con credenciales emuladas](password-recovery-emulator.md) añade un caso por
+motor: mensaje genérico, códigos inválidos/reutilizados y acceso con la nueva contraseña,
+con biblioteca conservada. La matriz actual suma 27 casos (15 Chromium y 12 Firefox).
+La confirmación es por REST local; correo y página de acción reales siguen sin validar.

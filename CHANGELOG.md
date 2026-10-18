@@ -24,6 +24,9 @@ sin fusión ni despliegue por este trabajo.
   conserva el límite de 1000 y no reduce las lecturas iniciales del listener.
 - Revisión de accesibilidad, teclado, historial y cambios de ancho en Chromium/Firefox.
   Barra de altura mínima común de 68 píxeles; captura explícita de errores ResizeObserver.
+- Recuperación de contraseña probada en ambos motores con códigos emulados: rechazo de
+  códigos inválidos/reutilizados y contraseña anterior; biblioteca conservada tras recuperar.
+  No valida la entrega ni la página de acción reales.
 - Identificación de compilación, inventario de hashes y procedimiento de recuperación
   compatible con los contratos de borrado y consulta, sin ejecutar restauraciones.
 - Especificación v1, guía de contribución, límites de comunicación de seguridad y este registro.

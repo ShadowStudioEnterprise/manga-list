@@ -55,11 +55,15 @@ Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](dra
 
 La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](accessibility-2026-10-18.md).
 
-La [matriz H3 de navegadores](browser-coverage-2026-10-18.md) amplía once recorridos a Firefox;
+La [matriz H3 de navegadores](browser-coverage-2026-10-18.md) amplía doce recorridos a Firefox;
 la aceptación en dispositivos reales y Safari continúa pendiente.
 
 La [revisión de cambios de ancho](live-resize-2026-10-18.md) conserva la altura de cabecera
 y añade captura explícita de errores ResizeObserver y conservación de formularios.
+
+H1 cuenta con [recuperación de credenciales emuladas](password-recovery-emulator.md),
+incluidos códigos inválidos y reutilizados. La entrega y página de acción reales, OAuth y
+configuración efectiva siguen pendientes de aceptación autorizada; H1 no se marca cerrado.
 
 La representación por páginas y la evidencia H6 están en [escala de biblioteca](library-scale-2026-10-18.md); no amplía el límite de 1000 obras ni reduce las lecturas iniciales.
 
