@@ -92,7 +92,11 @@ for (const size of [100, 1000, 2500]) {
     })
     // Measure opening the library view with its existing listener, not cold network latency.
     await page.goto('/#/settings')
-    await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible()
+    // The first visit also compiles this lazy route and its dependencies in Vite.
+    // Keep that preparation outside the measured library interactions below.
+    await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible({
+      timeout: 90000,
+    })
     await seedLibrary(uid, size)
     const client = await context.newCDPSession(page)
     await client.send('Performance.enable')
@@ -203,7 +207,7 @@ for (const size of [100, 1000, 2500]) {
     await page.goto('/#/settings/import-export')
     await expect(
       page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
-    ).toBeVisible()
+    ).toBeVisible({ timeout: 90000 })
     const download = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
     const exported = JSON.parse(await readFile(await (await download).path(), 'utf8'))
