@@ -17,6 +17,8 @@ import {
   setLogLevel,
   writeBatch,
   collection,
+  query,
+  limit,
   getDocsFromServer,
 } from 'firebase/firestore'
 import { loadModule } from '../helpers/load-module.js'
@@ -291,7 +293,11 @@ test('actual cleanup deletes more than 400 records, rejects concurrent writes, a
     progress.push(deletedCount)
   })
   assert.deepEqual(progress, [400, 401])
-  assert.equal((await getDocsFromServer(collection(alice, 'users', 'alice', 'mangas'))).size, 0)
+  assert.equal(
+    (await getDocsFromServer(query(collection(alice, 'users', 'alice', 'mangas'), limit(400))))
+      .size,
+    0,
+  )
   assert.equal((await getDoc(doc(alice, 'users', 'alice'))).data().status, 'deleting')
   await assertFails(setDoc(reference(other, 'after-cleanup'), manga()))
   assert.equal(await service.deleteUserFirestoreData('alice'), 0)
@@ -321,4 +327,14 @@ test('simultaneous chapter transactions do not lose increments or unrelated fiel
     ),
     { code: 'app/edit-conflict' },
   )
+})
+
+test('list queries require an owner and an explicit bounded limit', async () => {
+  for (const uid of ['alice', 'bob']) {
+    const ref = collection(dbFor(uid), 'users', 'alice', 'mangas')
+    await assertFails(getDocsFromServer(ref))
+    await assertFails(getDocsFromServer(query(ref, limit(1002))))
+    if (uid === 'alice') await assertSucceeds(getDocsFromServer(query(ref, limit(1001))))
+    else await assertFails(getDocsFromServer(query(ref, limit(10))))
+  }
 })

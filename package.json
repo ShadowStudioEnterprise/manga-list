@@ -15,8 +15,10 @@
     "dev": "quasar dev",
     "build": "quasar build",
     "build:pwa": "quasar build -m pwa",
-    "deploy:hosting": "firebase deploy --only hosting --project mangalist-61bb8",
-    "postinstall": "quasar prepare --silent"
+    "deploy:hosting": "npm run check:spark:remote && firebase deploy --only hosting --project mangalist-61bb8",
+    "postinstall": "quasar prepare --silent",
+    "check:spark": "node scripts/check-spark.mjs",
+    "check:spark:remote": "node scripts/check-spark.mjs --remote"
   },
   "dependencies": {
     "@quasar/extras": "^2.0.4",

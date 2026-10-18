@@ -291,3 +291,20 @@ test('retrying a partial import never writes successful records again', async ()
   assert.deepEqual(saved, ['First', 'Second'])
   assert.equal(page.preview.value, null)
 })
+
+test('quota failure stops import after the current chunk and preserves confirmed successes', async () => {
+  let attempts = 0
+  const page = await importPage(async () => {
+    attempts++
+    if (attempts === 2) throw Object.assign(new Error('quota'), { code: 'resource-exhausted' })
+  })
+  page.preview.value = createImportPreview(
+    JSON.stringify(Array.from({ length: 20 }, (_, i) => ({ name: `Manga ${i}`, chapter: '1' }))),
+    { format: 'json' },
+  )
+  await page.importSelected()
+  assert.equal(attempts, 8)
+  assert.equal(page.preview.value.items.filter((item) => item.imported).length, 7)
+  assert.equal(page.preview.value.items.filter((item) => item.selected).length, 13)
+  assert.equal(page.importing.value, false)
+})

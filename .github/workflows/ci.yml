@@ -31,6 +31,8 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Enforce Spark compatibility (no credentials)
+        run: npm run check:spark
       - name: Install dependencies
         run: |
           npm ci

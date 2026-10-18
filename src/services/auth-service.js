@@ -1,3 +1,4 @@
+import { sparkBudget } from '@/utils/spark-budget'
 import {
   GoogleAuthProvider,
   browserLocalPersistence,
@@ -77,7 +78,10 @@ export function initializeAuth() {
     authObserverUnsubscribe = null
     authInitializationPromise = null
     authIsReady = false
-    throw toAppError(error, 'No se ha podido iniciar el servicio de autenticación.')
+    throw toAppError(
+      sparkBudget.record(error),
+      'No se ha podido iniciar el servicio de autenticación.',
+    )
   })
 
   return authInitializationPromise
@@ -137,32 +141,35 @@ export function serializeAuthUser(user) {
 export async function loginWithEmail(email, password) {
   try {
     await initializeAuth()
+    sparkBudget.take('auth')
     const credential = await signInWithEmailAndPassword(auth, email.trim(), password)
     return credential.user
   } catch (error) {
-    throw toAppError(error, 'No se ha podido iniciar sesión.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido iniciar sesión.')
   }
 }
 
 export async function registerWithEmail(email, password) {
   try {
     await initializeAuth()
+    sparkBudget.take('auth')
     const credential = await createUserWithEmailAndPassword(auth, email.trim(), password)
     return credential.user
   } catch (error) {
-    throw toAppError(error, 'No se ha podido crear la cuenta.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido crear la cuenta.')
   }
 }
 
 export async function loginWithGoogle() {
   try {
     await initializeAuth()
+    sparkBudget.take('auth')
     const provider = new GoogleAuthProvider()
     provider.setCustomParameters({ prompt: 'select_account' })
     const credential = await signInWithPopup(auth, provider)
     return credential.user
   } catch (error) {
-    throw toAppError(error, 'No se ha podido iniciar sesión con Google.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido iniciar sesión con Google.')
   }
 }
 
@@ -171,16 +178,17 @@ export async function logout() {
     requireFirebase()
     await signOut(auth)
   } catch (error) {
-    throw toAppError(error, 'No se ha podido cerrar la sesión.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido cerrar la sesión.')
   }
 }
 
 export async function resetPassword(email) {
   try {
     requireFirebase()
+    sparkBudget.take('auth')
     await sendPasswordResetEmail(auth, email.trim())
   } catch (error) {
-    throw toAppError(error, 'No se ha podido enviar el correo de recuperación.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido enviar el correo de recuperación.')
   }
 }
 

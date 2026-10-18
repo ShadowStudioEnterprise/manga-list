@@ -65,7 +65,10 @@ async function fixture({
       getDocsFromServer: async () => {
         state.reads++
         assert.equal(state.locked, true)
-        if (readFails) throw failure()
+        if (readFails)
+          throw Object.assign(failure(), {
+            code: typeof readFails === 'string' ? readFails : 'unavailable',
+          })
         const size = Math.min(400, state.remaining)
         return { empty: size === 0, size, docs: Array.from({ length: size }, () => ({ ref: {} })) }
       },
@@ -166,4 +169,43 @@ test('a session change during reauthentication stops before the write barrier', 
   assert.equal(state.locked, false)
   assert.equal(state.batches, 0)
   assert.equal(state.authDeleted, false)
+})
+
+test('large deletion stops at a bounded budget and resumes without deleting Auth early', async () => {
+  const { service, state } = await fixture({ count: 2401 })
+  await assert.rejects(service.deleteCurrentAccount({ password: 'test' }), (error) => {
+    assert.equal(error.code, 'app/deletion-budget')
+    assert.equal(error.deletedCount, 2000)
+    assert.equal(error.deletionStarted, true)
+    return true
+  })
+  assert.equal(state.batches, 5)
+  assert.equal(state.reads, 6)
+  assert.equal(state.authDeleted, false)
+  await service.deleteCurrentAccount({ password: 'test' })
+  assert.equal(state.remaining, 0)
+  assert.equal(state.authDeleted, true)
+})
+
+test('quota exhaustion keeps marker and Auth, and repeated confirmation performs no further reads', async () => {
+  const { service, state } = await fixture({ count: 1, readFails: 'resource-exhausted' })
+  await assert.rejects(service.deleteCurrentAccount({ password: 'test' }), {
+    code: 'resource-exhausted',
+  })
+  await assert.rejects(service.deleteCurrentAccount({ password: 'test' }), {
+    code: 'app/quota-paused',
+  })
+  assert.equal(state.reads, 1)
+  assert.equal(state.locked, true)
+  assert.equal(state.authDeleted, false)
+})
+
+test('simultaneous deletion confirmations are rejected before a second cleanup starts', async () => {
+  const { service, state } = await fixture({ count: 2 })
+  const first = service.deleteCurrentAccount({ password: 'test' })
+  await assert.rejects(service.deleteCurrentAccount({ password: 'test' }), {
+    code: 'app/request-budget',
+  })
+  await first
+  assert.equal(state.batches, 1)
 })

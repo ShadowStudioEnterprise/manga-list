@@ -124,7 +124,8 @@ service cloud.firestore {
         && userDocumentHasValidShape(request.resource.data);
 
       match /mangas/{mangaId} {
-        allow read, delete: if isOwner(userId);
+        allow get, delete: if isOwner(userId);
+        allow list: if isOwner(userId) && request.query.limit <= 1001;
 
         allow create: if isOwner(userId)
           && accountAllowsWrites(userId)

@@ -28,6 +28,18 @@ const ERROR_MESSAGES = Object.freeze({
   'auth/wrong-password': 'La contraseña no es correcta.',
   'auth/web-storage-unsupported':
     'El navegador no permite mantener la sesión. Revisa sus ajustes de privacidad.',
+  'app/quota-paused':
+    'Peticiones pausadas durante 15 minutos por una cuota agotada. Conserva tus cambios y espera antes de reintentar.',
+  'app/request-budget':
+    'Límite local de peticiones alcanzado. Espera un minuto antes de reintentar.',
+  'app/deletion-budget':
+    'Límite de 2000 borrados por intento alcanzado. Vuelve a confirmar para continuar.',
+  'app/library-budget':
+    'La biblioteca supera las 1000 obras admitidas. No se ha cargado una copia parcial. Contacta con soporte para recuperar o reducir la biblioteca.',
+  'resource-exhausted':
+    'Cuota del servicio agotada. Conserva tus cambios y espera antes de reintentar. Puede requerir el reinicio de la cuota diaria.',
+  'firestore/resource-exhausted': 'Cuota de Firestore agotada. Espera antes de reintentar.',
+  'auth/quota-exceeded': 'Cuota de autenticación agotada. Espera antes de reintentar.',
   cancelled: 'La operación se ha cancelado.',
   'failed-precondition': 'No se puede completar esta operación en este momento.',
   'permission-denied': 'No tienes permiso para realizar esta acción.',

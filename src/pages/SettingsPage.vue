@@ -113,7 +113,10 @@
               <div id="delete-account-title" class="text-h6">Eliminar tu cuenta</div>
               <p class="q-mb-none">
                 Se bloquearán nuevas escrituras, se borrarán tus obras y después tu acceso. Si el
-                proceso se interrumpe, vuelve aquí para completarlo.
+                proceso se interrumpe o cierras la app, el borrado no continúa por sí solo. Vuelve
+                aquí para completarlo; tu acceso se conserva hasta verificar el borrado de las
+                obras. Se borran como máximo 2000 obras por intento. Se conserva un marcador mínimo
+                de seguridad.
               </p>
             </div>
           </q-card-section>

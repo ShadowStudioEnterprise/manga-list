@@ -138,7 +138,7 @@ const importing = ref(false)
 
 async function readFile(selectedFile) {
   if (!selectedFile) return
-  if (mangaStore.loading) {
+  if (mangaStore.loading || mangaStore.syncError) {
     $q.notify({ type: 'info', message: 'Espera a que termine de sincronizarse la biblioteca.' })
     file.value = null
     return
@@ -174,7 +174,7 @@ function resetImport() {
 }
 
 async function importSelected() {
-  if (importing.value || !preview.value) return
+  if (importing.value || !preview.value || mangaStore.syncError || mangaStore.loading) return
   const uid = authStore.user?.uid
   if (!uid) return
   const selectedIds = preview.value.items.filter((item) => item.selected).map((item) => item.id)
@@ -198,6 +198,21 @@ async function importSelected() {
           failed += 1
         }
       })
+      const stopped = results.some(
+        (result) =>
+          result.status === 'rejected' &&
+          [
+            'resource-exhausted',
+            'firestore/resource-exhausted',
+            'auth/quota-exceeded',
+            'app/quota-paused',
+            'app/request-budget',
+          ].includes(result.reason?.code),
+      )
+      if (stopped) {
+        failed += selection.selectedItems.length - index - chunk.length
+        break
+      }
     }
 
     $q.notify({
@@ -214,6 +229,13 @@ async function importSelected() {
 }
 
 function exportLibrary(format) {
+  if (mangaStore.syncError || mangaStore.loading) {
+    $q.notify({
+      type: 'warning',
+      message: 'Espera a una sincronización sin errores antes de exportar.',
+    })
+    return
+  }
   try {
     downloadLibraryExport(mangaStore.mangas, format)
     $q.notify({ type: 'positive', message: `Copia ${format.toUpperCase()} descargada.` })

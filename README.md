@@ -362,8 +362,8 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 
 - Ampliar la cobertura de normalización y casos de importación.
 - Ampliar los tests E2E a otros navegadores y al flujo de recuperación de contraseña completo.
-- Firebase App Check, límites por cuenta y alertas de presupuesto antes de abrir el registro a gran escala.
-- Cloud Function/Admin para borrado recursivo al crecer el modelo.
+- Revisar App Check y controles de abuso compatibles con Spark antes de abrir el registro a gran escala, con autorización separada para cambios remotos.
+- Borrado Spark reanudable desde el cliente y asistencia manual autorizada; sin Cloud Functions ni servicios de pago.
 - Portadas y metadatos externos opcionales.
 - Extensión de navegador reutilizando la ruta `/add` y los parsers aislados.
 - División adicional del bundle del SDK Firebase si el tamaño inicial se vuelve relevante.
@@ -373,3 +373,7 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 - [Cambios, modelo de concurrencia y borrado seguro](docs/technical-review-2026-10-16.md).
 - [Resultados de verificación](docs/verification-2026-10-16.md).
 - [Roadmap priorizado y criterios de aceptación](docs/roadmap.md).
+
+## Política Spark del 18/10/2026
+
+Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles y límites](docs/spark-only.md) y [evidencia de verificación](docs/verification-spark-2026-10-18.md).

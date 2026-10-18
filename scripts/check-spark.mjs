@@ -1,0 +1,188 @@
+import { readFileSync, readdirSync } from 'node:fs'
+import { resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { execFileSync, execSync } from 'node:child_process'
+
+const root = resolve(fileURLToPath(new URL('..', import.meta.url)))
+const read = (file) => readFileSync(resolve(root, file), 'utf8')
+const json = (file) => JSON.parse(read(file))
+const assert = (value, message) => {
+  if (!value) throw new Error(message)
+}
+
+export function validateConfig(config, policy) {
+  assert(
+    policy.plan === 'SPARK' && policy.billingAllowed === false,
+    'Spark without billing is mandatory',
+  )
+  assert(
+    JSON.stringify(policy.services) === JSON.stringify(['auth', 'firestore', 'hosting']),
+    'Service inventory changed',
+  )
+  assert(
+    Object.keys(config).every((key) => ['hosting', 'firestore', 'emulators'].includes(key)),
+    'Unsupported Firebase service',
+  )
+  assert(
+    config.firestore?.rules === 'firestore.rules' &&
+      Object.keys(config.firestore).every((key) => ['rules', 'predeploy'].includes(key)) &&
+      JSON.stringify(config.firestore.predeploy) === JSON.stringify(['npm run check:spark:remote']),
+    'Only existing default Firestore rules supported',
+  )
+  assert(config.hosting && !Array.isArray(config.hosting), 'Only one static Hosting site supported')
+  assert(
+    config.hosting.site === policy.project && config.hosting.public === 'dist/pwa',
+    'Unexpected Hosting target',
+  )
+  assert(
+    Object.keys(config.hosting).every((key) =>
+      ['site', 'public', 'ignore', 'predeploy', 'rewrites', 'headers'].includes(key),
+    ),
+    'Unapproved Hosting feature',
+  )
+  assert(
+    JSON.stringify(config.hosting.predeploy) ===
+      JSON.stringify(['npm run check:spark:remote', 'npm run build:pwa']),
+    'Unexpected predeploy command',
+  )
+  assert(
+    !config.hosting.source && !config.hosting.frameworksBackend,
+    'Server/framework hosting forbidden',
+  )
+  assert(
+    config.hosting.rewrites?.every(
+      (rule) =>
+        Object.keys(rule).every((key) => ['source', 'destination', 'regex'].includes(key)) &&
+        typeof rule.destination === 'string',
+    ),
+    'Only static rewrites allowed',
+  )
+  assert(
+    Object.keys(config.emulators || {}).every((key) => ['auth', 'firestore', 'ui'].includes(key)),
+    'Unexpected emulator',
+  )
+  assert(
+    config.hosting.predeploy?.includes('npm run check:spark:remote'),
+    'Remote billing check required before Hosting deployment',
+  )
+  return true
+}
+
+export function validateRemote(billing, database, project) {
+  assert(
+    billing.name === `projects/${project}/billingInfo`,
+    'Billing evidence targets another project',
+  )
+  assert(
+    billing.billingEnabled === false && !billing.billingAccountName,
+    'Billing must be disabled and unlinked',
+  )
+  assert(
+    database.name === `projects/${project}/databases/(default)`,
+    'Unexpected Firestore database',
+  )
+  assert(
+    database.type === 'FIRESTORE_NATIVE' && database.databaseEdition === 'STANDARD',
+    'Only Firestore Standard supported',
+  )
+}
+
+function files(folder) {
+  return readdirSync(resolve(root, folder), { withFileTypes: true }).flatMap((entry) => {
+    const path = `${folder}/${entry.name}`
+    return entry.isDirectory() ? files(path) : [path]
+  })
+}
+
+export function checkLocal() {
+  const policy = json('spark-policy.json')
+  assert(policy.project === 'mangalist-61bb8', 'Unexpected production project')
+  assert(
+    !process.env.GCLOUD_PROJECT || process.env.GCLOUD_PROJECT === policy.project,
+    'CLI target differs from Spark policy',
+  )
+  validateConfig(json('firebase.json'), policy)
+  const aliases = Object.values(json('.firebaserc').projects)
+  assert(
+    aliases.every((project) => project === policy.project),
+    'Unexpected Firebase alias',
+  )
+  for (const path of files('src')) {
+    if (!/\.(js|vue)$/.test(path)) continue
+    const source = read(path)
+    for (const match of source.matchAll(/(?:from\s*|import\s*\()\s*['"](firebase[^'"]*)['"]/g)) {
+      assert(
+        ['firebase/app', 'firebase/auth', 'firebase/firestore'].includes(match[1]),
+        `Unsupported SDK: ${path}: ${match[1]}`,
+      )
+    }
+    assert(
+      !/https:\/\/[^\s'"]*(?:cloudfunctions\.net|run\.app)/i.test(source),
+      `Paid backend endpoint: ${path}`,
+    )
+    assert(
+      !/httpsCallable|signInWithPhoneNumber|PhoneAuthProvider|initializeAppCheck/.test(source),
+      `Unapproved service/provider: ${path}`,
+    )
+  }
+  for (const file of [
+    'package.json',
+    'package-lock.json',
+    'src-pwa/package.json',
+    'src-pwa/package-lock.json',
+  ]) {
+    assert(
+      !/"(?:firebase-admin|firebase-functions|@google-cloud\/[^" ]+)"\s*:/.test(read(file)),
+      `Server dependency: ${file}`,
+    )
+  }
+  // No deployment workflow is approved; all mutations stay manual.
+  for (const path of files('.github/workflows')) {
+    assert(
+      !/firebase\s+deploy|gcloud\s+(?:run|billing)|firebase-hosting-merge|FirebaseExtended\/action-hosting-deploy/i.test(
+        read(path),
+      ),
+      `Deployment/billing command in ${path}`,
+    )
+  }
+  console.log('Spark local compatibility checks passed (remote state not certified).')
+  return policy
+}
+
+if (process.argv[1] && resolve(process.argv[1]) === resolve(root, 'scripts/check-spark.mjs')) {
+  try {
+    const policy = checkLocal()
+    if (process.argv.includes('--remote')) {
+      // Read-only, fresh evidence. No cached attestations or bypass flag.
+      const inspect = (args) => {
+        const options = { encoding: 'utf8', timeout: 30000, stdio: ['ignore', 'pipe', 'pipe'] }
+        const parameters = [...args, '--format=json', '--quiet']
+        // Windows requires a shell for .cmd. All arguments come from the fixed
+        // commands below and the exact project asserted by checkLocal, not input.
+        for (const value of parameters)
+          assert(/^[a-zA-Z0-9=()._-]+$/.test(value), 'Unsafe CLI argument')
+        return JSON.parse(
+          process.platform === 'win32'
+            ? execSync(
+                ['gcloud.cmd', ...parameters].map((value) => `"${value}"`).join(' '),
+                options,
+              )
+            : execFileSync('gcloud', parameters, options),
+        )
+      }
+      const billing = inspect(['billing', 'projects', 'describe', policy.project])
+      const database = inspect([
+        'firestore',
+        'databases',
+        'describe',
+        '--database=(default)',
+        `--project=${policy.project}`,
+      ])
+      validateRemote(billing, database, policy.project)
+      console.log('Remote billing disabled/unlinked and Firestore Standard confirmed.')
+    }
+  } catch (error) {
+    console.error(`Spark validation blocked: ${error.message}`)
+    process.exitCode = 1
+  }
+}
