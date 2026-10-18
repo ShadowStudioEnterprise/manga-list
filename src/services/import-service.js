@@ -7,6 +7,7 @@ import {
 import { normalizeChapter } from '../utils/chapter-utils.js'
 import { normalizeTitle } from '../utils/normalize-title.js'
 import { validateManga } from '../utils/validators.js'
+import { createAppError } from '../utils/firebase-errors.js'
 
 export const IMPORT_FORMATS = Object.freeze({
   JSON: 'json',
@@ -708,6 +709,41 @@ export function createImportPreview(
     errors: items.filter((item) => item.status === 'error'),
     summary: summarizePreview(items),
   }
+}
+
+// The identity depends on the exact decoded file text, format and account, not
+// parser-generated source IDs or the current library. No file contents are persisted.
+export async function createRecoverableImportPreview(content, { uid, ...options } = {}) {
+  if (typeof uid !== 'string' || !uid.trim() || uid.includes('/')) {
+    throw createAppError('app/invalid-account')
+  }
+  if (!globalThis.crypto?.subtle) throw createAppError('app/import-identity-unavailable')
+  const preview = createImportPreview(content, options)
+  const identity = new TextEncoder().encode(
+    JSON.stringify(['mangalist-import-v1', uid, preview.format, content]),
+  )
+  const digest = await globalThis.crypto.subtle.digest('SHA-256', identity)
+  const hash = Array.from(new Uint8Array(digest), (byte) =>
+    byte.toString(16).padStart(2, '0'),
+  ).join('')
+  const existingMangas = Array.isArray(options.existingMangas) ? options.existingMangas : []
+  const existingById = new Map(existingMangas.map((manga) => [manga.id, manga]))
+  for (const item of preview.items) {
+    if (!item.manga || item.status === 'error') continue
+    const row = item.id.replace('import-record-', '')
+    item.importDocumentId = `import-v1-${hash}-${row}`
+    if (existingById.has(item.importDocumentId)) {
+      item.status = 'duplicate'
+      item.duplicateOf = duplicateReference('library', existingById.get(item.importDocumentId))
+      item.imported = true
+      item.selected = false
+    }
+  }
+  preview.ownerUid = uid
+  preview.valid = preview.items.filter((item) => item.status === 'valid')
+  preview.duplicates = preview.items.filter((item) => item.status === 'duplicate')
+  preview.summary = summarizePreview(preview.items)
+  return preview
 }
 
 /**

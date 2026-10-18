@@ -6,7 +6,11 @@ import { tmpdir } from 'node:os'
 import { join, dirname, resolve, basename } from 'node:path'
 import { getAppEnv } from '../node_modules/@quasar/app-vite/lib/utils/env.js'
 import { createEmptyManga } from '../src/constants/manga-options.js'
-import { createImportPreview, prepareImportSelection } from '../src/services/import-service.js'
+import {
+  createImportPreview,
+  createRecoverableImportPreview,
+  prepareImportSelection,
+} from '../src/services/import-service.js'
 import { exportLibraryToCsv, exportLibraryToJson } from '../src/services/export-service.js'
 import { authDestination, authRoute } from '../src/utils/auth-redirect.js'
 import { createMangaEdit, conflictingMangaFields } from '../src/utils/manga-edit.js'
@@ -264,7 +268,10 @@ async function importPage(createManga) {
 
 test('successful import clears both the preview and selected file', async () => {
   const page = await importPage(async () => 'created-id')
-  page.preview.value = createImportPreview('[{"name":"Nano","chapter":"276"}]', { format: 'json' })
+  page.preview.value = await createRecoverableImportPreview('[{"name":"Nano","chapter":"276"}]', {
+    format: 'json',
+    uid: 'test-user',
+  })
   page.file.value = { name: 'list.json' }
   await page.importSelected()
   assert.equal(page.importing.value, false)
@@ -279,9 +286,9 @@ test('retrying a partial import never writes successful records again', async ()
     if (manga.name === 'Second' && shouldFail) throw new Error('offline')
     saved.push(manga.name)
   })
-  page.preview.value = createImportPreview(
+  page.preview.value = await createRecoverableImportPreview(
     '[{"name":"First","chapter":"1"},{"name":"Second","chapter":"2"}]',
-    { format: 'json' },
+    { format: 'json', uid: 'test-user' },
   )
   await page.importSelected()
   assert.equal(page.preview.value.items[0].imported, true)
@@ -298,9 +305,9 @@ test('quota failure stops import after the current chunk and preserves confirmed
     attempts++
     if (attempts === 2) throw Object.assign(new Error('quota'), { code: 'resource-exhausted' })
   })
-  page.preview.value = createImportPreview(
+  page.preview.value = await createRecoverableImportPreview(
     JSON.stringify(Array.from({ length: 20 }, (_, i) => ({ name: `Manga ${i}`, chapter: '1' }))),
-    { format: 'json' },
+    { format: 'json', uid: 'test-user' },
   )
   await page.importSelected()
   assert.equal(attempts, 8)

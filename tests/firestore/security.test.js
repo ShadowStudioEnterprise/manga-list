@@ -22,6 +22,7 @@ import {
   getDocsFromServer,
 } from 'firebase/firestore'
 import { loadModule } from '../helpers/load-module.js'
+import { createRecoverableImportPreview } from '../../src/services/import-service.js'
 
 let environment
 before(async () => {
@@ -350,6 +351,73 @@ test('a fresh client resumes interrupted cleanup using only the server marker an
   assert.equal(await freshClient.deleteUserFirestoreData('alice'), 1)
   assert.equal((await getDocsFromServer(remaining)).size, 0)
   assert.equal((await getDoc(doc(freshDb, 'users', 'alice'))).data().status, 'deleting')
+})
+
+test('recovered and concurrent imports keep one document per row, preserve edits and obey the deletion barrier', async () => {
+  const content =
+    '[{"name":"First","chapter":"1"},{"name":"Second","chapter":"2"},{"name":"Third","chapter":"3"}]'
+  const preview = await createRecoverableImportPreview(content, { uid: 'alice', format: 'json' })
+  const alice = dbFor('alice')
+  const native = await import('firebase/firestore')
+  let lost = false
+  const firstClient = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: alice, requireFirebase() {} },
+    'firebase/firestore': {
+      ...native,
+      runTransaction: async (...args) => {
+        const result = await native.runTransaction(...args)
+        if (!lost) {
+          lost = true
+          throw Object.assign(new Error('Lost acknowledgement'), { code: 'unavailable' })
+        }
+        return result
+      },
+    },
+  })
+  await assert.rejects(firstClient.createManga('alice', preview.items[0].manga, preview.items[0]), {
+    code: 'unavailable',
+  })
+  const importedRef = doc(alice, 'users', 'alice', 'mangas', preview.items[0].importDocumentId)
+  await updateDoc(importedRef, {
+    chapter: '99',
+    notes: 'Edited later',
+    updatedAt: serverTimestamp(),
+  })
+  const freshClient = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('alice'), requireFirebase() {} },
+  })
+  const freshPreview = await createRecoverableImportPreview(content, {
+    uid: 'alice',
+    format: 'json',
+  })
+  await freshClient.createManga('alice', freshPreview.items[0].manga, freshPreview.items[0])
+  assert.equal((await getDoc(importedRef)).data().chapter, '99')
+  assert.equal((await getDoc(importedRef)).data().notes, 'Edited later')
+  await Promise.all(
+    [firstClient, freshClient].map((client) =>
+      client.createManga('alice', freshPreview.items[1].manga, freshPreview.items[1]),
+    ),
+  )
+  assert.equal(
+    (await getDocsFromServer(query(collection(alice, 'users', 'alice', 'mangas'), limit(10)))).size,
+    2,
+  )
+  const wrongAccount = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('bob'), requireFirebase() {} },
+  })
+  await assert.rejects(
+    wrongAccount.createManga('alice', freshPreview.items[0].manga, freshPreview.items[0]),
+    { code: 'permission-denied' },
+  )
+  await setDoc(doc(alice, 'users', 'alice'), {
+    status: 'deleting',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  })
+  await assert.rejects(
+    freshClient.createManga('alice', freshPreview.items[2].manga, freshPreview.items[2]),
+    { code: 'permission-denied' },
+  )
 })
 
 test('simultaneous chapter transactions do not lose increments or unrelated fields', async () => {

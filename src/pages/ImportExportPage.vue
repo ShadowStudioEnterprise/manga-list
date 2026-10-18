@@ -63,6 +63,11 @@
               @reset="resetImport"
               @import="importSelected"
             />
+            <p class="text-caption text-grey-7 q-mb-none">
+              Para reanudar tras una recarga, vuelve a elegir el mismo archivo y formato con la
+              misma cuenta. Se reconocerán las filas ya guardadas por esta versión. El archivo no se
+              guarda en este navegador y el proceso no continúa al cerrar la app.
+            </p>
           </q-card-section>
         </q-card>
       </section>
@@ -119,13 +124,14 @@ import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import ImportPreview from '@/components/import/ImportPreview.vue'
 import {
-  createImportPreview,
+  createRecoverableImportPreview,
   detectImportFormat,
   prepareImportSelection,
 } from '@/services/import-service'
 import { downloadLibraryExport } from '@/services/export-service'
 import { useAuthStore } from '@/stores/auth-store'
 import { useMangaStore } from '@/stores/manga-store'
+import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const $q = useQuasar()
@@ -135,9 +141,17 @@ const file = ref(null)
 const preview = ref(null)
 const readingFile = ref(false)
 const importing = ref(false)
+let fileVersion = 0
 
 async function readFile(selectedFile) {
-  if (!selectedFile) return
+  const version = ++fileVersion
+  if (!selectedFile) {
+    preview.value = null
+    readingFile.value = false
+    return
+  }
+  const uid = authStore.user?.uid
+  if (!uid || importing.value) return
   if (mangaStore.loading || mangaStore.syncError) {
     $q.notify({ type: 'info', message: 'Espera a que termine de sincronizarse la biblioteca.' })
     file.value = null
@@ -153,22 +167,31 @@ async function readFile(selectedFile) {
   try {
     const content = await selectedFile.text()
     const format = detectImportFormat(selectedFile.name || selectedFile.type, content)
-    preview.value = createImportPreview(content, {
+    const nextPreview = await createRecoverableImportPreview(content, {
+      uid,
       format,
       fileName: selectedFile.name,
       mimeType: selectedFile.type,
       existingMangas: mangaStore.mangas,
     })
-  } catch {
-    $q.notify({ type: 'negative', message: 'No se ha podido leer el archivo.' })
+    if (version !== fileVersion || authStore.user?.uid !== uid) return
+    preview.value = nextPreview
+  } catch (error) {
+    if (version !== fileVersion || authStore.user?.uid !== uid) return
+    $q.notify({
+      type: 'negative',
+      message: getFirebaseErrorMessage(error, 'No se ha podido leer el archivo.'),
+    })
     file.value = null
   } finally {
-    readingFile.value = false
+    if (version === fileVersion) readingFile.value = false
   }
 }
 
 function resetImport() {
   if (importing.value) return
+  fileVersion++
+  readingFile.value = false
   file.value = null
   preview.value = null
 }
@@ -177,6 +200,16 @@ async function importSelected() {
   if (importing.value || !preview.value || mangaStore.syncError || mangaStore.loading) return
   const uid = authStore.user?.uid
   if (!uid) return
+  if (
+    preview.value.ownerUid !== uid ||
+    preview.value.items.some((item) => item.selected && !item.importDocumentId)
+  ) {
+    $q.notify({
+      type: 'negative',
+      message: 'Vuelve a seleccionar el archivo con tu cuenta actual antes de importar.',
+    })
+    return
+  }
   const selectedIds = preview.value.items.filter((item) => item.selected).map((item) => item.id)
   const selection = prepareImportSelection(preview.value, { selectedIds })
   importing.value = true
@@ -185,9 +218,15 @@ async function importSelected() {
 
   try {
     for (let index = 0; index < selection.selectedItems.length; index += 8) {
+      if (authStore.user?.uid !== uid) {
+        failed += selection.selectedItems.length - index
+        break
+      }
       const chunk = selection.selectedItems.slice(index, index + 8)
       const results = await Promise.allSettled(
-        chunk.map((item) => mangaStore.createManga(uid, item.manga)),
+        chunk.map((item) =>
+          mangaStore.createManga(uid, item.manga, { importDocumentId: item.importDocumentId }),
+        ),
       )
       results.forEach((result, resultIndex) => {
         if (result.status === 'fulfilled') {

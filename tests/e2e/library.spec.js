@@ -166,6 +166,22 @@ test('invalid import rows remain errors, successful import resets, export preser
   expect(records).toHaveLength(1)
   expect(records[0]).toMatchObject({ name: 'Valid Manga', chapter: '24' })
   expect(records[0].sources[0].url).toBe('https://example.test')
+  await page.reload()
+  await expect(page.locator('input[type=file]')).toBeEnabled()
+  await page.locator('input[type=file]').setInputFiles({
+    name: 'renamed-library.csv',
+    mimeType: 'text/csv',
+    buffer: Buffer.from(
+      'name,chapter,url\nValid Manga,24,https://example.test\nBroken Manga,2,https://example.test,EXTRA',
+    ),
+  })
+  await page.getByRole('tab', { name: 'Duplicados (1)' }).click()
+  await expect(
+    page.getByRole('checkbox', { name: 'Seleccionar Valid Manga', exact: true }),
+  ).toBeDisabled()
+  await expect(page.getByText('Importado', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Importar 0', exact: true })).toBeDisabled()
+  await page.getByRole('button', { name: 'Elegir otro archivo', exact: true }).click()
   await page.locator('input[type=file]').setInputFiles({
     name: 'invalid.json',
     mimeType: 'application/json',

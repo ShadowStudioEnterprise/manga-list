@@ -62,16 +62,16 @@ Hosting Spark ofrece 10 GB almacenados y 10 GB de descarga al mes según la
 [tabla de precios](https://firebase.google.com/pricing). Auth tiene límites específicos
 por operación/proveedor: no asumir envíos de correo o accesos ilimitados.
 
-| Operación                   | Presupuesto de la aplicación                                                                         |
-| --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| Biblioteca                  | Una suscripción por almacén; consulta de 1001 documentos como máximo para detectar exceso de 1000    |
-| Reglas de listado           | Exigen propietario y `limit <= 1001`; rechazan consultas sin límite                                  |
-| Duplicados                  | Máximo 10 resultados por búsqueda                                                                    |
-| Detalle                     | Un documento por petición                                                                            |
-| Admisión por pestaña/minuto | 60 lecturas puntuales, 120 operaciones de escritura, 3 aperturas de listener, 10 operaciones de Auth |
-| Transacciones               | Máximo 3 intentos del SDK por transacción                                                            |
-| Importación                 | Concurrencia 8; detiene chunks posteriores ante cuota/presupuesto, conserva éxitos confirmados       |
-| Borrado por confirmación    | Máximo 5 lotes de 400 borrados; hasta 6 consultas, más marcador y verificación de Auth               |
+| Operación                   | Presupuesto de la aplicación                                                                                                                                   |
+| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Biblioteca                  | Una suscripción por almacén; consulta de 1001 documentos como máximo para detectar exceso de 1000                                                              |
+| Reglas de listado           | Exigen propietario y `limit <= 1001`; rechazan consultas sin límite                                                                                            |
+| Duplicados                  | Máximo 10 resultados por búsqueda                                                                                                                              |
+| Detalle                     | Un documento por petición                                                                                                                                      |
+| Admisión por pestaña/minuto | 60 lecturas puntuales, 120 operaciones de escritura, 3 aperturas de listener, 10 operaciones de Auth                                                           |
+| Transacciones               | Máximo 3 intentos del SDK por transacción                                                                                                                      |
+| Importación                 | Concurrencia 8; IDs estables y transacción por fila; hasta 60 admisiones/minuto por presupuesto de lecturas; detiene chunks posteriores ante cuota/presupuesto |
+| Borrado por confirmación    | Máximo 5 lotes de 400 borrados; hasta 6 consultas, más marcador y verificación de Auth                                                                         |
 
 Una petición no equivale a una lectura facturable: una consulta consume por documentos,
 una vacía tiene coste mínimo, una transacción puede repetir lecturas, las reglas consultan
@@ -149,3 +149,5 @@ La retirada del marcador requiere una decisión separada sobre sesiones antiguas
   si su proveedor y configuración cumplen Spark y existe autorización remota específica.
 - Autorizar una publicación posterior con pruebas de actualización de clientes antiguos y
   estrategia de rollback que preserve el bloqueo de marcadores.
+
+La recuperación de importaciones usa las mismas rutas y cuotas de Spark; ver [identidades, costes y límites](import-recovery.md).

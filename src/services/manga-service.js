@@ -364,10 +364,36 @@ export function subscribeToMangas(uid, onData, onError) {
   }
 }
 
-export async function createManga(uid, input) {
+export async function createManga(uid, input, { importDocumentId } = {}) {
   try {
     sparkBudget.take('write')
     const manga = serializeMangaForCreate(input)
+    if (importDocumentId !== undefined) {
+      if (
+        typeof importDocumentId !== 'string' ||
+        !/^import-v1-[a-f0-9]{64}-[1-9]\d{0,6}$/.test(importDocumentId)
+      ) {
+        throw createAppError('app/invalid-import-identity')
+      }
+      sparkBudget.take('read')
+      const reference = getMangaDocument(uid, importDocumentId)
+      await runTransaction(
+        db,
+        async (transaction) => {
+          const existing = await transaction.get(reference)
+          // An acknowledged or ambiguously committed import must never overwrite
+          // later edits, nor create a second document when the response was lost.
+          if (existing.exists()) return
+          transaction.set(reference, {
+            ...manga,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+          })
+        },
+        { maxAttempts: SPARK_LIMITS.transactionAttempts },
+      )
+      return reference.id
+    }
     const reference = await addDoc(getMangaCollection(uid), {
       ...manga,
       createdAt: serverTimestamp(),

@@ -41,8 +41,8 @@ puntual, no una garantía frente a futuros cambios administrativos.
 | Verificación                              | Resultado                                                                                                     |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `npm run check:spark`                     | Correcto: inventario/configuración/SDK/workflows compatibles                                                  |
-| `npm test`                                | 32/32: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
-| `npm run test:rules` en emulador Standard | 11/11: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
+| `npm test`                                | 37/37: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
+| `npm run test:rules` en emulador Standard | 12/12: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
 | `npm run test:e2e`                        | 5/5 Chromium: sesión, dos pestañas, importación/exportación, móvil y borrado Auth local                       |
 | `npm run lint:check`                      | Correcto                                                                                                      |
 | `npm run build` y `npm run build:pwa`     | Correcto con configuración `demo-mangalist`; no despliegan                                                    |
@@ -106,3 +106,22 @@ El estado anterior de dependencias pendientes queda actualizado por la
 reportados por npm después de correcciones seleccionadas. CI incorpora una auditoría
 que bloquea ante nuevos avisos o fallo del registro. Se mantienen las limitaciones
 Spark, los avisos de mantenimiento transitivo y la necesidad de revisión continua.
+
+## Recuperación de importaciones H5
+
+Se añade [importación recuperable](import-recovery.md) sin nuevas rutas, campos ni servicios:
+IDs estables por cuenta/texto/formato/fila y transacciones que no sobrescriben una obra
+existente. La vista previa reconoce IDs ya guardados al volver a seleccionar el archivo.
+No se almacena el archivo ni se prometen importaciones en segundo plano.
+
+Regresiones actuales: 37/37 correctas. Reglas en emulador Standard: 12/12 correctas,
+incluyendo commit real con respuesta perdida, cliente nuevo, concurrencia por fila,
+aislamiento entre cuentas y marcador de borrado. Los cinco flujos de navegador pasan;
+el de importación incluye recarga y reselección del archivo con otro nombre, con la fila
+ya importada desactivada. Spark, formato y ESLint correctos. Las compilaciones se
+verifican nuevamente con configuración de demostración antes de cerrar el commit.
+
+Esta recuperación solo reconoce IDs del flujo v1 mientras la obra siga existiendo;
+archivos modificados, borrados de obras e importaciones antiguas tienen los límites
+explicados en el documento. Cada fila añade lectura transaccional y consume presupuesto
+local de lectura, además del permiso de escritura. No se garantiza evitar cuotas agotadas.

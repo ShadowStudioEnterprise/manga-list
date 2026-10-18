@@ -218,9 +218,9 @@ export const useMangaStore = defineStore('mangas', {
       this.filters = { ...DEFAULT_FILTERS }
     },
 
-    async createManga(uid, data) {
+    async createManga(uid, data, options) {
       try {
-        return await createMangaDocument(uid, data)
+        return await createMangaDocument(uid, data, options)
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido guardar la obra.')
         throw appError
