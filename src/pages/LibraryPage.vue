@@ -64,9 +64,32 @@
       @reset="resetFilters"
     />
 
-    <section v-else class="manga-grid" aria-live="polite">
-      <MangaCard v-for="manga in displayedMangas" :key="manga.id" :manga="manga" />
-    </section>
+    <div v-else>
+      <p
+        v-if="pageInfo.total"
+        ref="pageSummary"
+        tabindex="-1"
+        class="text-caption sync-status library-page-summary"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        Mostrando {{ pageInfo.start }}–{{ pageInfo.end }} de {{ pageInfo.total }} obras · Página
+        {{ pageInfo.page }} de {{ pageInfo.pageCount }}
+      </p>
+      <LibraryPagination
+        :info="pageInfo"
+        label="Páginas de la biblioteca al inicio"
+        @change="changePage"
+      />
+      <section class="manga-grid">
+        <MangaCard v-for="manga in pageInfo.items" :key="manga.id" :manga="manga" />
+      </section>
+      <LibraryPagination
+        :info="pageInfo"
+        label="Páginas de la biblioteca al final"
+        @change="changePage"
+      />
+    </div>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]" class="lt-sm">
       <q-btn fab color="primary" icon="add" to="/add" aria-label="Añadir obra" />
@@ -75,15 +98,20 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, nextTick, ref } from 'vue'
+import LibraryPagination from '@/components/manga/LibraryPagination.vue'
+import { useLibraryPagination } from '@/composables/use-library-pagination'
 import MangaCard from '@/components/manga/MangaCard.vue'
 import MangaEmptyState from '@/components/manga/MangaEmptyState.vue'
 import MangaFilters from '@/components/manga/MangaFilters.vue'
 import { useAuthStore } from '@/stores/auth-store'
 import { useMangaStore } from '@/stores/manga-store'
+import { useSettingsStore } from '@/stores/settings-store'
 
 const authStore = useAuthStore()
 const mangaStore = useMangaStore()
+const settingsStore = useSettingsStore()
+const pageSummary = ref(null)
 
 const stats = computed(() => [
   { label: 'Total', value: mangaStore.counters.total, icon: 'library_books', color: 'primary' },
@@ -108,6 +136,22 @@ const stats = computed(() => [
 ])
 
 const displayedMangas = computed(() => mangaStore.filteredMangas)
+const { page, pageInfo } = useLibraryPagination(displayedMangas, () => [
+  mangaStore.subscribedUid,
+  mangaStore.searchQuery,
+  mangaStore.filters.readingStatus,
+  mangaStore.filters.type,
+  ...mangaStore.filters.genres,
+  mangaStore.filters.favoritesOnly,
+  settingsStore.sortBy,
+])
+
+async function changePage(value) {
+  page.value = value
+  await nextTick()
+  pageSummary.value?.focus({ preventScroll: true })
+  pageSummary.value?.scrollIntoView({ block: 'start', behavior: 'instant' })
+}
 
 const hasActiveFilters = computed(
   () =>

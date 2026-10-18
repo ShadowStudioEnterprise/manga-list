@@ -13,7 +13,7 @@ incluidos en esta lista. La validación local de esta rama no certifica producci
 | P2 / H4       | Protección de main y trazabilidad                                                                                  | Con autorización para configuración remota, exigir CI y revisión; conservar trazas de fallos, identificar versión y procedimiento de rollback compatible con marcadores.                               |
 | P2 / H5       | Importación recuperable tras recarga: implementada para IDs v1                                                     | IDs estables por cuenta/archivo/fila y transacciones: reintentos, respuesta perdida, concurrencia y recarga probados. Requiere reseleccionar el mismo archivo; sin trabajador de fondo.                |
 | P2 / H6–H7    | Sincronización y exportación: metadatos y lectura del servidor implementados                                       | Metadatos caché/pendientes/servidor y exportación comprobada con pruebas de desconexión. Borradores de pestaña opcionales y aviso PWA pasivo implementados; validación real en dispositivos pendiente. |
-| P2 / H6       | Escala de biblioteca                                                                                               | Medir tiempos/memoria con tamaños acordados, decidir paginación/virtualización según resultados, ampliar pruebas de filtros y fuentes.                                                                 |
+| P2 / H6       | Escala de biblioteca: presentación de 24 tarjetas y mediciones locales                                             | Medir tiempos/memoria con tamaños acordados, decidir paginación/virtualización según resultados, ampliar pruebas de filtros y fuentes.                                                                 |
 | P2 / H8       | Operación pública                                                                                                  | Inventariar controles, App Check si procede, alertas/cuotas y revisión de dependencias continua; cambios remotos requieren aprobación.                                                                 |
 | P3 / H9       | Mantenimiento                                                                                                      | Especificación versionada, licencia elegida por el titular, guía de contribución y registro de releases.                                                                                               |
 
@@ -49,3 +49,5 @@ El contrato H6 se detalla en [sincronización y exportación comprobada](synchro
 Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](drafts-and-pwa-updates.md).
 
 La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](accessibility-2026-10-18.md).
+
+La representación por páginas y la evidencia H6 están en [escala de biblioteca](library-scale-2026-10-18.md); no amplía el límite de 1000 obras ni reduce las lecturas iniciales.

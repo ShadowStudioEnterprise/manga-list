@@ -138,6 +138,9 @@ test('metadata-only events distinguish cache, pending writes and server and cann
 
 test('retry controls handle synchronous listener initialization failures', async () => {
   const store = {
+    mangas: [],
+    filteredMangas: [],
+    filters: { genres: [] },
     subscribe() {
       throw new Error('initialization failed')
     },
@@ -147,6 +150,7 @@ test('retry controls handle synchronous listener initialization failures', async
       await loadModule(file, {
         '@/stores/manga-store': { useMangaStore: () => store },
         '@/stores/auth-store': { useAuthStore: () => ({ user: { uid: 'alice' } }) },
+        '@/stores/settings-store': { useSettingsStore: () => ({ sortBy: 'updated-desc' }) },
         'vue-router': { useRouter: () => ({}) },
         quasar: { useQuasar: () => ({}) },
       })
