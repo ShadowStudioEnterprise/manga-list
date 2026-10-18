@@ -15,6 +15,10 @@
     </q-banner>
 
     <MangaForm
+      :key="authStore.user?.uid"
+      ref="mangaForm"
+      :draft-owner="authStore.user?.uid"
+      draft-scope="new"
       :initial-value="initialValue"
       :loading="saving || checkingDuplicate"
       submit-label="Guardar obra"
@@ -71,6 +75,8 @@ const checkingDuplicate = ref(false)
 const duplicateDialog = ref(false)
 const duplicate = ref(null)
 const pendingManga = ref(null)
+const pendingOwner = ref(null)
+const mangaForm = ref(null)
 
 const bookmarkletParams = new URLSearchParams()
 for (const [key, value] of Object.entries(route.query)) {
@@ -81,13 +87,15 @@ const initialValue = createMangaPrefillFromBookmarklet(bookmarkletParams)
 const fromBookmarklet = computed(() => Boolean(route.query.title || route.query.url))
 
 async function checkAndSave(manga) {
+  const owner = authStore.user?.uid
+  if (!owner || saving.value || checkingDuplicate.value) return
   const normalizedName = normalizeTitle(manga.name)
   duplicate.value = mangaStore.mangas.find((item) => item.normalizedName === normalizedName) ?? null
 
   if (!duplicate.value) {
     checkingDuplicate.value = true
     try {
-      const matches = await mangaStore.findDuplicates(authStore.user.uid, manga.name)
+      const matches = await mangaStore.findDuplicates(owner, manga.name)
       duplicate.value = matches[0] ?? null
     } catch (error) {
       $q.notify({
@@ -102,19 +110,25 @@ async function checkAndSave(manga) {
     }
   }
 
+  if (authStore.user?.uid !== owner) return
   if (duplicate.value) {
     pendingManga.value = manga
+    pendingOwner.value = owner
     duplicateDialog.value = true
     return
   }
 
-  await saveManga(manga)
+  await saveManga(manga, owner)
 }
 
-async function saveManga(manga) {
+async function saveManga(manga, owner) {
+  if (!owner || authStore.user?.uid !== owner || saving.value) return
+  const savedForm = mangaForm.value
   saving.value = true
   try {
-    const id = await mangaStore.createManga(authStore.user.uid, manga)
+    const id = await mangaStore.createManga(owner, manga)
+    savedForm?.discardDraft()
+    if (authStore.user?.uid !== owner) return
     $q.notify({ type: 'positive', message: 'Obra añadida a tu biblioteca.' })
     await router.replace(id ? `/manga/${id}` : '/library')
   } catch (error) {
@@ -129,7 +143,7 @@ async function saveManga(manga) {
 
 function savePending() {
   duplicateDialog.value = false
-  if (pendingManga.value) void saveManga(pendingManga.value)
+  if (pendingManga.value) void saveManga(pendingManga.value, pendingOwner.value)
 }
 
 function viewDuplicate() {

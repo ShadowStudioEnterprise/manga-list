@@ -91,7 +91,7 @@ El emulador Standard verifica una lectura real con metadatos y datos actualizado
 además de rechazar acceso desde otra cuenta. Chromium comprueba la descarga verificada,
 el rechazo sin red sin crear un archivo y la recuperación al volver la conexión.
 
-Siguen pendientes la recuperación de borradores y el aviso de actualización de PWA,
+La recuperación opcional de borradores y el aviso PWA se describen en [borradores y actualizaciones](drafts-and-pwa-updates.md). Siguen pendientes
 las pruebas de dispositivos/otros navegadores y las decisiones operativas del roadmap.
 
 La prueba de desconexión bloquea expresamente el sondeo WebChannel a

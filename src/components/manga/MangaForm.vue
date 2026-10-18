@@ -1,5 +1,28 @@
 <template>
-  <q-form ref="formRef" class="manga-form" @submit="submit">
+  <q-form ref="formRef" class="manga-form" :inert="loading" @submit="submit">
+    <q-banner v-if="draftOwner" rounded class="bg-blue-1 q-mb-md" aria-live="polite">
+      <template v-if="availableDraft">
+        Hay un borrador de este formulario en esta pestaña. Revisa los datos después de recuperarlo.
+        <div class="q-gutter-sm q-mt-sm">
+          <q-btn flat no-caps label="Recuperar borrador" :disable="loading" @click="restoreDraft" />
+          <q-btn flat no-caps label="Descartar borrador" :disable="loading" @click="discardDraft" />
+        </div>
+      </template>
+      <template v-else>
+        <q-checkbox
+          :model-value="draftEnabled"
+          label="Conservar borrador en esta pestaña"
+          :disable="loading"
+          @update:model-value="setDraftEnabled"
+        />
+        <div class="text-caption">
+          Opcional, hasta 24 horas. Incluye tus notas y enlaces, sin cifrado adicional. Evítalo en
+          equipos compartidos. Guarda en tu biblioteca antes de cerrar la pestaña o actualizar la
+          app.
+        </div>
+      </template>
+      <div v-if="draftError" class="text-negative" role="alert">{{ draftError }}</div>
+    </q-banner>
     <q-card flat bordered class="form-section">
       <q-card-section>
         <div class="row q-col-gutter-md">
@@ -130,6 +153,7 @@ import {
 } from '@/constants/manga-options'
 import { normalizeChapter } from '@/utils/chapter-utils'
 import { requiredRule } from '@/utils/validators'
+import { browserDraftStorage } from '@/utils/form-drafts'
 
 const props = defineProps({
   initialValue: {
@@ -137,6 +161,8 @@ const props = defineProps({
     default: () => ({}),
   },
   loading: Boolean,
+  draftOwner: { type: String, default: '' },
+  draftScope: { type: String, default: '' },
   submitLabel: {
     type: String,
     default: 'Guardar',
@@ -148,6 +174,66 @@ const formRef = ref(null)
 const filteredGenres = ref([...MANGA_GENRES])
 const form = reactive(createFormValue(props.initialValue))
 let baseline = formPayload()
+const draftEnabled = ref(false)
+const availableDraft = ref(null)
+const draftError = ref('')
+
+if (props.draftOwner && props.draftScope) {
+  try {
+    availableDraft.value = browserDraftStorage().read(props.draftOwner, props.draftScope)
+  } catch {
+    draftError.value = 'El navegador no permite recuperar borradores en esta pestaña.'
+  }
+}
+
+function persistDraft() {
+  if (!draftEnabled.value) return
+  try {
+    browserDraftStorage().write(props.draftOwner, props.draftScope, formPayload(), baseline)
+    draftError.value = ''
+  } catch {
+    draftEnabled.value = false
+    draftError.value =
+      'No se ha podido conservar el borrador. Guarda en la biblioteca antes de salir.'
+  }
+}
+
+function discardDraft() {
+  draftEnabled.value = false
+  availableDraft.value = null
+  try {
+    browserDraftStorage().remove(props.draftOwner, props.draftScope)
+    draftError.value = ''
+  } catch {
+    draftError.value =
+      'No se ha podido borrar el borrador local. Borra los datos del sitio en tu navegador.'
+  }
+}
+
+function setDraftEnabled(enabled) {
+  if (!enabled) return discardDraft()
+  draftEnabled.value = true
+  persistDraft()
+}
+
+function restoreDraft() {
+  let draft
+  try {
+    draft = browserDraftStorage().read(props.draftOwner, props.draftScope)
+  } catch {
+    draftError.value = 'No se ha podido recuperar el borrador.'
+    return
+  }
+  availableDraft.value = null
+  if (!draft) return
+  // Preserve the original version: changing the baseline here would bypass conflict detection.
+  baseline = draft.baseline
+  Object.assign(form, createFormValue(draft.value))
+  setDraftEnabled(true)
+}
+
+watch(form, persistDraft, { deep: true, flush: 'sync' })
+defineExpose({ discardDraft })
 
 watch(
   () => props.initialValue?.id,

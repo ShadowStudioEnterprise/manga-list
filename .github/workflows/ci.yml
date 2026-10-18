@@ -60,3 +60,5 @@ jobs:
         run: |
           npm run build
           npm run build:pwa
+      - name: Test built PWA update lifecycle locally
+        run: npm run test:pwa

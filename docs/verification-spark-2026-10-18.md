@@ -152,3 +152,9 @@ Se refuerza además el seguimiento de operaciones en curso por UID, manteniéndo
 reiniciar el listener de la misma cuenta. La regresión comprueba que una eliminación
 aún no resuelta bloquea la confirmación aunque los metadatos de la consulta no marquen
 cambios, sin trasladar ese estado a otra cuenta. La batería actual suma 42 pruebas.
+
+## Borradores y actualización PWA H6–H7
+
+Se añaden [borradores opcionales y aviso pasivo](drafts-and-pwa-updates.md), sin escrituras remotas ni nuevos servicios. La recuperación conserva la base original para detectar conflictos. La PWA espera al cierre de todos los clientes y nunca fuerza recarga desde la aplicación. La prueba del worker compilado utiliza solo un servidor local y dos revisiones simuladas; no es validación en producción ni sustituye dispositivos reales.
+
+Resultados locales de esta continuación: 48/48 regresiones, 7/7 recorridos Chromium con emuladores y compilaciones SPA/PWA demo correctos. La prueba local de actualización del worker pasa con dos pestañas; CI vuelve a ejecutar reglas y auditorías, además del nuevo ciclo PWA. Permanecen el aviso de bundle grande, la validación de otros navegadores/dispositivos y las decisiones operativas ya indicadas.

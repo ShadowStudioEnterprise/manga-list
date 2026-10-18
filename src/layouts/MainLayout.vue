@@ -134,12 +134,14 @@
     </q-drawer>
 
     <q-page-container>
+      <PwaUpdateBanner />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
+import PwaUpdateBanner from '@/components/PwaUpdateBanner.vue'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'

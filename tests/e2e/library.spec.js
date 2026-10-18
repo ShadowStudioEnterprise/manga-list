@@ -54,6 +54,37 @@ async function editFirstManga(page) {
   await expect(page.getByLabel('Nombre *', { exact: true })).toBeVisible()
 }
 
+test('optional drafts survive reload, require recovery and clear after save or logout', async ({
+  page,
+}) => {
+  await register(page)
+  await page.goto('/#/add')
+  await page.getByLabel('Nombre *', { exact: true }).fill('Borrador privado')
+  await page.getByLabel('Capítulo *', { exact: true }).fill('12')
+  const draftKeys = () =>
+    page.evaluate(() =>
+      Object.keys(sessionStorage).filter((key) => key.startsWith('mangalist:form-draft:')),
+    )
+  expect(await draftKeys()).toHaveLength(0)
+  await page.getByRole('checkbox', { name: 'Conservar borrador en esta pestaña' }).check()
+  await page.getByLabel('Notas', { exact: true }).fill('Notas sin sincronizar')
+  await page.reload()
+  await expect(page.getByRole('button', { name: 'Recuperar borrador' })).toBeVisible()
+  await expect(page.getByLabel('Nombre *', { exact: true })).toHaveValue('')
+  await page.getByRole('button', { name: 'Recuperar borrador' }).click()
+  await expect(page.getByLabel('Nombre *', { exact: true })).toHaveValue('Borrador privado')
+  await expect(page.getByLabel('Notas', { exact: true })).toHaveValue('Notas sin sincronizar')
+  await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+  await expect(page).toHaveURL(/#\/manga\//)
+  expect(await draftKeys()).toHaveLength(0)
+  await page.getByRole('checkbox', { name: 'Conservar borrador en esta pestaña' }).check()
+  await page.getByLabel('Notas', { exact: true }).fill('Otro borrador local')
+  expect(await draftKeys()).toHaveLength(1)
+  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  expect(await draftKeys()).toHaveLength(0)
+})
+
 test('bookmarklet survives recovery and registration, then session persists across reload and login', async ({
   page,
 }) => {

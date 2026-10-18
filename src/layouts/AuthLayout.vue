@@ -1,6 +1,7 @@
 <template>
   <q-layout view="hHh lpR fFf" class="auth-layout">
     <q-page-container>
+      <PwaUpdateBanner />
       <q-page class="auth-page row items-stretch">
         <section class="auth-hero col-12 col-md-5 column justify-between q-pa-xl">
           <router-link class="brand-link" to="/login" aria-label="Ir al inicio de MangaList">
@@ -36,5 +37,6 @@
 </template>
 
 <script setup>
+import PwaUpdateBanner from '@/components/PwaUpdateBanner.vue'
 import { isFirebaseConfigured } from '@/boot/firebase'
 </script>

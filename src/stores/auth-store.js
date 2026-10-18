@@ -13,6 +13,7 @@ import { deleteCurrentAccount as deleteCurrentAccountService } from '@/services/
 import { toAppError } from '@/utils/firebase-errors'
 import { useMangaStore } from '@/stores/manga-store'
 import { useSettingsStore } from '@/stores/settings-store'
+import { clearBrowserDrafts } from '@/utils/form-drafts'
 
 let stopAuthStoreObserver = null
 let storeInitializationPromise = null
@@ -44,6 +45,7 @@ export const useAuthStore = defineStore('auth', {
             const previousUid = this.user?.uid
             this.user = serializeAuthUser(firebaseUser)
             const currentUid = this.user?.uid
+            if (previousUid && previousUid !== currentUid) clearBrowserDrafts()
             const mangaStore = useMangaStore()
 
             if (currentUid && currentUid !== previousUid) {
@@ -141,6 +143,7 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         await logoutService()
+        clearBrowserDrafts()
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido cerrar la sesión.')
         this.error = appError.message
@@ -176,6 +179,7 @@ export const useAuthStore = defineStore('auth', {
 
       try {
         await deleteCurrentAccountService(options)
+        clearBrowserDrafts()
         settingsStore.resetSettings()
         this.user = null
       } catch (error) {

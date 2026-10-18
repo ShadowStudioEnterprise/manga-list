@@ -10,6 +10,7 @@
     "test": "node --experimental-vm-modules --test tests/*.test.js",
     "test:rules": "node --experimental-vm-modules --test tests/firestore/*.test.js",
     "test:e2e": "node tests/e2e/run.js",
+    "test:pwa": "node --test tests/pwa/*.test.js",
     "lint": "prettier --write \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
     "lint:check": "prettier --check \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
     "dev": "quasar dev",
