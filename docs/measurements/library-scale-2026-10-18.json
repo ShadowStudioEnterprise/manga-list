@@ -1,0 +1,114 @@
+{
+  "baselineCommit": "30ab82b",
+  "environment": "Windows; local development server and isolated emulators; individual samples, not cold loads",
+  "samples": [
+    {
+      "size": 100,
+      "before": {
+        "size": 100,
+        "browser": "153.0.8010.12",
+        "mode": "local-dev-with-emulators",
+        "loadMs": 399,
+        "loaded": {
+          "documents": 1,
+          "nodes": 14178,
+          "jsEventListeners": 4219,
+          "metrics": [
+            {
+              "name": "JSHeapUsedSize",
+              "value": 50742444
+            },
+            {
+              "name": "JSHeapTotalSize",
+              "value": 52117504
+            }
+          ]
+        },
+        "searchMs": 195,
+        "updateMs": 939,
+        "clearSearchMs": 509
+      },
+      "after": {
+        "size": 100,
+        "browser": "153.0.8010.12",
+        "mode": "local-dev-with-emulators",
+        "renderedCards": 24,
+        "loadMs": 181,
+        "loaded": {
+          "documents": 1,
+          "nodes": 4668,
+          "jsEventListeners": 1199,
+          "metrics": [
+            {
+              "name": "JSHeapUsedSize",
+              "value": 28605508
+            },
+            {
+              "name": "JSHeapTotalSize",
+              "value": 29835264
+            }
+          ]
+        },
+        "searchMs": 159,
+        "updateMs": 947,
+        "clearSearchMs": 240,
+        "traverseMs": 836,
+        "additionalListenTargetsForInteractions": 0
+      }
+    },
+    {
+      "size": 1000,
+      "before": {
+        "size": 1000,
+        "browser": "153.0.8010.12",
+        "mode": "local-dev-with-emulators",
+        "loadMs": 3563,
+        "loaded": {
+          "documents": 1,
+          "nodes": 128789,
+          "jsEventListeners": 40226,
+          "metrics": [
+            {
+              "name": "JSHeapUsedSize",
+              "value": 318496872
+            },
+            {
+              "name": "JSHeapTotalSize",
+              "value": 323710976
+            }
+          ]
+        },
+        "searchMs": 830,
+        "updateMs": 993,
+        "clearSearchMs": 3234
+      },
+      "after": {
+        "size": 1000,
+        "browser": "153.0.8010.12",
+        "mode": "local-dev-with-emulators",
+        "renderedCards": 24,
+        "loadMs": 179,
+        "loaded": {
+          "documents": 1,
+          "nodes": 5263,
+          "jsEventListeners": 1292,
+          "metrics": [
+            {
+              "name": "JSHeapUsedSize",
+              "value": 33163108
+            },
+            {
+              "name": "JSHeapTotalSize",
+              "value": 35078144
+            }
+          ]
+        },
+        "searchMs": 203,
+        "updateMs": 962,
+        "clearSearchMs": 274,
+        "traverseMs": 9169,
+        "additionalListenTargetsForInteractions": 0
+      }
+    }
+  ]
+}

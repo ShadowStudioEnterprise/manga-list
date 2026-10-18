@@ -1,3 +1,4 @@
+import { sparkBudget, SPARK_LIMITS } from '@/utils/spark-budget'
 import {
   EmailAuthProvider,
   GoogleAuthProvider,
@@ -18,7 +19,8 @@ import {
 import { auth, db, requireFirebase } from '@/boot/firebase'
 import { createAppError, toAppError } from '@/utils/firebase-errors'
 
-const DELETE_BATCH_SIZE = 400
+const DELETE_BATCH_SIZE = SPARK_LIMITS.deletionBatch
+let deletionInProgress = false
 
 function normalizeDeleteOptions(options) {
   if (typeof options === 'string') {
@@ -70,7 +72,7 @@ export async function reauthenticateCurrentUser(options = {}) {
       'Vuelve a iniciar sesión antes de eliminar la cuenta.',
     )
   } catch (error) {
-    throw toAppError(error, 'No se ha podido verificar tu identidad.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido verificar tu identidad.')
   }
 }
 
@@ -78,15 +80,20 @@ export async function reauthenticateCurrentUser(options = {}) {
 // tokens. Removing it would let those sessions recreate orphaned manga data.
 async function beginAccountDeletion(uid) {
   const reference = doc(db, 'users', uid)
-  await runTransaction(db, async (transaction) => {
-    const snapshot = await transaction.get(reference)
-    if (snapshot.data()?.status === 'deleting') return
-    transaction.set(reference, {
-      createdAt: snapshot.exists() ? snapshot.data().createdAt : serverTimestamp(),
-      updatedAt: serverTimestamp(),
-      status: 'deleting',
-    })
-  })
+  sparkBudget.take('write')
+  await runTransaction(
+    db,
+    async (transaction) => {
+      const snapshot = await transaction.get(reference)
+      if (snapshot.data()?.status === 'deleting') return
+      transaction.set(reference, {
+        createdAt: snapshot.exists() ? snapshot.data().createdAt : serverTimestamp(),
+        updatedAt: serverTimestamp(),
+        status: 'deleting',
+      })
+    },
+    { maxAttempts: SPARK_LIMITS.transactionAttempts },
+  )
 }
 
 export async function deleteUserFirestoreData(uid, onProgress) {
@@ -107,13 +114,17 @@ export async function deleteUserFirestoreData(uid, onProgress) {
   try {
     await beginAccountDeletion(normalizedUid)
     deletionStarted = true
-    while (true) {
+    for (let page = 0; page <= SPARK_LIMITS.deletionBatches; page++) {
+      if (auth.currentUser?.uid !== normalizedUid) throw createAppError('app/invalid-account')
+      sparkBudget.take('read')
       const snapshot = await getDocsFromServer(query(mangasReference, limit(DELETE_BATCH_SIZE)))
 
       if (snapshot.empty) {
         break
       }
 
+      if (page === SPARK_LIMITS.deletionBatches) throw createAppError('app/deletion-budget')
+      sparkBudget.take('write')
       const batch = writeBatch(db)
 
       for (const mangaDocument of snapshot.docs) {
@@ -132,7 +143,10 @@ export async function deleteUserFirestoreData(uid, onProgress) {
 
     return deletedCount
   } catch (error) {
-    const appError = toAppError(error, 'No se han podido eliminar todos los datos de la cuenta.')
+    const appError = toAppError(
+      sparkBudget.record(error),
+      'No se han podido eliminar todos los datos de la cuenta.',
+    )
     appError.deletionStarted = deletionStarted
     appError.deletedCount = deletedCount
     appError.partialDataDeletion = deletedCount > 0
@@ -149,6 +163,9 @@ export async function deleteCurrentAccount(options = {}) {
     throw createAppError('app/invalid-account', 'No hay ninguna cuenta activa.')
   }
 
+  if (deletionInProgress) throw createAppError('app/request-budget')
+  sparkBudget.take('auth')
+  deletionInProgress = true
   const normalizedOptions = normalizeDeleteOptions(options)
   let firestoreDataDeleted = false
 
@@ -160,11 +177,14 @@ export async function deleteCurrentAccount(options = {}) {
 
     await deleteUserFirestoreData(user.uid, normalizedOptions.onProgress)
     firestoreDataDeleted = true
+    if (auth.currentUser !== user) throw createAppError('app/invalid-account')
     await deleteUser(user)
   } catch (error) {
-    const appError = toAppError(error, 'No se ha podido eliminar la cuenta.')
+    const appError = toAppError(sparkBudget.record(error), 'No se ha podido eliminar la cuenta.')
     appError.deletionStarted = appError.deletionStarted || firestoreDataDeleted
     appError.firestoreDataDeleted = firestoreDataDeleted
     throw appError
+  } finally {
+    deletionInProgress = false
   }
 }

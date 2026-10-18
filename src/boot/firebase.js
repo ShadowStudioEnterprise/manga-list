@@ -37,11 +37,32 @@ export const missingFirebaseEnv = Object.entries(firebaseConfig)
 
 export const isFirebaseConfigured = missingFirebaseEnv.length === 0
 
-export const firebaseApp = isFirebaseConfigured
-  ? getApps().length > 0
-    ? getApp()
-    : initializeApp(firebaseConfig)
-  : null
+// Reject an unsafe emulator request before any Firebase app/service initialization.
+const emulatorFlag = String(import.meta.env.QCLI_FIREBASE_EMULATORS ?? '').trim()
+if (!['', 'true', 'false'].includes(emulatorFlag)) {
+  throw new Error('Firebase emulator flag must be true or false.')
+}
+const useEmulators = emulatorFlag === 'true'
+if (
+  useEmulators &&
+  (import.meta.env.DEV !== true ||
+    !isFirebaseConfigured ||
+    !firebaseConfig.projectId.startsWith('demo-'))
+) {
+  throw new Error('Firebase emulators require development mode and a configured demo project.')
+}
+
+function configuredApp() {
+  if (!isFirebaseConfigured) return null
+  if (getApps().length === 0) return initializeApp(firebaseConfig)
+  const app = getApp()
+  if (Object.keys(firebaseConfig).some((key) => app.options?.[key] !== firebaseConfig[key])) {
+    throw new Error('Existing Firebase app does not match the configured application.')
+  }
+  return app
+}
+
+export const firebaseApp = configuredApp()
 
 // Choose persistence before initialization. Starting with getAuth's IndexedDB
 // defaults and then moving to localStorage can sign another tab out during migration.
@@ -51,14 +72,14 @@ export const auth = firebaseApp
       popupRedirectResolver: browserPopupRedirectResolver,
     })
   : null
-export const db = firebaseApp ? getFirestore(firebaseApp) : null
 
-// Emulator connections are opt-in, development-only, and require a demo project.
-if (import.meta.env.DEV && String(import.meta.env.QCLI_FIREBASE_EMULATORS) === 'true') {
-  if (!firebaseApp || !firebaseConfig.projectId.startsWith('demo-')) {
-    throw new Error('Firebase emulators require a configured demo project.')
-  }
+// Connect synchronously before initializing the next service; never fall back to cloud.
+if (useEmulators) {
   connectAuthEmulator(auth, 'http://127.0.0.1:9199', { disableWarnings: true })
+}
+
+export const db = firebaseApp ? getFirestore(firebaseApp) : null
+if (useEmulators) {
   connectFirestoreEmulator(db, '127.0.0.1', 8188)
 }
 

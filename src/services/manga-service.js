@@ -1,3 +1,4 @@
+import { sparkBudget, SPARK_LIMITS } from '@/utils/spark-budget'
 import {
   addDoc,
   collection,
@@ -5,6 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  getDocsFromServer,
   limit,
   onSnapshot,
   query,
@@ -329,22 +331,104 @@ function getMangaDocument(uid, mangaId) {
 }
 
 export function subscribeToMangas(uid, onData, onError) {
-  const collectionReference = getMangaCollection(uid)
-
-  return onSnapshot(
+  sparkBudget.take('listen')
+  const collectionReference = query(
+    getMangaCollection(uid),
+    limit(SPARK_LIMITS.libraryDocuments + 1),
+  )
+  let stop
+  let stopped = false
+  const fail = (error) => {
+    if (stopped) return
+    stopped = true
+    stop?.()
+    onError?.(toAppError(sparkBudget.record(error)))
+  }
+  stop = onSnapshot(
     collectionReference,
+    { includeMetadataChanges: true },
     (snapshot) => {
-      onData(snapshot.docs.map(deserializeManga))
+      if (stopped) return
+      if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments) {
+        fail(createAppError('app/library-budget'))
+        return
+      }
+      onData(snapshot.docs.map(deserializeManga), {
+        fromCache: snapshot.metadata?.fromCache !== false,
+        hasPendingWrites: snapshot.metadata?.hasPendingWrites !== false,
+      })
     },
     (error) => {
-      onError?.(toAppError(error, 'No se ha podido sincronizar la biblioteca.'))
+      fail(error)
     },
   )
+  if (stopped) stop()
+  return () => {
+    stopped = true
+    stop()
+  }
 }
 
-export async function createManga(uid, input) {
+export async function fetchLibraryForExport(uid) {
   try {
+    const { auth } = requireFirebase()
+    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
+    sparkBudget.take('read')
+    const snapshot = await getDocsFromServer(
+      query(getMangaCollection(uid), limit(SPARK_LIMITS.libraryDocuments + 1)),
+    )
+    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
+    if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments)
+      throw createAppError('app/library-budget')
+    if (snapshot.metadata?.fromCache !== false || snapshot.metadata?.hasPendingWrites !== false) {
+      throw createAppError('app/export-not-confirmed')
+    }
+    return {
+      mangas: snapshot.docs.map(deserializeManga),
+      verification: {
+        source: 'server',
+        observedAtClient: new Date().toISOString(),
+        hasPendingWrites: false,
+      },
+    }
+  } catch (error) {
+    throw toAppError(
+      sparkBudget.record(error),
+      'No se ha podido confirmar la copia con el servidor.',
+    )
+  }
+}
+
+export async function createManga(uid, input, { importDocumentId } = {}) {
+  try {
+    sparkBudget.take('write')
     const manga = serializeMangaForCreate(input)
+    if (importDocumentId !== undefined) {
+      if (
+        typeof importDocumentId !== 'string' ||
+        !/^import-v1-[a-f0-9]{64}-[1-9]\d{0,6}$/.test(importDocumentId)
+      ) {
+        throw createAppError('app/invalid-import-identity')
+      }
+      sparkBudget.take('read')
+      const reference = getMangaDocument(uid, importDocumentId)
+      await runTransaction(
+        db,
+        async (transaction) => {
+          const existing = await transaction.get(reference)
+          // An acknowledged or ambiguously committed import must never overwrite
+          // later edits, nor create a second document when the response was lost.
+          if (existing.exists()) return
+          transaction.set(reference, {
+            ...manga,
+            createdAt: serverTimestamp(),
+            updatedAt: serverTimestamp(),
+          })
+        },
+        { maxAttempts: SPARK_LIMITS.transactionAttempts },
+      )
+      return reference.id
+    }
     const reference = await addDoc(getMangaCollection(uid), {
       ...manga,
       createdAt: serverTimestamp(),
@@ -353,57 +437,65 @@ export async function createManga(uid, input) {
 
     return reference.id
   } catch (error) {
-    throw toAppError(error, 'No se ha podido guardar la obra.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido guardar la obra.')
   }
 }
 
 export async function updateManga(uid, mangaId, input, { expectedValues } = {}) {
   try {
+    sparkBudget.take('write')
     const patch = serializeMangaForUpdate(input)
     const reference = getMangaDocument(uid, mangaId)
     if (expectedValues) {
-      await runTransaction(db, async (transaction) => {
-        const snapshot = await transaction.get(reference)
-        if (!snapshot.exists()) {
-          throw createAppError('app/invalid-manga', 'La obra ya no existe.')
-        }
-        if (conflictingMangaFields(snapshot.data(), patch, expectedValues).length) {
-          throw createAppError(
-            'app/edit-conflict',
-            'Esta obra cambió en otro dispositivo. Tus cambios no se han guardado. Carga la versión actual y revísala antes de guardar.',
-          )
-        }
-        transaction.update(reference, { ...patch, updatedAt: serverTimestamp() })
-      })
+      await runTransaction(
+        db,
+        async (transaction) => {
+          const snapshot = await transaction.get(reference)
+          if (!snapshot.exists()) {
+            throw createAppError('app/invalid-manga', 'La obra ya no existe.')
+          }
+          if (conflictingMangaFields(snapshot.data(), patch, expectedValues).length) {
+            throw createAppError(
+              'app/edit-conflict',
+              'Esta obra cambió en otro dispositivo. Tus cambios no se han guardado. Carga la versión actual y revísala antes de guardar.',
+            )
+          }
+          transaction.update(reference, { ...patch, updatedAt: serverTimestamp() })
+        },
+        { maxAttempts: SPARK_LIMITS.transactionAttempts },
+      )
     } else {
       await updateDoc(reference, { ...patch, updatedAt: serverTimestamp() })
     }
 
     return mangaId
   } catch (error) {
-    throw toAppError(error, 'No se han podido guardar los cambios.')
+    throw toAppError(sparkBudget.record(error), 'No se han podido guardar los cambios.')
   }
 }
 
 export async function deleteManga(uid, mangaId) {
   try {
+    sparkBudget.take('write')
     await deleteDoc(getMangaDocument(uid, mangaId))
   } catch (error) {
-    throw toAppError(error, 'No se ha podido eliminar la obra.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido eliminar la obra.')
   }
 }
 
 export async function getManga(uid, mangaId) {
   try {
+    sparkBudget.take('read')
     const snapshot = await getDoc(getMangaDocument(uid, mangaId))
     return snapshot.exists() ? deserializeManga(snapshot) : null
   } catch (error) {
-    throw toAppError(error, 'No se ha podido cargar la obra.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido cargar la obra.')
   }
 }
 
 export async function findMangasByNormalizedName(uid, name) {
   try {
+    sparkBudget.take('read')
     const normalizedName = normalizeMangaName(name)
 
     if (!normalizedName) {
@@ -418,7 +510,7 @@ export async function findMangasByNormalizedName(uid, name) {
     const snapshot = await getDocs(duplicateQuery)
     return snapshot.docs.map(deserializeManga)
   } catch (error) {
-    throw toAppError(error, 'No se han podido comprobar posibles duplicados.')
+    throw toAppError(sparkBudget.record(error), 'No se han podido comprobar posibles duplicados.')
   }
 }
 
@@ -440,24 +532,29 @@ export function calculateNextChapter(chapter, direction) {
 
 export async function changeMangaChapter(uid, mangaId, direction) {
   try {
+    sparkBudget.take('write')
     const documentReference = getMangaDocument(uid, mangaId)
 
-    return await runTransaction(db, async (transaction) => {
-      const snapshot = await transaction.get(documentReference)
+    return await runTransaction(
+      db,
+      async (transaction) => {
+        const snapshot = await transaction.get(documentReference)
 
-      if (!snapshot.exists()) {
-        throw createAppError('app/invalid-manga', 'La obra ya no existe.')
-      }
+        if (!snapshot.exists()) {
+          throw createAppError('app/invalid-manga', 'La obra ya no existe.')
+        }
 
-      const nextChapter = calculateNextChapter(snapshot.data().chapter, direction)
-      transaction.update(documentReference, {
-        chapter: nextChapter,
-        updatedAt: serverTimestamp(),
-      })
+        const nextChapter = calculateNextChapter(snapshot.data().chapter, direction)
+        transaction.update(documentReference, {
+          chapter: nextChapter,
+          updatedAt: serverTimestamp(),
+        })
 
-      return nextChapter
-    })
+        return nextChapter
+      },
+      { maxAttempts: SPARK_LIMITS.transactionAttempts },
+    )
   } catch (error) {
-    throw toAppError(error, 'No se ha podido actualizar el capítulo.')
+    throw toAppError(sparkBudget.record(error), 'No se ha podido actualizar el capítulo.')
   }
 }

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict'
 import { createPinia, setActivePinia } from 'pinia'
 import { loadModule } from './helpers/load-module.js'
 
-async function fixture() {
+async function fixture(overrides = {}) {
   const listeners = []
   const conflict = Object.assign(new Error('Conflicto de edición'), { code: 'app/edit-conflict' })
   const service = {
@@ -31,6 +31,7 @@ async function fixture() {
       throw conflict
     },
   }
+  Object.assign(service, overrides)
   setActivePinia(createPinia())
   const module = await loadModule('src/stores/manga-store.js', {
     '@/services/manga-service': service,
@@ -114,8 +115,32 @@ test('favorites carry the displayed value as a transaction precondition', async 
   ])
 })
 
+test('metadata-only events distinguish cache, pending writes and server and cannot cross sessions', async () => {
+  const { store, listeners } = await fixture()
+  store.subscribe('alice')
+  listeners[0].data([], { fromCache: true, hasPendingWrites: false })
+  assert.equal(store.snapshotReceived, true)
+  assert.equal(store.snapshotFromCache, true)
+  assert.match(store.syncStatusMessage, /datos locales/)
+  listeners[0].data([], { fromCache: false, hasPendingWrites: true })
+  assert.equal(store.hasPendingWrites, true)
+  assert.match(store.syncStatusMessage, /pendientes/)
+  listeners[0].data([], { fromCache: false, hasPendingWrites: false })
+  assert.equal(store.hasPendingWrites, false)
+  assert.match(store.syncStatusMessage, /Última instantánea/)
+  store.subscribe('bob')
+  listeners[0].data([], { fromCache: false, hasPendingWrites: true })
+  assert.equal(store.snapshotReceived, false)
+  assert.equal(store.hasPendingWrites, false)
+  store.unsubscribe()
+  assert.equal(store.snapshotFromCache, true)
+})
+
 test('retry controls handle synchronous listener initialization failures', async () => {
   const store = {
+    mangas: [],
+    filteredMangas: [],
+    filters: { genres: [] },
     subscribe() {
       throw new Error('initialization failed')
     },
@@ -125,6 +150,7 @@ test('retry controls handle synchronous listener initialization failures', async
       await loadModule(file, {
         '@/stores/manga-store': { useMangaStore: () => store },
         '@/stores/auth-store': { useAuthStore: () => ({ user: { uid: 'alice' } }) },
+        '@/stores/settings-store': { useSettingsStore: () => ({ sortBy: 'updated-desc' }) },
         'vue-router': { useRouter: () => ({}) },
         quasar: { useQuasar: () => ({}) },
       })
@@ -132,4 +158,28 @@ test('retry controls handle synchronous listener initialization failures', async
     const page = component.setup({ id: 'nano' }, { expose() {} })
     assert.doesNotThrow(() => page.retrySubscription())
   }
+})
+
+test('in-flight operations remain visible even if query metadata reports no pending writes', async () => {
+  let finish
+  const { store, listeners } = await fixture({
+    deleteManga: () =>
+      new Promise((resolve) => {
+        finish = resolve
+      }),
+  })
+  store.subscribe('alice')
+  listeners[0].data([], { fromCache: false, hasPendingWrites: false })
+  const pending = store.deleteManga('alice', 'one')
+  assert.equal(store.hasPendingWrites, false)
+  assert.equal(store.pendingOperations, 1)
+  assert.match(store.syncStatusMessage, /pendientes/)
+  store.subscribe('bob')
+  assert.equal(store.pendingOperations, 0)
+  store.subscribe('alice')
+  assert.equal(store.pendingOperations, 1)
+  finish()
+  await pending
+  assert.equal(store.pendingOperations, 0)
+  store.unsubscribe()
 })

@@ -2,7 +2,7 @@
   <section aria-labelledby="sources-heading">
     <div class="row items-center justify-between q-mb-sm">
       <div>
-        <h3 id="sources-heading" class="text-subtitle1 text-weight-bold q-my-none">Fuentes</h3>
+        <h2 id="sources-heading" class="text-subtitle1 text-weight-bold q-my-none">Fuentes</h2>
         <p class="text-caption text-grey-7 q-my-none">Añade una o varias webs de lectura.</p>
       </div>
       <q-btn

@@ -10,7 +10,7 @@
         aria-label="Volver al login"
       />
       <p class="eyebrow text-primary q-mt-lg q-mb-sm">Recupera el acceso</p>
-      <h2 class="auth-card__title">Restablecer contraseña</h2>
+      <h1 class="auth-card__title">Restablecer contraseña</h1>
       <p class="text-grey-7 q-mb-none">
         Te enviaremos un enlace si el correo pertenece a una cuenta.
       </p>

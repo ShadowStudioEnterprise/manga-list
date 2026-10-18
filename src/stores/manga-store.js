@@ -83,12 +83,28 @@ export const useMangaStore = defineStore('mangas', {
     mangas: [],
     loading: false,
     syncError: null,
+    snapshotReceived: false,
+    snapshotFromCache: true,
+    hasPendingWrites: false,
+    pendingWritesByUid: new Map(),
     searchQuery: '',
     filters: { ...DEFAULT_FILTERS },
     subscribedUid: null,
   }),
 
   getters: {
+    pendingOperations(state) {
+      return state.pendingWritesByUid.get(state.subscribedUid) || 0
+    },
+    syncStatusMessage(state) {
+      if (state.syncError) return 'No se ha podido confirmar el estado de la biblioteca.'
+      if (!state.snapshotReceived) return 'Esperando la primera comprobación de la biblioteca.'
+      if (state.hasPendingWrites || (state.pendingWritesByUid.get(state.subscribedUid) || 0) > 0)
+        return 'Hay cambios pendientes de confirmación. No cierres la app hasta comprobar su guardado.'
+      if (state.snapshotFromCache)
+        return 'Mostrando datos locales; su actualización con el servidor no está confirmada.'
+      return 'Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.'
+    },
     filteredMangas(state) {
       const settingsStore = useSettingsStore()
       const normalizedSearch = normalizeMangaName(state.searchQuery)
@@ -160,12 +176,15 @@ export const useMangaStore = defineStore('mangas', {
       try {
         stopMangaListener = subscribeToMangas(
           uid,
-          (mangas) => {
+          (mangas, metadata = {}) => {
             if (this.subscribedUid !== uid || version !== subscriptionVersion) {
               return
             }
 
             this.mangas = mangas
+            this.snapshotReceived = true
+            this.snapshotFromCache = metadata.fromCache !== false
+            this.hasPendingWrites = metadata.hasPendingWrites !== false
             this.syncError = null
             this.loading = false
           },
@@ -178,6 +197,7 @@ export const useMangaStore = defineStore('mangas', {
             stopMangaListener = null
             this.subscribedUid = null
             this.syncError = appError.message
+            this.snapshotFromCache = true
             this.loading = false
           },
         )
@@ -198,6 +218,9 @@ export const useMangaStore = defineStore('mangas', {
       this.mangas = []
       this.loading = false
       this.syncError = null
+      this.snapshotReceived = false
+      this.snapshotFromCache = true
+      this.hasPendingWrites = false
       this.searchQuery = ''
       this.filters = { ...DEFAULT_FILTERS }
     },
@@ -218,9 +241,22 @@ export const useMangaStore = defineStore('mangas', {
       this.filters = { ...DEFAULT_FILTERS }
     },
 
-    async createManga(uid, data) {
+    async runTrackedWrite(uid, operation) {
+      this.pendingWritesByUid.set(uid, (this.pendingWritesByUid.get(uid) || 0) + 1)
       try {
-        return await createMangaDocument(uid, data)
+        return await operation()
+      } finally {
+        // Same-account listener restarts must retain operations still in flight.
+        // Another account's operations must never be attributed to this one.
+        const remaining = (this.pendingWritesByUid.get(uid) || 1) - 1
+        if (remaining) this.pendingWritesByUid.set(uid, remaining)
+        else this.pendingWritesByUid.delete(uid)
+      }
+    },
+
+    async createManga(uid, data, options) {
+      try {
+        return await this.runTrackedWrite(uid, () => createMangaDocument(uid, data, options))
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido guardar la obra.')
         throw appError
@@ -238,7 +274,7 @@ export const useMangaStore = defineStore('mangas', {
 
     async updateManga(uid, id, data, options) {
       try {
-        return await updateMangaDocument(uid, id, data, options)
+        return await this.runTrackedWrite(uid, () => updateMangaDocument(uid, id, data, options))
       } catch (error) {
         const appError = toAppError(error, 'No se han podido guardar los cambios.')
         throw appError
@@ -247,7 +283,7 @@ export const useMangaStore = defineStore('mangas', {
 
     async deleteManga(uid, id) {
       try {
-        await deleteMangaDocument(uid, id)
+        await this.runTrackedWrite(uid, () => deleteMangaDocument(uid, id))
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido eliminar la obra.')
         throw appError
@@ -265,7 +301,9 @@ export const useMangaStore = defineStore('mangas', {
 
     async changeChapter(uid, manga, direction) {
       try {
-        const chapter = await changeMangaChapter(uid, manga.id, direction)
+        const chapter = await this.runTrackedWrite(uid, () =>
+          changeMangaChapter(uid, manga.id, direction),
+        )
         return { changed: true, chapter, requiresManual: false }
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido actualizar el capítulo.')

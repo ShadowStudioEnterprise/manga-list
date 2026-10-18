@@ -2,7 +2,7 @@
   <q-card flat bordered class="auth-card">
     <q-card-section class="q-pb-none">
       <p class="eyebrow text-primary q-mb-sm">Empieza tu biblioteca</p>
-      <h2 class="auth-card__title">Crea tu cuenta</h2>
+      <h1 class="auth-card__title">Crea tu cuenta</h1>
       <p class="text-grey-7 q-mb-none">Tu colección será privada y estará sincronizada.</p>
     </q-card-section>
 

@@ -16,7 +16,7 @@
           </div>
         </q-card-section>
         <q-separator />
-        <q-list separator>
+        <q-list separator role="presentation">
           <q-item clickable to="/settings/import-export">
             <q-item-section avatar><q-icon name="swap_vert" color="primary" /></q-item-section>
             <q-item-section>
@@ -84,6 +84,18 @@
         </q-card-section>
       </q-card>
 
+      <q-card flat bordered>
+        <q-card-section>
+          <h2 class="text-h6 text-weight-bold q-my-none">Versión de la aplicación</h2>
+          <p class="q-mt-sm q-mb-none">{{ applicationVersionLabel }}</p>
+          <p class="text-caption sync-status q-mt-sm">
+            Puedes copiar la versión para comunicar un problema. No incluye datos de tu cuenta ni se
+            envía automáticamente.
+          </p>
+          <q-btn flat no-caps icon="content_copy" label="Copiar versión" @click="copyVersion" />
+        </q-card-section>
+      </q-card>
+
       <q-card flat bordered class="danger-card">
         <q-card-section>
           <p class="eyebrow text-negative q-mb-xs">Zona peligrosa</p>
@@ -113,7 +125,10 @@
               <div id="delete-account-title" class="text-h6">Eliminar tu cuenta</div>
               <p class="q-mb-none">
                 Se bloquearán nuevas escrituras, se borrarán tus obras y después tu acceso. Si el
-                proceso se interrumpe, vuelve aquí para completarlo.
+                proceso se interrumpe o cierras la app, el borrado no continúa por sí solo. Vuelve
+                aquí para completarlo; tu acceso se conserva hasta verificar el borrado de las
+                obras. Se borran como máximo 2000 obras por intento. Se conserva un marcador mínimo
+                de seguridad.
               </p>
             </div>
           </q-card-section>
@@ -165,6 +180,7 @@ import { useRouter } from 'vue-router'
 import { buildBookmarkletCode } from '@/utils/bookmarklet-utils'
 import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
 import { useAuthStore } from '@/stores/auth-store'
+import { applicationVersionLabel, versionDiagnostic } from '@/utils/application-version'
 
 const $q = useQuasar()
 const router = useRouter()
@@ -219,6 +235,15 @@ async function copyBookmarklet() {
       type: 'negative',
       message: 'No se ha podido copiar. Arrastra el botón directamente.',
     })
+  }
+}
+
+async function copyVersion() {
+  try {
+    await navigator.clipboard.writeText(versionDiagnostic())
+    $q.notify({ type: 'positive', message: 'Versión copiada.' })
+  } catch {
+    $q.notify({ type: 'negative', message: 'No se ha podido copiar la versión.' })
   }
 }
 

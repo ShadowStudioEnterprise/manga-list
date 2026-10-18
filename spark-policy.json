@@ -1,0 +1,6 @@
+{
+  "plan": "SPARK",
+  "billingAllowed": false,
+  "project": "mangalist-61bb8",
+  "services": ["auth", "firestore", "hosting"]
+}

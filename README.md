@@ -24,6 +24,15 @@ real entre dispositivos. No hay perfiles públicos ni funciones sociales.
 - PWA instalable con manifest, iconos y service worker generado por Workbox.
 - Eliminación de cuenta con reautenticación y borrado previo de la biblioteca.
 
+## Mantenimiento y contribución
+
+[Especificación v1 y requisitos comprobables](docs/specification-v1.md) ·
+[Guía de contribución](CONTRIBUTING.md) · [Seguridad](SECURITY.md) ·
+[Cambios sin publicar](CHANGELOG.md).
+
+Estos documentos describen la rama en revisión. La licencia sigue pendiente de elección
+por el titular; no se añade una licencia ni se declara una publicación mediante este PR.
+
 ## Stack
 
 - Vue 3 y Composition API (JavaScript).
@@ -195,11 +204,11 @@ conecta a `127.0.0.1:8188`, el puerto definido en `firebase.json`. No requieren 
 Firebase ni acceden a datos de producción. Se comprueban el aislamiento por usuario, los límites
 del esquema, las fuentes principales y los conflictos entre ediciones concurrentes.
 
-Para ejecutar los flujos completos en Chromium:
+Para ejecutar los flujos con emuladores en Chromium y Firefox:
 
 ```bash
 # Una vez, después de npm install
-npx playwright install chromium
+npx playwright install chromium firefox
 
 # Arranca emuladores, servidor de prueba y navegador; los cierra al terminar
 npm run test:e2e
@@ -209,12 +218,27 @@ La suite usa Authentication en `127.0.0.1:9199`, Firestore en `127.0.0.1:8188` y
 en `127.0.0.1:9100`. Estos puertos deben estar libres. El servidor se inicia con una configuración
 ficticia `demo-mangalist` que sustituye los valores de `.env`; el navegador bloquea peticiones
 externas. `QCLI_FIREBASE_EMULATORS=true` solo conecta a los emuladores durante desarrollo y exige
-un proyecto con prefijo `demo-`. En producción esta opción no activa los emuladores.
+un proyecto con prefijo `demo-`. Si se solicita fuera de desarrollo, con valores incompletos
+o un proyecto no demo, el arranque se rechaza antes de inicializar servicios. Valores de bandera
+desconocidos también fallan. La [validación temprana](docs/firebase-startup.md) detalla el orden
+de conexión y la comprobación de apps existentes; usa bandera omitida o `false` en un build normal.
 
 Se prueban el bookmarklet durante recuperación y registro, la persistencia e inicio de sesión,
 las ediciones entre dos pestañas, conflictos, importación/exportación, aislamiento entre cuentas
 y edición/borrado en móvil. Las capturas y trazas quedan en `test-results/` cuando falla una prueba.
 El acceso OAuth con una cuenta real de Google requiere una comprobación manual independiente.
+
+La [matriz de navegadores y sus límites](docs/browser-coverage-2026-10-18.md) distingue los
+escenarios compartidos de los permisos de portapapeles, las métricas CDP y el ciclo PWA,
+que se mantienen solo en Chromium. Firefox ejecuta doce recorridos adicionales, incluido
+el [historial Atrás/Adelante y la cancelación sin guardar](docs/navigation-history-2026-10-18.md).
+
+Los [cambios de ancho con la página abierta](docs/live-resize-2026-10-18.md) comprueban
+biblioteca y formulario sin recarga; las notificaciones de error ResizeObserver hacen fallar la suite.
+
+La [recuperación de contraseña en emuladores](docs/password-recovery-emulator.md) comprueba
+credenciales y códigos de un solo uso mediante confirmación REST local. No valida el correo
+ni la página de acción reales de Firebase.
 
 Referencias: [servidor de pruebas de Playwright](https://playwright.dev/docs/test-webserver),
 [emulador de Authentication](https://firebase.google.com/docs/emulator-suite/connect_auth) y
@@ -339,7 +363,7 @@ dependencias, compilaciones, logs y resultados de pruebas están excluidos de Gi
 
 La configuración `.firebaserc` y el identificador del sitio en `firebase.json` apuntan al proyecto
 de MangaList. Si haces un fork para otra aplicación, cambia estos identificadores y el proyecto
-del script `deploy:hosting` antes de desplegar.
+del script `deploy:hosting`. Estos valores están protegidos también por la política Spark y sus pruebas; un fork requiere revisar esos controles de forma coherente.
 
 Para subir este repositorio, crea un repositorio vacío en GitHub y configura su URL:
 
@@ -352,7 +376,7 @@ git push -u origin HEAD
 El workflow `.github/workflows/ci.yml` comprueba formato, lint, regresiones, reglas de Firestore,
 flujos E2E y compilaciones SPA/PWA en cada push y pull request. Usa un proyecto de demostración;
 no necesita secretos de Firebase ni publica cambios en Hosting. El despliegue sigue siendo
-manual mediante `npm run deploy:hosting` desde un entorno configurado.
+manual mediante `npm run deploy:hosting` desde un entorno configurado, con autorización expresa, fuente limpia y comprobación del artefacto. Consulta el procedimiento de versiones y recuperación; los builds demo de CI no son candidatos de producción.
 
 El workflow solo solicita lectura del repositorio y fija las acciones a revisiones concretas.
 Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/actions) y la
@@ -361,9 +385,9 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 ## Siguientes mejoras recomendadas
 
 - Ampliar la cobertura de normalización y casos de importación.
-- Ampliar los tests E2E a otros navegadores y al flujo de recuperación de contraseña completo.
-- Firebase App Check, límites por cuenta y alertas de presupuesto antes de abrir el registro a gran escala.
-- Cloud Function/Admin para borrado recursivo al crecer el modelo.
+- Ampliar los tests E2E a otros navegadores y completar la aceptación real de recuperación de contraseña, con autorización para producción.
+- Revisar App Check y controles de abuso compatibles con Spark antes de abrir el registro a gran escala, con autorización separada para cambios remotos.
+- Borrado Spark reanudable desde el cliente y asistencia manual autorizada; sin Cloud Functions ni servicios de pago.
 - Portadas y metadatos externos opcionales.
 - Extensión de navegador reutilizando la ruta `/add` y los parsers aislados.
 - División adicional del bundle del SDK Firebase si el tamaño inicial se vuelve relevante.
@@ -373,3 +397,15 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 - [Cambios, modelo de concurrencia y borrado seguro](docs/technical-review-2026-10-16.md).
 - [Resultados de verificación](docs/verification-2026-10-16.md).
 - [Roadmap priorizado y criterios de aceptación](docs/roadmap.md).
+
+## Política Spark del 18/10/2026
+
+Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles y límites](docs/spark-only.md) y [evidencia de verificación](docs/verification-spark-2026-10-18.md).
+
+[Revisión y control continuo de dependencias](docs/dependencies-2026-10-18.md).
+
+[Importación recuperable: reintentos, recarga y límites](docs/import-recovery.md).
+
+[Estado de sincronización y procedencia de las copias](docs/synchronization-and-export.md).
+
+[Versiones, inventario de compilación y recuperación compatible](docs/releases-and-recovery.md) · [Registro para solicitar aprobación de publicación](docs/release-record-template.md).

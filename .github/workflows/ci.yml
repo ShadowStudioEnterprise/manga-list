@@ -31,12 +31,16 @@ jobs:
         with:
           distribution: temurin
           java-version: '21'
+      - name: Enforce Spark compatibility (no credentials)
+        run: node scripts/check-spark.mjs
       - name: Install dependencies
         run: |
           npm ci
           npm ci --prefix src-pwa
           npm install --global firebase-tools@15.32.1
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium firefox
+      - name: Audit both dependency lockfiles
+        run: npm run audit:dependencies
       - name: Check formatting and lint
         run: npm run lint:check
       - name: Run regression tests
@@ -56,3 +60,28 @@ jobs:
         run: |
           npm run build
           npm run build:pwa
+      - name: Verify build consistency and source contracts (demo only)
+        run: |
+          node scripts/build-evidence.mjs verify spa --project demo-mangalist
+          node scripts/build-evidence.mjs verify pwa --project demo-mangalist
+      - name: Test built PWA update lifecycle locally
+        run: npm run test:pwa
+      - name: Preserve local test evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: browser-evidence-${{ github.run_id }}
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Preserve demo build evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: demo-build-evidence-${{ github.run_id }}
+          path: |
+            dist/spa/build-info.json
+            dist/spa/build-evidence.json
+            dist/pwa/build-info.json
+            dist/pwa/build-evidence.json
+          if-no-files-found: error
+          retention-days: 7

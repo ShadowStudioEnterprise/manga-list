@@ -86,6 +86,7 @@
 
       <div
         class="progress-control row items-center justify-between q-mt-sm"
+        role="group"
         aria-label="Actualizar capítulo"
       >
         <q-btn

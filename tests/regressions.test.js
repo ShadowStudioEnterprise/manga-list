@@ -6,7 +6,11 @@ import { tmpdir } from 'node:os'
 import { join, dirname, resolve, basename } from 'node:path'
 import { getAppEnv } from '../node_modules/@quasar/app-vite/lib/utils/env.js'
 import { createEmptyManga } from '../src/constants/manga-options.js'
-import { createImportPreview, prepareImportSelection } from '../src/services/import-service.js'
+import {
+  createImportPreview,
+  createRecoverableImportPreview,
+  prepareImportSelection,
+} from '../src/services/import-service.js'
 import { exportLibraryToCsv, exportLibraryToJson } from '../src/services/export-service.js'
 import { authDestination, authRoute } from '../src/utils/auth-redirect.js'
 import { createMangaEdit, conflictingMangaFields } from '../src/utils/manga-edit.js'
@@ -14,6 +18,68 @@ import { loadModule } from './helpers/load-module.js'
 import * as firebaseAuth from 'firebase/auth'
 
 const example = () => ({ ...createEmptyManga(), id: 'nano', name: 'Nano Machine', chapter: '276' })
+
+const demoFirebaseEnv = {
+  DEV: true,
+  QCLI_FIREBASE_EMULATORS: 'true',
+  VITE_FIREBASE_API_KEY: 'demo-key',
+  VITE_FIREBASE_AUTH_DOMAIN: 'demo.test',
+  VITE_FIREBASE_PROJECT_ID: 'demo-mangalist',
+  VITE_FIREBASE_STORAGE_BUCKET: 'demo.test',
+  VITE_FIREBASE_MESSAGING_SENDER_ID: '123',
+  VITE_FIREBASE_APP_ID: 'demo-app',
+}
+
+function firebaseBootProbe({ existingApp, failConnection } = {}) {
+  const calls = []
+  const connections = []
+  const app = existingApp ?? {}
+  const auth = {}
+  const db = {}
+  const overrides = {
+    'firebase/app': {
+      getApps: () => {
+        calls.push('getApps')
+        return existingApp ? [existingApp] : []
+      },
+      getApp: () => {
+        calls.push('getApp')
+        return existingApp
+      },
+      initializeApp: (config) => {
+        calls.push('app')
+        app.options = config
+        return app
+      },
+    },
+    'firebase/auth': {
+      ...firebaseAuth,
+      initializeAuth: (value) => {
+        assert.equal(value, app)
+        calls.push('auth')
+        return auth
+      },
+      connectAuthEmulator: (...args) => {
+        calls.push('connectAuth')
+        connections.push(args)
+        if (failConnection === 'auth') throw new Error('Auth emulator connection failed')
+      },
+    },
+    'firebase/firestore': {
+      getFirestore: (value) => {
+        assert.equal(value, app)
+        calls.push('firestore')
+        return db
+      },
+      connectFirestoreEmulator: (...args) => {
+        calls.push('connectFirestore')
+        connections.push(args)
+        if (failConnection === 'firestore') throw new Error('Firestore emulator connection failed')
+      },
+    },
+  }
+  return { calls, connections, app, auth, db, overrides }
+}
 
 test('Quasar exposes the documented Firebase dotenv values, including numeric sender ID', async () => {
   const folder = await mkdtemp(join(tmpdir(), 'mangalist-env-'))
@@ -83,44 +149,124 @@ test('Quasar exposes the documented Firebase dotenv values, including numeric se
   }
 })
 
-test('emulators require development mode and a demo project', async () => {
-  const env = {
-    DEV: true,
-    QCLI_FIREBASE_EMULATORS: 'true',
-    VITE_FIREBASE_API_KEY: 'demo-key',
-    VITE_FIREBASE_AUTH_DOMAIN: 'demo.test',
-    VITE_FIREBASE_PROJECT_ID: 'demo-mangalist',
-    VITE_FIREBASE_STORAGE_BUCKET: 'demo.test',
-    VITE_FIREBASE_MESSAGING_SENDER_ID: '123',
-    VITE_FIREBASE_APP_ID: 'demo-app',
+test('emulator requests reject unsafe or malformed configuration before any Firebase SDK call', async () => {
+  for (const unsafe of [
+    { VITE_FIREBASE_PROJECT_ID: 'live-project' },
+    { VITE_FIREBASE_APP_ID: '' },
+    { DEV: false },
+    { DEV: 'false' },
+    { DEV: undefined },
+    { QCLI_FIREBASE_EMULATORS: 'TRUE' },
+    { QCLI_FIREBASE_EMULATORS: '1' },
+    { QCLI_FIREBASE_EMULATORS: 'yes' },
+  ]) {
+    const probe = firebaseBootProbe()
+    await assert.rejects(
+      loadModule('src/boot/firebase.js', probe.overrides, { ...demoFirebaseEnv, ...unsafe }),
+      /Firebase emulator/,
+    )
+    assert.deepEqual(probe.calls, [], 'Rejected configuration touched Firebase SDK')
+    assert.deepEqual(probe.connections, [])
   }
-  const connections = []
-  const overrides = {
-    'firebase/app': { getApp: () => ({}), getApps: () => [], initializeApp: () => ({}) },
-    'firebase/auth': {
-      ...firebaseAuth,
-      initializeAuth: () => ({}),
-      connectAuthEmulator: (...args) => connections.push(args),
-    },
-    'firebase/firestore': {
-      getFirestore: () => ({}),
-      connectFirestoreEmulator: (...args) => connections.push(args),
-    },
+})
+
+test('emulator connections occur in service order and failures never fall back to cloud', async () => {
+  const probe = firebaseBootProbe()
+  const boot = await loadModule('src/boot/firebase.js', probe.overrides, demoFirebaseEnv)
+  assert.deepEqual(probe.calls, [
+    'getApps',
+    'app',
+    'auth',
+    'connectAuth',
+    'firestore',
+    'connectFirestore',
+  ])
+  assert.equal(boot.auth, probe.auth)
+  assert.equal(boot.db, probe.db)
+  assert.equal(probe.connections[0][0], probe.auth)
+  assert.equal(probe.connections[0][1], 'http://127.0.0.1:9199')
+  assert.equal(probe.connections[0][2].disableWarnings, true)
+  assert.deepEqual(probe.connections[1], [probe.db, '127.0.0.1', 8188])
+  for (const failure of ['auth', 'firestore']) {
+    const failed = firebaseBootProbe({ failConnection: failure })
+    await assert.rejects(
+      loadModule('src/boot/firebase.js', failed.overrides, demoFirebaseEnv),
+      /emulator connection failed/,
+    )
+    const expected =
+      failure === 'auth'
+        ? ['getApps', 'app', 'auth', 'connectAuth']
+        : ['getApps', 'app', 'auth', 'connectAuth', 'firestore', 'connectFirestore']
+    assert.deepEqual(failed.calls, expected)
   }
-  await loadModule('src/boot/firebase.js', overrides, env)
-  assert.equal(connections.length, 2)
-  assert.equal(connections[0][1], 'http://127.0.0.1:9199')
-  assert.equal(connections[1][1], '127.0.0.1')
-  await loadModule('src/boot/firebase.js', overrides, { ...env, DEV: false })
-  assert.equal(connections.length, 2)
-  await assert.rejects(
-    loadModule('src/boot/firebase.js', overrides, {
-      ...env,
-      VITE_FIREBASE_PROJECT_ID: 'live-project',
-    }),
-    /require a configured demo project/,
+})
+
+test('disabled emulator mode preserves ordinary startup and incomplete configuration stays inert', async () => {
+  for (const flag of [undefined, '', 'false', false]) {
+    const probe = firebaseBootProbe()
+    const boot = await loadModule('src/boot/firebase.js', probe.overrides, {
+      ...demoFirebaseEnv,
+      DEV: false,
+      QCLI_FIREBASE_EMULATORS: flag,
+    })
+    assert.deepEqual(probe.calls, ['getApps', 'app', 'auth', 'firestore'])
+    assert.deepEqual(probe.connections, [])
+    assert.equal(boot.requireFirebase().db, probe.db)
+  }
+  const probe = firebaseBootProbe()
+  const boot = await loadModule('src/boot/firebase.js', probe.overrides, {
+    ...demoFirebaseEnv,
+    QCLI_FIREBASE_EMULATORS: 'false',
+    VITE_FIREBASE_APP_ID: '',
+  })
+  assert.deepEqual(probe.calls, [])
+  assert.equal(boot.firebaseApp, null)
+  assert.equal(boot.auth, null)
+  assert.equal(boot.db, null)
+  assert.throws(() => boot.requireFirebase(), { code: 'app/firebase-not-configured' })
+})
+
+test('an existing default Firebase app must match configuration before Auth or Firestore starts', async () => {
+  const options = Object.fromEntries(
+    Object.entries(demoFirebaseEnv)
+      .filter(([key]) => key.startsWith('VITE_FIREBASE_'))
+      .map(([key, value]) => [
+        {
+          VITE_FIREBASE_API_KEY: 'apiKey',
+          VITE_FIREBASE_AUTH_DOMAIN: 'authDomain',
+          VITE_FIREBASE_PROJECT_ID: 'projectId',
+          VITE_FIREBASE_STORAGE_BUCKET: 'storageBucket',
+          VITE_FIREBASE_MESSAGING_SENDER_ID: 'messagingSenderId',
+          VITE_FIREBASE_APP_ID: 'appId',
+        }[key],
+        value,
+      ]),
   )
-  assert.equal(connections.length, 2)
+  for (const flag of ['true', 'false']) {
+    const env = { ...demoFirebaseEnv, DEV: flag === 'true', QCLI_FIREBASE_EMULATORS: flag }
+    const matched = firebaseBootProbe({ existingApp: { options } })
+    const boot = await loadModule('src/boot/firebase.js', matched.overrides, env)
+    assert.equal(boot.firebaseApp, matched.app)
+    assert.deepEqual(
+      matched.calls,
+      flag === 'true'
+        ? ['getApps', 'getApp', 'auth', 'connectAuth', 'firestore', 'connectFirestore']
+        : ['getApps', 'getApp', 'auth', 'firestore'],
+    )
+    const mismatches = Object.keys(options).map((key) => ({
+      options: { ...options, [key]: 'different' },
+    }))
+    mismatches.push({})
+    mismatches.push({ options: { ...options, apiKey: ` ${options.apiKey} ` } })
+    for (const existingApp of mismatches) {
+      const probe = firebaseBootProbe({ existingApp })
+      await assert.rejects(
+        loadModule('src/boot/firebase.js', probe.overrides, env),
+        /Existing Firebase app does not match/,
+      )
+      assert.deepEqual(probe.calls, ['getApps', 'getApp'])
+    }
+  }
 })
 
 test('editing notes preserves a chapter updated remotely after the form opened', async () => {
@@ -264,7 +410,10 @@ async function importPage(createManga) {
 
 test('successful import clears both the preview and selected file', async () => {
   const page = await importPage(async () => 'created-id')
-  page.preview.value = createImportPreview('[{"name":"Nano","chapter":"276"}]', { format: 'json' })
+  page.preview.value = await createRecoverableImportPreview('[{"name":"Nano","chapter":"276"}]', {
+    format: 'json',
+    uid: 'test-user',
+  })
   page.file.value = { name: 'list.json' }
   await page.importSelected()
   assert.equal(page.importing.value, false)
@@ -279,9 +428,9 @@ test('retrying a partial import never writes successful records again', async ()
     if (manga.name === 'Second' && shouldFail) throw new Error('offline')
     saved.push(manga.name)
   })
-  page.preview.value = createImportPreview(
+  page.preview.value = await createRecoverableImportPreview(
     '[{"name":"First","chapter":"1"},{"name":"Second","chapter":"2"}]',
-    { format: 'json' },
+    { format: 'json', uid: 'test-user' },
   )
   await page.importSelected()
   assert.equal(page.preview.value.items[0].imported, true)
@@ -290,4 +439,21 @@ test('retrying a partial import never writes successful records again', async ()
   await page.importSelected()
   assert.deepEqual(saved, ['First', 'Second'])
   assert.equal(page.preview.value, null)
+})
+
+test('quota failure stops import after the current chunk and preserves confirmed successes', async () => {
+  let attempts = 0
+  const page = await importPage(async () => {
+    attempts++
+    if (attempts === 2) throw Object.assign(new Error('quota'), { code: 'resource-exhausted' })
+  })
+  page.preview.value = await createRecoverableImportPreview(
+    JSON.stringify(Array.from({ length: 20 }, (_, i) => ({ name: `Manga ${i}`, chapter: '1' }))),
+    { format: 'json', uid: 'test-user' },
+  )
+  await page.importSelected()
+  assert.equal(attempts, 8)
+  assert.equal(page.preview.value.items.filter((item) => item.imported).length, 7)
+  assert.equal(page.preview.value.items.filter((item) => item.selected).length, 13)
+  assert.equal(page.importing.value, false)
 })

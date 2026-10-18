@@ -105,18 +105,48 @@ function safeDatePart(date) {
   return safeDate.toISOString().slice(0, 10)
 }
 
-export function exportLibraryToJson(mangas, { pretty = true } = {}) {
-  assertMangaList(mangas)
-  return JSON.stringify(toSerializableValue(mangas), null, pretty ? 2 : 0)
+function checkedVerification(verification) {
+  if (verification === undefined) return undefined
+  if (
+    verification?.source !== 'server' ||
+    verification.hasPendingWrites !== false ||
+    typeof verification.observedAtClient !== 'string' ||
+    Number.isNaN(Date.parse(verification.observedAtClient))
+  ) {
+    throw new TypeError('La procedencia de la copia no está confirmada.')
+  }
+  return {
+    source: 'server',
+    observedAtClient: new Date(verification.observedAtClient).toISOString(),
+    hasPendingWrites: false,
+  }
 }
 
-export function exportLibraryToCsv(mangas, { includeBom = true } = {}) {
+export function exportLibraryToJson(mangas, { pretty = true, verification } = {}) {
   assertMangaList(mangas)
+  const checked = checkedVerification(verification)
+  const data = toSerializableValue(mangas)
+  return JSON.stringify(
+    checked ? { formatVersion: 2, verification: checked, mangas: data } : data,
+    null,
+    pretty ? 2 : 0,
+  )
+}
 
-  const rows = [CSV_EXPORT_COLUMNS.join(',')]
+export function exportLibraryToCsv(mangas, { includeBom = true, verification } = {}) {
+  assertMangaList(mangas)
+  const checked = checkedVerification(verification)
+  const columns = checked
+    ? [...CSV_EXPORT_COLUMNS, 'exportSource', 'exportObservedAtClient']
+    : CSV_EXPORT_COLUMNS
+  const rows = [columns.join(',')]
   mangas.forEach((manga) => {
     const record = mangaToCsvRecord(manga)
-    rows.push(CSV_EXPORT_COLUMNS.map((column) => escapeCsvCell(record[column])).join(','))
+    if (checked) {
+      record.exportSource = checked.source
+      record.exportObservedAtClient = checked.observedAtClient
+    }
+    rows.push(columns.map((column) => escapeCsvCell(record[column])).join(','))
   })
 
   return `${includeBom ? '\uFEFF' : ''}${rows.join('\r\n')}`
@@ -129,28 +159,29 @@ export function exportLibraryToCsv(mangas, { includeBom = true } = {}) {
 export function createLibraryExport(
   mangas,
   format,
-  { fileName = '', date = new Date(), pretty = true, includeBom = true } = {},
+  { fileName = '', date = new Date(), pretty = true, includeBom = true, verification } = {},
 ) {
   const normalizedFormat = String(format ?? '')
     .replace(/^\./, '')
     .toLocaleLowerCase('es')
   const datePart = safeDatePart(date)
+  const prefix = verification ? 'mangalist-server' : 'mangalist'
 
   if (normalizedFormat === EXPORT_FORMATS.JSON) {
     return {
       format: EXPORT_FORMATS.JSON,
-      fileName: fileName || `mangalist-${datePart}.json`,
+      fileName: fileName || `${prefix}-${datePart}.json`,
       mimeType: 'application/json;charset=utf-8',
-      content: exportLibraryToJson(mangas, { pretty }),
+      content: exportLibraryToJson(mangas, { pretty, verification }),
     }
   }
 
   if (normalizedFormat === EXPORT_FORMATS.CSV) {
     return {
       format: EXPORT_FORMATS.CSV,
-      fileName: fileName || `mangalist-${datePart}.csv`,
+      fileName: fileName || `${prefix}-${datePart}.csv`,
       mimeType: 'text/csv;charset=utf-8',
-      content: exportLibraryToCsv(mangas, { includeBom }),
+      content: exportLibraryToCsv(mangas, { includeBom, verification }),
     }
   }
 

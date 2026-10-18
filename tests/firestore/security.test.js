@@ -17,9 +17,12 @@ import {
   setLogLevel,
   writeBatch,
   collection,
+  query,
+  limit,
   getDocsFromServer,
 } from 'firebase/firestore'
 import { loadModule } from '../helpers/load-module.js'
+import { createRecoverableImportPreview } from '../../src/services/import-service.js'
 
 let environment
 before(async () => {
@@ -291,11 +294,151 @@ test('actual cleanup deletes more than 400 records, rejects concurrent writes, a
     progress.push(deletedCount)
   })
   assert.deepEqual(progress, [400, 401])
-  assert.equal((await getDocsFromServer(collection(alice, 'users', 'alice', 'mangas'))).size, 0)
+  assert.equal(
+    (await getDocsFromServer(query(collection(alice, 'users', 'alice', 'mangas'), limit(400))))
+      .size,
+    0,
+  )
   assert.equal((await getDoc(doc(alice, 'users', 'alice'))).data().status, 'deleting')
   await assertFails(setDoc(reference(other, 'after-cleanup'), manga()))
   assert.equal(await service.deleteUserFirestoreData('alice'), 0)
   await assertFails(deleteDoc(doc(other, 'users', 'alice')))
+})
+
+test('a fresh client resumes interrupted cleanup using only the server marker and remaining data', async () => {
+  await environment.withSecurityRulesDisabled(async (context) => {
+    const database = context.firestore()
+    const batch = writeBatch(database)
+    for (let index = 0; index < 401; index++)
+      batch.set(reference(database, `resume-${index}`), manga())
+    await batch.commit()
+  })
+  const initialDb = dbFor('alice')
+  let reads = 0
+  const firstClient = await loadModule('src/services/account-service.js', {
+    '@/boot/firebase': {
+      db: initialDb,
+      auth: { currentUser: { uid: 'alice' } },
+      requireFirebase() {},
+    },
+    'firebase/firestore': {
+      ...(await import('firebase/firestore')),
+      getDocsFromServer: async (ref) => {
+        if (++reads === 2)
+          throw Object.assign(new Error('Client interrupted'), { code: 'unavailable' })
+        return getDocsFromServer(ref)
+      },
+    },
+  })
+  await assert.rejects(firstClient.deleteUserFirestoreData('alice'), (error) => {
+    assert.equal(error.deletedCount, 400)
+    assert.equal(error.deletionStarted, true)
+    return true
+  })
+  const freshDb = dbFor('alice')
+  const remaining = query(collection(freshDb, 'users', 'alice', 'mangas'), limit(400))
+  assert.equal((await getDocsFromServer(remaining)).size, 1)
+  await assertFails(setDoc(reference(freshDb, 'blocked-after-interruption'), manga()))
+  await assertFails(deleteDoc(doc(freshDb, 'users', 'alice')))
+  // No in-memory progress, budget, or module state is passed to this client.
+  const freshClient = await loadModule('src/services/account-service.js', {
+    '@/boot/firebase': {
+      db: freshDb,
+      auth: { currentUser: { uid: 'alice' } },
+      requireFirebase() {},
+    },
+  })
+  assert.equal(await freshClient.deleteUserFirestoreData('alice'), 1)
+  assert.equal((await getDocsFromServer(remaining)).size, 0)
+  assert.equal((await getDoc(doc(freshDb, 'users', 'alice'))).data().status, 'deleting')
+})
+
+test('recovered and concurrent imports keep one document per row, preserve edits and obey the deletion barrier', async () => {
+  const content =
+    '[{"name":"First","chapter":"1"},{"name":"Second","chapter":"2"},{"name":"Third","chapter":"3"}]'
+  const preview = await createRecoverableImportPreview(content, { uid: 'alice', format: 'json' })
+  const alice = dbFor('alice')
+  const native = await import('firebase/firestore')
+  let lost = false
+  const firstClient = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: alice, requireFirebase() {} },
+    'firebase/firestore': {
+      ...native,
+      runTransaction: async (...args) => {
+        const result = await native.runTransaction(...args)
+        if (!lost) {
+          lost = true
+          throw Object.assign(new Error('Lost acknowledgement'), { code: 'unavailable' })
+        }
+        return result
+      },
+    },
+  })
+  await assert.rejects(firstClient.createManga('alice', preview.items[0].manga, preview.items[0]), {
+    code: 'unavailable',
+  })
+  const importedRef = doc(alice, 'users', 'alice', 'mangas', preview.items[0].importDocumentId)
+  await updateDoc(importedRef, {
+    chapter: '99',
+    notes: 'Edited later',
+    updatedAt: serverTimestamp(),
+  })
+  const freshClient = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('alice'), requireFirebase() {} },
+  })
+  const freshPreview = await createRecoverableImportPreview(content, {
+    uid: 'alice',
+    format: 'json',
+  })
+  await freshClient.createManga('alice', freshPreview.items[0].manga, freshPreview.items[0])
+  assert.equal((await getDoc(importedRef)).data().chapter, '99')
+  assert.equal((await getDoc(importedRef)).data().notes, 'Edited later')
+  await Promise.all(
+    [firstClient, freshClient].map((client) =>
+      client.createManga('alice', freshPreview.items[1].manga, freshPreview.items[1]),
+    ),
+  )
+  assert.equal(
+    (await getDocsFromServer(query(collection(alice, 'users', 'alice', 'mangas'), limit(10)))).size,
+    2,
+  )
+  const wrongAccount = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('bob'), requireFirebase() {} },
+  })
+  await assert.rejects(
+    wrongAccount.createManga('alice', freshPreview.items[0].manga, freshPreview.items[0]),
+    { code: 'permission-denied' },
+  )
+  await setDoc(doc(alice, 'users', 'alice'), {
+    status: 'deleting',
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+  })
+  await assert.rejects(
+    freshClient.createManga('alice', freshPreview.items[2].manga, freshPreview.items[2]),
+    { code: 'permission-denied' },
+  )
+})
+
+test('export reads the current server state with explicit metadata and obeys account isolation', async () => {
+  const alice = dbFor('alice')
+  await setDoc(reference(alice), manga())
+  const auth = { currentUser: { uid: 'alice' } }
+  const service = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: alice, requireFirebase: () => ({ auth }) },
+  })
+  const first = await service.fetchLibraryForExport('alice')
+  assert.equal(first.mangas.length, 1)
+  assert.equal(first.verification.source, 'server')
+  assert.equal(first.verification.hasPendingWrites, false)
+  await updateDoc(reference(alice), { chapter: '300', updatedAt: serverTimestamp() })
+  const current = await service.fetchLibraryForExport('alice')
+  assert.equal(current.mangas[0].chapter, '300')
+  assert.equal(first.mangas[0].chapter, '276')
+  const wrong = await loadModule('src/services/manga-service.js', {
+    '@/boot/firebase': { db: dbFor('bob'), requireFirebase: () => ({ auth }) },
+  })
+  await assert.rejects(wrong.fetchLibraryForExport('alice'), { code: 'permission-denied' })
 })
 
 test('simultaneous chapter transactions do not lose increments or unrelated fields', async () => {
@@ -321,4 +464,14 @@ test('simultaneous chapter transactions do not lose increments or unrelated fiel
     ),
     { code: 'app/edit-conflict' },
   )
+})
+
+test('list queries require an owner and an explicit bounded limit', async () => {
+  for (const uid of ['alice', 'bob']) {
+    const ref = collection(dbFor(uid), 'users', 'alice', 'mangas')
+    await assertFails(getDocsFromServer(ref))
+    await assertFails(getDocsFromServer(query(ref, limit(1002))))
+    if (uid === 'alice') await assertSucceeds(getDocsFromServer(query(ref, limit(1001))))
+    else await assertFails(getDocsFromServer(query(ref, limit(10))))
+  }
 })

@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "sparkOnly": true,
+  "deletionBarrier": 1,
+  "boundedLibraryQuery": 1001,
+  "recoverableImport": 1,
+  "verifiedExport": 2
+}

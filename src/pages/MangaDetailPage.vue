@@ -46,7 +46,10 @@
         </template>
       </q-banner>
       <MangaForm
-        :key="formVersion"
+        :key="`${authStore.user?.uid}:${id}:${formVersion}`"
+        ref="mangaForm"
+        :draft-owner="authStore.user?.uid"
+        :draft-scope="`edit:${id}`"
         :initial-value="manga"
         :loading="saving"
         submit-label="Guardar cambios"
@@ -76,18 +79,24 @@ const mangaStore = useMangaStore()
 const saving = ref(false)
 const formVersion = ref(0)
 const editConflict = ref(false)
+const mangaForm = ref(null)
 const manga = computed(() => mangaStore.mangas.find((item) => item.id === props.id))
 
 async function save(value, baseline) {
   if (saving.value) return
   const { patch, expectedValues } = createMangaEdit(value, baseline)
   if (!Object.keys(patch).length) {
+    mangaForm.value?.discardDraft()
     await router.push('/library')
     return
   }
   saving.value = true
+  const owner = authStore.user?.uid
+  const savedForm = mangaForm.value
   try {
-    await mangaStore.updateManga(authStore.user.uid, props.id, patch, { expectedValues })
+    await mangaStore.updateManga(owner, props.id, patch, { expectedValues })
+    savedForm?.discardDraft()
+    if (authStore.user?.uid !== owner) return
     $q.notify({ type: 'positive', message: 'Cambios guardados.' })
     await router.push('/library')
   } catch (error) {
@@ -108,6 +117,7 @@ function reloadCurrentVersion() {
     cancel: { label: 'Cancelar', flat: true },
     ok: { label: 'Cargar versión actual' },
   }).onOk(() => {
+    mangaForm.value?.discardDraft()
     formVersion.value += 1
     editConflict.value = false
   })

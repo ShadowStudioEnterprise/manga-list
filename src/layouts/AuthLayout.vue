@@ -1,6 +1,8 @@
 <template>
   <q-layout view="hHh lpR fFf" class="auth-layout">
+    <SkipToContent />
     <q-page-container>
+      <PwaUpdateBanner />
       <q-page class="auth-page row items-stretch">
         <section class="auth-hero col-12 col-md-5 column justify-between q-pa-xl">
           <router-link class="brand-link" to="/login" aria-label="Ir al inicio de MangaList">
@@ -10,7 +12,7 @@
 
           <div class="auth-hero__copy">
             <p class="eyebrow">Tu biblioteca, siempre contigo</p>
-            <h1>Nunca vuelvas a olvidar por qué capítulo ibas.</h1>
+            <p class="auth-hero__title">Nunca vuelvas a olvidar por qué capítulo ibas.</p>
             <p>
               Guarda tus mangas, manhwas y manhuas, continúa leyendo en un toque y sincroniza tu
               progreso entre dispositivos.
@@ -20,7 +22,11 @@
           <p class="auth-hero__footer">Privado por diseño · Simple por elección</p>
         </section>
 
-        <section class="auth-panel col-12 col-md-7 flex flex-center q-pa-md q-pa-sm-xl">
+        <section
+          id="main-content"
+          tabindex="-1"
+          class="auth-panel col-12 col-md-7 flex flex-center q-pa-md q-pa-sm-xl"
+        >
           <div class="auth-panel__content">
             <q-banner v-if="!isFirebaseConfigured" rounded class="bg-orange-1 text-warning q-mb-md">
               <template #avatar><q-icon name="settings_alert" /></template>
@@ -36,5 +42,7 @@
 </template>
 
 <script setup>
+import PwaUpdateBanner from '@/components/PwaUpdateBanner.vue'
+import SkipToContent from '@/components/SkipToContent.vue'
 import { isFirebaseConfigured } from '@/boot/firebase'
 </script>

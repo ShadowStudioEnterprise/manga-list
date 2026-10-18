@@ -3,6 +3,12 @@ const ERROR_MESSAGES = Object.freeze({
     'Firebase no está configurado. Revisa las variables de entorno de la aplicación.',
   'app/invalid-account': 'No se ha podido identificar la cuenta actual.',
   'app/invalid-manga': 'Los datos de la obra no son válidos.',
+  'app/export-not-confirmed':
+    'La copia contiene datos locales o cambios pendientes. Espera a confirmar el guardado antes de descargar.',
+  'app/import-identity-unavailable':
+    'Este navegador no permite preparar una importación recuperable. Usa una conexión segura y un navegador compatible.',
+  'app/invalid-import-identity':
+    'Vuelve a seleccionar el archivo para preparar una importación recuperable.',
   'app/manual-chapter-required':
     'Este capítulo no se puede modificar automáticamente. Edítalo manualmente.',
   'app/reauthentication-required':
@@ -28,6 +34,18 @@ const ERROR_MESSAGES = Object.freeze({
   'auth/wrong-password': 'La contraseña no es correcta.',
   'auth/web-storage-unsupported':
     'El navegador no permite mantener la sesión. Revisa sus ajustes de privacidad.',
+  'app/quota-paused':
+    'Peticiones pausadas durante 15 minutos por una cuota agotada. Conserva tus cambios y espera antes de reintentar.',
+  'app/request-budget':
+    'Límite local de peticiones alcanzado. Espera un minuto antes de reintentar.',
+  'app/deletion-budget':
+    'Límite de 2000 borrados por intento alcanzado. Vuelve a confirmar para continuar.',
+  'app/library-budget':
+    'La biblioteca supera las 1000 obras admitidas. No se ha cargado una copia parcial. Contacta con soporte para recuperar o reducir la biblioteca.',
+  'resource-exhausted':
+    'Cuota del servicio agotada. Conserva tus cambios y espera antes de reintentar. Puede requerir el reinicio de la cuota diaria.',
+  'firestore/resource-exhausted': 'Cuota de Firestore agotada. Espera antes de reintentar.',
+  'auth/quota-exceeded': 'Cuota de autenticación agotada. Espera antes de reintentar.',
   cancelled: 'La operación se ha cancelado.',
   'failed-precondition': 'No se puede completar esta operación en este momento.',
   'permission-denied': 'No tienes permiso para realizar esta acción.',

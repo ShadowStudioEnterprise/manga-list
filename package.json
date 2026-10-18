@@ -10,27 +10,33 @@
     "test": "node --experimental-vm-modules --test tests/*.test.js",
     "test:rules": "node --experimental-vm-modules --test tests/firestore/*.test.js",
     "test:e2e": "node tests/e2e/run.js",
-    "lint": "prettier --write \"**/*.{js,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\"",
-    "lint:check": "prettier --check \"**/*.{js,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\"",
+    "test:pwa": "node --test tests/pwa/*.test.js",
+    "lint": "prettier --write \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
+    "lint:check": "prettier --check \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
     "dev": "quasar dev",
-    "build": "quasar build",
-    "build:pwa": "quasar build -m pwa",
-    "deploy:hosting": "firebase deploy --only hosting --project mangalist-61bb8",
-    "postinstall": "quasar prepare --silent"
+    "build": "quasar build && node scripts/build-evidence.mjs create spa",
+    "build:pwa": "quasar build -m pwa && node scripts/build-evidence.mjs create pwa",
+    "check:release": "node scripts/build-evidence.mjs verify pwa --project mangalist-61bb8",
+    "deploy:hosting": "npm run check:spark:remote && firebase deploy --only hosting --project mangalist-61bb8",
+    "postinstall": "quasar prepare --silent",
+    "check:spark": "node scripts/check-spark.mjs",
+    "check:spark:remote": "node scripts/check-spark.mjs --remote",
+    "audit:dependencies": "npm audit --audit-level=low && npm audit --prefix src-pwa --audit-level=low"
   },
   "dependencies": {
     "@quasar/extras": "^2.0.4",
     "firebase": "^12.18.0",
     "pinia": "^4.0.2",
-    "quasar": "^2.27.0",
+    "quasar": "^2.32.2",
     "vue": "^3.5.22",
     "vue-i18n": "^11.3.0",
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
     "@eslint/js": "^10.0.1",
     "@firebase/rules-unit-testing": "^5.0.2",
-    "@intlify/unplugin-vue-i18n": "^11.0.0",
+    "@intlify/unplugin-vue-i18n": "^11.2.6",
     "@playwright/test": "^1.63.0",
     "@quasar/app-vite": "^3.8.1",
     "@vue/eslint-config-prettier": "^10.2.0",
@@ -54,5 +60,10 @@
   ],
   "engines": {
     "node": "^22.22 || ^24 || ^26"
+  },
+  "overrides": {
+    "@firebase/firestore": {
+      "@grpc/grpc-js": "1.13.6"
+    }
   }
 }

@@ -4,7 +4,6 @@
  * quasar.config file > pwa > workboxMode is set to "InjectManifest"
  */
 
-import { clientsClaim } from 'workbox-core'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 import {
   cleanupOutdatedCaches,
@@ -12,8 +11,7 @@ import {
   precacheAndRoute,
 } from 'workbox-precaching'
 
-self.skipWaiting()
-clientsClaim()
+// If InjectManifest is enabled later, keep the same passive activation policy.
 
 // Use with precache injection
 precacheAndRoute(self.__WB_MANIFEST)

@@ -5,7 +5,7 @@
       <p class="eyebrow text-primary q-mt-lg q-mb-xs">Tus datos son tuyos</p>
       <h1 class="page-title q-my-none">Importar / Exportar</h1>
       <p class="page-subtitle q-mb-none">
-        Trae una lista existente o guarda una copia completa de tu biblioteca.
+        Trae una lista existente o guarda una copia de tus obras comprobada con el servidor.
       </p>
     </header>
 
@@ -33,7 +33,7 @@
                 accept=".json,.csv,.txt,application/json,text/csv,text/plain"
                 label="Seleccionar archivo"
                 :loading="readingFile"
-                :disable="mangaStore.loading"
+                :disable="mangaStore.loading || exporting"
                 @update:model-value="readFile"
               >
                 <template #prepend><q-icon name="attach_file" /></template>
@@ -63,6 +63,11 @@
               @reset="resetImport"
               @import="importSelected"
             />
+            <p class="text-caption text-grey-7 q-mb-none">
+              Para reanudar tras una recarga, vuelve a elegir el mismo archivo y formato con la
+              misma cuenta. Se reconocerán las filas ya guardadas por esta versión. El archivo no se
+              guarda en este navegador y el proceso no continúa al cerrar la app.
+            </p>
           </q-card-section>
         </q-card>
       </section>
@@ -86,7 +91,10 @@
           <q-card-section>
             <p class="text-grey-7 q-mt-none">
               JSON conserva toda la información. CSV ofrece una copia cómoda para hojas de cálculo.
+              Al descargar se consulta el servidor. Si hay cambios pendientes o no se puede
+              verificar la copia, la descarga se detiene. No incluye la cuenta ni sus ajustes.
             </p>
+            <p role="status" class="text-caption sync-status">{{ mangaStore.syncStatusMessage }}</p>
             <div class="column q-gutter-sm">
               <q-btn
                 unelevated
@@ -94,7 +102,14 @@
                 no-caps
                 icon="data_object"
                 label="Descargar JSON"
-                :disable="mangaStore.mangas.length === 0"
+                :loading="exporting"
+                :disable="
+                  mangaStore.mangas.length === 0 ||
+                  importing ||
+                  mangaStore.loading ||
+                  !!mangaStore.syncError ||
+                  hasUnconfirmedWrites()
+                "
                 @click="exportLibrary('json')"
               />
               <q-btn
@@ -103,7 +118,14 @@
                 no-caps
                 icon="table_view"
                 label="Descargar CSV"
-                :disable="mangaStore.mangas.length === 0"
+                :loading="exporting"
+                :disable="
+                  mangaStore.mangas.length === 0 ||
+                  importing ||
+                  mangaStore.loading ||
+                  !!mangaStore.syncError ||
+                  hasUnconfirmedWrites()
+                "
                 @click="exportLibrary('csv')"
               />
             </div>
@@ -119,13 +141,15 @@ import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import ImportPreview from '@/components/import/ImportPreview.vue'
 import {
-  createImportPreview,
+  createRecoverableImportPreview,
   detectImportFormat,
   prepareImportSelection,
 } from '@/services/import-service'
 import { downloadLibraryExport } from '@/services/export-service'
+import { fetchLibraryForExport } from '@/services/manga-service'
 import { useAuthStore } from '@/stores/auth-store'
 import { useMangaStore } from '@/stores/manga-store'
+import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const $q = useQuasar()
@@ -135,10 +159,19 @@ const file = ref(null)
 const preview = ref(null)
 const readingFile = ref(false)
 const importing = ref(false)
+const exporting = ref(false)
+let fileVersion = 0
 
 async function readFile(selectedFile) {
-  if (!selectedFile) return
-  if (mangaStore.loading) {
+  const version = ++fileVersion
+  if (!selectedFile) {
+    preview.value = null
+    readingFile.value = false
+    return
+  }
+  const uid = authStore.user?.uid
+  if (!uid || importing.value || exporting.value) return
+  if (mangaStore.loading || mangaStore.syncError) {
     $q.notify({ type: 'info', message: 'Espera a que termine de sincronizarse la biblioteca.' })
     file.value = null
     return
@@ -153,30 +186,56 @@ async function readFile(selectedFile) {
   try {
     const content = await selectedFile.text()
     const format = detectImportFormat(selectedFile.name || selectedFile.type, content)
-    preview.value = createImportPreview(content, {
+    const nextPreview = await createRecoverableImportPreview(content, {
+      uid,
       format,
       fileName: selectedFile.name,
       mimeType: selectedFile.type,
       existingMangas: mangaStore.mangas,
     })
-  } catch {
-    $q.notify({ type: 'negative', message: 'No se ha podido leer el archivo.' })
+    if (version !== fileVersion || authStore.user?.uid !== uid) return
+    preview.value = nextPreview
+  } catch (error) {
+    if (version !== fileVersion || authStore.user?.uid !== uid) return
+    $q.notify({
+      type: 'negative',
+      message: getFirebaseErrorMessage(error, 'No se ha podido leer el archivo.'),
+    })
     file.value = null
   } finally {
-    readingFile.value = false
+    if (version === fileVersion) readingFile.value = false
   }
 }
 
 function resetImport() {
   if (importing.value) return
+  fileVersion++
+  readingFile.value = false
   file.value = null
   preview.value = null
 }
 
 async function importSelected() {
-  if (importing.value || !preview.value) return
+  if (
+    importing.value ||
+    exporting.value ||
+    !preview.value ||
+    mangaStore.syncError ||
+    mangaStore.loading
+  )
+    return
   const uid = authStore.user?.uid
   if (!uid) return
+  if (
+    preview.value.ownerUid !== uid ||
+    preview.value.items.some((item) => item.selected && !item.importDocumentId)
+  ) {
+    $q.notify({
+      type: 'negative',
+      message: 'Vuelve a seleccionar el archivo con tu cuenta actual antes de importar.',
+    })
+    return
+  }
   const selectedIds = preview.value.items.filter((item) => item.selected).map((item) => item.id)
   const selection = prepareImportSelection(preview.value, { selectedIds })
   importing.value = true
@@ -185,9 +244,15 @@ async function importSelected() {
 
   try {
     for (let index = 0; index < selection.selectedItems.length; index += 8) {
+      if (authStore.user?.uid !== uid) {
+        failed += selection.selectedItems.length - index
+        break
+      }
       const chunk = selection.selectedItems.slice(index, index + 8)
       const results = await Promise.allSettled(
-        chunk.map((item) => mangaStore.createManga(uid, item.manga)),
+        chunk.map((item) =>
+          mangaStore.createManga(uid, item.manga, { importDocumentId: item.importDocumentId }),
+        ),
       )
       results.forEach((result, resultIndex) => {
         if (result.status === 'fulfilled') {
@@ -198,6 +263,21 @@ async function importSelected() {
           failed += 1
         }
       })
+      const stopped = results.some(
+        (result) =>
+          result.status === 'rejected' &&
+          [
+            'resource-exhausted',
+            'firestore/resource-exhausted',
+            'auth/quota-exceeded',
+            'app/quota-paused',
+            'app/request-budget',
+          ].includes(result.reason?.code),
+      )
+      if (stopped) {
+        failed += selection.selectedItems.length - index - chunk.length
+        break
+      }
     }
 
     $q.notify({
@@ -213,12 +293,41 @@ async function importSelected() {
   if (!failed) resetImport()
 }
 
-function exportLibrary(format) {
+function hasUnconfirmedWrites() {
+  return Boolean(mangaStore.hasPendingWrites || mangaStore.pendingOperations > 0)
+}
+
+async function exportLibrary(format) {
+  if (exporting.value || importing.value) return
+  const uid = authStore.user?.uid
+  if (!uid) return
+  if (mangaStore.syncError || mangaStore.loading || hasUnconfirmedWrites()) {
+    $q.notify({
+      type: 'warning',
+      message: 'Espera a confirmar el guardado y resolver los errores antes de exportar.',
+    })
+    return
+  }
+  exporting.value = true
   try {
-    downloadLibraryExport(mangaStore.mangas, format)
-    $q.notify({ type: 'positive', message: `Copia ${format.toUpperCase()} descargada.` })
-  } catch {
-    $q.notify({ type: 'negative', message: 'No se ha podido preparar la descarga.' })
+    const snapshot = await fetchLibraryForExport(uid)
+    if (authStore.user?.uid !== uid || hasUnconfirmedWrites() || mangaStore.syncError) return
+    downloadLibraryExport(snapshot.mangas, format, { verification: snapshot.verification })
+    $q.notify({
+      type: 'positive',
+      message: `Copia ${format.toUpperCase()} comprobada con el servidor y descargada.`,
+    })
+  } catch (error) {
+    if (authStore.user?.uid !== uid) return
+    $q.notify({
+      type: 'negative',
+      message: getFirebaseErrorMessage(
+        error,
+        'No se ha podido confirmar la descarga con el servidor.',
+      ),
+    })
+  } finally {
+    exporting.value = false
   }
 }
 </script>

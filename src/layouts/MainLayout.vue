@@ -1,5 +1,6 @@
 <template>
   <q-layout view="hHh Lpr lFf" class="main-layout">
+    <SkipToContent />
     <q-header class="app-header">
       <q-toolbar class="app-toolbar">
         <q-btn
@@ -72,8 +73,8 @@
     </q-header>
 
     <q-drawer v-model="drawerOpen" show-if-above :width="264" bordered class="app-drawer">
-      <div class="drawer-content column no-wrap">
-        <q-list padding class="col">
+      <nav class="drawer-content column no-wrap" aria-label="Navegación principal">
+        <q-list padding role="presentation" class="col">
           <q-item-label header class="drawer-label">Mi biblioteca</q-item-label>
 
           <q-item clickable :active="isBaseLibrary" active-class="nav-active" @click="showAll">
@@ -130,16 +131,19 @@
             @click="handleLogout"
           />
         </div>
-      </div>
+      </nav>
     </q-drawer>
 
-    <q-page-container>
+    <q-page-container id="main-content" tabindex="-1">
+      <PwaUpdateBanner />
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script setup>
+import PwaUpdateBanner from '@/components/PwaUpdateBanner.vue'
+import SkipToContent from '@/components/SkipToContent.vue'
 import { computed, onBeforeUnmount, ref, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
