@@ -89,7 +89,8 @@
           <p class="eyebrow text-negative q-mb-xs">Zona peligrosa</p>
           <h2 class="text-h6 text-weight-bold q-my-none">Eliminar cuenta</h2>
           <p class="text-grey-7 q-mb-md">
-            Borra de forma permanente tu biblioteca y tu usuario. Esta acción no se puede deshacer.
+            Borra de forma permanente tu biblioteca y tu acceso. Se conserva un registro mínimo de
+            bloqueo para impedir nuevas escrituras. Esta acción no se puede deshacer.
           </p>
           <q-btn
             outline
@@ -110,7 +111,10 @@
             <q-avatar icon="warning" color="negative" text-color="white" />
             <div class="col">
               <div id="delete-account-title" class="text-h6">Eliminar tu cuenta</div>
-              <p class="q-mb-none">Se borrarán todas tus obras y después tu acceso a MangaList.</p>
+              <p class="q-mb-none">
+                Se bloquearán nuevas escrituras, se borrarán tus obras y después tu acceso. Si el
+                proceso se interrumpe, vuelve aquí para completarlo.
+              </p>
             </div>
           </q-card-section>
           <q-card-section class="q-gutter-md">
@@ -238,6 +242,10 @@ async function deleteAccount() {
         'La biblioteca se eliminó, pero la cuenta sigue activa. Vuelve a intentarlo para completar el borrado.'
     } else if (error?.partialDataDeletion) {
       message = `Se eliminaron ${error.deletedCount} obras antes del fallo. Vuelve a intentarlo para completar el borrado.`
+    }
+    if (error?.deletionStarted) {
+      message +=
+        ' La cuenta sigue bloqueada para nuevas obras y cambios hasta completar el borrado.'
     }
     $q.notify({
       type: 'negative',

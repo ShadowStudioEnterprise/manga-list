@@ -15,6 +15,9 @@ import {
   serverTimestamp,
   Timestamp,
   setLogLevel,
+  writeBatch,
+  collection,
+  getDocsFromServer,
 } from 'firebase/firestore'
 import { loadModule } from '../helpers/load-module.js'
 
@@ -215,5 +218,107 @@ test('schema checks reject invalid types, missing fields and boundary violations
       createdAt: Timestamp.fromMillis(0),
       updatedAt: serverTimestamp(),
     }),
+  )
+})
+
+test('account metadata remains private, validates timestamps and cannot unlock a deletion marker', async () => {
+  const alice = dbFor('alice')
+  const user = doc(alice, 'users', 'alice')
+  const times = () => ({ createdAt: serverTimestamp(), updatedAt: serverTimestamp() })
+  await assertFails(setDoc(user, { ...times(), status: 'active' }))
+  await assertSucceeds(setDoc(user, times()))
+  // Exercise the largest valid model with a parent document as well as without one.
+  await assertSucceeds(
+    setDoc(reference(alice), {
+      ...manga(sources(10, [9])),
+      genres: Array(20).fill('a'.repeat(60)),
+    }),
+  )
+  for (const db of [dbFor('bob'), environment.unauthenticatedContext().firestore()]) {
+    const foreign = doc(db, 'users', 'alice')
+    await assertFails(getDoc(foreign))
+    await assertFails(updateDoc(foreign, { status: 'deleting', updatedAt: serverTimestamp() }))
+    await assertFails(deleteDoc(foreign))
+  }
+  await assertFails(
+    updateDoc(user, { createdAt: Timestamp.fromMillis(0), updatedAt: serverTimestamp() }),
+  )
+  await assertSucceeds(updateDoc(user, { status: 'deleting', updatedAt: serverTimestamp() }))
+  await assertFails(deleteDoc(user))
+  await assertFails(setDoc(user, times()))
+  await assertFails(updateDoc(user, { status: 'active', updatedAt: serverTimestamp() }))
+  await assertSucceeds(getDoc(user))
+})
+
+test('deletion barrier blocks another session and atomic marker-plus-manga writes', async () => {
+  const alice = dbFor('alice')
+  const other = dbFor('alice')
+  await setDoc(reference(alice), manga())
+  const batch = writeBatch(alice)
+  batch.set(doc(alice, 'users', 'alice'), {
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    status: 'deleting',
+  })
+  batch.set(reference(alice, 'sneaked'), manga())
+  await assertFails(batch.commit())
+  // An absent parent stays compatible with existing libraries.
+  await assertSucceeds(setDoc(reference(alice, 'before'), manga()))
+  await setDoc(doc(alice, 'users', 'alice'), {
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    status: 'deleting',
+  })
+  await assertFails(setDoc(reference(other, 'late'), manga()))
+  await assertFails(updateDoc(reference(other), { chapter: '300', updatedAt: serverTimestamp() }))
+  await assertSucceeds(deleteDoc(reference(other)))
+})
+
+test('actual cleanup deletes more than 400 records, rejects concurrent writes, and retains a retryable barrier', async () => {
+  await environment.withSecurityRulesDisabled(async (context) => {
+    const db = context.firestore()
+    const batch = writeBatch(db)
+    for (let index = 0; index < 401; index++) batch.set(reference(db, `seed-${index}`), manga())
+    await batch.commit()
+  })
+  const alice = dbFor('alice')
+  const other = dbFor('alice')
+  const service = await loadModule('src/services/account-service.js', {
+    '@/boot/firebase': { db: alice, auth: { currentUser: { uid: 'alice' } }, requireFirebase() {} },
+  })
+  const progress = []
+  await service.deleteUserFirestoreData('alice', ({ deletedCount }) => {
+    progress.push(deletedCount)
+  })
+  assert.deepEqual(progress, [400, 401])
+  assert.equal((await getDocsFromServer(collection(alice, 'users', 'alice', 'mangas'))).size, 0)
+  assert.equal((await getDoc(doc(alice, 'users', 'alice'))).data().status, 'deleting')
+  await assertFails(setDoc(reference(other, 'after-cleanup'), manga()))
+  assert.equal(await service.deleteUserFirestoreData('alice'), 0)
+  await assertFails(deleteDoc(doc(other, 'users', 'alice')))
+})
+
+test('simultaneous chapter transactions do not lose increments or unrelated fields', async () => {
+  const alice = dbFor('alice')
+  await setDoc(reference(alice), manga())
+  const services = await Promise.all(
+    Array.from({ length: 3 }, () =>
+      loadModule('src/services/manga-service.js', {
+        '@/boot/firebase': { db: dbFor('alice'), requireFirebase() {} },
+      }),
+    ),
+  )
+  await Promise.all(services.map((service) => service.changeMangaChapter('alice', 'nano', 1)))
+  const current = (await getDoc(reference(alice))).data()
+  assert.equal(current.chapter, '279')
+  assert.equal(current.notes, '')
+  await assert.rejects(
+    services[0].updateManga(
+      'alice',
+      'nano',
+      { chapter: '300' },
+      { expectedValues: { chapter: '276' } },
+    ),
+    { code: 'app/edit-conflict' },
   )
 })

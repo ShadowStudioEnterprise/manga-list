@@ -123,6 +123,19 @@ test('two tabs preserve unrelated edits and show a recoverable same-field confli
   await page.getByRole('dialog').getByRole('button', { name: 'Cargar versión actual' }).click()
   await expect(page.getByLabel('Capítulo *', { exact: true })).toHaveValue('278')
   await expect(page.getByLabel('Notas', { exact: true })).toHaveValue('Notas conservadas')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await page.getByRole('main').getByRole('button', { name: 'Cancelar', exact: true }).click()
+  await expect(page).toHaveURL(/#\/library/)
+  await expect(
+    page.getByRole('button', { name: 'Editar capítulo actual: 278', exact: true }),
+  ).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Reintentar', exact: true })).toHaveCount(0)
+  await expect(page.getByText(/Esta obra cambió en otro dispositivo/)).toHaveCount(0)
+  await page.reload()
+  await expect(
+    page.getByRole('button', { name: 'Editar capítulo actual: 278', exact: true }),
+  ).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Reintentar', exact: true })).toHaveCount(0)
 })
 
 test('invalid import rows remain errors, successful import resets, export preserves data and accounts stay isolated', async ({
@@ -130,6 +143,7 @@ test('invalid import rows remain errors, successful import resets, export preser
 }) => {
   await register(page)
   await page.goto('/#/settings/import-export')
+  await expect(page.locator('input[type=file]')).toBeEnabled()
   await page.locator('input[type=file]').setInputFiles({
     name: 'library.csv',
     mimeType: 'text/csv',
@@ -199,4 +213,42 @@ test('mobile library supports manual chapters and confirmed deletion', async ({
   await page.getByText('Eliminar', { exact: true }).click()
   await page.getByRole('dialog').getByRole('button', { name: 'Eliminar', exact: true }).click()
   await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
+})
+
+test('account deletion rejects a wrong password without data loss and then removes emulator Auth', async ({
+  page,
+  context,
+}) => {
+  const email = await register(page)
+  await addManga(page, 'Delete test')
+  const other = await context.newPage()
+  other.on('pageerror', (error) => runtimeErrors.push(error.message))
+  await other.goto('/#/library')
+  await expect(other.getByRole('heading', { name: 'Delete test', exact: true })).toBeVisible()
+  await page.bringToFront()
+  await expect(page.getByRole('button', { name: 'Menú de usuario', exact: true })).toBeVisible()
+  await page.getByRole('link', { name: 'Ajustes', exact: true }).click()
+  await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Eliminar cuenta', exact: true }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('Contraseña actual *', { exact: true }).fill('Wrong-password-123!')
+  await dialog.getByLabel('Escribe ELIMINAR *', { exact: true }).fill('ELIMINAR')
+  await dialog.getByRole('button', { name: 'Eliminar definitivamente', exact: true }).click()
+  await expect(
+    page.locator('.q-notification').filter({
+      hasText: /La contraseña no es correcta|El correo o la contraseña no son correctos/,
+    }),
+  ).toBeVisible()
+  await expect(other.getByRole('heading', { name: 'Delete test', exact: true })).toBeVisible()
+  await dialog.getByLabel('Contraseña actual *', { exact: true }).fill(password)
+  await dialog.getByRole('button', { name: 'Eliminar definitivamente', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
+  await page.getByLabel('Contraseña', { exact: true }).fill(password)
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(
+    page.locator('.q-notification').filter({
+      hasText: /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
+    }),
+  ).toBeVisible()
 })
