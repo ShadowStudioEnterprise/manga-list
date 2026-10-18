@@ -15,9 +15,14 @@ incluidos en esta lista. La validación local de esta rama no certifica producci
 | P2 / H6–H7    | Sincronización y exportación: metadatos y lectura del servidor implementados                                       | Metadatos caché/pendientes/servidor y exportación comprobada con pruebas de desconexión. Borradores de pestaña opcionales y aviso PWA pasivo implementados; validación real en dispositivos pendiente. |
 | P2 / H6       | Escala de biblioteca: presentación de 24 tarjetas y mediciones locales                                             | Medir tiempos/memoria con tamaños acordados, decidir paginación/virtualización según resultados, ampliar pruebas de filtros y fuentes.                                                                 |
 | P2 / H8       | Operación pública                                                                                                  | Inventariar controles, App Check si procede, alertas/cuotas y revisión de dependencias continua; cambios remotos requieren aprobación.                                                                 |
-| P3 / H9       | Mantenimiento                                                                                                      | Especificación versionada, licencia elegida por el titular, guía de contribución y registro de releases.                                                                                               |
+| P3 / H9       | Especificación v1, contribución, seguridad y changelog preparados; licencia pendiente                              | Contratos vinculados a pruebas y registro Sin publicar. El titular elige licencia, canal privado de seguridad y responsables/plazos operativos.                                                        |
 
 ## Límites de autorización
+
+El bloque H9 está preparado en la [especificación v1](specification-v1.md), la
+[guía de contribución](../CONTRIBUTING.md), [seguridad](../SECURITY.md) y el
+[registro Sin publicar](../CHANGELOG.md). No convierte el PR en release ni cierra las
+decisiones de licencia, soporte y canal privado de seguridad.
 
 La rama y el PR son material de revisión. No autorizan fusión a main, despliegues de Firebase,
 modificación de datos/cuentas sintéticas de producción ni cambios de configuración remota.

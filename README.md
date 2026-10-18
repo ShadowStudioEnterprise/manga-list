@@ -24,6 +24,15 @@ real entre dispositivos. No hay perfiles públicos ni funciones sociales.
 - PWA instalable con manifest, iconos y service worker generado por Workbox.
 - Eliminación de cuenta con reautenticación y borrado previo de la biblioteca.
 
+## Mantenimiento y contribución
+
+[Especificación v1 y requisitos comprobables](docs/specification-v1.md) ·
+[Guía de contribución](CONTRIBUTING.md) · [Seguridad](SECURITY.md) ·
+[Cambios sin publicar](CHANGELOG.md).
+
+Estos documentos describen la rama en revisión. La licencia sigue pendiente de elección
+por el titular; no se añade una licencia ni se declara una publicación mediante este PR.
+
 ## Stack
 
 - Vue 3 y Composition API (JavaScript).
