@@ -16,10 +16,10 @@ La actualización posterior del informe y mediciones solo añade evidencia docum
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Regresiones                                 | 78/78 correctas en local y CI: cuotas, sesión, exportación, importación, borrado y contratos                                                                                                                     |
 | Cursores con adaptador controlado           | 16 casos dentro de las regresiones: 0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000; inserciones, borrado de límites, rangos vacíos, caché, cancelación, fallo de página, límites, orden estable y errores tardíos |
-| Reglas y servicio real en emulador Standard | 15/15 correctas en CI; local: 14 pruebas iniciales y repetición ampliada de los 2 casos grandes. Biblioteca de 5000, cambios de otro cliente, 5001 obras únicas en JSON/CSV y aislamiento                        |
+| Reglas y servicio real en emulador Standard | 15/15 correctas en CI y repetición local del 19/10. Biblioteca de 5000, cambios de otro cliente, 5001 obras únicas en JSON/CSV y aislamiento                                                                     |
 | Importación grande en emulador              | 1001 filas, interrupción tras 504; nueva previsualización y replay completo dejan exactamente 1001 documentos, detectados después como duplicados                                                                |
 | Navegador Ubuntu CI                         | 28/28 correctos: Chromium y Firefox, incluidas las bibliotecas de 100/1000/2500                                                                                                                                  |
-| Navegador Windows local                     | Suite inicial 26/28; repetición selectiva 4/5. Pasan 1000/2500, filtros, orden, recorrido completo, exportación y borrado en ambos motores. Persiste el fallo de arranque frío del caso de 100                   |
+| Navegador Windows local                     | Suite inicial 26/28; repetición del 19/10: 5/5 con preparación de rutas ampliada. Pasan 100/1000/2500 y borrado en ambos motores. El rendimiento del arranque frío sigue sin certificarse                        |
 | Formato y lint                              | Correctos en local y CI                                                                                                                                                                                          |
 | Build SPA y PWA demo                        | Correctos en CI, con verificación de inventarios y contratos; ciclo de actualización PWA correcto. Sin publicación                                                                                               |
 | Dependencias                                | Auditoría de ambos árboles correcta en CI; no se cambiaron dependencias ni lockfiles                                                                                                                             |
@@ -40,7 +40,7 @@ se recorren las 105 páginas visuales y se exportan las 2500 obras.
 El servidor de desarrollo Vite en Windows mostró carga de módulos muy lenta antes
 del formulario y después del registro. La traza registra peticiones pendientes a
 MainLayout/LibraryPage y avisos de conexión al emulador. El caso inicial de 100 obras
-sigue fallando incluso con espera de 90 segundos para Biblioteca. Los casos posteriores
+seguía fallando incluso con espera de 90 segundos para Biblioteca. Los casos posteriores
 de 1000/2500 pasan; CI Ubuntu pasa también el de 100. No se da por resuelto el arranque
 frío de desarrollo en este Windows ni se atribuye a producción. Los timeouts de la
 aplicación no cambiaron.
@@ -73,6 +73,25 @@ la misma espera de compilación de 90 segundos. Las interacciones medidas conser
 sus comprobaciones y tiempos de espera; no cambian los timeouts de la aplicación.
 Esta adaptación de la prueba no demuestra un arranque rápido ni resuelve la
 lentitud del servidor de desarrollo en Windows.
+
+La repetición selectiva sobre `fe82930` pasa 5/5: escalas 100, 1000 y 2500 en Chromium,
+y borrado con contraseña errónea/reintento en Chromium y Firefox. Todas las escalas
+recorren sus páginas, conservan 24 tarjetas como máximo, exportan todos los registros
+y no añaden targets de sincronización al buscar, filtrar, ordenar o paginar.
+Las [mediciones del 19/10](measurements/library-cursors-2026-10-19.json) incluyen
+los tres tamaños; son tiempos de interacción después de preparar las rutas, no
+tiempos de arranque, producción ni consumo facturado. No cambió código de aplicación
+o configuración Vite en este seguimiento.
+
+También se repitieron las 15 pruebas de reglas/servicio real en emulador Standard:
+15/15 correctas, incluida la importación de 1001 filas interrumpida tras 504 y
+reanudada sin duplicados. Regresiones 78/78, formato/lint y compatibilidad Spark
+local correctos. Los emuladores finalizaron correctamente.
+
+El [CI completo del seguimiento fe82930](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39173364129)
+finalizó correctamente: 78 regresiones, 15 pruebas de reglas y 28 pruebas de navegador,
+auditorías, formato/lint, compatibilidad Spark, builds SPA/PWA demo, contratos de build
+y actualización PWA. La evidencia añadida después de este commit es documental.
 
 Referencia del mecanismo ensayado:
 [Vite server.warmup](https://vite.dev/config/server-options#server-warmup).
