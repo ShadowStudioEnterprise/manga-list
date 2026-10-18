@@ -66,11 +66,11 @@ No prueban instalación PWA en iOS/Android ni Safari. La continuación de la
 [matriz de navegadores](browser-coverage-2026-10-18.md) añade Firefox a los escenarios
 portables y a las mismas auditorías, sin ampliar la prueba de actualización PWA.
 
-La matriz de anchos comprueba layouts iniciales, no certifica redimensionamiento continuo.
-Un ensayo con cambios de ancho en caliente generó un aviso de ResizeObserver de Quasar/Vite;
-no se ha añadido un filtro que ignore errores del navegador. Ese comportamiento y el
-redimensionamiento con zoom real quedan pendientes de revisión específica. La suite
-mantiene su rechazo de errores no controlados en las páginas que prueba.
+La matriz inicial se amplía con [cambios de ancho sobre la misma página](live-resize-2026-10-18.md).
+Se reproduce el aviso de ResizeObserver y se mantiene la altura mínima de cabecera al
+cruzar 599/600 píxeles. La suite captura también esos eventos de error y los rechaza.
+Las transiciones de biblioteca y formulario conservan sus controles y campos en las pruebas
+dirigidas de ambos motores; zoom real, arrastre continuo y dispositivos siguen pendientes.
 
 Los controles Spark, los límites de cuotas y la falta de finalización automática de borrado
 sin cliente mantienen su alcance anterior. Ninguna revisión de accesibilidad cambia el plan,

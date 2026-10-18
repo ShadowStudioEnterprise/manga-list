@@ -10,6 +10,7 @@ No prueba producción, OAuth Google real ni instalación en dispositivos.
 | Registro, bookmarklet, recuperación y persistencia de sesión     | Sí                     | Sí            |
 | Dos pestañas: campos distintos y conflicto del mismo campo       | Sí                     | Sí            |
 | Historial Atrás/Adelante y cancelación de capítulo sin guardar   | Sí                     | Sí            |
+| Cambios de ancho sin recarga y campos sin guardar                | Sí                     | Sí            |
 | Importación, exportación y aislamiento por cuenta                | Sí                     | Sí            |
 | Exportación rechazada sin conexión y recuperación                | Sí                     | Sí            |
 | Borradores opcionales, recuperación y limpieza al guardar/salir  | Sí                     | Sí            |
@@ -20,7 +21,7 @@ No prueba producción, OAuth Google real ni instalación en dispositivos.
 | Medición de 100/1000 obras con CDP                               | Sí                     | Sin cobertura |
 | Worker compilado, actualización pasiva con dos pestañas          | Sí, suite PWA separada | Sin cobertura |
 
-Firefox comparte los diez escenarios portables de `library.spec.js`. No se duplica su
+Firefox comparte los once escenarios portables de `library.spec.js`. No se duplica su
 implementación: una corrección en el flujo se comprueba en ambos motores. El caso de permisos
 del portapapeles lleva una etiqueta explícita `@chromium-only`; el archivo de escala conserva
 su alcance Chromium porque usa CDP. No se fingen métricas ni permisos equivalentes en Firefox.
@@ -58,7 +59,7 @@ no certifican todos los estados de la aplicación ni la ausencia de vulnerabilid
 
 Firefox automatizado no equivale a Firefox instalado por el usuario ni a un dispositivo
 Android. Tampoco cubre Safari/WebKit, iOS, lectores de pantalla reales, zoom del sistema,
-redimensionamiento continuo o instalación/actualización PWA en móviles. La prueba separada
+arrastre continuo de la ventana o instalación/actualización PWA en móviles. La prueba separada
 del worker sigue siendo solo Chromium. El permiso real de portapapeles en Firefox y el
 diagnóstico de Ajustes en ese motor siguen pendientes.
 
@@ -76,6 +77,7 @@ escenarios juntos sobre el commit publicado. Spark, formato y ESLint pasan local
 La repetición Firefox mostró un aviso de Vue Router sobre `history.state`. La
 [reproducción posterior](navigation-history-2026-10-18.md) identifica un `goto` redundante
 en la prueba de teclado, lo retira y añade un control que rechaza ese aviso. Los nuevos
-escenarios de historial elevan la suite a 23 casos (13 Chromium y 10 Firefox). El aviso de
-ResizeObserver conserva su revisión pendiente; no se cambia el rechazo de errores no
-controlados del navegador.
+escenarios de historial elevan esa revisión a 23 casos. La continuación de
+[redimensionamiento en vivo](live-resize-2026-10-18.md) corrige el aviso reproducido al
+cambiar la altura de cabecera y añade su captura explícita: la suite suma 25 casos
+(14 Chromium y 11 Firefox). No se permite el aviso para superar las pruebas.

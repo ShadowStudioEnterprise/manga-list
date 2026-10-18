@@ -13,6 +13,17 @@ test.beforeEach(async ({ context, page }) => {
   runtimeErrors = []
   externalRequests = []
   routingWarnings = []
+  // ResizeObserver reports an ErrorEvent without error, which pageerror can miss.
+  await context.exposeBinding('__mangalistReportWindowError', (_source, message) => {
+    runtimeErrors.push(message)
+  })
+  await context.addInitScript(() => {
+    window.addEventListener('error', (event) => {
+      if (event.message?.includes('ResizeObserver')) {
+        void window.__mangalistReportWindowError(event.message)
+      }
+    })
+  })
   context.on('console', (message) => {
     if (message.text().includes('VUE_ROUTER_R0121')) routingWarnings.push(message.text())
   })
@@ -142,9 +153,14 @@ test('320px main screens retain usable controls and pass automated accessibility
       await expect(
         viewportPage.getByRole('heading', { name: 'Biblioteca', exact: true }),
       ).toBeVisible()
-      expect(
-        await viewportPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
-      ).toBe(true)
+      await expect
+        .poll(() =>
+          viewportPage.evaluate(() => ({
+            width: innerWidth,
+            content: document.documentElement.scrollWidth,
+          })),
+        )
+        .toEqual({ width, content: width })
       await auditAccessibility(viewportPage, testInfo, `library-${width}`)
     } finally {
       await viewportPage.close()
@@ -276,6 +292,80 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(
     page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
   ).toBeVisible()
+})
+
+test('live resizing preserves library controls and unsaved form fields across responsive breakpoints', async ({
+  page,
+}, testInfo) => {
+  test.setTimeout(120000)
+  await register(page)
+  await addManga(page, 'Obra durante el cambio de ancho', '12')
+  const samples = []
+  const widths = [1280, 1024, 1023, 768, 600, 599, 320, 599, 600, 1023, 1024, 1280, 320]
+  async function resizeAndCheck(screen, width) {
+    await page.setViewportSize({ width, height: 900 })
+    await expect
+      .poll(() =>
+        page.evaluate(() => ({
+          width: innerWidth,
+          content: document.documentElement.scrollWidth,
+        })),
+      )
+      .toEqual({ width, content: width })
+    samples.push({
+      screen,
+      width,
+      ...(await page.evaluate(() => ({
+        content: document.documentElement.scrollWidth,
+        height: document.documentElement.scrollHeight,
+      }))),
+    })
+    const menu = page.getByRole('button', { name: 'Abrir navegación' })
+    if (width < 1024) await expect(menu).toBeVisible()
+    else await expect(menu).toBeHidden()
+    await expect(page.getByRole('link', { name: 'Añadir', exact: true })).toBeVisible()
+  }
+  try {
+    for (const width of widths) {
+      await resizeAndCheck('library', width)
+      await expect(
+        page.getByRole('heading', { name: 'Obra durante el cambio de ancho', exact: true }),
+      ).toBeVisible()
+      await expect(page.getByRole('button', { name: 'Limpiar filtros', exact: true })).toBeVisible()
+    }
+    await page.getByRole('link', { name: 'Añadir', exact: true }).click()
+    await page
+      .getByLabel('Nombre *', { exact: true })
+      .fill('Formulario conservado al redimensionar')
+    await page.getByLabel('Capítulo *', { exact: true }).fill('42')
+    await page.getByLabel('Notas', { exact: true }).fill('Cambios todavía sin guardar')
+    for (const width of widths) {
+      await resizeAndCheck('form', width)
+      await expect(page.getByLabel('Nombre *', { exact: true })).toHaveValue(
+        'Formulario conservado al redimensionar',
+      )
+      await expect(page.getByLabel('Capítulo *', { exact: true })).toHaveValue('42')
+      await expect(page.getByLabel('Notas', { exact: true })).toHaveValue(
+        'Cambios todavía sin guardar',
+      )
+      await expect(page.getByRole('button', { name: 'Guardar obra', exact: true })).toBeEnabled()
+    }
+    await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+    await expect(page).toHaveURL(/#\/manga\//)
+    await expect(
+      page.getByRole('heading', { name: 'Formulario conservado al redimensionar', exact: true }),
+    ).toBeVisible()
+    await expect(page.getByLabel('Notas', { exact: true })).toHaveValue(
+      'Cambios todavía sin guardar',
+    )
+  } finally {
+    const path = testInfo.outputPath('live-resize-measurements.json')
+    await writeFile(path, JSON.stringify(samples, null, 2))
+    await testInfo.attach('live-resize-measurements', {
+      path,
+      contentType: 'application/json',
+    })
+  }
 })
 
 test('router history survives dialog cancellation and browser back and forward without saving edits', async ({

@@ -212,6 +212,7 @@ body :focus-visible {
 }
 
 .app-toolbar {
+  // A stable header height avoids a parent-layout resize during header observation.
   min-height: 68px;
   padding-right: max(16px, env(safe-area-inset-right));
   padding-left: max(16px, env(safe-area-inset-left));
@@ -571,7 +572,6 @@ body :focus-visible {
 
 @media (max-width: 599px) {
   .app-toolbar {
-    min-height: 60px;
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -581,7 +581,6 @@ body :focus-visible {
   }
 
   .page-shell {
-    min-height: calc(100vh - 60px);
     padding: 22px 14px 88px;
   }
 

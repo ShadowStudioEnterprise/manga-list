@@ -194,3 +194,17 @@ y se rechaza `VUE_ROUTER_R0121` en todas las páginas de la suite portátil. Dos
 nuevos comprueban cancelación con Escape sin guardar el capítulo, foco, Atrás/Adelante y
 recarga. Resultado local: 23/23 recorridos (13 Chromium y 10 Firefox), Spark, formato y
 ESLint correctos. No se cambia el router de la aplicación ni se silencia el aviso.
+
+## ResizeObserver: transición de cabecera y captura de errores
+
+La [reproducción y el control negativo](live-resize-2026-10-18.md) identifican el cambio de
+altura mínima de barra al cruzar 599/600 píxeles. La barra mantiene ahora 68 píxeles en móvil
+y escritorio; se retira el cálculo de página móvil basado en 60. La suite portátil captura
+el evento de error ResizeObserver además de las excepciones y lo rechaza. Reintroducir
+temporalmente el CSS anterior dentro del ensayo Chromium produce siete errores y falla la
+comprobación; se retira la inyección antes del cambio final.
+
+Se añaden transiciones sobre biblioteca y formulario con campos sin guardar en ambos motores,
+sin recargar entre anchos. La matriz pasa a 25 recorridos. Dispositivos, zoom del sistema y
+arrastre continuo siguen fuera de esta comprobación. No se modifican SDK, reglas, cuotas,
+servicios, facturación ni producción.

@@ -50,8 +50,11 @@ Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](dra
 
 La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](accessibility-2026-10-18.md).
 
-La [matriz H3 de navegadores](browser-coverage-2026-10-18.md) amplía diez recorridos a Firefox;
+La [matriz H3 de navegadores](browser-coverage-2026-10-18.md) amplía once recorridos a Firefox;
 la aceptación en dispositivos reales y Safari continúa pendiente.
+
+La [revisión de cambios de ancho](live-resize-2026-10-18.md) conserva la altura de cabecera
+y añade captura explícita de errores ResizeObserver y conservación de formularios.
 
 La representación por páginas y la evidencia H6 están en [escala de biblioteca](library-scale-2026-10-18.md); no amplía el límite de 1000 obras ni reduce las lecturas iniciales.
 

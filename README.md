@@ -218,8 +218,11 @@ El acceso OAuth con una cuenta real de Google requiere una comprobación manual 
 
 La [matriz de navegadores y sus límites](docs/browser-coverage-2026-10-18.md) distingue los
 escenarios compartidos de los permisos de portapapeles, las métricas CDP y el ciclo PWA,
-que se mantienen solo en Chromium. Firefox ejecuta diez recorridos adicionales, incluido
+que se mantienen solo en Chromium. Firefox ejecuta once recorridos adicionales, incluido
 el [historial Atrás/Adelante y la cancelación sin guardar](docs/navigation-history-2026-10-18.md).
+
+Los [cambios de ancho con la página abierta](docs/live-resize-2026-10-18.md) comprueban
+biblioteca y formulario sin recarga; las notificaciones de error ResizeObserver hacen fallar la suite.
 
 Referencias: [servidor de pruebas de Playwright](https://playwright.dev/docs/test-webserver),
 [emulador de Authentication](https://firebase.google.com/docs/emulator-suite/connect_auth) y
