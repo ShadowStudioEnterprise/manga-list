@@ -44,7 +44,11 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
   }
   const publish = () => {
     if (stopped || attaching || [...ranges].some((range) => !range.ready)) return
-    const leaves = [...ranges]
+    // Preserve Firestore's ID order for stable ties in the existing client sorts.
+    // Binary tree paths order ranges without comparing arbitrary Unicode IDs.
+    const leaves = [...ranges].sort((left, right) =>
+      left.path < right.path ? -1 : left.path > right.path ? 1 : 0,
+    )
     const documents = leaves.flatMap((range) => range.docs)
     if (documents.length > SPARK_LIMITS.libraryDocuments) {
       fail(createAppError('app/library-budget'))
@@ -56,13 +60,13 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
       complete: leaves.every((range) => range.confirmed),
     })
   }
-  const attach = (lower, upper) => {
+  const attach = (lower, upper, path = '') => {
     if (stopped) return
     if (ranges.size >= SPARK_LIMITS.libraryRanges) {
       fail(createAppError('app/library-budget'))
       return
     }
-    const range = { active: true, ready: false, confirmed: false }
+    const range = { active: true, ready: false, confirmed: false, path }
     ranges.add(range)
     attaching++
     try {
@@ -86,8 +90,8 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
               ].id
             stopRange(range)
             ranges.delete(range)
-            attach(lower, boundary)
-            attach(boundary, upper)
+            attach(lower, boundary, `${path}0`)
+            attach(boundary, upper, `${path}1`)
             return
           }
           range.docs = snapshot.docs
@@ -96,7 +100,9 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
           range.confirmed ||= authoritative
           publish()
         },
-        fail,
+        (error) => {
+          if (range.active) fail(error)
+        },
       )
       // Also handles synchronous test adapters and a stop during attachment.
       if (stopped || !range.active) range.stop()

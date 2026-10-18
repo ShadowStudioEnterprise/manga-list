@@ -805,8 +805,16 @@ test('account deletion rejects a wrong password without data loss and then remov
     }),
   ).toBeVisible()
   await expect(other.getByRole('heading', { name: 'Delete test', exact: true })).toBeVisible()
+  // The error notification can appear before QBtn leaves its loading state.
+  // Wait for the visible button content before submitting a second attempt.
+  const confirmDeletion = dialog.getByRole('button', {
+    name: 'Eliminar definitivamente',
+    exact: true,
+  })
+  await expect(confirmDeletion.locator('.q-btn__content')).not.toHaveClass(/q-btn__content--hidden/)
   await dialog.getByLabel('Contraseña actual *', { exact: true }).fill(password)
-  await dialog.getByRole('button', { name: 'Eliminar definitivamente', exact: true }).click()
+  await dialog.getByLabel('Contraseña actual *', { exact: true }).press('Tab')
+  await confirmDeletion.click()
   await expect(page).toHaveURL(/#\/login/)
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)

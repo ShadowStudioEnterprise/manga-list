@@ -237,3 +237,18 @@ test('export page failure, cache, pending writes and session changes return no p
   )
   assert.equal(f.readCount(), 2)
 })
+
+test('splitting an earlier range preserves ID tie order and ignores retired range errors', async () => {
+  const f = await fixture(1501)
+  f.start()
+  await f.flush()
+  await f.change((docs) => [
+    ...docs,
+    ...Array.from({ length: 520 }, (_, i) => doc(`000100-${id(i)}`)),
+  ])
+  const last = f.deliveries.at(-1)
+  assert.deepEqual(last.docs, [...last.docs].sort())
+  f.targets[0].fail({ code: 'unavailable' })
+  assert.deepEqual(f.errors, [])
+  assert.ok(f.targets.some((target) => target.active))
+})

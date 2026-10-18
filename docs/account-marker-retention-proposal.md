@@ -64,7 +64,7 @@ comprobar condiciones y exige facturación para sus borrados.
    inmediatamente que no se hayan recreado datos; ante incertidumbre, no retirar.
 
 Para un bloqueo verificable inmediatamente tras revocación haría falta un diseño
-de reglas que consulte metadatos de revocación conservados y compares `auth_time`,
+de reglas que consulte metadatos de revocación conservados y compare `auth_time`,
 con evaluación de coste y pruebas adicionales. No se aplica en esta rama. No usar
 un endpoint público de administración ni incluir credenciales Admin en el cliente.
 
