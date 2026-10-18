@@ -6,7 +6,7 @@
         No hemos podido comprobar tu sesión. Inténtalo de nuevo en unos segundos.
       </q-banner>
       <p class="eyebrow text-primary q-mb-sm">Bienvenido de nuevo</p>
-      <h2 class="auth-card__title">Inicia sesión</h2>
+      <h1 class="auth-card__title">Inicia sesión</h1>
       <p class="text-grey-7 q-mb-none">Tu próxima lectura está justo donde la dejaste.</p>
     </q-card-section>
 

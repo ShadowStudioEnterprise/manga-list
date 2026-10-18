@@ -31,9 +31,37 @@ a {
   color: inherit;
 }
 
-:focus-visible {
-  outline: 3px solid rgba(67, 56, 202, 0.35);
+body :focus-visible {
+  // Quasar adds .no-outline with !important to interactive controls.
+  outline: 3px solid #4338ca !important;
   outline-offset: 2px;
+}
+
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 10000;
+  max-width: calc(100vw - 16px);
+  padding: 12px 16px;
+  color: #fff;
+  background: #4338ca;
+  border-radius: 8px;
+  transform: translateY(calc(-100% - 16px));
+}
+
+.skip-link:focus {
+  transform: none;
+  outline-color: #fff !important;
+  box-shadow: 0 0 0 5px #4338ca;
+}
+
+#main-content {
+  scroll-margin-top: 88px;
+}
+
+.sync-status {
+  color: var(--ml-muted);
 }
 
 .q-btn,
@@ -103,7 +131,7 @@ a {
   max-width: 540px;
 }
 
-.auth-hero__copy h1 {
+.auth-hero__title {
   margin: 0 0 24px;
   font-size: clamp(2.3rem, 5vw, 4.8rem);
   font-weight: 800;
@@ -145,6 +173,7 @@ a {
   margin: 0 0 8px;
   font-size: clamp(1.75rem, 4vw, 2.35rem);
   font-weight: 800;
+  line-height: 1.2;
   letter-spacing: -0.035em;
 }
 
@@ -197,7 +226,7 @@ a {
 }
 
 .drawer-label {
-  color: #898a99;
+  color: var(--ml-muted);
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 0.1em;
@@ -503,7 +532,7 @@ a {
     margin-top: 54px;
   }
 
-  .auth-hero__copy h1 {
+  .auth-hero__title {
     max-width: 720px;
   }
 

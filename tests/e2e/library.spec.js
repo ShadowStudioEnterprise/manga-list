@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto'
-import { readFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { test, expect } from '@playwright/test'
+import AxeBuilder from '@axe-core/playwright'
 
 let runtimeErrors
 let externalRequests
@@ -53,6 +54,163 @@ async function editFirstManga(page) {
   await page.getByRole('link', { name: 'Editar', exact: true }).click()
   await expect(page.getByLabel('Nombre *', { exact: true })).toBeVisible()
 }
+
+async function auditAccessibility(page, testInfo, name) {
+  // Audit a stable screen, after transient feedback finishes covering controls.
+  await expect(page.locator('.q-notification')).toHaveCount(0)
+  const result = await new AxeBuilder({ page })
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice'])
+    .analyze()
+  const path = testInfo.outputPath(`accessibility-${name}.json`)
+  await writeFile(path, JSON.stringify(result, null, 2))
+  await testInfo.attach(`accessibility-${name}`, { path, contentType: 'application/json' })
+  expect(
+    result.violations.map(({ id, nodes }) => ({
+      id,
+      nodes: nodes.map(({ target, failureSummary }) => ({ target, failureSummary })),
+    })),
+  ).toEqual([])
+}
+
+async function expectNoHorizontalOverflow(page) {
+  expect(
+    await page.evaluate(() => ({
+      width: window.innerWidth,
+      content: document.documentElement.scrollWidth,
+      overflowing: [...document.querySelectorAll('main *')]
+        .filter((element) => {
+          const box = element.getBoundingClientRect()
+          return (
+            box.width > 0 &&
+            getComputedStyle(element).visibility !== 'hidden' &&
+            box.right > innerWidth + 1
+          )
+        })
+        .slice(0, 8)
+        .map((element) => ({ tag: element.tagName, class: element.className })),
+    })),
+  ).toMatchObject({ width: 320, content: 320, overflowing: [] })
+}
+
+test('320px main screens retain usable controls and pass automated accessibility checks', async ({
+  page,
+  context,
+}, testInfo) => {
+  test.setTimeout(120000)
+  await page.setViewportSize({ width: 320, height: 740 })
+  await page.goto('/#/login')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'login-320')
+  await register(page)
+  await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'empty-library-320')
+  await addManga(page, 'Una obra con un nombre largo para comprobar pantallas pequeñas', '123.5')
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'library-320')
+  await page.goto('/#/add')
+  await expect(page.getByLabel('Nombre *', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Añadir fuente' }).click()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'form-with-source-320')
+  await page.goto('/#/settings/import-export')
+  await expect(
+    page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
+  ).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'import-export-320')
+  await page.screenshot({
+    path: testInfo.outputPath('import-export-320.png'),
+    fullPage: true,
+    animations: 'disabled',
+  })
+  for (const width of [768, 1280]) {
+    // Start each viewport before mounting Quasar's responsive layout.
+    const viewportPage = await context.newPage()
+    viewportPage.on('pageerror', (error) => runtimeErrors.push(error.message))
+    try {
+      await viewportPage.setViewportSize({ width, height: 900 })
+      await viewportPage.goto('/#/library')
+      await expect(
+        viewportPage.getByRole('heading', { name: 'Biblioteca', exact: true }),
+      ).toBeVisible()
+      expect(
+        await viewportPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+      ).toBe(true)
+      await auditAccessibility(viewportPage, testInfo, `library-${width}`)
+    } finally {
+      await viewportPage.close()
+    }
+  }
+})
+
+async function tabTo(page, target) {
+  for (let attempt = 0; attempt < 60; attempt++) {
+    if (await target.evaluate((element) => element === document.activeElement)) return
+    await page.keyboard.press('Tab')
+  }
+  await expect(target).toBeFocused()
+}
+
+test('keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 320, height: 740 })
+  await page.goto('/#/login')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
+  const skip = page.getByRole('link', { name: 'Saltar al contenido' })
+  await page.keyboard.press('Tab')
+  await expect(skip).toBeFocused()
+  expect((await skip.boundingBox()).y).toBeGreaterThanOrEqual(0)
+  await page.keyboard.press('Enter')
+  await expect(page.locator('#main-content')).toBeFocused()
+  await page.keyboard.press('Tab')
+  await expect(page.getByLabel('Correo electrónico', { exact: true })).toBeFocused()
+  await tabTo(page, page.getByRole('link', { name: 'Crear cuenta', exact: true }))
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Crea tu cuenta', exact: true })).toBeVisible()
+  await tabTo(page, page.getByLabel('Correo electrónico', { exact: true }))
+  await page.keyboard.type(`keyboard-${randomUUID()}@example.test`)
+  await page.keyboard.press('Tab')
+  await expect(page.getByLabel('Contraseña', { exact: true })).toBeFocused()
+  await page.keyboard.type(password)
+  await page.keyboard.press('Tab')
+  const reveal = page.getByRole('button', { name: 'Mostrar contraseña' })
+  await expect(reveal).toBeFocused()
+  expect(await reveal.evaluate((element) => getComputedStyle(element).outlineStyle)).toBe('solid')
+  await page.keyboard.press('Space')
+  await expect(page.getByLabel('Contraseña', { exact: true })).toHaveAttribute('type', 'text')
+  await page.keyboard.press('Tab')
+  await expect(page.getByLabel('Repite la contraseña', { exact: true })).toBeFocused()
+  await page.keyboard.type(password)
+  await page.keyboard.press('Tab')
+  await expect(page.getByRole('button', { name: 'Crear cuenta', exact: true })).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
+  // Seed one work; the interaction under test below uses the keyboard only.
+  await addManga(page, 'Prueba de teclado', '12')
+  await page.goto('/#/library')
+  const chapter = page.getByRole('button', { name: 'Editar capítulo actual: 12', exact: true })
+  await expect(chapter).toBeVisible()
+  await tabTo(page, chapter)
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('dialog', { name: 'Actualizar capítulo' })).toBeVisible()
+  await expect(page.getByRole('dialog').getByLabel('Capítulo *', { exact: true })).toBeFocused()
+  await page.keyboard.press('Escape')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await expect(chapter).toBeFocused()
+  const navigation = page.getByRole('button', { name: 'Abrir navegación' })
+  await tabTo(page, navigation)
+  await page.keyboard.press('Enter')
+  const nav = page.getByRole('navigation', { name: 'Navegación principal' })
+  await expect(nav).toBeVisible()
+  await tabTo(page, nav.getByRole('link', { name: 'Importar / Exportar', exact: true }))
+  await page.keyboard.press('Enter')
+  await expect(
+    page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
+  ).toBeVisible()
+})
 
 test('optional drafts survive reload, require recovery and clear after save or logout', async ({
   page,

@@ -94,7 +94,7 @@
               Al descargar se consulta el servidor. Si hay cambios pendientes o no se puede
               verificar la copia, la descarga se detiene. No incluye la cuenta ni sus ajustes.
             </p>
-            <p role="status" class="text-caption text-grey-7">{{ mangaStore.syncStatusMessage }}</p>
+            <p role="status" class="text-caption sync-status">{{ mangaStore.syncStatusMessage }}</p>
             <div class="column q-gutter-sm">
               <q-btn
                 unelevated

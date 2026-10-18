@@ -24,7 +24,7 @@
     </section>
 
     <MangaFilters class="q-mt-lg" />
-    <p v-if="!mangaStore.syncError" role="status" class="text-caption text-grey-7">
+    <p v-if="!mangaStore.syncError" role="status" class="text-caption sync-status">
       {{ mangaStore.syncStatusMessage }}
     </p>
 
