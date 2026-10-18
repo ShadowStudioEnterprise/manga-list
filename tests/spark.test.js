@@ -75,6 +75,9 @@ test('Spark policy rejects paid services, dynamic rewrites, changed targets and 
       c.hosting.predeploy = []
     },
     (c) => {
+      c.hosting.predeploy = ['npm run check:spark:remote', 'npm run build:pwa']
+    },
+    (c) => {
       c.hosting.site = 'other'
     },
     (c) => {

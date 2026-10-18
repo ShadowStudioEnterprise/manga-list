@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+import { execFileSync } from 'node:child_process'
 import { readFile, writeFile } from 'node:fs/promises'
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
@@ -152,6 +153,47 @@ async function tabTo(page, target) {
   }
   await expect(target).toBeFocused()
 }
+
+test('settings copy the running version without account data and handle unavailable clipboard', async ({
+  page,
+  context,
+}, testInfo) => {
+  await page.setViewportSize({ width: 320, height: 740 })
+  const email = await register(page)
+  await page.goto('/#/settings')
+  await expect(
+    page.getByRole('heading', { name: 'Versión de la aplicación', exact: true }),
+  ).toBeVisible()
+  await context.grantPermissions(['clipboard-read', 'clipboard-write'], {
+    origin: 'http://127.0.0.1:9100',
+  })
+  await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
+  await expect(page.getByText('Versión copiada.', { exact: true })).toBeVisible()
+  const text = await page.evaluate(() => navigator.clipboard.readText())
+  const payload = JSON.parse(text)
+  expect(Object.keys(payload).sort()).toEqual(['application', 'builtAt', 'dirty', 'revision'])
+  expect(payload.application).toBe('MangaList')
+  expect(payload.revision).toBe(
+    execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+  )
+  expect(typeof payload.dirty).toBe('boolean')
+  expect(new Date(payload.builtAt).toISOString()).toBe(payload.builtAt)
+  expect(text).not.toContain(email)
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'settings-version-320')
+  await page.evaluate(() =>
+    Object.defineProperty(navigator, 'clipboard', {
+      configurable: true,
+      value: {
+        writeText: async () => {
+          throw new Error('Clipboard unavailable')
+        },
+      },
+    }),
+  )
+  await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
+  await expect(page.getByText('No se ha podido copiar la versión.', { exact: true })).toBeVisible()
+})
 
 test('keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery', async ({
   page,

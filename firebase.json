@@ -3,7 +3,7 @@
     "site": "mangalist-61bb8",
     "public": "dist/pwa",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/*.map"],
-    "predeploy": ["npm run check:spark:remote", "npm run build:pwa"],
+    "predeploy": ["npm run check:spark:remote", "npm run build:pwa", "npm run check:release"],
     "rewrites": [
       {
         "source": "**",
@@ -30,7 +30,7 @@
         ]
       },
       {
-        "source": "/{index.html,sw.js,manifest.json}",
+        "source": "/{index.html,sw.js,manifest.json,build-info.json,build-evidence.json}",
         "headers": [
           {
             "key": "Cache-Control",

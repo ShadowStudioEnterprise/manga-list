@@ -51,3 +51,5 @@ Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](dra
 La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](accessibility-2026-10-18.md).
 
 La representación por páginas y la evidencia H6 están en [escala de biblioteca](library-scale-2026-10-18.md); no amplía el límite de 1000 obras ni reduce las lecturas iniciales.
+
+La preparación H4 se describe en [versiones y recuperación](releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.

@@ -42,7 +42,7 @@ export function validateConfig(config, policy) {
   )
   assert(
     JSON.stringify(config.hosting.predeploy) ===
-      JSON.stringify(['npm run check:spark:remote', 'npm run build:pwa']),
+      JSON.stringify(['npm run check:spark:remote', 'npm run build:pwa', 'npm run check:release']),
     'Unexpected predeploy command',
   )
   assert(
@@ -141,6 +141,27 @@ export function checkLocal() {
     'CLI target differs from Spark policy',
   )
   validateConfig(json('firebase.json'), policy)
+  const commands = json('package.json').scripts
+  assert(
+    commands.build === 'quasar build && node scripts/build-evidence.mjs create spa' &&
+      commands['build:pwa'] ===
+        'quasar build -m pwa && node scripts/build-evidence.mjs create pwa' &&
+      commands['check:release'] ===
+        'node scripts/build-evidence.mjs verify pwa --project mangalist-61bb8',
+    'Build evidence generation and release verification must remain enabled',
+  )
+  assert(
+    JSON.stringify(json('release-contract.json')) ===
+      JSON.stringify({
+        version: 1,
+        sparkOnly: true,
+        deletionBarrier: 1,
+        boundedLibraryQuery: 1001,
+        recoverableImport: 1,
+        verifiedExport: 2,
+      }),
+    'Release contract changes require an explicit compatibility review',
+  )
   const aliases = Object.values(json('.firebaserc').projects)
   assert(
     aliases.every((project) => project === policy.project),

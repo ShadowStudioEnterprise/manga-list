@@ -2,8 +2,10 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app'
+import { buildInfoPlugin, collectBuildInfo } from './scripts/build-info.mjs'
 
 export default defineConfig((ctx) => {
+  const buildInfo = collectBuildInfo(ctx.appPaths?.appDir || process.cwd())
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -32,6 +34,11 @@ export default defineConfig((ctx) => {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#build
     build: {
+      defineEnv: { MANGALIST_BUILD_INFO: buildInfo },
+      extendViteConf(config) {
+        config.plugins ||= []
+        config.plugins.push(buildInfoPlugin(buildInfo, ctx.mode.pwa ? 'pwa' : 'spa'))
+      },
       // Quasar handles dotenv itself; Firebase uses the documented VITE_FIREBASE_ prefix.
       env: {
         clientPrefix: ['QCLI_', 'VITE_FIREBASE_'],

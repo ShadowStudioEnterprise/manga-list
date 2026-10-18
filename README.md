@@ -339,7 +339,7 @@ dependencias, compilaciones, logs y resultados de pruebas están excluidos de Gi
 
 La configuración `.firebaserc` y el identificador del sitio en `firebase.json` apuntan al proyecto
 de MangaList. Si haces un fork para otra aplicación, cambia estos identificadores y el proyecto
-del script `deploy:hosting` antes de desplegar.
+del script `deploy:hosting`. Estos valores están protegidos también por la política Spark y sus pruebas; un fork requiere revisar esos controles de forma coherente.
 
 Para subir este repositorio, crea un repositorio vacío en GitHub y configura su URL:
 
@@ -352,7 +352,7 @@ git push -u origin HEAD
 El workflow `.github/workflows/ci.yml` comprueba formato, lint, regresiones, reglas de Firestore,
 flujos E2E y compilaciones SPA/PWA en cada push y pull request. Usa un proyecto de demostración;
 no necesita secretos de Firebase ni publica cambios en Hosting. El despliegue sigue siendo
-manual mediante `npm run deploy:hosting` desde un entorno configurado.
+manual mediante `npm run deploy:hosting` desde un entorno configurado, con autorización expresa, fuente limpia y comprobación del artefacto. Consulta el procedimiento de versiones y recuperación; los builds demo de CI no son candidatos de producción.
 
 El workflow solo solicita lectura del repositorio y fija las acciones a revisiones concretas.
 Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/actions) y la
@@ -383,3 +383,5 @@ Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles 
 [Importación recuperable: reintentos, recarga y límites](docs/import-recovery.md).
 
 [Estado de sincronización y procedencia de las copias](docs/synchronization-and-export.md).
+
+[Versiones, inventario de compilación y recuperación compatible](docs/releases-and-recovery.md) · [Registro para solicitar aprobación de publicación](docs/release-record-template.md).
