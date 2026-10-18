@@ -55,7 +55,7 @@ se ensamblan ahora por posición en su árbol para mantener el orden ID y los em
 los ordenadores actuales. También se descartan errores tardíos de listeners retirados.
 La regresión pasa tras el cambio y está incluida en los 78 tests.
 
-## Estado remoto y alcance
+## Estado remoto al cierre inicial y alcance
 
 La evidencia remota anterior de Standard/Spark está en
 `verification-spark-2026-10-18.md`, pero no equivale a una comprobación actual.
@@ -69,6 +69,14 @@ permanecen cerrados ante evidencia incompleta. No se ejecutaron despliegues, cam
 remotos, operaciones sobre datos/cuentas reales, vinculación de billing, activación de
 APIs ni fusión de ramas. Se subió únicamente la rama de revisión y su PR borrador.
 
+## Comprobación web posterior autorizada
+
+El 18/10/2026 a las 23:44 Europe/Madrid se verificó en las consolas oficiales:
+Spark, sin cuenta de facturación vinculada y Firestore Standard nativo en eur3.
+Véase [evidencia y límites de la comprobación](verification-spark-console-2026-10-18.md).
+La renovación del CLI quedó bloqueada por el consentimiento de permisos amplios;
+no se otorgaron permisos nuevos y los controles de despliegue permanecen intactos.
+
 ## Decisiones pendientes
 
 - Revisar coste del índice completo en memoria y límites de 10000 obras/64 rangos.
@@ -78,6 +86,6 @@ APIs ni fusión de ramas. Se subió únicamente la rama de revisión y su PR bor
   cancela si observa cambios durante la copia; evitar ediciones en otros dispositivos.
 - Retención y asistencia son propuestas sin aplicar. Aprobar plazos, responsables,
   canal verificado, evidencia de identidad y condiciones de retirada antes de operar.
-- Renovar sesión del CLI para comprobar el plan remoto; aceptación en dispositivos
-  reales/Safari y diagnóstico del arranque frío local siguen pendientes.
+- Sesión del CLI pendiente de renovación; el plan remoto ya se comprobó por consola.
+  Aceptación en dispositivos reales/Safari y diagnóstico del arranque frío local siguen pendientes.
 - Fusión, publicación y cualquier operación real requieren autorización independiente.
