@@ -54,6 +54,12 @@ servicios futuros. Revisión humana y permisos mínimos siguen siendo necesarios
 
 ## Cuotas y presupuesto de consultas
 
+El cliente valida las [peticiones de emuladores antes de inicializar servicios](firebase-startup.md).
+Una petición fuera de desarrollo, con proyecto no demo o configuración incompleta, falla
+temprano. Los valores desconocidos no se convierten silenciosamente en modo cloud. La
+coherencia de una app existente se comprueba antes de Auth/Firestore; no certifica el plan
+remoto ni sustituye la comprobación de facturación previa a una publicación autorizada.
+
 Referencia revisada el 18/10/2026: Firestore Standard incluye 50 000 lecturas, 20 000
 escrituras y 20 000 borrados diarios, 1 GiB almacenado y 10 GiB de transferencia saliente
 mensual para una base gratuita. El reinicio diario se rige por hora del Pacífico, no Madrid.

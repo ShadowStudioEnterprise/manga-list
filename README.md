@@ -218,7 +218,10 @@ La suite usa Authentication en `127.0.0.1:9199`, Firestore en `127.0.0.1:8188` y
 en `127.0.0.1:9100`. Estos puertos deben estar libres. El servidor se inicia con una configuración
 ficticia `demo-mangalist` que sustituye los valores de `.env`; el navegador bloquea peticiones
 externas. `QCLI_FIREBASE_EMULATORS=true` solo conecta a los emuladores durante desarrollo y exige
-un proyecto con prefijo `demo-`. En producción esta opción no activa los emuladores.
+un proyecto con prefijo `demo-`. Si se solicita fuera de desarrollo, con valores incompletos
+o un proyecto no demo, el arranque se rechaza antes de inicializar servicios. Valores de bandera
+desconocidos también fallan. La [validación temprana](docs/firebase-startup.md) detalla el orden
+de conexión y la comprobación de apps existentes; usa bandera omitida o `false` en un build normal.
 
 Se prueban el bookmarklet durante recuperación y registro, la persistencia e inicio de sesión,
 las ediciones entre dos pestañas, conflictos, importación/exportación, aislamiento entre cuentas

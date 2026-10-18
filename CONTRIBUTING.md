@@ -51,6 +51,11 @@ por uno real para resolver un fallo. Chromium y Firefox tienen una
 [matriz explícita](docs/browser-coverage-2026-10-18.md); los tests rechazan peticiones externas,
 errores ResizeObserver y el aviso de estado de historial. No añadas filtros para ocultarlos.
 
+`QCLI_FIREBASE_EMULATORS` admite vacío, `true` o `false`. Una petición `true` fuera de
+desarrollo o sin proyecto demo completo falla antes de inicializar servicios; no cae al
+modo normal. Revisa la [validación de arranque](docs/firebase-startup.md) si reutilizas una
+app predeterminada o cambias su configuración durante desarrollo.
+
 Para build o PWA, reproduce la configuración ficticia de CI antes de compilar. Estos valores
 deben estar en el entorno del proceso, por encima de cualquier `.env` local:
 

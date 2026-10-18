@@ -12,6 +12,8 @@ sin fusión ni despliegue por este trabajo.
 
 - Política Spark exclusiva, inventario y comprobaciones de compatibilidad locales y de
   evidencia remota de solo lectura; CI sin despliegue ni credenciales de producción.
+- Arranque con validación temprana de emuladores: proyecto demo y desarrollo obligatorio,
+  bandera estricta, apps existentes coherentes y conexiones locales en orden sin fallback.
 - Consultas y admisión acotadas, pausa por cuota, rechazo de bibliotecas parciales y borrado
   reautenticado, acotado y reanudable con barrera de escritura y Auth al final.
 - Importación con identidad recuperable v1; exportación comprobada contra servidor en JSON v2

@@ -209,6 +209,15 @@ sin recargar entre anchos. La matriz pasa a 25 recorridos. Dispositivos, zoom de
 arrastre continuo siguen fuera de esta comprobación. No se modifican SDK, reglas, cuotas,
 servicios, facturación ni producción.
 
+## Arranque: rechazo temprano de configuración de emuladores
+
+La [validación de arranque](firebase-startup.md) se adelanta a App/Auth/Firestore. La regresión
+nueva falló contra el código anterior al observar llamadas SDK antes del rechazo. Ahora se
+rechazan proyecto no demo, valores incompletos, modo no dev y bandera desconocida sin esas
+llamadas. Se comprueban además conexión en orden, fallos sin continuación y app existente
+coherente con los seis valores públicos en modo local y normal. Las 59 regresiones pasan.
+No se cambian configuración remota, edición Standard, datos ni facturación.
+
 ## H1: recuperación de credenciales en emuladores
 
 La [prueba de recuperación](password-recovery-emulator.md) solicita el enlace desde la app,

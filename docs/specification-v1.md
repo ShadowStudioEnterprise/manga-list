@@ -30,6 +30,10 @@ documento es independiente del esquema de obras, de la exportación y del sello 
 Los enlaces señalan pruebas relacionadas, no una demostración formal de cada requisito.
 Los casos de CI con emuladores no constituyen aceptación operativa en producción.
 
+ML-001 incluye la [validación temprana del arranque](firebase-startup.md): una petición de
+emuladores incompatible se rechaza antes de inicializar servicios. Una app existente debe
+coincidir con la configuración declarada; esa coherencia local no certifica su plan remoto.
+
 ## Modelo de datos de la rama
 
 Authentication proporciona el UID. Firestore usa `users/{uid}` y
