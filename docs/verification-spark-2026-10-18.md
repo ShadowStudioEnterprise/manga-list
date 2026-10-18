@@ -98,3 +98,11 @@ Resultado local de esta continuación: 32 tests y 11 pruebas de reglas correctos
 compatibilidad Spark, formato, ESLint y diff sin errores. No cambian el cliente de la app
 ni las reglas; los cinco E2E y compilaciones están respaldados por el CI inicial.
 El nuevo commit debe volver a superar el CI antes de considerarlo validado remotamente.
+
+## Revisión de dependencias posterior
+
+El estado anterior de dependencias pendientes queda actualizado por la
+[revisión H8](dependencies-2026-10-18.md): ambos lockfiles tienen cero avisos conocidos
+reportados por npm después de correcciones seleccionadas. CI incorpora una auditoría
+que bloquea ante nuevos avisos o fallo del registro. Se mantienen las limitaciones
+Spark, los avisos de mantenimiento transitivo y la necesidad de revisión continua.

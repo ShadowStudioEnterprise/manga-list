@@ -377,3 +377,5 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 ## Política Spark del 18/10/2026
 
 Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles y límites](docs/spark-only.md) y [evidencia de verificación](docs/verification-spark-2026-10-18.md).
+
+[Revisión y control continuo de dependencias](docs/dependencies-2026-10-18.md).
