@@ -62,7 +62,9 @@ Las pruebas no cubren todos los estados de menús, validaciones, diálogos, colo
 de texto ni todas las combinaciones de filtros. Axe no sustituye lectura real con lector
 de pantalla, revisión de orden de lectura, zoom/texto al 200 %, contraste manual sobre
 fondos complejos, alto contraste del sistema, destreza motora ni pruebas de dispositivos.
-No prueban instalación PWA en iOS/Android, Safari o Firefox.
+No prueban instalación PWA en iOS/Android ni Safari. La continuación de la
+[matriz de navegadores](browser-coverage-2026-10-18.md) añade Firefox a los escenarios
+portables y a las mismas auditorías, sin ampliar la prueba de actualización PWA.
 
 La matriz de anchos comprueba layouts iniciales, no certifica redimensionamiento continuo.
 Un ensayo con cambios de ancho en caliente generó un aviso de ResizeObserver de Quasar/Vite;

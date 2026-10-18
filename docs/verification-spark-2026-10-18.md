@@ -176,3 +176,12 @@ Resultados locales H6: 51 regresiones y 11 recorridos Chromium correctos, inclui
 Se añaden [sellos de compilación, inventarios y procedimiento de recuperación](releases-and-recovery.md). La versión copiada solo contiene campos públicos de build. El verificador rechaza artefactos alterados, fuente/proyecto distintos, contratos desconocidos y árboles modificados; la única excepción de desarrollo se limita a demo. Hosting exige la comprobación como último hook local. Las pruebas no ejecutan despliegue ni rollback, no alteran reglas remotas y no certifican el estado de producción.
 
 Resultados locales H4: 56/56 regresiones, 13/13 pruebas de reglas y 12/12 recorridos Chromium correctos. Ajustes pasa la revisión de ancho y contraste a 320 píxeles; copiar la versión excluye datos de cuenta y comunica el fallo del portapapeles. Se comprueban inventarios alterados, archivos extra o ausentes, enlaces simbólicos, entradas especiales y la negativa a aceptar proyectos o revisiones incorrectos. Los inventarios SHA-256 comprueban coherencia; no son firmas ni pruebas de procedencia confiable.
+
+## Matriz H3: Firefox
+
+Se añaden nueve recorridos Firefox a los doce Chromium en CI, con las mismas aserciones,
+datos sintéticos y bloqueo de peticiones externas. La [matriz y evidencia local](browser-coverage-2026-10-18.md)
+detalla el fallo inicial de la suposición de retorno circular del foco, la repetición correcta
+del teclado en ambos motores y el aviso de Vue Router pendiente de revisión. CDP, permisos
+de portapapeles y ciclo PWA conservan su alcance Chromium. No se añaden servicios ni se
+modifican cuentas, reglas o configuración de producción.

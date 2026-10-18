@@ -195,11 +195,11 @@ conecta a `127.0.0.1:8188`, el puerto definido en `firebase.json`. No requieren 
 Firebase ni acceden a datos de producción. Se comprueban el aislamiento por usuario, los límites
 del esquema, las fuentes principales y los conflictos entre ediciones concurrentes.
 
-Para ejecutar los flujos completos en Chromium:
+Para ejecutar los flujos con emuladores en Chromium y Firefox:
 
 ```bash
 # Una vez, después de npm install
-npx playwright install chromium
+npx playwright install chromium firefox
 
 # Arranca emuladores, servidor de prueba y navegador; los cierra al terminar
 npm run test:e2e
@@ -215,6 +215,10 @@ Se prueban el bookmarklet durante recuperación y registro, la persistencia e in
 las ediciones entre dos pestañas, conflictos, importación/exportación, aislamiento entre cuentas
 y edición/borrado en móvil. Las capturas y trazas quedan en `test-results/` cuando falla una prueba.
 El acceso OAuth con una cuenta real de Google requiere una comprobación manual independiente.
+
+La [matriz de navegadores y sus límites](docs/browser-coverage-2026-10-18.md) distingue los
+escenarios compartidos de los permisos de portapapeles, las métricas CDP y el ciclo PWA,
+que se mantienen solo en Chromium. Firefox ejecuta nueve recorridos adicionales.
 
 Referencias: [servidor de pruebas de Playwright](https://playwright.dev/docs/test-webserver),
 [emulador de Authentication](https://firebase.google.com/docs/emulator-suite/connect_auth) y

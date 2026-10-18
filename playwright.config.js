@@ -20,7 +20,16 @@ export default defineConfig({
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
   },
-  projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+      // CDP heap/listener measurements and Chromium clipboard permissions are not portable.
+      testIgnore: '**/library-scale.spec.js',
+      grepInvert: /@chromium-only/,
+    },
+  ],
   webServer: {
     command: 'npm run dev -- --hostname 127.0.0.1 --port 9100',
     url: 'http://127.0.0.1:9100',

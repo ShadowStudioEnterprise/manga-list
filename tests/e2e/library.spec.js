@@ -146,54 +146,70 @@ test('320px main screens retain usable controls and pass automated accessibility
   }
 })
 
-async function tabTo(page, target) {
+async function tabTo(page, target, key = 'Tab') {
+  const traversal = []
   for (let attempt = 0; attempt < 60; attempt++) {
-    if (await target.evaluate((element) => element === document.activeElement)) return
-    await page.keyboard.press('Tab')
+    const focus = await target.evaluate((element) => ({
+      reached: element === document.activeElement,
+      tag: document.activeElement?.tagName,
+      label: document.activeElement?.getAttribute('aria-label'),
+      text: document.activeElement?.textContent?.trim().slice(0, 100),
+      documentFocused: document.hasFocus(),
+    }))
+    if (focus.reached) return
+    traversal.push(focus)
+    await page.keyboard.press(key)
   }
+  await test.info().attach('keyboard-traversal', {
+    body: JSON.stringify(traversal, null, 2),
+    contentType: 'application/json',
+  })
   await expect(target).toBeFocused()
 }
 
-test('settings copy the running version without account data and handle unavailable clipboard', async ({
-  page,
-  context,
-}, testInfo) => {
-  await page.setViewportSize({ width: 320, height: 740 })
-  const email = await register(page)
-  await page.goto('/#/settings')
-  await expect(
-    page.getByRole('heading', { name: 'Versión de la aplicación', exact: true }),
-  ).toBeVisible()
-  await context.grantPermissions(['clipboard-read', 'clipboard-write'], {
-    origin: 'http://127.0.0.1:9100',
-  })
-  await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
-  await expect(page.getByText('Versión copiada.', { exact: true })).toBeVisible()
-  const text = await page.evaluate(() => navigator.clipboard.readText())
-  const payload = JSON.parse(text)
-  expect(Object.keys(payload).sort()).toEqual(['application', 'builtAt', 'dirty', 'revision'])
-  expect(payload.application).toBe('MangaList')
-  expect(payload.revision).toBe(
-    execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
-  )
-  expect(typeof payload.dirty).toBe('boolean')
-  expect(new Date(payload.builtAt).toISOString()).toBe(payload.builtAt)
-  expect(text).not.toContain(email)
-  await expectNoHorizontalOverflow(page)
-  await auditAccessibility(page, testInfo, 'settings-version-320')
-  await page.evaluate(() =>
-    Object.defineProperty(navigator, 'clipboard', {
-      configurable: true,
-      value: {
-        writeText: async () => {
-          throw new Error('Clipboard unavailable')
+test(
+  'settings copy the running version without account data and handle unavailable clipboard',
+  { tag: '@chromium-only' },
+  async ({ page, context }, testInfo) => {
+    await page.setViewportSize({ width: 320, height: 740 })
+    const email = await register(page)
+    await page.goto('/#/settings')
+    await expect(
+      page.getByRole('heading', { name: 'Versión de la aplicación', exact: true }),
+    ).toBeVisible()
+    await context.grantPermissions(['clipboard-read', 'clipboard-write'], {
+      origin: 'http://127.0.0.1:9100',
+    })
+    await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
+    await expect(page.getByText('Versión copiada.', { exact: true })).toBeVisible()
+    const text = await page.evaluate(() => navigator.clipboard.readText())
+    const payload = JSON.parse(text)
+    expect(Object.keys(payload).sort()).toEqual(['application', 'builtAt', 'dirty', 'revision'])
+    expect(payload.application).toBe('MangaList')
+    expect(payload.revision).toBe(
+      execFileSync('git', ['rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
+    )
+    expect(typeof payload.dirty).toBe('boolean')
+    expect(new Date(payload.builtAt).toISOString()).toBe(payload.builtAt)
+    expect(text).not.toContain(email)
+    await expectNoHorizontalOverflow(page)
+    await auditAccessibility(page, testInfo, 'settings-version-320')
+    await page.evaluate(() =>
+      Object.defineProperty(navigator, 'clipboard', {
+        configurable: true,
+        value: {
+          writeText: async () => {
+            throw new Error('Clipboard unavailable')
+          },
         },
-      },
-    }),
-  )
-  await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
-  await expect(page.getByText('No se ha podido copiar la versión.', { exact: true })).toBeVisible()
-})
+      }),
+    )
+    await page.getByRole('button', { name: 'Copiar versión', exact: true }).click()
+    await expect(
+      page.getByText('No se ha podido copiar la versión.', { exact: true }),
+    ).toBeVisible()
+  },
+)
 
 test('keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery', async ({
   page,
@@ -243,7 +259,9 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(page.getByRole('dialog')).toHaveCount(0)
   await expect(chapter).toBeFocused()
   const navigation = page.getByRole('button', { name: 'Abrir navegación' })
-  await tabTo(page, navigation)
+  // Move backwards to the earlier header control rather than relying on the
+  // browser chrome wrapping Tab from the last link back into the document.
+  await tabTo(page, navigation, 'Shift+Tab')
   await page.keyboard.press('Enter')
   const nav = page.getByRole('navigation', { name: 'Navegación principal' })
   await expect(nav).toBeVisible()

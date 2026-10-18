@@ -38,7 +38,7 @@ jobs:
           npm ci
           npm ci --prefix src-pwa
           npm install --global firebase-tools@15.32.1
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium firefox
       - name: Audit both dependency lockfiles
         run: npm run audit:dependencies
       - name: Check formatting and lint
