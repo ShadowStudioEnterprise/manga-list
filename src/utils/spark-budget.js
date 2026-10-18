@@ -1,7 +1,9 @@
 import { createAppError } from './firebase-errors.js'
 
 export const SPARK_LIMITS = Object.freeze({
-  libraryDocuments: 1000,
+  libraryDocuments: 10000,
+  pageDocuments: 500,
+  libraryRanges: 64,
   deletionBatch: 400,
   deletionBatches: 5,
   transactionAttempts: 3,

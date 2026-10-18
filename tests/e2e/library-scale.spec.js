@@ -53,12 +53,12 @@ async function seedLibrary(uid, size) {
 
 test.use({ viewport: { width: 1280, height: 900 } })
 
-for (const size of [100, 1000]) {
+for (const size of [100, 1000, 2500]) {
   test(`library scale ${size}: load, search, update and bounded representation`, async ({
     page,
     context,
   }, testInfo) => {
-    test.setTimeout(180000)
+    test.setTimeout(300000)
     const errors = []
     const external = []
     let listenTargets = 0
@@ -86,7 +86,10 @@ for (const size of [100, 1000]) {
     await page.getByRole('button', { name: 'Crear cuenta', exact: true }).click()
     const { localId: uid } = await (await signup).json()
     expect(typeof uid).toBe('string')
-    await expect(page.getByRole('heading', { name: 'Biblioteca', exact: true })).toBeVisible()
+    // Cold development imports may take longer than a normal UI interaction.
+    await expect(page.getByRole('heading', { name: 'Biblioteca', exact: true })).toBeVisible({
+      timeout: 90000,
+    })
     // Measure opening the library view with its existing listener, not cold network latency.
     await page.goto('/#/settings')
     await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible()

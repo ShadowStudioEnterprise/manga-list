@@ -47,15 +47,20 @@ async function exportService({
   changeSession = false,
 } = {}) {
   const auth = { currentUser: { uid: 'alice' } }
-  let reads = 0
+  let reads = 0,
+    cursor = -1
   const service = await loadModule('src/services/manga-service.js', {
     '@/boot/firebase': { db: {}, requireFirebase: () => ({ auth }) },
     'firebase/firestore': {
       ...firestore,
       collection: () => ({}),
       query: () => ({}),
+      startAfter: (id) => {
+        cursor = Number(id)
+        return {}
+      },
       limit: (value) => {
-        assert.equal(value, 1001)
+        assert.equal(value, 501)
         return {}
       },
       getDocsFromServer: async () => {
@@ -64,8 +69,8 @@ async function exportService({
         if (changeSession) auth.currentUser = { uid: 'bob' }
         return {
           metadata,
-          docs: Array.from({ length: size }, (_, id) => ({
-            id: String(id),
+          docs: Array.from({ length: Math.min(501, size - cursor - 1) }, (_, offset) => ({
+            id: String(cursor + 1 + offset),
             data: () => mangas[0],
           })),
         }
@@ -88,7 +93,7 @@ test('export fetch uses a bounded server query and rejects local, pending, exces
     [{ metadata: { fromCache: true, hasPendingWrites: false } }, 'app/export-not-confirmed'],
     [{ metadata: { fromCache: false, hasPendingWrites: true } }, 'app/export-not-confirmed'],
     [{ metadata: {} }, 'app/export-not-confirmed'],
-    [{ size: 1001 }, 'app/library-budget'],
+    [{ size: 10001 }, 'app/library-budget'],
     [{ failure: 'unavailable' }, 'unavailable'],
     [{ changeSession: true }, 'app/invalid-account'],
   ]) {
@@ -111,6 +116,7 @@ test('download uses the fetched snapshot and cancels on failure, pending edits o
     'pending',
     'pending-operation',
     'account',
+    'remote-change',
     'concurrent',
   ]) {
     const auth = { user: { uid: 'alice' } }
@@ -132,6 +138,7 @@ test('download uses the fetched snapshot and cancels on failure, pending edits o
             if (scenario === 'pending') store.hasPendingWrites = true
             if (scenario === 'pending-operation') store.pendingOperations = 1
             if (scenario === 'account') auth.user = { uid: 'bob' }
+            if (scenario === 'remote-change') store.libraryRevision = 1
             if (scenario === 'concurrent')
               await new Promise((resolve) => {
                 resolveFetch = resolve
