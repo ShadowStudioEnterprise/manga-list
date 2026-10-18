@@ -28,7 +28,9 @@ ninguna automáticamente, porque podría tener dependencias operativas.
 ## Validación antes de cualquier publicación futura
 
 `npm run check:spark` verifica `spark-policy.json`, objetivos, hooks, servicios permitidos,
-rewrites, importaciones Firebase, dependencias de servidor y ausencia de despliegue en CI.
+rewrites, importaciones Firebase (incluidas las que no usan `from`), dependencias de servidor
+y ausencia de despliegue en CI. Examina `src` y `src-pwa`, así como dependencias transitivas
+de ambos lockfiles; los scripts `.mjs` se comprueban también con formato y ESLint.
 Se ejecuta antes de instalar dependencias en CI. Las pruebas negativas alteran configuración
 y evidencias para comprobar que se rechazan servicios incompatibles y facturación activa.
 

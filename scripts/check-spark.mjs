@@ -87,11 +87,50 @@ export function validateRemote(billing, database, project) {
   )
 }
 
+// This deliberately conservative text scan also covers side-effect imports,
+// literal dynamic imports, CommonJS and direct internal Firebase SDK entrypoints.
+// It is not a parser or a defense against calculated/obfuscated module names.
+export function validateClientSource(source, path = 'client') {
+  const imports =
+    /(?:\bfrom\s*|\bimport\s*(?:\(\s*)?|\brequire\s*\(\s*)['"`]((?:firebase|@firebase)[^'"`\s]*)['"`]/g
+  for (const match of source.matchAll(imports)) {
+    assert(
+      ['firebase/app', 'firebase/auth', 'firebase/firestore'].includes(match[1]),
+      `Unsupported SDK: ${path}: ${match[1]}`,
+    )
+  }
+  assert(
+    !/https:\/\/[^\s'"]*(?:cloudfunctions\.net|run\.app)/i.test(source),
+    `Paid backend endpoint: ${path}`,
+  )
+  assert(
+    !/httpsCallable|signInWithPhoneNumber|PhoneAuthProvider|initializeAppCheck/.test(source),
+    `Unapproved service/provider: ${path}`,
+  )
+}
+
+export function validateDependencyManifest(manifest, path = 'manifest') {
+  // npm lockfile package keys include node_modules paths, even when a package
+  // is only transitive and absent from the root dependency map.
+  const forbidden =
+    /(?:^|node_modules\/)(?:firebase-admin|firebase-functions|@google-cloud\/[^/]+)$/
+  function inspect(value) {
+    if (!value || typeof value !== 'object') return
+    for (const [key, child] of Object.entries(value)) {
+      assert(!forbidden.test(key), `Server dependency: ${path}: ${key}`)
+      inspect(child)
+    }
+  }
+  inspect(manifest)
+}
+
 function files(folder) {
-  return readdirSync(resolve(root, folder), { withFileTypes: true }).flatMap((entry) => {
-    const path = `${folder}/${entry.name}`
-    return entry.isDirectory() ? files(path) : [path]
-  })
+  return readdirSync(resolve(root, folder), { withFileTypes: true })
+    .filter((entry) => entry.name !== 'node_modules')
+    .flatMap((entry) => {
+      const path = `${folder}/${entry.name}`
+      return entry.isDirectory() ? files(path) : [path]
+    })
 }
 
 export function checkLocal() {
@@ -107,23 +146,10 @@ export function checkLocal() {
     aliases.every((project) => project === policy.project),
     'Unexpected Firebase alias',
   )
-  for (const path of files('src')) {
-    if (!/\.(js|vue)$/.test(path)) continue
-    const source = read(path)
-    for (const match of source.matchAll(/(?:from\s*|import\s*\()\s*['"](firebase[^'"]*)['"]/g)) {
-      assert(
-        ['firebase/app', 'firebase/auth', 'firebase/firestore'].includes(match[1]),
-        `Unsupported SDK: ${path}: ${match[1]}`,
-      )
+  for (const folder of ['src', 'src-pwa']) {
+    for (const path of files(folder)) {
+      if (/\.(?:[cm]?[jt]sx?|vue)$/.test(path)) validateClientSource(read(path), path)
     }
-    assert(
-      !/https:\/\/[^\s'"]*(?:cloudfunctions\.net|run\.app)/i.test(source),
-      `Paid backend endpoint: ${path}`,
-    )
-    assert(
-      !/httpsCallable|signInWithPhoneNumber|PhoneAuthProvider|initializeAppCheck/.test(source),
-      `Unapproved service/provider: ${path}`,
-    )
   }
   for (const file of [
     'package.json',
@@ -131,10 +157,7 @@ export function checkLocal() {
     'src-pwa/package.json',
     'src-pwa/package-lock.json',
   ]) {
-    assert(
-      !/"(?:firebase-admin|firebase-functions|@google-cloud\/[^" ]+)"\s*:/.test(read(file)),
-      `Server dependency: ${file}`,
-    )
+    validateDependencyManifest(json(file), file)
   }
   // No deployment workflow is approved; all mutations stay manual.
   for (const path of files('.github/workflows')) {

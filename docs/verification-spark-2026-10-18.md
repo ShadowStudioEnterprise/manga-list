@@ -41,8 +41,8 @@ puntual, no una garantía frente a futuros cambios administrativos.
 | Verificación                              | Resultado                                                                                                     |
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `npm run check:spark`                     | Correcto: inventario/configuración/SDK/workflows compatibles                                                  |
-| `npm test`                                | 30/30: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
-| `npm run test:rules` en emulador Standard | 10/10: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
+| `npm test`                                | 32/32: regresiones, presupuestos, cuota, listener excesivo, borrado parcial/concurrente, importación detenida |
+| `npm run test:rules` en emulador Standard | 11/11: aislamiento, esquema, marcador, concurrencia y límites de listado                                      |
 | `npm run test:e2e`                        | 5/5 Chromium: sesión, dos pestañas, importación/exportación, móvil y borrado Auth local                       |
 | `npm run lint:check`                      | Correcto                                                                                                      |
 | `npm run build` y `npm run build:pwa`     | Correcto con configuración `demo-mangalist`; no despliegan                                                    |
@@ -73,3 +73,28 @@ autorizada habrá que preparar el `gcloud` de solo lectura y ejecutar de nuevo l
   independiente. Este trabajo no fusiona, despliega ni modifica cuentas/datos de producción.
 
 Consultar [política y operación](spark-only.md) y [roadmap](roadmap.md).
+
+## Continuación de la revisión del PR #2
+
+El commit inicial `1a6fdf6` superó todas las comprobaciones remotas:
+[CI del PR](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39099656177)
+y [CI de la rama](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39099608485).
+Incluyen compatibilidad Spark, formato/lint, tests, reglas, E2E y compilaciones SPA/PWA.
+
+La revisión posterior cerró una omisión del análisis estático: ahora reconoce imports sin
+`from`, reexports, importaciones dinámicas literales, CommonJS y accesos directos a
+`@firebase/*`. Examina también `src-pwa` y extensiones JS/TS habituales, omitiendo
+`node_modules`. El inventario de dependencias recorre JSON y las rutas transitivas de
+ambos lockfiles, en lugar de depender de nombres solo en el manifiesto raíz.
+Los scripts `.mjs` quedan incluidos en formato y ESLint de CI.
+
+Se añadieron dos pruebas de regresión del detector y una prueba en Firestore Standard que
+interrumpe el borrado después de 400 obras y crea un cliente nuevo, sin transferir estado
+local: el marcador sigue bloqueando escrituras y retirada, queda una obra y el cliente nuevo
+puede finalizar la limpieza. Esto prueba reanudación desde servidor cuando vuelve un cliente;
+no implica finalización automática si nadie vuelve.
+
+Resultado local de esta continuación: 32 tests y 11 pruebas de reglas correctos,
+compatibilidad Spark, formato, ESLint y diff sin errores. No cambian el cliente de la app
+ni las reglas; los cinco E2E y compilaciones están respaldados por el CI inicial.
+El nuevo commit debe volver a superar el CI antes de considerarlo validado remotamente.

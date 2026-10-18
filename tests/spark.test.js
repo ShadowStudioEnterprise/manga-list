@@ -4,7 +4,13 @@ import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve, join, delimiter } from 'node:path'
 import { spawnSync } from 'node:child_process'
-import { validateConfig, validateRemote, checkLocal } from '../scripts/check-spark.mjs'
+import {
+  validateConfig,
+  validateRemote,
+  validateClientSource,
+  validateDependencyManifest,
+  checkLocal,
+} from '../scripts/check-spark.mjs'
 import { createSparkBudget } from '../src/utils/spark-budget.js'
 import { loadModule } from './helpers/load-module.js'
 import * as firestore from 'firebase/firestore'
@@ -181,4 +187,41 @@ test('oversized listener rejects partial data and unsubscribes; quota blocks rec
   assert.equal(error.code, 'resource-exhausted')
   assert.throws(() => service.subscribeToMangas('alice', () => {}), { code: 'app/quota-paused' })
   assert.equal(subscriptions, 2)
+})
+
+test('client scan rejects side-effect imports, literal dynamic imports, reexports and internal SDKs', () => {
+  for (const source of [
+    "import 'firebase/storage'",
+    'import "firebase/functions"',
+    "import { getStorage } from 'firebase/storage'",
+    "export * from 'firebase/compat/app'",
+    "import('firebase/storage')",
+    'import(`firebase/functions`)',
+    "require('firebase-admin')",
+    "import { getStorage } from '@firebase/storage'",
+  ])
+    assert.throws(() => validateClientSource(source), /Unsupported SDK/)
+  for (const source of [
+    "import { getAuth } from 'firebase/auth'",
+    "import('firebase/firestore')",
+    "export { initializeApp } from 'firebase/app'",
+    "import { ref } from 'vue'",
+  ])
+    assert.doesNotThrow(() => validateClientSource(source))
+})
+
+test('server dependency scan checks root manifests and transitive lockfile package paths', () => {
+  for (const manifest of [
+    { dependencies: { 'firebase-functions': '^1' } },
+    { devDependencies: { 'firebase-admin': '^1' } },
+    { packages: { 'node_modules/@google-cloud/storage': { version: '1' } } },
+    { packages: { 'node_modules/parent/node_modules/firebase-admin': { version: '1' } } },
+  ])
+    assert.throws(() => validateDependencyManifest(manifest), /Server dependency/)
+  assert.doesNotThrow(() =>
+    validateDependencyManifest({
+      dependencies: { firebase: '^12' },
+      packages: { 'node_modules/@firebase/functions': { version: '1' } },
+    }),
+  )
 })
