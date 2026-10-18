@@ -5,54 +5,79 @@ Rama `development/firestore-cursors-2026-10-18`, basada en main
 confirmaron que PR #2 está cerrado e integrado, el 18/10/2026 a las 21:54:54
 Europe/Madrid. Esta sesión no lo fusionó. No se editaron los archivos de `sources/`.
 
-## Resultados locales
+Implementación validada: `aeda50fde65f883caf60f61642ee57460017140d`.
+[CI completo correcto](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39167900668).
+La actualización posterior del informe y mediciones solo añade evidencia documental.
+[PR #3 en borrador](https://github.com/ShadowStudioEnterprise/manga-list/pull/3).
 
-| Comprobación                                | Resultado                                                                                                                                                                        |
-| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Regresiones                                 | 77/77 correctas, incluido error de cuota y cancelación de exportación por revisión observada                                                                                     |
-| Cursores con adaptador controlado           | 15 casos dentro de las regresiones: 0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000; inserciones, borrado de límites, rangos vacíos, caché, cancelación, fallo de página y límites |
-| Reglas y servicio real en emulador Standard | 14/14 correctas; biblioteca de 5000, cambios desde otro cliente, 5001 obras únicas en JSON/CSV y reimportación completa; aislamiento y rechazo de consultas sin límite           |
-| Importación grande en emulador              | 1001 filas, interrupción tras 504; nueva previsualización y replay completo dejan exactamente 1001 documentos, detectados después como duplicados                                |
-| Navegador                                   | En curso; recorrido de 1000 obras correcto. Cierre de evidencia pendiente de completar los recorridos restantes                                                                  |
-| Formato y lint                              | Correctos en la primera pasada; volver a comprobar al cerrar la rama                                                                                                             |
-| Build SPA y PWA demo                        | Correctos; sin publicación. Repetir al cerrar los cambios finales                                                                                                                |
-| Compatibilidad Spark local                  | Correcta; sin nuevos servicios, dependencias, reglas o índices                                                                                                                   |
+## Resultados
+
+| Comprobación                                | Resultado                                                                                                                                                                                                        |
+| ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Regresiones                                 | 78/78 correctas en local y CI: cuotas, sesión, exportación, importación, borrado y contratos                                                                                                                     |
+| Cursores con adaptador controlado           | 16 casos dentro de las regresiones: 0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000; inserciones, borrado de límites, rangos vacíos, caché, cancelación, fallo de página, límites, orden estable y errores tardíos |
+| Reglas y servicio real en emulador Standard | 15/15 correctas en CI; local: 14 pruebas iniciales y repetición ampliada de los 2 casos grandes. Biblioteca de 5000, cambios de otro cliente, 5001 obras únicas en JSON/CSV y aislamiento                        |
+| Importación grande en emulador              | 1001 filas, interrupción tras 504; nueva previsualización y replay completo dejan exactamente 1001 documentos, detectados después como duplicados                                                                |
+| Navegador Ubuntu CI                         | 28/28 correctos: Chromium y Firefox, incluidas las bibliotecas de 100/1000/2500                                                                                                                                  |
+| Navegador Windows local                     | Suite inicial 26/28; repetición selectiva 4/5. Pasan 1000/2500, filtros, orden, recorrido completo, exportación y borrado en ambos motores. Persiste el fallo de arranque frío del caso de 100                   |
+| Formato y lint                              | Correctos en local y CI                                                                                                                                                                                          |
+| Build SPA y PWA demo                        | Correctos en CI, con verificación de inventarios y contratos; ciclo de actualización PWA correcto. Sin publicación                                                                                               |
+| Dependencias                                | Auditoría de ambos árboles correcta en CI; no se cambiaron dependencias ni lockfiles                                                                                                                             |
+| Compatibilidad Spark local                  | Correcta; sin nuevos servicios, reglas, índices ni configuración remota                                                                                                                                          |
 
 Las pruebas de emulador grandes utilizan un adaptador que cuenta admisiones sin
 aplicar throttling a los fixtures. La admisión real y errores de cuota se prueban
 separadamente: el emulador no certifica cuotas, consumo o facturación Spark.
 En la biblioteca de 5001 registros, listeners y exportación utilizaron 32 admisiones
-de lectura; buscar/filtrar/ordenar no añade lecturas del servidor.
+de lectura. Buscar, filtrar, ordenar y cambiar página visual no añade consultas.
 
-La primera ejecución de navegador se interrumpió por carga local de módulos muy lenta
-antes del formulario. Tras reiniciar, el primer recorrido de 100 obras agotó la espera
-de 15 segundos al entrar por primera vez en Biblioteca; el recorrido de 1000 completó
-carga, búsqueda, actualización, 42 páginas, filtros, orden, exportación y revisión móvil.
-Se amplió explícitamente la espera del arranque frío en el test de escala; no se
-modificaron timeouts de la aplicación ni se ocultaron errores de ejecución.
+Las [mediciones de Windows](measurements/library-cursors-2026-10-18.json) corresponden
+a la implementación `aeda50f`: con 2500 obras solo se representan 24 tarjetas,
+se recorren las 105 páginas visuales y se exportan las 2500 obras.
+
+## Fallos locales y correcciones
+
+El servidor de desarrollo Vite en Windows mostró carga de módulos muy lenta antes
+del formulario y después del registro. La traza registra peticiones pendientes a
+MainLayout/LibraryPage y avisos de conexión al emulador. El caso inicial de 100 obras
+sigue fallando incluso con espera de 90 segundos para Biblioteca. Los casos posteriores
+de 1000/2500 pasan; CI Ubuntu pasa también el de 100. No se da por resuelto el arranque
+frío de desarrollo en este Windows ni se atribuye a producción. Los timeouts de la
+aplicación no cambiaron.
+
+El segundo fallo inicial fue el reintento de borrado en Firefox: la notificación podía
+aparecer antes de que QBtn saliera de loading y el segundo clic no enviaba otra petición.
+La prueba espera el contenido visible del botón y confirma blur del campo; la repetición
+pasa en Chromium y Firefox. No se modificó el flujo de borrado de cuentas.
+
+Una regresión nueva reprodujo cambios de orden al dividir un rango anterior; los rangos
+se ensamblan ahora por posición en su árbol para mantener el orden ID y los empates de
+los ordenadores actuales. También se descartan errores tardíos de listeners retirados.
+La regresión pasa tras el cambio y está incluida en los 78 tests.
 
 ## Estado remoto y alcance
 
-La evidencia remota anterior de Standard/Spark sigue en
+La evidencia remota anterior de Standard/Spark está en
 `verification-spark-2026-10-18.md`, pero no equivale a una comprobación actual.
 El CLI gcloud no tiene cuenta activa y el comando oficial Firebase de listado de
-bases rechaza la sesión caducada. La revisión automática rechazó una propuesta de
-acceder directamente a una credencial almacenada; esa acción no se ejecutó.
-No se eludió el rechazo ni se reautenticó una cuenta durante este trabajo.
+bases rechaza la sesión caducada. La revisión automática rechazó acceder directamente
+a una credencial almacenada; esa acción no se ejecutó. No se eludió el rechazo ni
+se reautenticó una cuenta durante este trabajo.
 
-No se puede certificar el estado remoto actual de billing/edición con esta sesión.
-Los controles de despliegue permanecen cerrados ante evidencia incompleta. No se
-ejecutaron despliegues, cambios remotos, operaciones sobre datos/cuentas reales,
-vinculación de billing, activación de APIs ni fusión de ramas.
+No se certifica el estado remoto actual de billing/edición. Los controles de despliegue
+permanecen cerrados ante evidencia incompleta. No se ejecutaron despliegues, cambios
+remotos, operaciones sobre datos/cuentas reales, vinculación de billing, activación de
+APIs ni fusión de ramas. Se subió únicamente la rama de revisión y su PR borrador.
 
-## Límites y decisiones pendientes
+## Decisiones pendientes
 
-- La paginación es real en Firestore, pero conserva un índice completo en memoria
-  para mantener búsqueda por fragmentos y orden español numérico. Revisar coste
-  inicial y límites locales de 10000 obras/64 rangos. Véase `firestore-cursors-v1.md`.
+- Revisar coste del índice completo en memoria y límites de 10000 obras/64 rangos.
+  No es memoria constante ni certificación de 10000 obras con todos los campos máximos
+  en un móvil. Véase `firestore-cursors-v1.md`.
 - Las páginas exportadas son lecturas sucesivas, no una transacción global. La UI
   cancela si observa cambios durante la copia; evitar ediciones en otros dispositivos.
-- Retención del marcador y asistencia son propuestas sin aplicar. Aprobar plazos,
-  responsables, canal verificado, evidencia y condiciones de retirada antes de operar.
-- Dispositivos reales/Safari, plan remoto actual y aceptación de producción siguen
-  pendientes. Un PR borrador y resultados locales no autorizan fusión ni publicación.
+- Retención y asistencia son propuestas sin aplicar. Aprobar plazos, responsables,
+  canal verificado, evidencia de identidad y condiciones de retirada antes de operar.
+- Renovar sesión del CLI para comprobar el plan remoto; aceptación en dispositivos
+  reales/Safari y diagnóstico del arranque frío local siguen pendientes.
+- Fusión, publicación y cualquier operación real requieren autorización independiente.

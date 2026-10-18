@@ -1,12 +1,13 @@
 {
-  "environment": "Local emulators; not production or Spark quota measurements",
+  "sourceRevision": "aeda50fde65f883caf60f61642ee57460017140d",
+  "environment": "Local Windows emulators; not production or Spark quota measurements",
   "results": [
     {
       "size": 1000,
       "browser": "153.0.8010.12",
       "mode": "local-dev-with-emulators",
       "renderedCards": 24,
-      "loadMs": 2294,
+      "loadMs": 1427,
       "loaded": {
         "documents": 1,
         "nodes": 4601,
@@ -14,18 +15,18 @@
         "metrics": [
           {
             "name": "JSHeapUsedSize",
-            "value": 32257700
+            "value": 32220344
           },
           {
             "name": "JSHeapTotalSize",
-            "value": 33243136
+            "value": 32980992
           }
         ]
       },
-      "searchMs": 301,
-      "updateMs": 3234,
-      "clearSearchMs": 541,
-      "traverseMs": 26640,
+      "searchMs": 211,
+      "updateMs": 6086,
+      "clearSearchMs": 503,
+      "traverseMs": 17567,
       "additionalListenTargetsForInteractions": 0,
       "exportedRecords": 1000
     },
@@ -34,7 +35,7 @@
       "browser": "153.0.8010.12",
       "mode": "local-dev-with-emulators",
       "renderedCards": 24,
-      "loadMs": 4735,
+      "loadMs": 3289,
       "loaded": {
         "documents": 1,
         "nodes": 4601,
@@ -42,18 +43,18 @@
         "metrics": [
           {
             "name": "JSHeapUsedSize",
-            "value": 39566456
+            "value": 39480852
           },
           {
             "name": "JSHeapTotalSize",
-            "value": 40722432
+            "value": 41377792
           }
         ]
       },
-      "searchMs": 245,
-      "updateMs": 3163,
-      "clearSearchMs": 378,
-      "traverseMs": 55367,
+      "searchMs": 300,
+      "updateMs": 3033,
+      "clearSearchMs": 357,
+      "traverseMs": 38805,
       "additionalListenTargetsForInteractions": 0,
       "exportedRecords": 2500
     }
