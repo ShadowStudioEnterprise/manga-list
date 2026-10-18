@@ -124,6 +124,40 @@ export function validateDependencyManifest(manifest, path = 'manifest') {
   inspect(manifest)
 }
 
+export function validatePackageScripts(commands) {
+  assert(
+    commands && typeof commands === 'object' && !Array.isArray(commands),
+    'Missing npm scripts',
+  )
+  const required = {
+    'check:spark': 'node scripts/check-spark.mjs',
+    'check:spark:remote': 'node scripts/check-spark.mjs --remote',
+    'deploy:hosting':
+      'npm run check:spark:remote && firebase deploy --only hosting --project mangalist-61bb8',
+    build: 'quasar build && node scripts/build-evidence.mjs create spa',
+    'build:pwa': 'quasar build -m pwa && node scripts/build-evidence.mjs create pwa',
+    'check:release': 'node scripts/build-evidence.mjs verify pwa --project mangalist-61bb8',
+    'audit:dependencies':
+      'npm audit --audit-level=low && npm audit --prefix src-pwa --audit-level=low',
+  }
+  for (const [name, command] of Object.entries(required)) {
+    assert(
+      Object.hasOwn(commands, name) && commands[name] === command,
+      `Protected npm script changed: ${name}`,
+    )
+  }
+}
+
+export function validateWorkflow(source, path = 'workflow') {
+  // Conservative literal scan, including comments; indirect commands still need review.
+  assert(
+    !/firebase\s+(?:deploy|hosting:channel:deploy|hosting:clone)|gcloud\s+(?:run|billing)|npm\s+run(?:-script)?\s+deploy(?::[\w-]+)?|firebase-hosting-merge|FirebaseExtended\/action-hosting-deploy/i.test(
+      source,
+    ),
+    `Deployment/billing command in ${path}`,
+  )
+}
+
 function files(folder) {
   return readdirSync(resolve(root, folder), { withFileTypes: true })
     .filter((entry) => entry.name !== 'node_modules')
@@ -141,15 +175,7 @@ export function checkLocal() {
     'CLI target differs from Spark policy',
   )
   validateConfig(json('firebase.json'), policy)
-  const commands = json('package.json').scripts
-  assert(
-    commands.build === 'quasar build && node scripts/build-evidence.mjs create spa' &&
-      commands['build:pwa'] ===
-        'quasar build -m pwa && node scripts/build-evidence.mjs create pwa' &&
-      commands['check:release'] ===
-        'node scripts/build-evidence.mjs verify pwa --project mangalist-61bb8',
-    'Build evidence generation and release verification must remain enabled',
-  )
+  validatePackageScripts(json('package.json').scripts)
   assert(
     JSON.stringify(json('release-contract.json')) ===
       JSON.stringify({
@@ -182,12 +208,7 @@ export function checkLocal() {
   }
   // No deployment workflow is approved; all mutations stay manual.
   for (const path of files('.github/workflows')) {
-    assert(
-      !/firebase\s+deploy|gcloud\s+(?:run|billing)|firebase-hosting-merge|FirebaseExtended\/action-hosting-deploy/i.test(
-        read(path),
-      ),
-      `Deployment/billing command in ${path}`,
-    )
+    validateWorkflow(read(path), path)
   }
   console.log('Spark local compatibility checks passed (remote state not certified).')
   return policy
@@ -195,8 +216,13 @@ export function checkLocal() {
 
 if (process.argv[1] && resolve(process.argv[1]) === resolve(root, 'scripts/check-spark.mjs')) {
   try {
+    const args = process.argv.slice(2)
+    assert(
+      args.length === 0 || (args.length === 1 && args[0] === '--remote'),
+      'Expected no arguments or --remote',
+    )
     const policy = checkLocal()
-    if (process.argv.includes('--remote')) {
+    if (args.length === 1) {
       // Read-only, fresh evidence. No cached attestations or bypass flag.
       const inspect = (args) => {
         const options = { encoding: 'utf8', timeout: 30000, stdio: ['ignore', 'pipe', 'pipe'] }

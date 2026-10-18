@@ -147,6 +147,9 @@ La retirada del marcador requiere una decisión separada sobre sesiones antiguas
 
 ## Decisiones del titular pendientes
 
+Los [controles de entrada del verificador](spark-guard-entrypoints.md) rechazan argumentos
+ambiguos y cambios en scripts críticos; sus límites no sustituyen la protección de ramas ni IAM.
+
 - Aprobar 1000 obras como capacidad visible inicial o priorizar paginación completa.
 - Asignar responsable y plazo de asistencia para borrados abandonados; aprobar retención del UID/marcador.
 - Autorizar por separado revisión de IAM para restringir asociación de facturación, permisos

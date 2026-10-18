@@ -1,14 +1,16 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs'
+import { readFileSync, mkdtempSync, writeFileSync, rmSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { resolve, join, delimiter } from 'node:path'
+import { resolve, join, delimiter, dirname, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import {
   validateConfig,
   validateRemote,
   validateClientSource,
   validateDependencyManifest,
+  validatePackageScripts,
+  validateWorkflow,
   checkLocal,
 } from '../scripts/check-spark.mjs'
 import { createSparkBudget } from '../src/utils/spark-budget.js'
@@ -17,6 +19,110 @@ import * as firestore from 'firebase/firestore'
 
 const config = JSON.parse(readFileSync(new URL('../firebase.json', import.meta.url)))
 const policy = JSON.parse(readFileSync(new URL('../spark-policy.json', import.meta.url)))
+
+test('Spark CLI rejects unknown, duplicate and misspelled options before invoking gcloud', () => {
+  const folder = mkdtempSync(join(tmpdir(), 'mangalist-cli-'))
+  const filename = process.platform === 'win32' ? 'gcloud.cmd' : 'gcloud'
+  const command = join(folder, filename)
+  try {
+    writeFileSync(
+      command,
+      process.platform === 'win32'
+        ? '@echo off\r\necho invoked>>"%~f0.invoked"\r\nexit /b 99\r\n'
+        : '#!/bin/sh\nprintf "invoked\\n" >>"$0.invoked"\nexit 99\n',
+      { mode: 0o755 },
+    )
+    const env = { ...process.env }
+    const pathKey = Object.keys(env).find((key) => key.toLowerCase() === 'path') || 'PATH'
+    env[pathKey] = `${folder}${delimiter}${env[pathKey] || ''}`
+    delete env.GCLOUD_PROJECT
+    for (const args of [
+      ['--remtoe'],
+      ['--help'],
+      ['--remote=false'],
+      ['--remote', '--remote'],
+      ['--remote', '--skip-check'],
+      ['mangalist-61bb8'],
+    ]) {
+      const result = spawnSync(process.execPath, ['scripts/check-spark.mjs', ...args], {
+        cwd: resolve(import.meta.dirname, '..'),
+        env,
+        encoding: 'utf8',
+        timeout: 10000,
+      })
+      assert.equal(result.status, 1, `Unexpected success for ${args.join(' ')}: ${result.stdout}`)
+      assert.match(result.stderr, /Expected no arguments or --remote/)
+      assert.equal(
+        existsSync(command + '.invoked'),
+        false,
+        'gcloud was invoked for invalid options',
+      )
+    }
+    const local = spawnSync(process.execPath, ['scripts/check-spark.mjs'], {
+      cwd: resolve(import.meta.dirname, '..'),
+      env,
+      encoding: 'utf8',
+      timeout: 10000,
+    })
+    assert.equal(local.status, 0, local.stderr)
+    assert.match(local.stdout, /remote state not certified/)
+    assert.equal(existsSync(command + '.invoked'), false)
+  } finally {
+    assert.equal(dirname(resolve(folder)), resolve(tmpdir()))
+    assert.ok(basename(folder).startsWith('mangalist-cli-'))
+    rmSync(folder, { recursive: true, force: true })
+  }
+})
+
+test('protected npm scripts retain the exact remote, release and audit command chain', () => {
+  const commands = JSON.parse(readFileSync(new URL('../package.json', import.meta.url))).scripts
+  validatePackageScripts(commands)
+  validatePackageScripts({ ...commands, 'local:notes': 'node notes.mjs' })
+  for (const name of [
+    'check:spark',
+    'check:spark:remote',
+    'deploy:hosting',
+    'build',
+    'build:pwa',
+    'check:release',
+    'audit:dependencies',
+  ]) {
+    for (const replacement of [undefined, 'node -e "process.exit(0)"']) {
+      const changed = { ...commands }
+      if (replacement === undefined) delete changed[name]
+      else changed[name] = replacement
+      assert.throws(() => validatePackageScripts(changed), /Protected npm script changed/)
+    }
+  }
+  for (const changed of [
+    { ...commands, 'check:spark:remote': 'node scripts/check-spark.mjs' },
+    { ...commands, 'check:spark:remote': 'node scripts/check-spark.mjs --remtoe' },
+    { ...commands, 'deploy:hosting': 'firebase deploy --only hosting --project mangalist-61bb8' },
+    { ...commands, 'audit:dependencies': 'npm audit --audit-level=low' },
+  ])
+    assert.throws(() => validatePackageScripts(changed), /Protected npm script changed/)
+  assert.throws(
+    () => validatePackageScripts(Object.create(commands)),
+    /Protected npm script changed/,
+  )
+  for (const invalid of [null, [], 'npm run check:spark'])
+    assert.throws(() => validatePackageScripts(invalid), /Missing npm scripts/)
+})
+
+test('workflow scan rejects npm deployment aliases and Hosting publication or cloning', () => {
+  validateWorkflow(readFileSync(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8'))
+  for (const command of [
+    'npm run deploy:hosting',
+    'npm run-script deploy:hosting',
+    'npm run deploy',
+    'npx firebase hosting:channel:deploy preview',
+    'firebase hosting:clone source:live target:live',
+    'firebase deploy --only hosting',
+    'gcloud billing projects link project',
+    'uses: FirebaseExtended/action-hosting-deploy@v0',
+  ])
+    assert.throws(() => validateWorkflow(`run: ${command}`), /Deployment\/billing command/)
+})
 
 test('deployment guard CLI accepts only successful unlinked evidence and fails closed', () => {
   const folder = mkdtempSync(join(tmpdir(), 'mangalist-spark-'))
