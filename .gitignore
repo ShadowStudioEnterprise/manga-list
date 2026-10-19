@@ -40,3 +40,8 @@ ui-debug.log*
 /.firebase/
 
 /.test-tools/
+
+# VitePress generated output
+/docs/.vitepress/cache/
+/docs/.vitepress/dist/
+/docs/.vitepress/.temp/

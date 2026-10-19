@@ -4,7 +4,7 @@ Base: `68ad6727e1c78201d7b45b217ae13a4d7cb66fc1`, coincidente con `origin/main`
 al iniciar el trabajo. Rama `development/firestore-cost-review-2026-10-19`.
 Solo emulador Standard, datos sintéticos y proyecto `demo-*`. Ninguna consulta a
 usuarios reales, despliegue, cambio remoto, fusión, billing o servicio de pago.
-La evidencia histórica de edición Standard está en `verification-spark-2026-10-18.md`;
+La evidencia histórica de edición Standard está en `../security/verification-spark-2026-10-18.md`;
 no se ha renovado ni certificado el estado remoto en esta iteración.
 
 ## Cambio preparado y contrato
@@ -129,7 +129,7 @@ global diario. Un futuro cambio de semántica de búsqueda requiere decisión ex
 Revisar memoria/latencia con dispositivos objetivo y límites de almacenamiento/salida,
 además de documentos. Mantener Spark, sin vincular facturación para ampliar cuotas.
 
-La [revisión manual del marcador](manual-marker-review.md) a los 30 días es propuesta
+La [revisión manual del marcador](../accounts/manual-marker-review.md) a los 30 días es propuesta
 operativa aceptada para preparar el trabajo, sin retirada automática. Siguen
 pendientes validación legal/técnica, nombres de responsables, canal de identidad,
 plazos adicionales, retención del expediente y autorización por cada actuación real.
@@ -157,7 +157,7 @@ plazos adicionales, retención del expediente y autorización por cada actuació
   actualización 4852 ms, recorrido 86770 ms y heap JS usado 74016976 bytes
   (aproximadamente 70,6 MiB). Son valores de desarrollo local con siembra en vivo,
   no objetivos de rendimiento ni comparación controlada con producción.
-  JSON revisable: [métricas de navegador](measurements/firestore-cost-browser-2026-10-19.json).
+  JSON revisable: [métricas de navegador](../../measurements/firestore-cost-browser-2026-10-19.json).
 - SPA y PWA compilan con configuración demo; pasa la comprobación Spark local.
   La compilación no es autorización de publicación ni certificación del proyecto
   remoto. No se genera evidencia de despliegue de esta iteración.

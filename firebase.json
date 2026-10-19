@@ -1,63 +1,234 @@
 {
-  "hosting": {
-    "site": "mangalist-61bb8",
-    "public": "dist/pwa",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/*.map"],
-    "predeploy": ["npm run check:spark:remote", "npm run build:pwa", "npm run check:release"],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ],
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          {
-            "key": "X-Content-Type-Options",
-            "value": "nosniff"
-          }
-        ]
-      },
-      {
-        "source": "/",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
-      },
-      {
-        "source": "/{index.html,sw.js,manifest.json,build-info.json,build-evidence.json}",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "no-cache"
-          }
-        ]
-      },
-      {
-        "source": "/assets/**",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=31536000,immutable"
-          }
-        ]
-      },
-      {
-        "source": "/workbox-*.js",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "public,max-age=31536000,immutable"
-          }
-        ]
-      }
-    ]
-  },
+  "hosting": [
+    {
+      "public": "dist/pwa",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/*.map"],
+      "predeploy": ["npm run check:spark:remote", "npm run build:pwa", "npm run check:release"],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            }
+          ]
+        },
+        {
+          "source": "/",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        },
+        {
+          "source": "/{index.html,sw.js,manifest.json,build-info.json,build-evidence.json}",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "no-cache"
+            }
+          ]
+        },
+        {
+          "source": "/assets/**",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        },
+        {
+          "source": "/workbox-*.js",
+          "headers": [
+            {
+              "key": "Cache-Control",
+              "value": "public,max-age=31536000,immutable"
+            }
+          ]
+        }
+      ],
+      "target": "app"
+    },
+    {
+      "target": "docs",
+      "public": "docs/.vitepress/dist",
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**", "**/*.map"],
+      "predeploy": ["npm run check:spark:remote", "npm run docs:build"],
+      "cleanUrls": true,
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            {
+              "key": "X-Content-Type-Options",
+              "value": "nosniff"
+            },
+            {
+              "key": "Referrer-Policy",
+              "value": "strict-origin-when-cross-origin"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "source": "/specification-v1",
+          "destination": "/reports/project/specification-v1",
+          "type": 301
+        },
+        {
+          "source": "/technical-review-2026-10-16",
+          "destination": "/reports/project/technical-review-2026-10-16",
+          "type": 301
+        },
+        {
+          "source": "/firestore-cursors-v1",
+          "destination": "/reports/firestore/firestore-cursors-v1",
+          "type": 301
+        },
+        {
+          "source": "/firestore-cost-review-2026-10-19",
+          "destination": "/reports/firestore/firestore-cost-review-2026-10-19",
+          "type": 301
+        },
+        {
+          "source": "/transaction-read-budget-2026-10-19",
+          "destination": "/reports/firestore/transaction-read-budget-2026-10-19",
+          "type": 301
+        },
+        {
+          "source": "/verification-cursors-2026-10-18",
+          "destination": "/reports/firestore/verification-cursors-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/verification-10000-2026-10-19",
+          "destination": "/reports/firestore/verification-10000-2026-10-19",
+          "type": 301
+        },
+        {
+          "source": "/library-scale-2026-10-18",
+          "destination": "/reports/firestore/library-scale-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/spark-only",
+          "destination": "/reports/security/spark-only",
+          "type": 301
+        },
+        {
+          "source": "/spark-guard-entrypoints",
+          "destination": "/reports/security/spark-guard-entrypoints",
+          "type": 301
+        },
+        {
+          "source": "/verification-spark-2026-10-18",
+          "destination": "/reports/security/verification-spark-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/verification-spark-console-2026-10-18",
+          "destination": "/reports/security/verification-spark-console-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/abandoned-deletion-assistance",
+          "destination": "/reports/accounts/abandoned-deletion-assistance",
+          "type": 301
+        },
+        {
+          "source": "/account-marker-retention-proposal",
+          "destination": "/reports/accounts/account-marker-retention-proposal",
+          "type": 301
+        },
+        {
+          "source": "/manual-marker-review",
+          "destination": "/reports/accounts/manual-marker-review",
+          "type": 301
+        },
+        {
+          "source": "/import-recovery",
+          "destination": "/reports/features/import-recovery",
+          "type": 301
+        },
+        {
+          "source": "/synchronization-and-export",
+          "destination": "/reports/features/synchronization-and-export",
+          "type": 301
+        },
+        {
+          "source": "/drafts-and-pwa-updates",
+          "destination": "/reports/features/drafts-and-pwa-updates",
+          "type": 301
+        },
+        {
+          "source": "/verification-2026-10-16",
+          "destination": "/reports/quality/verification-2026-10-16",
+          "type": 301
+        },
+        {
+          "source": "/accessibility-2026-10-18",
+          "destination": "/reports/quality/accessibility-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/browser-coverage-2026-10-18",
+          "destination": "/reports/quality/browser-coverage-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/navigation-history-2026-10-18",
+          "destination": "/reports/quality/navigation-history-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/live-resize-2026-10-18",
+          "destination": "/reports/quality/live-resize-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/password-recovery-emulator",
+          "destination": "/reports/quality/password-recovery-emulator",
+          "type": 301
+        },
+        {
+          "source": "/releases-and-recovery",
+          "destination": "/reports/operations/releases-and-recovery",
+          "type": 301
+        },
+        {
+          "source": "/release-record-template",
+          "destination": "/reports/operations/release-record-template",
+          "type": 301
+        },
+        {
+          "source": "/firebase-startup",
+          "destination": "/reports/development/firebase-startup",
+          "type": 301
+        },
+        {
+          "source": "/dependencies-2026-10-18",
+          "destination": "/reports/development/dependencies-2026-10-18",
+          "type": 301
+        },
+        {
+          "source": "/roadmap.html",
+          "destination": "/reports/project/roadmap",
+          "type": 301
+        }
+      ]
+    }
+  ],
   "firestore": {
     "rules": "firestore.rules",
     "predeploy": ["npm run check:spark:remote"]

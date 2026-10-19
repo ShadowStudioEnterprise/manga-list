@@ -31,7 +31,7 @@ separadamente: el emulador no certifica cuotas, consumo o facturación Spark.
 En la biblioteca de 5001 registros, listeners y exportación utilizaron 32 admisiones
 de lectura. Buscar, filtrar, ordenar y cambiar página visual no añade consultas.
 
-Las [mediciones de Windows](measurements/library-cursors-2026-10-18.json) corresponden
+Las [mediciones de Windows](../../measurements/library-cursors-2026-10-18.json) corresponden
 a la implementación `aeda50f`: con 2500 obras solo se representan 24 tarjetas,
 se recorren las 105 páginas visuales y se exportan las 2500 obras.
 
@@ -78,7 +78,7 @@ La repetición selectiva sobre `fe82930` pasa 5/5: escalas 100, 1000 y 2500 en C
 y borrado con contraseña errónea/reintento en Chromium y Firefox. Todas las escalas
 recorren sus páginas, conservan 24 tarjetas como máximo, exportan todos los registros
 y no añaden targets de sincronización al buscar, filtrar, ordenar o paginar.
-Las [mediciones del 19/10](measurements/library-cursors-2026-10-19.json) incluyen
+Las [mediciones del 19/10](../../measurements/library-cursors-2026-10-19.json) incluyen
 los tres tamaños; son tiempos de interacción después de preparar las rutas, no
 tiempos de arranque, producción ni consumo facturado. No cambió código de aplicación
 o configuración Vite en este seguimiento.
@@ -99,7 +99,7 @@ Referencia del mecanismo ensayado:
 ## Estado remoto al cierre inicial y alcance
 
 La evidencia remota anterior de Standard/Spark está en
-`verification-spark-2026-10-18.md`, pero no equivale a una comprobación actual.
+`../security/verification-spark-2026-10-18.md`, pero no equivale a una comprobación actual.
 El CLI gcloud no tiene cuenta activa y el comando oficial Firebase de listado de
 bases rechaza la sesión caducada. La revisión automática rechazó acceder directamente
 a una credencial almacenada; esa acción no se ejecutó. No se eludió el rechazo ni
@@ -114,7 +114,7 @@ APIs ni fusión de ramas. Se subió únicamente la rama de revisión y su PR bor
 
 El 18/10/2026 a las 23:44 Europe/Madrid se verificó en las consolas oficiales:
 Spark, sin cuenta de facturación vinculada y Firestore Standard nativo en eur3.
-Véase [evidencia y límites de la comprobación](verification-spark-console-2026-10-18.md).
+Véase [evidencia y límites de la comprobación](../security/verification-spark-console-2026-10-18.md).
 La renovación del CLI quedó bloqueada por el consentimiento de permisos amplios;
 no se otorgaron permisos nuevos y los controles de despliegue permanecen intactos.
 

@@ -43,6 +43,8 @@ jobs:
         run: npm run audit:dependencies
       - name: Check formatting and lint
         run: npm run lint:check
+      - name: Build documentation and check links
+        run: npm run docs:build
       - name: Run regression tests
         run: npm test
       - name: Test Firestore rules

@@ -26,7 +26,7 @@ real entre dispositivos. No hay perfiles públicos ni funciones sociales.
 
 ## Mantenimiento y contribución
 
-[Especificación v1 y requisitos comprobables](docs/specification-v1.md) ·
+[Especificación v1 y requisitos comprobables](docs/reports/project/specification-v1.md) ·
 [Guía de contribución](CONTRIBUTING.md) · [Seguridad](SECURITY.md) ·
 [Cambios sin publicar](CHANGELOG.md).
 
@@ -175,7 +175,7 @@ El sitio `mangalist-61bb8` y la carpeta `dist/pwa` están definidos en `firebase
 npm run deploy:hosting
 ```
 
-El despliegue compila primero la PWA mediante el hook `predeploy` y publica únicamente Hosting.
+El despliegue compila primero la PWA mediante el hook `predeploy` y publica únicamente el destino `app`.
 Para publicar cambios de reglas se mantiene el comando independiente
 `firebase deploy --only firestore:rules --project mangalist-61bb8`.
 
@@ -187,6 +187,25 @@ Los dominios `mangalist-61bb8.web.app` y `mangalist-61bb8.firebaseapp.com` deben
 en Firebase Authentication. Si se añade un dominio propio, autorízalo también.
 Consulta la [configuración oficial de Hosting](https://firebase.google.com/docs/hosting/full-config)
 para personalizar cabeceras, redirecciones o dominios.
+
+## Portal de documentación
+
+La carpeta `docs/` contiene el portal VitePress y conserva los informes técnicos.
+Los 29 documentos técnicos están agrupados por tema en
+[`docs/reports/`](docs/reports/index.md); sus mediciones JSON permanecen en `docs/measurements/`.
+
+```bash
+npm run docs:dev
+npm run docs:build
+npm run docs:preview
+```
+
+El destino `docs` apunta al sitio `mangalist-docs` y publica `docs/.vitepress/dist`.
+`npm run deploy:docs` comprueba Spark y compila el portal mediante su hook, sin
+publicar la aplicación ni las reglas. Requiere Firebase CLI y `gcloud` autenticados.
+Consulta [instalación](docs/development/installation.md) y
+[despliegue y recuperación](docs/operations/deployment.md).
+CI compila la documentación y comprueba sus enlaces, sin publicar.
 
 ## Pruebas automatizadas
 
@@ -220,7 +239,7 @@ ficticia `demo-mangalist` que sustituye los valores de `.env`; el navegador bloq
 externas. `QCLI_FIREBASE_EMULATORS=true` solo conecta a los emuladores durante desarrollo y exige
 un proyecto con prefijo `demo-`. Si se solicita fuera de desarrollo, con valores incompletos
 o un proyecto no demo, el arranque se rechaza antes de inicializar servicios. Valores de bandera
-desconocidos también fallan. La [validación temprana](docs/firebase-startup.md) detalla el orden
+desconocidos también fallan. La [validación temprana](docs/reports/development/firebase-startup.md) detalla el orden
 de conexión y la comprobación de apps existentes; usa bandera omitida o `false` en un build normal.
 
 Se prueban el bookmarklet durante recuperación y registro, la persistencia e inicio de sesión,
@@ -228,15 +247,15 @@ las ediciones entre dos pestañas, conflictos, importación/exportación, aislam
 y edición/borrado en móvil. Las capturas y trazas quedan en `test-results/` cuando falla una prueba.
 El acceso OAuth con una cuenta real de Google requiere una comprobación manual independiente.
 
-La [matriz de navegadores y sus límites](docs/browser-coverage-2026-10-18.md) distingue los
+La [matriz de navegadores y sus límites](docs/reports/quality/browser-coverage-2026-10-18.md) distingue los
 escenarios compartidos de los permisos de portapapeles, las métricas CDP y el ciclo PWA,
 que se mantienen solo en Chromium. Firefox ejecuta doce recorridos adicionales, incluido
-el [historial Atrás/Adelante y la cancelación sin guardar](docs/navigation-history-2026-10-18.md).
+el [historial Atrás/Adelante y la cancelación sin guardar](docs/reports/quality/navigation-history-2026-10-18.md).
 
-Los [cambios de ancho con la página abierta](docs/live-resize-2026-10-18.md) comprueban
+Los [cambios de ancho con la página abierta](docs/reports/quality/live-resize-2026-10-18.md) comprueban
 biblioteca y formulario sin recarga; las notificaciones de error ResizeObserver hacen fallar la suite.
 
-La [recuperación de contraseña en emuladores](docs/password-recovery-emulator.md) comprueba
+La [recuperación de contraseña en emuladores](docs/reports/quality/password-recovery-emulator.md) comprueba
 credenciales y códigos de un solo uso mediante confirmación REST local. No valida el correo
 ni la página de acción reales de Firebase.
 
@@ -345,7 +364,7 @@ src/
 - El borrado de cuenta reautentica, bloquea nuevas escrituras con un marcador irreversible,
   elimina obras en lotes de 400 leídos del servidor y finalmente elimina Authentication.
   Conserva un registro mínimo de bloqueo; si se interrumpe, requiere reintento desde Ajustes.
-  Consulta las [decisiones y límites del borrado](docs/technical-review-2026-10-16.md).
+  Consulta las [decisiones y límites del borrado](docs/reports/project/technical-review-2026-10-16.md).
 - Si más adelante se añaden subcolecciones, el borrado debe migrarse a una Cloud Function/Admin
   SDK o a la extensión oficial **Delete User Data** para hacerlo recursivo.
 
@@ -394,18 +413,18 @@ Puedes consultar la [documentación de GitHub Actions](https://docs.github.com/a
 
 ## Revisión técnica del 16/10/2026
 
-- [Cambios, modelo de concurrencia y borrado seguro](docs/technical-review-2026-10-16.md).
-- [Resultados de verificación](docs/verification-2026-10-16.md).
-- [Roadmap priorizado y criterios de aceptación](docs/roadmap.md).
+- [Cambios, modelo de concurrencia y borrado seguro](docs/reports/project/technical-review-2026-10-16.md).
+- [Resultados de verificación](docs/reports/quality/verification-2026-10-16.md).
+- [Roadmap priorizado y criterios de aceptación](docs/reports/project/roadmap.md).
 
 ## Política Spark del 18/10/2026
 
-Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles y límites](docs/spark-only.md) y [evidencia de verificación](docs/verification-spark-2026-10-18.md).
+Solo Firebase Spark, sin Blaze ni facturación. Consulta [inventario, controles y límites](docs/reports/security/spark-only.md) y [evidencia de verificación](docs/reports/security/verification-spark-2026-10-18.md).
 
-[Revisión y control continuo de dependencias](docs/dependencies-2026-10-18.md).
+[Revisión y control continuo de dependencias](docs/reports/development/dependencies-2026-10-18.md).
 
-[Importación recuperable: reintentos, recarga y límites](docs/import-recovery.md).
+[Importación recuperable: reintentos, recarga y límites](docs/reports/features/import-recovery.md).
 
-[Estado de sincronización y procedencia de las copias](docs/synchronization-and-export.md).
+[Estado de sincronización y procedencia de las copias](docs/reports/features/synchronization-and-export.md).
 
-[Versiones, inventario de compilación y recuperación compatible](docs/releases-and-recovery.md) · [Registro para solicitar aprobación de publicación](docs/release-record-template.md).
+[Versiones, inventario de compilación y recuperación compatible](docs/reports/operations/releases-and-recovery.md) · [Registro para solicitar aprobación de publicación](docs/reports/operations/release-record-template.md).

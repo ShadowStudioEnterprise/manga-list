@@ -2,7 +2,7 @@
 
 Describe el problema y el comportamiento resultante.
 
-Si cambia un contrato, referencia los requisitos `ML-*` de `docs/specification-v1.md`
+Si cambia un contrato, referencia los requisitos `ML-*` de `docs/reports/project/specification-v1.md`
 y explica su compatibilidad con reglas, marcadores y clientes anteriores.
 
 ## Validación

@@ -67,4 +67,4 @@ este informe registra resultados locales, no un resultado de CI supuesto.
 
 El borrado sigue dependiendo del cliente y conserva el marcador mínimo. El proceso de
 servidor durable y la retirada segura de ese marcador permanecen pendientes. Véanse las
-[decisiones técnicas](technical-review-2026-10-16.md) y el [roadmap](roadmap.md).
+[decisiones técnicas](../project/technical-review-2026-10-16.md) y el [roadmap](../project/roadmap.md).

@@ -69,7 +69,7 @@ listeners existentes. Las consultas usan cursores ID y límite 501; incorporan h
 500 obras y continúan hasta completar la biblioteca. Pueden consumir lecturas de
 reglas y mínimos por consulta vacía. Un fallo no revierte lecturas ya consumidas.
 El diseño, coste y límite local de 10000 obras se detallan en
-[cursores Firestore 1.0](firestore-cursors-v1.md). Las páginas son lecturas sucesivas,
+[cursores Firestore 1.0](../firestore/firestore-cursors-v1.md). Las páginas son lecturas sucesivas,
 no una transacción global; evitar cambios concurrentes durante la copia.
 Los errores de cuota activan la pausa local existente y no reintentan en un bucle propio.
 

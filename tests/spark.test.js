@@ -6,6 +6,7 @@ import { resolve, join, delimiter, dirname, basename } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import {
   validateConfig,
+  validateHostingTargets,
   validateRemote,
   validateClientSource,
   validateDependencyManifest,
@@ -82,6 +83,8 @@ test('protected npm scripts retain the exact remote, release and audit command c
     'check:spark',
     'check:spark:remote',
     'deploy:hosting',
+    'deploy:docs',
+    'docs:build',
     'build',
     'build:pwa',
     'check:release',
@@ -125,7 +128,7 @@ test('workflow scan rejects npm deployment aliases and Hosting publication or cl
 })
 
 test('deployment guard CLI accepts only successful unlinked evidence and fails closed', () => {
-  const folder = mkdtempSync(join(tmpdir(), 'mangalist-spark-'))
+  const folder = mkdtempSync(join(tmpdir(), 'mangalist spark-'))
   const database = {
     name: `projects/${policy.project}/databases/(default)`,
     type: 'FIRESTORE_NATIVE',
@@ -134,9 +137,11 @@ test('deployment guard CLI accepts only successful unlinked evidence and fails c
   try {
     for (const enabled of [false, true, null]) {
       const billing = { name: `projects/${policy.project}/billingInfo`, billingEnabled: enabled }
+      writeFileSync(join(folder, 'billing.json'), JSON.stringify(billing))
+      writeFileSync(join(folder, 'database.json'), JSON.stringify(database))
       const mock =
         process.platform === 'win32'
-          ? `@echo off\r\nif "%~1"=="billing" echo ${JSON.stringify(billing)}\r\nif "%~1"=="firestore" echo ${JSON.stringify(database)}\r\n`
+          ? '@echo off\r\nif "%~1"=="billing" type "%~dp0billing.json"\r\nif "%~1"=="firestore" type "%~dp0database.json"\r\n'
           : `#!/bin/sh\ncase "$1" in\nbilling) printf '%s\\n' '${JSON.stringify(billing)}';;\nfirestore) printf '%s\\n' '${JSON.stringify(database)}';;\nesac\n`
       writeFileSync(join(folder, process.platform === 'win32' ? 'gcloud.cmd' : 'gcloud'), mock, {
         mode: 0o755,
@@ -175,19 +180,19 @@ test('Spark policy rejects paid services, dynamic rewrites, changed targets and 
       c.apphosting = {}
     },
     (c) => {
-      c.hosting.rewrites = [{ source: '**', run: { serviceId: 'api' } }]
+      c.hosting[0].rewrites = [{ source: '**', run: { serviceId: 'api' } }]
     },
     (c) => {
-      c.hosting.predeploy = []
+      c.hosting[0].predeploy = []
     },
     (c) => {
-      c.hosting.predeploy = ['npm run check:spark:remote', 'npm run build:pwa']
+      c.hosting[0].predeploy = ['npm run check:spark:remote', 'npm run build:pwa']
     },
     (c) => {
-      c.hosting.site = 'other'
+      c.hosting[0].target = 'other'
     },
     (c) => {
-      c.hosting.source = '.'
+      c.hosting[0].source = '.'
     },
   ]) {
     const changed = structuredClone(config)
@@ -195,6 +200,58 @@ test('Spark policy rejects paid services, dynamic rewrites, changed targets and 
     assert.throws(() => validateConfig(changed, policy))
   }
   assert.throws(() => validateConfig(config, { ...policy, billingAllowed: true }))
+})
+
+test('docs deploy rejects changed paths, missing guards, dynamic features and swapped mappings', () => {
+  for (const mutate of [
+    (c) => {
+      c.hosting[1].public = 'dist/pwa'
+    },
+    (c) => {
+      c.hosting[1].predeploy = ['npm run docs:build']
+    },
+    (c) => {
+      c.hosting[1].predeploy = ['npm run check:spark:remote']
+    },
+    (c) => {
+      c.hosting[1].rewrites = [{ source: '**', destination: '/index.html' }]
+    },
+    (c) => {
+      c.hosting[1].frameworksBackend = {}
+    },
+    (c) => {
+      c.hosting[1].target = 'app'
+    },
+    (c) => {
+      c.hosting.push(structuredClone(c.hosting[1]))
+    },
+  ]) {
+    const changed = structuredClone(config)
+    mutate(changed)
+    assert.throws(() => validateConfig(changed, policy))
+  }
+  const rc = JSON.parse(readFileSync(new URL('../.firebaserc', import.meta.url)))
+  validateHostingTargets(rc, policy.project)
+  for (const mapping of [['mangalist-61bb8'], ['other'], ['mangalist-docs', 'mangalist-61bb8']]) {
+    const changed = structuredClone(rc)
+    changed.targets[policy.project].hosting.docs = mapping
+    assert.throws(() => validateHostingTargets(changed, policy.project))
+  }
+  assert.throws(() => validateHostingTargets({}, policy.project))
+})
+
+test('report redirects reject external URLs, dynamic routes and unsupported features', () => {
+  for (const rule of [
+    { source: '/old', destination: 'https://example.com', type: 301 },
+    { source: '/**', destination: '/reports/quality/example', type: 301 },
+    { source: '/old', destination: '/reports/../example', type: 301 },
+    { source: '/old', destination: '/reports/quality/example', type: 302 },
+    { source: '/old', destination: '/reports/quality/example', type: 301, function: 'api' },
+  ]) {
+    const changed = structuredClone(config)
+    changed.hosting[1].redirects = [rule]
+    assert.throws(() => validateConfig(changed, policy), /Only static local report redirects/)
+  }
 })
 
 test('remote deployment evidence must be explicit, current project, unlinked billing and Standard', () => {

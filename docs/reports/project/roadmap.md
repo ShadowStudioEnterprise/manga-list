@@ -20,8 +20,8 @@ incluidos en esta lista. La validación local de esta rama no certifica producci
 ## Límites de autorización
 
 El bloque H9 está preparado en la [especificación v1](specification-v1.md), la
-[guía de contribución](../CONTRIBUTING.md), [seguridad](../SECURITY.md) y el
-[registro Sin publicar](../CHANGELOG.md). No convierte el PR en release ni cierra las
+[guía de contribución](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CONTRIBUTING.md), [seguridad](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/SECURITY.md) y el
+[registro Sin publicar](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CHANGELOG.md). No convierte el PR en release ni cierra las
 decisiones de licencia, soporte y canal privado de seguridad.
 
 La rama y el PR son material de revisión. No autorizan fusión a main, despliegues de Firebase,
@@ -35,58 +35,58 @@ Cloud Run, App Hosting, Extensions y Cloud Storage quedan fuera del roadmap, inc
 ofrecen una franja de uso sin coste en Blaze. No se sustituye este requisito por alertas
 de presupuesto ni por créditos gratuitos.
 
-Controles implementados para revisión: [política, inventario y operación Spark](spark-only.md).
+Controles implementados para revisión: [política, inventario y operación Spark](../security/spark-only.md).
 CI valida compatibilidad sin credenciales; despliegues manuales exigen lectura actual de
 facturación y edición. Presupuestos locales, consultas acotadas por reglas, pausa por
 cuota y borrado acotado/reanudable tienen pruebas automáticas.
 
 Decisiones explícitas del titular: desarrollar paginación Firestore para más de 1000 obras,
 proponer retención antes de aplicarla y definir asistencia manual de borrados abandonados.
-Implementación de revisión: [cursores reales y coste](firestore-cursors-v1.md),
-[propuesta de retención](account-marker-retention-proposal.md) y
-[procedimiento de asistencia](abandoned-deletion-assistance.md).
+Implementación de revisión: [cursores reales y coste](../firestore/firestore-cursors-v1.md),
+[propuesta de retención](../accounts/account-marker-retention-proposal.md) y
+[procedimiento de asistencia](../accounts/abandoned-deletion-assistance.md).
 Pendiente: aprobar límites/coste y políticas, asignar responsables y plazos;
 autorizar por separado revisión IAM/protección de rama y depuración de APIs no usadas.
 No se han cambiado permisos, servicios remotos, cuentas ni datos de producción.
 
-La revisión H8 y sus límites se detallan en [dependencias del 18/10](dependencies-2026-10-18.md).
+La revisión H8 y sus límites se detallan en [dependencias del 18/10](../development/dependencies-2026-10-18.md).
 
-La implementación H5 y las condiciones de recuperación se describen en [importación recuperable](import-recovery.md).
+La implementación H5 y las condiciones de recuperación se describen en [importación recuperable](../features/import-recovery.md).
 
-El contrato H6 se detalla en [sincronización y exportación comprobada](synchronization-and-export.md); no implica disponibilidad offline después de cerrar la pestaña.
+El contrato H6 se detalla en [sincronización y exportación comprobada](../features/synchronization-and-export.md); no implica disponibilidad offline después de cerrar la pestaña.
 
-Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](drafts-and-pwa-updates.md).
+Las condiciones de H6–H7 se detallan en [borradores y actualizaciones PWA](../features/drafts-and-pwa-updates.md).
 
-La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](accessibility-2026-10-18.md).
+La revisión local H3 y sus límites se detallan en [accesibilidad del 18/10](../quality/accessibility-2026-10-18.md).
 
-La [matriz H3 de navegadores](browser-coverage-2026-10-18.md) amplía doce recorridos a Firefox;
+La [matriz H3 de navegadores](../quality/browser-coverage-2026-10-18.md) amplía doce recorridos a Firefox;
 la aceptación en dispositivos reales y Safari continúa pendiente.
 
-La [revisión de cambios de ancho](live-resize-2026-10-18.md) conserva la altura de cabecera
+La [revisión de cambios de ancho](../quality/live-resize-2026-10-18.md) conserva la altura de cabecera
 y añade captura explícita de errores ResizeObserver y conservación de formularios.
 
-H1 cuenta con [recuperación de credenciales emuladas](password-recovery-emulator.md),
+H1 cuenta con [recuperación de credenciales emuladas](../quality/password-recovery-emulator.md),
 incluidos códigos inválidos y reutilizados. La entrega y página de acción reales, OAuth y
 configuración efectiva siguen pendientes de aceptación autorizada; H1 no se marca cerrado.
 
-La evidencia histórica de representación H6 está en [escala de biblioteca](library-scale-2026-10-18.md).
-El trabajo posterior de [cursores Firestore](firestore-cursors-v1.md) sustituye el límite
+La evidencia histórica de representación H6 está en [escala de biblioteca](../firestore/library-scale-2026-10-18.md).
+El trabajo posterior de [cursores Firestore](../firestore/firestore-cursors-v1.md) sustituye el límite
 de 1000 en la rama de revisión, preservando búsqueda y orden globales.
-La [validación del límite de 10000](verification-10000-2026-10-19.md) añade servicio
+La [validación del límite de 10000](../firestore/verification-10000-2026-10-19.md) añade servicio
 real en emulador, presupuesto real de admisión, recuperación de ráfagas y recorrido
 completo de las 417 páginas en navegador. No cierra la aceptación de coste ni de
 dispositivos reales.
 
-La preparación H4 se describe en [versiones y recuperación](releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.
+La preparación H4 se describe en [versiones y recuperación](../operations/releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.
 
-Iteración desde `68ad672`, 19/10/2026: [medición de lecturas y listeners](firestore-cost-review-2026-10-19.md)
-y [revisión manual del marcador](manual-marker-review.md). Decisiones recibidas:
+Iteración desde `68ad672`, 19/10/2026: [medición de lecturas y listeners](../firestore/firestore-cost-review-2026-10-19.md)
+y [revisión manual del marcador](../accounts/manual-marker-review.md). Decisiones recibidas:
 optimizar/medir antes de fijar capacidad definitiva; propuesta de revisión humana
 a los 30 días sin eliminación automática, pendiente de validación legal y técnica.
 Los 10000 documentos y 64 rangos siguen siendo topes técnicos provisionales.
 No se fusiona ni despliega esta iteración y no se cambia configuración ni datos reales.
 
-Continuación técnica: [presupuesto de lecturas de transacciones](transaction-read-budget-2026-10-19.md).
+Continuación técnica: [presupuesto de lecturas de transacciones](../firestore/transaction-read-budget-2026-10-19.md).
 Se mide contención real en emulador y se admite cada intento de lectura, manteniendo
 conflictos, atomicidad e IDs idempotentes. Capacidad definitiva y validación legal/técnica
 de la revisión manual del marcador siguen pendientes.

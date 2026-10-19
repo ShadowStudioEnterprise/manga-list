@@ -6,14 +6,14 @@ franja gratuita en Blaze no cumple este requisito. No hay despliegue automático
 
 ## Inventario aprobado y observado
 
-| Servicio                                                               | Uso aprobado                              | Control                                                                    |
-| ---------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------- |
-| Firebase Authentication                                                | Correo/contraseña y Google                | Sin teléfono/SMS ni proveedores nuevos; admisión local y errores de cuota  |
-| Firestore Standard `(default)`                                         | `users/{uid}` y `users/{uid}/mangas/{id}` | Reglas de propietario, esquema, marcador y límite de consultas             |
-| Hosting clásico                                                        | Ficheros estáticos PWA, una única SPA     | Solo rewrites estáticos; sin backend ni SSR                                |
-| Emulator Suite                                                         | Auth/Firestore locales `demo-mangalist`   | CI sin credenciales; E2E bloquea peticiones fuera de localhost             |
-| Storage, Functions, Run, App Hosting, Extensions, SQL/Data Connect, AI | Prohibidos                                | Rechazo de configuración/SDK; no provisionar                               |
-| Analytics, Remote Config, Messaging, App Check                         | No utilizados en este cliente             | Añadirlos exige revisar inventario y compatibilidad; nada se habilita aquí |
+| Servicio                                                               | Uso aprobado                               | Control                                                                    |
+| ---------------------------------------------------------------------- | ------------------------------------------ | -------------------------------------------------------------------------- |
+| Firebase Authentication                                                | Correo/contraseña y Google                 | Sin teléfono/SMS ni proveedores nuevos; admisión local y errores de cuota  |
+| Firestore Standard `(default)`                                         | `users/{uid}` y `users/{uid}/mangas/{id}`  | Reglas de propietario, esquema, marcador y límite de consultas             |
+| Hosting clásico                                                        | PWA en destino `app` y VitePress en `docs` | Solo contenido estático; sin backend ni SSR                                |
+| Emulator Suite                                                         | Auth/Firestore locales `demo-mangalist`    | CI sin credenciales; E2E bloquea peticiones fuera de localhost             |
+| Storage, Functions, Run, App Hosting, Extensions, SQL/Data Connect, AI | Prohibidos                                 | Rechazo de configuración/SDK; no provisionar                               |
+| Analytics, Remote Config, Messaging, App Check                         | No utilizados en este cliente              | Añadirlos exige revisar inventario y compatibilidad; nada se habilita aquí |
 
 La presencia heredada de `storageBucket` en la configuración web no inicializa Storage.
 No se instala ni importa su SDK. Cloud Storage requiere Blaze según la
@@ -42,6 +42,12 @@ errores de red, permisos insuficientes, CLI ausente o evidencia incompleta. No h
 no cambia el plan y no ofrece un modo de omitir la comprobación. El proyecto del hook debe
 coincidir con la política. `deploy:hosting` verifica también antes de invocar Firebase CLI.
 
+`deploy:hosting` selecciona solo `hosting:app`; `deploy:docs` selecciona solo
+`hosting:docs` y conserva la misma comprobación remota. El verificador permite
+exactamente estos dos destinos, con rutas y asociaciones de `.firebaserc` fijas.
+Cada sitio conserva sus hooks independientes. Las cuotas de Hosting se comparten
+entre ambos. Consulta [la publicación del portal](../../operations/deployment.md).
+
 Los tests de CI no acceden a producción. No se añade ninguna credencial ni rol de despliegue.
 Ejecutar una comprobación no autoriza desplegar. No ejecutar comandos de despliegue para
 probar los hooks contra producción.
@@ -54,7 +60,7 @@ servicios futuros. Revisión humana y permisos mínimos siguen siendo necesarios
 
 ## Cuotas y presupuesto de consultas
 
-El cliente valida las [peticiones de emuladores antes de inicializar servicios](firebase-startup.md).
+El cliente valida las [peticiones de emuladores antes de inicializar servicios](../development/firebase-startup.md).
 Una petición fuera de desarrollo, con proyecto no demo o configuración incompleta, falla
 temprano. Los valores desconocidos no se convierten silenciosamente en modo cloud. La
 coherencia de una app existente se comprueba antes de Auth/Firestore; no certifica el plan
@@ -150,7 +156,7 @@ La retirada del marcador requiere una decisión separada sobre sesiones antiguas
 Los [controles de entrada del verificador](spark-guard-entrypoints.md) rechazan argumentos
 ambiguos y cambios en scripts críticos; sus límites no sustituyen la protección de ramas ni IAM.
 
-- Revisar los límites/coste de la paginación completa ya priorizada: [cursores 1.0](firestore-cursors-v1.md).
+- Revisar los límites/coste de la paginación completa ya priorizada: [cursores 1.0](../firestore/firestore-cursors-v1.md).
 - Asignar responsable y plazo de asistencia para borrados abandonados; aprobar retención del UID/marcador.
 - Autorizar por separado revisión de IAM para restringir asociación de facturación, permisos
   de despliegue y protección de main/CI. No modificar permisos aquí ni autoasignar roles.
@@ -159,6 +165,6 @@ ambiguos y cambios en scripts críticos; sus límites no sustituyen la protecci�
 - Autorizar una publicación posterior con pruebas de actualización de clientes antiguos y
   estrategia de rollback que preserve el bloqueo de marcadores.
 
-La recuperación de importaciones usa las mismas rutas y cuotas de Spark; ver [identidades, costes y límites](import-recovery.md).
+La recuperación de importaciones usa las mismas rutas y cuotas de Spark; ver [identidades, costes y límites](../features/import-recovery.md).
 
-La descarga ahora realiza una lectura adicional acotada del servidor y rechaza caché o cambios pendientes; ver [coste, formatos y límites](synchronization-and-export.md).
+La descarga ahora realiza una lectura adicional acotada del servidor y rechaza caché o cambios pendientes; ver [coste, formatos y límites](../features/synchronization-and-export.md).

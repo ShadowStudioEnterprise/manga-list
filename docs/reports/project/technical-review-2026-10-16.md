@@ -113,5 +113,5 @@ Los tests E2E rechazan un servidor existente y abortan peticiones fuera de los p
 locales 9100, 8188 y 9199. Compilar SPA/PWA requiere las seis variables Firebase de ejemplo
 con proyecto `demo-mangalist`; ver el workflow CI. Compilar no despliega.
 
-Consultar [los resultados de esta revisión](verification-2026-10-16.md) y
+Consultar [los resultados de esta revisión](../quality/verification-2026-10-16.md) y
 [el roadmap](roadmap.md) antes de decidir una publicación.

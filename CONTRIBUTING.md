@@ -1,8 +1,8 @@
 # Contribuir a MangaList
 
 Esta rama es material de revisión del PR, no una publicación. Empieza por la
-[especificación v1](docs/specification-v1.md), el [roadmap](docs/roadmap.md) y la
-[política Spark](docs/spark-only.md). Las instrucciones del titular sobre autorización
+[especificación v1](docs/reports/project/specification-v1.md), el [roadmap](docs/reports/project/roadmap.md) y la
+[política Spark](docs/reports/security/spark-only.md). Las instrucciones del titular sobre autorización
 prevalecen: este documento no concede permiso para desplegar o modificar producción.
 
 ## Preparación local
@@ -48,12 +48,12 @@ npm run test:e2e
 El lanzador inicia Auth, Firestore y un servidor aislado. Los puertos `9199`, `8188` y
 `9100` deben estar libres. No reutilices un servidor existente ni cambies el proyecto demo
 por uno real para resolver un fallo. Chromium y Firefox tienen una
-[matriz explícita](docs/browser-coverage-2026-10-18.md); los tests rechazan peticiones externas,
+[matriz explícita](docs/reports/quality/browser-coverage-2026-10-18.md); los tests rechazan peticiones externas,
 errores ResizeObserver y el aviso de estado de historial. No añadas filtros para ocultarlos.
 
 `QCLI_FIREBASE_EMULATORS` admite vacío, `true` o `false`. Una petición `true` fuera de
 desarrollo o sin proyecto demo completo falla antes de inicializar servicios; no cae al
-modo normal. Revisa la [validación de arranque](docs/firebase-startup.md) si reutilizas una
+modo normal. Revisa la [validación de arranque](docs/reports/development/firebase-startup.md) si reutilizas una
 app predeterminada o cambias su configuración durante desarrollo.
 
 Para build o PWA, reproduce la configuración ficticia de CI antes de compilar. Estos valores
@@ -78,12 +78,12 @@ npm run test:pwa
 
 El verificador exige fuente limpia y revisión identificada. Para experimentar con cambios
 sin commit solo en demo existe `--allow-dirty-demo`; CI no lo usa y nunca permite esa
-excepción para producción. Sigue el [procedimiento de evidencia](docs/releases-and-recovery.md).
+excepción para producción. Sigue el [procedimiento de evidencia](docs/reports/operations/releases-and-recovery.md).
 La prueba del worker requiere Chromium instalado y usa un servidor local, sin publicación.
 
 Si cambias dependencias o lockfiles, ejecuta `npm run audit:dependencies` y las pruebas que
 ejercitan esas dependencias. Conserva `npm ci` reproducible y revisa el
-[override gRPC y sus límites](docs/dependencies-2026-10-18.md). Un audit sin avisos conocidos
+[override gRPC y sus límites](docs/reports/development/dependencies-2026-10-18.md). Un audit sin avisos conocidos
 no garantiza ausencia de vulnerabilidades. No añadas SDK o servicios fuera del inventario.
 
 ## Propuesta y revisión

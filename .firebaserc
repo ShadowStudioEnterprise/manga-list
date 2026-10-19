@@ -2,6 +2,17 @@
   "projects": {
     "stagi": "mangalist-61bb8"
   },
-  "targets": {},
+  "targets": {
+    "mangalist-61bb8": {
+      "hosting": {
+        "docs": [
+          "mangalist-docs"
+        ],
+        "app": [
+          "mangalist-61bb8"
+        ]
+      }
+    }
+  },
   "etags": {}
 }

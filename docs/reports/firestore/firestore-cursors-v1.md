@@ -4,7 +4,7 @@ Iteración de costes desde `68ad672` (PR #3 integrado). El despliegue anterior
 se documentó fuera de esta iteración; esta rama no publica cambios ni modifica
 reglas, índices o configuración remota. Véase la [medición comparativa](firestore-cost-review-2026-10-19.md).
 Edición objetivo: Standard nativa, fijada por `spark-policy.json` y la evidencia
-anterior de `verification-spark-2026-10-18.md`; la evidencia remota debe renovarse
+anterior de `../security/verification-spark-2026-10-18.md`; la evidencia remota debe renovarse
 antes de cualquier publicación autorizada.
 
 ## Contrato y elección

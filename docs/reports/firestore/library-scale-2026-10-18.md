@@ -44,7 +44,7 @@ Son muestras individuales locales bajo Windows y Chromium 153.0.8010.12, sin sim
 ni red. No son medias, percentiles, INP/LCP ni una garantía de rendimiento. Se usa el servidor
 de desarrollo y emuladores: no mide Firebase de producción, CDN, dispositivos lentos o el
 bundle optimizado. La muestra anterior y la primera muestra con paginación se conservan en
-[JSON de referencia](measurements/library-scale-2026-10-18.json).
+[JSON de referencia](../../measurements/library-scale-2026-10-18.json).
 
 `loadMs` mide abrir la vista de biblioteca con el listener ya iniciado durante la preparación,
 no una carga fría ni el tiempo de una consulta nueva. `searchMs` incluye rellenar el campo,

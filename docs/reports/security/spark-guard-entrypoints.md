@@ -16,8 +16,8 @@ No hay opciones para saltarse controles ni se acepta un archivo de evidencia rem
 La comprobación remota sigue rechazando facturación activa/asociada, edición distinta de
 Standard, salida incompleta, errores o herramientas ausentes.
 
-Se exigen los valores exactos de siete scripts npm: `check:spark`, `check:spark:remote`,
-`deploy:hosting`, `build`, `build:pwa`, `check:release` y `audit:dependencies`. Así, cambiar
+Se exigen los valores exactos de nueve scripts npm: `check:spark`, `check:spark:remote`,
+`deploy:hosting`, `deploy:docs`, `docs:build`, `build`, `build:pwa`, `check:release` y `audit:dependencies`. Así, cambiar
 el alias remoto para que solo revise localmente o quitar su guardia del alias de publicación
 hace fallar la revisión. Las modificaciones legítimas de esas cadenas requieren revisar
 también el contrato y las regresiones. Otros scripts adicionales no quedan certificados.
@@ -33,7 +33,7 @@ CI sigue sin publicar y sin credenciales de producción.
 `tests/spark.test.js` ejecuta el CLI real con seis variantes inválidas y una válida local.
 Un gcloud simulado deja un marcador si se invoca; ninguna de esas llamadas debe crearlo.
 La regresión inicial falló con el código anterior y pasa con el contrato estricto. Otras
-pruebas eliminan o sustituyen los siete scripts protegidos y ejercitan los comandos de
+pruebas eliminan o sustituyen los nueve scripts protegidos y ejercitan los comandos de
 workflow prohibidos. Las pruebas remotas existentes usan respuestas simuladas, nunca
 consultas a Firebase. No se ha usado un despliegue como prueba de estos controles.
 

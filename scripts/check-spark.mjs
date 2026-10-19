@@ -29,28 +29,60 @@ export function validateConfig(config, policy) {
       JSON.stringify(config.firestore.predeploy) === JSON.stringify(['npm run check:spark:remote']),
     'Only existing default Firestore rules supported',
   )
-  assert(config.hosting && !Array.isArray(config.hosting), 'Only one static Hosting site supported')
   assert(
-    config.hosting.site === policy.project && config.hosting.public === 'dist/pwa',
+    Array.isArray(config.hosting) && config.hosting.length === 2,
+    'Only app and docs Hosting sites supported',
+  )
+  const app = config.hosting.find((site) => site.target === 'app')
+  const docs = config.hosting.find((site) => site.target === 'docs')
+  assert(
+    app?.public === 'dist/pwa' && docs?.public === 'docs/.vitepress/dist',
     'Unexpected Hosting target',
   )
+  for (const site of config.hosting) {
+    const allowed = [
+      'target',
+      'public',
+      'ignore',
+      'predeploy',
+      'headers',
+      ...(site === app ? ['rewrites'] : ['cleanUrls', 'redirects']),
+    ]
+    assert(
+      Object.keys(site).every((key) => allowed.includes(key)),
+      'Unapproved Hosting feature',
+    )
+    assert(
+      site.predeploy?.includes('npm run check:spark:remote'),
+      'Remote billing check required before Hosting deployment',
+    )
+  }
   assert(
-    Object.keys(config.hosting).every((key) =>
-      ['site', 'public', 'ignore', 'predeploy', 'rewrites', 'headers'].includes(key),
-    ),
-    'Unapproved Hosting feature',
-  )
-  assert(
-    JSON.stringify(config.hosting.predeploy) ===
-      JSON.stringify(['npm run check:spark:remote', 'npm run build:pwa', 'npm run check:release']),
+    JSON.stringify(app.predeploy) ===
+      JSON.stringify([
+        'npm run check:spark:remote',
+        'npm run build:pwa',
+        'npm run check:release',
+      ]) &&
+      JSON.stringify(docs.predeploy) ===
+        JSON.stringify(['npm run check:spark:remote', 'npm run docs:build']),
     'Unexpected predeploy command',
   )
+  assert(docs.cleanUrls === true, 'Docs require clean URLs')
   assert(
-    !config.hosting.source && !config.hosting.frameworksBackend,
-    'Server/framework hosting forbidden',
+    docs.redirects === undefined ||
+      (Array.isArray(docs.redirects) &&
+        docs.redirects.every(
+          (rule) =>
+            Object.keys(rule).every((key) => ['source', 'destination', 'type'].includes(key)) &&
+            /^\/[a-z0-9-]+(?:\.html)?$/.test(rule.source) &&
+            /^\/reports\/[a-z0-9-]+\/[a-z0-9-]+$/.test(rule.destination) &&
+            rule.type === 301,
+        )),
+    'Only static local report redirects allowed',
   )
   assert(
-    config.hosting.rewrites?.every(
+    app.rewrites?.every(
       (rule) =>
         Object.keys(rule).every((key) => ['source', 'destination', 'regex'].includes(key)) &&
         typeof rule.destination === 'string',
@@ -61,11 +93,21 @@ export function validateConfig(config, policy) {
     Object.keys(config.emulators || {}).every((key) => ['auth', 'firestore', 'ui'].includes(key)),
     'Unexpected emulator',
   )
-  assert(
-    config.hosting.predeploy?.includes('npm run check:spark:remote'),
-    'Remote billing check required before Hosting deployment',
-  )
   return true
+}
+
+export function validateHostingTargets(rc, project) {
+  const projects = rc.targets || {}
+  assert(Object.keys(projects).length === 1 && projects[project], 'Unexpected target project')
+  const targets = projects[project]
+  assert(Object.keys(targets).length === 1 && targets.hosting, 'Unexpected target service')
+  const hosting = targets.hosting
+  assert(
+    Object.keys(hosting).length === 2 &&
+      JSON.stringify(hosting.app) === JSON.stringify([project]) &&
+      JSON.stringify(hosting.docs) === JSON.stringify(['mangalist-docs']),
+    'Unexpected Hosting target mapping',
+  )
 }
 
 export function validateRemote(billing, database, project) {
@@ -133,7 +175,10 @@ export function validatePackageScripts(commands) {
     'check:spark': 'node scripts/check-spark.mjs',
     'check:spark:remote': 'node scripts/check-spark.mjs --remote',
     'deploy:hosting':
-      'npm run check:spark:remote && firebase deploy --only hosting --project mangalist-61bb8',
+      'npm run check:spark:remote && firebase deploy --only hosting:app --project mangalist-61bb8',
+    'deploy:docs':
+      'npm run check:spark:remote && firebase deploy --only hosting:docs --project mangalist-61bb8',
+    'docs:build': 'vitepress build docs',
     build: 'quasar build && node scripts/build-evidence.mjs create spa',
     'build:pwa': 'quasar build -m pwa && node scripts/build-evidence.mjs create pwa',
     'check:release': 'node scripts/build-evidence.mjs verify pwa --project mangalist-61bb8',
@@ -175,6 +220,7 @@ export function checkLocal() {
     'CLI target differs from Spark policy',
   )
   validateConfig(json('firebase.json'), policy)
+  validateHostingTargets(json('.firebaserc'), policy.project)
   validatePackageScripts(json('package.json').scripts)
   assert(
     JSON.stringify(json('release-contract.json')) ===
@@ -234,7 +280,9 @@ if (process.argv[1] && resolve(process.argv[1]) === resolve(root, 'scripts/check
         return JSON.parse(
           process.platform === 'win32'
             ? execSync(
-                ['gcloud.cmd', ...parameters].map((value) => `"${value}"`).join(' '),
+                // Quoting the bare command name breaks %~dp0 in PATH-resolved
+                // batch files on Windows. Keep the fixed name unquoted.
+                `gcloud.cmd ${parameters.map((value) => `"${value}"`).join(' ')}`,
                 options,
               )
             : execFileSync('gcloud', parameters, options),

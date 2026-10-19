@@ -53,7 +53,7 @@ Si cambia la configuración durante desarrollo y existe una app con valores ante
 inicia una página/contexto nuevo con la configuración correcta; no se añaden borrados de
 persistencia, cierre de sesiones o eliminación de apps como recuperación automática.
 
-Las [regresiones de arranque](../tests/regressions.test.js) cubren rechazo antes de llamadas SDK, orden y destino de las conexiones,
+Las [regresiones de arranque](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/regressions.test.js) cubren rechazo antes de llamadas SDK, orden y destino de las conexiones,
 fallos de Auth y Firestore sin continuación, arranque normal, configuración incompleta y
 reutilización/mismatch de los seis valores con el modo local habilitado y deshabilitado.
 La batería de regresiones suma 59 casos. Los E2E usan los SDK reales contra emuladores;

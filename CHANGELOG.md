@@ -4,6 +4,18 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Documentación técnica — portal VitePress
+
+- Portal en español con navegación, búsqueda local y guías de arquitectura,
+  Firestore, seguridad, desarrollo y operaciones.
+- 29 informes organizados por tema en `docs/reports/`, con índice, menú lateral,
+  referencias actualizadas y redirecciones desde sus rutas anteriores.
+- Destinos de Hosting independientes para la PWA (`app`) y el portal (`docs`),
+  con comprobación remota de Spark en ambos y compilación de la documentación en CI.
+- Corrección de la llamada a Google Cloud CLI en Windows y pruebas negativas de
+  destinos, hooks y redirecciones. Override de Vite limitado a VitePress para
+  resolver las vulnerabilidades detectadas en sus dependencias.
+
 ## Sin publicar — cursores Firestore para MangaList 1.0
 
 - Consultas reales con `startAfter`, `endAt`, orden por ID y límite 501; rangos vivos
@@ -12,10 +24,10 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
   desde servidor, sin usar la página visual ni devolver resultados parciales por fallo.
 - Pruebas de cursores, emulador y navegador hasta 10000 obras; presupuesto real de
   admisión, rechazo de 10001, pausa por cuota simulada y recuperación explícita tras
-  una ráfaga. Véase [verificación del límite](docs/verification-10000-2026-10-19.md).
+  una ráfaga. Véase [verificación del límite](docs/reports/firestore/verification-10000-2026-10-19.md).
 - Propuestas de retención del marcador y asistencia manual, sin aplicar políticas.
 - Sin cambios de reglas, índices, configuración remota, cuentas o datos de producción.
-  Sin fusión ni despliegue por este trabajo. Véase [diseño y coste](docs/firestore-cursors-v1.md).
+  Sin fusión ni despliegue por este trabajo. Véase [diseño y coste](docs/reports/firestore/firestore-cursors-v1.md).
 
 ## Trabajo integrado en main — PR #2 (sin publicación certificada aquí)
 
@@ -25,7 +37,7 @@ el 18/10/2026, commit `9a43953`. Esta sesión no lo fusionó ni certifica un des
 
 - Política Spark exclusiva, inventario y comprobaciones de compatibilidad locales y de
   evidencia remota de solo lectura; CI sin despliegue ni credenciales de producción.
-- [Entradas del control Spark](docs/spark-guard-entrypoints.md): argumentos estrictos,
+- [Entradas del control Spark](docs/reports/security/spark-guard-entrypoints.md): argumentos estrictos,
   siete alias npm protegidos y entrada directa de CI; escaneo de publicación de canales y clones.
 - Arranque con validación temprana de emuladores: proyecto demo y desarrollo obligatorio,
   bandera estricta, apps existentes coherentes y conexiones locales en orden sin fallback.
@@ -48,12 +60,12 @@ el 18/10/2026, commit `9a43953`. Esta sesión no lo fusionó ni certifica un des
   compatible con los contratos de borrado y consulta, sin ejecutar restauraciones.
 - Especificación v1, guía de contribución, límites de comunicación de seguridad y este registro.
 
-La evidencia está en [verificación de la rama](docs/verification-spark-2026-10-18.md) y en
+La evidencia está en [verificación de la rama](docs/reports/security/verification-spark-2026-10-18.md) y en
 los enlaces CI del PR. La aceptación operativa, licencia, canal privado de seguridad,
 asistencia de borrados, retención y protección de main/IAM siguen pendientes del titular.
 Los presupuestos locales no garantizan evitar cuotas agotadas; un borrado no continúa si
 desaparece el cliente. No se habilitan Blaze, facturación o servicios de pago.
 
 Para una publicación futura autorizada, registra versión elegida, fecha real, revisión y
-evidencia en el [registro de release](docs/release-record-template.md), sin atribuirle una
+evidencia en el [registro de release](docs/reports/operations/release-record-template.md), sin atribuirle una
 restauración de Auth o de datos eliminados.

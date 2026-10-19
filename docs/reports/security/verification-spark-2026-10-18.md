@@ -72,7 +72,7 @@ autorizada habrá que preparar el `gcloud` de solo lectura y ejecutar de nuevo l
 - Protección de main, IAM, App Check y cualquier modificación remota requieren autorización
   independiente. Este trabajo no fusiona, despliega ni modifica cuentas/datos de producción.
 
-Consultar [política y operación](spark-only.md) y [roadmap](roadmap.md).
+Consultar [política y operación](spark-only.md) y [roadmap](../project/roadmap.md).
 
 ## Continuación de la revisión del PR #2
 
@@ -102,14 +102,14 @@ El nuevo commit debe volver a superar el CI antes de considerarlo validado remot
 ## Revisión de dependencias posterior
 
 El estado anterior de dependencias pendientes queda actualizado por la
-[revisión H8](dependencies-2026-10-18.md): ambos lockfiles tienen cero avisos conocidos
+[revisión H8](../development/dependencies-2026-10-18.md): ambos lockfiles tienen cero avisos conocidos
 reportados por npm después de correcciones seleccionadas. CI incorpora una auditoría
 que bloquea ante nuevos avisos o fallo del registro. Se mantienen las limitaciones
 Spark, los avisos de mantenimiento transitivo y la necesidad de revisión continua.
 
 ## Recuperación de importaciones H5
 
-Se añade [importación recuperable](import-recovery.md) sin nuevas rutas, campos ni servicios:
+Se añade [importación recuperable](../features/import-recovery.md) sin nuevas rutas, campos ni servicios:
 IDs estables por cuenta/texto/formato/fila y transacciones que no sobrescriben una obra
 existente. La vista previa reconoce IDs ya guardados al volver a seleccionar el archivo.
 No se almacena el archivo ni se prometen importaciones en segundo plano.
@@ -128,7 +128,7 @@ local de lectura, además del permiso de escritura. No se garantiza evitar cuota
 
 ## Estado de sincronización y exportación H6
 
-Se incorporan [metadatos y copia comprobada](synchronization-and-export.md). El listener
+Se incorporan [metadatos y copia comprobada](../features/synchronization-and-export.md). El listener
 solicita eventos de metadatos y la UI distingue caché, cambios pendientes y última copia
 recibida del servidor. Una caché vacía no certifica que la biblioteca esté vacía.
 
@@ -155,32 +155,32 @@ cambios, sin trasladar ese estado a otra cuenta. La batería actual suma 42 prue
 
 ## Borradores y actualización PWA H6–H7
 
-Se añaden [borradores opcionales y aviso pasivo](drafts-and-pwa-updates.md), sin escrituras remotas ni nuevos servicios. La recuperación conserva la base original para detectar conflictos. La PWA espera al cierre de todos los clientes y nunca fuerza recarga desde la aplicación. La prueba del worker compilado utiliza solo un servidor local y dos revisiones simuladas; no es validación en producción ni sustituye dispositivos reales.
+Se añaden [borradores opcionales y aviso pasivo](../features/drafts-and-pwa-updates.md), sin escrituras remotas ni nuevos servicios. La recuperación conserva la base original para detectar conflictos. La PWA espera al cierre de todos los clientes y nunca fuerza recarga desde la aplicación. La prueba del worker compilado utiliza solo un servidor local y dos revisiones simuladas; no es validación en producción ni sustituye dispositivos reales.
 
 Resultados locales de esta continuación: 48/48 regresiones, 7/7 recorridos Chromium con emuladores y compilaciones SPA/PWA demo correctos. La prueba local de actualización del worker pasa con dos pestañas; CI vuelve a ejecutar reglas y auditorías, además del nuevo ciclo PWA. Permanecen el aviso de bundle grande, la validación de otros navegadores/dispositivos y las decisiones operativas ya indicadas.
 
 ## Primera revisión H3: accesibilidad y pantallas pequeñas
 
-Se incorporan [correcciones de encabezados, foco, navegación y contraste](accessibility-2026-10-18.md), con axe solo en desarrollo. Se auditan cinco estados a 320 píxeles CSS y la biblioteca también a 768 y 1280; otra prueba recorre registro, salto, navegación y diálogo de capítulo con teclado. Los informes completos, incluidos resultados que requieren revisión humana, se conservan siete días en los artefactos de CI. No es una certificación WCAG ni prueba con lectores de pantalla o dispositivos reales. Se mantiene documentada la revisión pendiente del aviso de ResizeObserver en redimensionamiento continuo.
+Se incorporan [correcciones de encabezados, foco, navegación y contraste](../quality/accessibility-2026-10-18.md), con axe solo en desarrollo. Se auditan cinco estados a 320 píxeles CSS y la biblioteca también a 768 y 1280; otra prueba recorre registro, salto, navegación y diálogo de capítulo con teclado. Los informes completos, incluidos resultados que requieren revisión humana, se conservan siete días en los artefactos de CI. No es una certificación WCAG ni prueba con lectores de pantalla o dispositivos reales. Se mantiene documentada la revisión pendiente del aviso de ResizeObserver en redimensionamiento continuo.
 
 Resultados locales H3: 48 regresiones y 9 recorridos Chromium correctos; siete informes de axe sin infracciones detectadas, con resultados de contraste incompletos conservados para revisión humana. Auditoría npm sin avisos conocidos en ambos árboles. Las compilaciones SPA/PWA demo y la prueba del ciclo de actualización terminan correctamente; permanece el aviso de bundle grande.
 
 ## Escala H6: biblioteca por páginas
 
-Se añade [representación acotada a 24 tarjetas](library-scale-2026-10-18.md) tras medir 100 y 1000 obras sintéticas. Conserva todos los filtros y el orden antes de paginar, mantiene los límites y consultas Spark y no cambia reglas remotas. Las regresiones recorren todos los registros, verifican exportación completa tras filtrar y comprueban que la paginación no añade objetivos al listener existente. Las medidas de DOM/heap/tiempos son muestras locales, sin garantía de memoria, latencia ni ahorro de cuotas.
+Se añade [representación acotada a 24 tarjetas](../firestore/library-scale-2026-10-18.md) tras medir 100 y 1000 obras sintéticas. Conserva todos los filtros y el orden antes de paginar, mantiene los límites y consultas Spark y no cambia reglas remotas. Las regresiones recorren todos los registros, verifican exportación completa tras filtrar y comprueban que la paginación no añade objetivos al listener existente. Las medidas de DOM/heap/tiempos son muestras locales, sin garantía de memoria, latencia ni ahorro de cuotas.
 
 Resultados locales H6: 51 regresiones y 11 recorridos Chromium correctos, incluidos los dos tamaños sintéticos. La navegación no añade objetivos al listener, los filtros se aplican a toda la biblioteca y la exportación contiene todas las obras con la edición confirmada. La auditoría de paginación a 320 píxeles pasa sin infracciones detectadas y conserva su informe completo para revisión humana. Spark, formato y ESLint correctos; compilaciones SPA/PWA demo y ciclo de actualización PWA correctos, con el aviso de bundle grande ya documentado.
 
 ## Trazabilidad H4 y recuperación compatible
 
-Se añaden [sellos de compilación, inventarios y procedimiento de recuperación](releases-and-recovery.md). La versión copiada solo contiene campos públicos de build. El verificador rechaza artefactos alterados, fuente/proyecto distintos, contratos desconocidos y árboles modificados; la única excepción de desarrollo se limita a demo. Hosting exige la comprobación como último hook local. Las pruebas no ejecutan despliegue ni rollback, no alteran reglas remotas y no certifican el estado de producción.
+Se añaden [sellos de compilación, inventarios y procedimiento de recuperación](../operations/releases-and-recovery.md). La versión copiada solo contiene campos públicos de build. El verificador rechaza artefactos alterados, fuente/proyecto distintos, contratos desconocidos y árboles modificados; la única excepción de desarrollo se limita a demo. Hosting exige la comprobación como último hook local. Las pruebas no ejecutan despliegue ni rollback, no alteran reglas remotas y no certifican el estado de producción.
 
 Resultados locales H4: 56/56 regresiones, 13/13 pruebas de reglas y 12/12 recorridos Chromium correctos. Ajustes pasa la revisión de ancho y contraste a 320 píxeles; copiar la versión excluye datos de cuenta y comunica el fallo del portapapeles. Se comprueban inventarios alterados, archivos extra o ausentes, enlaces simbólicos, entradas especiales y la negativa a aceptar proyectos o revisiones incorrectos. Los inventarios SHA-256 comprueban coherencia; no son firmas ni pruebas de procedencia confiable.
 
 ## Matriz H3: Firefox
 
 Se añaden nueve recorridos Firefox a los doce Chromium en CI, con las mismas aserciones,
-datos sintéticos y bloqueo de peticiones externas. La [matriz y evidencia local](browser-coverage-2026-10-18.md)
+datos sintéticos y bloqueo de peticiones externas. La [matriz y evidencia local](../quality/browser-coverage-2026-10-18.md)
 detalla el fallo inicial de la suposición de retorno circular del foco, la repetición correcta
 del teclado en ambos motores y el aviso de Vue Router pendiente de revisión. CDP, permisos
 de portapapeles y ciclo PWA conservan su alcance Chromium. No se añaden servicios ni se
@@ -188,7 +188,7 @@ modifican cuentas, reglas o configuración de producción.
 
 ## Historial: causa del aviso y regresión de navegación
 
-La [reproducción específica en Firefox](navigation-history-2026-10-18.md) muestra que un
+La [reproducción específica en Firefox](../quality/navigation-history-2026-10-18.md) muestra que un
 `goto` de prueba redundante sobre la ruta actual dejaba `history.state` en `null`. Se retira
 y se rechaza `VUE_ROUTER_R0121` en todas las páginas de la suite portátil. Dos escenarios
 nuevos comprueban cancelación con Escape sin guardar el capítulo, foco, Atrás/Adelante y
@@ -197,7 +197,7 @@ ESLint correctos. No se cambia el router de la aplicación ni se silencia el avi
 
 ## ResizeObserver: transición de cabecera y captura de errores
 
-La [reproducción y el control negativo](live-resize-2026-10-18.md) identifican el cambio de
+La [reproducción y el control negativo](../quality/live-resize-2026-10-18.md) identifican el cambio de
 altura mínima de barra al cruzar 599/600 píxeles. La barra mantiene ahora 68 píxeles en móvil
 y escritorio; se retira el cálculo de página móvil basado en 60. La suite portátil captura
 el evento de error ResizeObserver además de las excepciones y lo rechaza. Reintroducir
@@ -211,7 +211,7 @@ servicios, facturación ni producción.
 
 ## Arranque: rechazo temprano de configuración de emuladores
 
-La [validación de arranque](firebase-startup.md) se adelanta a App/Auth/Firestore. La regresión
+La [validación de arranque](../development/firebase-startup.md) se adelanta a App/Auth/Firestore. La regresión
 nueva falló contra el código anterior al observar llamadas SDK antes del rechazo. Ahora se
 rechazan proyecto no demo, valores incompletos, modo no dev y bandera desconocida sin esas
 llamadas. Se comprueban además conexión en orden, fallos sin continuación y app existente
@@ -220,7 +220,7 @@ No se cambian configuración remota, edición Standard, datos ni facturación.
 
 ## H1: recuperación de credenciales en emuladores
 
-La [prueba de recuperación](password-recovery-emulator.md) solicita el enlace desde la app,
+La [prueba de recuperación](../quality/password-recovery-emulator.md) solicita el enlace desde la app,
 confirma el código por REST local y comprueba códigos inválidos/reutilizados, rechazo de
 contraseña anterior, acceso con la nueva y biblioteca conservada tras recarga. La repetición
 dirigida pasa 2/2 en Chromium y Firefox; se aborta y contabiliza el sondeo WebChannel exacto

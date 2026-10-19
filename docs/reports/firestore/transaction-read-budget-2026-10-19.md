@@ -26,8 +26,8 @@ excluyendo siembra, escritura concurrente y lectura de comprobación.
 | Importar fila idempotente    | 2 / 2                   | 1                | 2                  |
 
 Las mediciones antes/después están en
-[antes](measurements/transaction-budget-before-2026-10-19.json) y
-[después](measurements/transaction-budget-after-2026-10-19.json).
+[antes](../../measurements/transaction-budget-before-2026-10-19.json) y
+[después](../../measurements/transaction-budget-after-2026-10-19.json).
 La regresión nueva falla contra `a91cf02` porque las admisiones no cubren las
 lecturas. También confirma que un incremento con una sola admisión restante
 completaba dos lecturas, en lugar de detener el segundo intento.
@@ -62,7 +62,7 @@ estable; volver a intentar no sobrescribe una fila creada por otro cliente.
   con aislamiento en Chromium y Firefox; biblioteca de 10000 en Chromium. Se recorren
   las 417 páginas, se conservan búsquedas/filtros/orden sin listeners adicionales y
   se exportan todos los registros. La evidencia descriptiva de esa muestra está en
-  [medición de 10000 obras](measurements/transaction-budget-browser-10000-2026-10-19.json);
+  [medición de 10000 obras](../../measurements/transaction-budget-browser-10000-2026-10-19.json);
   no es una comparación controlada de rendimiento con la primera revisión.
 - Pasan formato/lint y comprobación Spark local. La validación completa de navegador,
   compilaciones demo y PWA se ejecuta de nuevo en CI para el commit actualizado;

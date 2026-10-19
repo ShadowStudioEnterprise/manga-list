@@ -35,6 +35,6 @@ Exportaciones y hashes de compilación no son firmas ni prueba confiable de orig
 
 Una corrección se reproduce localmente, se prueba y se presenta en una rama/PR. No autoriza
 un despliegue de emergencia, cambios de IAM o modificación de cuentas/datos. La recuperación
-sigue el [procedimiento](docs/releases-and-recovery.md), preservando reglas y marcadores.
-Consulta la [especificación](docs/specification-v1.md) y la [política Spark](docs/spark-only.md)
+sigue el [procedimiento](docs/reports/operations/releases-and-recovery.md), preservando reglas y marcadores.
+Consulta la [especificación](docs/reports/project/specification-v1.md) y la [política Spark](docs/reports/security/spark-only.md)
 para distinguir contratos implementados de aceptación y controles remotos pendientes.
