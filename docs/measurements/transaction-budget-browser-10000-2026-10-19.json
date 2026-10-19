@@ -1,0 +1,30 @@
+{
+  "size": 10000,
+  "browser": "153.0.8010.12",
+  "mode": "local-dev-with-emulators",
+  "renderedCards": 24,
+  "fixtureBudgetRecovery": false,
+  "loadScenario": "existing-listener",
+  "loadMs": 12681,
+  "loaded": {
+    "documents": 1,
+    "nodes": 4601,
+    "jsEventListeners": 1205,
+    "metrics": [
+      {
+        "name": "JSHeapUsedSize",
+        "value": 78077832
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 80637952
+      }
+    ]
+  },
+  "searchMs": 288,
+  "updateMs": 5026,
+  "clearSearchMs": 344,
+  "traverseMs": 94374,
+  "additionalListenTargetsForInteractions": 0,
+  "exportedRecords": 10000
+}

@@ -108,10 +108,10 @@ que uno quepa, por actividad compartida y otros consumos. No se fija número de 
   otro contrato de rangos/caché y ensayos de inserciones/borrados concurrentes.
   Tampoco fusionar rangos vacíos automáticamente: genera relecturas inesperadas.
 - Las actualizaciones con control de conflicto y cambios de capítulo leen dentro
-  de transacciones y permiten hasta tres intentos. Esas lecturas no equivalen al
-  contador `read` de admisión (algunas rutas solo toman `write`); el contador nunca
-  debe presentarse como cuota real. Futuro trabajo: medir contención y lecturas
-  por intento antes de ajustar admisiones, sin quitar protección contra conflictos.
+  de transacciones y permiten hasta tres intentos. La continuación de esta rama
+  [mide la contención y corrige la admisión por intento](transaction-read-budget-2026-10-19.md),
+  incluidas las importaciones idempotentes. Las admisiones siguen sin representar
+  cuota facturada, diaria o global ni todos los reintentos internos del transporte.
 - Exportar relee deliberadamente el servidor. Reutilizar memoria sin verificación
   cambiaría el contrato de copia. Una exportación sin centinela ahorraría P-1
   documentos, pero necesitaría consulta vacía adicional en múltiplos exactos;

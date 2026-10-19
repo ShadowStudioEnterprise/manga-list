@@ -1,0 +1,28 @@
+{
+  "measuredAt": "2026-10-19T16:53:37.710Z",
+  "node": "v24.18.0",
+  "scope": "synthetic emulator; SDK get calls and local admissions, not billed reads",
+  "results": [
+    {
+      "route": "chapter",
+      "allowedReads": 60,
+      "attempts": 2,
+      "sdkReads": 2,
+      "readAdmissions": 2
+    },
+    {
+      "route": "edit",
+      "allowedReads": 60,
+      "attempts": 2,
+      "sdkReads": 2,
+      "readAdmissions": 2
+    },
+    {
+      "route": "import",
+      "allowedReads": 60,
+      "attempts": 2,
+      "sdkReads": 2,
+      "readAdmissions": 2
+    }
+  ]
+}

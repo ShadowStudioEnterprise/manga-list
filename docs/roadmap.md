@@ -85,3 +85,8 @@ optimizar/medir antes de fijar capacidad definitiva; propuesta de revisión huma
 a los 30 días sin eliminación automática, pendiente de validación legal y técnica.
 Los 10000 documentos y 64 rangos siguen siendo topes técnicos provisionales.
 No se fusiona ni despliega esta iteración y no se cambia configuración ni datos reales.
+
+Continuación técnica: [presupuesto de lecturas de transacciones](transaction-read-budget-2026-10-19.md).
+Se mide contención real en emulador y se admite cada intento de lectura, manteniendo
+conflictos, atomicidad e IDs idempotentes. Capacidad definitiva y validación legal/técnica
+de la revisión manual del marcador siguen pendientes.
