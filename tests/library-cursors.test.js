@@ -117,9 +117,9 @@ for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
     )
     for (const q of f.queries) {
       assert.deepEqual(q[0], { kind: 'order', value: '__name__' })
-      assert.equal(q.at(-1).value, 501)
+      assert.equal(q.at(-1).value, 1001)
     }
-    assert.equal(f.readCount(), Math.max(1, Math.ceil(size / 500)))
+    assert.equal(f.readCount(), Math.max(1, Math.ceil(size / 1000)))
     stop()
     assert.equal(f.targets.filter((t) => t.active).length, 0)
   })
@@ -130,15 +130,15 @@ test('live splits preserve inserts on both sides, boundary deletion, edits and e
   f.start()
   await f.flush()
   await f.change((docs) => [
-    ...docs.filter((d) => d.id !== id(499)),
-    ...Array.from({ length: 520 }, (_, i) => doc(`000100-${id(i)}`)),
+    ...docs.filter((d) => d.id !== id(999)),
+    ...Array.from({ length: 1020 }, (_, i) => doc(`000100-${id(i)}`)),
     doc('zz-tail'),
   ])
   const last = f.deliveries.at(-1)
-  assert.equal(last.docs.length, 2021)
-  assert.equal(new Set(last.docs).size, 2021)
+  assert.equal(last.docs.length, 2521)
+  assert.equal(new Set(last.docs).size, 2521)
   assert.ok(last.docs.includes('zz-tail'))
-  assert.ok(!last.docs.includes(id(499)))
+  assert.ok(!last.docs.includes(id(999)))
   assert.deepEqual(f.errors, [])
   await f.change(() => [])
   assert.deepEqual(f.deliveries.at(-1).docs, [])
@@ -161,7 +161,7 @@ test('cancel and late callbacks cannot deliver or attach more targets', async ()
   const stop = f.start()
   stop()
   await f.flush()
-  f.targets[0].data({ docs: Array.from({ length: 501 }, (_, i) => doc(id(i))), metadata: server })
+  f.targets[0].data({ docs: Array.from({ length: 1001 }, (_, i) => doc(id(i))), metadata: server })
   assert.equal(f.targets.length, 1)
   assert.deepEqual(f.deliveries, [])
 })
@@ -182,7 +182,7 @@ test('a failed range stops every listener and never claims a complete partial li
 test('document and fragmentation budgets fail closed and stop targets', async () => {
   for (const limits of [
     { ...SPARK_LIMITS, libraryDocuments: 1000 },
-    { ...SPARK_LIMITS, libraryRanges: 2 },
+    { ...SPARK_LIMITS, libraryRanges: 1 },
   ]) {
     const f = await fixture(1501, { limits })
     f.start()
@@ -244,7 +244,7 @@ test('splitting an earlier range preserves ID tie order and ignores retired rang
   await f.flush()
   await f.change((docs) => [
     ...docs,
-    ...Array.from({ length: 520 }, (_, i) => doc(`000100-${id(i)}`)),
+    ...Array.from({ length: 1020 }, (_, i) => doc(`000100-${id(i)}`)),
   ])
   const last = f.deliveries.at(-1)
   assert.deepEqual(last.docs, [...last.docs].sort())

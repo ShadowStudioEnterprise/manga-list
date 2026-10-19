@@ -1,0 +1,118 @@
+{
+  "base": "68ad672",
+  "measuredAt": "2026-10-19T16:29:48.290Z",
+  "node": "v24.18.0",
+  "scope": "synthetic local emulator; initial server snapshot documents, not billed reads",
+  "results": [
+    {
+      "size": 0,
+      "pageDocuments": 500,
+      "targets": 1,
+      "active": 1,
+      "initialDocuments": 0,
+      "initialMs": 1219,
+      "exportRequests": 1,
+      "exportDocuments": 0
+    },
+    {
+      "size": 0,
+      "pageDocuments": 1000,
+      "targets": 1,
+      "active": 1,
+      "initialDocuments": 0,
+      "initialMs": 90,
+      "exportRequests": 1,
+      "exportDocuments": 0
+    },
+    {
+      "size": 100,
+      "pageDocuments": 500,
+      "targets": 1,
+      "active": 1,
+      "initialDocuments": 100,
+      "initialMs": 184,
+      "exportRequests": 1,
+      "exportDocuments": 100
+    },
+    {
+      "size": 100,
+      "pageDocuments": 1000,
+      "targets": 1,
+      "active": 1,
+      "initialDocuments": 100,
+      "initialMs": 136,
+      "exportRequests": 1,
+      "exportDocuments": 100
+    },
+    {
+      "size": 1000,
+      "pageDocuments": 500,
+      "targets": 3,
+      "active": 2,
+      "initialDocuments": 1501,
+      "initialMs": 584,
+      "exportRequests": 2,
+      "exportDocuments": 1001
+    },
+    {
+      "size": 1000,
+      "pageDocuments": 1000,
+      "targets": 1,
+      "active": 1,
+      "initialDocuments": 1000,
+      "initialMs": 340,
+      "exportRequests": 1,
+      "exportDocuments": 1000
+    },
+    {
+      "size": 5000,
+      "pageDocuments": 500,
+      "targets": 19,
+      "active": 10,
+      "initialDocuments": 9509,
+      "initialMs": 3609,
+      "exportRequests": 10,
+      "exportDocuments": 5009
+    },
+    {
+      "size": 5000,
+      "pageDocuments": 1000,
+      "targets": 9,
+      "active": 5,
+      "initialDocuments": 9004,
+      "initialMs": 2271,
+      "exportRequests": 5,
+      "exportDocuments": 5004
+    },
+    {
+      "size": 10000,
+      "pageDocuments": 500,
+      "targets": 39,
+      "active": 20,
+      "initialDocuments": 19519,
+      "initialMs": 7941,
+      "exportRequests": 20,
+      "exportDocuments": 10019,
+      "updateNewTargets": 0,
+      "reconnectNewApplicationTargets": 0,
+      "reconnectBillingReads": "not measurable by emulator",
+      "reopenTargets": 39,
+      "reopenInitialDocuments": 19519
+    },
+    {
+      "size": 10000,
+      "pageDocuments": 1000,
+      "targets": 19,
+      "active": 10,
+      "initialDocuments": 19009,
+      "initialMs": 5859,
+      "exportRequests": 10,
+      "exportDocuments": 10009,
+      "updateNewTargets": 0,
+      "reconnectNewApplicationTargets": 0,
+      "reconnectBillingReads": "not measurable by emulator",
+      "reopenTargets": 19,
+      "reopenInitialDocuments": 19009
+    }
+  ]
+}

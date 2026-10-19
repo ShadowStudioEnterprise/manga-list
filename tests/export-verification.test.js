@@ -60,7 +60,7 @@ async function exportService({
         return {}
       },
       limit: (value) => {
-        assert.equal(value, 501)
+        assert.equal(value, 1001)
         return {}
       },
       getDocsFromServer: async () => {
@@ -69,7 +69,7 @@ async function exportService({
         if (changeSession) auth.currentUser = { uid: 'bob' }
         return {
           metadata,
-          docs: Array.from({ length: Math.min(501, size - cursor - 1) }, (_, offset) => ({
+          docs: Array.from({ length: Math.min(1001, size - cursor - 1) }, (_, offset) => ({
             id: String(cursor + 1 + offset),
             data: () => mangas[0],
           })),

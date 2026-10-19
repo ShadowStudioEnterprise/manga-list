@@ -1,4 +1,9 @@
-# PROPUESTA pendiente de aprobación: retención de users/{uid}
+# Retención de users/{uid}: revisión manual propuesta
+
+Decisión recibida el 19/10/2026: adoptar como propuesta operativa una revisión
+manual a los 30 días, sin eliminación automática; validación legal y técnica pendiente.
+El [procedimiento de revisión](manual-marker-review.md) concreta responsables, identidad
+y evidencias. Los plazos adicionales de este documento siguen siendo propuestas.
 
 Documento de diseño, sin aplicación ni cambio de reglas. No autoriza eliminar
 marcadores, revocar sesiones, modificar cuentas, añadir campos ni ejecutar trabajos

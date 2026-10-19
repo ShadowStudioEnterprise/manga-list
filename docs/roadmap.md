@@ -78,3 +78,15 @@ completo de las 417 páginas en navegador. No cierra la aceptación de coste ni 
 dispositivos reales.
 
 La preparación H4 se describe en [versiones y recuperación](releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.
+
+Iteración desde `68ad672`, 19/10/2026: [medición de lecturas y listeners](firestore-cost-review-2026-10-19.md)
+y [revisión manual del marcador](manual-marker-review.md). Decisiones recibidas:
+optimizar/medir antes de fijar capacidad definitiva; propuesta de revisión humana
+a los 30 días sin eliminación automática, pendiente de validación legal y técnica.
+Los 10000 documentos y 64 rangos siguen siendo topes técnicos provisionales.
+No se fusiona ni despliega esta iteración y no se cambia configuración ni datos reales.
+
+Continuación técnica: [presupuesto de lecturas de transacciones](transaction-read-budget-2026-10-19.md).
+Se mide contención real en emulador y se admite cada intento de lectura, manteniendo
+conflictos, atomicidad e IDs idempotentes. Capacidad definitiva y validación legal/técnica
+de la revisión manual del marcador siguen pendientes.

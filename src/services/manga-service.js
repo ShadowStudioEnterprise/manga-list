@@ -372,11 +372,12 @@ export async function createManga(uid, input, { importDocumentId } = {}) {
       ) {
         throw createAppError('app/invalid-import-identity')
       }
-      sparkBudget.take('read')
       const reference = getMangaDocument(uid, importDocumentId)
       await runTransaction(
         db,
         async (transaction) => {
+          // Admission belongs to each attempt: the SDK can rerun this callback.
+          sparkBudget.take('read')
           const existing = await transaction.get(reference)
           // An acknowledged or ambiguously committed import must never overwrite
           // later edits, nor create a second document when the response was lost.
@@ -412,6 +413,7 @@ export async function updateManga(uid, mangaId, input, { expectedValues } = {}) 
       await runTransaction(
         db,
         async (transaction) => {
+          sparkBudget.take('read')
           const snapshot = await transaction.get(reference)
           if (!snapshot.exists()) {
             throw createAppError('app/invalid-manga', 'La obra ya no existe.')
@@ -500,6 +502,7 @@ export async function changeMangaChapter(uid, mangaId, direction) {
     return await runTransaction(
       db,
       async (transaction) => {
+        sparkBudget.take('read')
         const snapshot = await transaction.get(documentReference)
 
         if (!snapshot.exists()) {
