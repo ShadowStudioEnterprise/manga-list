@@ -53,12 +53,13 @@ async function seedLibrary(uid, size) {
 
 test.use({ viewport: { width: 1280, height: 900 } })
 
-for (const size of [100, 1000]) {
+for (const size of [100, 1000, 2500, 10000]) {
   test(`library scale ${size}: load, search, update and bounded representation`, async ({
     page,
     context,
   }, testInfo) => {
-    test.setTimeout(180000)
+    // The 10000-record case traverses all 417 visual pages as well as exporting.
+    test.setTimeout(size === 10000 ? 420000 : 300000)
     const errors = []
     const external = []
     let listenTargets = 0
@@ -76,6 +77,8 @@ for (const size of [100, 1000]) {
       external.push(url.origin)
       return route.abort()
     })
+    // Install before app modules capture Date.now for their admission clocks.
+    if (size === 10000) await page.clock.install()
     await page.goto('/#/register')
     await page
       .getByLabel('Correo electrónico', { exact: true })
@@ -86,10 +89,17 @@ for (const size of [100, 1000]) {
     await page.getByRole('button', { name: 'Crear cuenta', exact: true }).click()
     const { localId: uid } = await (await signup).json()
     expect(typeof uid).toBe('string')
-    await expect(page.getByRole('heading', { name: 'Biblioteca', exact: true })).toBeVisible()
+    // Cold development imports may take longer than a normal UI interaction.
+    await expect(page.getByRole('heading', { name: 'Biblioteca', exact: true })).toBeVisible({
+      timeout: 90000,
+    })
     // Measure opening the library view with its existing listener, not cold network latency.
     await page.goto('/#/settings')
-    await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible()
+    // The first visit also compiles this lazy route and its dependencies in Vite.
+    // Keep that preparation outside the measured library interactions below.
+    await expect(page.getByRole('heading', { name: 'Ajustes', exact: true })).toBeVisible({
+      timeout: 90000,
+    })
     await seedLibrary(uid, size)
     const client = await context.newCDPSession(page)
     await client.send('Performance.enable')
@@ -102,10 +112,51 @@ for (const size of [100, 1000]) {
     }
     let start = performance.now()
     await page.goto('/#/library')
+    if (size === 10000) {
+      // Fixture batches can fragment live ranges and spend the per-minute budget.
+      // Accept either a complete library or its explicit budget error, never a
+      // stale partial snapshot as a successful load. Exercise the existing UI
+      // recovery if needed; do not raise or bypass the real admission limit.
+      const budgetError = page.getByRole('alert').filter({ hasText: 'Límite local de peticiones' })
+      const confirmed = page.getByRole('status').filter({ hasText: 'Última instantánea' })
+      const fullSummary = page
+        .locator('.library-page-summary')
+        .filter({ hasText: 'de 10000 obras' })
+      await expect
+        .poll(
+          async () =>
+            (await budgetError.isVisible()) ||
+            ((await confirmed.isVisible()) && (await fullSummary.isVisible())),
+          { timeout: 90000 },
+        )
+        .toBe(true)
+      results.fixtureBudgetRecovery = await budgetError.isVisible()
+      if (results.fixtureBudgetRecovery) {
+        await page.goto('/#/settings/import-export')
+        await expect(
+          page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
+        ).toBeVisible({ timeout: 90000 })
+        await expect(
+          page.getByRole('button', { name: 'Descargar JSON', exact: true }),
+        ).toBeDisabled()
+        await page.goto('/#/library')
+        // Advance only wall time past the local admission window, without firing
+        // timers or sleeping a minute. This does not simulate a daily Spark reset.
+        await page.clock.setSystemTime((await page.evaluate(() => Date.now())) + 61000)
+        results.loadScenario = 'manual-retry-after-fixture-burst'
+        start = performance.now()
+        await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
+      } else {
+        results.loadScenario = 'existing-listener'
+      }
+    }
     await expect(page.locator('.manga-grid > .manga-card')).toHaveCount(rendered, {
       timeout: 90000,
     })
-    await expect(page.getByRole('status')).toContainText('Última instantánea')
+    await expect(page.getByRole('status')).toContainText('Última instantánea', {
+      timeout: size === 10000 ? 90000 : 15000,
+    })
+    await expect(page.locator('.library-page-summary')).toContainText(`de ${size} obras`)
     results.loadMs = Math.round(performance.now() - start)
     await client.send('HeapProfiler.collectGarbage')
     results.loaded = {
@@ -200,7 +251,7 @@ for (const size of [100, 1000]) {
     await page.goto('/#/settings/import-export')
     await expect(
       page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
-    ).toBeVisible()
+    ).toBeVisible({ timeout: 90000 })
     const download = page.waitForEvent('download')
     await page.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
     const exported = JSON.parse(await readFile(await (await download).path(), 'utf8'))

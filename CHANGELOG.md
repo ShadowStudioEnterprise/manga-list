@@ -4,11 +4,24 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
-## Sin publicar — PR #2
+## Sin publicar — cursores Firestore para MangaList 1.0
+
+- Consultas reales con `startAfter`, `endAt`, orden por ID y límite 501; rangos vivos
+  que se dividen al crecer, con protección local de 10000 obras y 64 rangos.
+- Búsqueda, filtros, orden y contadores completos; exportación JSON/CSV paginada
+  desde servidor, sin usar la página visual ni devolver resultados parciales por fallo.
+- Pruebas de cursores, emulador y navegador hasta 10000 obras; presupuesto real de
+  admisión, rechazo de 10001, pausa por cuota simulada y recuperación explícita tras
+  una ráfaga. Véase [verificación del límite](docs/verification-10000-2026-10-19.md).
+- Propuestas de retención del marcador y asistencia manual, sin aplicar políticas.
+- Sin cambios de reglas, índices, configuración remota, cuentas o datos de producción.
+  Sin fusión ni despliegue por este trabajo. Véase [diseño y coste](docs/firestore-cursors-v1.md).
+
+## Trabajo integrado en main — PR #2 (sin publicación certificada aquí)
 
 Trabajo acumulado en `development/spark-guardrails-2026-10-18`, desde `eb7a38b`.
-Estado: [PR en borrador](https://github.com/ShadowStudioEnterprise/manga-list/pull/2),
-sin fusión ni despliegue por este trabajo.
+Estado comprobado: [PR #2 integrado](https://github.com/ShadowStudioEnterprise/manga-list/pull/2)
+el 18/10/2026, commit `9a43953`. Esta sesión no lo fusionó ni certifica un despliegue.
 
 - Política Spark exclusiva, inventario y comprobaciones de compatibilidad locales y de
   evidencia remota de solo lectura; CI sin despliegue ni credenciales de producción.

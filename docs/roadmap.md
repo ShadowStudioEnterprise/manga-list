@@ -40,9 +40,13 @@ CI valida compatibilidad sin credenciales; despliegues manuales exigen lectura a
 facturación y edición. Presupuestos locales, consultas acotadas por reglas, pausa por
 cuota y borrado acotado/reanudable tienen pruebas automáticas.
 
-Pendiente del titular: aceptar el máximo visible de 1000 obras o priorizar paginación completa;
-asignar responsable y plazo de asistencia para borrados abandonados; decidir retención del
-marcador; autorizar por separado revisión IAM/protección de rama y depuración de APIs no usadas.
+Decisiones explícitas del titular: desarrollar paginación Firestore para más de 1000 obras,
+proponer retención antes de aplicarla y definir asistencia manual de borrados abandonados.
+Implementación de revisión: [cursores reales y coste](firestore-cursors-v1.md),
+[propuesta de retención](account-marker-retention-proposal.md) y
+[procedimiento de asistencia](abandoned-deletion-assistance.md).
+Pendiente: aprobar límites/coste y políticas, asignar responsables y plazos;
+autorizar por separado revisión IAM/protección de rama y depuración de APIs no usadas.
 No se han cambiado permisos, servicios remotos, cuentas ni datos de producción.
 
 La revisión H8 y sus límites se detallan en [dependencias del 18/10](dependencies-2026-10-18.md).
@@ -65,6 +69,12 @@ H1 cuenta con [recuperación de credenciales emuladas](password-recovery-emulato
 incluidos códigos inválidos y reutilizados. La entrega y página de acción reales, OAuth y
 configuración efectiva siguen pendientes de aceptación autorizada; H1 no se marca cerrado.
 
-La representación por páginas y la evidencia H6 están en [escala de biblioteca](library-scale-2026-10-18.md); no amplía el límite de 1000 obras ni reduce las lecturas iniciales.
+La evidencia histórica de representación H6 está en [escala de biblioteca](library-scale-2026-10-18.md).
+El trabajo posterior de [cursores Firestore](firestore-cursors-v1.md) sustituye el límite
+de 1000 en la rama de revisión, preservando búsqueda y orden globales.
+La [validación del límite de 10000](verification-10000-2026-10-19.md) añade servicio
+real en emulador, presupuesto real de admisión, recuperación de ráfagas y recorrido
+completo de las 417 páginas en navegador. No cierra la aceptación de coste ni de
+dispositivos reales.
 
 La preparación H4 se describe en [versiones y recuperación](releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.

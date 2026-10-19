@@ -68,16 +68,16 @@ Hosting Spark ofrece 10 GB almacenados y 10 GB de descarga al mes según la
 [tabla de precios](https://firebase.google.com/pricing). Auth tiene límites específicos
 por operación/proveedor: no asumir envíos de correo o accesos ilimitados.
 
-| Operación                   | Presupuesto de la aplicación                                                                                                                                   |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Biblioteca                  | Una suscripción por almacén; consulta de 1001 documentos como máximo para detectar exceso de 1000                                                              |
-| Reglas de listado           | Exigen propietario y `limit <= 1001`; rechazan consultas sin límite                                                                                            |
-| Duplicados                  | Máximo 10 resultados por búsqueda                                                                                                                              |
-| Detalle                     | Un documento por petición                                                                                                                                      |
-| Admisión por pestaña/minuto | 60 lecturas puntuales, 120 operaciones de escritura, 3 aperturas de listener, 10 operaciones de Auth                                                           |
-| Transacciones               | Máximo 3 intentos del SDK por transacción                                                                                                                      |
-| Importación                 | Concurrencia 8; IDs estables y transacción por fila; hasta 60 admisiones/minuto por presupuesto de lecturas; detiene chunks posteriores ante cuota/presupuesto |
-| Borrado por confirmación    | Máximo 5 lotes de 400 borrados; hasta 6 consultas, más marcador y verificación de Auth                                                                         |
+| Operación                   | Presupuesto de la aplicación                                                                                                                                                |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Biblioteca                  | Una apertura lógica por almacén; rangos ID con cursores, límite 501 por consulta, presupuesto local de 10000 obras/64 rangos; cada target nuevo consume admisión de lectura |
+| Reglas de listado           | Exigen propietario y `limit <= 1001`; rechazan consultas sin límite                                                                                                         |
+| Duplicados                  | Máximo 10 resultados por búsqueda                                                                                                                                           |
+| Detalle                     | Un documento por petición                                                                                                                                                   |
+| Admisión por pestaña/minuto | 60 lecturas puntuales, 120 operaciones de escritura, 3 aperturas de listener, 10 operaciones de Auth                                                                        |
+| Transacciones               | Máximo 3 intentos del SDK por transacción                                                                                                                                   |
+| Importación                 | Concurrencia 8; IDs estables y transacción por fila; hasta 60 admisiones/minuto por presupuesto de lecturas; detiene chunks posteriores ante cuota/presupuesto              |
+| Borrado por confirmación    | Máximo 5 lotes de 400 borrados; hasta 6 consultas, más marcador y verificación de Auth                                                                                      |
 
 Una petición no equivale a una lectura facturable: una consulta consume por documentos,
 una vacía tiene coste mínimo, una transacción puede repetir lecturas, las reglas consultan
@@ -85,11 +85,11 @@ el marcador y los listeners cobran lecturas por cambios y reconexiones. Un inten
 borrado grande puede leer hasta 2400 obras, borrar 2000 y gastar lecturas adicionales del
 marcador/reglas. Los números anteriores no representan un límite global facturable.
 
-Una biblioteca de más de 1000 obras produce un error explícito, cierra la suscripción y
+Una biblioteca que excede el presupuesto local de 10000 obras o 64 rangos produce un error explícito, cierra la suscripción y
 no entrega una copia parcial. Se bloquean importación/exportación con error de sincronización
-o carga en curso. No se eliminan obras para cumplir el límite. Hace falta soporte o futura
-paginación completa; los clientes antiguos con consultas sin límite dejarán de sincronizar
-cuando se autorice publicar estas reglas. Probar la actualización PWA antes de publicarlas.
+o carga en curso. No se eliminan obras para cumplir el límite. Hace falta revisión de coste
+antes de ampliar estos presupuestos. La paginación nueva es compatible con las reglas
+actuales; no requiere publicarlas de nuevo. Probar la actualización PWA antes de publicarla.
 
 El presupuesto está en memoria de cada pestaña: recargar lo restablece y otras pestañas,
 usuarios o clientes modificados lo eluden. No limita cambios recibidos en un listener ya
@@ -150,7 +150,7 @@ La retirada del marcador requiere una decisión separada sobre sesiones antiguas
 Los [controles de entrada del verificador](spark-guard-entrypoints.md) rechazan argumentos
 ambiguos y cambios en scripts críticos; sus límites no sustituyen la protección de ramas ni IAM.
 
-- Aprobar 1000 obras como capacidad visible inicial o priorizar paginación completa.
+- Revisar los límites/coste de la paginación completa ya priorizada: [cursores 1.0](firestore-cursors-v1.md).
 - Asignar responsable y plazo de asistencia para borrados abandonados; aprobar retención del UID/marcador.
 - Autorizar por separado revisión de IAM para restringir asociación de facturación, permisos
   de despliegue y protección de main/CI. No modificar permisos aquí ni autoasignar roles.

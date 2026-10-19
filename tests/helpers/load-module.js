@@ -20,37 +20,41 @@ export async function loadModule(file, overrides = {}, env = {}) {
   }
   async function load(path) {
     if (cache.has(path)) return cache.get(path)
-    let source = await readFile(path, 'utf8')
-    if (path.endsWith('.vue')) {
-      source = compileScript(parse(source, { filename: path }).descriptor, { id: path }).content
-    }
-    const module = new SourceTextModule(source, {
-      identifier: path,
-      initializeImportMeta(meta) {
-        meta.env = env
-      },
-    })
-    cache.set(path, module)
-    await module.link(async (specifier, referencing) => {
-      if (Object.hasOwn(overrides, specifier)) return synthetic(specifier, overrides[specifier])
-      if (specifier === '#q-app')
-        return synthetic(specifier, {
-          defineConfig: (value) => value,
-          defineBoot: (value) => value,
-        })
-      if (specifier.endsWith('.vue')) return synthetic(specifier, { default: {} })
-      if (specifier.startsWith('@/') || specifier.startsWith('.')) {
-        let target = specifier.startsWith('@/')
-          ? resolve(root, 'src', specifier.slice(2))
-          : resolve(dirname(referencing.identifier), specifier)
-        if (!extname(target)) target += '.js'
-        return load(target)
+    // Cache construction before awaiting I/O: diamond imports share one instance.
+    const pending = (async () => {
+      let source = await readFile(path, 'utf8')
+      if (path.endsWith('.vue')) {
+        source = compileScript(parse(source, { filename: path }).descriptor, { id: path }).content
       }
-      return synthetic(specifier, await import(specifier))
-    })
-    return module
+      return new SourceTextModule(source, {
+        identifier: path,
+        initializeImportMeta(meta) {
+          meta.env = env
+        },
+      })
+    })()
+    cache.set(path, pending)
+    return pending
+  }
+  const linker = async (specifier, referencing) => {
+    if (Object.hasOwn(overrides, specifier)) return synthetic(specifier, overrides[specifier])
+    if (specifier === '#q-app')
+      return synthetic(specifier, {
+        defineConfig: (value) => value,
+        defineBoot: (value) => value,
+      })
+    if (specifier.endsWith('.vue')) return synthetic(specifier, { default: {} })
+    if (specifier.startsWith('@/') || specifier.startsWith('.')) {
+      let target = specifier.startsWith('@/')
+        ? resolve(root, 'src', specifier.slice(2))
+        : resolve(dirname(referencing.identifier), specifier)
+      if (!extname(target)) target += '.js'
+      return load(target)
+    }
+    return synthetic(specifier, await import(specifier))
   }
   const module = await load(resolve(root, file))
+  await module.link(linker)
   await module.evaluate()
   return module.namespace
 }

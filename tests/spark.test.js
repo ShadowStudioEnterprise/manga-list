@@ -243,9 +243,8 @@ test('admission budgets stop bursts and reset only after the time window', () =>
   budget.take('read')
 })
 
-test('oversized listener rejects partial data and unsubscribes; quota blocks reconnect before SDK', async () => {
-  let receive,
-    fail,
+test('cursor listener quota failure stops targets and blocks reconnect before SDK', async () => {
+  let fail,
     subscriptions = 0,
     stops = 0
   const service = await loadModule('src/services/manga-service.js', {
@@ -254,14 +253,13 @@ test('oversized listener rejects partial data and unsubscribes; quota blocks rec
       ...firestore,
       collection: () => ({}),
       limit: (value) => {
-        assert.equal(value, 1001)
+        assert.equal(value, 501)
         return {}
       },
       query: () => ({}),
-      onSnapshot: (_ref, options, data, error) => {
+      onSnapshot: (_ref, options, _data, error) => {
         assert.equal(options.includeMetadataChanges, true)
         subscriptions++
-        receive = data
         fail = error
         return () => {
           stops++
@@ -269,34 +267,19 @@ test('oversized listener rejects partial data and unsubscribes; quota blocks rec
       },
     },
   })
-  let delivered = 0,
-    error
+  let error
   service.subscribeToMangas(
     'alice',
-    () => {
-      delivered++
-    },
-    (value) => {
-      error = value
-    },
-  )
-  receive({ docs: Array.from({ length: 1001 }, () => ({})) })
-  assert.equal(error.code, 'app/library-budget')
-  assert.equal(stops, 1)
-  assert.equal(delivered, 0)
-  service.subscribeToMangas(
-    'alice',
-    () => {
-      delivered++
-    },
+    () => assert.fail('No partial data'),
     (value) => {
       error = value
     },
   )
   fail({ code: 'resource-exhausted' })
   assert.equal(error.code, 'resource-exhausted')
+  assert.equal(stops, 1)
   assert.throws(() => service.subscribeToMangas('alice', () => {}), { code: 'app/quota-paused' })
-  assert.equal(subscriptions, 2)
+  assert.equal(subscriptions, 1)
 })
 
 test('client scan rejects side-effect imports, literal dynamic imports, reexports and internal SDKs', () => {

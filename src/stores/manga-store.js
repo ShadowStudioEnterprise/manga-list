@@ -81,6 +81,7 @@ function selectedGenresMatch(mangaGenres, selectedGenres) {
 export const useMangaStore = defineStore('mangas', {
   state: () => ({
     mangas: [],
+    libraryRevision: 0,
     loading: false,
     syncError: null,
     snapshotReceived: false,
@@ -182,11 +183,12 @@ export const useMangaStore = defineStore('mangas', {
             }
 
             this.mangas = mangas
+            this.libraryRevision += 1
             this.snapshotReceived = true
             this.snapshotFromCache = metadata.fromCache !== false
             this.hasPendingWrites = metadata.hasPendingWrites !== false
             this.syncError = null
-            this.loading = false
+            this.loading = metadata.complete === false
           },
           (error) => {
             if (this.subscribedUid !== uid || version !== subscriptionVersion) {

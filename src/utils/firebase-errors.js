@@ -41,7 +41,7 @@ const ERROR_MESSAGES = Object.freeze({
   'app/deletion-budget':
     'Límite de 2000 borrados por intento alcanzado. Vuelve a confirmar para continuar.',
   'app/library-budget':
-    'La biblioteca supera las 1000 obras admitidas. No se ha cargado una copia parcial. Contacta con soporte para recuperar o reducir la biblioteca.',
+    'La biblioteca alcanza el límite local de carga (hasta 10000 obras). No se puede confirmar una copia completa. Contacta con soporte antes de continuar.',
   'resource-exhausted':
     'Cuota del servicio agotada. Conserva tus cambios y espera antes de reintentar. Puede requerir el reinicio de la cuota diaria.',
   'firestore/resource-exhausted': 'Cuota de Firestore agotada. Espera antes de reintentar.',

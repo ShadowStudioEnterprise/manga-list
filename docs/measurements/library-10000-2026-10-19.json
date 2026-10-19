@@ -1,0 +1,47 @@
+{
+  "sourceRevision": "aa9c8ca9c868014a44f646b4924c0ef8a886d13e",
+  "environment": "Local Windows, development server and demo Firebase Standard emulators; synthetic data and controlled admission clocks; not production or Spark quota measurements",
+  "service": {
+    "documents": 10000,
+    "initialListenerAdmissions": 39,
+    "firstExportAdmissions": 20,
+    "activeRanges": 20,
+    "jsonAndCsvRoundTrip": true,
+    "budgetFailureAfterOnePage": true,
+    "injectedQuotaPauseMs": 900000,
+    "rejectedDocumentCount": 10001,
+    "remainingListenersAfterLimit": 0,
+    "productionRequests": 0
+  },
+  "browser": {
+    "size": 10000,
+    "browser": "153.0.8010.12",
+    "mode": "local-dev-with-emulators",
+    "renderedCards": 24,
+    "fixtureBudgetRecovery": true,
+    "loadScenario": "manual-retry-after-fixture-burst",
+    "loadMs": 20864,
+    "loaded": {
+      "documents": 1,
+      "nodes": 4601,
+      "jsEventListeners": 1205,
+      "metrics": [
+        {
+          "name": "JSHeapUsedSize",
+          "value": 87150900
+        },
+        {
+          "name": "JSHeapTotalSize",
+          "value": 94269440
+        }
+      ]
+    },
+    "searchMs": 261,
+    "updateMs": 5558,
+    "clearSearchMs": 341,
+    "traverseMs": 99564,
+    "additionalListenTargetsForInteractions": 0,
+    "exportedRecords": 10000
+  },
+  "serviceSourceRevision": "ca37d0b3a94158f12d188349520b0a1a0d80d285"
+}

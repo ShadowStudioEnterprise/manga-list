@@ -309,9 +309,18 @@ async function exportLibrary(format) {
     return
   }
   exporting.value = true
+  const libraryRevision = mangaStore.libraryRevision
   try {
     const snapshot = await fetchLibraryForExport(uid)
     if (authStore.user?.uid !== uid || hasUnconfirmedWrites() || mangaStore.syncError) return
+    if (mangaStore.libraryRevision !== libraryRevision) {
+      $q.notify({
+        type: 'warning',
+        message:
+          'La biblioteca cambió durante la copia. Espera a que se sincronice y vuelve a exportar.',
+      })
+      return
+    }
     downloadLibraryExport(snapshot.mangas, format, { verification: snapshot.verification })
     $q.notify({
       type: 'positive',

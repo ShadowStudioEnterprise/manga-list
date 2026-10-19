@@ -1,7 +1,8 @@
 # Especificación de MangaList, versión 1
 
-Fecha: 18/10/2026. Base revisada: `6c418c5`. Estado: propuesta implementada en la rama
-del [PR #2](https://github.com/ShadowStudioEnterprise/manga-list/pull/2), sin publicar.
+Fecha: 18/10/2026. Base actual: `9a43953` de main, con el
+[PR #2](https://github.com/ShadowStudioEnterprise/manga-list/pull/2) integrado.
+Ampliación de cursores implementada en `development/firestore-cursors-2026-10-18`, sin publicar.
 Describe el comportamiento de esta rama; no certifica el contenido ni las reglas de producción.
 
 Los identificadores `ML-*` permiten revisar cambios y localizar su evidencia. Cambiar un
@@ -12,20 +13,20 @@ documento es independiente del esquema de obras, de la exportación y del sello 
 
 ## Requisitos y evidencia
 
-| ID     | Comportamiento requerido                                                                                                                                                                          | Implementación y evidencia principal                                                                                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ML-001 | Solo Firebase Spark, sin facturación ni servicios que requieran pago. CI no despliega; las comprobaciones fallan ante evidencia incompleta.                                                       | [Política](../spark-policy.json), [control](../scripts/check-spark.mjs), [pruebas](../tests/spark.test.js), [operación](spark-only.md)                            |
-| ML-002 | Cada cuenta accede solo a su biblioteca; rutas protegidas y reglas de propietario, con rechazo de campos no admitidos.                                                                            | [Reglas](../firestore.rules), [pruebas reales de reglas](../tests/firestore/security.test.js), [flujos](../tests/e2e/library.spec.js)                             |
-| ML-003 | Las obras conservan el capítulo como texto; los cambios numéricos son transaccionales. Las ediciones de campos distintos se combinan; un conflicto del mismo campo requiere resolución explícita. | [Servicio](../src/services/manga-service.js), [regresiones](../tests/regressions.test.js), [reglas](../tests/firestore/security.test.js)                          |
-| ML-004 | Una consulta de biblioteca acotada detecta el exceso de 1000 obras sin mostrar una copia parcial. La presentación pagina 24 tarjetas después de filtrar y ordenar globalmente.                    | [Presupuesto](../src/utils/spark-budget.js), [paginación](../tests/library-pagination.test.js), [escala](../tests/e2e/library-scale.spec.js)                      |
-| ML-005 | La admisión local limita ráfagas y pausa operaciones tras errores de cuota. Las transacciones tienen intentos acotados; no hay reintentos infinitos controlados por la app.                       | [Control local](../src/utils/spark-budget.js), [pruebas](../tests/spark.test.js), [límites](spark-only.md)                                                        |
-| ML-006 | El borrado exige reautenticación, bloquea nuevas escrituras mediante marcador y borra Auth solo después de comprobar desde servidor que la biblioteca está vacía.                                 | [Servicio](../src/services/account-service.js), [regresiones](../tests/account-service.test.js), [reanudación real](../tests/firestore/security.test.js)          |
-| ML-007 | La importación tiene previsualización y validación. Volver a seleccionar el mismo archivo/formato con la misma cuenta reutiliza IDs estables y no sobrescribe filas ya creadas.                   | [Identidad y recuperación](import-recovery.md), [regresiones](../tests/import-recovery.test.js), [concurrencia real](../tests/firestore/security.test.js)         |
-| ML-008 | La exportación consulta el servidor, rechaza caché, cambios pendientes y exceso de tamaño, y comprueba que la cuenta no ha cambiado antes de descargar.                                           | [Contrato](synchronization-and-export.md), [pruebas](../tests/export-verification.test.js), [desconexión](../tests/e2e/library.spec.js)                           |
-| ML-009 | Los borradores de pestaña son opcionales, por cuenta, acotados y requieren recuperación explícita; conservan la base de edición para detectar conflictos.                                         | [Borradores](drafts-and-pwa-updates.md), [pruebas](../tests/form-drafts.test.js)                                                                                  |
-| ML-010 | La PWA avisa de una actualización disponible y espera al cierre de todos los clientes; no fuerza recarga ni activación que pueda perder un formulario.                                            | [Configuración](../quasar.config.js), [prueba del worker compilado](../tests/pwa/updates.test.js)                                                                 |
-| ML-011 | Los flujos cubiertos conservan controles y foco por teclado, diálogos cancelables y campos durante cambios de ancho; las auditorías automáticas no sustituyen dispositivos o revisión humana.     | [Matriz](browser-coverage-2026-10-18.md), [historial](navigation-history-2026-10-18.md), [resize](live-resize-2026-10-18.md), [E2E](../tests/e2e/library.spec.js) |
-| ML-012 | La compilación identifica revisión, proyecto y contratos; se verifica el inventario de archivos y fuente limpia antes de una futura publicación autorizada.                                       | [Contratos](../release-contract.json), [pruebas](../tests/build-evidence.test.js), [procedimiento](releases-and-recovery.md)                                      |
+| ID     | Comportamiento requerido                                                                                                                                                                                    | Implementación y evidencia principal                                                                                                                                                   |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ML-001 | Solo Firebase Spark, sin facturación ni servicios que requieran pago. CI no despliega; las comprobaciones fallan ante evidencia incompleta.                                                                 | [Política](../spark-policy.json), [control](../scripts/check-spark.mjs), [pruebas](../tests/spark.test.js), [operación](spark-only.md)                                                 |
+| ML-002 | Cada cuenta accede solo a su biblioteca; rutas protegidas y reglas de propietario, con rechazo de campos no admitidos.                                                                                      | [Reglas](../firestore.rules), [pruebas reales de reglas](../tests/firestore/security.test.js), [flujos](../tests/e2e/library.spec.js)                                                  |
+| ML-003 | Las obras conservan el capítulo como texto; los cambios numéricos son transaccionales. Las ediciones de campos distintos se combinan; un conflicto del mismo campo requiere resolución explícita.           | [Servicio](../src/services/manga-service.js), [regresiones](../tests/regressions.test.js), [reglas](../tests/firestore/security.test.js)                                               |
+| ML-004 | La biblioteca se carga con cursores y rangos Firestore de hasta 501 documentos, con protección local de 10000 obras/64 rangos. La presentación pagina 24 tarjetas después de filtrar y ordenar globalmente. | [Cursores](firestore-cursors-v1.md), [pruebas](../tests/library-cursors.test.js), [emulador](../tests/firestore/library-cursors.test.js), [escala](../tests/e2e/library-scale.spec.js) |
+| ML-005 | La admisión local limita ráfagas y pausa operaciones tras errores de cuota. Las transacciones tienen intentos acotados; no hay reintentos infinitos controlados por la app.                                 | [Control local](../src/utils/spark-budget.js), [pruebas](../tests/spark.test.js), [límites](spark-only.md)                                                                             |
+| ML-006 | El borrado exige reautenticación, bloquea nuevas escrituras mediante marcador y borra Auth solo después de comprobar desde servidor que la biblioteca está vacía.                                           | [Servicio](../src/services/account-service.js), [regresiones](../tests/account-service.test.js), [reanudación real](../tests/firestore/security.test.js)                               |
+| ML-007 | La importación tiene previsualización y validación. Volver a seleccionar el mismo archivo/formato con la misma cuenta reutiliza IDs estables y no sobrescribe filas ya creadas.                             | [Identidad y recuperación](import-recovery.md), [regresiones](../tests/import-recovery.test.js), [concurrencia real](../tests/firestore/security.test.js)                              |
+| ML-008 | La exportación consulta el servidor, rechaza caché, cambios pendientes y exceso de tamaño, y comprueba que la cuenta no ha cambiado antes de descargar.                                                     | [Contrato](synchronization-and-export.md), [pruebas](../tests/export-verification.test.js), [desconexión](../tests/e2e/library.spec.js)                                                |
+| ML-009 | Los borradores de pestaña son opcionales, por cuenta, acotados y requieren recuperación explícita; conservan la base de edición para detectar conflictos.                                                   | [Borradores](drafts-and-pwa-updates.md), [pruebas](../tests/form-drafts.test.js)                                                                                                       |
+| ML-010 | La PWA avisa de una actualización disponible y espera al cierre de todos los clientes; no fuerza recarga ni activación que pueda perder un formulario.                                                      | [Configuración](../quasar.config.js), [prueba del worker compilado](../tests/pwa/updates.test.js)                                                                                      |
+| ML-011 | Los flujos cubiertos conservan controles y foco por teclado, diálogos cancelables y campos durante cambios de ancho; las auditorías automáticas no sustituyen dispositivos o revisión humana.               | [Matriz](browser-coverage-2026-10-18.md), [historial](navigation-history-2026-10-18.md), [resize](live-resize-2026-10-18.md), [E2E](../tests/e2e/library.spec.js)                      |
+| ML-012 | La compilación identifica revisión, proyecto y contratos; se verifica el inventario de archivos y fuente limpia antes de una futura publicación autorizada.                                                 | [Contratos](../release-contract.json), [pruebas](../tests/build-evidence.test.js), [procedimiento](releases-and-recovery.md)                                                           |
 
 Los enlaces señalan pruebas relacionadas, no una demostración formal de cada requisito.
 Los casos de CI con emuladores no constituyen aceptación operativa en producción.
@@ -67,15 +68,15 @@ no sustituye su validación de tipos, valores, límites o autenticación.
 
 ## Presupuestos propios de la aplicación
 
-| Control                            | Valor de esta versión                                                                   |
-| ---------------------------------- | --------------------------------------------------------------------------------------- |
-| Consulta de biblioteca/exportación | Hasta 1001 documentos para detectar exceso; capacidad admitida de 1000                  |
-| Presentación                       | 24 tarjetas por página, con biblioteca cargada previamente                              |
-| Admisiones por pestaña/minuto      | Lectura 60; escritura 120; apertura de listener 3; Auth 10                              |
-| Transacción                        | Hasta 3 intentos del SDK                                                                |
-| Pausa tras cuota                   | 15 minutos en memoria de esa pestaña; no implica que la cuota remota se haya recuperado |
-| Borrado por confirmación           | Hasta 5 lotes de 400; hasta 6 consultas de obras, más marcador y Auth                   |
-| Borradores opcionales              | Hasta 10 entradas; 80 000 unidades UTF-16 por entrada; 24 horas en sessionStorage       |
+| Control                            | Valor de esta versión                                                                      |
+| ---------------------------------- | ------------------------------------------------------------------------------------------ |
+| Consulta de biblioteca/exportación | Hasta 501 documentos por consulta; cursores ID; presupuesto local de 10000 obras/64 rangos |
+| Presentación                       | 24 tarjetas por página, con biblioteca cargada previamente                                 |
+| Admisiones por pestaña/minuto      | Lectura 60; escritura 120; apertura de listener 3; Auth 10                                 |
+| Transacción                        | Hasta 3 intentos del SDK                                                                   |
+| Pausa tras cuota                   | 15 minutos en memoria de esa pestaña; no implica que la cuota remota se haya recuperado    |
+| Borrado por confirmación           | Hasta 5 lotes de 400; hasta 6 consultas de obras, más marcador y Auth                      |
+| Borradores opcionales              | Hasta 10 entradas; 80 000 unidades UTF-16 por entrada; 24 horas en sessionStorage          |
 
 Estos valores son presupuestos locales, no cuotas de Firebase ni equivalencias de consumo
 facturable. Recargar, abrir otras pestañas o usar otro cliente puede eludirlos. Un listener
@@ -106,7 +107,7 @@ autorización expresa; Hosting no restaura Auth ni los datos eliminados.
 ## Aceptación pendiente del titular
 
 No se cierran mediante este documento: aceptación real de OAuth/recuperación y del SHA
-publicado, Safari/dispositivos/lectores de pantalla, capacidad futura por encima de 1000,
+publicado, Safari/dispositivos/lectores de pantalla, coste operativo de bibliotecas grandes,
 asistencia y retención de borrados, responsables de incidentes, protección de main/IAM,
 canal privado de seguridad y licencia. El [roadmap](roadmap.md) conserva esos puntos.
 No se autorizan fusión, despliegue, facturación ni cambios remotos.

@@ -1,0 +1,90 @@
+{
+  "sourceRevision": "fe82930c86667474782db3c6b272ebddf08bad18",
+  "environment": "Local Windows development server and demo Firebase emulators; cold route compilation excluded from interaction timings; not production or Spark quota measurements",
+  "results": [
+    {
+      "size": 100,
+      "browser": "153.0.8010.12",
+      "mode": "local-dev-with-emulators",
+      "renderedCards": 24,
+      "loadMs": 256,
+      "loaded": {
+        "documents": 1,
+        "nodes": 4601,
+        "jsEventListeners": 1205,
+        "metrics": [
+          {
+            "name": "JSHeapUsedSize",
+            "value": 28566312
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 29310976
+          }
+        ]
+      },
+      "searchMs": 250,
+      "updateMs": 2880,
+      "clearSearchMs": 335,
+      "traverseMs": 1432,
+      "additionalListenTargetsForInteractions": 0,
+      "exportedRecords": 100
+    },
+    {
+      "size": 1000,
+      "browser": "153.0.8010.12",
+      "mode": "local-dev-with-emulators",
+      "renderedCards": 24,
+      "loadMs": 1025,
+      "loaded": {
+        "documents": 1,
+        "nodes": 4669,
+        "jsEventListeners": 1201,
+        "metrics": [
+          {
+            "name": "JSHeapUsedSize",
+            "value": 32399516
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 33243136
+          }
+        ]
+      },
+      "searchMs": 277,
+      "updateMs": 1600,
+      "clearSearchMs": 316,
+      "traverseMs": 12786,
+      "additionalListenTargetsForInteractions": 0,
+      "exportedRecords": 1000
+    },
+    {
+      "size": 2500,
+      "browser": "153.0.8010.12",
+      "mode": "local-dev-with-emulators",
+      "renderedCards": 24,
+      "loadMs": 5580,
+      "loaded": {
+        "documents": 1,
+        "nodes": 4601,
+        "jsEventListeners": 1205,
+        "metrics": [
+          {
+            "name": "JSHeapUsedSize",
+            "value": 39368412
+          },
+          {
+            "name": "JSHeapTotalSize",
+            "value": 40460288
+          }
+        ]
+      },
+      "searchMs": 249,
+      "updateMs": 2766,
+      "clearSearchMs": 354,
+      "traverseMs": 32631,
+      "additionalListenTargetsForInteractions": 0,
+      "exportedRecords": 2500
+    }
+  ]
+}

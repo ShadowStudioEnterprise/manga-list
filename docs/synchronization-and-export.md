@@ -26,13 +26,13 @@ no pueden modificar el estado de una sesión nueva.
 
 ## Cómo se obtiene una copia
 
-La descarga de la UI consulta de nuevo el servidor con `getDocsFromServer` y límite de
-1001 documentos, sin sustituir esa lectura por la lista en memoria. Comprueba:
+La descarga de la UI recorre de nuevo el servidor con `getDocsFromServer`, cursores
+por ID y límite de 501 documentos por página, sin usar la lista en memoria. Comprueba:
 
-1. La cuenta actual antes y después de la lectura, y de nuevo antes de descargar.
-2. Que la biblioteca no exceda las 1000 obras soportadas: no entrega un subconjunto.
+1. La cuenta actual antes y después de cada página, y de nuevo antes de descargar.
+2. Que la biblioteca no exceda el presupuesto de 10000 obras: no entrega un subconjunto.
 3. Que `fromCache` sea explícitamente `false` y `hasPendingWrites` sea explícitamente `false`.
-4. Que no haya nuevos cambios locales pendientes ni fallo de sincronización al descargar.
+4. Que no haya cambios locales pendientes, otra revisión observada de biblioteca ni fallo de sincronización al descargar.
 
 Si faltan metadatos, hay cambios pendientes, se agota la cuota, cambia la cuenta o
 falla la lectura, no se genera una descarga. No existe fallback silencioso a caché.
@@ -64,10 +64,13 @@ La procedencia es información descriptiva, no un mecanismo antifalsificación d
 
 ## Red, persistencia y cuotas
 
-Cada descarga admitida consume un permiso del presupuesto local de lecturas y una
-consulta adicional del servidor, además del listener existente. Una consulta devuelve
-hasta 1001 documentos y puede consumir lecturas adicionales de reglas; una consulta
-vacía también tiene coste mínimo. Un error de tamaño no revierte el consumo de la lectura.
+Cada descarga admitida consume una admisión de lectura por página, además de los
+listeners existentes. Las consultas usan cursores ID y límite 501; incorporan hasta
+500 obras y continúan hasta completar la biblioteca. Pueden consumir lecturas de
+reglas y mínimos por consulta vacía. Un fallo no revierte lecturas ya consumidas.
+El diseño, coste y límite local de 10000 obras se detallan en
+[cursores Firestore 1.0](firestore-cursors-v1.md). Las páginas son lecturas sucesivas,
+no una transacción global; evitar cambios concurrentes durante la copia.
 Los errores de cuota activan la pausa local existente y no reintentan en un bucle propio.
 
 Solicitar metadatos no añade otra suscripción ni un polling. Las lecturas por cambios y

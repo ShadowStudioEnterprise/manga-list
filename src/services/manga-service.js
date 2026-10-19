@@ -6,9 +6,7 @@ import {
   doc,
   getDoc,
   getDocs,
-  getDocsFromServer,
   limit,
-  onSnapshot,
   query,
   runTransaction,
   serverTimestamp,
@@ -26,6 +24,7 @@ import { createAppError, toAppError } from '@/utils/firebase-errors'
 import { adjustChapter } from '@/utils/chapter-utils'
 import { normalizeTitle } from '@/utils/normalize-title'
 import { conflictingMangaFields } from '@/utils/manga-edit'
+import { fetchCursorLibrary, subscribeCursorLibrary } from '@/services/library-cursors'
 
 const MAX_NAME_LENGTH = MANGA_LIMITS.name
 const MAX_CHAPTER_LENGTH = MANGA_LIMITS.chapter
@@ -331,60 +330,23 @@ function getMangaDocument(uid, mangaId) {
 }
 
 export function subscribeToMangas(uid, onData, onError) {
-  sparkBudget.take('listen')
-  const collectionReference = query(
-    getMangaCollection(uid),
-    limit(SPARK_LIMITS.libraryDocuments + 1),
-  )
-  let stop
-  let stopped = false
-  const fail = (error) => {
-    if (stopped) return
-    stopped = true
-    stop?.()
-    onError?.(toAppError(sparkBudget.record(error)))
-  }
-  stop = onSnapshot(
-    collectionReference,
-    { includeMetadataChanges: true },
-    (snapshot) => {
-      if (stopped) return
-      if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments) {
-        fail(createAppError('app/library-budget'))
-        return
-      }
-      onData(snapshot.docs.map(deserializeManga), {
-        fromCache: snapshot.metadata?.fromCache !== false,
-        hasPendingWrites: snapshot.metadata?.hasPendingWrites !== false,
-      })
-    },
-    (error) => {
-      fail(error)
-    },
-  )
-  if (stopped) stop()
-  return () => {
-    stopped = true
-    stop()
-  }
+  return subscribeCursorLibrary(getMangaCollection(uid), deserializeManga, onData, onError)
 }
 
 export async function fetchLibraryForExport(uid) {
   try {
     const { auth } = requireFirebase()
-    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
-    sparkBudget.take('read')
-    const snapshot = await getDocsFromServer(
-      query(getMangaCollection(uid), limit(SPARK_LIMITS.libraryDocuments + 1)),
-    )
-    if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
-    if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments)
-      throw createAppError('app/library-budget')
-    if (snapshot.metadata?.fromCache !== false || snapshot.metadata?.hasPendingWrites !== false) {
-      throw createAppError('app/export-not-confirmed')
+    const assertSession = () => {
+      if (auth.currentUser?.uid !== uid) throw createAppError('app/invalid-account')
     }
+    assertSession()
+    const mangas = await fetchCursorLibrary(
+      getMangaCollection(uid),
+      deserializeManga,
+      assertSession,
+    )
     return {
-      mangas: snapshot.docs.map(deserializeManga),
+      mangas,
       verification: {
         source: 'server',
         observedAtClient: new Date().toISOString(),
