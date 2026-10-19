@@ -10,7 +10,9 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
   que se dividen al crecer, con protección local de 10000 obras y 64 rangos.
 - Búsqueda, filtros, orden y contadores completos; exportación JSON/CSV paginada
   desde servidor, sin usar la página visual ni devolver resultados parciales por fallo.
-- Pruebas de cursores hasta 10000 obras, emulador con 5000 y navegador con 2500.
+- Pruebas de cursores, emulador y navegador hasta 10000 obras; presupuesto real de
+  admisión, rechazo de 10001, pausa por cuota simulada y recuperación explícita tras
+  una ráfaga. Véase [verificación del límite](docs/verification-10000-2026-10-19.md).
 - Propuestas de retención del marcador y asistencia manual, sin aplicar políticas.
 - Sin cambios de reglas, índices, configuración remota, cuentas o datos de producción.
   Sin fusión ni despliegue por este trabajo. Véase [diseño y coste](docs/firestore-cursors-v1.md).

@@ -21,7 +21,8 @@ Cada rango conserva su listener, incluidos los vacíos: detecta nuevas obras,
 modificaciones y borrados de otro dispositivo. Un nombre, fecha o capítulo modificado
 no mueve el documento entre rangos. Al dividir se espera a ambos hijos antes de
 publicar una biblioteca nueva; callbacks de listeners retirados se descartan.
-Desconexión de cuenta, fallo o agotamiento de presupuesto cierran todos los listeners.
+Desconexión de cuenta, fallo de un rango o agotamiento del presupuesto de la
+suscripción cierran todos sus listeners.
 
 Se mantiene un índice completo en memoria. Esto conserva exactamente la búsqueda
 por fragmentos normalizados, intersección de géneros, contadores globales, orden
@@ -80,8 +81,11 @@ No hay importador de fondo ni reintentos sin límite.
   20000 escrituras, 20000 borrados diarios, 1 GiB almacenado y 10 GiB/mes de salida.
   El reinicio diario usa la zona del Pacífico. Varias bibliotecas grandes pueden agotar
   Spark; no se garantiza una cifra de usuarios concurrentes ni disponibilidad diaria.
-- `resource-exhausted` pausa admisiones locales 15 minutos, cierra todos los rangos
-  y muestra error. Reintentar no cambia a Blaze ni resuelve una cuota diaria agotada.
+- `resource-exhausted` pausa nuevas admisiones locales 15 minutos y muestra error.
+  Si el error llega a un rango, se cierra la suscripción completa. Si llega a una
+  exportación, se descarta la copia, pero los listeners ya abiertos se conservan;
+  el presupuesto no limita los cambios que estos reciban. Reintentar no cambia a
+  Blaze ni resuelve una cuota diaria agotada.
   El SDK puede aplicar su propio backoff de transporte antes de notificar un error;
   no se añade un bucle de reconexión de aplicación.
 - Las reglas actuales exigen propietario y límite <=1001; las nuevas consultas de
@@ -97,7 +101,8 @@ El emulador valida funcionalidad y reglas; no reproduce facturación ni cuotas S
 ## Aceptación pendiente
 
 Revisar coste del índice completo y límites 10000/64, junto con evidencia de pruebas
-en `verification-cursors-2026-10-18.md`. Una búsqueda remota que solo descargue la
+en `verification-cursors-2026-10-18.md` y la [validación de 10000 obras](verification-10000-2026-10-19.md).
+Una búsqueda remota que solo descargue la
 página visible requeriría cambiar semántica de búsqueda/orden o mantener otro índice;
 no se introduce un servicio de pago para resolverla. Fusión, publicación y operación
 real requieren autorización independiente.

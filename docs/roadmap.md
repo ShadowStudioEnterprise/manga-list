@@ -72,5 +72,9 @@ configuración efectiva siguen pendientes de aceptación autorizada; H1 no se ma
 La evidencia histórica de representación H6 está en [escala de biblioteca](library-scale-2026-10-18.md).
 El trabajo posterior de [cursores Firestore](firestore-cursors-v1.md) sustituye el límite
 de 1000 en la rama de revisión, preservando búsqueda y orden globales.
+La [validación del límite de 10000](verification-10000-2026-10-19.md) añade servicio
+real en emulador, presupuesto real de admisión, recuperación de ráfagas y recorrido
+completo de las 417 páginas en navegador. No cierra la aceptación de coste ni de
+dispositivos reales.
 
 La preparación H4 se describe en [versiones y recuperación](releases-and-recovery.md): versión copiable, inventario de builds y verificación local. Publicación, aceptación real y cambios IAM/protección de rama siguen pendientes de autorización.

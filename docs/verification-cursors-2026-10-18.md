@@ -120,6 +120,10 @@ no se otorgaron permisos nuevos y los controles de despliegue permanecen intacto
 
 ## Decisiones pendientes
 
+La [ampliación posterior a 10000 obras](verification-10000-2026-10-19.md) conserva
+esta evidencia histórica y añade pruebas de presupuesto real y recuperación de
+ráfagas, junto con recorrido y exportación completos desde navegador.
+
 - Revisar coste del índice completo en memoria y límites de 10000 obras/64 rangos.
   No es memoria constante ni certificación de 10000 obras con todos los campos máximos
   en un móvil. Véase `firestore-cursors-v1.md`.
