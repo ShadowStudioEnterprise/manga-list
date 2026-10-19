@@ -77,6 +77,8 @@ for (const size of [100, 1000, 2500, 10000]) {
       external.push(url.origin)
       return route.abort()
     })
+    // Install before app modules capture Date.now for their admission clocks.
+    if (size === 10000) await page.clock.install()
     await page.goto('/#/register')
     await page
       .getByLabel('Correo electrónico', { exact: true })
