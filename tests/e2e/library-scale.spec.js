@@ -110,10 +110,51 @@ for (const size of [100, 1000, 2500, 10000]) {
     }
     let start = performance.now()
     await page.goto('/#/library')
+    if (size === 10000) {
+      // Fixture batches can fragment live ranges and spend the per-minute budget.
+      // Accept either a complete library or its explicit budget error, never a
+      // stale partial snapshot as a successful load. Exercise the existing UI
+      // recovery if needed; do not raise or bypass the real admission limit.
+      const budgetError = page.getByRole('alert').filter({ hasText: 'Límite local de peticiones' })
+      const confirmed = page.getByRole('status').filter({ hasText: 'Última instantánea' })
+      const fullSummary = page
+        .locator('.library-page-summary')
+        .filter({ hasText: 'de 10000 obras' })
+      await expect
+        .poll(
+          async () =>
+            (await budgetError.isVisible()) ||
+            ((await confirmed.isVisible()) && (await fullSummary.isVisible())),
+          { timeout: 90000 },
+        )
+        .toBe(true)
+      results.fixtureBudgetRecovery = await budgetError.isVisible()
+      if (results.fixtureBudgetRecovery) {
+        await page.goto('/#/settings/import-export')
+        await expect(
+          page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
+        ).toBeVisible({ timeout: 90000 })
+        await expect(
+          page.getByRole('button', { name: 'Descargar JSON', exact: true }),
+        ).toBeDisabled()
+        await page.goto('/#/library')
+        // Advance only wall time past the local admission window, without firing
+        // timers or sleeping a minute. This does not simulate a daily Spark reset.
+        await page.clock.setSystemTime((await page.evaluate(() => Date.now())) + 61000)
+        results.loadScenario = 'manual-retry-after-fixture-burst'
+        start = performance.now()
+        await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
+      } else {
+        results.loadScenario = 'existing-listener'
+      }
+    }
     await expect(page.locator('.manga-grid > .manga-card')).toHaveCount(rendered, {
       timeout: 90000,
     })
-    await expect(page.getByRole('status')).toContainText('Última instantánea')
+    await expect(page.getByRole('status')).toContainText('Última instantánea', {
+      timeout: size === 10000 ? 90000 : 15000,
+    })
+    await expect(page.locator('.library-page-summary')).toContainText(`de ${size} obras`)
     results.loadMs = Math.round(performance.now() - start)
     await client.send('HeapProfiler.collectGarbage')
     results.loaded = {
