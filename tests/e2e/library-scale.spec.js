@@ -53,12 +53,13 @@ async function seedLibrary(uid, size) {
 
 test.use({ viewport: { width: 1280, height: 900 } })
 
-for (const size of [100, 1000, 2500]) {
+for (const size of [100, 1000, 2500, 10000]) {
   test(`library scale ${size}: load, search, update and bounded representation`, async ({
     page,
     context,
   }, testInfo) => {
-    test.setTimeout(300000)
+    // The 10000-record case traverses all 417 visual pages as well as exporting.
+    test.setTimeout(size === 10000 ? 420000 : 300000)
     const errors = []
     const external = []
     let listenTargets = 0

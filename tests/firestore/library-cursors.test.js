@@ -2,6 +2,7 @@ import test, { before, after } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { initializeTestEnvironment, assertFails } from '@firebase/rules-unit-testing'
+import * as firestore from 'firebase/firestore'
 import {
   collection,
   doc,
@@ -19,7 +20,7 @@ import {
   startAfter,
 } from 'firebase/firestore'
 import { loadModule } from '../helpers/load-module.js'
-import { SPARK_LIMITS } from '../../src/utils/spark-budget.js'
+import { createSparkBudget, SPARK_LIMITS } from '../../src/utils/spark-budget.js'
 import { createLibraryExport } from '../../src/services/export-service.js'
 import { createImportPreview } from '../../src/services/import-service.js'
 
@@ -57,22 +58,26 @@ function manga(i) {
   }
 }
 
-// This integration suite deliberately counts SDK requests without throttling fixture setup.
-// Real admission/quota failure paths are tested independently in spark.test.js.
+async function seedMangas(owner, size) {
+  await environment.withSecurityRulesDisabled(async (context) => {
+    const db = context.firestore()
+    for (let offset = 0; offset < size; offset += 400) {
+      const batch = writeBatch(db)
+      for (let i = offset; i < Math.min(offset + 400, size); i++)
+        batch.set(doc(db, 'users', owner, 'mangas', key(i)), manga(i))
+      await batch.commit()
+    }
+  })
+}
+
+// The 5000-document case counts SDK requests without throttling fixture setup.
+// The 10000-document case below uses the real admission budget with a controlled clock.
 test(
   '5000-document emulator library: cursors, live boundaries, complete JSON/CSV and isolation',
   { timeout: 180000 },
   async () => {
     await environment.clearFirestore()
-    await environment.withSecurityRulesDisabled(async (context) => {
-      const db = context.firestore()
-      for (let offset = 0; offset < 5000; offset += 400) {
-        const batch = writeBatch(db)
-        for (let i = offset; i < Math.min(offset + 400, 5000); i++)
-          batch.set(doc(db, 'users', uid, 'mangas', key(i)), manga(i))
-        await batch.commit()
-      }
-    })
+    await seedMangas(uid, 5000)
     const db = environment.authenticatedContext(uid).firestore()
     const ref = collection(db, 'users', uid, 'mangas')
     let reads = 0
@@ -183,6 +188,152 @@ test(
           documents: 5001,
           listenerAndExportRequests: reads,
           jsonAndCsvRoundTrip: true,
+          productionRequests: 0,
+        }),
+      )
+    } finally {
+      stop()
+    }
+  },
+)
+
+test(
+  '10000-document emulator library obeys the real admission budget, quota pause and document cap',
+  { timeout: 300000 },
+  async () => {
+    const owner = 'cursor-ten-thousand'
+    await seedMangas(owner, 10000)
+    const db = environment.authenticatedContext(owner).firestore()
+    let now = 0
+    const budget = createSparkBudget(() => now)
+    const admissions = { read: 0, listen: 0 }
+    let exportCalls = 0
+    let failExportAt = Infinity
+    const activeTargets = new Set()
+    const service = await loadModule('src/services/manga-service.js', {
+      '@/boot/firebase': { db, requireFirebase: () => ({ auth: { currentUser: { uid: owner } } }) },
+      '@/utils/spark-budget': {
+        SPARK_LIMITS,
+        sparkBudget: {
+          take(kind) {
+            budget.take(kind)
+            admissions[kind] = (admissions[kind] || 0) + 1
+          },
+          record: (error) => budget.record(error),
+        },
+      },
+      'firebase/firestore': {
+        ...firestore,
+        onSnapshot(...args) {
+          const target = {}
+          const stop = firestore.onSnapshot(...args)
+          activeTargets.add(target)
+          return () => {
+            activeTargets.delete(target)
+            stop()
+          }
+        },
+        getDocsFromServer(q) {
+          exportCalls++
+          // The emulator has no Spark quota. Inject only this failure; every
+          // successful page still uses the real SDK, rules and emulator data.
+          if (exportCalls === failExportAt)
+            throw Object.assign(new Error('Synthetic quota failure'), {
+              code: 'resource-exhausted',
+            })
+          return firestore.getDocsFromServer(q)
+        },
+      },
+    })
+    let latest
+    const errors = []
+    const waitFor = async (predicate) => {
+      const deadline = Date.now() + 60000
+      while (Date.now() < deadline) {
+        if (predicate()) return
+        await new Promise((resolve) => setTimeout(resolve, 25))
+      }
+      assert.fail('Timed out waiting for the 10000-document library or its limit error')
+    }
+    const stop = service.subscribeToMangas(
+      owner,
+      (items, metadata) => {
+        latest = { items, metadata }
+      },
+      (error) => errors.push(error),
+    )
+    try {
+      await waitFor(
+        () => errors.length || (latest?.metadata.complete && latest.items.length === 10000),
+      )
+      assert.deepEqual(errors, [])
+      assert.equal(new Set(latest.items.map((item) => item.id)).size, 10000)
+      assert.equal(latest.metadata.fromCache, false)
+      assert.equal(admissions.listen, 1)
+      assert.equal(admissions.read, 39)
+      assert.equal(activeTargets.size, 20)
+
+      const copy = await service.fetchLibraryForExport(owner)
+      assert.equal(copy.mangas.length, 10000)
+      assert.equal(new Set(copy.mangas.map((item) => item.id)).size, 10000)
+      assert.equal(exportCalls, 20)
+      assert.equal(admissions.read, 59)
+      for (const format of ['json', 'csv']) {
+        const payload = createLibraryExport(copy.mangas, format, {
+          verification: copy.verification,
+        })
+        const preview = createImportPreview(payload.content, { format })
+        assert.equal(preview.summary.valid, 10000)
+        assert.equal(
+          preview.items.find((item) => item.manga.name === 'Obra 009999').manga.chapter,
+          '9999',
+        )
+      }
+
+      // The same minute has one admission left. A second export fails after
+      // its first page instead of returning that page as a complete copy.
+      await assert.rejects(service.fetchLibraryForExport(owner), { code: 'app/request-budget' })
+      assert.equal(exportCalls, 21)
+      assert.equal(admissions.read, 60)
+      now = 60000
+      assert.equal((await service.fetchLibraryForExport(owner)).mangas.length, 10000)
+
+      failExportAt = exportCalls + 2
+      await assert.rejects(service.fetchLibraryForExport(owner), { code: 'resource-exhausted' })
+      const callsAtQuota = exportCalls
+      await assert.rejects(service.fetchLibraryForExport(owner), { code: 'app/quota-paused' })
+      assert.throws(() => budget.take('write'), { code: 'app/quota-paused' })
+      now += 15 * 60000 - 1
+      await assert.rejects(service.fetchLibraryForExport(owner), { code: 'app/quota-paused' })
+      assert.equal(exportCalls, callsAtQuota)
+      now++
+      assert.equal((await service.fetchLibraryForExport(owner)).mangas.length, 10000)
+      assert.deepEqual(errors, [])
+
+      // Growth beyond the documented cap must stop every actual listener and
+      // retain only the last complete snapshot, never publish 10001 as complete.
+      await setDoc(doc(db, 'users', owner, 'mangas', 'zz-over-limit'), {
+        ...manga(10000),
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      })
+      await waitFor(() => errors.length)
+      assert.equal(errors.length, 1)
+      assert.equal(errors[0].code, 'app/library-budget')
+      assert.equal(activeTargets.size, 0)
+      assert.equal(latest.items.length, 10000)
+      await assert.rejects(service.fetchLibraryForExport(owner), { code: 'app/library-budget' })
+      console.log(
+        JSON.stringify({
+          documents: 10000,
+          initialListenerAdmissions: 39,
+          firstExportAdmissions: 20,
+          activeRanges: 20,
+          jsonAndCsvRoundTrip: true,
+          budgetFailureAfterOnePage: true,
+          injectedQuotaPauseMs: 15 * 60000,
+          rejectedDocumentCount: 10001,
+          remainingListenersAfterLimit: activeTargets.size,
           productionRequests: 0,
         }),
       )
