@@ -1,8 +1,8 @@
 # Biblioteca con cursores Firestore — propuesta de implementación 1.0
 
-Rama de revisión; no publicada. Base verificada: `main` =
-`9a43953d1c0866fcf07cd8f33af53a88cf683d55`. PR #2 integrado el 18/10/2026 a
-las 21:54:54 Europe/Madrid. Esta rama no modifica reglas, índices ni configuración remota.
+Iteración de costes desde `68ad672` (PR #3 integrado). El despliegue anterior
+se documentó fuera de esta iteración; esta rama no publica cambios ni modifica
+reglas, índices o configuración remota. Véase la [medición comparativa](firestore-cost-review-2026-10-19.md).
 Edición objetivo: Standard nativa, fijada por `spark-policy.json` y la evidencia
 anterior de `verification-spark-2026-10-18.md`; la evidencia remota debe renovarse
 antes de cualquier publicación autorizada.
@@ -10,9 +10,9 @@ antes de cualquier publicación autorizada.
 ## Contrato y elección
 
 Las consultas reales usan `orderBy(documentId())`, `startAfter(id)`, `endAt(id)` y
-`limit(501)`. No usan offsets ni una consulta sin límite. Cada rango devuelve hasta
-500 obras y un documento centinela que detecta la necesidad de dividirlo. Un rango
-final lleno se divide en `(inicio, último ID de las primeras 500]` y
+`limit(1001)`. No usan offsets ni una consulta sin límite. Cada rango devuelve hasta
+1000 obras y un documento centinela que detecta la necesidad de dividirlo. Un rango
+final lleno se divide en `(inicio, último ID de las primeras 1000]` y
 `(ese ID, fin]`. Un rango ya cerrado que crece se divide por su punto medio.
 El límite inferior es exclusivo y el superior inclusivo: no hay solapamientos.
 El borrado de un documento que sirvió como cursor no invalida el valor del ID.
@@ -41,7 +41,7 @@ cerrar la pestaña.
 ## Exportación e importación
 
 La exportación recorre el servidor desde el principio, independientemente de filtros
-y página visible. Lee 501, incorpora las primeras 500 y continúa después de la última
+y página visible. Lee 1001, incorpora las primeras 1000 y continúa después de la última
 incorporada: el centinela se vuelve a leer, nunca se salta. Cada página exige identidad
 actual, origen servidor y ausencia de escrituras pendientes. Un fallo en cualquier
 página descarta el resultado; nunca se descarga una copia parcial como completa.
@@ -65,12 +65,12 @@ No hay importador de fondo ni reintentos sin límite.
   Los límites de 3 aperturas lógicas de biblioteca, 120 escrituras y 10 operaciones
   Auth por minuto se mantienen. Cada listener nuevo, incluidos los de una división,
   consume una admisión de lectura. No se introduce dependencia de servidor.
-- Con N documentos estables y P = ceil(N/500), el arranque usa hasta `2P-1` targets
-  y aproximadamente `N + 501*(P-1)` documentos recibidos del servidor, más consultas
-  vacías/mínimos facturables. Para 5000: 19 targets y aproximadamente 9509 documentos.
-  Para 10000: 39 targets y aproximadamente 19519 documentos.
+- Con N documentos estables y P = ceil(N/1000), el arranque usa hasta `2P-1` targets
+  y aproximadamente `N + 1001*(P-1)` documentos recibidos del servidor, más consultas
+  vacías/mínimos facturables. Para 5000: 9 targets y aproximadamente 9004 documentos.
+  Para 10000: 19 targets y aproximadamente 19009 documentos.
 - Exportar cuesta aproximadamente `N + P-1` documentos leídos y P peticiones
-  (mínimo una). Una copia de 10000 seguida de exportación consume unas 29538 lecturas
+  (mínimo una). Una copia de 10000 seguida de exportación consume unas 29018 lecturas
   de documentos, antes de reglas, otras sesiones, reconexiones y cambios.
 - Los listeners adicionales consumen por cambios y reconexiones según Firebase.
   Metadatos locales no equivalen a nuevas lecturas facturadas. La memoria y listeners
@@ -89,7 +89,7 @@ No hay importador de fondo ni reintentos sin límite.
   El SDK puede aplicar su propio backoff de transporte antes de notificar un error;
   no se añade un bucle de reconexión de aplicación.
 - Las reglas actuales exigen propietario y límite <=1001; las nuevas consultas de
-  501 son compatibles sin desplegar reglas o índices. No se habilitan TTL, backups,
+  1001 son compatibles sin desplegar reglas o índices. No se habilitan TTL, backups,
   Functions, Run, Storage, Extensions, App Hosting ni billing.
 
 Fuentes oficiales revisadas el 18/10/2026:

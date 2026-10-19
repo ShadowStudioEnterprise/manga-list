@@ -253,7 +253,7 @@ test('cursor listener quota failure stops targets and blocks reconnect before SD
       ...firestore,
       collection: () => ({}),
       limit: (value) => {
-        assert.equal(value, 501)
+        assert.equal(value, 1001)
         return {}
       },
       query: () => ({}),

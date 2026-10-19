@@ -93,3 +93,7 @@ cuota y respuesta perdida. Registrar resultados sin copiar credenciales.
 Pendiente de aprobación: canal privado y mecanismo de desafío, responsables y
 permisos, plazos de primera respuesta/escalado, evidencia de identidad aceptable,
 retención del caso y [política de marcador](account-marker-retention-proposal.md).
+
+La propuesta operativa de revisión manual a los 30 días se detalla en
+[revisión del marcador](manual-marker-review.md). No habilita retirada automática
+ni autoriza actuar sobre un caso real. Validaciones legal y técnica pendientes.

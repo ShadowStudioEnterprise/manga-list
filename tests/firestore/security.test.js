@@ -253,6 +253,27 @@ test('account metadata remains private, validates timestamps and cannot unlock a
   await assertSucceeds(getDoc(user))
 })
 
+test('29/30/90-day markers retain the barrier; age grants no client removal permission', async () => {
+  for (const days of [29, 30, 90]) {
+    const uid = `review-${days}`
+    const old = Timestamp.fromMillis(Date.now() - days * 86400000)
+    await environment.withSecurityRulesDisabled(async (context) => {
+      await setDoc(doc(context.firestore(), 'users', uid), {
+        createdAt: old,
+        updatedAt: old,
+        status: 'deleting',
+      })
+    })
+    // This synthetic context models an accepted old token, not Auth revocation.
+    const db = environment.authenticatedContext(uid, { auth_time: 1 }).firestore()
+    const marker = doc(db, 'users', uid)
+    await assertFails(setDoc(doc(db, 'users', uid, 'mangas', 'late'), manga()))
+    await assertFails(deleteDoc(marker))
+    await assertFails(updateDoc(marker, { status: 'active', updatedAt: serverTimestamp() }))
+    assert.equal((await getDoc(marker)).data().status, 'deleting')
+  }
+})
+
 test('deletion barrier blocks another session and atomic marker-plus-manga writes', async () => {
   const alice = dbFor('alice')
   const other = dbFor('alice')
