@@ -15,7 +15,8 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
     deliveries = [],
     budget = []
   let readFailure,
-    readCount = 0
+    readCount = 0,
+    maxUnconfirmed = 0
   const select = (q) => {
     const lower = q.find((c) => c.kind === 'after')?.value
     const upper = q.find((c) => c.kind === 'end')?.value
@@ -25,7 +26,10 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       .slice(0, max)
   }
   const deliver = (target) => {
-    if (target.active) target.data({ docs: select(target.q), metadata })
+    if (target.active) {
+      if (!metadata.fromCache && !metadata.hasPendingWrites) target.pending = false
+      target.data({ docs: select(target.q), metadata })
+    }
   }
   const service = await loadModule('src/services/library-cursors.js', {
     '@/utils/spark-budget': {
@@ -44,8 +48,12 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       },
       onSnapshot: (q, options, data, fail) => {
         assert.equal(options.includeMetadataChanges, true)
-        const target = { q, data, fail, active: true }
+        const target = { q, data, fail, active: true, pending: true }
         targets.push(target)
+        maxUnconfirmed = Math.max(
+          maxUnconfirmed,
+          targets.filter((t) => t.active && t.pending).length,
+        )
         queueMicrotask(() => deliver(target))
         return () => {
           target.active = false
@@ -86,6 +94,7 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       readFailure = { page, code }
     },
     readCount: () => readCount,
+    maxUnconfirmed: () => maxUnconfirmed,
     setMetadata: (value) => {
       metadata = value
     },
@@ -93,11 +102,12 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
 }
 
 for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
-  test(`real query constraints cover ${size} documents once in a bounded listener and export`, async () => {
+  test(`real query constraints cover ${size} documents once across bounded ranges and export`, async () => {
     const f = await fixture(size)
     const stop = f.start()
     await f.flush()
     assert.deepEqual(f.errors, [])
+    assert.equal(f.maxUnconfirmed(), 1, 'Only one new target may await server confirmation')
     const last = f.deliveries.at(-1)
     assert.equal(last.meta.complete, true)
     assert.equal(last.docs.length, size)
@@ -125,7 +135,7 @@ for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
   })
 }
 
-test('one target preserves inserts on both sides, former boundary deletion, edits and empty results', async () => {
+test('stable ranges preserve inserts on both sides, boundary deletion, edits and empty results', async () => {
   const f = await fixture(1501)
   f.start()
   await f.flush()
@@ -179,8 +189,11 @@ test('a failed query stops its listener and never claims a complete partial libr
   assert.equal(f.deliveries.length, count)
 })
 
-test('document budget fails closed and stops its target', async () => {
-  for (const limits of [{ ...SPARK_LIMITS, libraryDocuments: 1000 }]) {
+test('document and fragmentation budgets fail closed and stop their targets', async () => {
+  for (const limits of [
+    { ...SPARK_LIMITS, libraryDocuments: 1000 },
+    { ...SPARK_LIMITS, libraryRanges: 1 },
+  ]) {
     const f = await fixture(1501, { limits })
     f.start()
     await f.flush()
