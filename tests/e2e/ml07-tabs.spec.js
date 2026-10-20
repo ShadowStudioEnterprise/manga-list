@@ -84,6 +84,40 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
       expect(row.targets).toBe(i === 0 ? (size > 5000 ? 3 : 1) : 0)
       initialTargetsPerTab.push(row.targets)
     }
+    let suspensionRecovery = null
+    if (size === 100 && testInfo.project.name === 'chromium') {
+      await tabs[1].page.bringToFront()
+      const lifecycle = await context.newCDPSession(tabs[0].page)
+      try {
+        // Suspend this document's actual JavaScript, not the follower or a fake clock.
+        // This does not claim to emulate the browser/OS's full frozen lifecycle.
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: true })
+        const recover = tabs[1].page.getByRole('button', {
+          name: 'Solicitar estado a la otra pestaña',
+          exact: true,
+        })
+        await expect(recover).toBeVisible({ timeout: 30000 })
+        await expect(tabs[1].page.getByRole('status')).toContainText('no responde')
+        expect(tabs.map((row) => row.targets)).toEqual(initialTargetsPerTab)
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
+        // A heartbeat after JavaScript resumes cannot itself clear the warning.
+        // Explicitly asking the owner replays subscription state, not a new server read.
+        await recover.click()
+        await expect(tabs[1].page.getByRole('status')).toContainText('Última instantánea')
+        await expect(recover).toBeHidden()
+        expect(tabs.map((row) => row.targets)).toEqual(initialTargetsPerTab)
+        suspensionRecovery = {
+          mechanism: 'CDP Emulation.setScriptExecutionDisabled true/false',
+          fullLifecycleFreezeTested: false,
+          staleWarningObserved: true,
+          explicitSnapshotRequestRecovered: true,
+          additionalTargets: tabs.map((row, index) => row.targets - initialTargetsPerTab[index]),
+        }
+      } finally {
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
+        await lifecycle.detach()
+      }
+    }
     for (const { page: tab } of tabs) {
       await tab
         .getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
@@ -127,6 +161,7 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
       extraTargetsForSearchAndUpdate,
       reloadTargets,
       leaderCloseTargets: tabs[0].targets - beforeReload,
+      suspensionRecovery,
       productionRequests: external.length,
       scope: 'Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads',
     }

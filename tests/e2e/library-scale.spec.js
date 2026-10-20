@@ -241,6 +241,9 @@ for (const size of [100, 1000, 2500, 10000]) {
     await top.getByRole('button', { name: 'Última página', exact: true }).click()
     await page.getByRole('combobox', { name: 'Ordenar', exact: true }).click()
     await page.getByRole('option', { name: 'Nombre A-Z', exact: true }).click()
+    // QSelect restores focus when its exit transition finishes. Wait before
+    // typing into another debounced input so that restoration cannot interrupt it.
+    await expect(page.locator('.q-menu')).toHaveCount(0)
     await expect(page.locator('.library-page-summary')).toContainText('Página 1')
     await expect(page.locator('.manga-card__title').first()).toHaveText('Obra 0000')
     expect(listenTargets).toBe(targetsBefore)

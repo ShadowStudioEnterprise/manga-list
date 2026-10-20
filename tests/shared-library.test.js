@@ -155,6 +155,46 @@ test('unsupported browsers use the bounded independent listener', () => {
   assert.equal(stops, 1)
 })
 
+test('silence stays stale through heartbeats; explicit recovery requests data without another listener', async (t) => {
+  t.mock.timers.enable({ apis: ['Date', 'setInterval'], now: Date.now() })
+  const f = fixture(),
+    key = randomUUID(),
+    a = f.subscribe(key),
+    b = f.subscribe(key)
+  try {
+    await wait(() => b.data.length)
+    t.mock.timers.tick(20000)
+    await new Promise((resolve) => setTimeout(resolve, 30))
+    assert.equal(b.data.at(-1).metadata.coordinationStale, true)
+    assert.equal(b.data.at(-1).metadata.fromCache, true)
+    const deliveries = b.data.length
+    t.mock.timers.tick(5000)
+    await new Promise((resolve) => setTimeout(resolve, 30))
+    assert.equal(b.data.length, deliveries, 'heartbeats must not clear or repeat the warning')
+    b.stop.requestSnapshot()
+    await wait(() => b.data.length > deliveries)
+    assert.equal(b.data.at(-1).metadata.fromCache, false)
+    assert.notEqual(b.data.at(-1).metadata.coordinationStale, true)
+    assert.equal(f.listeners.length, 1)
+    // A reply carrying cached metadata must still be presented as cached.
+    f.listeners[0].next([{ id: 'cached' }], { ...server, fromCache: true })
+    await wait(() => b.data.at(-1).items[0].id === 'cached')
+    b.stop.requestSnapshot()
+    await new Promise((resolve) => setTimeout(resolve, 30))
+    assert.equal(b.data.at(-1).metadata.fromCache, true)
+    b.stop()
+    const stoppedDeliveries = b.data.length
+    b.stop.requestSnapshot()
+    await new Promise((resolve) => setTimeout(resolve, 30))
+    assert.equal(b.data.length, stoppedDeliveries)
+    assert.equal(f.listeners.length, 1)
+  } finally {
+    a.stop()
+    b.stop()
+    t.mock.timers.reset()
+  }
+})
+
 test('unavailable coordination storage fails safely before opening Firestore', async () => {
   const f = fixture()
   f.runtime.localStorage.getItem = () => {

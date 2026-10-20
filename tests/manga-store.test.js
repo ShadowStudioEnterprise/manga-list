@@ -9,11 +9,13 @@ async function fixture(overrides = {}) {
   const service = {
     normalizeMangaName: (value) => value,
     subscribeToMangas(uid, data, error) {
-      const listener = { uid, data, error, stopped: false }
+      const listener = { uid, data, error, stopped: false, snapshotRequests: 0 }
       listeners.push(listener)
-      return () => {
+      const stop = () => {
         listener.stopped = true
       }
+      stop.requestSnapshot = () => listener.snapshotRequests++
+      return stop
     },
     async updateManga() {
       throw conflict
@@ -67,6 +69,39 @@ test('operation failures never become synchronization errors or erase a real lis
   assert.equal(store.syncError, null)
   assert.equal(store.mangas[0].chapter, '278')
   store.unsubscribe()
+})
+
+test('coordination recovery preserves filters and data and resets on account change', async () => {
+  const { store, listeners } = await fixture()
+  try {
+    store.subscribe('alice')
+    store.searchQuery = 'Nano'
+    store.filters.favoritesOnly = true
+    listeners[0].data([{ id: 'nano' }], {
+      fromCache: true,
+      hasPendingWrites: false,
+      coordinationStale: true,
+    })
+    assert.match(store.syncStatusMessage, /no responde/)
+    store.requestSharedSnapshot()
+    assert.equal(listeners.length, 1)
+    assert.equal(listeners[0].snapshotRequests, 1)
+    assert.equal(store.mangas[0].id, 'nano')
+    assert.equal(store.searchQuery, 'Nano')
+    assert.equal(store.filters.favoritesOnly, true)
+    assert.equal(store.coordinationStale, true, 'request alone does not confirm data')
+    listeners[0].data([{ id: 'nano' }], { fromCache: false, hasPendingWrites: false })
+    assert.equal(store.coordinationStale, false)
+    assert.match(store.syncStatusMessage, /Última instantánea/)
+    store.subscribe('bob')
+    store.requestSharedSnapshot()
+    assert.equal(listeners[0].snapshotRequests, 1)
+    assert.equal(listeners[1].snapshotRequests, 1)
+    assert.equal(store.coordinationStale, false)
+    assert.equal(store.mangas.length, 0)
+  } finally {
+    store.unsubscribe()
+  }
 })
 
 test('stale callbacks cannot overwrite a newer subscription for the same uid or a different account', async () => {

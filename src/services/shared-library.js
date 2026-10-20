@@ -20,6 +20,7 @@ export function subscribeSharedLibrary(
   let epoch = 0
   let stopped = false,
     leader = false,
+    stale = false,
     stopListener,
     release,
     last,
@@ -43,6 +44,7 @@ export function subscribeSharedLibrary(
   const deliver = (items, metadata) => {
     if (stopped || !isCurrent()) return
     last = { items, metadata }
+    stale = false
     lastSeen = Date.now()
     onData(items, metadata)
   }
@@ -67,8 +69,9 @@ export function subscribeSharedLibrary(
       return
     }
     if (leader) send({ type: 'heartbeat' })
-    else if (last && Date.now() - lastSeen > 15000) {
-      onData(last.items, { ...last.metadata, fromCache: true })
+    else if (last && !stale && Date.now() - lastSeen > 15000) {
+      stale = true
+      onData(last.items, { ...last.metadata, fromCache: true, coordinationStale: true })
     }
   }, 5000)
   locks
@@ -126,5 +129,10 @@ export function subscribeSharedLibrary(
       if (!stopped) fail(error)
     })
   send({ type: 'hello' })
+  // Request the active owner's last subscription snapshot, never another SDK listener.
+  // Silence and heartbeats leave the stale warning intact until a data reply arrives.
+  stop.requestSnapshot = () => {
+    if (!stopped && !leader && isCurrent()) send({ type: 'hello' })
+  }
   return stop
 }
