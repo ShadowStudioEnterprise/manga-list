@@ -1,6 +1,6 @@
 # Informes técnicos
 
-Los 29 documentos se agrupan por tema. Los informes fechados conservan los
+Los 30 documentos se agrupan por tema. Los informes fechados conservan los
 resultados y las limitaciones de su revisión original; no certifican por sí solos
 el estado actual de producción. Las propuestas de retención y asistencia siguen
 pendientes de validación legal y técnica.
@@ -17,6 +17,7 @@ secciones principales del portal.
 
 ## Firestore y rendimiento
 
+- [ML-06: consumo de Cloud Firestore — 20/10/2026](firestore/ml-06-consumption-2026-10-20.md).
 - [Biblioteca con cursores Firestore — propuesta de implementación 1.0](firestore/firestore-cursors-v1.md).
 - [Revisión de consumo Firestore — 19/10/2026](firestore/firestore-cost-review-2026-10-19.md).
 - [Lecturas de transacciones y presupuesto local — 19/10/2026](firestore/transaction-read-budget-2026-10-19.md).

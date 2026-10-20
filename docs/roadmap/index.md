@@ -16,6 +16,6 @@ Los topes de 10000 obras y 64 rangos siguen siendo presupuestos provisionales.
 La revisión manual a los 30 días continúa pendiente de validación legal y técnica.
 No existe borrado automático ni garantía de finalización si el cliente abandona.
 
-Consulta la [especificación v1](/reports/project/specification-v1), las
-[mediciones de coste](/reports/firestore/firestore-cost-review-2026-10-19) y el
+Consulta la [especificación v1](/reports/project/specification-v1), el
+[análisis ML-06 de consumo](/reports/firestore/ml-06-consumption-2026-10-20) y el
 [procedimiento propuesto de revisión](/reports/accounts/manual-marker-review).

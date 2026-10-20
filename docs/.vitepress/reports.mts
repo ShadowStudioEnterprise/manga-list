@@ -31,6 +31,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-06: consumo y escenarios (20/10)',
+        link: '/reports/firestore/ml-06-consumption-2026-10-20',
+      },
+      {
         text: 'Cursores Firestore v1',
         link: '/reports/firestore/firestore-cursors-v1',
       },

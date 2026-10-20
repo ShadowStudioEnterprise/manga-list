@@ -17,7 +17,7 @@ el cliente no puede retirarlo para desbloquear la cuenta.
 
 ## Consultas y sincronización
 
-La biblioteca se carga por rangos con cursores de ID y hasta 501 documentos por
+La biblioteca se carga por rangos con cursores de ID y hasta 1001 documentos por
 consulta. Los presupuestos técnicos provisionales son 10000 obras y 64 rangos.
 La interfaz filtra y ordena globalmente antes de presentar páginas de 24 tarjetas.
 Las reglas exigen un límite de consulta de como máximo 1001; no fijan una capacidad
@@ -29,6 +29,7 @@ Un intento, consulta o listener no equivale a una única lectura facturable.
 
 ## Referencias técnicas
 
+- [ML-06: escenarios y presupuesto Spark compartido](/reports/firestore/ml-06-consumption-2026-10-20).
 - [Diseño de cursores y condiciones de índices](/reports/firestore/firestore-cursors-v1).
 - [Medición de lecturas y listeners](/reports/firestore/firestore-cost-review-2026-10-19).
 - [Presupuesto de transacciones](/reports/firestore/transaction-read-budget-2026-10-19).
