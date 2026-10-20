@@ -182,7 +182,9 @@ test('ML-07: complete isolated browser process freeze preserves synchronization 
     await follower.goto('/#/settings/import-export')
     const download = follower.waitForEvent('download')
     await follower.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
-    const exported = JSON.parse(await readFile(await (await download).path(), 'utf8'))
+    const exportPath = testInfo.outputPath('process-freeze-export.json')
+    await (await download).saveAs(exportPath)
+    const exported = JSON.parse(await readFile(exportPath, 'utf8'))
     expect(exported.mangas).toHaveLength(500)
     expect(exported.mangas.find((item) => item.name === 'Process 0').chapter).toBe('2')
     const afterExport = tabs[1].targets
