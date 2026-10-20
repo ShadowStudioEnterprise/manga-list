@@ -41,6 +41,10 @@ antes de abrir la app. El sondeo mínimo del mismo controlador sí confirma el
 ciclo nativo en un contexto aislado con interceptación de red. La CI de esta
 revisión y su artefacto `ml07-freeze.json` deben confirmar el recorrido completo;
 las CI correctas de `331d400` no validan este ensayo nuevo.
+El segundo intento local llegó a congelar la biblioteca y mostrar el aviso, pero
+falló una comprobación de la propia prueba: `withSecurityRulesDisabled` devuelve
+`void` aunque su callback devuelva un valor. Se corrigió capturando el capítulo
+dentro del callback. Ese intento no se presenta como validación de la reanudación.
 
 ## Capacidad diaria: presupuesto propuesto
 

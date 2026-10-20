@@ -142,13 +142,16 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     await follower.getByRole('button', { name: 'Sumar un capítulo', exact: true }).click()
     // This is a separate emulator fixture confirmation, not an application listener.
     await expect
-      .poll(() =>
-        env.withSecurityRulesDisabled(
-          async (c) =>
-            (await getDocFromServer(doc(c.firestore(), 'users', uid, 'mangas', '000000'))).data()
-              ?.chapter,
-        ),
-      )
+      .poll(async () => {
+        let chapter
+        // withSecurityRulesDisabled deliberately returns void, not the callback result.
+        await env.withSecurityRulesDisabled(async (c) => {
+          chapter = (
+            await getDocFromServer(doc(c.firestore(), 'users', uid, 'mangas', '000000'))
+          ).data()?.chapter
+        })
+        return chapter
+      })
       .toBe('2')
     await recover.click()
     await expect(follower.getByRole('status')).toContainText('no responde')
