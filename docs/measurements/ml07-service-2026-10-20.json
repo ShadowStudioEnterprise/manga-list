@@ -1,5 +1,5 @@
 {
-  "executionCompletedAtUtc": "2026-10-20T15:05:17.267820+00:00",
+  "executionCompletedAtUtc": "2026-10-20T15:17:44.166104+00:00",
   "base": "d937549000382fc72022cd59608e29aa27fab664",
   "scope": "Synthetic emulator; same fixtures and rules; initial server document observations, NOT billed reads. Independent SDK clients, not coordinated browser tabs.",
   "billedReadsMeasured": false,
@@ -969,5 +969,11 @@
     }
   ],
   "transportDocuments": 5000,
-  "rejectedAlternative": "Single 10001 target: emulator WebChannel backlog at 10000 cold documents; not adopted."
+  "rejectedAlternative": "Single 10001 target: emulator WebChannel backlog at 10000 cold documents; not adopted.",
+  "implementationCommit": "5b35de937867b07504688e0909be1586a19befb4",
+  "node": "v24.18.0",
+  "firebase": "12.18.0",
+  "playwright": "1.63.0",
+  "initialTargetAdmission": "serialized until server confirmation",
+  "implementationBlob": "c5c9dac6475c5b83f66862addb78d4c5986941d2"
 }

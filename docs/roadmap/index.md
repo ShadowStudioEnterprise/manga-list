@@ -20,6 +20,6 @@ Consulta la [especificación v1](/reports/project/specification-v1), el
 [análisis ML-06 de consumo](/reports/firestore/ml-06-consumption-2026-10-20) y el
 [procedimiento propuesto de revisión](/reports/accounts/manual-marker-review).
 
-La [propuesta ML-07](/reports/firestore/ml-07-sync-2026-10-20) sustituye los rangos vivos
-por rangos de 5000 y coordina pestañas en memoria. Revisión, aceptación de
+La [propuesta ML-07](/reports/firestore/ml-07-sync-2026-10-20) aumenta el bloque de transporte
+a 5000 y escalona las aperturas y coordina pestañas en memoria. Revisión, aceptación de
 capacidad Spark y transición de reglas/cliente permanecen pendientes.

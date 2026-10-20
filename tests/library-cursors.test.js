@@ -176,6 +176,19 @@ test('cancel and late callbacks cannot deliver or attach more targets', async ()
   assert.deepEqual(f.deliveries, [])
 })
 
+test('cancel while a split child awaits confirmation never opens the deferred sibling', async () => {
+  const f = await fixture(2501)
+  const stop = f.start()
+  await Promise.resolve()
+  assert.equal(f.targets.length, 2)
+  assert.equal(f.deliveries.length, 0)
+  stop()
+  await f.flush()
+  assert.equal(f.targets.length, 2)
+  assert.equal(f.targets.filter((target) => target.active).length, 0)
+  assert.equal(f.deliveries.length, 0)
+})
+
 test('a failed query stops its listener and never claims a complete partial library', async () => {
   const f = await fixture(1500)
   f.start()
