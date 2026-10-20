@@ -74,13 +74,14 @@ identidad y cero listeners tras cerrar. El reloj local avanza 60000 ms únicamen
 antes de reabrir; no se modifica el límite ni se simula reinicio diario de Spark.
 
 La matriz utiliza dos contextos SDK independientes por tamaño como aproximación
-a pestañas sin coordinación. **No mide dos pestañas del mismo origen.** Se intentó
-una comprobación adicional en navegador, pero Chromium agotó 180 segundos al
-navegar a la página local de registro, antes de cargar o medir la biblioteca.
-Los reintentos de diagnóstico no aportaron una observación válida de pestañas.
-No se convierte este fallo de carga en un resultado de coste ni en una regresión
-demostrada del producto; no se incluye el ensayo no validado en el código propuesto.
-Confirmar coordinación efectiva de pestañas en navegador queda pendiente.
+a pestañas sin coordinación. **Por sí sola no mide dos pestañas del mismo origen.**
+El intento local de navegador agotó 180 segundos al navegar al registro, antes de
+medir la biblioteca; no se considera evidencia de coste ni regresión demostrada.
+Se añade `tests/e2e/ml06-tabs.spec.js` para completar esta observación en CI:
+dos pestañas del mismo contexto y origen con 2500 obras, autenticación compartida,
+mensajes WebChannel `addTarget`, búsqueda, incremento y recarga de una pestaña.
+El ensayo bloquea peticiones fuera de los tres puertos locales. Sus resultados
+quedan pendientes hasta conservar la evidencia del commit que lo incorpora.
 
 Resultados brutos revisables:
 [servicio](../../measurements/ml06-consumption-2026-10-20.json) y
