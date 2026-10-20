@@ -30,12 +30,13 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     projectId: 'demo-mangalist',
     firestore: { host: '127.0.0.1', port: 8188 },
   })
-  let owner
+  let owner, ownerPageAfterResume
   const lifecycle = []
   const coordination = []
   const ownerConsole = []
   const ownerNavigations = []
   const ownerSockets = []
+  const ownerSocketAttempts = []
   const ownerRequests = []
   const followerRequests = []
   let ownerTargets = 0,
@@ -99,7 +100,15 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       if (!frame.parentId && frame.url.startsWith('http://127.0.0.1:9100/'))
         ownerNavigations.push({ at: Date.now(), url: frame.url })
     })
-    owner.on('Network.webSocketCreated', ({ url }) => ownerSockets.push(url))
+    owner.on('Network.webSocketCreated', ({ requestId, url }) =>
+      ownerSocketAttempts.push({ requestId, url: url.split('?')[0] }),
+    )
+    owner.on('Network.webSocketHandshakeResponseReceived', ({ requestId, response }) => {
+      if (response.status === 101)
+        ownerSockets.push(
+          ownerSocketAttempts.find((a) => a.requestId === requestId)?.url || requestId,
+        )
+    })
     owner.on('Network.requestWillBeSent', ({ request }) => {
       if (!request.url.includes('google.firestore.v1.Firestore/Listen')) return
       const body = new URLSearchParams(request.postData || '')
@@ -225,6 +234,11 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     expect(resume.ticks).toBe(freeze.ticks)
     expect(resume.at - freeze.at).toBeGreaterThan(15000)
     await recordCoordination('after-resume')
+    ownerPageAfterResume = await owner
+      .evaluate(
+        `({url: location.href, heading: document.querySelector('h1')?.textContent, alert: document.querySelector('[role=alert]')?.textContent, status: document.querySelector('[role=status]')?.textContent, summary: document.querySelector('.library-page-summary')?.textContent})`,
+      )
+      .catch((error) => ({ error: error.message }))
     expect(ownerNavigations).toHaveLength(1)
     expect(ownerSockets).toEqual([])
     expect(coordination.at(-1).locks.held).toEqual(coordination[0].locks.held)
@@ -268,6 +282,7 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       coordination,
       ownerNavigations,
       ownerSockets,
+      ownerSocketAttempts,
       frozenDurationMs: resume.at - freeze.at,
       frozenTimerTicks: resume.ticks - freeze.ticks,
       concurrentWriteStartedAt,
@@ -294,6 +309,8 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
           ownerConsole,
           ownerNavigations,
           ownerSockets,
+          ownerSocketAttempts,
+          ownerPageAfterResume,
           ownerRequests,
           followerRequests,
           ownerTargets,

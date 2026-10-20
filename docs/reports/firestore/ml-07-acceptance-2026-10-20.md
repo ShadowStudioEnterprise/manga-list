@@ -77,7 +77,7 @@ congelado y cambia a la petición pendiente tras reanudar. Esto demuestra un
 relevo; no demuestra dos propietarios simultáneos ni explica todavía su causa.
 El cliente del servidor Vite puede recargar al perder su websocket. Para aislar
 esa interferencia se desactiva HMR únicamente en E2E con emuladores demo y se
-exige una sola navegación, ningún websocket de desarrollo y el mismo titular
+exige una sola navegación, ningún websocket de desarrollo establecido y el mismo titular
 del bloqueo antes y después. Se conservan las condiciones de cero consultas
 en la seguidora. El resultado de ese ensayo debe confirmarse en CI.
 
@@ -99,6 +99,16 @@ la seguidora debe seguir sin consulta de biblioteca. El artefacto
 `ml07-browser-process-freeze.json` debe confirmar el recorrido completo. Este
 ensayo aún no tiene resultado y no demuestra suspensión del sistema, Windows
 ni Firefox. Complementa el ciclo nativo del documento, no sustituye sus fallos.
+
+En las CI de `a420261`, las 39 E2E anteriores siguen pasando, pero los ensayos
+nuevos se detienen antes de congelar: Playwright ya había iniciado la traza del
+contexto y Vite conservaba el websocket pese a `server.hmr=false`. Se elimina el
+inicio/cierre duplicado de trazas y se añade `server.ws=false`, que la
+[documentación de Vite](https://vite.dev/config/server-options.html#server-ws)
+define para desactivar el canal. No se relajan los controles de ausencia de
+websocket establecido, navegación única, bloqueo ni consultas. Se registran por separado los intentos del cliente y los handshakes 101: un
+intento rechazado no es un canal establecido. Estos fallos no prueban una
+suspensión ni se presentan como validación de coordinación.
 
 ## Capacidad diaria: presupuesto propuesto
 

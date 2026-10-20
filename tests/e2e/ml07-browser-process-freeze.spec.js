@@ -47,7 +47,6 @@ test('ML-07: complete isolated browser process freeze preserves synchronization 
     }
   }
   try {
-    await context.tracing.start({ screenshots: true, snapshots: true, sources: true })
     await context.route('**/*', (route) => {
       const url = new URL(route.request().url())
       if (url.hostname === '127.0.0.1' && ['9100', '8188', '9199'].includes(url.port))
@@ -228,9 +227,6 @@ test('ML-07: complete isolated browser process freeze preserves synchronization 
       testInfo.outputPath('ml07-browser-process-diagnostics.json'),
       JSON.stringify(diagnostics, null, 2) + '\n',
     )
-    await context.tracing
-      .stop({ path: testInfo.outputPath('browser-process-trace.zip') })
-      .catch(() => {})
     await browser.close().catch(() => {})
     await server.close()
     await env.cleanup()

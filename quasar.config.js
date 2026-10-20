@@ -46,6 +46,7 @@ export default defineConfig((ctx) => {
         ) {
           config.server ||= {}
           config.server.hmr = false
+          config.server.ws = false
         }
       },
       // Quasar handles dotenv itself; Firebase uses the documented VITE_FIREBASE_ prefix.
