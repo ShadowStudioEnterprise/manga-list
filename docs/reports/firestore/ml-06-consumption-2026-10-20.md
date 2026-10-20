@@ -45,7 +45,9 @@ honestidad: `billedReadsMeasured: false` en la evidencia.
 
 Requisitos: lockfile de esta base, Node 24.18.0, Java 21+ (ejecución local: 23.0.1),
 Firebase CLI 15.32.1, SDK Firebase 12.18.0, emulador Firestore 1.22.0.
-Instalar las dependencias con `npm ci`. La matriz nueva no requiere navegador.
+Instalar las dependencias con `npm ci`. La matriz SDK no requiere navegador;
+para el ensayo de pestañas instalar Chromium/Firefox con
+`npx playwright install chromium firefox`.
 En Windows, colocar el directorio real de Java antes del shim de Oracle en PATH.
 En equipos con poca memoria, ejecutar los archivos en serie y acotar el heap de
 Java, por ejemplo `JAVA_TOOL_OPTIONS=-Xms64m -Xmx512m`. Es memoria del proceso
@@ -56,6 +58,7 @@ a exceder los 60 segundos del CLI; el ensayo definitivo utiliza heap acotado.
 npm test
 firebase emulators:exec --project demo-mangalist --only firestore "node --experimental-vm-modules --test --test-concurrency=1 tests/firestore/*.test.js"
 node scripts/model-ml06-consumption.mjs
+firebase emulators:exec --project demo-mangalist --only auth,firestore "npx playwright test tests/e2e/ml06-tabs.spec.js"
 npm run lint:check
 npm run docs:build
 node scripts/check-spark.mjs
@@ -80,12 +83,15 @@ medir la biblioteca; no se considera evidencia de coste ni regresión demostrada
 Se añade `tests/e2e/ml06-tabs.spec.js` para completar esta observación en CI:
 dos pestañas del mismo contexto y origen con 2500 obras, autenticación compartida,
 mensajes WebChannel `addTarget`, búsqueda, incremento y recarga de una pestaña.
-El ensayo bloquea peticiones fuera de los tres puertos locales. Sus resultados
-quedan pendientes hasta conservar la evidencia del commit que lo incorpora.
+El ensayo bloquea peticiones fuera de los tres puertos locales. Pasó en ambos
+navegadores en las dos CI del código `5326add`; las cuatro observaciones quedan
+conservadas en el JSON de pestañas. La limitación de carga local de Windows se
+mantiene documentada, pero ya existe observación de pestañas reales en CI Linux.
 
 Resultados brutos revisables:
-[servicio](../../measurements/ml06-consumption-2026-10-20.json) y
-[modelo](../../measurements/ml06-model-2026-10-20.json).
+[servicio](../../measurements/ml06-consumption-2026-10-20.json),
+[modelo](../../measurements/ml06-model-2026-10-20.json) y
+[pestañas en CI](../../measurements/ml06-tabs-2026-10-20.json).
 Los originales nuevos se generan en `test-results/`. Una muestra por escenario;
 no se presenta comparación estadística de latencia ni benchmark de producción.
 
@@ -204,6 +210,23 @@ En múltiples clientes, arrancar T pestañas independientes multiplica I por T y
 las entregas de cambios por el número de oyentes. El presupuesto se multiplica
 también: 60 lecturas/minuto **por pestaña**, no 60 globales.
 
+La continuación del 20/10/2026 observa dos pestañas reales del mismo contexto y
+origen, con 2500 obras, en Chromium y Firefox sobre Ubuntu 24.04 de CI. Ambas ven
+el incremento de capítulo confirmado desde una de ellas. Cada navegador se ensaya
+dos veces, en las ejecuciones de rama y PR del mismo código:
+
+| Navegador                            | Targets iniciales de ambas pestañas | Targets nuevos al buscar/actualizar | Targets al recargar una pestaña | Peticiones externas |
+| ------------------------------------ | ----------------------------------- | ----------------------------------- | ------------------------------- | ------------------- |
+| Chromium 153.0.8010.12, dos muestras | 5 + 5                               | 0 + 0                               | 5                               | 0                   |
+| Firefox 155.0, dos muestras          | 5 + 5                               | 0 + 0                               | 5                               | 0                   |
+
+Son mensajes WebChannel `addTarget` observados, no admisiones instrumentadas ni
+lecturas facturadas. Confirman aperturas independientes en esta muestra; no
+demuestran cuántos documentos facturaría el backend ni permiten atribuir ahorro
+por caché. El modelo conserva `2I=9004` para dos cargas frías de 2500 y `I=4502`
+adicionales para reabrir una. No se presentan estos importes como consumo real
+medido por los diez o cinco mensajes de transporte.
+
 ## Presupuesto Spark compartido y sensibilidad
 
 Las [cuotas Standard](https://firebase.google.com/docs/firestore/quotas) publicadas
@@ -223,6 +246,17 @@ que haya cupo al reintentar; no debe generar tormentas de reaperturas.
 Para cuantificar sensibilidad se propone, **sin implementarla ni aprobarla como
 capacidad**, una reserva del 20 %: 10000 lecturas para resto del proyecto y 40000
 para las mezclas. Ajustar la reserva si el resto real supera ese valor.
+
+Un caso auxiliar muestra por qué el 20 % no es una garantía: el borrado de una
+cuenta de 10000 obras en `account-service.js`, sin fallos ni contención, requiere
+cinco invocaciones de hasta cinco lotes de 400. Las cuatro primeras leen además
+400 documentos de control antes de detenerse, que se releen al reanudar. El modelo
+es `10000 + 4×400 + 1 consulta vacía + 5 gets del marcador = 11606` lecturas, antes
+de posibles dependencias de reglas y reintentos; son 30 admisiones de consultas,
+más cinco gets que el contador local no incluye. Consume además 10000 borrados,
+con cupo separado. Es una derivación del código, no una nueva medición de borrado
+ni una autorización para actuar sobre cuentas. Por sí sola supera la reserva
+propuesta de 10000 lecturas.
 
 - Mezcla A: una pestaña fría, una exportación, 20 incrementos sin colisión y una
   búsqueda de duplicado sin coincidencias. A=I+E+20×(1 get+1 entrega+1 regla)+1.
@@ -265,7 +299,8 @@ No se deriva ocupación real del tamaño de JSON exportado.
 1. **P1 — aceptar capacidad con mezcla y margen.** No aprobar 10000 como capacidad
    operativa solo porque pasan integridad y límites. Registrar sesiones frías,
    reconexiones, pestañas y exportaciones esperadas; usar esta calculadora y reservar
-   cuota para auxiliares. Con el patrón B, 10000 no cabe en Spark compartido.
+   cuota para auxiliares, incluidos los borrados reanudables que releen controles.
+   Con el patrón B, 10000 no cabe en Spark compartido.
 2. **P1 — evitar relecturas accidentales.** Mantener la deduplicación del store por
    UID, no reconstruir listeners al buscar/filtrar/paginar y conservar acción manual
    tras cuota. Documentar el impacto de varias pestañas y de reexportar. No introducir
@@ -304,14 +339,24 @@ Coincide con la tabla de transporte y verifica cero consultas/admisiones nuevas
 para búsquedas, filtros, orden y cortes visuales. Es tiempo descriptivo de ejecución
 local, no latencia del producto. Los 20 ensayos previos incluyen colisiones reales,
 aislamiento, JSON/CSV íntegros, barrera de borrado, pausa de cuota y recuperación.
-No hay una nueva validación satisfactoria de navegador en esta iteración.
 Pasan formato/lint, compilación local del portal con comprobación de enlaces y
-control Spark local. No se ejecuta compilación ni publicación de la aplicación,
-porque el cambio no modifica su código ni configuración.
+control Spark local.
+
+La continuación verifica el código `5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb` en
+[CI del PR](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430766297)
+y [CI de la rama](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430760261).
+Ambas terminan correctamente: 83 regresiones, 21 pruebas Firestore, 31 recorridos
+de navegador y una prueba de actualización PWA. Incluyen los dos ensayos nuevos
+de pestañas; pasan también auditoría de ambos lockfiles, control Spark, formato,
+documentación, compilaciones SPA/PWA con proyecto demo y contratos de build.
+Las compilaciones son locales al runner y no publican la aplicación. El JSON
+conserva commit, versiones, identificadores de artefacto, cuatro resultados y
+estados de CI; su permanencia en el repositorio no depende de la retención de
+siete días de los artefactos originales.
 
 ML-06 entrega análisis y reproducción; no cierra aceptación operativa de capacidad,
 no certifica consumo diario real, estado remoto Spark, cuota restante, frecuencia
-de colisiones, latencia de eur3, coordinación real entre pestañas del mismo origen,
-dispositivos físicos ni persistencia tras 30 minutos.
+de colisiones, latencia de eur3, otros navegadores/dispositivos o tamaños en
+multi-pestaña real distintos de la muestra de 2500, ni persistencia tras 30 minutos.
 Una futura verificación de métricas reales sería una actuación separada: no se ha
 usado para este informe ni se ha tocado ninguna cuenta real.
