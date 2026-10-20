@@ -37,6 +37,7 @@ export default defineConfig({
     timeout: 120000,
     env: {
       QCLI_FIREBASE_EMULATORS: 'true',
+      MANGALIST_E2E_NO_HMR: 'true',
       VITE_FIREBASE_API_KEY: 'demo-mangalist-key',
       VITE_FIREBASE_AUTH_DOMAIN: 'demo-mangalist.firebaseapp.com',
       VITE_FIREBASE_PROJECT_ID: 'demo-mangalist',

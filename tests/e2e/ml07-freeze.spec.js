@@ -34,6 +34,8 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
   const lifecycle = []
   const coordination = []
   const ownerConsole = []
+  const ownerNavigations = []
+  const ownerSockets = []
   const ownerRequests = []
   const followerRequests = []
   let ownerTargets = 0,
@@ -93,6 +95,11 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
         await owner.send('Fetch.failRequest', { requestId, errorReason: 'BlockedByClient' })
       }
     })
+    owner.on('Page.frameNavigated', ({ frame }) => {
+      if (!frame.parentId && frame.url.startsWith('http://127.0.0.1:9100/'))
+        ownerNavigations.push({ at: Date.now(), url: frame.url })
+    })
+    owner.on('Network.webSocketCreated', ({ url }) => ownerSockets.push(url))
     owner.on('Network.requestWillBeSent', ({ request }) => {
       if (!request.url.includes('google.firestore.v1.Firestore/Listen')) return
       const body = new URLSearchParams(request.postData || '')
@@ -110,7 +117,7 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       })
     })
     owner.on('Runtime.consoleAPICalled', ({ args, type }) => {
-      if (type === 'error' || type === 'warning')
+      if (args[0]?.value !== 'ML07_LIFECYCLE')
         ownerConsole.push({ at: Date.now(), type, args: args.map((a) => a.value || a.description) })
       if (args[0]?.value === 'ML07_LIFECYCLE') lifecycle.push(JSON.parse(args[1].value))
     })
@@ -135,6 +142,8 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       .poll(() => owner.evaluate('document.querySelector(".library-page-summary")?.textContent'))
       .toContain('de 500 obras')
     expect(ownerTargets).toBe(1)
+    expect(ownerSockets).toEqual([])
+    expect(ownerNavigations).toHaveLength(1)
     const follower = await context.newPage()
     follower.on('request', (request) => {
       if (!request.url().includes('google.firestore.v1.Firestore/Listen')) return
@@ -216,6 +225,9 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     expect(resume.ticks).toBe(freeze.ticks)
     expect(resume.at - freeze.at).toBeGreaterThan(15000)
     await recordCoordination('after-resume')
+    expect(ownerNavigations).toHaveLength(1)
+    expect(ownerSockets).toEqual([])
+    expect(coordination.at(-1).locks.held).toEqual(coordination[0].locks.held)
     const resumeTargets = { owner: ownerTargets, follower: followerTargets }
     expect(followerTargets).toBe(0)
     await follower.goto('/#/settings/import-export')
@@ -253,6 +265,9 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
         'Native CDP Page.setWebLifecycleState on a hidden target in the isolated browser context',
       scope: 'Real document freeze/resume; not OS sleep, process suspension or Firefox lifecycle',
       lifecycle,
+      coordination,
+      ownerNavigations,
+      ownerSockets,
       frozenDurationMs: resume.at - freeze.at,
       frozenTimerTicks: resume.ticks - freeze.ticks,
       concurrentWriteStartedAt,
@@ -277,6 +292,8 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
           lifecycle,
           coordination,
           ownerConsole,
+          ownerNavigations,
+          ownerSockets,
           ownerRequests,
           followerRequests,
           ownerTargets,

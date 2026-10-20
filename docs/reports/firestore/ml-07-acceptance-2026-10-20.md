@@ -11,7 +11,6 @@ propuesta concreta del PR #6. Queda aceptado el contrato técnico:
 
 - 5000 obras y un centinela como máximo por consulta.
 - Acceso solo al propietario; máximo local de 10000 obras y 64 rangos.
-- Aperturas hijas escalonadas y publicación completa de los rangos.
 - Reglas antes del cliente en una eventual publicación autorizada por separado.
 
 La aceptación no autoriza fusionar, desplegar ni acceder a Firebase remoto,
@@ -71,6 +70,35 @@ auditoría. El archivo de bloqueo cambia solo esa resolución y su dependencia
 directa de desarrollo. La validación posterior debe corresponder a ese archivo.
 El quinto intento local con diagnósticos agotó 360 segundos antes de crear el
 propietario; sus eventos y consultas están vacíos y no validan la congelación.
+
+Las dos CI de `61ac71a` reproducen la consulta adicional. Los diagnósticos
+muestran un único bloqueo exclusivo: su titular se conserva mientras está
+congelado y cambia a la petición pendiente tras reanudar. Esto demuestra un
+relevo; no demuestra dos propietarios simultáneos ni explica todavía su causa.
+El cliente del servidor Vite puede recargar al perder su websocket. Para aislar
+esa interferencia se desactiva HMR únicamente en E2E con emuladores demo y se
+exige una sola navegación, ningún websocket de desarrollo y el mismo titular
+del bloqueo antes y después. Se conservan las condiciones de cero consultas
+en la seguidora. El resultado de ese ensayo debe confirmarse en CI.
+
+## Suspensión completa de un navegador aislado
+
+El ensayo adicional `ml07-browser-process-freeze.spec.js` ejecuta Chromium
+exclusivo de prueba en Linux CI. Obtiene su PID desde `BrowserServer`, exige
+un grupo propio separado del controlador y verifica que todos sus descendientes
+pertenezcan al grupo. Solo entonces envía `SIGSTOP`, verifica estados de proceso
+detenidos y confirma una edición desde una herramienta externa contra el emulador.
+Tras al menos 20 segundos reanuda con `SIGCONT`, exige recepción en ambas pestañas,
+exportación completa y un único relevo al cerrar al propietario. Un temporizador
+de seguridad y el bloque final reanudan siempre el grupo de prueba.
+
+Todas las pestañas del navegador suspendido se detienen juntas: la edición no
+se atribuye a una seguidora que siguiese activa dentro de ese navegador. El
+propietario puede reconectar una consulta, que se registra como coste adicional;
+la seguidora debe seguir sin consulta de biblioteca. El artefacto
+`ml07-browser-process-freeze.json` debe confirmar el recorrido completo. Este
+ensayo aún no tiene resultado y no demuestra suspensión del sistema, Windows
+ni Firefox. Complementa el ciclo nativo del documento, no sustituye sus fallos.
 
 ## Capacidad diaria: presupuesto propuesto
 
