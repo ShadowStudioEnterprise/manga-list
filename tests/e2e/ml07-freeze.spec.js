@@ -32,6 +32,10 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
   })
   let owner
   const lifecycle = []
+  const coordination = []
+  const ownerConsole = []
+  const ownerRequests = []
+  const followerRequests = []
   let ownerTargets = 0,
     followerTargets = 0
   try {
@@ -92,9 +96,22 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     owner.on('Network.requestWillBeSent', ({ request }) => {
       if (!request.url.includes('google.firestore.v1.Firestore/Listen')) return
       const body = new URLSearchParams(request.postData || '')
-      for (const value of body.values()) if (value.includes('"addTarget"')) ownerTargets++
+      for (const value of body.values())
+        if (value.includes('"addTarget"')) {
+          ownerTargets++
+          ownerRequests.push({ at: Date.now(), target: JSON.parse(value).addTarget })
+        }
     })
-    owner.on('Runtime.consoleAPICalled', ({ args }) => {
+    owner.on('Runtime.exceptionThrown', ({ exceptionDetails }) => {
+      ownerConsole.push({
+        at: Date.now(),
+        exception: exceptionDetails.text,
+        description: exceptionDetails.exception?.description,
+      })
+    })
+    owner.on('Runtime.consoleAPICalled', ({ args, type }) => {
+      if (type === 'error' || type === 'warning')
+        ownerConsole.push({ at: Date.now(), type, args: args.map((a) => a.value || a.description) })
       if (args[0]?.value === 'ML07_LIFECYCLE') lifecycle.push(JSON.parse(args[1].value))
     })
     await owner.send('Page.enable')
@@ -122,7 +139,11 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     follower.on('request', (request) => {
       if (!request.url().includes('google.firestore.v1.Firestore/Listen')) return
       const body = new URLSearchParams(request.postData() || '')
-      for (const value of body.values()) if (value.includes('"addTarget"')) followerTargets++
+      for (const value of body.values())
+        if (value.includes('"addTarget"')) {
+          followerTargets++
+          followerRequests.push({ at: Date.now(), target: JSON.parse(value).addTarget })
+        }
     })
     await follower.goto('/#/library')
     await expect(follower.locator('.library-page-summary')).toContainText('de 500 obras')
@@ -132,6 +153,13 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       .fill('Freeze 0')
     await expect(follower.locator('.manga-grid > .manga-card')).toHaveCount(1)
     expect(followerTargets).toBe(0)
+    const recordCoordination = async (stage) =>
+      coordination.push({
+        stage,
+        at: Date.now(),
+        locks: await follower.evaluate(() => navigator.locks.query()),
+      })
+    await recordCoordination('before-freeze')
     await owner.send('Page.setWebLifecycleState', { state: 'frozen' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(1)
     const freezeObservedAt = Date.now()
@@ -146,6 +174,7 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       setTimeout(resolve, Math.max(0, 20000 - (Date.now() - freezeObservedAt))),
     )
     expect(lifecycle.some((event) => event.type === 'resume')).toBe(false)
+    await recordCoordination('frozen-before-write')
     const concurrentWriteStartedAt = Date.now()
     await follower.getByRole('button', { name: 'Sumar un capítulo', exact: true }).click()
     // This is a separate emulator fixture confirmation, not an application listener.
@@ -169,6 +198,7 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       recoveryRequested = true
     }
     expect(followerTargets).toBe(0)
+    await recordCoordination('before-active-command')
     const resumedBeforeExplicitCommand = lifecycle.some((event) => event.type === 'resume')
     await owner.send('Page.setWebLifecycleState', { state: 'active' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'resume').length).toBe(1)
@@ -185,6 +215,7 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     expect(freeze.visibility).toBe('hidden')
     expect(resume.ticks).toBe(freeze.ticks)
     expect(resume.at - freeze.at).toBeGreaterThan(15000)
+    await recordCoordination('after-resume')
     const resumeTargets = { owner: ownerTargets, follower: followerTargets }
     expect(followerTargets).toBe(0)
     await follower.goto('/#/settings/import-export')
@@ -197,6 +228,10 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     const targetsAfterExport = followerTargets
     await follower.goto('/#/library')
     await expect(follower.getByRole('status')).toContainText('Última instantánea')
+    await expect(
+      follower.getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true }),
+    ).toHaveValue('Freeze 0')
+    await follower.getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true }).fill('')
     await expect(follower.locator('.library-page-summary')).toContainText('de 500 obras')
     await owner.send('Page.setWebLifecycleState', { state: 'frozen' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(2)
@@ -240,6 +275,10 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       JSON.stringify(
         {
           lifecycle,
+          coordination,
+          ownerConsole,
+          ownerRequests,
+          followerRequests,
           ownerTargets,
           followerTargets,
         },

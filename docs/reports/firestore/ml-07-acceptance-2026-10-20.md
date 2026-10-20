@@ -51,6 +51,19 @@ contadores y si se solicitó recuperación. Exige al menos 20 segundos de
 congelación antes de iniciar la edición, conserva diagnósticos incluso si falla
 y no exige que el aviso siga visible después de recibir datos nuevos.
 
+Las CI de `3bbe47a` conservaron 91 pruebas unitarias, 22 de reglas y 39 E2E
+correctas, pero el ensayo nuevo no pasa completo. En el PR se observó una
+consulta completa adicional en la seguidora tras reanudar (congelación medida
+20392 ms y cero avances del contador). En la rama se alcanzaron reanudación,
+edición y exportación, y falló la expectativa de 500 resultados mientras seguía
+aplicado el filtro de una obra. Se corrige esa expectativa conservando la búsqueda
+hasta comprobarla y borrándola explícitamente antes de comprobar las 500 obras.
+La consulta adicional sigue exigiéndose ausente: no se relaja esa condición.
+Se registran bloqueos, consultas y errores del propietario para explicar el fallo.
+Un sondeo aislado de 21 segundos conserva el bloqueo exclusivo durante y después
+de congelar, con la otra petición aún pendiente. No prueba el recorrido de la app.
+No se presenta ninguna de esas CI como validación completa ni como publicación.
+
 ## Capacidad diaria: presupuesto propuesto
 
 Datos declarados: **50 cuentas y 500 obras por cuenta**. Las frecuencias siguen
