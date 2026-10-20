@@ -1,0 +1,166 @@
+{
+  "declared": {
+    "registeredAccounts": 50,
+    "worksPerAccount": 500,
+    "totalWorks": 25000,
+    "dailyFrequenciesKnown": false
+  },
+  "scope": "Deterministic planning sensitivities, not measured billing, an enforced global quota or operational approval; no Firebase access",
+  "quota": {
+    "reads": 50000,
+    "writes": 20000,
+    "storedGiB": 1,
+    "monthlyOutboundGiB": 10
+  },
+  "proposal": {
+    "dailyReadBudget": 40000,
+    "emergencyReadReserve": 10000,
+    "auxiliaryReadAllowance": 5000,
+    "coldOpensPerActiveAccount": 1,
+    "chapterIncrementsPerActiveAccount": 20,
+    "noMatchDuplicateChecksPerActiveAccount": 1
+  },
+  "assumptions": [
+    "All 50 accounts active; stable 500-work libraries, one coordinated owner per account/origin/project",
+    "An extra full event is a reopening after closure, reconnect, export or owner handoff; all share the same aggregate allowance",
+    "An independent active device/tab adds its own opening and ongoing update deliveries; it is outside the single-owner proposal",
+    "Three modeled reads and one write per uncontended chapter increment; one minimum read per no-match duplicate check",
+    "Auxiliary allowance must cover other reads and retries; actual amounts and real document sizes are unknown",
+    "No extra writes, deletes or imports in the steady proposal; those require additional budgeting",
+    "Rules/SDK retries, multiple independent owners and other clients can exceed these assumptions"
+  ],
+  "minimumReadSensitivitiesBeforeOtherOperations": {
+    "allAccountsOneColdOpen": 25000,
+    "coldPlusOneExportPerAccount": 50000,
+    "coldPlusOneReconnectPerAccount": 50000,
+    "twoIndependentColdTabsPerAccount": 50000
+  },
+  "steadyBase": {
+    "active": 50,
+    "additionalFullEvents": 0,
+    "coldReads": 25000,
+    "chapterReads": 3000,
+    "duplicateReads": 50,
+    "auxiliaryReads": 5000,
+    "writes": 1000,
+    "reads": 33050,
+    "withinPlanningBudget": true,
+    "withinFreeReadQuota": true,
+    "freeReadHeadroom": 16950
+  },
+  "proposedEnvelope": {
+    "active": 50,
+    "additionalFullEvents": 13,
+    "coldReads": 25000,
+    "chapterReads": 3000,
+    "duplicateReads": 50,
+    "auxiliaryReads": 5000,
+    "writes": 1000,
+    "reads": 39550,
+    "withinPlanningBudget": true,
+    "withinFreeReadQuota": true,
+    "freeReadHeadroom": 10450
+  },
+  "nextFullEvent": {
+    "active": 50,
+    "additionalFullEvents": 14,
+    "coldReads": 25000,
+    "chapterReads": 3000,
+    "duplicateReads": 50,
+    "auxiliaryReads": 5000,
+    "writes": 1000,
+    "reads": 40050,
+    "withinPlanningBudget": false,
+    "withinFreeReadQuota": true,
+    "freeReadHeadroom": 9950
+  },
+  "allAccountsDailyExtraEvent": {
+    "active": 50,
+    "additionalFullEvents": 50,
+    "coldReads": 25000,
+    "chapterReads": 3000,
+    "duplicateReads": 50,
+    "auxiliaryReads": 5000,
+    "writes": 1000,
+    "reads": 58050,
+    "withinPlanningBudget": false,
+    "withinFreeReadQuota": false,
+    "freeReadHeadroom": -8050
+  },
+  "maxAdditionalFullEventsAcrossWholeProject": 13,
+  "onboarding": {
+    "model": "3N import reads plus separate daily steady events, auxiliary allowance, and writes as described in source",
+    "days": [
+      {
+        "day": 1,
+        "previouslyLoaded": 0,
+        "newAccounts": 16,
+        "loadedAccounts": 16,
+        "reads": 37976,
+        "writes": 8320
+      },
+      {
+        "day": 2,
+        "previouslyLoaded": 16,
+        "newAccounts": 12,
+        "loadedAccounts": 28,
+        "reads": 38708,
+        "writes": 6560
+      },
+      {
+        "day": 3,
+        "previouslyLoaded": 28,
+        "newAccounts": 9,
+        "loadedAccounts": 37,
+        "reads": 39257,
+        "writes": 5240
+      },
+      {
+        "day": 4,
+        "previouslyLoaded": 37,
+        "newAccounts": 6,
+        "loadedAccounts": 43,
+        "reads": 38123,
+        "writes": 3860
+      },
+      {
+        "day": 5,
+        "previouslyLoaded": 43,
+        "newAccounts": 5,
+        "loadedAccounts": 48,
+        "reads": 39428,
+        "writes": 3460
+      },
+      {
+        "day": 6,
+        "previouslyLoaded": 48,
+        "newAccounts": 2,
+        "loadedAccounts": 50,
+        "reads": 36050,
+        "writes": 2000
+      }
+    ]
+  },
+  "sizeSensitivities": [
+    {
+      "averageKiB": 1,
+      "rawWorksGiBExcludingIndexes": 0.02384185791015625,
+      "monthlyGiBIfEachModeledReadTransfersAverageKiB": 1.1315345764160156
+    },
+    {
+      "averageKiB": 5,
+      "rawWorksGiBExcludingIndexes": 0.11920928955078125,
+      "monthlyGiBIfEachModeledReadTransfersAverageKiB": 5.657672882080078
+    },
+    {
+      "averageKiB": 25,
+      "rawWorksGiBExcludingIndexes": 0.5960464477539062,
+      "monthlyGiBIfEachModeledReadTransfersAverageKiB": 28.28836441040039
+    }
+  ],
+  "sizeCaveat": "Hypothetical average bytes, not emulator billing/storage accounting; indexes, overhead, auxiliary payloads and real sizes are not measured",
+  "sources": [
+    "https://firebase.google.com/docs/firestore/quotas#free-quota",
+    "https://firebase.google.com/docs/firestore/pricing#listening_to_query_results"
+  ]
+}
