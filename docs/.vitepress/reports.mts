@@ -31,6 +31,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-07: consultas y sincronización (20/10)',
+        link: '/reports/firestore/ml-07-sync-2026-10-20',
+      },
+      {
         text: 'ML-06: consumo y escenarios (20/10)',
         link: '/reports/firestore/ml-06-consumption-2026-10-20',
       },

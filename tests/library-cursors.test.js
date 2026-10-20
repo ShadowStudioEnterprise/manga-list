@@ -93,7 +93,7 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
 }
 
 for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
-  test(`real query constraints cover ${size} documents once in live ranges and export`, async () => {
+  test(`real query constraints cover ${size} documents once in a bounded listener and export`, async () => {
     const f = await fixture(size)
     const stop = f.start()
     await f.flush()
@@ -117,7 +117,7 @@ for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
     )
     for (const q of f.queries) {
       assert.deepEqual(q[0], { kind: 'order', value: '__name__' })
-      assert.equal(q.at(-1).value, 1001)
+      assert.ok([1001, 10001].includes(q.at(-1).value))
     }
     assert.equal(f.readCount(), Math.max(1, Math.ceil(size / 1000)))
     stop()
@@ -125,7 +125,7 @@ for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
   })
 }
 
-test('live splits preserve inserts on both sides, boundary deletion, edits and empty ranges', async () => {
+test('one target preserves inserts on both sides, former boundary deletion, edits and empty results', async () => {
   const f = await fixture(1501)
   f.start()
   await f.flush()
@@ -144,7 +144,7 @@ test('live splits preserve inserts on both sides, boundary deletion, edits and e
   assert.deepEqual(f.deliveries.at(-1).docs, [])
 })
 
-test('cache cannot certify completeness; pending/cache metadata remain conservative across ranges', async () => {
+test('cache cannot certify completeness; pending/cache metadata remain conservative', async () => {
   const f = await fixture(100, { metadata: { fromCache: true, hasPendingWrites: false } })
   f.start()
   await f.flush()
@@ -166,12 +166,12 @@ test('cancel and late callbacks cannot deliver or attach more targets', async ()
   assert.deepEqual(f.deliveries, [])
 })
 
-test('a failed range stops every listener and never claims a complete partial library', async () => {
+test('a failed query stops its listener and never claims a complete partial library', async () => {
   const f = await fixture(1500)
   f.start()
   await f.flush()
   const active = f.targets.filter((t) => t.active)
-  active[1].fail({ code: 'permission-denied' })
+  active[0].fail({ code: 'permission-denied' })
   const count = f.deliveries.length
   active[0].data({ docs: [], metadata: server })
   assert.equal(f.errors[0].code, 'permission-denied')
@@ -179,11 +179,8 @@ test('a failed range stops every listener and never claims a complete partial li
   assert.equal(f.deliveries.length, count)
 })
 
-test('document and fragmentation budgets fail closed and stop targets', async () => {
-  for (const limits of [
-    { ...SPARK_LIMITS, libraryDocuments: 1000 },
-    { ...SPARK_LIMITS, libraryRanges: 1 },
-  ]) {
+test('document budget fails closed and stops its target', async () => {
+  for (const limits of [{ ...SPARK_LIMITS, libraryDocuments: 1000 }]) {
     const f = await fixture(1501, { limits })
     f.start()
     await f.flush()
@@ -238,7 +235,7 @@ test('export page failure, cache, pending writes and session changes return no p
   assert.equal(f.readCount(), 2)
 })
 
-test('splitting an earlier range preserves ID tie order and ignores retired range errors', async () => {
+test('ID tie order stays stable and cancellation ignores late target errors', async () => {
   const f = await fixture(1501)
   f.start()
   await f.flush()
@@ -248,7 +245,10 @@ test('splitting an earlier range preserves ID tie order and ignores retired rang
   ])
   const last = f.deliveries.at(-1)
   assert.deepEqual(last.docs, [...last.docs].sort())
+  assert.equal(f.targets.length, 1)
   f.targets[0].fail({ code: 'unavailable' })
-  assert.deepEqual(f.errors, [])
-  assert.ok(f.targets.some((target) => target.active))
+  assert.equal(f.errors.length, 1)
+  f.targets[0].fail({ code: 'permission-denied' })
+  assert.equal(f.errors.length, 1)
+  assert.ok(f.targets.every((target) => !target.active))
 })

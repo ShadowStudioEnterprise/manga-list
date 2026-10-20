@@ -4,6 +4,18 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — propuesta ML-07
+
+- Consulta de biblioteca única acotada a 10001; elimina relecturas de división y
+  conserva búsqueda/filtros/orden globales y exportación independiente completa.
+- Coordinación de pestañas por proyecto/cuenta en memoria, relevo al cerrar el
+  propietario, estado conservador ante suspensión y pausa compartida tras cuota.
+- Propuesta de reglas y contrato de release: límite list de 1001 a 10001, sin
+  cambiar esquema ni permisos de propietario. Requiere revisión y autorización
+  separada para publicar reglas antes del cliente; ningún cambio remoto realizado.
+- Matriz antes/después 100–10000, pruebas de emuladores y pestañas. Véase
+  [informe ML-07](docs/reports/firestore/ml-07-sync-2026-10-20.md).
+
 ## Documentación técnica — portal VitePress
 
 - Portal en español con navegación, búsqueda local y guías de arquitectura,

@@ -79,7 +79,7 @@ test(
             failure,
             clock = 0
           const budget = createSparkBudget(() => clock)
-          const service = await loadModule('src/services/manga-service.js', {
+          const overrides = {
             '@/boot/firebase': { db, requireFirebase: () => ({ auth: { currentUser: { uid } } }) },
             '@/utils/spark-budget': {
               SPARK_LIMITS,
@@ -148,7 +148,12 @@ test(
                 )
               },
             },
-          })
+          }
+          overrides['@/services/library-cursors'] = await loadModule(
+            'tests/helpers/ml06-library-cursors.js',
+            overrides,
+          )
+          const service = await loadModule('src/services/manga-service.js', overrides)
           const start = () =>
             service.subscribeToMangas(
               uid,

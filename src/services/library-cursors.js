@@ -1,6 +1,5 @@
 import {
   documentId,
-  endAt,
   getDocsFromServer,
   limit,
   onSnapshot,
@@ -11,109 +10,57 @@ import {
 import { sparkBudget, SPARK_LIMITS } from '@/utils/spark-budget'
 import { createAppError, toAppError } from '@/utils/firebase-errors'
 
-function rangeQuery(reference, lower, upper) {
+function rangeQuery(reference, lower) {
   return query(
     reference,
     orderBy(documentId()),
     ...(lower === null ? [] : [startAfter(lower)]),
-    ...(upper === null ? [] : [endAt(upper)]),
     limit(SPARK_LIMITS.pageDocuments + 1),
   )
 }
 
-// Stable, disjoint ID ranges retain deletions and insertions at page boundaries.
-// Ordering by mutable titles/timestamps here would move documents between listeners.
+// Search, filters and global sorting already require the whole bounded library.
+// One target avoids re-reading each closed child during recursive range splits.
 export function subscribeCursorLibrary(reference, deserialize, onData, onError) {
   sparkBudget.take('listen')
-  const ranges = new Set()
-  let stopped = false
-  let attaching = 0
-  const stopRange = (range) => {
-    range.active = false
-    range.stop?.()
-  }
+  let stopped = false,
+    unsubscribe,
+    confirmed = false
   const stop = () => {
     stopped = true
-    for (const range of ranges) stopRange(range)
-    ranges.clear()
+    unsubscribe?.()
   }
   const fail = (error) => {
     if (stopped) return
     stop()
     onError?.(toAppError(sparkBudget.record(error)))
   }
-  const publish = () => {
-    if (stopped || attaching || [...ranges].some((range) => !range.ready)) return
-    // Preserve Firestore's ID order for stable ties in the existing client sorts.
-    // Binary tree paths order ranges without comparing arbitrary Unicode IDs.
-    const leaves = [...ranges].sort((left, right) =>
-      left.path < right.path ? -1 : left.path > right.path ? 1 : 0,
+  try {
+    sparkBudget.take('read')
+    unsubscribe = onSnapshot(
+      query(reference, orderBy(documentId()), limit(SPARK_LIMITS.libraryDocuments + 1)),
+      { includeMetadataChanges: true },
+      (snapshot) => {
+        if (stopped) return
+        if (snapshot.docs.length > SPARK_LIMITS.libraryDocuments) {
+          fail(createAppError('app/library-budget'))
+          return
+        }
+        const fromCache = snapshot.metadata?.fromCache !== false
+        const hasPendingWrites = snapshot.metadata?.hasPendingWrites !== false
+        confirmed ||= !fromCache && !hasPendingWrites
+        onData(snapshot.docs.map(deserialize), {
+          fromCache,
+          hasPendingWrites,
+          complete: confirmed,
+        })
+      },
+      fail,
     )
-    const documents = leaves.flatMap((range) => range.docs)
-    if (documents.length > SPARK_LIMITS.libraryDocuments) {
-      fail(createAppError('app/library-budget'))
-      return
-    }
-    onData(documents.map(deserialize), {
-      fromCache: leaves.some((range) => range.metadata.fromCache !== false),
-      hasPendingWrites: leaves.some((range) => range.metadata.hasPendingWrites !== false),
-      complete: leaves.every((range) => range.confirmed),
-    })
+    if (stopped) unsubscribe()
+  } catch (error) {
+    fail(error)
   }
-  const attach = (lower, upper, path = '') => {
-    if (stopped) return
-    if (ranges.size >= SPARK_LIMITS.libraryRanges) {
-      fail(createAppError('app/library-budget'))
-      return
-    }
-    const range = { active: true, ready: false, confirmed: false, path }
-    ranges.add(range)
-    attaching++
-    try {
-      // Each actual listener target consumes admission budget, including splits.
-      sparkBudget.take('read')
-      range.stop = onSnapshot(
-        rangeQuery(reference, lower, upper),
-        { includeMetadataChanges: true },
-        (snapshot) => {
-          if (stopped || !range.active) return
-          const authoritative =
-            snapshot.metadata?.fromCache === false && snapshot.metadata?.hasPendingWrites === false
-          if (snapshot.docs.length > SPARK_LIMITS.pageDocuments) {
-            range.ready = false
-            if (!authoritative) return
-            const boundary =
-              snapshot.docs[
-                upper === null
-                  ? SPARK_LIMITS.pageDocuments - 1
-                  : Math.floor(SPARK_LIMITS.pageDocuments / 2) - 1
-              ].id
-            stopRange(range)
-            ranges.delete(range)
-            attach(lower, boundary, `${path}0`)
-            attach(boundary, upper, `${path}1`)
-            return
-          }
-          range.docs = snapshot.docs
-          range.metadata = snapshot.metadata || {}
-          range.ready = true
-          range.confirmed ||= authoritative
-          publish()
-        },
-        (error) => {
-          if (range.active) fail(error)
-        },
-      )
-      // Also handles synchronous test adapters and a stop during attachment.
-      if (stopped || !range.active) range.stop()
-    } catch (error) {
-      fail(error)
-    } finally {
-      attaching--
-      publish()
-    }
-  }
-  attach(null, null)
   return stop
 }
 
@@ -124,7 +71,7 @@ export async function fetchCursorLibrary(reference, deserialize, assertSession) 
   while (true) {
     assertSession()
     sparkBudget.take('read')
-    const snapshot = await getDocsFromServer(rangeQuery(reference, cursor, null))
+    const snapshot = await getDocsFromServer(rangeQuery(reference, cursor))
     assertSession()
     if (snapshot.metadata?.fromCache !== false || snapshot.metadata?.hasPendingWrites !== false) {
       throw createAppError('app/export-not-confirmed')

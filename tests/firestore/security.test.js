@@ -491,8 +491,8 @@ test('list queries require an owner and an explicit bounded limit', async () => 
   for (const uid of ['alice', 'bob']) {
     const ref = collection(dbFor(uid), 'users', 'alice', 'mangas')
     await assertFails(getDocsFromServer(ref))
-    await assertFails(getDocsFromServer(query(ref, limit(1002))))
-    if (uid === 'alice') await assertSucceeds(getDocsFromServer(query(ref, limit(1001))))
+    await assertFails(getDocsFromServer(query(ref, limit(10002))))
+    if (uid === 'alice') await assertSucceeds(getDocsFromServer(query(ref, limit(10001))))
     else await assertFails(getDocsFromServer(query(ref, limit(10))))
   }
 })

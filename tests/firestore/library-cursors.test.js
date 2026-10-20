@@ -181,7 +181,7 @@ test(
         ),
       )
       await assertFails(getDocsFromServer(ref))
-      await assertFails(getDocsFromServer(query(ref, limit(1002))))
+      await assertFails(getDocsFromServer(query(ref, limit(10002))))
       assert.deepEqual(errors, [])
       console.log(
         JSON.stringify({
@@ -270,14 +270,14 @@ test(
       assert.equal(new Set(latest.items.map((item) => item.id)).size, 10000)
       assert.equal(latest.metadata.fromCache, false)
       assert.equal(admissions.listen, 1)
-      assert.equal(admissions.read, 19)
-      assert.equal(activeTargets.size, 10)
+      assert.equal(admissions.read, 1)
+      assert.equal(activeTargets.size, 1)
 
       const copy = await service.fetchLibraryForExport(owner)
       assert.equal(copy.mangas.length, 10000)
       assert.equal(new Set(copy.mangas.map((item) => item.id)).size, 10000)
       assert.equal(exportCalls, 10)
-      assert.equal(admissions.read, 29)
+      assert.equal(admissions.read, 11)
       for (const format of ['json', 'csv']) {
         const payload = createLibraryExport(copy.mangas, format, {
           verification: copy.verification,
@@ -331,9 +331,9 @@ test(
       console.log(
         JSON.stringify({
           documents: 10000,
-          initialListenerAdmissions: 19,
+          initialListenerAdmissions: 1,
           firstExportAdmissions: 10,
-          activeRanges: 10,
+          activeRanges: 1,
           jsonAndCsvRoundTrip: true,
           budgetFailureAfterOnePage: true,
           injectedQuotaPauseMs: 15 * 60000,
