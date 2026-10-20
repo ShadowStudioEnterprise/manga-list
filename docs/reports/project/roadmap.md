@@ -1,5 +1,11 @@
 # Roadmap tras la auditoría del 16/10/2026
 
+ML-06 cuenta con [análisis reproducible de consumo por escenarios](../firestore/ml-06-consumption-2026-10-20.md)
+desde main del 20/10/2026: tamaños 100/1000/2500/5000/10000, admisiones frente a
+documentos observados y cuota modelada, reconexiones, pestañas y presupuesto Spark
+compartido. No aprueba capacidad operativa ni modifica producción; las recomendaciones
+de ahorro y la mezcla de uso siguen pendientes de decisión.
+
 Los puntos pendientes requieren evidencia nueva; no se consideran cerrados por estar
 incluidos en esta lista. La validación local de esta rama no certifica producción.
 

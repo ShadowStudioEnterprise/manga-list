@@ -1,0 +1,96 @@
+{
+  "checkedAtUtc": "2026-10-20T13:42:53.7838722Z",
+  "codeHead": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+  "base": "b1bc5f3b74b159fad0872a6227284d971a2d8bec",
+  "pr": "https://github.com/ShadowStudioEnterprise/manga-list/pull/5",
+  "draft": true,
+  "scope": "CI emulators only; two actual same-origin tabs; WebChannel addTarget messages, NOT billing or SDK read admissions",
+  "validatedCiRuns": [
+    {
+      "id": 39430766297,
+      "event": "pull_request",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "html_url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430766297"
+    },
+    {
+      "id": 39430760261,
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "html_url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430760261"
+    }
+  ],
+  "results": [
+    {
+      "runId": 39430766297,
+      "event": "pull_request",
+      "runUrl": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430766297",
+      "head": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "artifactId": 12268996062,
+      "sourceEntry": "ml06-tabs-ML-06-two-same-o-7703a-dependent-Firestore-targets-chromium/ml06-tabs.json",
+      "size": 2500,
+      "measuredAt": "2026-10-20T13:38:27.096Z",
+      "project": "chromium",
+      "browser": "153.0.8010.12",
+      "initialTargetsPerTab": [5, 5],
+      "extraTargetsForSearchAndUpdate": [0, 0],
+      "reloadTargets": 5,
+      "productionRequests": 0,
+      "scope": "Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"
+    },
+    {
+      "runId": 39430766297,
+      "event": "pull_request",
+      "runUrl": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430766297",
+      "head": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "artifactId": 12268996062,
+      "sourceEntry": "ml06-tabs-ML-06-two-same-o-7703a-dependent-Firestore-targets-firefox/ml06-tabs.json",
+      "size": 2500,
+      "measuredAt": "2026-10-20T13:40:39.046Z",
+      "project": "firefox",
+      "browser": "155.0",
+      "initialTargetsPerTab": [5, 5],
+      "extraTargetsForSearchAndUpdate": [0, 0],
+      "reloadTargets": 5,
+      "productionRequests": 0,
+      "scope": "Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"
+    },
+    {
+      "runId": 39430760261,
+      "event": "push",
+      "runUrl": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430760261",
+      "head": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "artifactId": 12268791601,
+      "sourceEntry": "ml06-tabs-ML-06-two-same-o-7703a-dependent-Firestore-targets-chromium/ml06-tabs.json",
+      "size": 2500,
+      "measuredAt": "2026-10-20T13:38:51.964Z",
+      "project": "chromium",
+      "browser": "153.0.8010.12",
+      "initialTargetsPerTab": [5, 5],
+      "extraTargetsForSearchAndUpdate": [0, 0],
+      "reloadTargets": 5,
+      "productionRequests": 0,
+      "scope": "Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"
+    },
+    {
+      "runId": 39430760261,
+      "event": "push",
+      "runUrl": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430760261",
+      "head": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "artifactId": 12268791601,
+      "sourceEntry": "ml06-tabs-ML-06-two-same-o-7703a-dependent-Firestore-targets-firefox/ml06-tabs.json",
+      "size": 2500,
+      "measuredAt": "2026-10-20T13:41:07.819Z",
+      "project": "firefox",
+      "browser": "155.0",
+      "initialTargetsPerTab": [5, 5],
+      "extraTargetsForSearchAndUpdate": [0, 0],
+      "reloadTargets": 5,
+      "productionRequests": 0,
+      "scope": "Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"
+    }
+  ]
+}

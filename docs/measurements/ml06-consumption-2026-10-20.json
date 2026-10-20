@@ -1,0 +1,491 @@
+{
+  "measuredAt": "2026-10-20T00:48:39.135Z",
+  "base": "b1bc5f3b74b159fad0872a6227284d971a2d8bec",
+  "node": "v24.18.0",
+  "firebase": "12.18.0",
+  "scope": "Synthetic local emulator; SDK observations, NOT production billing. Two independent SDK contexts proxy tabs; no browser tab sharing measurement.",
+  "billedReadsMeasured": false,
+  "fixtureWritesExcluded": true,
+  "results": [
+    {
+      "size": 0,
+      "pages": 1,
+      "initial": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 0,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 0,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 1,
+        "documents": 0,
+        "admissions": 1
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 0,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "update": null,
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 1
+      },
+      "reopen": {
+        "targets": 1,
+        "firstServerDocuments": 0,
+        "admissions": 1
+      },
+      "confirmedSnapshotEvents": 4
+    },
+    {
+      "size": 100,
+      "pages": 1,
+      "initial": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 100,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 5,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 1,
+        "documents": 100,
+        "admissions": 1
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 1,
+          "requests": 1,
+          "documents": 1,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 100,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "update": {
+        "transactionGets": 1,
+        "admissions": 1,
+        "writeAdmissions": 1,
+        "newTargets": 0,
+        "observerModifiedDocuments": 1
+      },
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 100
+      },
+      "reopen": {
+        "targets": 1,
+        "firstServerDocuments": 100,
+        "admissions": 1
+      },
+      "confirmedSnapshotEvents": 6
+    },
+    {
+      "size": 1000,
+      "pages": 1,
+      "initial": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 1000,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 42,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 1,
+        "documents": 1000,
+        "admissions": 1
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 1,
+          "requests": 1,
+          "documents": 1,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 1,
+        "active": 1,
+        "firstServerDocuments": 1000,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 1,
+        "write": 0,
+        "listen": 1
+      },
+      "update": {
+        "transactionGets": 1,
+        "admissions": 1,
+        "writeAdmissions": 1,
+        "newTargets": 0,
+        "observerModifiedDocuments": 1
+      },
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 1000
+      },
+      "reopen": {
+        "targets": 1,
+        "firstServerDocuments": 1000,
+        "admissions": 1
+      },
+      "confirmedSnapshotEvents": 6
+    },
+    {
+      "size": 2500,
+      "pages": 3,
+      "initial": {
+        "targets": 5,
+        "active": 3,
+        "firstServerDocuments": 4502,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 5,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 105,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 3,
+        "documents": 2502,
+        "admissions": 3
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 1,
+          "requests": 1,
+          "documents": 1,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 5,
+        "active": 3,
+        "firstServerDocuments": 4502,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 5,
+        "write": 0,
+        "listen": 1
+      },
+      "update": {
+        "transactionGets": 1,
+        "admissions": 1,
+        "writeAdmissions": 1,
+        "newTargets": 0,
+        "observerModifiedDocuments": 1
+      },
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 2500
+      },
+      "reopen": {
+        "targets": 5,
+        "firstServerDocuments": 4502,
+        "admissions": 5
+      },
+      "confirmedSnapshotEvents": 20
+    },
+    {
+      "size": 5000,
+      "pages": 5,
+      "initial": {
+        "targets": 9,
+        "active": 5,
+        "firstServerDocuments": 9004,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 9,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 209,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 5,
+        "documents": 5004,
+        "admissions": 5
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 1,
+          "requests": 1,
+          "documents": 1,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 9,
+        "active": 5,
+        "firstServerDocuments": 9004,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 9,
+        "write": 0,
+        "listen": 1
+      },
+      "update": {
+        "transactionGets": 1,
+        "admissions": 1,
+        "writeAdmissions": 1,
+        "newTargets": 0,
+        "observerModifiedDocuments": 1
+      },
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 5000
+      },
+      "reopen": {
+        "targets": 9,
+        "firstServerDocuments": 9004,
+        "admissions": 9
+      },
+      "confirmedSnapshotEvents": 34
+    },
+    {
+      "size": 10000,
+      "pages": 10,
+      "initial": {
+        "targets": 19,
+        "active": 10,
+        "firstServerDocuments": 19009,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 19,
+        "write": 0,
+        "listen": 1
+      },
+      "local": {
+        "searches": 2,
+        "filterChanges": 13,
+        "sorts": 5,
+        "visualPages": 417,
+        "extraSdkCalls": 0,
+        "extraAdmissions": 0
+      },
+      "export": {
+        "requests": 10,
+        "documents": 10009,
+        "admissions": 10
+      },
+      "duplicates": [
+        {
+          "name": "Synthetic 0",
+          "matches": 1,
+          "requests": 1,
+          "documents": 1,
+          "admissions": 1
+        },
+        {
+          "name": "Not present",
+          "matches": 0,
+          "requests": 1,
+          "documents": 0,
+          "admissions": 1
+        },
+        {
+          "name": "",
+          "matches": 0,
+          "requests": 0,
+          "documents": 0,
+          "admissions": 1
+        }
+      ],
+      "independentSecondClient": {
+        "targets": 19,
+        "active": 10,
+        "firstServerDocuments": 19009,
+        "queryCalls": 0,
+        "queryDocuments": 0,
+        "transactionGets": 0,
+        "read": 19,
+        "write": 0,
+        "listen": 1
+      },
+      "update": {
+        "transactionGets": 1,
+        "admissions": 1,
+        "writeAdmissions": 1,
+        "newTargets": 0,
+        "observerModifiedDocuments": 1
+      },
+      "reconnect": {
+        "newTargets": 0,
+        "admissions": 0,
+        "billedReads": null,
+        "modeledDocumentReadsWithoutPersistence": 10000
+      },
+      "reopen": {
+        "targets": 19,
+        "firstServerDocuments": 19009,
+        "admissions": 19
+      },
+      "confirmedSnapshotEvents": 69
+    }
+  ]
+}
