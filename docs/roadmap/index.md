@@ -21,5 +21,5 @@ Consulta la [especificación v1](/reports/project/specification-v1), el
 [procedimiento propuesto de revisión](/reports/accounts/manual-marker-review).
 
 La [propuesta ML-07](/reports/firestore/ml-07-sync-2026-10-20) sustituye los rangos vivos
-por un listener acotado y coordina pestañas en memoria. Revisión, aceptación de
+por rangos de 5000 y coordina pestañas en memoria. Revisión, aceptación de
 capacidad Spark y transición de reglas/cliente permanecen pendientes.

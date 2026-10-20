@@ -17,13 +17,13 @@ el cliente no puede retirarlo para desbloquear la cuenta.
 
 ## Consultas y sincronización
 
-La propuesta ML-07 carga hasta 10000 obras con una consulta ordenada por ID
-acotada a 10001 documentos, incluyendo el centinela de exceso. Coordina pestañas
+La propuesta ML-07 carga hasta 10000 obras con rangos disjuntos ordenados por ID
+acotados a 5001 documentos, incluyendo el centinela de exceso. Coordina pestañas
 del mismo origen/proyecto/cuenta mediante Web Locks y BroadcastChannel sin persistir
-la biblioteca en disco. La exportación conserva cursores de hasta 1001 documentos.
+la biblioteca en disco. La exportación usa cursores de hasta 5001 documentos.
 La interfaz filtra y ordena globalmente antes de presentar páginas de 24 tarjetas.
 
-Las reglas propuestas permiten como máximo 10001 por consulta; no imponen una cuota
+Las reglas propuestas permiten como máximo 5001 por consulta; no imponen una cuota
 diaria. El cliente nuevo requiere esas reglas: su transición queda pendiente de
 revisión y autorización separada. No se ha aplicado ningún cambio remoto.
 

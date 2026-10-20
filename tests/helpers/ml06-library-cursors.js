@@ -8,8 +8,14 @@ import {
   query,
   startAfter,
 } from 'firebase/firestore'
-import { sparkBudget, SPARK_LIMITS } from '@/utils/spark-budget'
+import { sparkBudget, SPARK_LIMITS as CURRENT_LIMITS } from '@/utils/spark-budget'
 import { createAppError, toAppError } from '@/utils/firebase-errors'
+
+// Frozen ML-06 transport policy for before/after measurements only.
+const SPARK_LIMITS = {
+  ...CURRENT_LIMITS,
+  pageDocuments: CURRENT_LIMITS.pageDocuments === 500 ? 500 : 1000,
+}
 
 function rangeQuery(reference, lower, upper) {
   return query(

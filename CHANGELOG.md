@@ -6,11 +6,11 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — propuesta ML-07
 
-- Consulta de biblioteca única acotada a 10001; elimina relecturas de división y
+- Rangos de biblioteca acotados a 5001; reduce relecturas de división y
   conserva búsqueda/filtros/orden globales y exportación independiente completa.
 - Coordinación de pestañas por proyecto/cuenta en memoria, relevo al cerrar el
   propietario, estado conservador ante suspensión y pausa compartida tras cuota.
-- Propuesta de reglas y contrato de release: límite list de 1001 a 10001, sin
+- Propuesta de reglas y contrato de release: límite list de 1001 a 5001, sin
   cambiar esquema ni permisos de propietario. Requiere revisión y autorización
   separada para publicar reglas antes del cliente; ningún cambio remoto realizado.
 - Matriz antes/después 100–10000, pruebas de emuladores y pestañas. Véase

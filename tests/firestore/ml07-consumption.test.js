@@ -199,11 +199,11 @@ test(
         const first = await client()
         let second
         try {
-          const pages = Math.max(1, Math.ceil(size / 1000))
+          const pages = Math.max(1, Math.ceil(size / 5000))
           const initial = { ...first.metrics }
-          assert.equal(initial.targets, 1)
-          assert.equal(initial.active, 1)
-          assert.equal(initial.firstServerDocuments, size)
+          assert.equal(initial.targets, 2 * pages - 1)
+          assert.equal(initial.active, pages)
+          assert.equal(initial.firstServerDocuments, size + 5001 * (pages - 1))
           assert.equal(initial.read, initial.targets)
 
           // Execute the real Pinia getters/actions over the measured service's data.

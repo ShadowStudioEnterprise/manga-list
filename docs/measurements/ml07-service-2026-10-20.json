@@ -1,5 +1,5 @@
 {
-  "executionCompletedAtUtc": "2026-10-20T14:48:05.295958+00:00",
+  "executionCompletedAtUtc": "2026-10-20T15:05:17.267820+00:00",
   "base": "d937549000382fc72022cd59608e29aa27fab664",
   "scope": "Synthetic emulator; same fixtures and rules; initial server document observations, NOT billed reads. Independent SDK clients, not coordinated browser tabs.",
   "billedReadsMeasured": false,
@@ -726,7 +726,7 @@
     },
     {
       "size": 2500,
-      "pages": 3,
+      "pages": 1,
       "initial": {
         "targets": 1,
         "active": 1,
@@ -747,9 +747,9 @@
         "extraAdmissions": 0
       },
       "export": {
-        "requests": 3,
-        "documents": 2502,
-        "admissions": 3
+        "requests": 1,
+        "documents": 2500,
+        "admissions": 1
       },
       "duplicates": [
         {
@@ -807,7 +807,7 @@
     },
     {
       "size": 5000,
-      "pages": 5,
+      "pages": 1,
       "initial": {
         "targets": 1,
         "active": 1,
@@ -828,9 +828,9 @@
         "extraAdmissions": 0
       },
       "export": {
-        "requests": 5,
-        "documents": 5004,
-        "admissions": 5
+        "requests": 1,
+        "documents": 5000,
+        "admissions": 1
       },
       "duplicates": [
         {
@@ -888,15 +888,15 @@
     },
     {
       "size": 10000,
-      "pages": 10,
+      "pages": 2,
       "initial": {
-        "targets": 1,
-        "active": 1,
-        "firstServerDocuments": 10000,
+        "targets": 3,
+        "active": 2,
+        "firstServerDocuments": 15001,
         "queryCalls": 0,
         "queryDocuments": 0,
         "transactionGets": 0,
-        "read": 1,
+        "read": 3,
         "write": 0,
         "listen": 1
       },
@@ -909,9 +909,9 @@
         "extraAdmissions": 0
       },
       "export": {
-        "requests": 10,
-        "documents": 10009,
-        "admissions": 10
+        "requests": 2,
+        "documents": 10001,
+        "admissions": 2
       },
       "duplicates": [
         {
@@ -937,13 +937,13 @@
         }
       ],
       "independentSecondClient": {
-        "targets": 1,
-        "active": 1,
-        "firstServerDocuments": 10000,
+        "targets": 3,
+        "active": 2,
+        "firstServerDocuments": 15001,
         "queryCalls": 0,
         "queryDocuments": 0,
         "transactionGets": 0,
-        "read": 1,
+        "read": 3,
         "write": 0,
         "listen": 1
       },
@@ -961,11 +961,13 @@
         "modeledDocumentReadsWithoutPersistence": 10000
       },
       "reopen": {
-        "targets": 1,
-        "firstServerDocuments": 10000,
-        "admissions": 1
+        "targets": 3,
+        "firstServerDocuments": 15001,
+        "admissions": 3
       },
-      "confirmedSnapshotEvents": 6
+      "confirmedSnapshotEvents": 13
     }
-  ]
+  ],
+  "transportDocuments": 5000,
+  "rejectedAlternative": "Single 10001 target: emulator WebChannel backlog at 10000 cold documents; not adopted."
 }

@@ -265,9 +265,11 @@ for (const size of [100, 1000, 2500, 10000]) {
         await mobile.setViewportSize({ width: 320, height: 740 })
         await mobile.goto('/#/library')
         await expect(mobile.locator('.manga-grid > .manga-card')).toHaveCount(LIBRARY_PAGE_SIZE)
-        expect(
-          await mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
-        ).toBe(true)
+        // Shared data can arrive before Quasar's debounced screen-size update.
+        // Await the responsive layout, while still failing on persistent overflow.
+        await expect
+          .poll(() => mobile.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+          .toBe(true)
         await expect(mobile.locator('.q-notification')).toHaveCount(0)
         const audit = await new AxeBuilder({ page: mobile })
           .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice'])

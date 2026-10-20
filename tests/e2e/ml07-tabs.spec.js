@@ -81,7 +81,7 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
         timeout: 90000,
       })
       await expect(tab.getByRole('status')).toContainText('Última instantánea')
-      expect(row.targets).toBe(i === 0 ? 1 : 0)
+      expect(row.targets).toBe(i === 0 ? (size > 5000 ? 3 : 1) : 0)
       initialTargetsPerTab.push(row.targets)
     }
     for (const { page: tab } of tabs) {
@@ -108,9 +108,9 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
     await expect(tabs[0].page.getByRole('status')).toContainText('Última instantánea')
     const reloadTargets = tabs[0].targets - beforeReload
     expect(reloadTargets).toBe(0)
-    expect(tabs[1].targets).toBe(1)
+    expect(tabs[1].targets).toBe(size > 5000 ? 3 : 1)
     await tabs[1].page.close()
-    await expect.poll(() => tabs[0].targets).toBe(beforeReload + 1)
+    await expect.poll(() => tabs[0].targets).toBe(beforeReload + (size > 5000 ? 3 : 1))
     await tabs[0].page
       .getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
       .fill('Synthetic 0')

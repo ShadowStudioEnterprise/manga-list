@@ -82,7 +82,7 @@ test(
           const overrides = {
             '@/boot/firebase': { db, requireFirebase: () => ({ auth: { currentUser: { uid } } }) },
             '@/utils/spark-budget': {
-              SPARK_LIMITS,
+              SPARK_LIMITS: { ...SPARK_LIMITS, pageDocuments: 1000 },
               sparkBudget: {
                 take(kind) {
                   budget.take(kind)

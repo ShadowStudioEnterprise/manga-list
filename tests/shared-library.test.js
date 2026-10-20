@@ -56,7 +56,7 @@ function fixture() {
     )
     return { stop, data, errors }
   }
-  return { subscribe, listeners, storage }
+  return { subscribe, listeners, storage, runtime }
 }
 
 test('same-account tabs share one listener, cloned dates, updates and ownership after close', async () => {
@@ -153,4 +153,20 @@ test('unsupported browsers use the bounded independent listener', () => {
   assert.equal(starts, 1)
   stop()
   assert.equal(stops, 1)
+})
+
+test('unavailable coordination storage fails safely before opening Firestore', async () => {
+  const f = fixture()
+  f.runtime.localStorage.getItem = () => {
+    throw new Error('private storage detail')
+  }
+  const tab = f.subscribe(randomUUID())
+  try {
+    await wait(() => tab.errors.length)
+    assert.equal(f.listeners.length, 0)
+    assert.equal(tab.data.length, 0)
+    assert.ok(!tab.errors[0].message.includes('private storage detail'))
+  } finally {
+    tab.stop()
+  }
 })
