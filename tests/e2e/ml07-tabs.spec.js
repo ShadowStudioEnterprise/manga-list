@@ -84,40 +84,6 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
       expect(row.targets).toBe(i === 0 ? (size > 5000 ? 3 : 1) : 0)
       initialTargetsPerTab.push(row.targets)
     }
-    let suspensionRecovery = null
-    if (size === 100 && testInfo.project.name === 'chromium') {
-      await tabs[1].page.bringToFront()
-      const lifecycle = await context.newCDPSession(tabs[0].page)
-      try {
-        // Suspend this document's actual JavaScript, not the follower or a fake clock.
-        // This does not claim to emulate the browser/OS's full frozen lifecycle.
-        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: true })
-        const recover = tabs[1].page.getByRole('button', {
-          name: 'Solicitar estado a la otra pestaña',
-          exact: true,
-        })
-        await expect(recover).toBeVisible({ timeout: 30000 })
-        await expect(tabs[1].page.getByRole('status')).toContainText('no responde')
-        expect(tabs.map((row) => row.targets)).toEqual(initialTargetsPerTab)
-        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
-        // A heartbeat after JavaScript resumes cannot itself clear the warning.
-        // Explicitly asking the owner replays subscription state, not a new server read.
-        await recover.click()
-        await expect(tabs[1].page.getByRole('status')).toContainText('Última instantánea')
-        await expect(recover).toBeHidden()
-        expect(tabs.map((row) => row.targets)).toEqual(initialTargetsPerTab)
-        suspensionRecovery = {
-          mechanism: 'CDP Emulation.setScriptExecutionDisabled true/false',
-          fullLifecycleFreezeTested: false,
-          staleWarningObserved: true,
-          explicitSnapshotRequestRecovered: true,
-          additionalTargets: tabs.map((row, index) => row.targets - initialTargetsPerTab[index]),
-        }
-      } finally {
-        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
-        await lifecycle.detach()
-      }
-    }
     for (const { page: tab } of tabs) {
       await tab
         .getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
@@ -151,6 +117,53 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
     await expect(
       tabs[0].page.getByRole('button', { name: 'Editar capítulo actual: 2', exact: true }),
     ).toBeVisible()
+    let suspensionRecovery = null
+    if (size === 100 && testInfo.project.name === 'chromium') {
+      // Execution disabling can discard SDK callbacks; verify only the coordinator's
+      // replay here, after the ordinary SDK update and ownership checks have passed.
+      const follower = await context.newPage()
+      let followerTargets = 0
+      follower.on('request', (request) => {
+        if (!request.url().includes('google.firestore.v1.Firestore/Listen')) return
+        const data = new URLSearchParams(request.postData() || '')
+        for (const value of data.values()) if (value.includes('"addTarget"')) followerTargets++
+      })
+      await follower.goto('/#/library')
+      await expect(follower.getByRole('status')).toContainText('Última instantánea')
+      const ownerTargets = tabs[0].targets
+      await follower.bringToFront()
+      const lifecycle = await context.newCDPSession(tabs[0].page)
+      try {
+        // Suspend this document's actual JavaScript, not the follower or a fake clock.
+        // This does not claim to emulate the browser/OS's full frozen lifecycle.
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: true })
+        const recover = follower.getByRole('button', {
+          name: 'Solicitar estado a la otra pestaña',
+          exact: true,
+        })
+        await expect(recover).toBeVisible({ timeout: 30000 })
+        await expect(follower.getByRole('status')).toContainText('no responde')
+        expect([tabs[0].targets, followerTargets]).toEqual([ownerTargets, 0])
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
+        // A heartbeat after JavaScript resumes cannot itself clear the warning.
+        // Explicitly asking the owner replays subscription state, not a new server read.
+        await recover.click()
+        await expect(follower.getByRole('status')).toContainText('Última instantánea')
+        await expect(recover).toBeHidden()
+        expect([tabs[0].targets, followerTargets]).toEqual([ownerTargets, 0])
+        suspensionRecovery = {
+          mechanism: 'CDP Emulation.setScriptExecutionDisabled true/false',
+          fullLifecycleFreezeTested: false,
+          staleWarningObserved: true,
+          explicitSnapshotRequestRecovered: true,
+          additionalTargets: [tabs[0].targets - ownerTargets, followerTargets],
+        }
+      } finally {
+        await lifecycle.send('Emulation.setScriptExecutionDisabled', { value: false })
+        await lifecycle.detach()
+        await follower.close()
+      }
+    }
     expect(external).toEqual([])
     const result = {
       size,
