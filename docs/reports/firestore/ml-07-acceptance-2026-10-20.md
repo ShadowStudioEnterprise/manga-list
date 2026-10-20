@@ -45,6 +45,11 @@ El segundo intento local llegó a congelar la biblioteca y mostrar el aviso, per
 falló una comprobación de la propia prueba: `withSecurityRulesDisabled` devuelve
 `void` aunque su callback devuelva un valor. Se corrigió capturando el capítulo
 dentro del callback. Ese intento no se presenta como validación de la reanudación.
+Un tercer intento recibió datos confirmados antes de la orden explícita de
+reanudar. El ensayo registra ahora si el navegador ya emitió `resume`, los
+contadores y si se solicitó recuperación. Exige al menos 20 segundos de
+congelación antes de iniciar la edición, conserva diagnósticos incluso si falla
+y no exige que el aviso siga visible después de recibir datos nuevos.
 
 ## Capacidad diaria: presupuesto propuesto
 

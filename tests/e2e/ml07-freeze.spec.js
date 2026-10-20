@@ -31,6 +31,9 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     firestore: { host: '127.0.0.1', port: 8188 },
   })
   let owner
+  const lifecycle = []
+  let ownerTargets = 0,
+    followerTargets = 0
   try {
     const warmupRef = ['_testWarmup', 'freeze']
     await env.withSecurityRulesDisabled(async (c) => {
@@ -78,9 +81,6 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       }
     })
     owner = await createHiddenTarget(browser, context, page)
-    const lifecycle = []
-    let ownerTargets = 0,
-      followerTargets = 0
     owner.on('Fetch.requestPaused', async ({ requestId, request }) => {
       const url = new URL(request.url)
       if (allowed(url)) await owner.send('Fetch.continueRequest', { requestId })
@@ -134,11 +134,19 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     expect(followerTargets).toBe(0)
     await owner.send('Page.setWebLifecycleState', { state: 'frozen' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(1)
+    const freezeObservedAt = Date.now()
     const recover = follower.getByRole('button', {
       name: 'Solicitar estado a la otra pestaña',
       exact: true,
     })
     await expect(recover).toBeVisible({ timeout: 30000 })
+    // The stale timer is relative to the last heartbeat, not to freeze entry.
+    // Guarantee an independently measured interval before starting the write.
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.max(0, 20000 - (Date.now() - freezeObservedAt))),
+    )
+    expect(lifecycle.some((event) => event.type === 'resume')).toBe(false)
+    const concurrentWriteStartedAt = Date.now()
     await follower.getByRole('button', { name: 'Sumar un capítulo', exact: true }).click()
     // This is a separate emulator fixture confirmation, not an application listener.
     await expect
@@ -153,9 +161,15 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
         return chapter
       })
       .toBe('2')
-    await recover.click()
-    await expect(follower.getByRole('status')).toContainText('no responde')
+    // A native lifecycle may respond/recover before an explicit active command.
+    // Do not require the recovery action to remain visible after fresh data.
+    let recoveryRequested = false
+    if (await recover.isVisible()) {
+      await recover.click()
+      recoveryRequested = true
+    }
     expect(followerTargets).toBe(0)
+    const resumedBeforeExplicitCommand = lifecycle.some((event) => event.type === 'resume')
     await owner.send('Page.setWebLifecycleState', { state: 'active' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'resume').length).toBe(1)
     await expect(
@@ -182,6 +196,8 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     expect(exported.mangas.find((item) => item.name === 'Freeze 0').chapter).toBe('2')
     const targetsAfterExport = followerTargets
     await follower.goto('/#/library')
+    await expect(follower.getByRole('status')).toContainText('Última instantánea')
+    await expect(follower.locator('.library-page-summary')).toContainText('de 500 obras')
     await owner.send('Page.setWebLifecycleState', { state: 'frozen' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(2)
     await owner.close()
@@ -204,6 +220,9 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       lifecycle,
       frozenDurationMs: resume.at - freeze.at,
       frozenTimerTicks: resume.ticks - freeze.ticks,
+      concurrentWriteStartedAt,
+      recoveryRequested,
+      resumedBeforeExplicitCommand,
       initialTargets: { owner: 1, follower: 0 },
       resumeTargets,
       confirmedConcurrentChapter: '2',
@@ -216,6 +235,18 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     await writeFile(testInfo.outputPath('ml07-freeze.json'), JSON.stringify(result, null, 2) + '\n')
     console.log(JSON.stringify(result))
   } finally {
+    await writeFile(
+      testInfo.outputPath('ml07-freeze-diagnostics.json'),
+      JSON.stringify(
+        {
+          lifecycle,
+          ownerTargets,
+          followerTargets,
+        },
+        null,
+        2,
+      ) + '\n',
+    )
     if (owner) {
       await owner.send('Page.setWebLifecycleState', { state: 'active' }).catch(() => {})
       await owner.close()
