@@ -64,6 +64,14 @@ Un sondeo aislado de 21 segundos conserva el bloqueo exclusivo durante y despué
 de congelar, con la otra petición aún pendiente. No prueba el recorrido de la app.
 No se presenta ninguna de esas CI como validación completa ni como publicación.
 
+La revisión `7eb4dae` se detuvo en ambas CI antes de las pruebas: la auditoría
+identificó [GHSA-698v-4r3x-3vcv](https://github.com/advisories/GHSA-698v-4r3x-3vcv)
+en Vite 8.2.2. Se fija Vite 8.2.4, compatible con Quasar, sin cambiar umbrales de
+auditoría. El archivo de bloqueo cambia solo esa resolución y su dependencia
+directa de desarrollo. La validación posterior debe corresponder a ese archivo.
+El quinto intento local con diagnósticos agotó 360 segundos antes de crear el
+propietario; sus eventos y consultas están vacíos y no validan la congelación.
+
 ## Capacidad diaria: presupuesto propuesto
 
 Datos declarados: **50 cuentas y 500 obras por cuenta**. Las frecuencias siguen
