@@ -6,6 +6,9 @@ de aceptación. No se ha contratado, desplegado ni contactado con proveedores.
 Firebase Spark sigue siendo gratuito y separado; este presupuesto corresponde
 exclusivamente al archivo privado externo de expedientes.
 
+Continuación para presupuesto cero: [alternativas gratuitas y recursos disponibles](ml-11-free-options-2026-10-21.md).
+El intervalo de este informe no es un coste mínimo obligatorio de Nextcloud.
+
 ## Recomendación
 
 Para mantener el diseño N3 de auditoría, elegir como candidata de ensayo una

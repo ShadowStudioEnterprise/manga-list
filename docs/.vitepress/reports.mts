@@ -115,6 +115,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/nextcloud-hosting-cost-2026-10-21',
       },
       {
+        text: 'ML-11: alternativas gratuitas (21/10)',
+        link: '/reports/accounts/ml-11-free-options-2026-10-21',
+      },
+      {
         text: 'ML-11: preparación para activación',
         link: '/reports/accounts/ml-11-activation-pack',
       },
