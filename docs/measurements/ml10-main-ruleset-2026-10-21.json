@@ -1,0 +1,84 @@
+{
+  "scope": "Read-only verification after specifically approved activation; no destructive enforcement tests",
+  "activation_at_utc": "2026-10-21T01:52:11.432Z",
+  "closure_checked_at_utc": "2026-10-21T07:17:32.2641728Z",
+  "ruleset_url": "https://github.com/ShadowStudioEnterprise/manga-list/rules/25518766",
+  "ruleset": {
+    "id": 25518766,
+    "name": "ML-10 main baseline",
+    "enforcement": "active",
+    "conditions": {
+      "ref_name": {
+        "exclude": [],
+        "include": ["refs/heads/main"]
+      }
+    },
+    "bypass_actors": [],
+    "current_user_can_bypass": "never",
+    "rules": [
+      {
+        "type": "deletion"
+      },
+      {
+        "type": "non_fast_forward"
+      },
+      {
+        "type": "pull_request",
+        "parameters": {
+          "required_approving_review_count": 0,
+          "dismiss_stale_reviews_on_push": false,
+          "required_reviewers": [],
+          "require_code_owner_review": false,
+          "require_last_push_approval": false,
+          "required_review_thread_resolution": true,
+          "require_extra_approval_for_unattributed_changes": true,
+          "allowed_merge_methods": ["merge", "squash", "rebase"]
+        }
+      },
+      {
+        "type": "required_status_checks",
+        "parameters": {
+          "strict_required_status_checks_policy": true,
+          "do_not_enforce_on_create": false,
+          "required_status_checks": [
+            {
+              "context": "verify",
+              "integration_id": 15368
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "main_at_activation": "36fe4f3bd46615a4e18983d506fb79d2337c768c",
+  "main_at_closure": "0148d5b8d7c06cd845be413cc1ecaccd4f354815",
+  "protected": true,
+  "verified_pr_head": "e2de55edfe44e38c7a8322520ead0e73b60f0022",
+  "verified_checks": [
+    {
+      "run_id": 39527212406,
+      "is_required": true,
+      "app_id": 15368,
+      "name": "verify",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 39527193600,
+      "is_required": true,
+      "app_id": 15368,
+      "name": "verify",
+      "conclusion": "success"
+    }
+  ],
+  "not_performed": [
+    "merge PR8",
+    "deployment",
+    "direct push to main",
+    "force push",
+    "branch deletion",
+    "temporary ruleset",
+    "review thread test",
+    "mark ready",
+    "disable ruleset recovery drill"
+  ]
+}

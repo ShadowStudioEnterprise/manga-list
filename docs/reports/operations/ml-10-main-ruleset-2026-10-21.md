@@ -1,16 +1,54 @@
 # ML-10: propuesta de protección de main — 21/10/2026
 
-Estado: **preparada; activación remota pendiente de aprobación específica**.
+Estado: **activado tras aprobación específica; verificación por lectura superada**.
 Rama independiente desde main `36fe4f3bd46615a4e18983d506fb79d2337c768c`.
 Este documento y su JSON no activan reglas al fusionarse. No autorizan fusión,
 despliegue, cambios Firebase, datos reales, IAM ni facturación.
+
+## Activación y comprobación posterior
+
+El usuario aprobó específicamente la configuración propuesta después de la CI
+correcta del candidato `e2de55edfe44e38c7a8322520ead0e73b60f0022`.
+El [ruleset 25518766](https://github.com/ShadowStudioEnterprise/manga-list/rules/25518766)
+se creó Active el 21/10/2026 a las **03:52 CEST**. La lectura posterior confirmó
+las cuatro reglas efectivas en main, todos los parámetros de la propuesta, bypass
+vacío y `current_user_can_bypass: never`. Main conservó `36fe4f3` durante la activación.
+El JSON de propuesta se conserva **Disabled** para evitar futuras importaciones
+activas por accidente; no es una copia del estado remoto actual.
+
+La consulta GraphQL del PR #8 confirmó dos checks `verify` de GitHub Actions
+(15368), ambos `COMPLETED/SUCCESS` e **`isRequired: true`**, cero hilos de revisión
+y PR todavía en borrador. Runs: [PR 39527212406](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39527212406)
+y [push 39527193600](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39527193600).
+Esta evidencia corresponde a ese SHA, no a cambios documentales posteriores.
+
+En la revisión de cierre de las **09:17 CEST**, main ya estaba en
+`0148d5b8d7c06cd845be413cc1ecaccd4f354815`: el PR #7 ML-08 fue fusionado fuera
+de este trabajo a las 09:13 CEST. Se volvió a comprobar el ruleset por API autenticada:
+sigue Active, sin bypass y sin cambios de configuración desde su creación.
+GitHub informa `protected: true`. La consulta pública omite la lista de bypass;
+su ausencia en esa respuesta no equivale a una excepción configurada.
+
+Se actualizó únicamente la rama de propuesta con el nuevo main para conservar
+una base vigente y evitar que los checks del SHA anterior se presenten como
+validación del candidato actualizado. El PR #8 permanece abierto en borrador;
+esta continuación no fusiona ningún PR ni despliega.
+
+La [evidencia resumida](../../measurements/ml10-main-ruleset-2026-10-21.json)
+conserva configuración, SHAs y alcance de la verificación. No se hicieron pruebas
+de push directo, force push o eliminación sobre main, ni se creó un hilo de
+revisión de prueba o se pasó el PR a ready. No se ensayó desactivar el ruleset.
+La recuperación y las pruebas activas de la última sección siguen documentadas,
+sin declararse ejecutadas. La activación remota está completada; la documentación
+versionada continúa pendiente de revisión y eventual fusión autorizada.
 
 ## Auditoría comprobada
 
 Consulta inicial: 21/10/2026, 03:21 CEST (01:21 UTC). API REST de GitHub y
 referencias Git actualizadas. La conversación anterior recuperada conserva los
 «continua», pero las respuestas son referencias sin contenido; no prueba una
-aprobación específica de una configuración. La instrucción actual exige reservarla.
+aprobación específica de una configuración. Esta sección conserva la evaluación
+anterior a la aprobación posterior registrada arriba.
 
 | Elemento                    | Evidencia                                                                                                                                          |
 | --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -166,5 +204,6 @@ no se ha ensayado la desactivación remota ni la recuperación de credenciales.
    elegibilidad de fusión de fusión realizada. Mantener main y despliegues intactos.
 
 La [documentación de checks](https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks)
-explica resultados aceptados y problemas de workflows omitidos. ML-10 queda
-preparado, no se declara protección aplicada ni aceptación posterior superada.
+explica resultados aceptados y problemas de workflows omitidos. La protección
+está aplicada y verificada por lectura; las pruebas activas y la recuperación
+ensayada siguen pendientes, según el registro de activación de este informe.
