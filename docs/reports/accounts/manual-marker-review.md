@@ -1,5 +1,9 @@
 # Revisión manual del marcador: propuesta operativa MangaList 1.0
 
+Actualización ML-11 (21/10/2026): véanse el [informe de validación](ml-11-validation-2026-10-21.md)
+y el [procedimiento y decisiones pendientes](ml-11-operating-procedure.md).
+La revisión a 30 días sigue siendo propuesta, sin validación legal definitiva.
+
 Decisión del titular recibida el 19/10/2026: revisar manualmente a los 30 días,
 sin eliminación automática. Pendiente de validación legal y técnica. Este documento
 prepara el procedimiento; no autoriza operaciones reales. No añade TTL, cron,

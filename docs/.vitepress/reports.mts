@@ -107,6 +107,46 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'Proton Drive: plataforma seleccionada',
+        link: '/reports/accounts/proton-drive-implementation-proposal',
+      },
+      {
+        text: 'Proton Drive: ensayo parcial (21/10)',
+        link: '/reports/accounts/proton-drive-service-rehearsal-2026-10-21',
+      },
+      {
+        text: 'Proton Drive: seguridad y custodia',
+        link: '/reports/accounts/proton-drive-security-custody-procedure',
+      },
+      {
+        text: 'ML-11: fichas D3, permisos y revisión jurídica',
+        link: '/reports/accounts/ml-11-d3-permissions-legal-review-pack',
+      },
+      {
+        text: 'Proton Drive: ensayo documental',
+        link: '/reports/accounts/proton-drive-rehearsal-pack',
+      },
+      {
+        text: 'Nextcloud: implementación propuesta',
+        link: '/reports/accounts/nextcloud-implementation-proposal',
+      },
+      {
+        text: 'Nextcloud: alojamiento y coste (21/10)',
+        link: '/reports/accounts/nextcloud-hosting-cost-2026-10-21',
+      },
+      {
+        text: 'ML-11: alternativas gratuitas (21/10)',
+        link: '/reports/accounts/ml-11-free-options-2026-10-21',
+      },
+      {
+        text: 'ML-11: preparación para activación',
+        link: '/reports/accounts/ml-11-activation-pack',
+      },
+      {
+        text: 'ML-11: validación y decisiones (21/10)',
+        link: '/reports/accounts/ml-11-validation-2026-10-21',
+      },
+      {
         text: 'Asistencia a borrados',
         link: '/reports/accounts/abandoned-deletion-assistance',
       },

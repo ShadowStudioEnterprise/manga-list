@@ -298,6 +298,72 @@ test('deletion barrier blocks another session and atomic marker-plus-manga write
   await assertSucceeds(deleteDoc(reference(other)))
 })
 
+test('ML-11: an accepted owner context can read and delete pending data but cannot change marker fields', async () => {
+  const alice = environment.authenticatedContext('alice', { auth_time: 1 }).firestore()
+  await setDoc(reference(alice), manga())
+  const marker = doc(alice, 'users', 'alice')
+  await setDoc(marker, {
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
+    status: 'deleting',
+  })
+  await assertSucceeds(getDoc(reference(alice)))
+  await assertSucceeds(
+    getDocsFromServer(query(collection(alice, 'users', 'alice', 'mangas'), limit(1))),
+  )
+  await assertFails(updateDoc(reference(alice), { notes: 'late', updatedAt: serverTimestamp() }))
+  for (const patch of [
+    { completedAt: serverTimestamp() },
+    { reviewAt: serverTimestamp() },
+    { email: 'synthetic@example.test' },
+    { updatedAt: serverTimestamp() },
+  ]) {
+    await assertFails(updateDoc(marker, patch))
+  }
+  await assertSucceeds(deleteDoc(reference(alice)))
+  assert.equal((await getDoc(marker)).data().status, 'deleting')
+})
+
+test('ML-11: removing a marker in the emulator reopens writes to an accepted context', async () => {
+  // Rules-only counterexample: this does not model token expiry or actual Auth deletion.
+  const uid = 'synthetic-retirement'
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users', uid), {
+      createdAt: Timestamp.fromMillis(0),
+      updatedAt: Timestamp.fromMillis(0),
+      status: 'deleting',
+    })
+  })
+  const db = environment.authenticatedContext(uid, { auth_time: 1 }).firestore()
+  const target = doc(db, 'users', uid, 'mangas', 'synthetic')
+  await assertFails(setDoc(target, manga()))
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await deleteDoc(doc(context.firestore(), 'users', uid))
+  })
+  await assertSucceeds(setDoc(target, manga()))
+})
+
+test('ML-11: ordinary cleanup and parent removal do not erase an unknown subcollection', async () => {
+  await environment.withSecurityRulesDisabled(async (context) => {
+    await setDoc(doc(context.firestore(), 'users', 'alice', 'synthetic-extra', 'residual'), {
+      synthetic: true,
+    })
+  })
+  const alice = dbFor('alice')
+  const service = await loadModule('src/services/account-service.js', {
+    '@/boot/firebase': { db: alice, auth: { currentUser: { uid: 'alice' } }, requireFirebase() {} },
+  })
+  assert.equal(await service.deleteUserFirestoreData('alice'), 0)
+  const residual = doc(alice, 'users', 'alice', 'synthetic-extra', 'residual')
+  await assertFails(getDoc(residual))
+  await environment.withSecurityRulesDisabled(async (context) => {
+    const db = context.firestore()
+    assert.equal((await getDoc(doc(db, residual.path))).exists(), true)
+    await deleteDoc(doc(db, 'users', 'alice'))
+    assert.equal((await getDoc(doc(db, residual.path))).exists(), true)
+  })
+})
+
 test('actual cleanup deletes more than 400 records, rejects concurrent writes, and retains a retryable barrier', async () => {
   await environment.withSecurityRulesDisabled(async (context) => {
     const db = context.firestore()

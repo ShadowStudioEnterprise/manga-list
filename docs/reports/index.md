@@ -41,6 +41,19 @@ secciones principales del portal.
 
 ## Cuentas y retención
 
+- [Proton Drive: plataforma seleccionada y procedimiento propuesto para ML-11](accounts/proton-drive-implementation-proposal.md).
+- [Proton Drive: primer ensayo parcial en cuenta autorizada — 21/10/2026](accounts/proton-drive-service-rehearsal-2026-10-21.md).
+- [Proton Drive: MFA, recuperación, auditoría y custodia](accounts/proton-drive-security-custody-procedure.md).
+- [ML-11: fichas D3, permisos, auditoría/custodia y encargo jurídico](accounts/ml-11-d3-permissions-legal-review-pack.md).
+- [Proton Drive: paquete de ensayo documental y plantillas ML-11](accounts/proton-drive-rehearsal-pack.md).
+- [Nextcloud: definición de implementación propuesta para ML-11](accounts/nextcloud-implementation-proposal.md).
+- [Nextcloud: alojamiento y coste — 21/10/2026](accounts/nextcloud-hosting-cost-2026-10-21.md).
+- [ML-11: alternativas gratuitas y Nextcloud sin cuota — 21/10/2026](accounts/ml-11-free-options-2026-10-21.md).
+- [ML-11: ficha de preparación para activación](accounts/ml-11-activation-pack.md).
+- [ML-11: aceptación de D1–D7 y condiciones pendientes](accounts/ml-11-acceptance-2026-10-21.md).
+- [ML-11: validación jurídico-técnica — 21/10/2026](accounts/ml-11-validation-2026-10-21.md).
+- [ML-11: procedimiento propuesto y decisiones pendientes](accounts/ml-11-operating-procedure.md).
+- [ML-11: evidencia y límites de las pruebas](accounts/ml-11-test-evidence.md).
 - [Procedimiento propuesto de asistencia a borrados abandonados](accounts/abandoned-deletion-assistance.md).
 - [Retención de users/{uid}: revisión manual propuesta](accounts/account-marker-retention-proposal.md).
 - [Revisión manual del marcador: propuesta operativa MangaList 1.0](accounts/manual-marker-review.md).

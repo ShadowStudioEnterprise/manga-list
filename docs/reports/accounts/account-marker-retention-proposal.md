@@ -1,5 +1,10 @@
 # Retención de users/{uid}: revisión manual propuesta
 
+Actualización ML-11 (21/10/2026): [validación y límites](ml-11-validation-2026-10-21.md),
+[procedimiento y decisiones](ml-11-operating-procedure.md). Los 30 días del vínculo
+caso/UID se someten a revisión humana y matriz jurídica de retención; no implican
+destrucción automática ni equivalen al plazo de respuesta de un mes del RGPD.
+
 Decisión recibida el 19/10/2026: adoptar como propuesta operativa una revisión
 manual a los 30 días, sin eliminación automática; validación legal y técnica pendiente.
 El [procedimiento de revisión](manual-marker-review.md) concreta responsables, identidad
@@ -76,8 +81,9 @@ un endpoint público de administración ni incluir credenciales Admin en el clie
 ## Privacidad, responsables y decisiones
 
 Propuesta para registros de asistencia: conservar solo identificador de caso, UID
-restringido, autorización, hitos/fechas y resultado; retirar el vínculo UID/caso 30 días
-después del cierre, salvo excepción aprobada y revisada. No pedir exportaciones de
+restringido, autorización, hitos/fechas y resultado; revisar manualmente la retirada
+del vínculo UID/caso 30 días después del cierre, según matriz jurídica de retención,
+salvo excepción aprobada y revisada. No pedir exportaciones de
 biblioteca como prueba de identidad. Confirmar este plazo y el canal de asistencia
 antes de implantarlo.
 
