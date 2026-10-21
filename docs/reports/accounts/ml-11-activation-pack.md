@@ -30,7 +30,8 @@ del repositorio. Una persona puede asumir coordinación y operación, pero no cu
 como dos revisores. Si falta el revisor, preservar/escalar; no retirar el marcador.
 
 Canal privado: **Proton Drive seleccionado para preparación; configuración y aptitud
-pendientes**. Objetivo de plan gratuito, sin cuenta ni permisos remotos modificados.
+pendientes**. Objetivo de plan gratuito; cuenta existente usada para ensayo ficticio,
+sin cambios de seguridad ni permisos de terceros.
 Antes de usarlo demostrar: acceso individual
 con MFA, permisos por función, cifrado, trazabilidad de lecturas y cambios,
 recuperación controlada, cierre de accesos y eliminación según matriz aprobada.
@@ -38,6 +39,9 @@ Si el sistema no registra lecturas o permite alterar actas sin rastro, documenta
 la carencia y resolverla antes de activación; no afirmar integridad que no ofrece.
 En Proton esas garantías no están acreditadas. El registro humano P3 es una
 alternativa pendiente de evaluación y aceptación, no una resolución automática.
+El [ensayo parcial autorizado en cuenta existente](proton-drive-service-rehearsal-2026-10-21.md)
+acredita carga, descarga y restauración de una muestra ficticia, sin resolver
+MFA/recuperación, permisos entre personas, auditoría completa o custodia.
 
 Matriz de acceso propuesta, no permisos IAM concedidos:
 

@@ -42,6 +42,7 @@ secciones principales del portal.
 ## Cuentas y retención
 
 - [Proton Drive: plataforma seleccionada y procedimiento propuesto para ML-11](accounts/proton-drive-implementation-proposal.md).
+- [Proton Drive: primer ensayo parcial en cuenta autorizada — 21/10/2026](accounts/proton-drive-service-rehearsal-2026-10-21.md).
 - [Proton Drive: paquete de ensayo documental y plantillas ML-11](accounts/proton-drive-rehearsal-pack.md).
 - [Nextcloud: definición de implementación propuesta para ML-11](accounts/nextcloud-implementation-proposal.md).
 - [Nextcloud: alojamiento y coste — 21/10/2026](accounts/nextcloud-hosting-cost-2026-10-21.md).

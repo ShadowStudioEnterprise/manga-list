@@ -4,6 +4,11 @@ Preparado el 21/10/2026 para la [plataforma seleccionada](proton-drive-implement
 Solo plantillas y ejemplos ficticios. No configura Proton ni activa expedientes.
 No incluir en Git las plantillas cumplimentadas con personas, cuentas o casos reales.
 
+Avance posterior: el usuario autorizó la cuenta existente y confirmó login propio.
+El [ensayo parcial del servicio](proton-drive-service-rehearsal-2026-10-21.md)
+registra carga y restauración de una muestra; las casillas iniciales del paquete
+local no se reescriben como si todas las pruebas de Proton hubieran pasado.
+
 ## Preparación local entregable
 
 El paquete local `ML11-Proton-Drive-Sintetico-2026-10-21.zip` reúne instrucciones,
@@ -63,8 +68,9 @@ Este historial editable no descubre lecturas silenciosas ni es registro inmutabl
 
 ## Guion de aceptación del servicio
 
-Todos los ensayos siguientes requieren cuentas/configuración de ensayo autorizadas
-y permanecen **NO_EJECUTADO_EN_PROTON**. La evidencia debe guardarse de forma privada,
+El paquete inicial marcaba los ensayos siguientes **NO_EJECUTADO_EN_PROTON**.
+El informe posterior enlazado arriba registra su estado parcial actual, sin
+dar por aceptados los criterios compuestos. La evidencia debe guardarse de forma privada,
 con secretos y direcciones redactados antes de cualquier entrega pública.
 
 | ID   | Acción concreta del ensayo                                                                       | Criterio / tratamiento del resultado                                                                                            |

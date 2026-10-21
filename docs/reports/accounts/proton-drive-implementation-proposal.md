@@ -7,6 +7,11 @@ los controles nuevos ni activa expedientes reales. No se ha creado o utilizado
 una cuenta Proton, invitado a personas, configurado almacenamiento remoto ni
 migrado datos. Los documentos anteriores se conservan como antecedentes.
 
+**Continuación autorizada:** el usuario aportó una cuenta existente e inició
+sesión personalmente. Se realizó el [primer ensayo parcial con archivos ficticios](proton-drive-service-rehearsal-2026-10-21.md),
+sin invitaciones ni cambios de seguridad. La situación inicial anterior no es el
+estado actual del ensayo; la operación con casos reales sigue sin activar.
+
 ## Alcance, coste y cambio de arquitectura
 
 Archivo privado de actas y evidencias mínimas, separado de Firebase. Sin servidor
@@ -143,7 +148,10 @@ El [paquete de ensayo documental](proton-drive-rehearsal-pack.md) aporta plantil
 casos ficticios y guion concreto; sus contrastes locales de manifiesto no sustituyen
 las pruebas del servicio ni resuelven la custodia.
 
-Todas figuran **no ejecutadas en Proton**; no hay cuenta ni sesión probada.
+La tabla siguiente conserva el plan de aceptación. Los
+[resultados actuales](proton-drive-service-rehearsal-2026-10-21.md) son parciales:
+carga, descarga y restauración de una muestra observadas en la cuenta autorizada.
+No se da por completado ningún criterio compuesto ni la evaluación de custodia.
 
 | ID   | Ensayo con datos ficticios                       | Evidencia para aceptar                                                                                                     |
 | ---- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
@@ -159,13 +167,13 @@ Todas figuran **no ejecutadas en Proton**; no hay cuenta ni sesión probada.
 
 ## Decisiones y estado
 
-| ID  | Decisión                                                                                    | Estado                                                                                           |
-| --- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| P1  | Sustituir Nextcloud por Proton Drive como plataforma de preparación, objetivo Free          | Aceptada por «cambia a Proton Drive»; cuenta/configuración no realizadas                         |
-| P2  | Cuentas individuales con MFA, tres espacios separados, lectura nominal sin enlaces públicos | Propuesta pendiente de pruebas y aceptación de permisos                                          |
-| P3  | Registro humano y conclusión/manifiesto bajo custodia separada con limitaciones explícitas  | Pendiente de aceptación y validación; no sustituye silenciosamente N3 ni la trazabilidad exigida |
-| P4  | Copias por hitos, revisión semanal y destino cifrado fuera del equipo                       | Pendiente de destino, custodia, conservación, ensayo y aceptación                                |
-| P5  | Ensayo autorizado con datos ficticios; activación real posterior tras D1–D7                 | No hay autorización de alta/invitaciones ni activación real en esta selección documental         |
+| ID  | Decisión                                                                                    | Estado                                                                                             |
+| --- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| P1  | Sustituir Nextcloud por Proton Drive como plataforma de preparación, objetivo Free          | Aceptada; ensayo parcial posterior en cuenta existente autorizada                                  |
+| P2  | Cuentas individuales con MFA, tres espacios separados, lectura nominal sin enlaces públicos | Propuesta pendiente de pruebas y aceptación de permisos                                            |
+| P3  | Registro humano y conclusión/manifiesto bajo custodia separada con limitaciones explícitas  | Pendiente de aceptación y validación; no sustituye silenciosamente N3 ni la trazabilidad exigida   |
+| P4  | Copias por hitos, revisión semanal y destino cifrado fuera del equipo                       | Pendiente de destino, custodia, conservación, ensayo y aceptación                                  |
+| P5  | Ensayo autorizado con datos ficticios; activación real posterior tras D1–D7                 | Ensayo acotado en cuenta existente autorizado y parcial; invitaciones y activación real pendientes |
 
 Sin compras, fusión, despliegues, modificación de cuentas reales o cambios remotos
 de Firebase. Spark exclusivamente. La selección de Proton no acredita cumplimiento
