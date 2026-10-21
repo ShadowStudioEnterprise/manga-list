@@ -119,6 +119,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/proton-drive-security-custody-procedure',
       },
       {
+        text: 'ML-11: fichas D3, permisos y revisión jurídica',
+        link: '/reports/accounts/ml-11-d3-permissions-legal-review-pack',
+      },
+      {
         text: 'Proton Drive: ensayo documental',
         link: '/reports/accounts/proton-drive-rehearsal-pack',
       },

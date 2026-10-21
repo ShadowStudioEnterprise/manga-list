@@ -171,19 +171,24 @@ No se da por completado ningún criterio compuesto ni la evaluación de custodia
 
 ## Decisiones y estado
 
-| ID  | Decisión                                                                                    | Estado                                                                                             |
-| --- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| P1  | Sustituir Nextcloud por Proton Drive como plataforma de preparación, objetivo Free          | Aceptada; ensayo parcial posterior en cuenta existente autorizada                                  |
-| P2  | Cuentas individuales con MFA, tres espacios separados, lectura nominal sin enlaces públicos | Propuesta pendiente de pruebas y aceptación de permisos                                            |
-| P3  | Registro humano y conclusión/manifiesto bajo custodia separada con limitaciones explícitas  | Pendiente de aceptación y validación; no sustituye silenciosamente N3 ni la trazabilidad exigida   |
-| P4  | Copias por hitos, revisión semanal y destino cifrado fuera del equipo                       | Pendiente de destino, custodia, conservación, ensayo y aceptación                                  |
-| P5  | Ensayo autorizado con datos ficticios; activación real posterior tras D1–D7                 | Ensayo acotado en cuenta existente autorizado y parcial; invitaciones y activación real pendientes |
+| ID  | Decisión                                                                                    | Estado                                                                                                   |
+| --- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| P1  | Sustituir Nextcloud por Proton Drive como plataforma de preparación, objetivo Free          | Aceptada; ensayo parcial posterior en cuenta existente autorizada                                        |
+| P2  | Cuentas individuales con MFA, tres espacios separados, lectura nominal sin enlaces públicos | Diseño aceptado solo para ensayo; participante, permisos y pruebas pendientes                            |
+| P3  | Registro humano y conclusión/manifiesto bajo custodia separada con limitaciones explícitas  | SOLO_ENSAYO aceptada; suficiencia para uso real pendiente, sin equivalencia con N3                       |
+| P4  | Copias por hitos, revisión semanal y destino cifrado fuera del equipo                       | Diseño aceptado solo para ensayo; destino, custodio, herramienta, conservación y restauración pendientes |
+| P5  | Ensayo autorizado con datos ficticios; activación real posterior tras D1–D7                 | Ensayo acotado en cuenta existente autorizado y parcial; invitaciones y activación real pendientes       |
 
 Sin compras, fusión, despliegues, modificación de cuentas reales o cambios remotos
 de Firebase. Spark exclusivamente. La selección de Proton no acredita cumplimiento
 jurídico definitivo ni capacidad de ejecutar operaciones administrativas.
 
 ## Fuentes oficiales consultadas el 21/10/2026
+
+La [aceptación expresa posterior de P2/P3/P4 y sus fichas de ejecución](ml-11-d3-permissions-legal-review-pack.md)
+precisa el alcance solo para ensayo. Las menciones previas a aceptación pendiente
+describen el uso real o el estado anterior a esa continuación, no revocan esta
+aceptación limitada. D3 sigue sin candidato; no se han enviado invitaciones.
 
 - [Espacio gratuito y acciones iniciales](https://proton.me/support/more-storage-proton-drive).
 - [Compartir por invitación](https://proton.me/support/drive-how-to-share-files-via-email) y [gestión de accesos y editores](https://proton.me/support/drive-manage-access-shared-files).

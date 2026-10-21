@@ -35,6 +35,13 @@ aceptar por extensión P2–P5, resolver las condiciones D1–D7 ni activar el c
 
 ## Límites vigentes
 
+Aceptación posterior de los controles Proton: el titular acepta P2, P3 y P4
+**solo como diseño para ensayos ficticios**, según las respuestas y alcance
+registrados en las [fichas D3, permisos y revisión jurídica](ml-11-d3-permissions-legal-review-pack.md).
+No acepta su suficiencia para casos reales ni designa revisor/custodio, destino,
+herramienta o asesor. D3 sigue sin candidato; pruebas entre personas y dictamen
+jurídico pendientes. No se autorizan invitaciones sin destinatario y alcance concretos.
+
 Firebase Spark exclusivamente. Sin eliminación automática de marcadores. Esta
 aceptación no certifica cumplimiento legal ni autoriza fusión, despliegue, consultas
 de cuentas reales, cambios remotos o retirada de marcadores. Cada operación real
