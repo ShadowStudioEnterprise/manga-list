@@ -35,6 +35,10 @@ export const reportsSidebar = [
         link: '/reports/firestore/ml-08-capacity-2026-10-21',
       },
       {
+        text: 'ML-08: política provisional aprobada',
+        link: '/reports/firestore/ml-08-policy-2026-10-21',
+      },
+      {
         text: 'ML-08: recuperación y tamaño de copias',
         link: '/reports/firestore/ml-08-recovery-2026-10-21',
       },

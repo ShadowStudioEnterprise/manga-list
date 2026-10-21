@@ -24,4 +24,6 @@ ML-07 se fusionó en el PR #6 y se publicó el 21/10/2026 como `36fe4f3`, según
 registro de publicación aportado. El bloque de transporte es 5000 más centinela,
 con aperturas escalonadas y coordinación de pestañas en memoria; el límite de consulta
 5001 fue aceptado. La [auditoría ML-08](/reports/firestore/ml-08-capacity-2026-10-21)
-mantiene pendiente la aprobación de capacidad operativa, reserva y límites graduados.
+mantiene pendiente certificar capacidad y fijar un máximo definitivo. La
+[reserva del 20 % y los tramos](/reports/firestore/ml-08-policy-2026-10-21) están
+aprobados para planificación provisional, sin nuevos bloqueos ni cambios de producción.

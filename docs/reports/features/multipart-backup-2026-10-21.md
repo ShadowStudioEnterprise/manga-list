@@ -2,8 +2,9 @@
 
 Implementación para revisión en el PR borrador #7, posterior al
 [ensayo de recuperabilidad](../firestore/ml-08-recovery-2026-10-21.md).
-No está desplegada. La [auditoría de capacidad](../firestore/ml-08-capacity-2026-10-21.md),
-la reserva propuesta del 20 % y los límites operacionales siguen pendientes de decisión.
+No está desplegada. La [reserva del 20 % y los tramos](../firestore/ml-08-policy-2026-10-21.md)
+están aprobados para planificación provisional. Siguen pendientes un máximo
+definitivo y certificar capacidad bajo actividad real.
 
 ## Recorrido
 
@@ -110,6 +111,7 @@ oficial de [uso y límites](https://firebase.google.com/docs/firestore/quotas) y
   La integración mantiene la comprobación automática de contraste a 320 px y la
   importación normal selecciona su propio campo de archivo en la prueba existente.
 
-Pendiente de aceptación: revisar el formato/experiencia de copia, aprobar por separado
-la política de capacidad y validar dispositivos físicos. Fusionar y desplegar son
+Pendiente de aceptación: revisar el formato/experiencia de copia, certificar
+capacidad y validar dispositivos físicos. La política provisional de planificación
+ya está aprobada; fusionar y desplegar son
 acciones distintas que no se han realizado.
