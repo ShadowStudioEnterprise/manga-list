@@ -197,6 +197,11 @@ Recomendaciones de diseño, sujetas a asesoría española antes de activación:
 
 ## Decisiones pendientes y aceptación de entrega
 
+El [paquete de preparación v1](ml-12-mailbox-and-roles-pack.md) reúne fichas concretas
+de buzón/designaciones, identidad/permisos, ensayos/custodia y encargo jurídico con
+matriz de retención y aceptación de plazos. Está preparado, sin designaciones,
+invitaciones, ejecución entre personas, dictamen o aceptación nuevos.
+
 1. Designar buzón público de derechos y su atención; aprobar mecanismo identidad
    de soporte o alternativa proporcionada. La app actual no lo implementa.
 2. Completar D3: revisor distinto, suplente y custodio; verificar permisos entre

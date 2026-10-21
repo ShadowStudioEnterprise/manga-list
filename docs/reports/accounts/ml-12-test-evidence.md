@@ -52,3 +52,20 @@ Logs locales sintéticos en el directorio de evidencia de esta tarea; no se sube
 logs SDK completos al repositorio. CI remota del candidato se comprueba aparte;
 el verde de ML-11 no se atribuye a ML-12. Entrega en borrador, sin fusión, despliegue,
 cuentas/datos reales ni activación del procedimiento. Spark exclusivamente.
+
+## Ampliación documental: preparación de condiciones humanas
+
+El [paquete de preparación v1](ml-12-mailbox-and-roles-pack.md) añade cuatro fichas
+para buzón/designaciones, identidad/permisos, ensayos/custodia y encargo jurídico,
+retención y aceptación de plazos. Sin cambios de código ni reglas. Las pruebas
+P01–P08, O01–O08 y C01–C07 son guiones pendientes de ejecución entre personas;
+no se registran como aprobadas ni como controles implementados.
+
+CI anterior verificada para `74e454afd4ac2a4ff34d0eacaea7da9dcddfc5d1`:
+[PR](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39668588531) y
+[push](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39668553614),
+ambas `completed/success`. No se atribuyen automáticamente a esta ampliación.
+Formato de los documentos y navegación: correcto; `git diff --check`: correcto.
+`npm run docs:build`: correcto en 19,32 s, con aviso no bloqueante de tamaño de
+bundle. No se repiten pruebas de código/emuladores por esta ampliación exclusivamente
+documental. CI de la nueva revisión se registra en el PR cuando esté disponible.
