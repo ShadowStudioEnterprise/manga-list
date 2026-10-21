@@ -1,6 +1,6 @@
 # Informes técnicos
 
-Los 31 documentos se agrupan por tema. Los informes fechados conservan los
+Los documentos se agrupan por tema. Los informes fechados conservan los
 resultados y las limitaciones de su revisión original; no certifican por sí solos
 el estado actual de producción. Las propuestas de retención y asistencia siguen
 pendientes de validación legal y técnica.
@@ -16,6 +16,11 @@ secciones principales del portal.
 - [Decisiones técnicas de la revisión del 16/10/2026](project/technical-review-2026-10-16.md).
 
 ## Firestore y rendimiento
+
+- [ML-08: auditoría de capacidad Spark — 21/10/2026](firestore/ml-08-capacity-2026-10-21.md).
+- [ML-08: reserva y tramos aprobados para planificación](firestore/ml-08-policy-2026-10-21.md).
+- [ML-08: recuperación y tamaño de copias — continuación](firestore/ml-08-recovery-2026-10-21.md).
+- [ML-08: copia dividida y recuperación reanudable — implementación para revisión](features/multipart-backup-2026-10-21.md).
 
 - [ML-07: consultas y sincronización — 20/10/2026](firestore/ml-07-sync-2026-10-20.md).
 

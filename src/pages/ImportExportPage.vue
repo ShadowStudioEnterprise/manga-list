@@ -33,7 +33,7 @@
                 accept=".json,.csv,.txt,application/json,text/csv,text/plain"
                 label="Seleccionar archivo"
                 :loading="readingFile"
-                :disable="mangaStore.loading || exporting"
+                :disable="mangaStore.loading || exporting || multipartBusy"
                 @update:model-value="readFile"
               >
                 <template #prepend><q-icon name="attach_file" /></template>
@@ -59,7 +59,7 @@
             <ImportPreview
               v-else
               :preview="preview"
-              :importing="importing"
+              :importing="importing || multipartBusy"
               @reset="resetImport"
               @import="importSelected"
             />
@@ -106,6 +106,7 @@
                 :disable="
                   mangaStore.mangas.length === 0 ||
                   importing ||
+                  multipartBusy ||
                   mangaStore.loading ||
                   !!mangaStore.syncError ||
                   hasUnconfirmedWrites()
@@ -122,6 +123,7 @@
                 :disable="
                   mangaStore.mangas.length === 0 ||
                   importing ||
+                  multipartBusy ||
                   mangaStore.loading ||
                   !!mangaStore.syncError ||
                   hasUnconfirmedWrites()
@@ -133,6 +135,10 @@
         </q-card>
       </section>
     </div>
+    <MultipartBackupPanel
+      :busy="importing || exporting || readingFile"
+      @busy="multipartBusy = $event"
+    />
   </q-page>
 </template>
 
@@ -140,6 +146,8 @@
 import { ref } from 'vue'
 import { useQuasar } from 'quasar'
 import ImportPreview from '@/components/import/ImportPreview.vue'
+import MultipartBackupPanel from '@/components/import/MultipartBackupPanel.vue'
+import { isMultipartBackup } from '@/services/multipart-backup'
 import {
   createRecoverableImportPreview,
   detectImportFormat,
@@ -149,7 +157,7 @@ import { downloadLibraryExport } from '@/services/export-service'
 import { fetchLibraryForExport } from '@/services/manga-service'
 import { useAuthStore } from '@/stores/auth-store'
 import { useMangaStore } from '@/stores/manga-store'
-import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
+import { createAppError, getFirebaseErrorMessage } from '@/utils/firebase-errors'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024
 const $q = useQuasar()
@@ -160,6 +168,7 @@ const preview = ref(null)
 const readingFile = ref(false)
 const importing = ref(false)
 const exporting = ref(false)
+const multipartBusy = ref(false)
 let fileVersion = 0
 
 async function readFile(selectedFile) {
@@ -170,7 +179,7 @@ async function readFile(selectedFile) {
     return
   }
   const uid = authStore.user?.uid
-  if (!uid || importing.value || exporting.value) return
+  if (!uid || importing.value || exporting.value || multipartBusy.value) return
   if (mangaStore.loading || mangaStore.syncError) {
     $q.notify({ type: 'info', message: 'Espera a que termine de sincronizarse la biblioteca.' })
     file.value = null
@@ -186,6 +195,12 @@ async function readFile(selectedFile) {
   try {
     const content = await selectedFile.text()
     const format = detectImportFormat(selectedFile.name || selectedFile.type, content)
+    if (format === 'json' && isMultipartBackup(content)) {
+      throw createAppError(
+        'app/backup-invalid',
+        'Para esta copia usa «Recuperar copia dividida» y selecciona el manifiesto y todas las partes.',
+      )
+    }
     const nextPreview = await createRecoverableImportPreview(content, {
       uid,
       format,
@@ -208,7 +223,7 @@ async function readFile(selectedFile) {
 }
 
 function resetImport() {
-  if (importing.value) return
+  if (importing.value || multipartBusy.value) return
   fileVersion++
   readingFile.value = false
   file.value = null
@@ -218,6 +233,7 @@ function resetImport() {
 async function importSelected() {
   if (
     importing.value ||
+    multipartBusy.value ||
     exporting.value ||
     !preview.value ||
     mangaStore.syncError ||
@@ -298,7 +314,7 @@ function hasUnconfirmedWrites() {
 }
 
 async function exportLibrary(format) {
-  if (exporting.value || importing.value) return
+  if (exporting.value || importing.value || multipartBusy.value) return
   const uid = authStore.user?.uid
   if (!uid) return
   if (mangaStore.syncError || mangaStore.loading || hasUnconfirmedWrites()) {

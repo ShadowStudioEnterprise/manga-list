@@ -1,0 +1,2547 @@
+{
+  "kind": "Deterministic sensitivity estimates; NOT measured billed quota or operational approval",
+  "referenceDate": "2026-10-21",
+  "productionBase": "36fe4f3bd46615a4e18983d506fb79d2337c768c",
+  "quota": {
+    "dailyReads": 50000,
+    "dailyWrites": 20000,
+    "dailyDeletes": 20000,
+    "storedGiB": 1,
+    "monthlyOutboundGiB": 10
+  },
+  "proposal": {
+    "approved": false,
+    "reservePercent": 20,
+    "reads": 40000,
+    "writes": 16000,
+    "deletes": 16000,
+    "storedGiB": 0.8,
+    "monthlyOutboundGiB": 8
+  },
+  "rows": [
+    {
+      "size": 100,
+      "stableListeners": 1,
+      "initialQueries": 1,
+      "cold": 100,
+      "reconnect": 100,
+      "exportQueries": 1,
+      "export": 100,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 5000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 5000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 13050,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 26950
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 50,
+      "oneAccountColdExport": 200
+    },
+    {
+      "size": 500,
+      "stableListeners": 1,
+      "initialQueries": 1,
+      "cold": 500,
+      "reconnect": 500,
+      "exportQueries": 1,
+      "export": 500,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 33050,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 6950
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 50,
+      "oneAccountColdExport": 1000
+    },
+    {
+      "size": 1000,
+      "stableListeners": 1,
+      "initialQueries": 1,
+      "cold": 1000,
+      "reconnect": 1000,
+      "exportQueries": 1,
+      "export": 1000,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 50000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 50000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 58050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -18050
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 32,
+      "oneAccountColdExport": 2000
+    },
+    {
+      "size": 2500,
+      "stableListeners": 1,
+      "initialQueries": 1,
+      "cold": 2500,
+      "reconnect": 2500,
+      "exportQueries": 1,
+      "export": 2500,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 125000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 125000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 133050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -93050
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 13,
+      "oneAccountColdExport": 5000
+    },
+    {
+      "size": 5000,
+      "stableListeners": 1,
+      "initialQueries": 1,
+      "cold": 5000,
+      "reconnect": 5000,
+      "exportQueries": 1,
+      "export": 5000,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 250000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 250000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 258050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -218050
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 6,
+      "oneAccountColdExport": 10000
+    },
+    {
+      "size": 10000,
+      "stableListeners": 2,
+      "initialQueries": 3,
+      "cold": 15001,
+      "reconnect": 10000,
+      "exportQueries": 2,
+      "export": 10001,
+      "fiftyAccounts": {
+        "accounts": 50,
+        "documents": 500000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 750050,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 758100,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -718100
+      },
+      "maximumActiveOfFiftyAccountsUnderProposal": 2,
+      "oneAccountColdExport": 25002
+    }
+  ],
+  "mixtures": [
+    {
+      "name": "uniform100",
+      "groups": [
+        {
+          "count": 50,
+          "size": 100
+        }
+      ],
+      "accounts": 50,
+      "documents": 5000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 5000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 13050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 26950
+    },
+    {
+      "name": "declared50x500",
+      "groups": [
+        {
+          "count": 50,
+          "size": 500
+        }
+      ],
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 33050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 6950
+    },
+    {
+      "name": "mixedSmall",
+      "groups": [
+        {
+          "count": 40,
+          "size": 100
+        },
+        {
+          "count": 10,
+          "size": 1000
+        }
+      ],
+      "accounts": 50,
+      "documents": 14000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 14000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 22050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 17950
+    },
+    {
+      "name": "mixedNearBudget",
+      "groups": [
+        {
+          "count": 40,
+          "size": 500
+        },
+        {
+          "count": 10,
+          "size": 1000
+        }
+      ],
+      "accounts": 50,
+      "documents": 30000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 30000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 38050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 1950
+    },
+    {
+      "name": "mixedHeavy",
+      "groups": [
+        {
+          "count": 45,
+          "size": 500
+        },
+        {
+          "count": 5,
+          "size": 5000
+        }
+      ],
+      "accounts": 50,
+      "documents": 47500,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 47500,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 55550,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -15550
+    },
+    {
+      "name": "oneLarge",
+      "groups": [
+        {
+          "count": 49,
+          "size": 100
+        },
+        {
+          "count": 1,
+          "size": 10000
+        }
+      ],
+      "accounts": 50,
+      "documents": 14900,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 19901,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 27951,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 12049
+    },
+    {
+      "name": "uniform1000",
+      "groups": [
+        {
+          "count": 50,
+          "size": 1000
+        }
+      ],
+      "accounts": 50,
+      "documents": 50000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 50000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 58050,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -18050
+    },
+    {
+      "name": "uniform2500",
+      "groups": [
+        {
+          "count": 50,
+          "size": 2500
+        }
+      ],
+      "accounts": 50,
+      "documents": 125000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 125000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 133050,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -93050
+    },
+    {
+      "name": "uniform5000",
+      "groups": [
+        {
+          "count": 50,
+          "size": 5000
+        }
+      ],
+      "accounts": 50,
+      "documents": 250000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 250000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 258050,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -218050
+    },
+    {
+      "name": "uniform10000",
+      "groups": [
+        {
+          "count": 50,
+          "size": 10000
+        }
+      ],
+      "accounts": 50,
+      "documents": 500000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 750050,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 758100,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -718100
+    }
+  ],
+  "eventSensitivity": [
+    {
+      "eventsPerAccount": 0,
+      "aggregateEvents": 0,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 33050,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 6950
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 33050,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 6950
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 33050,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 6950
+      }
+    },
+    {
+      "eventsPerAccount": 0.1,
+      "aggregateEvents": 5,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0.1,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 2500,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 35550,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 4450
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0.1,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 2500,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 35550,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 4450
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0.1,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 2500,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 35550,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 4450
+      }
+    },
+    {
+      "eventsPerAccount": 0.25,
+      "aggregateEvents": 12.5,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0.25,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 6250,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 39300,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 700
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0.25,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 6250,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 39300,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 700
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0.25,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 6250,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 39300,
+        "writes": 2000,
+        "withinProposedReadBudget": true,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": 700
+      }
+    },
+    {
+      "eventsPerAccount": 0.5,
+      "aggregateEvents": 25,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0.5,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 12500,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 45550,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -5550
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0.5,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 12500,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 45550,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -5550
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 0.5,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 12500,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 45550,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": true,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -5550
+      }
+    },
+    {
+      "eventsPerAccount": 1,
+      "aggregateEvents": 50,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 1,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 25000,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 58050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -18050
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 1,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 25000,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 58050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -18050
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 1,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 25000,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 58050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -18050
+      }
+    },
+    {
+      "eventsPerAccount": 2,
+      "aggregateEvents": 100,
+      "reconnect": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 2,
+          "exports": 0,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 50000,
+          "export": 0,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 83050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -43050
+      },
+      "export": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 2,
+          "handoffs": 0,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 50000,
+          "handoff": 0,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 83050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -43050
+      },
+      "handoff": {
+        "accounts": 50,
+        "documents": 25000,
+        "parameters": {
+          "opens": 1,
+          "reconnects": 0,
+          "exports": 0,
+          "handoffs": 2,
+          "devices": 1,
+          "updates": 20,
+          "attempts": 1,
+          "duplicateMisses": 1,
+          "auxiliaryReads": 5000,
+          "auxiliaryWrites": 1000,
+          "imports": 0
+        },
+        "detail": {
+          "cold": 25000,
+          "reconnect": 0,
+          "export": 0,
+          "handoff": 50000,
+          "updates": 3000,
+          "duplicates": 50
+        },
+        "importReads": 0,
+        "reads": 83050,
+        "writes": 2000,
+        "withinProposedReadBudget": false,
+        "withinFreeReadQuota": false,
+        "withinProposedWriteBudget": true,
+        "headroomToProposal": -43050
+      }
+    }
+  ],
+  "independentDevices": [
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 33050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 6950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 2,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 50000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 4000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 59050,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -19050
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 3,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 75000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 5000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 85050,
+      "writes": 2000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -45050
+    }
+  ],
+  "auxiliaries": [
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 0,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 28050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 11950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 1000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 29050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 10950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 33050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 6950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 10000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 38050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 1950
+    }
+  ],
+  "updateSensitivity": [
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 0,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 0,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 30050,
+      "writes": 1000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 9950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 0,
+        "attempts": 3,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 0,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 30050,
+      "writes": 1000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 9950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 33050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 6950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 3,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 5000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 35050,
+      "writes": 2000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 4950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 100,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 15000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 45050,
+      "writes": 6000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -5050
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 100,
+        "attempts": 3,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 0
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 25000,
+        "duplicates": 50
+      },
+      "importReads": 0,
+      "reads": 55050,
+      "writes": 6000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -15050
+    }
+  ],
+  "reserves": [
+    {
+      "percent": 0,
+      "readBudget": 50000,
+      "additional500WorkEvents": 33
+    },
+    {
+      "percent": 10,
+      "readBudget": 45000,
+      "additional500WorkEvents": 23
+    },
+    {
+      "percent": 20,
+      "readBudget": 40000,
+      "additional500WorkEvents": 13
+    },
+    {
+      "percent": 30,
+      "readBudget": 35000,
+      "additional500WorkEvents": 3
+    }
+  ],
+  "importSensitivity": [
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 100
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 300,
+      "reads": 33350,
+      "writes": 2100,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 6650
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 500
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 1500,
+      "reads": 34550,
+      "writes": 2500,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 5450
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 1000
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 3000,
+      "reads": 36050,
+      "writes": 3000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 3950
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 2500
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 7500,
+      "reads": 40550,
+      "writes": 4500,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -550
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 5000
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 15000,
+      "reads": 48050,
+      "writes": 7000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -8050
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 10000
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 30000,
+      "reads": 63050,
+      "writes": 12000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": -23050
+    },
+    {
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 25000
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 75000,
+      "reads": 108050,
+      "writes": 27000,
+      "withinProposedReadBudget": false,
+      "withinFreeReadQuota": false,
+      "withinProposedWriteBudget": false,
+      "headroomToProposal": -68050
+    }
+  ],
+  "onboarding": [
+    {
+      "day": 1,
+      "newAccounts": 16,
+      "loadedAccounts": 16,
+      "accounts": 16,
+      "documents": 8000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 8000
+      },
+      "detail": {
+        "cold": 8000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 960,
+        "duplicates": 16
+      },
+      "importReads": 24000,
+      "reads": 37976,
+      "writes": 9320,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 2024
+    },
+    {
+      "day": 2,
+      "newAccounts": 12,
+      "loadedAccounts": 28,
+      "accounts": 28,
+      "documents": 14000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 6000
+      },
+      "detail": {
+        "cold": 14000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 1680,
+        "duplicates": 28
+      },
+      "importReads": 18000,
+      "reads": 38708,
+      "writes": 7560,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 1292
+    },
+    {
+      "day": 3,
+      "newAccounts": 9,
+      "loadedAccounts": 37,
+      "accounts": 37,
+      "documents": 18500,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 4500
+      },
+      "detail": {
+        "cold": 18500,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 2220,
+        "duplicates": 37
+      },
+      "importReads": 13500,
+      "reads": 39257,
+      "writes": 6240,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 743
+    },
+    {
+      "day": 4,
+      "newAccounts": 6,
+      "loadedAccounts": 43,
+      "accounts": 43,
+      "documents": 21500,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 3000
+      },
+      "detail": {
+        "cold": 21500,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 2580,
+        "duplicates": 43
+      },
+      "importReads": 9000,
+      "reads": 38123,
+      "writes": 4860,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 1877
+    },
+    {
+      "day": 5,
+      "newAccounts": 5,
+      "loadedAccounts": 48,
+      "accounts": 48,
+      "documents": 24000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 2500
+      },
+      "detail": {
+        "cold": 24000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 2880,
+        "duplicates": 48
+      },
+      "importReads": 7500,
+      "reads": 39428,
+      "writes": 4460,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 572
+    },
+    {
+      "day": 6,
+      "newAccounts": 2,
+      "loadedAccounts": 50,
+      "accounts": 50,
+      "documents": 25000,
+      "parameters": {
+        "opens": 1,
+        "reconnects": 0,
+        "exports": 0,
+        "handoffs": 0,
+        "devices": 1,
+        "updates": 20,
+        "attempts": 1,
+        "duplicateMisses": 1,
+        "auxiliaryReads": 5000,
+        "auxiliaryWrites": 1000,
+        "imports": 1000
+      },
+      "detail": {
+        "cold": 25000,
+        "reconnect": 0,
+        "export": 0,
+        "handoff": 0,
+        "updates": 3000,
+        "duplicates": 50
+      },
+      "importReads": 3000,
+      "reads": 36050,
+      "writes": 3000,
+      "withinProposedReadBudget": true,
+      "withinFreeReadQuota": true,
+      "withinProposedWriteBudget": true,
+      "headroomToProposal": 3950
+    }
+  ],
+  "declaredBase": {
+    "accounts": 50,
+    "documents": 25000,
+    "parameters": {
+      "opens": 1,
+      "reconnects": 0,
+      "exports": 0,
+      "handoffs": 0,
+      "devices": 1,
+      "updates": 20,
+      "attempts": 1,
+      "duplicateMisses": 1,
+      "auxiliaryReads": 5000,
+      "auxiliaryWrites": 1000,
+      "imports": 0
+    },
+    "detail": {
+      "cold": 25000,
+      "reconnect": 0,
+      "export": 0,
+      "handoff": 0,
+      "updates": 3000,
+      "duplicates": 50
+    },
+    "importReads": 0,
+    "reads": 33050,
+    "writes": 2000,
+    "withinProposedReadBudget": true,
+    "withinFreeReadQuota": true,
+    "withinProposedWriteBudget": true,
+    "headroomToProposal": 6950
+  },
+  "thirteenExtraEvents": {
+    "accounts": 50,
+    "documents": 25000,
+    "parameters": {
+      "opens": 1,
+      "reconnects": 0,
+      "exports": 0.26,
+      "handoffs": 0,
+      "devices": 1,
+      "updates": 20,
+      "attempts": 1,
+      "duplicateMisses": 1,
+      "auxiliaryReads": 5000,
+      "auxiliaryWrites": 1000,
+      "imports": 0
+    },
+    "detail": {
+      "cold": 25000,
+      "reconnect": 0,
+      "export": 6500,
+      "handoff": 0,
+      "updates": 3000,
+      "duplicates": 50
+    },
+    "importReads": 0,
+    "reads": 39550,
+    "writes": 2000,
+    "withinProposedReadBudget": true,
+    "withinFreeReadQuota": true,
+    "withinProposedWriteBudget": true,
+    "headroomToProposal": 450
+  },
+  "fourteenExtraEvents": {
+    "accounts": 50,
+    "documents": 25000,
+    "parameters": {
+      "opens": 1,
+      "reconnects": 0,
+      "exports": 0.28,
+      "handoffs": 0,
+      "devices": 1,
+      "updates": 20,
+      "attempts": 1,
+      "duplicateMisses": 1,
+      "auxiliaryReads": 5000,
+      "auxiliaryWrites": 1000,
+      "imports": 0
+    },
+    "detail": {
+      "cold": 25000,
+      "reconnect": 0,
+      "export": 7000.000000000001,
+      "handoff": 0,
+      "updates": 3000,
+      "duplicates": 50
+    },
+    "importReads": 0,
+    "reads": 40050,
+    "writes": 2000,
+    "withinProposedReadBudget": false,
+    "withinFreeReadQuota": true,
+    "withinProposedWriteBudget": true,
+    "headroomToProposal": -50
+  },
+  "bandwidth": [
+    {
+      "averageKiB": 1,
+      "storedPayloadGiBFor25000": 0.02384185791015625,
+      "storageSensitivityIncludingHypotheticalOverhead": [
+        {
+          "factor": 1,
+          "storedGiB": 0.02384185791015625
+        },
+        {
+          "factor": 2,
+          "storedGiB": 0.0476837158203125
+        },
+        {
+          "factor": 4,
+          "storedGiB": 0.095367431640625
+        }
+      ],
+      "thirtyDayGiBAt33050Reads": 0.9455680847167969,
+      "thirtyDayGiBAt39550Reads": 1.1315345764160156,
+      "maxDailyDocumentTransfersWithin8GiB30Days": 279620
+    },
+    {
+      "averageKiB": 5,
+      "storedPayloadGiBFor25000": 0.11920928955078125,
+      "storageSensitivityIncludingHypotheticalOverhead": [
+        {
+          "factor": 1,
+          "storedGiB": 0.11920928955078125
+        },
+        {
+          "factor": 2,
+          "storedGiB": 0.2384185791015625
+        },
+        {
+          "factor": 4,
+          "storedGiB": 0.476837158203125
+        }
+      ],
+      "thirtyDayGiBAt33050Reads": 4.727840423583984,
+      "thirtyDayGiBAt39550Reads": 5.657672882080078,
+      "maxDailyDocumentTransfersWithin8GiB30Days": 55924
+    },
+    {
+      "averageKiB": 25,
+      "storedPayloadGiBFor25000": 0.5960464477539062,
+      "storageSensitivityIncludingHypotheticalOverhead": [
+        {
+          "factor": 1,
+          "storedGiB": 0.5960464477539062
+        },
+        {
+          "factor": 2,
+          "storedGiB": 1.1920928955078125
+        },
+        {
+          "factor": 4,
+          "storedGiB": 2.384185791015625
+        }
+      ],
+      "thirtyDayGiBAt33050Reads": 23.639202117919922,
+      "thirtyDayGiBAt39550Reads": 28.28836441040039,
+      "maxDailyDocumentTransfersWithin8GiB30Days": 11184
+    },
+    {
+      "averageKiB": 100,
+      "storedPayloadGiBFor25000": 2.384185791015625,
+      "storageSensitivityIncludingHypotheticalOverhead": [
+        {
+          "factor": 1,
+          "storedGiB": 2.384185791015625
+        },
+        {
+          "factor": 2,
+          "storedGiB": 4.76837158203125
+        },
+        {
+          "factor": 4,
+          "storedGiB": 9.5367431640625
+        }
+      ],
+      "thirtyDayGiBAt33050Reads": 94.55680847167969,
+      "thirtyDayGiBAt39550Reads": 113.15345764160156,
+      "maxDailyDocumentTransfersWithin8GiB30Days": 2796
+    }
+  ],
+  "memorySensitivity": [
+    {
+      "size": 100,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 0.09765625,
+          "fourCopiesMiB": 0.390625,
+          "eightCopiesMiB": 0.78125
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 0.48828125,
+          "fourCopiesMiB": 1.953125,
+          "eightCopiesMiB": 3.90625
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 2.44140625,
+          "fourCopiesMiB": 9.765625,
+          "eightCopiesMiB": 19.53125
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 9.765625,
+          "fourCopiesMiB": 39.0625,
+          "eightCopiesMiB": 78.125
+        }
+      ]
+    },
+    {
+      "size": 500,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 0.48828125,
+          "fourCopiesMiB": 1.953125,
+          "eightCopiesMiB": 3.90625
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 2.44140625,
+          "fourCopiesMiB": 9.765625,
+          "eightCopiesMiB": 19.53125
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 12.20703125,
+          "fourCopiesMiB": 48.828125,
+          "eightCopiesMiB": 97.65625
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 48.828125,
+          "fourCopiesMiB": 195.3125,
+          "eightCopiesMiB": 390.625
+        }
+      ]
+    },
+    {
+      "size": 1000,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 0.9765625,
+          "fourCopiesMiB": 3.90625,
+          "eightCopiesMiB": 7.8125
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 4.8828125,
+          "fourCopiesMiB": 19.53125,
+          "eightCopiesMiB": 39.0625
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 24.4140625,
+          "fourCopiesMiB": 97.65625,
+          "eightCopiesMiB": 195.3125
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 97.65625,
+          "fourCopiesMiB": 390.625,
+          "eightCopiesMiB": 781.25
+        }
+      ]
+    },
+    {
+      "size": 2500,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 2.44140625,
+          "fourCopiesMiB": 9.765625,
+          "eightCopiesMiB": 19.53125
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 12.20703125,
+          "fourCopiesMiB": 48.828125,
+          "eightCopiesMiB": 97.65625
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 61.03515625,
+          "fourCopiesMiB": 244.140625,
+          "eightCopiesMiB": 488.28125
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 244.140625,
+          "fourCopiesMiB": 976.5625,
+          "eightCopiesMiB": 1953.125
+        }
+      ]
+    },
+    {
+      "size": 5000,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 4.8828125,
+          "fourCopiesMiB": 19.53125,
+          "eightCopiesMiB": 39.0625
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 24.4140625,
+          "fourCopiesMiB": 97.65625,
+          "eightCopiesMiB": 195.3125
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 122.0703125,
+          "fourCopiesMiB": 488.28125,
+          "eightCopiesMiB": 976.5625
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 488.28125,
+          "fourCopiesMiB": 1953.125,
+          "eightCopiesMiB": 3906.25
+        }
+      ]
+    },
+    {
+      "size": 10000,
+      "profiles": [
+        {
+          "averageKiB": 1,
+          "rawMiB": 9.765625,
+          "fourCopiesMiB": 39.0625,
+          "eightCopiesMiB": 78.125
+        },
+        {
+          "averageKiB": 5,
+          "rawMiB": 48.828125,
+          "fourCopiesMiB": 195.3125,
+          "eightCopiesMiB": 390.625
+        },
+        {
+          "averageKiB": 25,
+          "rawMiB": 244.140625,
+          "fourCopiesMiB": 976.5625,
+          "eightCopiesMiB": 1953.125
+        },
+        {
+          "averageKiB": 100,
+          "rawMiB": 976.5625,
+          "fourCopiesMiB": 3906.25,
+          "eightCopiesMiB": 7812.5
+        }
+      ]
+    }
+  ],
+  "caveats": [
+    "Steady, disjoint ID ranges. Boundary splits add reads; 10000 is a local client cap, not a global rules cap.",
+    "Reconnect = stable ranges; handoff/reopening = cold discovery including discarded parent target.",
+    "Fractional event frequencies are aggregate expectations, not per-account fractional operations.",
+    "20 successful uncontended chapter increments, one duplicate miss and 5000 project auxiliary reads are assumptions, not observations.",
+    "1000 auxiliary writes is an additional ML-08 allowance; no imports or deletes in steady base.",
+    "Other origins, browser profiles, unsupported sharing APIs and independent devices each require separate listeners.",
+    "Import sensitivity excludes range split/reopening overhead and must not be used as a fixed import admission limit.",
+    "Payload-byte and memory multipliers are hypothetical. They exclude actual indexes, SDK heap, protocol overhead, auth and Hosting."
+  ],
+  "sources": [
+    "https://firebase.google.com/docs/firestore/quotas",
+    "https://firebase.google.com/docs/firestore/pricing",
+    "https://firebase.google.com/docs/firestore/storage-size",
+    "https://firebase.google.com/docs/firestore/manage-data/enable-offline"
+  ]
+}

@@ -648,8 +648,11 @@ test('invalid import rows remain errors, successful import resets, export preser
 }) => {
   await register(page)
   await page.goto('/#/settings/import-export')
-  await expect(page.locator('input[type=file]')).toBeEnabled()
-  await page.locator('input[type=file]').setInputFiles({
+  const importInput = page
+    .getByRole('region', { name: 'Importar biblioteca', exact: true })
+    .locator('input[type=file]')
+  await expect(importInput).toBeEnabled()
+  await importInput.setInputFiles({
     name: 'library.csv',
     mimeType: 'text/csv',
     buffer: Buffer.from(
@@ -662,7 +665,7 @@ test('invalid import rows remain errors, successful import resets, export preser
   await page.getByRole('button', { name: 'Importar 1', exact: true }).click()
   await expect(page.getByText('1 obras importadas correctamente.', { exact: true })).toBeVisible()
   await expect(page.getByText('obras detectadas')).toHaveCount(0)
-  await expect(page.locator('input[type=file]')).toHaveValue('')
+  await expect(importInput).toHaveValue('')
   const downloadPromise = page.waitForEvent('download')
   await page.getByRole('button', { name: 'Descargar JSON' }).click()
   const download = await downloadPromise
@@ -674,8 +677,8 @@ test('invalid import rows remain errors, successful import resets, export preser
   expect(records[0]).toMatchObject({ name: 'Valid Manga', chapter: '24' })
   expect(records[0].sources[0].url).toBe('https://example.test')
   await page.reload()
-  await expect(page.locator('input[type=file]')).toBeEnabled()
-  await page.locator('input[type=file]').setInputFiles({
+  await expect(importInput).toBeEnabled()
+  await importInput.setInputFiles({
     name: 'renamed-library.csv',
     mimeType: 'text/csv',
     buffer: Buffer.from(
@@ -689,7 +692,7 @@ test('invalid import rows remain errors, successful import resets, export preser
   await expect(page.getByText('Importado', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Importar 0', exact: true })).toBeDisabled()
   await page.getByRole('button', { name: 'Elegir otro archivo', exact: true }).click()
-  await page.locator('input[type=file]').setInputFiles({
+  await importInput.setInputFiles({
     name: 'invalid.json',
     mimeType: 'application/json',
     buffer: Buffer.from(
