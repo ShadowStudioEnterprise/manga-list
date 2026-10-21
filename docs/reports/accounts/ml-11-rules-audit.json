@@ -1,0 +1,18 @@
+{
+  "score": 3,
+  "summary": "Auditoría limitada al flujo de eliminación en la base 23e9b1d. No se observó bypass de escritura del marcador; no acredita revocación inmediata ni cumplimiento jurídico.",
+  "findings": [
+    {
+      "check": "Authority Source / Business Logic vs. Rules",
+      "severity": "moderate",
+      "issue": "Un contexto de propietario todavía aceptado conserva lectura del marcador y mangas pendientes; las reglas no consultan revocación ni existencia en Auth.",
+      "recommendation": "Documentar riesgo residual y evaluar en otro diseño un bloqueo de lectura/revocación compatible con asistencia y Spark. No equiparar la barrera de escritura con bloqueo legal."
+    },
+    {
+      "check": "Business Logic vs. Rules",
+      "severity": "moderate",
+      "issue": "Si una herramienta administrativa retira el marcador, un contexto todavía aceptado puede recrear mangas. La edad no prueba que sea seguro retirarlo.",
+      "recommendation": "Mantener revisión humana y autorización específica; exigir evidencia de tokens, inventario, ausencia Auth y no reutilización UID."
+    }
+  ]
+}

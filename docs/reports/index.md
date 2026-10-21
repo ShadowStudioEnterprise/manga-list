@@ -41,6 +41,9 @@ secciones principales del portal.
 
 ## Cuentas y retención
 
+- [ML-11: validación jurídico-técnica — 21/10/2026](accounts/ml-11-validation-2026-10-21.md).
+- [ML-11: procedimiento propuesto y decisiones pendientes](accounts/ml-11-operating-procedure.md).
+- [ML-11: evidencia y límites de las pruebas](accounts/ml-11-test-evidence.md).
 - [Procedimiento propuesto de asistencia a borrados abandonados](accounts/abandoned-deletion-assistance.md).
 - [Retención de users/{uid}: revisión manual propuesta](accounts/account-marker-retention-proposal.md).
 - [Revisión manual del marcador: propuesta operativa MangaList 1.0](accounts/manual-marker-review.md).

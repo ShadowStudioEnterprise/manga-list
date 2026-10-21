@@ -1,5 +1,9 @@
 # Procedimiento propuesto de asistencia a borrados abandonados
 
+Actualización ML-11 (21/10/2026): [auditoría del flujo real](ml-11-validation-2026-10-21.md)
+y [operación, identidad y excepciones propuestas](ml-11-operating-procedure.md).
+Los hitos internos 7/30/90 no suspenden ni sustituyen el seguimiento de derechos.
+
 Solo documentación. Sin operaciones sobre cuentas reales, sin credenciales de
 administración en el cliente y sin activar servicios de pago. Cada actuación real
 necesita autorización específica y un responsable designado. Esta propuesta no

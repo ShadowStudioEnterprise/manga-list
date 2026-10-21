@@ -107,6 +107,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-11: validación y decisiones (21/10)',
+        link: '/reports/accounts/ml-11-validation-2026-10-21',
+      },
+      {
         text: 'Asistencia a borrados',
         link: '/reports/accounts/abandoned-deletion-assistance',
       },
