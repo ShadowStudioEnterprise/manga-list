@@ -1,7 +1,7 @@
 <template>
   <section aria-labelledby="multipart-heading" class="q-mt-xl">
     <h2 id="multipart-heading" class="text-h5">Copias divididas y recuperación</h2>
-    <p class="text-grey-7">
+    <p class="text-grey-8">
       Para bibliotecas grandes, guarda el manifiesto y todas sus partes. Se comprueban juntas antes
       de recuperar las obras.
     </p>

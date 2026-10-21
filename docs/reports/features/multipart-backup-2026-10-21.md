@@ -107,6 +107,8 @@ oficial de [uso y límites](https://firebase.google.com/docs/firestore/quotas) y
   de navegadores; no deben confundirse con mediciones de producción.
 - CI conserva las comprobaciones de reglas, dependencias, lint, documentos, modelos,
   SPA/PWA y actualización PWA. No contiene publicación ni credenciales de producción.
+  La integración mantiene la comprobación automática de contraste a 320 px y la
+  importación normal selecciona su propio campo de archivo en la prueba existente.
 
 Pendiente de aceptación: revisar el formato/experiencia de copia, aprobar por separado
 la política de capacidad y validar dispositivos físicos. Fusionar y desplegar son
