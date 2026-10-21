@@ -143,5 +143,7 @@ resultado se documenta en el informe del servicio y no completa D5/PD09.
 
 Aceptar o completar un factor no acepta P3/P4 ni activa expedientes reales. Se
 mantienen matriz D5, revisión D7 y autorización de activación pendientes. Firebase
-Spark exclusivamente, sin acceso a Firebase, borrado automático, compras, fusión
-o despliegue. Fuentes oficiales enlazadas consultadas el 21/10/2026.
+Spark exclusivamente, sin acceso a Firebase, borrado automático, compras
+o despliegue. El PR #9 se fusionó posteriormente, sin activar estos controles:
+[registro y pendientes humanos](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion).
+Fuentes oficiales enlazadas consultadas el 21/10/2026.

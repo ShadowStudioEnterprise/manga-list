@@ -179,7 +179,9 @@ No se da por completado ningún criterio compuesto ni la evaluación de custodia
 | P4  | Copias por hitos, revisión semanal y destino cifrado fuera del equipo                       | Diseño aceptado solo para ensayo; destino, custodio, herramienta, conservación y restauración pendientes |
 | P5  | Ensayo autorizado con datos ficticios; activación real posterior tras D1–D7                 | Ensayo acotado en cuenta existente autorizado y parcial; invitaciones y activación real pendientes       |
 
-Sin compras, fusión, despliegues, modificación de cuentas reales o cambios remotos
+La [fusión del PR #9 y las intervenciones humanas pendientes](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion)
+están registradas; integrar esta propuesta no activa su operación.
+Sin compras, despliegues, modificación de cuentas reales o cambios remotos
 de Firebase. Spark exclusivamente. La selección de Proton no acredita cumplimiento
 jurídico definitivo ni capacidad de ejecutar operaciones administrativas.
 

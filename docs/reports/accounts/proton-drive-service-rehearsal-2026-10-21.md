@@ -70,7 +70,9 @@ propietario no se exportó como evidencia pública.
 
 La cuenta Proton es real y se utilizó con autorización para estos archivos
 sintéticos; eso no significa tratar expedientes reales. Firebase no se abrió ni
-modificó. Spark exclusivamente; sin borrado automático, fusión o despliegue.
+modificó. Spark exclusivamente; durante ese ensayo no hubo borrado automático,
+fusión o despliegue. La [fusión posterior del PR #9](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion)
+integró documentación y pruebas sin activar expedientes reales.
 
 ## Continuación necesaria
 

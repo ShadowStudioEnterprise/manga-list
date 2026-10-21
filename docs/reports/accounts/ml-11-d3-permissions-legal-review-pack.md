@@ -249,5 +249,7 @@ evaluación automatizada. No se introducen identidades reales o credenciales.
 El cierre exige evidencia de cada condición, no contar fichas rellenadas. Con
 participante y autorizaciones se podrá ejecutar B0–B7 y la entrega ficticia de
 custodia. Estado tras aceptación expresa: D3 sin candidato, permisos sin ejecutar,
-P2/P3/P4 aceptadas solo para ensayo y D7 sin dictamen. Sin invitaciones, compras, fusión, despliegue,
+P2/P3/P4 aceptadas solo para ensayo y D7 sin dictamen. El PR #9 se fusionó con
+autorización posterior, según el [registro actualizado](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion).
+Sin invitaciones, compras, despliegue,
 acceso a cuentas Firebase o datos reales, ni borrado automático.
