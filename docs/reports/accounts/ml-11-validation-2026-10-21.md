@@ -1,7 +1,9 @@
 # ML-11: revisión manual de marcadores a los 30 días
 
-Estado: **validación técnica parcial y propuesta operativa; pendiente de aceptación
-expresa y revisión jurídica**. Fecha: 21/10/2026, Europe/Madrid. No constituye un
+Estado: **validación técnica parcial; D1–D7 aceptadas como decisiones de diseño y
+preparación; activación y revisión jurídica pendientes**. Véase el
+[registro de aceptación](ml-11-acceptance-2026-10-21.md).
+Fecha: 21/10/2026, Europe/Madrid. No constituye un
 dictamen de cumplimiento ni autoriza operaciones sobre personas reales.
 
 ## Alcance y evidencia

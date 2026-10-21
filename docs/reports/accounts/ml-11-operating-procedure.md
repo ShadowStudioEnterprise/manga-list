@@ -1,6 +1,8 @@
 # ML-11: procedimiento propuesto y decisiones de aceptación
 
-Borrador de 21/10/2026. No activado. Véase el
+Borrador de 21/10/2026. D1–D7 aceptadas como decisiones de diseño y preparación,
+según el [registro de aceptación](ml-11-acceptance-2026-10-21.md). No activado:
+siguen pendientes designaciones, canal, permisos y validaciones. Véase el
 [informe jurídico-técnico](ml-11-validation-2026-10-21.md).
 Solo documentación y ensayos locales con datos sintéticos. No es un runbook
 ejecutable de borrado ni autoriza consultas de producción.
@@ -26,7 +28,8 @@ sumar días locales durante cambios de hora. Ejemplo sintético: finalización
 La agenda es humana, en el canal privado aprobado, sin proceso programado en
 Firebase. El operador revisa su agenda cada día laborable; el vencimiento permanece
 visible si cae en festivo y se atiende el siguiente día laborable, sin alterar el
-plazo de derechos. Esto requiere aceptación D1 y D2.
+plazo de derechos. D1 y D2 están aceptadas; su aplicación requiere completar las
+condiciones pendientes del registro de aceptación.
 
 Estados del expediente: recibido → identidad/autoridad pendiente → borrado
 incompleto o finalización acreditada → revisión fechada → preservar/escalar o
@@ -131,17 +134,17 @@ fijar una matriz por categoría (identidad, vínculo, acta, accesos, posibles re
 con finalidad, base, plazo y destrucción final; hasta entonces no activar el sistema
 con datos reales. La retención de evidencias no hereda la del marcador.
 
-## Decisiones que requieren aceptación expresa
+## Decisiones aceptadas y aplicación pendiente
 
-| ID  | Decisión concreta propuesta                                                                                                                                                           | Estado    |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
-| D1  | Revisión humana a las 720 horas desde finalización acreditada; ningún borrado automático; día 0 no se infiere de `updatedAt`                                                          | Pendiente |
-| D2  | Agenda por operador/suplente, repaso diario laborable y seguimiento de incompletos 7/30/90 días; reloj de derechos separado                                                           | Pendiente |
-| D3  | Designar por nombre roles independientes, canal privado, permisos y mecanismo de identidad/desafío 15 min/3 intentos y representación                                                 | Pendiente |
-| D4  | Excepciones solo motivadas por privacidad, revisión máxima cada 30 días; validar jurídicamente causas y prescripciones                                                                | Pendiente |
-| D5  | Revisar vínculo caso/UID a los 30 días del cierre y aprobar matriz jurídica de retención del expediente y controles de integridad/acceso                                              | Pendiente |
-| D6  | Mantener 24 h solo como cautela pendiente; exigir evaluación técnica de tokens, reutilización UID y rollback antes de cualquier propuesta de retirada                                 | Pendiente |
-| D7  | Encargar revisión jurídica de base, proporcionalidad, art. 32, información al usuario, responsables/encargados y límites de la supresión; autorizar producción por caso en otra tarea | Pendiente |
+| ID  | Decisión concreta propuesta                                                                                                                                                           | Estado                            |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| D1  | Revisión humana a las 720 horas desde finalización acreditada; ningún borrado automático; día 0 no se infiere de `updatedAt`                                                          | Aceptada; aplicación condicionada |
+| D2  | Agenda por operador/suplente, repaso diario laborable y seguimiento de incompletos 7/30/90 días; reloj de derechos separado                                                           | Aceptada; aplicación condicionada |
+| D3  | Designar por nombre roles independientes, canal privado, permisos y mecanismo de identidad/desafío 15 min/3 intentos y representación                                                 | Aceptada; aplicación condicionada |
+| D4  | Excepciones solo motivadas por privacidad, revisión máxima cada 30 días; validar jurídicamente causas y prescripciones                                                                | Aceptada; aplicación condicionada |
+| D5  | Revisar vínculo caso/UID a los 30 días del cierre y aprobar matriz jurídica de retención del expediente y controles de integridad/acceso                                              | Aceptada; aplicación condicionada |
+| D6  | Mantener 24 h solo como cautela pendiente; exigir evaluación técnica de tokens, reutilización UID y rollback antes de cualquier propuesta de retirada                                 | Aceptada; aplicación condicionada |
+| D7  | Encargar revisión jurídica de base, proporcionalidad, art. 32, información al usuario, responsables/encargados y límites de la supresión; autorizar producción por caso en otra tarea | Aceptada; aplicación condicionada |
 
 Aceptar D1–D7 no certifica cumplimiento ni autoriza fusionar, desplegar, consultar
 cuentas o retirar un marcador. Esas actuaciones permanecen fuera de ML-11.
