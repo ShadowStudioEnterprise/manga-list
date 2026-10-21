@@ -17,17 +17,23 @@ el cliente no puede retirarlo para desbloquear la cuenta.
 
 ## Consultas y sincronización
 
-La biblioteca se carga por rangos con cursores de ID y hasta 1001 documentos por
-consulta. Los presupuestos técnicos provisionales son 10000 obras y 64 rangos.
+La propuesta ML-07 carga hasta 10000 obras con rangos disjuntos ordenados por ID
+acotados a 5001 documentos, incluyendo el centinela de exceso. Coordina pestañas
+del mismo origen/proyecto/cuenta mediante Web Locks y BroadcastChannel sin persistir
+la biblioteca en disco. La exportación usa cursores de hasta 5001 documentos.
 La interfaz filtra y ordena globalmente antes de presentar páginas de 24 tarjetas.
-Las reglas exigen un límite de consulta de como máximo 1001; no fijan una capacidad
-global de biblioteca ni limitan la frecuencia de acceso.
+
+Las reglas propuestas permiten como máximo 5001 por consulta; no imponen una cuota
+diaria. El cliente nuevo requiere esas reglas: su transición queda pendiente de
+revisión y autorización separada. No se ha aplicado ningún cambio remoto.
 
 El exceso de presupuesto produce un error explícito y cierra la suscripción;
 no entrega una biblioteca parcial. Las transacciones tienen hasta tres intentos.
 Un intento, consulta o listener no equivale a una única lectura facturable.
 
 ## Referencias técnicas
+
+- [ML-07: decisión, compatibilidad y mediciones](/reports/firestore/ml-07-sync-2026-10-20).
 
 - [ML-06: escenarios y presupuesto Spark compartido](/reports/firestore/ml-06-consumption-2026-10-20).
 - [Diseño de cursores y condiciones de índices](/reports/firestore/firestore-cursors-v1).

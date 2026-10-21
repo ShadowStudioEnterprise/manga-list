@@ -181,7 +181,7 @@ test(
         ),
       )
       await assertFails(getDocsFromServer(ref))
-      await assertFails(getDocsFromServer(query(ref, limit(1002))))
+      await assertFails(getDocsFromServer(query(ref, limit(5002))))
       assert.deepEqual(errors, [])
       console.log(
         JSON.stringify({
@@ -270,14 +270,14 @@ test(
       assert.equal(new Set(latest.items.map((item) => item.id)).size, 10000)
       assert.equal(latest.metadata.fromCache, false)
       assert.equal(admissions.listen, 1)
-      assert.equal(admissions.read, 19)
-      assert.equal(activeTargets.size, 10)
+      assert.equal(admissions.read, 3)
+      assert.equal(activeTargets.size, 2)
 
       const copy = await service.fetchLibraryForExport(owner)
       assert.equal(copy.mangas.length, 10000)
       assert.equal(new Set(copy.mangas.map((item) => item.id)).size, 10000)
-      assert.equal(exportCalls, 10)
-      assert.equal(admissions.read, 29)
+      assert.equal(exportCalls, 2)
+      assert.equal(admissions.read, 5)
       for (const format of ['json', 'csv']) {
         const payload = createLibraryExport(copy.mangas, format, {
           verification: copy.verification,
@@ -298,7 +298,7 @@ test(
       // The same minute has one admission left. A second export fails after
       // its first page instead of returning that page as a complete copy.
       await assert.rejects(service.fetchLibraryForExport(owner), { code: 'app/request-budget' })
-      assert.equal(exportCalls, 11)
+      assert.equal(exportCalls, 3)
       assert.equal(admissions.read, 60)
       now = 60000
       assert.equal((await service.fetchLibraryForExport(owner)).mangas.length, 10000)
@@ -331,9 +331,9 @@ test(
       console.log(
         JSON.stringify({
           documents: 10000,
-          initialListenerAdmissions: 19,
-          firstExportAdmissions: 10,
-          activeRanges: 10,
+          initialListenerAdmissions: 3,
+          firstExportAdmissions: 2,
+          activeRanges: 2,
           jsonAndCsvRoundTrip: true,
           budgetFailureAfterOnePage: true,
           injectedQuotaPauseMs: 15 * 60000,

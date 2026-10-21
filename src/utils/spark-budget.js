@@ -3,7 +3,7 @@ import { createAppError } from './firebase-errors.js'
 export const SPARK_LIMITS = Object.freeze({
   libraryDocuments: 10000,
   // Transport size only; the library cap remains provisional pending cost review.
-  pageDocuments: 1000,
+  pageDocuments: 5000,
   libraryRanges: 64,
   deletionBatch: 400,
   deletionBatches: 5,

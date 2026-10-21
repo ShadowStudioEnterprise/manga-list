@@ -38,6 +38,16 @@ export default defineConfig((ctx) => {
       extendViteConf(config) {
         config.plugins ||= []
         config.plugins.push(buildInfoPlugin(buildInfo, ctx.mode.pwa ? 'pwa' : 'spa'))
+        // A dev websocket reload during suspension would test HMR instead of sync.
+        if (
+          ctx.dev &&
+          process.env.MANGALIST_E2E_NO_HMR === 'true' &&
+          process.env.QCLI_FIREBASE_EMULATORS === 'true'
+        ) {
+          config.server ||= {}
+          config.server.hmr = false
+          config.server.ws = false
+        }
       },
       // Quasar handles dotenv itself; Firebase uses the documented VITE_FIREBASE_ prefix.
       env: {

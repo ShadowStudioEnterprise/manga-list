@@ -28,6 +28,15 @@
       {{ mangaStore.syncStatusMessage }}
     </p>
 
+    <q-btn
+      v-if="!mangaStore.syncError && mangaStore.coordinationStale"
+      flat
+      no-caps
+      color="primary"
+      label="Solicitar estado a la otra pestaña"
+      @click="mangaStore.requestSharedSnapshot()"
+    />
+
     <q-banner
       v-if="mangaStore.syncError"
       rounded

@@ -15,7 +15,8 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
     deliveries = [],
     budget = []
   let readFailure,
-    readCount = 0
+    readCount = 0,
+    maxUnconfirmed = 0
   const select = (q) => {
     const lower = q.find((c) => c.kind === 'after')?.value
     const upper = q.find((c) => c.kind === 'end')?.value
@@ -25,11 +26,14 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       .slice(0, max)
   }
   const deliver = (target) => {
-    if (target.active) target.data({ docs: select(target.q), metadata })
+    if (target.active) {
+      if (!metadata.fromCache && !metadata.hasPendingWrites) target.pending = false
+      target.data({ docs: select(target.q), metadata })
+    }
   }
   const service = await loadModule('src/services/library-cursors.js', {
     '@/utils/spark-budget': {
-      SPARK_LIMITS: limits,
+      SPARK_LIMITS: { ...limits, pageDocuments: 1000 },
       sparkBudget: { take: (kind) => budget.push(kind), record: (error) => error },
     },
     'firebase/firestore': {
@@ -44,8 +48,12 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       },
       onSnapshot: (q, options, data, fail) => {
         assert.equal(options.includeMetadataChanges, true)
-        const target = { q, data, fail, active: true }
+        const target = { q, data, fail, active: true, pending: true }
         targets.push(target)
+        maxUnconfirmed = Math.max(
+          maxUnconfirmed,
+          targets.filter((t) => t.active && t.pending).length,
+        )
         queueMicrotask(() => deliver(target))
         return () => {
           target.active = false
@@ -86,6 +94,7 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
       readFailure = { page, code }
     },
     readCount: () => readCount,
+    maxUnconfirmed: () => maxUnconfirmed,
     setMetadata: (value) => {
       metadata = value
     },
@@ -93,11 +102,12 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
 }
 
 for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
-  test(`real query constraints cover ${size} documents once in live ranges and export`, async () => {
+  test(`real query constraints cover ${size} documents once across bounded ranges and export`, async () => {
     const f = await fixture(size)
     const stop = f.start()
     await f.flush()
     assert.deepEqual(f.errors, [])
+    assert.equal(f.maxUnconfirmed(), 1, 'Only one new target may await server confirmation')
     const last = f.deliveries.at(-1)
     assert.equal(last.meta.complete, true)
     assert.equal(last.docs.length, size)
@@ -125,7 +135,7 @@ for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
   })
 }
 
-test('live splits preserve inserts on both sides, boundary deletion, edits and empty ranges', async () => {
+test('stable ranges preserve inserts on both sides, boundary deletion, edits and empty results', async () => {
   const f = await fixture(1501)
   f.start()
   await f.flush()
@@ -144,7 +154,7 @@ test('live splits preserve inserts on both sides, boundary deletion, edits and e
   assert.deepEqual(f.deliveries.at(-1).docs, [])
 })
 
-test('cache cannot certify completeness; pending/cache metadata remain conservative across ranges', async () => {
+test('cache cannot certify completeness; pending/cache metadata remain conservative', async () => {
   const f = await fixture(100, { metadata: { fromCache: true, hasPendingWrites: false } })
   f.start()
   await f.flush()
@@ -166,12 +176,25 @@ test('cancel and late callbacks cannot deliver or attach more targets', async ()
   assert.deepEqual(f.deliveries, [])
 })
 
-test('a failed range stops every listener and never claims a complete partial library', async () => {
+test('cancel while a split child awaits confirmation never opens the deferred sibling', async () => {
+  const f = await fixture(2501)
+  const stop = f.start()
+  await Promise.resolve()
+  assert.equal(f.targets.length, 2)
+  assert.equal(f.deliveries.length, 0)
+  stop()
+  await f.flush()
+  assert.equal(f.targets.length, 2)
+  assert.equal(f.targets.filter((target) => target.active).length, 0)
+  assert.equal(f.deliveries.length, 0)
+})
+
+test('a failed query stops its listener and never claims a complete partial library', async () => {
   const f = await fixture(1500)
   f.start()
   await f.flush()
   const active = f.targets.filter((t) => t.active)
-  active[1].fail({ code: 'permission-denied' })
+  active[0].fail({ code: 'permission-denied' })
   const count = f.deliveries.length
   active[0].data({ docs: [], metadata: server })
   assert.equal(f.errors[0].code, 'permission-denied')
@@ -179,7 +202,7 @@ test('a failed range stops every listener and never claims a complete partial li
   assert.equal(f.deliveries.length, count)
 })
 
-test('document and fragmentation budgets fail closed and stop targets', async () => {
+test('document and fragmentation budgets fail closed and stop their targets', async () => {
   for (const limits of [
     { ...SPARK_LIMITS, libraryDocuments: 1000 },
     { ...SPARK_LIMITS, libraryRanges: 1 },
@@ -238,7 +261,7 @@ test('export page failure, cache, pending writes and session changes return no p
   assert.equal(f.readCount(), 2)
 })
 
-test('splitting an earlier range preserves ID tie order and ignores retired range errors', async () => {
+test('ID tie order stays stable and cancellation ignores late target errors', async () => {
   const f = await fixture(1501)
   f.start()
   await f.flush()

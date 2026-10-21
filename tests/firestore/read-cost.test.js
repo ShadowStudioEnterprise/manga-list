@@ -67,7 +67,7 @@ test(
             exportDocuments = 0
           let admissionTime = 0
           const budget = createSparkBudget(() => admissionTime)
-          const service = await loadModule('src/services/library-cursors.js', {
+          const service = await loadModule('tests/helpers/ml06-library-cursors.js', {
             '@/utils/spark-budget': {
               SPARK_LIMITS: { ...SPARK_LIMITS, pageDocuments },
               sparkBudget: budget,

@@ -28,6 +28,7 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
   const ranges = new Set()
   let stopped = false
   let attaching = 0
+  let deferred = 0
   const stopRange = (range) => {
     range.active = false
     range.stop?.()
@@ -43,7 +44,7 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
     onError?.(toAppError(sparkBudget.record(error)))
   }
   const publish = () => {
-    if (stopped || attaching || [...ranges].some((range) => !range.ready)) return
+    if (stopped || attaching || deferred || [...ranges].some((range) => !range.ready)) return
     // Preserve Firestore's ID order for stable ties in the existing client sorts.
     // Binary tree paths order ranges without comparing arbitrary Unicode IDs.
     const leaves = [...ranges].sort((left, right) =>
@@ -60,13 +61,13 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
       complete: leaves.every((range) => range.confirmed),
     })
   }
-  const attach = (lower, upper, path = '') => {
+  const attach = (lower, upper, path = '', afterReady) => {
     if (stopped) return
     if (ranges.size >= SPARK_LIMITS.libraryRanges) {
       fail(createAppError('app/library-budget'))
       return
     }
-    const range = { active: true, ready: false, confirmed: false, path }
+    const range = { active: true, ready: false, confirmed: false, path, afterReady }
     ranges.add(range)
     attaching++
     try {
@@ -90,14 +91,25 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
               ].id
             stopRange(range)
             ranges.delete(range)
-            attach(lower, boundary, `${path}0`)
-            attach(boundary, upper, `${path}1`)
+            // Opening both children together can queue >10000 WebChannel
+            // messages. Wait for the left subtree's server confirmation before
+            // opening the right, without ever publishing the partial subtree.
+            deferred++
+            attach(lower, boundary, `${path}0`, () => {
+              deferred--
+              attach(boundary, upper, `${path}1`, range.afterReady)
+            })
             return
           }
           range.docs = snapshot.docs
           range.metadata = snapshot.metadata || {}
           range.ready = true
           range.confirmed ||= authoritative
+          if (authoritative && range.afterReady) {
+            const ready = range.afterReady
+            range.afterReady = null
+            ready()
+          }
           publish()
         },
         (error) => {

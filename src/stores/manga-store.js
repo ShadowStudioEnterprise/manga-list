@@ -86,6 +86,7 @@ export const useMangaStore = defineStore('mangas', {
     syncError: null,
     snapshotReceived: false,
     snapshotFromCache: true,
+    coordinationStale: false,
     hasPendingWrites: false,
     pendingWritesByUid: new Map(),
     searchQuery: '',
@@ -102,6 +103,8 @@ export const useMangaStore = defineStore('mangas', {
       if (!state.snapshotReceived) return 'Esperando la primera comprobación de la biblioteca.'
       if (state.hasPendingWrites || (state.pendingWritesByUid.get(state.subscribedUid) || 0) > 0)
         return 'Hay cambios pendientes de confirmación. No cierres la app hasta comprobar su guardado.'
+      if (state.coordinationStale)
+        return 'La pestaña que sincroniza no responde. Puedes solicitar su última instantánea; si sigue suspendida, vuelve a ella o ciérrala para transferir la sincronización.'
       if (state.snapshotFromCache)
         return 'Mostrando datos locales; su actualización con el servidor no está confirmada.'
       return 'Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.'
@@ -186,6 +189,7 @@ export const useMangaStore = defineStore('mangas', {
             this.libraryRevision += 1
             this.snapshotReceived = true
             this.snapshotFromCache = metadata.fromCache !== false
+            this.coordinationStale = metadata.coordinationStale === true
             this.hasPendingWrites = metadata.hasPendingWrites !== false
             this.syncError = null
             this.loading = metadata.complete === false
@@ -222,6 +226,7 @@ export const useMangaStore = defineStore('mangas', {
       this.syncError = null
       this.snapshotReceived = false
       this.snapshotFromCache = true
+      this.coordinationStale = false
       this.hasPendingWrites = false
       this.searchQuery = ''
       this.filters = { ...DEFAULT_FILTERS }
@@ -229,6 +234,10 @@ export const useMangaStore = defineStore('mangas', {
 
     setSearchQuery(value) {
       this.searchQuery = String(value ?? '')
+    },
+
+    requestSharedSnapshot() {
+      stopMangaListener?.requestSnapshot?.()
     },
 
     setFilters(filters = {}) {

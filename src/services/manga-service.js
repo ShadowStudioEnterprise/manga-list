@@ -24,6 +24,7 @@ import { createAppError, toAppError } from '@/utils/firebase-errors'
 import { adjustChapter } from '@/utils/chapter-utils'
 import { normalizeTitle } from '@/utils/normalize-title'
 import { conflictingMangaFields } from '@/utils/manga-edit'
+import { subscribeSharedLibrary } from '@/services/shared-library'
 import { fetchCursorLibrary, subscribeCursorLibrary } from '@/services/library-cursors'
 
 const MAX_NAME_LENGTH = MANGA_LIMITS.name
@@ -330,7 +331,14 @@ function getMangaDocument(uid, mangaId) {
 }
 
 export function subscribeToMangas(uid, onData, onError) {
-  return subscribeCursorLibrary(getMangaCollection(uid), deserializeManga, onData, onError)
+  const reference = getMangaCollection(uid)
+  return subscribeSharedLibrary(
+    `${db.app?.options.projectId}:${reference.path}`,
+    (next, fail) => subscribeCursorLibrary(reference, deserializeManga, next, fail),
+    onData,
+    (error) => onError?.(toAppError(sparkBudget.record(error))),
+    () => requireFirebase().auth.currentUser?.uid === uid,
+  )
 }
 
 export async function fetchLibraryForExport(uid) {
