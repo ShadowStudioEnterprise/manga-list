@@ -20,6 +20,8 @@ Consulta la [especificación v1](/reports/project/specification-v1), el
 [análisis ML-06 de consumo](/reports/firestore/ml-06-consumption-2026-10-20) y el
 [procedimiento propuesto de revisión](/reports/accounts/manual-marker-review).
 
-La [propuesta ML-07](/reports/firestore/ml-07-sync-2026-10-20) aumenta el bloque de transporte
-a 5000 y escalona las aperturas y coordina pestañas en memoria. Revisión, aceptación de
-capacidad Spark y transición de reglas/cliente permanecen pendientes.
+ML-07 se fusionó en el PR #6 y se publicó el 21/10/2026 como `36fe4f3`, según el
+registro de publicación aportado. El bloque de transporte es 5000 más centinela,
+con aperturas escalonadas y coordinación de pestañas en memoria; el límite de consulta
+5001 fue aceptado. La [auditoría ML-08](/reports/firestore/ml-08-capacity-2026-10-21)
+mantiene pendiente la aprobación de capacidad operativa, reserva y límites graduados.

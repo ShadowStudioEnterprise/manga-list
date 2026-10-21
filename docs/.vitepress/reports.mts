@@ -31,6 +31,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-08: capacidad Spark (21/10)',
+        link: '/reports/firestore/ml-08-capacity-2026-10-21',
+      },
+      {
         text: 'ML-07: consultas y sincronización (20/10)',
         link: '/reports/firestore/ml-07-sync-2026-10-20',
       },

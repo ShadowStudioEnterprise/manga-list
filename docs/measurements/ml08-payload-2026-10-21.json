@@ -1,0 +1,173 @@
+{
+  "measuredAt": "2026-10-21T01:12:03.021Z",
+  "browser": "153.0.8010.12",
+  "scope": "Synthetic offline desktop Chromium, 390x844 viewport. NOT mobile device RAM, app/SDK peak heap, wire bytes, Firestore storage or billed bandwidth.",
+  "largeProfileCap": "maxUnicode measured only through 1000 to bound the benchmark; larger libraries require extrapolation or a physical device test",
+  "results": [
+    {
+      "profile": "notes1k",
+      "size": 100,
+      "rawJsonBytes": 131481,
+      "bytesPerWorkIncludingJsonEnvelope": 1314.81,
+      "prettyExportBytes": 141682,
+      "generationCloneExportParseMs": 6.199999988079071,
+      "exportMs": 1.800000011920929,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 750552
+    },
+    {
+      "profile": "notes1k",
+      "size": 500,
+      "rawJsonBytes": 658281,
+      "bytesPerWorkIncludingJsonEnvelope": 1316.562,
+      "prettyExportBytes": 709282,
+      "generationCloneExportParseMs": 26.099999964237213,
+      "exportMs": 5.900000035762787,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 2830444
+    },
+    {
+      "profile": "notes1k",
+      "size": 1000,
+      "rawJsonBytes": 1316781,
+      "bytesPerWorkIncludingJsonEnvelope": 1316.781,
+      "prettyExportBytes": 1418782,
+      "generationCloneExportParseMs": 42.5,
+      "exportMs": 10.300000011920929,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 5556912
+    },
+    {
+      "profile": "notes1k",
+      "size": 2500,
+      "rawJsonBytes": 3295281,
+      "bytesPerWorkIncludingJsonEnvelope": 1318.1124,
+      "prettyExportBytes": 3550282,
+      "generationCloneExportParseMs": 97.19999998807907,
+      "exportMs": 21.80000001192093,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 17262344
+    },
+    {
+      "profile": "notes1k",
+      "size": 5000,
+      "rawJsonBytes": 6592781,
+      "bytesPerWorkIncludingJsonEnvelope": 1318.5562,
+      "prettyExportBytes": 7102782,
+      "generationCloneExportParseMs": 202.39999997615814,
+      "exportMs": 41.39999997615814,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 27379456
+    },
+    {
+      "profile": "notes1k",
+      "size": 10000,
+      "rawJsonBytes": 13187781,
+      "bytesPerWorkIncludingJsonEnvelope": 1318.7781,
+      "prettyExportBytes": 14207782,
+      "generationCloneExportParseMs": 375.89999997615814,
+      "exportMs": 80.90000003576279,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 68764360
+    },
+    {
+      "profile": "notes5k",
+      "size": 100,
+      "rawJsonBytes": 531481,
+      "bytesPerWorkIncludingJsonEnvelope": 5314.81,
+      "prettyExportBytes": 541682,
+      "generationCloneExportParseMs": 14.699999988079071,
+      "exportMs": 2.5,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 2750552
+    },
+    {
+      "profile": "notes5k",
+      "size": 500,
+      "rawJsonBytes": 2658281,
+      "bytesPerWorkIncludingJsonEnvelope": 5316.562,
+      "prettyExportBytes": 2709282,
+      "generationCloneExportParseMs": 57.799999952316284,
+      "exportMs": 13.099999964237213,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 13560528
+    },
+    {
+      "profile": "notes5k",
+      "size": 1000,
+      "rawJsonBytes": 5316781,
+      "bytesPerWorkIncludingJsonEnvelope": 5316.781,
+      "prettyExportBytes": 5418782,
+      "generationCloneExportParseMs": 101.19999998807907,
+      "exportMs": 16.200000047683716,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 21579220
+    },
+    {
+      "profile": "notes5k",
+      "size": 2500,
+      "rawJsonBytes": 13295281,
+      "bytesPerWorkIncludingJsonEnvelope": 5318.1124,
+      "prettyExportBytes": 13550282,
+      "generationCloneExportParseMs": 249.79999995231628,
+      "exportMs": 49.09999996423721,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 53753056
+    },
+    {
+      "profile": "notes5k",
+      "size": 5000,
+      "rawJsonBytes": 26592781,
+      "bytesPerWorkIncludingJsonEnvelope": 5318.5562,
+      "prettyExportBytes": 27102782,
+      "generationCloneExportParseMs": 467.39999997615814,
+      "exportMs": 99.39999997615814,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 107390256
+    },
+    {
+      "profile": "notes5k",
+      "size": 10000,
+      "rawJsonBytes": 53187781,
+      "bytesPerWorkIncludingJsonEnvelope": 5318.7781,
+      "prettyExportBytes": 54207782,
+      "generationCloneExportParseMs": 986.0999999642372,
+      "exportMs": 160.69999998807907,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 214621504
+    },
+    {
+      "profile": "maxUnicode",
+      "size": 100,
+      "rawJsonBytes": 8596701,
+      "bytesPerWorkIncludingJsonEnvelope": 85967.01,
+      "prettyExportBytes": 8674702,
+      "generationCloneExportParseMs": 108.09999996423721,
+      "exportMs": 16.69999998807907,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 29690620
+    },
+    {
+      "profile": "maxUnicode",
+      "size": 500,
+      "rawJsonBytes": 42983501,
+      "bytesPerWorkIncludingJsonEnvelope": 85967.002,
+      "prettyExportBytes": 43373502,
+      "generationCloneExportParseMs": 490.10000002384186,
+      "exportMs": 56.40000003576279,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 118095740
+    },
+    {
+      "profile": "maxUnicode",
+      "size": 1000,
+      "rawJsonBytes": 85967001,
+      "bytesPerWorkIncludingJsonEnvelope": 85967.001,
+      "prettyExportBytes": 86747002,
+      "generationCloneExportParseMs": 1056.3999999761581,
+      "exportMs": 111.60000002384186,
+      "retainedRepresentations": "library, two structured clones, pretty export string, parsed export",
+      "retainedHeapDeltaBytes": 236029684
+    }
+  ]
+}
