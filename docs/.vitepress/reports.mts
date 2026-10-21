@@ -111,6 +111,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/proton-drive-implementation-proposal',
       },
       {
+        text: 'Proton Drive: ensayo documental',
+        link: '/reports/accounts/proton-drive-rehearsal-pack',
+      },
+      {
         text: 'Nextcloud: implementación propuesta',
         link: '/reports/accounts/nextcloud-implementation-proposal',
       },

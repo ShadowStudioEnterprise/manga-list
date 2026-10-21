@@ -139,6 +139,10 @@ recuperación. No inferir validación legal de cifrado, marca o ubicación anunc
 
 ## Pruebas de aceptación pendientes
 
+El [paquete de ensayo documental](proton-drive-rehearsal-pack.md) aporta plantillas,
+casos ficticios y guion concreto; sus contrastes locales de manifiesto no sustituyen
+las pruebas del servicio ni resuelven la custodia.
+
 Todas figuran **no ejecutadas en Proton**; no hay cuenta ni sesión probada.
 
 | ID   | Ensayo con datos ficticios                       | Evidencia para aceptar                                                                                                     |
