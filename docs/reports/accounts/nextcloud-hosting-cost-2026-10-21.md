@@ -1,5 +1,9 @@
 # Nextcloud ML-11: alojamiento y coste
 
+**Comparativa histórica:** la selección actual es
+[Proton Drive con objetivo de plan gratuito](proton-drive-implementation-proposal.md).
+La recomendación de VPS de este informe no es la arquitectura seleccionada.
+
 Evaluación del 21/10/2026. Propuesta para N4 de la
 [definición de implementación](nextcloud-implementation-proposal.md), pendiente
 de aceptación. No se ha contratado, desplegado ni contactado con proveedores.

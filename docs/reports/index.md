@@ -41,6 +41,7 @@ secciones principales del portal.
 
 ## Cuentas y retención
 
+- [Proton Drive: plataforma seleccionada y procedimiento propuesto para ML-11](accounts/proton-drive-implementation-proposal.md).
 - [Nextcloud: definición de implementación propuesta para ML-11](accounts/nextcloud-implementation-proposal.md).
 - [Nextcloud: alojamiento y coste — 21/10/2026](accounts/nextcloud-hosting-cost-2026-10-21.md).
 - [ML-11: alternativas gratuitas y Nextcloud sin cuota — 21/10/2026](accounts/ml-11-free-options-2026-10-21.md).

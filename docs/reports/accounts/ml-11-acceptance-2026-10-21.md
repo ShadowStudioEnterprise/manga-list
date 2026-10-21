@@ -19,7 +19,7 @@ documentos iniciales; no sustituye las validaciones y designaciones que exigen.
 | D6  | Margen de 24 horas como cautela propuesta, condicionado a evaluación técnica de tokens, reutilización de UID y recuperación                              | Evaluación técnica documentada; no se acepta como garantía de seguridad                                                            |
 | D7  | Obtener revisión jurídica de base, proporcionalidad, bloqueo, plazos e información al usuario antes de activar                                           | Encargo y conclusiones jurídicas documentadas; esta aceptación no las proporciona                                                  |
 
-Siguen pendientes responsables nominales, canal y permisos, matriz de retención y
+Siguen pendientes responsables nominales, configuración del canal y permisos, matriz de retención y
 conclusiones jurídicas/técnicas. No se presupone aprobación de un mecanismo de
 identidad todavía no seleccionado ni de una excepción concreta de conservación.
 
@@ -28,6 +28,10 @@ y operación. Ante la cuestión de independencia confirmó mantener D3 y dejar
 pendiente otro revisor. Véase la [ficha de preparación](ml-11-activation-pack.md);
 no se formalizan nombres o accesos privados ni se considera suplencia o doble
 revisión la actuación de una sola persona.
+
+Selección posterior: el usuario ordena «cambia a Proton Drive». Se registra como
+P1 en la [propuesta Proton Drive](proton-drive-implementation-proposal.md), sin
+aceptar por extensión P2–P5, resolver las condiciones D1–D7 ni activar el canal.
 
 ## Límites vigentes
 

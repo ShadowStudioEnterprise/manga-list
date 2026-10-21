@@ -107,6 +107,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'Proton Drive: plataforma seleccionada',
+        link: '/reports/accounts/proton-drive-implementation-proposal',
+      },
+      {
         text: 'Nextcloud: implementación propuesta',
         link: '/reports/accounts/nextcloud-implementation-proposal',
       },

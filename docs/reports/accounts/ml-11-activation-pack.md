@@ -1,8 +1,9 @@
 # ML-11: ficha de preparación para activación
 
-La [definición de implementación Nextcloud](nextcloud-implementation-proposal.md)
-concreta arquitectura y fases como propuesta. Sus decisiones N1–N5 siguen pendientes;
-no sustituyen las condiciones D1–D7 ni activan el procedimiento.
+El usuario selecciona Proton Drive mediante «cambia a Proton Drive» el 21/10/2026.
+La [definición de Proton Drive](proton-drive-implementation-proposal.md) sustituye
+a Nextcloud como candidata principal. P1 registra la selección; P2–P5 requieren
+configuración, pruebas y decisiones específicas. No activan el procedimiento.
 
 Estado a 21/10/2026: **no activado**. D1–D7 aceptadas en el
 [acta](ml-11-acceptance-2026-10-21.md); condiciones siguientes sin completar.
@@ -21,19 +22,22 @@ No se publican nombres, contactos, firmas ni permisos reales en este repositorio
 | Suplencia                      | Sin persona distinta designada                        | Persona disponible o contingencia aprobada que escale al titular sin fingir doble control                          |
 | Revisión técnica independiente | Pendiente, D3 mantenida expresamente                  | Persona distinta del operador, competencia y ausencia de autoaprobación                                            |
 | Privacidad                     | El promotor propone asumirla; conclusiones pendientes | Identificar quién decide sobre tratamiento y quién aporta revisión jurídica; no presumir cualificación ni dictamen |
-| Custodia del expediente        | Sin sistema ni acceso establecidos                    | Encargado nominal, control de accesos, integridad y retención                                                      |
+| Custodia del expediente        | Proton seleccionado; custodio y accesos pendientes    | Encargado nominal, control de accesos, integridad y retención                                                      |
 
 Ser titular de un repositorio no prueba por sí solo ser responsable del tratamiento.
 La identidad del responsable y las facultades operativas deben documentarse fuera
 del repositorio. Una persona puede asumir coordinación y operación, pero no cuenta
 como dos revisores. Si falta el revisor, preservar/escalar; no retirar el marcador.
 
-Canal privado: **pendiente de selección**. Elegir un sistema ya disponible sin
-activar servicios de pago en Firebase. Antes de usarlo demostrar: acceso individual
+Canal privado: **Proton Drive seleccionado para preparación; configuración y aptitud
+pendientes**. Objetivo de plan gratuito, sin cuenta ni permisos remotos modificados.
+Antes de usarlo demostrar: acceso individual
 con MFA, permisos por función, cifrado, trazabilidad de lecturas y cambios,
 recuperación controlada, cierre de accesos y eliminación según matriz aprobada.
 Si el sistema no registra lecturas o permite alterar actas sin rastro, documentar
 la carencia y resolverla antes de activación; no afirmar integridad que no ofrece.
+En Proton esas garantías no están acreditadas. El registro humano P3 es una
+alternativa pendiente de evaluación y aceptación, no una resolución automática.
 
 Matriz de acceso propuesta, no permisos IAM concedidos:
 

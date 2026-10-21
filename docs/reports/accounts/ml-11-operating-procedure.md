@@ -2,12 +2,15 @@
 
 Borrador de 21/10/2026. D1–D7 aceptadas como decisiones de diseño y preparación,
 según el [registro de aceptación](ml-11-acceptance-2026-10-21.md). No activado:
-siguen pendientes designaciones, canal, permisos y validaciones. Véase el
+Proton Drive seleccionado para preparación; siguen pendientes designaciones,
+configuración del canal, permisos y validaciones. Véase el
 [informe jurídico-técnico](ml-11-validation-2026-10-21.md).
 Solo documentación y ensayos locales con datos sintéticos. No es un runbook
 ejecutable de borrado ni autoriza consultas de producción.
 La [ficha de preparación](ml-11-activation-pack.md) reúne designaciones, canal,
 matriz de retención, encargo jurídico y criterios técnicos pendientes.
+La [propuesta Proton Drive](proton-drive-implementation-proposal.md) registra la
+sustitución de Nextcloud y las limitaciones de auditoría todavía por resolver.
 
 ## Relojes y estados
 

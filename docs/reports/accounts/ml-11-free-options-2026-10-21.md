@@ -1,5 +1,8 @@
 # ML-11: alternativas gratuitas al archivo Nextcloud
 
+**Decisión posterior del usuario:** [Proton Drive seleccionado para preparación](proton-drive-implementation-proposal.md).
+Las recomendaciones de ensayo Nextcloud de este informe quedan como antecedentes.
+
 Consulta de fuentes oficiales: 21/10/2026. El promotor indica que solo dispone de
 su ordenador habitual. Evaluación documental: no se han creado cuentas, instalado
 servicios, contactado con proveedores ni cargado expedientes reales.

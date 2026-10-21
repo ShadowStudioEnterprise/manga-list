@@ -1,5 +1,9 @@
 # Nextcloud para ML-11: definición de implementación
 
+**Antecedente sustituido como candidata principal:** el usuario seleccionó
+[Proton Drive](proton-drive-implementation-proposal.md). Este diseño y sus pruebas
+se conservan como referencia; no se despliega ni se transfieren sus garantías a Proton.
+
 Versión de propuesta: 1, 21/10/2026. **Diseño pendiente de aceptación; no desplegado
 ni apto todavía para datos reales.** D1–D7 conservan su aceptación y sus condiciones
 en el [acta ML-11](ml-11-acceptance-2026-10-21.md). Las decisiones N1–N5 de este
