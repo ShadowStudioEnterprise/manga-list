@@ -128,6 +128,10 @@ permanecen en el apéndice privado. No se da por probado un restablecimiento ni
 descifrado tras pérdida. Además, la exportación por interfaz de los cinco archivos
 ficticios se extrajo y contrastó íntegramente; no incluye permisos ni historial.
 
+Otra subprueba autorizada recuperó de la papelera un sexto archivo ficticio y
+contrastó su huella tras descargarlo. No hubo vaciado ni borrado permanente. Ese
+resultado se documenta en el informe del servicio y no completa D5/PD09.
+
 | Bloque                 | Evidencia necesaria para cerrarlo                                       | Estado de esta continuación                                           |
 | ---------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | MFA/PD01               | Factor configurado, desafío y recuperación documentados                 | Revisión privada y paso al titular; pendiente de resultados completos |

@@ -91,6 +91,36 @@ permisos y contingencia de cuenta/equipo. La revisión de autenticación dispone
 una actualización privada que distingue indicadores observados y resultados
 declarados por el titular; sus estados concretos no se publican aquí.
 
+### Recuperación desde la papelera autorizada por el titular
+
+El usuario autorizó expresamente mover solo `SYN-PD-PAPELERA-ENSAYO.json` a la
+papelera y restaurarlo, excluyendo vaciado y borrado permanente. Se preparó ese
+archivo ficticio separado de los cinco iniciales, de 282 bytes. La interfaz
+permitió moverlo, localizarlo en la papelera y restaurarlo a la carpeta de origen.
+Después se descargó y contrastó con el original local: coincidencia de longitud
+y SHA-256.
+
+```text
+5a98e72575fee246201998aef0cf8f3a6b3e778b1b165f8410120c0e02e656c8
+```
+
+La fila de papelera mostró 362 bytes, mientras que el original y la descarga
+restaurada tienen 282; no se investigó la causa. La integridad de contenido se
+comprobó con los bytes descargados y su huella, sin inferirla de ese tamaño de UI.
+
+No se pulsó vaciar papelera ni eliminar permanentemente, ni se movió otro archivo.
+Al finalizar, la carpeta de ensayo conserva seis archivos: los cinco iniciales y
+la muestra recuperada. El manifiesto original sigue siendo referencia del conjunto
+inicial; no incluye la nueva muestra ni se presenta como inventario de los seis.
+La evidencia y capturas de cuenta se mantienen localmente, fuera de Git/PR.
+
+Resultado de esta subprueba: recuperación de la muestra desde papelera comprobada.
+PD09 continúa parcial: no determina plazos legales, conservación del proveedor,
+supresión definitiva, eliminación de descargas/copias o permisos entre personas.
+Tampoco recupera una cuenta perdida, una clave o un expediente real. Referencia de
+funcionamiento: [guía oficial de archivos eliminados y restauración](https://proton.me/support/proton-drive-delete-restore-synced-files),
+consultada el 21/10/2026.
+
 La [continuación de seguridad y custodia](proton-drive-security-custody-procedure.md)
 registra revisión privada de configuración, alcance del monitor de cuenta y ensayo
 local de copia cifrada. El usuario mantiene pendientes las pruebas entre personas;
