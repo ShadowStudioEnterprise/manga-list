@@ -141,6 +141,9 @@ ante fallo de auditoría solo si N3 se aprueba expresamente.
 
 ## Conservación, continuidad y mantenimiento
 
+Consultar la [evaluación de alojamiento y coste del 21/10/2026](nextcloud-hosting-cost-2026-10-21.md)
+para N4. Su presupuesto es una propuesta pendiente; no autoriza contratación.
+
 Completar con privacidad la matriz D5 por marcador, vínculo, identidad, acta,
 accesos, versiones, papelera, copias y posibles reservas. No fijar aquí un plazo
 legal genérico ni habilitar casos reales con esa matriz pendiente.

@@ -42,6 +42,7 @@ secciones principales del portal.
 ## Cuentas y retención
 
 - [Nextcloud: definición de implementación propuesta para ML-11](accounts/nextcloud-implementation-proposal.md).
+- [Nextcloud: alojamiento y coste — 21/10/2026](accounts/nextcloud-hosting-cost-2026-10-21.md).
 - [ML-11: ficha de preparación para activación](accounts/ml-11-activation-pack.md).
 - [ML-11: aceptación de D1–D7 y condiciones pendientes](accounts/ml-11-acceptance-2026-10-21.md).
 - [ML-11: validación jurídico-técnica — 21/10/2026](accounts/ml-11-validation-2026-10-21.md).

@@ -111,6 +111,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/nextcloud-implementation-proposal',
       },
       {
+        text: 'Nextcloud: alojamiento y coste (21/10)',
+        link: '/reports/accounts/nextcloud-hosting-cost-2026-10-21',
+      },
+      {
         text: 'ML-11: preparación para activación',
         link: '/reports/accounts/ml-11-activation-pack',
       },
