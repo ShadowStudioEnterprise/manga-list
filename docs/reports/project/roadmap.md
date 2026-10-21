@@ -1,5 +1,10 @@
 # Roadmap tras la auditoría del 16/10/2026
 
+ML-08 añade una [copia dividida con recuperación reanudable](../features/multipart-backup-2026-10-21.md)
+para revisión en el PR borrador #7. No está desplegada. El usuario aprobó por separado
+la [reserva del 20 % y los tramos](../firestore/ml-08-policy-2026-10-21.md)
+para planificación provisional; siguen pendientes capacidad garantizada y máximo definitivo.
+
 ML-06 cuenta con [análisis reproducible de consumo por escenarios](../firestore/ml-06-consumption-2026-10-20.md)
 desde main del 20/10/2026: tamaños 100/1000/2500/5000/10000, admisiones frente a
 documentos observados y cuota modelada, reconexiones, pestañas y presupuesto Spark

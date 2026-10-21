@@ -1,0 +1,177 @@
+{
+  "scope": "Synthetic local audit and partition prototype. No production access, Firestore writes, full UI/browser restore or mobile-device validation.",
+  "base": "55476c0683486909d005dd95f854d0ed71c782cf",
+  "importByteLimit": 5242880,
+  "proposedPartByteLimit": 4194304,
+  "proposalApproved": false,
+  "rows": [
+    {
+      "size": 100,
+      "notesLength": 1000,
+      "prettyBytes": 161175,
+      "compactBytes": 140038,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 140038,
+      "recordsPreserved": 100,
+      "proposedPartsWith40RecordBudget": 3
+    },
+    {
+      "size": 100,
+      "notesLength": 5000,
+      "prettyBytes": 561175,
+      "compactBytes": 540038,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 540038,
+      "recordsPreserved": 100,
+      "proposedPartsWith40RecordBudget": 3
+    },
+    {
+      "size": 500,
+      "notesLength": 1000,
+      "prettyBytes": 807375,
+      "compactBytes": 701838,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 701838,
+      "recordsPreserved": 500,
+      "proposedPartsWith40RecordBudget": 13
+    },
+    {
+      "size": 500,
+      "notesLength": 5000,
+      "prettyBytes": 2807375,
+      "compactBytes": 2701838,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 2701838,
+      "recordsPreserved": 500,
+      "proposedPartsWith40RecordBudget": 13
+    },
+    {
+      "size": 1000,
+      "notesLength": 1000,
+      "prettyBytes": 1615126,
+      "compactBytes": 1404089,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 1404089,
+      "recordsPreserved": 1000,
+      "proposedPartsWith40RecordBudget": 25
+    },
+    {
+      "size": 1000,
+      "notesLength": 5000,
+      "prettyBytes": 5615126,
+      "compactBytes": 5404089,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 2,
+      "maximumPartBytes": 4193480,
+      "recordsPreserved": 1000,
+      "proposedPartsWith40RecordBudget": 25
+    },
+    {
+      "size": 2500,
+      "notesLength": 1000,
+      "prettyBytes": 4045876,
+      "compactBytes": 3518339,
+      "prettyAcceptedBySizeGate": true,
+      "compactAcceptedBySizeGate": true,
+      "proposed4MiBParts": 1,
+      "maximumPartBytes": 3518339,
+      "recordsPreserved": 2500,
+      "proposedPartsWith40RecordBudget": 63
+    },
+    {
+      "size": 2500,
+      "notesLength": 5000,
+      "prettyBytes": 14045876,
+      "compactBytes": 13518339,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 4,
+      "maximumPartBytes": 4193480,
+      "recordsPreserved": 2500,
+      "proposedPartsWith40RecordBudget": 63
+    },
+    {
+      "size": 5000,
+      "notesLength": 1000,
+      "prettyBytes": 8097126,
+      "compactBytes": 7042089,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 2,
+      "maximumPartBytes": 4193489,
+      "recordsPreserved": 5000,
+      "proposedPartsWith40RecordBudget": 125
+    },
+    {
+      "size": 5000,
+      "notesLength": 5000,
+      "prettyBytes": 28097126,
+      "compactBytes": 27042089,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 7,
+      "maximumPartBytes": 4193480,
+      "recordsPreserved": 5000,
+      "proposedPartsWith40RecordBudget": 125
+    },
+    {
+      "size": 10000,
+      "notesLength": 1000,
+      "prettyBytes": 16199627,
+      "compactBytes": 14089590,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 4,
+      "maximumPartBytes": 4193489,
+      "recordsPreserved": 10000,
+      "proposedPartsWith40RecordBudget": 250
+    },
+    {
+      "size": 10000,
+      "notesLength": 5000,
+      "prettyBytes": 56199627,
+      "compactBytes": 54089590,
+      "prettyAcceptedBySizeGate": false,
+      "compactAcceptedBySizeGate": false,
+      "proposed4MiBParts": 13,
+      "maximumPartBytes": 4193480,
+      "recordsPreserved": 10000,
+      "proposedPartsWith40RecordBudget": 250
+    }
+  ],
+  "unicode500": {
+    "originalPrettyBytes": 7803595,
+    "parts": [
+      {
+        "number": 1,
+        "records": 272,
+        "bytes": 4187656,
+        "sha256": "cd41efa9f30a015336975765aa7fc2f43cc4c18e9e7f7ec9d7693d859ede7306"
+      },
+      {
+        "number": 2,
+        "records": 228,
+        "bytes": 3510538,
+        "sha256": "d1882d0bf7abe04b508ae30d3a48f52c9c2a2510754b40e7811fc34b052813be"
+      }
+    ]
+  },
+  "caveats": [
+    "Byte-admissible parts do not bypass per-tab read/write admission windows or project quotas.",
+    "Forty records per part is an administrative sensitivity, not a guarantee of remaining admissions.",
+    "Repartitioning, modifying verification metadata or changing the file contents changes import document IDs.",
+    "Import normalizes supported fields and creates new document IDs/timestamps; it is not an exact database restore.",
+    "The current UI does not implement this prototype or an automatic manifest/part restore manager."
+  ]
+}

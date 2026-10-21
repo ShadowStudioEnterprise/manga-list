@@ -9,7 +9,8 @@ import { reactive } from 'vue'
 import { loadModule } from '../helpers/load-module.js'
 import { createSparkBudget, SPARK_LIMITS } from '../../src/utils/spark-budget.js'
 
-const sizes = [0, 100, 1000, 2500, 5000, 10000]
+// ML-08 adds the declared 500-work profile and the range-split boundary.
+const sizes = [0, 100, 500, 1000, 2500, 5000, 5001, 10000]
 const wait = async (predicate) => {
   const deadline = Date.now() + 60000
   while (!predicate()) {
