@@ -1,0 +1,18 @@
+{
+  "score": 3,
+  "summary": "Auditoría limitada al borrado en c563bba781760a8433680d1e120d486b310b8e75. Propiedad por UID, forma, tipos, tamaños y create/update coherentes; sin rol cliente de soporte. Sin certificación de producción o cumplimiento legal.",
+  "findings": [
+    {
+      "check": "Business Logic vs. Rules / Authority Source",
+      "severity": "moderate",
+      "issue": "Un contexto propietario todavía aceptado puede leer y borrar mangas con marcador; las reglas no verifican existencia Auth ni revocación.",
+      "recommendation": "Mantener marcador; no equiparar revocación de renovación, barrera de escritura y bloqueo legal. Evaluar sesiones antes de cualquier retirada futura."
+    },
+    {
+      "check": "Business Logic vs. Rules",
+      "severity": "moderate",
+      "issue": "La limpieza cliente solo cubre mangas. Descendientes desconocidos no son accesibles al cliente y pueden sobrevivir; Admin omite reglas y puede retirar la barrera.",
+      "recommendation": "Inventario autorizado completo, doble control por caso y declaración de cobertura. No retirar el marcador ni afirmar supresión global por un padre ausente."
+    }
+  ]
+}

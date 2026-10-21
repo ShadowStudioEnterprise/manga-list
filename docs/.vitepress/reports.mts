@@ -151,6 +151,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/abandoned-deletion-assistance',
       },
       {
+        text: 'ML-12: eliminaciones interrumpidas',
+        link: '/reports/accounts/ml-12-interrupted-deletion',
+      },
+      {
         text: 'Retención del marcador',
         link: '/reports/accounts/account-marker-retention-proposal',
       },

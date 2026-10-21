@@ -1,5 +1,8 @@
 # Procedimiento propuesto de asistencia a borrados abandonados
 
+ML-12 concreta este flujo en el [procedimiento de eliminaciones interrumpidas](ml-12-interrupted-deletion.md),
+con [ficha y ensayos](ml-12-case-and-tests.md). Operación real todavía sin activar.
+
 Actualización ML-11 (21/10/2026): [auditoría del flujo real](ml-11-validation-2026-10-21.md)
 y [operación, identidad y excepciones propuestas](ml-11-operating-procedure.md).
 Los hitos internos 7/30/90 no suspenden ni sustituyen el seguimiento de derechos.

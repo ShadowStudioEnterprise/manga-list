@@ -12,6 +12,7 @@ async function fixture({
   reauthFails = false,
   changeSession = false,
   readFails = false,
+  authAckLost = false,
 } = {}) {
   const user = {
     uid: 'alice',
@@ -40,6 +41,7 @@ async function fixture({
       deleteUser: async () => {
         if (state.authFails) throw failure()
         state.authDeleted = true
+        if (authAckLost) throw failure()
       },
     },
     'firebase/firestore': {
@@ -208,4 +210,16 @@ test('simultaneous deletion confirmations are rejected before a second cleanup s
   })
   await first
   assert.equal(state.batches, 1)
+})
+
+test('ML-12: lost Auth acknowledgement reports failure despite applied deletion, requiring independent inspection', async () => {
+  const { service, state } = await fixture({ count: 1, authAckLost: true })
+  await assert.rejects(service.deleteCurrentAccount({ password: 'test' }), (error) => {
+    assert.equal(error.firestoreDataDeleted, true)
+    assert.equal(error.deletionStarted, true)
+    return true
+  })
+  assert.equal(state.authDeleted, true)
+  assert.equal(state.remaining, 0)
+  assert.equal(state.locked, true)
 })

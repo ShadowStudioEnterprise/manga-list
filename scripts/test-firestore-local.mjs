@@ -4,6 +4,7 @@ import { delimiter, join } from 'node:path'
 
 // Same Windows Java shim workaround as the existing browser emulator runner.
 const env = { ...process.env }
+const ml12 = process.argv.includes('--ml12')
 if (process.platform === 'win32') {
   const java = spawnSync('java', ['-XshowSettings:properties', '-version'], { encoding: 'utf8' })
   const home = java.stderr?.match(/^\s*java\.home\s*=\s*(.+)$/m)?.[1].trim()
@@ -14,7 +15,9 @@ if (process.platform === 'win32') {
   env[key] = `${join(home, 'bin')}${delimiter}${env[key] || ''}`
 }
 const child = spawn(
-  'firebase emulators:exec --project demo-mangalist --only firestore "npm run test:rules"',
+  ml12
+    ? 'firebase emulators:exec --project demo-mangalist --only auth,firestore "node --experimental-vm-modules --test tests/emulators/ml12-assistance.test.js"'
+    : 'firebase emulators:exec --project demo-mangalist --only firestore "npm run test:rules"',
   { cwd: new URL('..', import.meta.url), env, shell: true, stdio: 'inherit' },
 )
 child.on('error', (error) => {
