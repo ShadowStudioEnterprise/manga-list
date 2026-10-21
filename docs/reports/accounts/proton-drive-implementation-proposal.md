@@ -100,6 +100,10 @@ tokens, cookies, códigos MFA ni enlaces de acceso en actas o registros público
 
 ## Auditoría: carencias y alternativa pendiente
 
+La [guía de seguridad y custodia](proton-drive-security-custody-procedure.md)
+concreta el cierre de MFA/recuperación, diferencia el monitor de cuenta de la
+auditoría de archivos y prepara una entrega independiente, todavía pendiente.
+
 No se ha acreditado en Proton Free un registro exportable completo de cada lectura
 y denegación, custodia independiente ni bloqueo previo por fallo del registro.
 La actividad del cliente y el historial de versiones no demuestran esas garantías.

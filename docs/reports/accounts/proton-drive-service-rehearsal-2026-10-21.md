@@ -74,6 +74,11 @@ modificó. Spark exclusivamente; sin borrado automático, fusión o despliegue.
 
 ## Continuación necesaria
 
+La [continuación de seguridad y custodia](proton-drive-security-custody-procedure.md)
+registra revisión privada de configuración, alcance del monitor de cuenta y ensayo
+local de copia cifrada. El usuario mantiene pendientes las pruebas entre personas;
+no se actualizan esos criterios como si hubieran pasado.
+
 1. Formalizar revisor independiente, custodia y suplencia D3; no suplirlo con
    varias cuentas manejadas por el operador.
 2. Definir los destinatarios y autorizar específicamente las invitaciones del

@@ -115,6 +115,10 @@ export const reportsSidebar = [
         link: '/reports/accounts/proton-drive-service-rehearsal-2026-10-21',
       },
       {
+        text: 'Proton Drive: seguridad y custodia',
+        link: '/reports/accounts/proton-drive-security-custody-procedure',
+      },
+      {
         text: 'Proton Drive: ensayo documental',
         link: '/reports/accounts/proton-drive-rehearsal-pack',
       },
