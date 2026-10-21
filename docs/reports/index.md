@@ -18,6 +18,7 @@ secciones principales del portal.
 ## Firestore y rendimiento
 
 - [ML-08: auditoría de capacidad Spark — 21/10/2026](firestore/ml-08-capacity-2026-10-21.md).
+- [ML-08: recuperación y tamaño de copias — continuación](firestore/ml-08-recovery-2026-10-21.md).
 
 - [ML-07: consultas y sincronización — 20/10/2026](firestore/ml-07-sync-2026-10-20.md).
 

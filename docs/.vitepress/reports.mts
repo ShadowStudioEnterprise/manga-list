@@ -35,6 +35,10 @@ export const reportsSidebar = [
         link: '/reports/firestore/ml-08-capacity-2026-10-21',
       },
       {
+        text: 'ML-08: recuperación y tamaño de copias',
+        link: '/reports/firestore/ml-08-recovery-2026-10-21',
+      },
+      {
         text: 'ML-07: consultas y sincronización (20/10)',
         link: '/reports/firestore/ml-07-sync-2026-10-20',
       },

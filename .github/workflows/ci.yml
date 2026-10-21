@@ -52,6 +52,7 @@ jobs:
           mkdir -p capacity-results
           node scripts/model-ml08-capacity.mjs --output capacity-results/ml08-capacity.json
           node scripts/measure-ml08-payload.mjs --output capacity-results/ml08-payload.json
+          node scripts/model-ml08-recovery.mjs --output capacity-results/ml08-recovery.json
       - name: Test Firestore rules
         run: firebase emulators:exec --project demo-mangalist --only firestore "npm run test:rules"
       - name: Compare ML-08 model with observed emulator documents
