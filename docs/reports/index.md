@@ -62,6 +62,7 @@ secciones principales del portal.
 
 ## Versiones y recuperación
 
+- [ML-10: propuesta de protección de main — 21/10/2026](operations/ml-10-main-ruleset-2026-10-21.md).
 - [Identificación de compilaciones y recuperación compatible con Spark](operations/releases-and-recovery.md).
 - [Registro de publicación o recuperación](operations/release-record-template.md).
 
