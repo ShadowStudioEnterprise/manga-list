@@ -39,6 +39,10 @@ export const reportsSidebar = [
         link: '/reports/firestore/ml-08-recovery-2026-10-21',
       },
       {
+        text: 'ML-08: copia dividida y reanudación',
+        link: '/reports/features/multipart-backup-2026-10-21',
+      },
+      {
         text: 'ML-07: consultas y sincronización (20/10)',
         link: '/reports/firestore/ml-07-sync-2026-10-20',
       },
