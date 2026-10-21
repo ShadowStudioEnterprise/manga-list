@@ -121,6 +121,13 @@ se publica en Git, PR o ZIP de entrega. P4 y PD05 siguen parciales.
 
 ## Criterios de cierre y decisiones
 
+Continuación del mismo día: se revisó el indicador de MFA sin mostrar secretos y
+se obtuvo declaración del titular sobre desafío de acceso y disponibilidad de
+materiales de respaldo. El detalle de la cuenta y la distinción observado/declarado
+permanecen en el apéndice privado. No se da por probado un restablecimiento ni
+descifrado tras pérdida. Además, la exportación por interfaz de los cinco archivos
+ficticios se extrajo y contrastó íntegramente; no incluye permisos ni historial.
+
 | Bloque                 | Evidencia necesaria para cerrarlo                                       | Estado de esta continuación                                           |
 | ---------------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | MFA/PD01               | Factor configurado, desafío y recuperación documentados                 | Revisión privada y paso al titular; pendiente de resultados completos |

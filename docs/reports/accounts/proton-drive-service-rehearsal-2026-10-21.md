@@ -74,6 +74,23 @@ modificó. Spark exclusivamente; sin borrado automático, fusión o despliegue.
 
 ## Continuación necesaria
 
+### Ampliación de la exportación sintética
+
+Se descargaron por la interfaz los cinco archivos seleccionados de la carpeta
+ficticia como ZIP. Antes de extraer se comprobó inventario exacto de nombres,
+ausencia de entradas repetidas y tamaño acotado; después se extrajeron en un
+directorio local nuevo. Los cinco archivos, incluido el manifiesto, coincidieron
+en SHA-256 con los originales. No se añadieron ni faltaron archivos.
+
+Esta comprobación amplía la muestra inicial a todo el conjunto ficticio preparado,
+no a toda la cuenta ni a expedientes reales. No incluye historial completo,
+permisos, claves o configuración; la descarga es un ZIP sin cifrado propio de
+backup, en el mismo ordenador. El cifrado local se ensayó separadamente según la
+guía enlazada abajo. PD05 sigue parcial por destino externo, recuperación de
+permisos y contingencia de cuenta/equipo. La revisión de autenticación dispone de
+una actualización privada que distingue indicadores observados y resultados
+declarados por el titular; sus estados concretos no se publican aquí.
+
 La [continuación de seguridad y custodia](proton-drive-security-custody-procedure.md)
 registra revisión privada de configuración, alcance del monitor de cuenta y ensayo
 local de copia cifrada. El usuario mantiene pendientes las pruebas entre personas;
