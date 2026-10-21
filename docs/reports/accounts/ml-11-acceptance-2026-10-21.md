@@ -23,6 +23,12 @@ Siguen pendientes responsables nominales, canal y permisos, matriz de retención
 conclusiones jurídicas/técnicas. No se presupone aprobación de un mecanismo de
 identidad todavía no seleccionado ni de una excepción concreta de conservación.
 
+En la continuación de esta conversación el promotor indicó que asumiría gestión
+y operación. Ante la cuestión de independencia confirmó mantener D3 y dejar
+pendiente otro revisor. Véase la [ficha de preparación](ml-11-activation-pack.md);
+no se formalizan nombres o accesos privados ni se considera suplencia o doble
+revisión la actuación de una sola persona.
+
 ## Límites vigentes
 
 Firebase Spark exclusivamente. Sin eliminación automática de marcadores. Esta

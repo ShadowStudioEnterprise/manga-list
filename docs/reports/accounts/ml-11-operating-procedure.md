@@ -6,6 +6,8 @@ siguen pendientes designaciones, canal, permisos y validaciones. Véase el
 [informe jurídico-técnico](ml-11-validation-2026-10-21.md).
 Solo documentación y ensayos locales con datos sintéticos. No es un runbook
 ejecutable de borrado ni autoriza consultas de producción.
+La [ficha de preparación](ml-11-activation-pack.md) reúne designaciones, canal,
+matriz de retención, encargo jurídico y criterios técnicos pendientes.
 
 ## Relojes y estados
 

@@ -16,6 +16,15 @@ Rama: `docs/ml-11-manual-marker-review`. Solo datos sintéticos locales.
 
 ## Reproducción local
 
+Continuación documental del 21/10/2026: añadidas ficha de activación, matriz para
+revisión jurídica y simulación de mesa. Construcción VitePress y formato correctos;
+sin cambios adicionales de pruebas o producto, no se repitieron las suites de
+emulador. Los 13/25 resultados anteriores conservan su alcance original. La
+simulación documental no se contabiliza como prueba automatizada adicional.
+
+La aceptación D1–D7 y la asignación propuesta de operación no acreditan independencia
+de revisión; se confirmó mantener D3 y dejar otro revisor pendiente.
+
 Entorno usado: Node 24.18.0, Firebase CLI 15.32.1, Java 23.0.1 y emulador
 Firestore 1.22.0. Configurar Java en PATH antes del comando del emulador.
 

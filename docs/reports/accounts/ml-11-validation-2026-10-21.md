@@ -74,7 +74,10 @@ La revisión favorable solo puede recomendar una actuación futura, nunca ejecut
 
 El [procedimiento propuesto](ml-11-operating-procedure.md) concreta los relojes,
 responsabilidades, expediente, excepciones y decisiones. Complementa los tres
-documentos anteriores y precisa que sus plazos adicionales siguen sin aprobarse.
+documentos anteriores. Los plazos internos D1–D7 están aceptados como diseño;
+las condiciones de aplicación siguen pendientes. La
+[ficha de preparación](ml-11-activation-pack.md) separa designaciones, canal,
+matriz de retención y conclusiones técnicas/jurídicas que aún faltan.
 
 | Criterio           | Evidencia exigida para aceptar ML-11                                                                                                              |
 | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
