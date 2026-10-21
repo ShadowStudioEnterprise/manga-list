@@ -157,6 +157,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-10: protección de main (21/10)',
+        link: '/reports/operations/ml-10-main-ruleset-2026-10-21',
+      },
+      {
         text: 'Versiones y recuperación',
         link: '/reports/operations/releases-and-recovery',
       },
