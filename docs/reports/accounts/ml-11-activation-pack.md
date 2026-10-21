@@ -9,6 +9,9 @@ Estado a 21/10/2026: **no activado**. D1–D7 aceptadas en el
 [acta](ml-11-acceptance-2026-10-21.md); condiciones siguientes sin completar.
 Este documento prepara la revisión y no concede acceso a producción.
 
+El [PR #9 ya está fusionado; las condiciones humanas siguen pendientes](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion).
+La integración de documentación y pruebas no cambia el estado **no activado**.
+
 Continuación: las [fichas D3, permisos, auditoría/custodia y encargo jurídico](ml-11-d3-permissions-legal-review-pack.md)
 concretan responsables, evidencias y decisiones sin formalizarlas. El titular
 confirma que todavía no tiene candidato D3; se preparan las fichas sin invitaciones.

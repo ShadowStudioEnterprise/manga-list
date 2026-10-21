@@ -127,4 +127,6 @@ resultados. La operación con casos reales necesita además D3, matriz D5, dicta
 D7, controles alternativos P3 aceptados y autorización específica de activación.
 
 Firebase Spark exclusivamente. No existe integración de Proton con Firebase ni
-automatización de borrado. El PR conserva estado borrador, sin fusión ni despliegue.
+automatización de borrado. El PR #9 se fusionó posteriormente por autorización
+expresa del titular; véase el [registro de fusión y condiciones pendientes](ml-11-acceptance-2026-10-21.md#actualizacion-tras-la-fusion).
+Los ensayos no activan expedientes reales ni autorizan despliegues.

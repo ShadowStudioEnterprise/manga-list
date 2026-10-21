@@ -35,6 +35,30 @@ aceptar por extensión P2–P5, resolver las condiciones D1–D7 ni activar el c
 
 ## Límites vigentes
 
+### Actualización tras la fusión
+
+El titular autorizó posteriormente «Fusiona». El [PR #9](https://github.com/ShadowStudioEnterprise/manga-list/pull/9)
+se fusionó en `main` el 21/10/2026 a las 21:29:02 (Europe/Madrid), mediante el
+commit `161428642eaa41aaba78548ad2aeff3d90b90e25`. Se integraron documentación
+y pruebas sintéticas. Las dos ejecuciones de CI de la revisión
+`eb5136b7196b4796e394fa4d87ac12339fa20752` terminaron correctamente antes de la
+fusión: [PR](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39651082325)
+y [push](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39651073065).
+Ese resultado no se atribuye automáticamente a revisiones posteriores.
+
+La fusión no activa el procedimiento ni acredita cumplimiento jurídico. Queda
+pendiente de intervención humana designar revisor D3, custodio y suplencia;
+autorizar y ejecutar permisos entre personas; elegir destino y herramienta de
+copia y comprobar restauración externa; asignar asesoría y obtener dictamen D7
+y matriz D5; y aprobar la activación después de cerrar sus condiciones.
+P2/P3/P4 siguen aceptadas solo para ensayo. No se efectuaron despliegues ni se
+concedió autorización de acceso a cuentas/datos reales o configuración remota
+de Firebase. No hay retirada ni borrado automático de marcadores.
+
+Las menciones a «sin fusión» o «PR borrador» en informes anteriores describen la
+fase de preparación y quedan sustituidas respecto del PR #9 por este registro.
+Los demás límites operativos se mantienen.
+
 Aceptación posterior de los controles Proton: el titular acepta P2, P3 y P4
 **solo como diseño para ensayos ficticios**, según las respuestas y alcance
 registrados en las [fichas D3, permisos y revisión jurídica](ml-11-d3-permissions-legal-review-pack.md).
@@ -43,7 +67,7 @@ herramienta o asesor. D3 sigue sin candidato; pruebas entre personas y dictamen
 jurídico pendientes. No se autorizan invitaciones sin destinatario y alcance concretos.
 
 Firebase Spark exclusivamente. Sin eliminación automática de marcadores. Esta
-aceptación no certifica cumplimiento legal ni autoriza fusión, despliegue, consultas
+aceptación no certifica cumplimiento legal ni autoriza por sí sola despliegue, consultas
 de cuentas reales, cambios remotos o retirada de marcadores. Cada operación real
 requiere autorización específica posterior en otra tarea.
 
