@@ -1,5 +1,9 @@
 # ML-11: ficha de preparación para activación
 
+La [definición de implementación Nextcloud](nextcloud-implementation-proposal.md)
+concreta arquitectura y fases como propuesta. Sus decisiones N1–N5 siguen pendientes;
+no sustituyen las condiciones D1–D7 ni activan el procedimiento.
+
 Estado a 21/10/2026: **no activado**. D1–D7 aceptadas en el
 [acta](ml-11-acceptance-2026-10-21.md); condiciones siguientes sin completar.
 Este documento prepara la revisión y no concede acceso a producción.

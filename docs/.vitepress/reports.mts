@@ -107,6 +107,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'Nextcloud: implementación propuesta',
+        link: '/reports/accounts/nextcloud-implementation-proposal',
+      },
+      {
         text: 'ML-11: preparación para activación',
         link: '/reports/accounts/ml-11-activation-pack',
       },
