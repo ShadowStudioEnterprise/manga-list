@@ -6,6 +6,10 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — propuesta ML-14
 
+- Sustitución de los 16 assets gráficos heredados por iconos originales derivados
+  de SVG, con procedencia y hashes. Textos legales completos en las compilaciones
+  SPA/PWA/portal, enlace «Licencias de software» y consulta offline en PWA.
+  Sin fusión ni publicación de cambios en producción.
 - Auditoría local aislada de SPA, PWA y portal: inventario de módulos/artefactos,
   44 textos legales adicionales y 12 coincidencias exactas de assets con plantillas
   Quasar. Documentada la necesidad de resolver derechos gráficos y entregar avisos

@@ -108,7 +108,7 @@ autorización expresa; Hosting no restaura Auth ni los datos eliminados.
 No se cierran mediante este documento: aceptación real de OAuth/recuperación y del SHA
 publicado, Safari/dispositivos/lectores de pantalla, coste operativo de bibliotecas grandes,
 asistencia y retención de borrados, responsables de incidentes, protección de main/IAM,
-canal privado de seguridad y derechos/avisos de materiales de terceros. Apache-2.0
-está elegida para las aportaciones originales en la rama ML-14, sin fusión ni
-despliegue. El [roadmap](roadmap.md) conserva esos puntos.
+canal privado de seguridad y la revisión continuada de materiales de terceros.
+Apache-2.0, iconos originales y entrega de avisos están preparados en la rama
+ML-14, sin fusión ni despliegue. El [roadmap](roadmap.md) conserva esos puntos.
 No se autorizan fusión, despliegue, facturación ni cambios remotos.

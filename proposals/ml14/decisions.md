@@ -7,6 +7,12 @@ Las decisiones siguientes se conservan como lista inicial de revisión: la opci�
 de licencia y el nombre ya están resueltos; no se presume saneada la titularidad
 de material ajeno ni se autoriza la reutilización de assets pendientes.
 
+**Cierre técnico posterior en esta rama:** los 16 assets heredados se sustituyen
+por diseño original con fuente y hashes, y las compilaciones entregan los textos
+legales con acceso offline en PWA. Véase [verificación](implementation-verification.md).
+Los pendientes gráficos/de empaquetado de la lista inicial describen el estado
+previo a esa implementación. No se ha autorizado fusión o despliegue.
+
 ## Decisiones que debe confirmar el titular
 
 1. Objetivo: permitir derivados comerciales/cerrados (Apache/MIT), exigir

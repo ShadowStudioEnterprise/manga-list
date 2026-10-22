@@ -10,8 +10,14 @@ ese momento. Los derechos sobre material ajeno y assets no se presumen resueltos
 
 **Revisión ampliada:** [distribuciones y procedencia exacta de assets](distribution-review.md),
 [inventario de artefactos](distribution-audit.json) y
-[textos legales adicionales](distribution-license-texts.md). Se confirma que los
-builds actuales no copian automáticamente los avisos raíz a sus distribuciones.
+[textos legales adicionales](distribution-license-texts.md). En aquella revisión
+los builds no copiaban automáticamente los avisos raíz a sus distribuciones.
+
+**Implementación posterior en esta rama:** [iconos originales](../../ASSET-PROVENANCE.md)
+y entrega de textos legales en `legal/index.html` para SPA/PWA/portal. La auditoría
+enlazada describe el estado anterior y no afirma que esos gráficos sigan en las
+compilaciones nuevas. Ningún cambio de esta rama se ha desplegado.
+Consulta [la verificación de la implementación](implementation-verification.md).
 
 **BORRADOR NO VIGENTE — 22/10/2026.** Este directorio contiene propuestas para
 revisión. No concede una licencia al código de MangaList, no declara titularidad

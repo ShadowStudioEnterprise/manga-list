@@ -39,9 +39,11 @@ Las aportaciones originales de Francisco Navarrete Lopez están bajo
 Se permiten uso comercial, modificaciones y redistribución conforme a la licencia.
 Consulta [NOTICE](NOTICE) y los [avisos de terceros](THIRD-PARTY-NOTICES.md).
 
-Las dependencias conservan sus propias licencias. Los assets de `public/` quedan
-fuera de esta concesión y requieren verificar su procedencia/autorización antes de
-redistribuirlos. La licencia no concede derechos de marca ni acceso o reutilización
+Las dependencias conservan sus propias licencias. Los iconos originales de esta
+rama también están bajo Apache-2.0; consulta su [procedencia](ASSET-PROVENANCE.md).
+Las compilaciones incluyen los textos completos en `legal/index.html`, accesibles
+desde «Licencias de software» y, en la PWA instalada, sin conexión.
+La licencia no concede derechos de marca ni acceso o reutilización
 de datos privados de usuarios, ni derechos sobre obras o webs enlazadas.
 La elección de licencia no autoriza fusión, despliegue o cambios de producción.
 

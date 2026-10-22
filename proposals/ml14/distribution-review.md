@@ -4,6 +4,12 @@ Revisión ampliada del 22/10/2026, fuente
 `a6a7dae15b386a5ebc5164b7e885dade446f41d8`. Complementa el estudio inicial.
 No autoriza fusión, despliegue o uso de gráficos de terceros.
 
+**Actualización posterior:** la rama sustituye los 16 assets por un diseño original
+documentado en [ASSET-PROVENANCE.md](../../ASSET-PROVENANCE.md) y añade la entrega
+de textos legales a SPA/PWA/portal mediante `scripts/legal-notices.mjs`. La
+revisión siguiente conserva la evidencia de la fuente `a6a7dae` previa a esos
+cambios; sus pendientes técnicos se verifican ahora contra la nueva implementación.
+
 ## Qué se ha comprobado
 
 Se exportó esa revisión a una copia aislada sin `.env`, utilizando las

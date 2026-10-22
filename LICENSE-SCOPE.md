@@ -12,7 +12,8 @@ esa licencia, sin obligación general de publicar el código de los derivados.
 La concesión abarca las aportaciones originales del titular al código de `src/`,
 `src-pwa/`, `scripts/`, `tests/`, la configuración y los archivos de proyecto,
 README, CONTRIBUTING, CHANGELOG, SECURITY y la documentación técnica original de
-`docs/` y `proposals/`. Incluye ejemplos y mediciones sintéticos originales.
+`docs/` y `proposals/`. Incluye ejemplos y mediciones sintéticos originales y los
+iconos originales descritos en [ASSET-PROVENANCE.md](ASSET-PROVENANCE.md).
 No sustituye avisos o licencias preexistentes de plantillas, fragmentos,
 documentación citada ni componentes de terceros, aunque estén en esas rutas.
 Los textos de licencias reproducidos conservan su propio régimen.
@@ -22,11 +23,11 @@ Los textos de licencias reproducidos conservan su propio régimen.
 - **Terceros:** dependencias directas y transitivas, fuentes, iconos, plantillas
   y cualquier fragmento ajeno mantienen sus propias licencias/copyright.
   Consulta [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md) y el inventario ML-14.
-- **Assets de `public/`:** no se incluyen en la concesión del titular de MangaList.
-  Su procedencia y autorización deben comprobarse por archivo. En particular,
-  los iconos visualmente coincidentes con Quasar no se declaran propios ni MIT.
-  La licencia gráfica de Quasar es distinta de la de su framework. Para
-  redistribuir esos recursos se necesita justificar derechos o sustituirlos.
+- **Assets originales de `public/`:** el SVG de libro y sus derivados PNG, ICO y
+  monocromo están incluidos en Apache-2.0; fuente, método y hashes se documentan
+  en [ASSET-PROVENANCE.md](ASSET-PROVENANCE.md). Sustituyen los gráficos heredados
+  coincidentes con Quasar. No se concede permiso retrospectivo sobre esos archivos
+  antiguos ni se incluyen futuros assets ajenos por el mero hecho de estar en esa ruta.
 - **Marcas:** la licencia del código no concede derechos de marca sobre MangaList,
   ShadowStudioEnterprise, Quasar ni nombres/logotipos de terceros, ni implica
   respaldo oficial. La atribución de origen y los usos legalmente permitidos

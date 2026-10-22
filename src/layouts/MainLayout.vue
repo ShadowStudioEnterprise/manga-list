@@ -118,6 +118,10 @@
             <q-item-section avatar><q-icon name="settings" /></q-item-section>
             <q-item-section>Ajustes</q-item-section>
           </q-item>
+          <q-item clickable tag="a" :href="legalHref" target="_blank" rel="noopener">
+            <q-item-section avatar><q-icon name="description" /></q-item-section>
+            <q-item-section>Licencias de software</q-item-section>
+          </q-item>
         </q-list>
 
         <div class="drawer-footer q-pa-md">
@@ -157,6 +161,7 @@ const router = useRouter()
 const authStore = useAuthStore()
 const mangaStore = useMangaStore()
 const drawerOpen = ref(false)
+const legalHref = `${import.meta.env.BASE_URL}legal/index.html`
 
 const statusItems = [
   { label: 'Siguiendo', value: 'following', icon: 'menu_book', counter: 'following' },

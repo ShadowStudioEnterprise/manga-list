@@ -3,8 +3,10 @@
 La [revisión de distribuciones ML-14](proposals/ml14/distribution-review.md) añade
 un inventario de componentes observados en compilaciones aisladas y
 [textos legales complementarios](proposals/ml14/distribution-license-texts.md).
-Estos documentos no se copian automáticamente a las salidas web: hay que preparar
-y verificar su entrega antes de una futura distribución.
+Las compilaciones de esta rama incluyen estos textos y los complementarios en
+`legal/index.html`; el worker PWA los conserva para consulta sin conexión.
+La revisión enlazada describe la fuente anterior a esta implementación, y se
+conserva como evidencia histórica.
 
 Colección de textos originales de las versiones instaladas y fijadas por los
 lockfiles, preparada el 22/10/2026. Se conservan sus condiciones; Apache-2.0 de
@@ -16,8 +18,9 @@ Antes de distribuir app, worker, portal, fuentes o herramientas, completar los
 textos y avisos pertinentes de cada componente efectivamente entregado. Los
 archivos generados no se modifican ni se publican con esta tarea.
 
-Los iconos de `public/` no quedan autorizados por esta colección: véase
-[LICENSE-SCOPE.md](LICENSE-SCOPE.md). El inventario estático original está en
+Los iconos originales de esta rama tienen [procedencia documentada](ASSET-PROVENANCE.md)
+y están incluidos en el [alcance](LICENSE-SCOPE.md). Esta colección no autoriza
+los gráficos heredados que sustituyen. El inventario estático original está en
 [ML-14](proposals/ml14/dependency-inventory.json).
 
 Los encabezados de Firebase conservan sus copyright; el texto completo de
