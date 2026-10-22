@@ -55,6 +55,8 @@ secciones principales del portal.
 - [ML-11: procedimiento propuesto y decisiones pendientes](accounts/ml-11-operating-procedure.md).
 - [ML-11: evidencia y límites de las pruebas](accounts/ml-11-test-evidence.md).
 - [Procedimiento propuesto de asistencia a borrados abandonados](accounts/abandoned-deletion-assistance.md).
+- [ML-12: asistencia a eliminaciones interrumpidas, ficha y ensayos](accounts/ml-12-interrupted-deletion.md).
+- [ML-12: preparación del buzón, responsables, permisos, custodia y revisión jurídica](accounts/ml-12-mailbox-and-roles-pack.md).
 - [Retención de users/{uid}: revisión manual propuesta](accounts/account-marker-retention-proposal.md).
 - [Revisión manual del marcador: propuesta operativa MangaList 1.0](accounts/manual-marker-review.md).
 
