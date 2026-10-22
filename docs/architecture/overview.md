@@ -24,6 +24,13 @@ La sesión proporciona el UID. El almacén abre las suscripciones de su bibliote
 las limpia al cerrar sesión o cambiar de cuenta. Las reglas de Firestore imponen
 el aislamiento; proteger rutas en el navegador no sustituye esas reglas.
 
+## Contratos internos
+
+- [Servicios, rutas de lectura, Auth y errores](/reference/services).
+- [Cursores, pestañas, presupuestos y Pinia](/reference/synchronization).
+- [Importación, exportación e integridad](/reference/import-export).
+- [Vigencia y auditoría del portal](/maintenance/documentation-audit).
+
 ## Decisiones y evidencias
 
 - [Arranque Firebase y emuladores](/reports/development/firebase-startup).

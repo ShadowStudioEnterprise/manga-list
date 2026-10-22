@@ -1,5 +1,8 @@
 # Informes técnicos
 
+La [auditoría ML-05](/maintenance/documentation-audit) distingue informes históricos,
+contratos actuales, pruebas y registros de publicación.
+
 Los documentos se agrupan por tema. Los informes fechados conservan los
 resultados y las limitaciones de su revisión original; no certifican por sí solos
 el estado actual de producción. Las propuestas de retención y asistencia siguen

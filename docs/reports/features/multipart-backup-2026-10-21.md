@@ -1,5 +1,13 @@
 # ML-08: copia dividida y recuperación reanudable
 
+::: info Lectura de versión — ML-05, 23/10/2026
+El estado de rama/PR y «sin publicar» del cuerpo corresponde a la fecha del ensayo.
+ML-07 y ML-08 constan integrados por PR #6 y #7; hay registros históricos de
+publicación posteriores. Esta revisión no certifica producción actual ni repite
+esos ensayos. Los contratos actuales están en [referencia interna](/reference/services).
+Véase [estado y evidencias](/maintenance/documentation-audit).
+:::
+
 Implementación para revisión en el PR borrador #7, posterior al
 [ensayo de recuperabilidad](../firestore/ml-08-recovery-2026-10-21.md).
 No está desplegada. La [reserva del 20 % y los tramos](../firestore/ml-08-policy-2026-10-21.md)

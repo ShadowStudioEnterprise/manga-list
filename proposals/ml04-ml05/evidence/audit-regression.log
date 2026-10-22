@@ -1,0 +1,9 @@
+✔ offline docs audit accepts a complete fixture and rejects drift, broken references, routes and anchors (925.285ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1054.7032

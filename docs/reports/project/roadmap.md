@@ -1,7 +1,15 @@
 # Roadmap tras la auditoría del 16/10/2026
 
+::: info Lectura de versión — ML-05, 23/10/2026
+Roadmap revisado sobre `a6627d0`. Los párrafos de iteraciones antiguas preservan
+su contexto, sin sustituir el [estado actual y sus límites](/maintenance/documentation-audit).
+La reserva del 20 % ya fue aceptada para planificación provisional; capacidad definitiva sigue pendiente.
+Véase [estado y evidencias](/maintenance/documentation-audit).
+:::
+
 ML-08 añade una [copia dividida con recuperación reanudable](../features/multipart-backup-2026-10-21.md)
-para revisión en el PR borrador #7. No está desplegada. El usuario aprobó por separado
+integrada por PR #7; el registro histórico del 21/10 identifica publicación posterior
+de `23e9b1d`. Esta revisión no certifica la versión actualmente servida. El usuario aprobó por separado
 la [reserva del 20 % y los tramos](../firestore/ml-08-policy-2026-10-21.md)
 para planificación provisional; siguen pendientes capacidad garantizada y máximo definitivo.
 
@@ -14,19 +22,19 @@ de ahorro y la mezcla de uso siguen pendientes de decisión.
 Los puntos pendientes requieren evidencia nueva; no se consideran cerrados por estar
 incluidos en esta lista. La validación local de esta rama no certifica producción.
 
-| Prioridad     | Trabajo y estado                                                                                                   | Criterio de aceptación                                                                                                                                                                                                                              |
-| ------------- | ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| P2 confirmado | Aviso de conflicto persistente: corregido en esta rama                                                             | Conflicto preserva borrador, recuperar/descartar y volver a biblioteca sin banner falso; fallo real del listener puede reintentarse.                                                                                                                |
-| P1 / H2       | Borrado concurrente: mitigación cliente/reglas en esta rama; reanudación Spark acotada; cierre operativo pendiente | Solo Spark: lotes cliente reanudables y pruebas de interrupción/cuotas. Aprobar responsable de recuperación manual y retención del marcador; no prometer finalización sin cliente.                                                                  |
-| P1 / H8       | Dependencias: correcciones revisadas en esta rama; auditoría sin avisos conocidos al 18/10                         | Ambos lockfiles actualizados, auditoría continua en CI y pruebas completas. Revisar el override gRPC al actualizar Firebase y las dependencias transitivas sin mantenimiento.                                                                       |
-| P1 / H1       | Aceptación operativa pendiente                                                                                     | Con permiso explícito, identificar SHA publicado; OAuth Google, recuperación completa, configuración/reglas efectivas y aislamiento. Conservar cuentas sintéticas actuales.                                                                         |
-| P1 / H3       | Accesibilidad y responsive: primera revisión local; PWA de dispositivos pendiente                                  | Validar teclado, lector de pantalla, contraste, 320 px, tablet y dispositivos; instalación y actualización reales, con evidencia fechada.                                                                                                           |
-| P2 / H4       | Protección de main y trazabilidad                                                                                  | Con autorización para configuración remota, exigir CI y revisión; conservar trazas de fallos, identificar versión y procedimiento de rollback compatible con marcadores.                                                                            |
-| P2 / H5       | Importación recuperable tras recarga: implementada para IDs v1                                                     | IDs estables por cuenta/archivo/fila y transacciones: reintentos, respuesta perdida, concurrencia y recarga probados. Requiere reseleccionar el mismo archivo; sin trabajador de fondo.                                                             |
-| P2 / H6–H7    | Sincronización y exportación: metadatos y lectura del servidor implementados                                       | Metadatos caché/pendientes/servidor y exportación comprobada con pruebas de desconexión. Borradores de pestaña opcionales y aviso PWA pasivo implementados; validación real en dispositivos pendiente.                                              |
-| P2 / H6       | Escala de biblioteca: presentación de 24 tarjetas y mediciones locales                                             | Medir tiempos/memoria con tamaños acordados, decidir paginación/virtualización según resultados, ampliar pruebas de filtros y fuentes.                                                                                                              |
-| P2 / H8       | Operación pública                                                                                                  | Inventariar controles, App Check si procede, alertas/cuotas y revisión de dependencias continua; cambios remotos requieren aprobación.                                                                                                              |
-| P3 / H9       | Apache-2.0, contribuciones, iconos originales y entrega de avisos preparados en la rama ML-14                      | PR borrador sin fusionar: licencia/alcance, procedencia gráfica y textos completos en SPA/PWA/portal con consulta offline PWA. Quedan canal privado de seguridad y responsables/plazos operativos; revisar materiales de terceros al incorporarlos. |
+| Prioridad     | Trabajo y estado                                                                                                   | Criterio de aceptación                                                                                                                                                                                                                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| P2 confirmado | Aviso de conflicto persistente: corregido en esta rama                                                             | Conflicto preserva borrador, recuperar/descartar y volver a biblioteca sin banner falso; fallo real del listener puede reintentarse.                                                                                                                                                     |
+| P1 / H2       | Borrado concurrente: mitigación cliente/reglas en esta rama; reanudación Spark acotada; cierre operativo pendiente | Solo Spark: lotes cliente reanudables y pruebas de interrupción/cuotas. Aprobar responsable de recuperación manual y retención del marcador; no prometer finalización sin cliente.                                                                                                       |
+| P1 / H8       | Dependencias: correcciones revisadas en esta rama; auditoría sin avisos conocidos al 18/10                         | Ambos lockfiles actualizados, auditoría continua en CI y pruebas completas. Revisar el override gRPC al actualizar Firebase y las dependencias transitivas sin mantenimiento.                                                                                                            |
+| P1 / H1       | Aceptación operativa pendiente                                                                                     | Con permiso explícito, identificar SHA publicado; OAuth Google, recuperación completa, configuración/reglas efectivas y aislamiento. Conservar cuentas sintéticas actuales.                                                                                                              |
+| P1 / H3       | Accesibilidad y responsive: primera revisión local; PWA de dispositivos pendiente                                  | Validar teclado, lector de pantalla, contraste, 320 px, tablet y dispositivos; instalación y actualización reales, con evidencia fechada.                                                                                                                                                |
+| P2 / H4       | Protección de main y trazabilidad                                                                                  | Con autorización para configuración remota, exigir CI y revisión; conservar trazas de fallos, identificar versión y procedimiento de rollback compatible con marcadores.                                                                                                                 |
+| P2 / H5       | Importación recuperable tras recarga: implementada para IDs v1                                                     | IDs estables por cuenta/archivo/fila y transacciones: reintentos, respuesta perdida, concurrencia y recarga probados. Requiere reseleccionar el mismo archivo; sin trabajador de fondo.                                                                                                  |
+| P2 / H6–H7    | Sincronización y exportación: metadatos y lectura del servidor implementados                                       | Metadatos caché/pendientes/servidor y exportación comprobada con pruebas de desconexión. Borradores de pestaña opcionales y aviso PWA pasivo implementados; validación real en dispositivos pendiente.                                                                                   |
+| P2 / H6       | Escala de biblioteca: presentación de 24 tarjetas y mediciones locales                                             | Medir tiempos/memoria con tamaños acordados, decidir paginación/virtualización según resultados, ampliar pruebas de filtros y fuentes.                                                                                                                                                   |
+| P2 / H8       | Operación pública                                                                                                  | Inventariar controles, App Check si procede, alertas/cuotas y revisión de dependencias continua; cambios remotos requieren aprobación.                                                                                                                                                   |
+| P3 / H9       | Apache-2.0, contribuciones, iconos originales y avisos integrados en ML-14                                         | PR #13/#14 fusionados; registro histórico publicado `056ff69`: licencia/alcance, procedencia gráfica y textos completos en SPA/PWA/portal con consulta offline PWA. Quedan canal privado de seguridad y responsables/plazos operativos; revisar materiales de terceros al incorporarlos. |
 
 ## Límites de autorización
 
@@ -34,9 +42,8 @@ El bloque H9 está preparado en la [especificación v1](specification-v1.md), la
 [guía de contribución](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CONTRIBUTING.md), [seguridad](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/SECURITY.md) y el
 [registro Sin publicar](https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CHANGELOG.md). No convierte el PR en release ni cierra las
 decisiones de soporte y canal privado de seguridad. Apache-2.0 está elegida para
-las aportaciones originales en ML-14; su aplicación permanece en PR borrador,
-con iconos originales y avisos incorporados a las distribuciones locales. No se
-ha fusionado ni desplegado esa implementación.
+las aportaciones originales en ML-14, integrada por PR #13/#14. Hay registro
+histórico de publicación `056ff69`; no se comprueba de nuevo el Hosting remoto.
 
 La rama y el PR son material de revisión. No autorizan fusión a main, despliegues de Firebase,
 modificación de datos/cuentas sintéticas de producción ni cambios de configuración remota.
@@ -59,8 +66,9 @@ proponer retención antes de aplicarla y definir asistencia manual de borrados a
 Implementación de revisión: [cursores reales y coste](../firestore/firestore-cursors-v1.md),
 [propuesta de retención](../accounts/account-marker-retention-proposal.md) y
 [procedimiento de asistencia](../accounts/abandoned-deletion-assistance.md).
-Pendiente: aprobar límites/coste y políticas, asignar responsables y plazos;
-autorizar por separado revisión IAM/protección de rama y depuración de APIs no usadas.
+Pendiente: capacidad definitiva, políticas operativas, responsables y plazos;
+revisión IAM y depuración de APIs no usadas. El informe ML-10 registra activación
+histórica del ruleset; no se certifica su estado actual en esta revisión.
 No se han cambiado permisos, servicios remotos, cuentas ni datos de producción.
 
 La revisión H8 y sus límites se detallan en [dependencias del 18/10](../development/dependencies-2026-10-18.md).

@@ -48,6 +48,8 @@ export default defineConfig({
         items: [
           { text: 'Arquitectura', link: '/architecture/overview' },
           { text: 'Diagramas técnicos', link: '/architecture/diagrams' },
+          { text: 'Contratos internos', link: '/reference/services' },
+          { text: 'Auditoría documental', link: '/maintenance/documentation-audit' },
           { text: 'Base de datos', link: '/database/firestore' },
           { text: 'Seguridad', link: '/security/spark' },
           { text: 'Desarrollo', link: '/development/installation' },
@@ -83,6 +85,10 @@ export default defineConfig({
             { text: 'Sistema', link: '/architecture/overview' },
             { text: 'Diagramas técnicos', link: '/architecture/diagrams' },
             { text: 'Firestore', link: '/database/firestore' },
+            { text: 'Servicios y errores', link: '/reference/services' },
+            { text: 'Sincronización y Pinia', link: '/reference/synchronization' },
+            { text: 'Importación y exportación', link: '/reference/import-export' },
+            { text: 'Vigencia documental', link: '/maintenance/documentation-audit' },
           ],
         },
         {

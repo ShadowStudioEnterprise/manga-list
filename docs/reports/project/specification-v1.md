@@ -1,8 +1,9 @@
 # Especificación de MangaList, versión 1
 
-Fecha: 20/10/2026. Base verificada: `d937549` de main, PR #5 de ML-06 fusionado.
-Propuesta ML-07 sin publicar; requiere transición de reglas y cliente autorizada por separado.
-Describe el comportamiento de esta rama; no certifica el contenido ni las reglas de producción.
+Revisión de vigencia: 23/10/2026 sobre main `a6627d0`, con ML-07, ML-08 y ML-14
+integrados. La base inicial del 20/10 fue `d937549`; los requisitos se conservan
+con sus ampliaciones compatibles. No certifica contenido ni reglas de producción.
+Véanse [contratos internos](/reference/services) y [estado de evidencias](/maintenance/documentation-audit).
 
 Los identificadores `ML-*` permiten revisar cambios y localizar su evidencia. Cambiar un
 requisito exige actualizar implementación, pruebas y documentación aplicables. Una ampliación
@@ -67,15 +68,15 @@ no sustituye su validación de tipos, valores, límites o autenticación.
 
 ## Presupuestos propios de la aplicación
 
-| Control                            | Valor de esta versión                                                                   |
-| ---------------------------------- | --------------------------------------------------------------------------------------- |
-| Consulta de biblioteca/exportación | Biblioteca: 5001 por consulta, límite local 10000; exportación: cursores de 5001        |
-| Presentación                       | 24 tarjetas por página, con biblioteca cargada previamente                              |
-| Admisiones por pestaña/minuto      | Lectura 60; escritura 120; apertura de listener 3; Auth 10                              |
-| Transacción                        | Hasta 3 intentos del SDK                                                                |
-| Pausa tras cuota                   | 15 minutos en memoria de esa pestaña; no implica que la cuota remota se haya recuperado |
-| Borrado por confirmación           | Hasta 5 lotes de 400; hasta 6 consultas de obras, más marcador y Auth                   |
-| Borradores opcionales              | Hasta 10 entradas; 80 000 unidades UTF-16 por entrada; 24 horas en sessionStorage       |
+| Control                            | Valor de esta versión                                                                               |
+| ---------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Consulta de biblioteca/exportación | Biblioteca: 5001 por consulta, límite local 10000; exportación: cursores de 5001                    |
+| Presentación                       | 24 tarjetas por página, con biblioteca cargada previamente                                          |
+| Admisiones por pestaña/minuto      | Lectura 60; escritura 120; apertura de listener 3; Auth 10                                          |
+| Transacción                        | Hasta 3 intentos del SDK                                                                            |
+| Pausa tras cuota                   | 15 minutos localmente; coordinación comparte fallos Firestore, sin garantizar recuperación de cuota |
+| Borrado por confirmación           | Hasta 5 lotes de 400; hasta 6 consultas de obras, más marcador y Auth                               |
+| Borradores opcionales              | Hasta 10 entradas; 80 000 unidades UTF-16 por entrada; 24 horas en sessionStorage                   |
 
 Estos valores son presupuestos locales, no cuotas de Firebase ni equivalencias de consumo
 facturable. Recargar, abrir otras pestañas o usar otro cliente puede eludirlos. Un listener
@@ -107,8 +108,9 @@ autorización expresa; Hosting no restaura Auth ni los datos eliminados.
 
 No se cierran mediante este documento: aceptación real de OAuth/recuperación y del SHA
 publicado, Safari/dispositivos/lectores de pantalla, coste operativo de bibliotecas grandes,
-asistencia y retención de borrados, responsables de incidentes, protección de main/IAM,
+asistencia y retención de borrados, responsables de incidentes, revisión de IAM y continuidad de la protección de main,
 canal privado de seguridad y la revisión continuada de materiales de terceros.
-Apache-2.0, iconos originales y entrega de avisos están preparados en la rama
-ML-14, sin fusión ni despliegue. El [roadmap](roadmap.md) conserva esos puntos.
+Apache-2.0, iconos originales y entrega de avisos están integrados por ML-14
+(PR #13 y corrección #14); existe registro histórico de publicación de `056ff69`.
+No se renueva aquí la comprobación de producción. El [roadmap](roadmap.md) conserva esos puntos.
 No se autorizan fusión, despliegue, facturación ni cambios remotos.
