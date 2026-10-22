@@ -4,6 +4,13 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — propuesta ML-14
+
+- Estudio de licencia, inventario de dependencias/assets y borradores no vigentes
+  en [proposals/ml14](proposals/ml14/README.md). Apache-2.0 es una recomendación
+  condicionada, pendiente de decisión expresa y aclaración de titularidad/avisos.
+  No se añade licencia efectiva ni se cambian producción o metadatos de paquetes.
+
 ## Sin publicar — propuesta ML-07
 
 - Rangos de biblioteca acotados a 5001; reducen relecturas de división y
