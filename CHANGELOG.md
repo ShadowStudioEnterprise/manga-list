@@ -4,6 +4,26 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — propuesta ML-14
+
+- Sustitución de los 16 assets gráficos heredados por iconos originales derivados
+  de SVG, con procedencia y hashes. Textos legales completos en las compilaciones
+  SPA/PWA/portal, enlace «Licencias de software» y consulta offline en PWA.
+  Sin fusión ni publicación de cambios en producción.
+- Auditoría local aislada de SPA, PWA y portal: inventario de módulos/artefactos,
+  44 textos legales adicionales y 12 coincidencias exactas de assets con plantillas
+  Quasar. Documentada la necesidad de resolver derechos gráficos y entregar avisos
+  en futuras distribuciones; sin cambios en compilación o publicación del proyecto.
+- Elección de Apache-2.0 por el titular Francisco Navarrete Lopez: aplicación en
+  esta rama a sus aportaciones originales mediante LICENSE, NOTICE, alcance,
+  metadatos y política de contribuciones. Assets de `public/`, marcas, datos de
+  usuarios y materiales de terceros quedan separados. Sin fusión ni despliegue.
+- Estudio de licencia, inventario de dependencias/assets y borradores no vigentes
+  conservados como antecedente en [proposals/ml14](proposals/ml14/README.md).
+  Textos de terceros recopilados sin afirmar que sustituyen la auditoría de cada
+  distribución. Continúan pendientes la procedencia/autorización de assets y la
+  revisión de componentes transitivos de los artefactos que se distribuyan.
+
 ## Sin publicar — propuesta ML-07
 
 - Rangos de biblioteca acotados a 5001; reducen relecturas de división y

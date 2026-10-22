@@ -19,7 +19,12 @@
             </p>
           </div>
 
-          <p class="auth-hero__footer">Privado por diseño · Simple por elección</p>
+          <div class="auth-hero__footer">
+            <p>Privado por diseño · Simple por elección</p>
+            <a :href="legalHref" target="_blank" rel="noopener" style="color: inherit"
+              >Licencias de software</a
+            >
+          </div>
         </section>
 
         <section
@@ -45,4 +50,5 @@
 import PwaUpdateBanner from '@/components/PwaUpdateBanner.vue'
 import SkipToContent from '@/components/SkipToContent.vue'
 import { isFirebaseConfigured } from '@/boot/firebase'
+const legalHref = `${import.meta.env.BASE_URL}legal/index.html`
 </script>

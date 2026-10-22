@@ -30,8 +30,22 @@ real entre dispositivos. No hay perfiles públicos ni funciones sociales.
 [Guía de contribución](CONTRIBUTING.md) · [Seguridad](SECURITY.md) ·
 [Cambios sin publicar](CHANGELOG.md).
 
-Estos documentos describen la rama en revisión. La licencia sigue pendiente de elección
-por el titular; no se añade una licencia ni se declara una publicación mediante este PR.
+Estos documentos describen la rama en revisión, sin declarar una publicación del servicio.
+
+## Licencia y reutilización
+
+Las aportaciones originales de Francisco Navarrete Lopez están bajo
+[Apache License 2.0](LICENSE), con el [alcance y las exclusiones documentados](LICENSE-SCOPE.md).
+Se permiten uso comercial, modificaciones y redistribución conforme a la licencia.
+Consulta [NOTICE](NOTICE) y los [avisos de terceros](THIRD-PARTY-NOTICES.md).
+
+Las dependencias conservan sus propias licencias. Los iconos originales de esta
+rama también están bajo Apache-2.0; consulta su [procedencia](ASSET-PROVENANCE.md).
+Las compilaciones incluyen los textos completos en `legal/index.html`, accesibles
+desde «Licencias de software» y, en la PWA instalada, sin conexión.
+La licencia no concede derechos de marca ni acceso o reutilización
+de datos privados de usuarios, ni derechos sobre obras o webs enlazadas.
+La elección de licencia no autoriza fusión, despliegue o cambios de producción.
 
 ## Stack
 

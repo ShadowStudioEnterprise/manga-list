@@ -1,0 +1,86 @@
+{
+  "source": "public/icons/mangalist.svg",
+  "sourceSha256": "e0e31778b00e073b228dfb728ba2c6cf2f2d32767aa5ea11519642ccd912d3ea",
+  "method": "Original geometric SVG created for MangaList with Codex assistance; local Chromium rasterization, no external images, fonts or network.",
+  "license": "Apache-2.0",
+  "files": {
+    "public/icons/apple-icon-120x120.png": {
+      "width": 120,
+      "height": 120,
+      "sha256": "3640b07bd48b4a1a641dd332cbdfc1ca22accffea1e6019b756eebebfbed9fca"
+    },
+    "public/icons/apple-icon-152x152.png": {
+      "width": 152,
+      "height": 152,
+      "sha256": "8a33fa21ed4f219cf7d1bb568136d9b2d78e662d7889e348962bf08b07d39f48"
+    },
+    "public/icons/apple-icon-167x167.png": {
+      "width": 167,
+      "height": 167,
+      "sha256": "c6dac760dde6cdf3f001dc6902235dae61085ba4caa47d7d30810fcd2016213d"
+    },
+    "public/icons/apple-icon-180x180.png": {
+      "width": 180,
+      "height": 180,
+      "sha256": "ee6b4d602d2aad85db5c91f3348167164eb4cb9d82f37e1e8ccb430296c2858c"
+    },
+    "public/icons/favicon-128x128.png": {
+      "width": 128,
+      "height": 128,
+      "sha256": "81555d6e3c67d1532f61d36ee140fcd7a806e077ecc4ede4b144336b13674f9a"
+    },
+    "public/icons/favicon-16x16.png": {
+      "width": 16,
+      "height": 16,
+      "sha256": "3dc26902f34c6076ab96598784f759c37dbfe7492ec8dc25368fd482f7c4aa1d"
+    },
+    "public/icons/favicon-32x32.png": {
+      "width": 32,
+      "height": 32,
+      "sha256": "a077635f6a6fb898b4c141d8565468fa6dd6d8a41ccfcd5bb1539aeac5f207b3"
+    },
+    "public/icons/favicon-96x96.png": {
+      "width": 96,
+      "height": 96,
+      "sha256": "093857eeb1698fe99bb21667d58f0ec84fc6523086027bb3f79cdd07eeef82d2"
+    },
+    "public/icons/icon-128x128.png": {
+      "width": 128,
+      "height": 128,
+      "sha256": "81555d6e3c67d1532f61d36ee140fcd7a806e077ecc4ede4b144336b13674f9a"
+    },
+    "public/icons/icon-192x192.png": {
+      "width": 192,
+      "height": 192,
+      "sha256": "bf4ae96f9c1bd97a5cf83d59ceaed9a4a4625bf5d628df30a2ac2a8b68570370"
+    },
+    "public/icons/icon-256x256.png": {
+      "width": 256,
+      "height": 256,
+      "sha256": "46a7023c49ff95e62ac59eb796bf1d240521df696438c6d69d3d9dbaec465058"
+    },
+    "public/icons/icon-384x384.png": {
+      "width": 384,
+      "height": 384,
+      "sha256": "ade066fbeeae6e84f88ce8eb1a8e0016ce9c19f7a0ace4137c95d59b02f329f5"
+    },
+    "public/icons/icon-512x512.png": {
+      "width": 512,
+      "height": 512,
+      "sha256": "d9b9da8deb730f9b8723d9994849cf3d8fb2a66b17ec2843b2f6774d92a8ff24"
+    },
+    "public/icons/ms-icon-144x144.png": {
+      "width": 144,
+      "height": 144,
+      "sha256": "5506839b3c335328ebb6f1bf60d089e14fca2c82779027a829fcfc0eaea71a68"
+    },
+    "public/favicon.ico": {
+      "width": 32,
+      "height": 32,
+      "sha256": "26d77a7eb49ce46b60ff63185fe8dd7e27300376a81ea778f3954dc741479a5a"
+    },
+    "public/icons/safari-pinned-tab.svg": {
+      "sha256": "64ba5f15f0d92f6c854055d126b277d4e19261e09c15fe2323fd71bbe3cb74ec"
+    }
+  }
+}

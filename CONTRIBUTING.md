@@ -106,6 +106,21 @@ un requisito incluso ante incidentes.
 ## Seguridad y licencia
 
 Consulta [SECURITY.md](SECURITY.md) antes de compartir una vulnerabilidad. No adjuntes datos
-reales a issues públicas o artefactos CI. La licencia del proyecto sigue pendiente de elección
-por el titular; este PR no añade ni propone una licencia. Las licencias de las dependencias
-son independientes y no se sustituyen mediante esta guía.
+reales a issues públicas o artefactos CI. Consulta [LICENSE](LICENSE),
+[alcance y exclusiones](LICENSE-SCOPE.md) y [avisos de terceros](THIRD-PARTY-NOTICES.md).
+
+Las contribuciones originales presentadas intencionadamente para incluirlas en MangaList
+se ofrecen bajo Apache-2.0 conforme a su sección 5, salvo acuerdo explícito separado con
+el titular. No se transfiere el copyright ni se concede permiso para relicenciar
+unilateralmente aportaciones ajenas bajo condiciones incompatibles.
+
+Confirma en el PR que tienes derecho a aportar el material, incluidas autorizaciones
+laborales cuando correspondan. Identifica archivos o fragmentos ajenos, procedencia,
+versión, modificaciones, licencia, copyright y avisos; conserva sus textos originales.
+Declara material realizado con asistencia automatizada y su procedencia conocida;
+esa asistencia no acredita por sí sola originalidad ni derechos. Usa datos sintéticos.
+No aportes iconos, obras ni otros materiales de terceros sin derechos suficientes.
+
+Esta política se aplica a nuevas contribuciones; no atribuye ni sanea retroactivamente
+derechos sobre material ajeno ya existente. No introduce CLA, cesión ni DCO obligatorio.
+Las licencias de dependencias y demás material de terceros no se sustituyen mediante esta guía.

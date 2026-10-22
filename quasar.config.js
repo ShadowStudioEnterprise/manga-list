@@ -3,6 +3,7 @@
 
 import { defineConfig } from '#q-app'
 import { buildInfoPlugin, collectBuildInfo } from './scripts/build-info.mjs'
+import { legalNoticesPlugin } from './scripts/legal-notices.mjs'
 
 export default defineConfig((ctx) => {
   const buildInfo = collectBuildInfo(ctx.appPaths?.appDir || process.cwd())
@@ -38,6 +39,7 @@ export default defineConfig((ctx) => {
       extendViteConf(config) {
         config.plugins ||= []
         config.plugins.push(buildInfoPlugin(buildInfo, ctx.mode.pwa ? 'pwa' : 'spa'))
+        config.plugins.push(legalNoticesPlugin(ctx.appPaths?.appDir || process.cwd()))
         // A dev websocket reload during suspension would test HMR instead of sync.
         if (
           ctx.dev &&

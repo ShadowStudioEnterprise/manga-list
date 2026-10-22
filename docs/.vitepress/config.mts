@@ -2,8 +2,10 @@ import { defineConfig } from 'vitepress'
 import { cpSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { reportsSidebar } from './reports.mts'
+import { legalNoticesPlugin } from '../../scripts/legal-notices.mjs'
 
 export default defineConfig({
+  vite: { plugins: [legalNoticesPlugin(resolve(import.meta.dirname, '../..'))] },
   lang: 'es-ES',
   title: 'MangaList Docs',
   description: 'Documentación técnica de MangaList',
@@ -77,7 +79,7 @@ export default defineConfig({
     },
 
     footer: {
-      message: 'Proyecto MangaList',
+      message: 'Proyecto MangaList · <a href="/legal/index.html">Licencias de software</a>',
       copyright: 'Documentación del proyecto MangaList',
     },
   },
