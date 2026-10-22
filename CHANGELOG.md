@@ -6,6 +6,10 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — propuesta ML-14
 
+- Auditoría local aislada de SPA, PWA y portal: inventario de módulos/artefactos,
+  44 textos legales adicionales y 12 coincidencias exactas de assets con plantillas
+  Quasar. Documentada la necesidad de resolver derechos gráficos y entregar avisos
+  en futuras distribuciones; sin cambios en compilación o publicación del proyecto.
 - Elección de Apache-2.0 por el titular Francisco Navarrete Lopez: aplicación en
   esta rama a sus aportaciones originales mediante LICENSE, NOTICE, alcance,
   metadatos y política de contribuciones. Assets de `public/`, marcas, datos de

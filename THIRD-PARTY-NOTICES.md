@@ -1,5 +1,11 @@
 # Avisos y textos de terceros
 
+La [revisión de distribuciones ML-14](proposals/ml14/distribution-review.md) añade
+un inventario de componentes observados en compilaciones aisladas y
+[textos legales complementarios](proposals/ml14/distribution-license-texts.md).
+Estos documentos no se copian automáticamente a las salidas web: hay que preparar
+y verificar su entrega antes de una futura distribución.
+
 Colección de textos originales de las versiones instaladas y fijadas por los
 lockfiles, preparada el 22/10/2026. Se conservan sus condiciones; Apache-2.0 de
 MangaList no los sustituye. Incluye paquetes directos de aplicación, PWA y

@@ -8,6 +8,11 @@ El estudio siguiente y los archivos `*.draft.md` se conservan como antecedentes
 no vigentes de la comparación inicial; sus menciones a decisión pendiente describen
 ese momento. Los derechos sobre material ajeno y assets no se presumen resueltos.
 
+**Revisión ampliada:** [distribuciones y procedencia exacta de assets](distribution-review.md),
+[inventario de artefactos](distribution-audit.json) y
+[textos legales adicionales](distribution-license-texts.md). Se confirma que los
+builds actuales no copian automáticamente los avisos raíz a sus distribuciones.
+
 **BORRADOR NO VIGENTE — 22/10/2026.** Este directorio contiene propuestas para
 revisión. No concede una licencia al código de MangaList, no declara titularidad
 y no sustituye derechos ni licencias de terceros. Publicar esta rama o fusionar
