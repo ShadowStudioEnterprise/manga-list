@@ -6,6 +6,9 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — propuesta ML-14
 
+- Enlaces a textos legales absolutos dentro de su sitio: conservan `/legal/`
+  después de la redirección de URLs limpias del portal. Prueba con ambas URLs
+  canónicas, sin modificar las licencias, los destinos o las reglas de Hosting.
 - Sustitución de los 16 assets gráficos heredados por iconos originales derivados
   de SVG, con procedencia y hashes. Textos legales completos en las compilaciones
   SPA/PWA/portal, enlace «Licencias de software» y consulta offline en PWA.

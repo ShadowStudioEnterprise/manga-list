@@ -20,7 +20,7 @@ export function legalAssets(root) {
     source: readFileSync(resolve(root, source), 'utf8'),
   }))
   const links = documents
-    .map(([, file, title]) => `<li><a href="./${file}">${title}</a></li>`)
+    .map(([, file, title]) => `<li><a href="/legal/${file}">${title}</a></li>`)
     .join('\n')
   assets.push({
     fileName: 'legal/index.html',

@@ -51,3 +51,23 @@ test('all legacy icons are replaced with traceable original assets', () => {
     assert.equal(hash(old.path), provenance.files[old.path].sha256, old.path)
   }
 })
+
+test('legal document links retain their path after Hosting clean-URL canonicalization', () => {
+  const assets = legalAssets(process.cwd())
+  const html = assets.find((asset) => asset.fileName === 'legal/index.html').source
+  const hrefs = [...html.matchAll(/<a href="([^"]+)"/g)].map((match) => match[1])
+  assert.equal(hrefs.length, 6)
+  for (const page of [
+    'https://mangalist-61bb8.web.app/legal/index.html',
+    'https://mangalist-docs.web.app/legal',
+  ]) {
+    for (const href of hrefs) {
+      const url = new URL(href, page)
+      assert.equal(url.origin, new URL(page).origin)
+      assert.ok(
+        assets.some((asset) => '/' + asset.fileName === url.pathname),
+        url.href,
+      )
+    }
+  }
+})
