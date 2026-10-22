@@ -1,5 +1,17 @@
 # Procedencia de los iconos de MangaList
 
+## Portal ML-02
+
+`docs/public/mangalist.svg` es una copia sin modificaciones del icono original
+`public/icons/mangalist.svg`, con la misma licencia Apache-2.0. La portada en
+`docs/.vitepress/theme/HomePortal.vue` y sus estilos se han creado para MangaList
+con asistencia de Codex. La ilustración usa HTML/CSS y títulos ficticios; no
+incorpora cubiertas, imágenes ni trazados de terceros. La tipografía usa Inter
+distribuida por el tema VitePress (avisos incluidos por el generador legal existente)
+y fuentes del sistema, sin proveedores externos ni nuevas dependencias.
+
+## Iconos originales
+
 Copyright 2026 Francisco Navarrete Lopez. Apache License 2.0.
 
 El 22/10/2026 se sustituyeron en esta rama los 16 assets gráficos heredados por

@@ -4,6 +4,17 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — propuesta ML-02
+
+- Portada del portal con hero personalizado, ilustración de biblioteca ficticia,
+  accesos a las seis secciones e informes y enlaces a la guía y a la aplicación.
+- Identidad índigo, fondos cálidos, modo oscuro, tipografía y focos visibles;
+  navegación agrupada, sidebar de inicio y controles del portal en español.
+- Verificación local reproducible de enlaces y anclas compilados, búsqueda,
+  teclado, navegación móvil, contraste y tamaños de 320 a 1440 px mediante
+  `node scripts/check-docs-portal.mjs`, después de `npm run docs:build`.
+- Sin cambios en Firebase, reglas, facturación o datos. Sin fusión ni despliegue.
+
 ## Sin publicar — propuesta ML-14
 
 - Enlaces a textos legales absolutos dentro de su sitio: conservan `/legal/`
