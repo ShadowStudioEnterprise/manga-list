@@ -6,10 +6,15 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — propuesta ML-14
 
+- Elección de Apache-2.0 por el titular Francisco Navarrete Lopez: aplicación en
+  esta rama a sus aportaciones originales mediante LICENSE, NOTICE, alcance,
+  metadatos y política de contribuciones. Assets de `public/`, marcas, datos de
+  usuarios y materiales de terceros quedan separados. Sin fusión ni despliegue.
 - Estudio de licencia, inventario de dependencias/assets y borradores no vigentes
-  en [proposals/ml14](proposals/ml14/README.md). Apache-2.0 es una recomendación
-  condicionada, pendiente de decisión expresa y aclaración de titularidad/avisos.
-  No se añade licencia efectiva ni se cambian producción o metadatos de paquetes.
+  conservados como antecedente en [proposals/ml14](proposals/ml14/README.md).
+  Textos de terceros recopilados sin afirmar que sustituyen la auditoría de cada
+  distribución. Continúan pendientes la procedencia/autorización de assets y la
+  revisión de componentes transitivos de los artefactos que se distribuyan.
 
 ## Sin publicar — propuesta ML-07
 

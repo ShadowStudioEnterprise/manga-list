@@ -1,5 +1,13 @@
 # ML-14 — decisión de licencia y reutilización
 
+**Actualización posterior:** el titular eligió Apache-2.0 e indicó el nombre
+Francisco Navarrete Lopez. La aplicación autorizada está en esta rama mediante
+[LICENSE](../../LICENSE), [alcance](../../LICENSE-SCOPE.md) y
+[avisos de terceros](../../THIRD-PARTY-NOTICES.md). Main permanece sin cambiar.
+El estudio siguiente y los archivos `*.draft.md` se conservan como antecedentes
+no vigentes de la comparación inicial; sus menciones a decisión pendiente describen
+ese momento. Los derechos sobre material ajeno y assets no se presumen resueltos.
+
 **BORRADOR NO VIGENTE — 22/10/2026.** Este directorio contiene propuestas para
 revisión. No concede una licencia al código de MangaList, no declara titularidad
 y no sustituye derechos ni licencias de terceros. Publicar esta rama o fusionar

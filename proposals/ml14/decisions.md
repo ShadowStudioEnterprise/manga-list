@@ -1,6 +1,11 @@
 # Decisiones pendientes y evidencia ML-14
 
-**Estado: análisis y borradores; ninguna licencia aprobada o activada.**
+**Estado actualizado:** Apache-2.0 elegida por el usuario, con titular indicado
+Francisco Navarrete Lopez. Implementada para sus aportaciones originales en la
+rama de este PR, sin fusión ni despliegue. Véase [el alcance](../../LICENSE-SCOPE.md).
+Las decisiones siguientes se conservan como lista inicial de revisión: la opción
+de licencia y el nombre ya están resueltos; no se presume saneada la titularidad
+de material ajeno ni se autoriza la reutilización de assets pendientes.
 
 ## Decisiones que debe confirmar el titular
 
