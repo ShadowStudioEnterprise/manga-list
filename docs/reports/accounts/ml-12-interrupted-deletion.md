@@ -23,7 +23,7 @@ recuperadas del chat. No se han consultado Auth, Firestore, IAM ni billing remot
 | `auth-store`, Ajustes y presupuesto Spark | Confirmación y errores recuperables; pausa local ante cuota                                                                                                            | No son un sistema de solicitudes de derechos, prueba de identidad de soporte ni control global de cuotas                      |
 | Documentación ML-11                       | D1–D7 aceptadas para diseño; Proton elegido, P2–P4 solo para ensayo                                                                                                    | Revisor independiente, suplencia/custodia, canal, permisos, matriz D5 y dictamen D7 siguen pendientes; no activado            |
 
-Resultado de reglas limitado a este flujo: véase [auditoría JSON](ml-12-rules-audit.json).
+Resultado de reglas limitado a este flujo: véase [auditoría JSON versionada](https://github.com/ShadowStudioEnterprise/manga-list/blob/65e6a463f941d6c015f2caa1656cb86470dff467/docs/reports/accounts/ml-12-rules-audit.json).
 No se ha encontrado bypass de la barrera de escritura en los casos ensayados;
 no se acredita revocación inmediata ni bloqueo jurídico. La
 [gestión de sesiones Firebase](https://firebase.google.com/docs/auth/admin/manage-sessions)
