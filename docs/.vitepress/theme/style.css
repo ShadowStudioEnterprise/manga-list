@@ -55,6 +55,32 @@
 .vp-doc a {
   text-underline-offset: 3px;
 }
+.ml-diagram {
+  margin: 28px 0;
+  padding: 20px 12px 16px;
+  border: 1px solid var(--ml-line);
+  border-radius: 12px;
+  background: var(--ml-surface);
+}
+.ml-diagram img {
+  display: block;
+  width: 100%;
+  max-width: 384px;
+  height: auto;
+  margin: 0 auto;
+}
+.ml-diagram figcaption {
+  margin-top: 16px;
+  color: var(--vp-c-text-2);
+  font-size: 14px;
+  line-height: 1.7;
+}
+@media (max-width: 639px) {
+  .ml-diagram {
+    padding: 16px 0;
+    border: 0;
+  }
+}
 .ml-portal {
   max-width: 1216px;
   margin: 0 auto;

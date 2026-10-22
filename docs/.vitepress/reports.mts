@@ -13,6 +13,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-03: diagramas y verificación',
+        link: '/reports/development/ml-03-diagrams-2026-10-22',
+      },
+      {
         text: 'Especificación v1',
         link: '/reports/project/specification-v1',
       },

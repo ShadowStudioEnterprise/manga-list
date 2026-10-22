@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 825" role="img" aria-labelledby="title desc">
+<title id="title">Autenticación y rutas privadas</title>
+<desc id="desc">Inicio de la aplicación. Validar configuración Firebase. Preparar Auth y Firestore. Configuración incompleta: error → Restaurar sesión. Persistencia local de Auth. Si falla: solo memoria. Esperar onAuthStateChanged → Acceso o registro. Correo y contraseña / Google. Recuperación: correo del SDK. Error → mostrar y no avanzar → auth-store recibe usuario. Serializa usuario y UID. Nuevo UID → suscribir biblioteca. Sin usuario → desuscribir → Guardia del Router. Ruta privada sin sesión → login. Con sesión → ruta solicitada. guestOnly con sesión → library. Las condiciones y excepciones se detallan en el texto de la página.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L10 5 L0 10" fill="#4338ca"/>
+</marker>
+</defs>
+<rect width="320" height="825" rx="12" fill="#f1f0fa"/>
+<text x="16" y="30" fill="#4338ca" font-family="system-ui, sans-serif" font-size="12" font-weight="700">IMPLEMENTADO EN EL REPOSITORIO</text>
+<g>
+<rect x="16" y="56" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="82" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Inicio de la aplicación</tspan>
+<tspan x="30" dy="21">Validar configuración Firebase</tspan>
+<tspan x="30" dy="21">Preparar Auth y Firestore</tspan>
+<tspan x="30" dy="21">Configuración incompleta: error</tspan>
+</text>
+</g>
+<path d="M160 165 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="175" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="190" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">inicializar</text>
+<g>
+<rect x="16" y="217" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="243" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Restaurar sesión</tspan>
+<tspan x="30" dy="21">Persistencia local de Auth</tspan>
+<tspan x="30" dy="21">Si falla: solo memoria</tspan>
+<tspan x="30" dy="21">Esperar onAuthStateChanged</tspan>
+</text>
+</g>
+<path d="M160 326 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="336" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="351" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">si no hay sesión, acceso</text>
+<g>
+<rect x="16" y="378" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="404" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Acceso o registro</tspan>
+<tspan x="30" dy="21">Correo y contraseña / Google</tspan>
+<tspan x="30" dy="21">Recuperación: correo del SDK</tspan>
+<tspan x="30" dy="21">Error → mostrar y no avanzar</tspan>
+</text>
+</g>
+<path d="M160 487 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="497" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="512" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">evento de Auth</text>
+<g>
+<rect x="16" y="539" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="565" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">auth-store recibe usuario</tspan>
+<tspan x="30" dy="21">Serializa usuario y UID</tspan>
+<tspan x="30" dy="21">Nuevo UID → suscribir biblioteca</tspan>
+<tspan x="30" dy="21">Sin usuario → desuscribir</tspan>
+</text>
+</g>
+<path d="M160 648 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="658" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="673" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">esperar initialize()</text>
+<g>
+<rect x="16" y="700" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="726" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Guardia del Router</tspan>
+<tspan x="30" dy="21">Ruta privada sin sesión → login</tspan>
+<tspan x="30" dy="21">Con sesión → ruta solicitada</tspan>
+<tspan x="30" dy="21">guestOnly con sesión → library</tspan>
+</text>
+</g>
+</svg>

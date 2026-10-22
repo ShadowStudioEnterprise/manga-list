@@ -5,6 +5,10 @@ MangaList utiliza la base Standard nativa `(default)` del proyecto
 
 ## Modelo
 
+El [diagrama de datos y aislamiento UID](/architecture/diagrams#datos-y-aislamiento-uid)
+relaciona las rutas con la autorización. El [flujo de carga](/architecture/diagrams#carga-y-paginacion)
+distingue los rangos Firestore de las páginas visuales de 24 tarjetas.
+
 | Ruta                      | Contenido                                              |
 | ------------------------- | ------------------------------------------------------ |
 | `users/{uid}`             | Fechas de cuenta y estado opcional `deleting`          |

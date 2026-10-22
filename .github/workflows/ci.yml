@@ -45,6 +45,8 @@ jobs:
         run: npm run lint:check
       - name: Build documentation and check links
         run: npm run docs:build
+      - name: Verify local documentation diagrams, accessibility and links
+        run: node scripts/check-docs-portal.mjs
       - name: Run regression tests
         run: npm test
       - name: Reproduce ML-08 capacity and offline payload sensitivities

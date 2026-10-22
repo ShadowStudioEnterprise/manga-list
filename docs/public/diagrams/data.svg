@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 888" role="img" aria-labelledby="title desc">
+<title id="title">Modelo Firestore y aislamiento</title>
+<desc id="desc">Solicitud del cliente. Token Firebase Authentication. Ruta: users/{uid}. ¿request.auth.uid = uid? → Reglas · propietario exacto. Sin sesión u otro UID: denegar. Mismo UID: validar operación. Sin rol de soporte en reglas → users/{uid}. createdAt: timestamp. updatedAt: timestamp. status?: deleting → mangas/{id} · 13 campos. schemaVersion: 1. name, normalizedName, chapter. type, genres, favorite. readingStatus, publicationStatus. sources, notes. createdAt, updatedAt → Barrera de eliminación. deleting impide crear/actualizar. mangas, también en lote. Lectura y borrado: propietario. Las condiciones y excepciones se detallan en el texto de la página.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L10 5 L0 10" fill="#4338ca"/>
+</marker>
+</defs>
+<rect width="320" height="888" rx="12" fill="#f1f0fa"/>
+<text x="16" y="30" fill="#4338ca" font-family="system-ui, sans-serif" font-size="12" font-weight="700">IMPLEMENTADO EN EL REPOSITORIO</text>
+<g>
+<rect x="16" y="56" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="82" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Solicitud del cliente</tspan>
+<tspan x="30" dy="21">Token Firebase Authentication</tspan>
+<tspan x="30" dy="21">Ruta: users/{uid}</tspan>
+<tspan x="30" dy="21">¿request.auth.uid = uid?</tspan>
+</text>
+</g>
+<path d="M160 165 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="175" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="190" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">comprobar identidad</text>
+<g>
+<rect x="16" y="217" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="243" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Reglas · propietario exacto</tspan>
+<tspan x="30" dy="21">Sin sesión u otro UID: denegar</tspan>
+<tspan x="30" dy="21">Mismo UID: validar operación</tspan>
+<tspan x="30" dy="21">Sin rol de soporte en reglas</tspan>
+</text>
+</g>
+<path d="M160 326 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="336" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="351" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">acceso permitido</text>
+<g>
+<rect x="16" y="378" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="404" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">users/{uid}</tspan>
+<tspan x="30" dy="21">createdAt: timestamp</tspan>
+<tspan x="30" dy="21">updatedAt: timestamp</tspan>
+<tspan x="30" dy="21">status?: deleting</tspan>
+</text>
+</g>
+<path d="M160 487 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="497" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="512" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">subcolección del mismo UID</text>
+<g>
+<rect x="16" y="539" width="288" height="172" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="565" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">mangas/{id} · 13 campos</tspan>
+<tspan x="30" dy="21">schemaVersion: 1</tspan>
+<tspan x="30" dy="21">name, normalizedName, chapter</tspan>
+<tspan x="30" dy="21">type, genres, favorite</tspan>
+<tspan x="30" dy="21">readingStatus, publicationStatus</tspan>
+<tspan x="30" dy="21">sources, notes</tspan>
+<tspan x="30" dy="21">createdAt, updatedAt</tspan>
+</text>
+</g>
+<path d="M160 711 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="721" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="736" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">getAfter + validación</text>
+<g>
+<rect x="16" y="763" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="789" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Barrera de eliminación</tspan>
+<tspan x="30" dy="21">deleting impide crear/actualizar</tspan>
+<tspan x="30" dy="21">mangas, también en lote</tspan>
+<tspan x="30" dy="21">Lectura y borrado: propietario</tspan>
+</text>
+</g>
+</svg>

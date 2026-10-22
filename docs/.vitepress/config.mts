@@ -47,6 +47,7 @@ export default defineConfig({
         text: 'Referencia',
         items: [
           { text: 'Arquitectura', link: '/architecture/overview' },
+          { text: 'Diagramas técnicos', link: '/architecture/diagrams' },
           { text: 'Base de datos', link: '/database/firestore' },
           { text: 'Seguridad', link: '/security/spark' },
           { text: 'Desarrollo', link: '/development/installation' },
@@ -80,6 +81,7 @@ export default defineConfig({
           text: 'Arquitectura',
           items: [
             { text: 'Sistema', link: '/architecture/overview' },
+            { text: 'Diagramas técnicos', link: '/architecture/diagrams' },
             { text: 'Firestore', link: '/database/firestore' },
           ],
         },

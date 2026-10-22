@@ -18,6 +18,13 @@ copia de seguridad ni garantizan disponibilidad tras cerrar la sesión del naveg
 
 ## Recorrido de la documentación
 
+Los [diagramas técnicos](/architecture/diagrams) explican el
+[acceso](/architecture/diagrams#autenticacion),
+la [sincronización](/architecture/diagrams#sincronizacion-entre-pestanas-y-dispositivos),
+la [importación](/architecture/diagrams#importacion-recuperable),
+la [exportación](/architecture/diagrams#exportacion-y-copia-dividida) y
+la [eliminación de cuentas](/architecture/diagrams#eliminacion-ordinaria-de-cuentas).
+
 Empieza por la [arquitectura](/architecture/overview) y la
 [instalación](/development/installation). Consulta la
 [especificación v1](/reports/project/specification-v1) para contratos y pruebas relacionados.

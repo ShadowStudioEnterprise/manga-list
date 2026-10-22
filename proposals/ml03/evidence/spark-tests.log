@@ -1,0 +1,23 @@
+Spark local compatibility checks passed (remote state not certified).
+✔ Spark CLI rejects unknown, duplicate and misspelled options before invoking gcloud (5928.522ms)
+✔ protected npm scripts retain the exact remote, release and audit command chain (17.2001ms)
+✔ workflow scan rejects npm deployment aliases and Hosting publication or cloning (2.8574ms)
+✔ deployment guard CLI accepts only successful unlinked evidence and fails closed (10068.0969ms)
+✔ Spark policy rejects paid services, dynamic rewrites, changed targets and missing guard (1395.1969ms)
+✔ docs deploy rejects changed paths, missing guards, dynamic features and swapped mappings (1.8215ms)
+✔ report redirects reject external URLs, dynamic routes and unsupported features (0.8209ms)
+✔ remote deployment evidence must be explicit, current project, unlinked billing and Standard (36.0212ms)
+✔ admission budgets stop bursts and reset only after the time window (78.971ms)
+(node:47928) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ cursor listener quota failure stops targets and blocks reconnect before SDK (1013.0168ms)
+✔ client scan rejects side-effect imports, literal dynamic imports, reexports and internal SDKs (68.5745ms)
+✔ server dependency scan checks root manifests and transitive lockfile package paths (0.6207ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22488.383
