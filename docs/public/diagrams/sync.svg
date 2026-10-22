@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 825" role="img" aria-labelledby="title desc">
+<title id="title">Sincronización de biblioteca</title>
+<desc id="desc">Cada dispositivo. Mismo origen + proyecto + UID. Web Locks + BroadcastChannel. Si faltan: suscripción por pestaña → Pestaña con el Web Lock. Abre listeners de rangos por ID. Firestore entrega snapshots. Memoria: obras y metadatos → Pestañas seguidoras. hello solicita último snapshot. data entrega obras y metadatos. heartbeat cada 5 segundos → Silencio mayor de 15 s. Si había datos: marcar obsoleto. No robar lock ni abrir listener. Cierre libera lock → sucesora → Otro dispositivo. Coordina sus propias pestañas. Sus listeners hablan con Firestore. Sin canal directo entre dispositivos. Las condiciones y excepciones se detallan en el texto de la página.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L10 5 L0 10" fill="#4338ca"/>
+</marker>
+</defs>
+<rect width="320" height="825" rx="12" fill="#f1f0fa"/>
+<text x="16" y="30" fill="#4338ca" font-family="system-ui, sans-serif" font-size="12" font-weight="700">IMPLEMENTADO EN EL REPOSITORIO</text>
+<g>
+<rect x="16" y="56" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="82" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Cada dispositivo</tspan>
+<tspan x="30" dy="21">Mismo origen + proyecto + UID</tspan>
+<tspan x="30" dy="21">Web Locks + BroadcastChannel</tspan>
+<tspan x="30" dy="21">Si faltan: suscripción por pestaña</tspan>
+</text>
+</g>
+<path d="M160 165 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="175" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="190" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">elegir propietaria</text>
+<g>
+<rect x="16" y="217" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="243" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Pestaña con el Web Lock</tspan>
+<tspan x="30" dy="21">Abre listeners de rangos por ID</tspan>
+<tspan x="30" dy="21">Firestore entrega snapshots</tspan>
+<tspan x="30" dy="21">Memoria: obras y metadatos</tspan>
+</text>
+</g>
+<path d="M160 326 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="336" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="351" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">BroadcastChannel</text>
+<g>
+<rect x="16" y="378" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="404" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Pestañas seguidoras</tspan>
+<tspan x="30" dy="21">hello solicita último snapshot</tspan>
+<tspan x="30" dy="21">data entrega obras y metadatos</tspan>
+<tspan x="30" dy="21">heartbeat cada 5 segundos</tspan>
+</text>
+</g>
+<path d="M160 487 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="497" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="512" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">sin heartbeat ni datos</text>
+<g>
+<rect x="16" y="539" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="565" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Silencio mayor de 15 s</tspan>
+<tspan x="30" dy="21">Si había datos: marcar obsoleto</tspan>
+<tspan x="30" dy="21">No robar lock ni abrir listener</tspan>
+<tspan x="30" dy="21">Cierre libera lock → sucesora</tspan>
+</text>
+</g>
+<path d="M160 648 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="658" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="673" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">Firestore conecta los clientes</text>
+<g>
+<rect x="16" y="700" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca"/>
+<text x="30" y="726" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Otro dispositivo</tspan>
+<tspan x="30" dy="21">Coordina sus propias pestañas</tspan>
+<tspan x="30" dy="21">Sus listeners hablan con Firestore</tspan>
+<tspan x="30" dy="21">Sin canal directo entre dispositivos</tspan>
+</text>
+</g>
+</svg>

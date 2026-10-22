@@ -6,6 +6,9 @@ La documentación utiliza VitePress y un segundo sitio de Hosting del mismo proy
 
 ## Organización del código
 
+Consulta los [diagramas técnicos](/architecture/diagrams) para seguir las capas
+del cliente, los datos por UID y los flujos, con sus fuentes y límites verificados.
+
 | Directorio                     | Responsabilidad                                                     |
 | ------------------------------ | ------------------------------------------------------------------- |
 | `src/pages` y `src/components` | Pantallas y controles de biblioteca, edición e importación          |

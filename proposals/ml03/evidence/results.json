@@ -1,0 +1,281 @@
+{
+  "browsers": [
+    "Chromium: layouts, WCAG AA, keyboard, search, mobile navigation, sidebar, links",
+    "Firefox: mobile guide navigation and overflow",
+    "Firefox: mobile diagram route, images and overflow"
+  ],
+  "accessibility": [
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "page": "/guide/introduction",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "page": "/guide/introduction",
+      "mode": "dark",
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "layouts": [
+    {
+      "mode": "light",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 320,
+      "overflow": false,
+      "smallestNodeTextPx": 12.325
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 390,
+      "overflow": false,
+      "smallestNodeTextPx": 15.496875
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 768,
+      "overflow": false,
+      "smallestNodeTextPx": 17.4
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "light",
+      "width": 1440,
+      "overflow": false,
+      "smallestNodeTextPx": 17.4
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 320,
+      "overflow": false,
+      "smallestNodeTextPx": 12.325
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 390,
+      "overflow": false,
+      "smallestNodeTextPx": 15.496875
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 768,
+      "overflow": false,
+      "smallestNodeTextPx": 17.4
+    },
+    {
+      "page": "/architecture/diagrams",
+      "mode": "dark",
+      "width": 1440,
+      "overflow": false,
+      "smallestNodeTextPx": 17.4
+    }
+  ],
+  "links": 579,
+  "pages": 70,
+  "diagrams": [
+    {
+      "id": "components",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "data",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "auth",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "sync",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "loading",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "import",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "export",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "deletion",
+      "valid": true,
+      "clipped": false
+    },
+    {
+      "id": "manual",
+      "valid": true,
+      "clipped": false
+    }
+  ],
+  "diagramContrast": [
+    {
+      "foreground": "222139",
+      "background": "ffffff",
+      "ratio": 15.617558720981336
+    },
+    {
+      "foreground": "4338ca",
+      "background": "ffffff",
+      "ratio": 7.9031114800249425
+    },
+    {
+      "foreground": "4338ca",
+      "background": "f1f0fa",
+      "ratio": 6.9941088547528665
+    }
+  ],
+  "errors": [],
+  "externalRequests": []
+}

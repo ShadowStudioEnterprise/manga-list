@@ -11,6 +11,8 @@ secciones principales del portal.
 
 ## Proyecto y arquitectura
 
+- [ML-03: diagramas técnicos y verificación (22/10)](development/ml-03-diagrams-2026-10-22.md).
+
 - [Especificación de MangaList, versión 1](project/specification-v1.md).
 - [Roadmap tras la auditoría del 16/10/2026](project/roadmap.md).
 - [Decisiones técnicas de la revisión del 16/10/2026](project/technical-review-2026-10-16.md).

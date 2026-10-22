@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 825" role="img" aria-labelledby="title desc">
+<title id="title">Revisión manual propuesta · no activa</title>
+<desc id="desc">Expediente y roles pendientes. Canal privado e identidad. Autoridad y alcance por caso. Operador y revisor distintos → Finalización acreditada. Inventario actual de descendientes. Estado Auth y evidencia técnica. No inferir fin desde updatedAt → Revisión a las 720 horas. Desde finalización acreditada. Reloj de derechos separado. Nunca retirar por antigüedad sola → Decisión humana documentada. Dudas / excepción: conservar. Datos pendientes: escalar. Condiciones completas: proponer → Autorización futura separada. No ejecutor ni retirada automática. Revisión jurídica aún pendiente. Sin cron, TTL ni Functions. Las condiciones y excepciones se detallan en el texto de la página.</desc>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M0 0 L10 5 L0 10" fill="#4338ca"/>
+</marker>
+</defs>
+<rect width="320" height="825" rx="12" fill="#f1f0fa"/>
+<text x="16" y="30" fill="#4338ca" font-family="system-ui, sans-serif" font-size="12" font-weight="700">PROPUESTA · ACTIVACIÓN PENDIENTE</text>
+<g>
+<rect x="16" y="56" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca" stroke-dasharray="6 4"/>
+<text x="30" y="82" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Expediente y roles pendientes</tspan>
+<tspan x="30" dy="21">Canal privado e identidad</tspan>
+<tspan x="30" dy="21">Autoridad y alcance por caso</tspan>
+<tspan x="30" dy="21">Operador y revisor distintos</tspan>
+</text>
+</g>
+<path d="M160 165 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="175" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="190" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">antes de operar con personas</text>
+<g>
+<rect x="16" y="217" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca" stroke-dasharray="6 4"/>
+<text x="30" y="243" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Finalización acreditada</tspan>
+<tspan x="30" dy="21">Inventario actual de descendientes</tspan>
+<tspan x="30" dy="21">Estado Auth y evidencia técnica</tspan>
+<tspan x="30" dy="21">No inferir fin desde updatedAt</tspan>
+</text>
+</g>
+<path d="M160 326 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="336" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="351" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">si falta evidencia, preservar</text>
+<g>
+<rect x="16" y="378" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca" stroke-dasharray="6 4"/>
+<text x="30" y="404" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Revisión a las 720 horas</tspan>
+<tspan x="30" dy="21">Desde finalización acreditada</tspan>
+<tspan x="30" dy="21">Reloj de derechos separado</tspan>
+<tspan x="30" dy="21">Nunca retirar por antigüedad sola</tspan>
+</text>
+</g>
+<path d="M160 487 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="497" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="512" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">comprobar condiciones ML-11/12</text>
+<g>
+<rect x="16" y="539" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca" stroke-dasharray="6 4"/>
+<text x="30" y="565" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Decisión humana documentada</tspan>
+<tspan x="30" dy="21">Dudas / excepción: conservar</tspan>
+<tspan x="30" dy="21">Datos pendientes: escalar</tspan>
+<tspan x="30" dy="21">Condiciones completas: proponer</tspan>
+</text>
+</g>
+<path d="M160 648 v42" stroke="#4338ca" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="21" y="658" width="278" height="22" fill="#f1f0fa"/>
+<text x="160" y="673" text-anchor="middle" fill="#4338ca" font-family="system-ui, sans-serif" font-size="11">recomendar no equivale a ejecutar</text>
+<g>
+<rect x="16" y="700" width="288" height="109" rx="10" fill="#ffffff" stroke="#4338ca" stroke-dasharray="6 4"/>
+<text x="30" y="726" fill="#222139" font-family="system-ui, sans-serif" font-size="14.5">
+<tspan x="30" dy="0" font-weight="700">Autorización futura separada</tspan>
+<tspan x="30" dy="21">No ejecutor ni retirada automática</tspan>
+<tspan x="30" dy="21">Revisión jurídica aún pendiente</tspan>
+<tspan x="30" dy="21">Sin cron, TTL ni Functions</tspan>
+</text>
+</g>
+</svg>

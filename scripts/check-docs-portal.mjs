@@ -154,6 +154,134 @@ try {
   await page.waitForURL('**/development/installation')
   console.log('PASS: mobile navigation and sidebar')
 
+  // ML-03: compiled original SVGs and document layouts, entirely local.
+  const diagramPaths = [
+    'components',
+    'data',
+    'auth',
+    'sync',
+    'loading',
+    'import',
+    'export',
+    'deletion',
+    'manual',
+  ]
+  results.diagrams = []
+  for (const id of diagramPaths) {
+    const response = await context.request.get(`${site.origin}/diagrams/${id}.svg`)
+    assert(response.ok(), `Missing diagram ${id}`)
+    const source = await response.text()
+    const svgCheck = await page.evaluate((source) => {
+      const doc = new DOMParser().parseFromString(source, 'image/svg+xml')
+      const svg = doc.documentElement
+      if (doc.querySelector('parsererror')) return { error: 'Invalid XML' }
+      const forbidden = doc.querySelector('script, foreignObject, image, a, style')
+      // Namespace URL is a declaration, not a network resource.
+      const cleanUnsafe = [...doc.querySelectorAll('*')].some((element) =>
+        [...element.attributes].some(
+          (attribute) =>
+            attribute.name !== 'xmlns' &&
+            (/^on/i.test(attribute.name) || /(?:https?:|javascript:)/i.test(attribute.value)),
+        ),
+      )
+      if (forbidden || cleanUnsafe) return { error: 'Active or external SVG content' }
+      if (!doc.querySelector('title')?.textContent || !doc.querySelector('desc')?.textContent)
+        return { error: 'Missing accessible SVG name/description' }
+      const holder = document.createElement('div')
+      holder.style.cssText = 'position:absolute;left:-10000px;width:320px'
+      const mounted = document.importNode(svg, true)
+      holder.append(mounted)
+      document.body.append(holder)
+      const clipped = [...mounted.querySelectorAll('text')]
+        .filter((text) => {
+          const box = text.getBBox()
+          return box.x < 16 || box.x + box.width > 304
+        })
+        .map((text) => text.textContent)
+      holder.remove()
+      return { error: null, clipped }
+    }, source)
+    assert.equal(svgCheck.error, null, `${id}: ${svgCheck.error}`)
+    assert.deepEqual(svgCheck.clipped, [], `Clipped labels: ${id}`)
+    results.diagrams.push({ id, valid: true, clipped: false })
+  }
+  // Fixed SVG palette: normal text, accent labels and arrows against their surfaces.
+  const luminance = (hex) => {
+    const rgb = hex.match(/../g).map((pair) => parseInt(pair, 16) / 255)
+    const linear = rgb.map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+    return linear[0] * 0.2126 + linear[1] * 0.7152 + linear[2] * 0.0722
+  }
+  results.diagramContrast = [
+    ['222139', 'ffffff'],
+    ['4338ca', 'ffffff'],
+    ['4338ca', 'f1f0fa'],
+  ].map(([foreground, background]) => {
+    const ratio = (luminance(background) + 0.05) / (luminance(foreground) + 0.05)
+    assert(ratio >= 4.5)
+    return { foreground, background, ratio }
+  })
+  for (const mode of ['light', 'dark']) {
+    for (const width of [320, 390, 768, 1440]) {
+      await page.setViewportSize({ width, height: 1000 })
+      await page.goto(`${site.origin}/architecture/diagrams`)
+      await page.locator('.ml-diagram').first().waitFor()
+      await page.evaluate((theme) => {
+        document.documentElement.classList.toggle('dark', theme === 'dark')
+      }, mode)
+      assert.equal(await page.locator('.ml-diagram img').count(), diagramPaths.length)
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+      const images = await page.locator('.ml-diagram img').evaluateAll(async (images) => {
+        await Promise.all(images.map((img) => img.decode()))
+        return images.every((img) => img.naturalWidth > 0 && img.alt.length > 30)
+      })
+      assert(images, 'All diagram images must decode and have meaningful alternatives')
+      const smallestNodeTextPx = await page
+        .locator('.ml-diagram img')
+        .evaluateAll((images) =>
+          Math.min(...images.map((img) => (14.5 * img.getBoundingClientRect().width) / 320)),
+        )
+      assert(smallestNodeTextPx >= 12, 'Diagram node text must remain readable on mobile')
+      const axe = await new AxeBuilder({ page })
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+        .analyze()
+      results.accessibility.push({
+        page: '/architecture/diagrams',
+        mode,
+        width,
+        violations: axe.violations,
+      })
+      assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations))
+      results.layouts.push({
+        page: '/architecture/diagrams',
+        mode,
+        width,
+        overflow: false,
+        smallestNodeTextPx,
+      })
+      if ([320, 1440].includes(width)) {
+        await page.screenshot({
+          path: resolve(output, `diagrams-${mode}-${width}.png`),
+          fullPage: true,
+        })
+      }
+      if (width === 320) {
+        await page
+          .locator('.ml-diagram')
+          .first()
+          .screenshot({
+            path: resolve(output, `component-detail-${mode}.png`),
+          })
+        await page
+          .locator('.ml-diagram')
+          .last()
+          .screenshot({
+            path: resolve(output, `manual-detail-${mode}.png`),
+          })
+      }
+    }
+  }
+  console.log('PASS: nine SVGs, label bounds, contrast, eight diagram layouts and WCAG AA scans')
+
   // Check every compiled HTML link, including hrefs rendered by Vue components,
   // canonical legal pages, historical routes and measurement downloads.
   const folder = resolve(root, 'docs/.vitepress/dist')
@@ -207,6 +335,11 @@ try {
   await ffPage.waitForURL('**/guide/introduction')
   assert(await ffPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
   results.browsers.push('Firefox: mobile guide navigation and overflow')
+  await ffPage.goto(`${site.origin}/architecture/diagrams`)
+  await ffPage.locator('.ml-diagram img').last().waitFor()
+  assert.equal(await ffPage.locator('.ml-diagram img').count(), 9)
+  assert(await ffPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth))
+  results.browsers.push('Firefox: mobile diagram route, images and overflow')
   assert.deepEqual(errors, [])
   assert.deepEqual(blocked, [])
   results.errors = errors
