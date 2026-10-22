@@ -1,0 +1,113 @@
+{
+  "browsers": [
+    "Chromium: layouts, WCAG AA, keyboard, search, mobile navigation, sidebar, links",
+    "Firefox: mobile guide navigation and overflow"
+  ],
+  "accessibility": [
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "light",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 320,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 768,
+      "violations": []
+    },
+    {
+      "page": "/",
+      "mode": "dark",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "page": "/guide/introduction",
+      "mode": "light",
+      "violations": []
+    },
+    {
+      "page": "/guide/introduction",
+      "mode": "dark",
+      "violations": []
+    }
+  ],
+  "layouts": [
+    {
+      "mode": "light",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "mode": "light",
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 320,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "mode": "dark",
+      "width": 1440,
+      "overflow": false
+    }
+  ],
+  "links": 544,
+  "pages": 68,
+  "errors": [],
+  "externalRequests": [],
+  "preservedBaselineRoutes": 68
+}
