@@ -30,7 +30,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: { src: '/mangalist.svg', alt: '' },
-    siteTitle: 'MangaList Docs',
+    siteTitle: 'MangaList',
     outline: { label: 'En esta página' },
     docFooter: { prev: 'Anterior', next: 'Siguiente' },
     lastUpdated: { text: 'Última actualización' },
@@ -46,6 +46,7 @@ export default defineConfig({
       {
         text: 'Referencia',
         items: [
+          { text: 'Portal técnico', link: '/project/' },
           { text: 'Arquitectura', link: '/architecture/overview' },
           { text: 'Diagramas técnicos', link: '/architecture/diagrams' },
           { text: 'Contratos internos', link: '/reference/services' },

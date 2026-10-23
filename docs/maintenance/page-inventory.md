@@ -6,6 +6,11 @@ La página legal se genera por `scripts/legal-notices.mjs` y se comprueba en HTM
 Descargas, assets, navegación y anclas se verifican sobre el build, no solo esta lista.
 Véanse [hallazgos, evidencia y pendientes](/maintenance/documentation-audit).
 
+Ampliación ML-P06, 23/10/2026: [la portada](/) presenta el producto;
+el [portal técnico](/project/) conserva la portada documental anterior.
+El [informe de landing](/reports/quality/public-landing) registra alcance, capturas
+y verificaciones. Las tres disposiciones figuran en el inventario JSON.
+
 | Página                                                                                                                       | Alcance                                  | Disposición                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [architecture/diagrams.md](/architecture/diagrams)                                                                           | Referencia actual de portal              | Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting.                                                                         |

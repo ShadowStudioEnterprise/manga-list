@@ -4,6 +4,14 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — ML-P06 landing pública
+
+- Portada responsive Ink/Paper/Violet con beneficios, capturas auténticas de
+  pruebas, FAQ accesible y CTA a la Beta. Portal técnico conservado en `/project/`.
+- HTML pre-renderizado, metadatos SEO/sociales y pruebas locales Chromium/Firefox
+  a 320, 390, 768 y 1440 px, con temas claro y oscuro, integradas en CI.
+- Sin cambios en la Beta o Firebase; sin fusión ni despliegue.
+
 ## Sin publicar — propuesta ML-02
 
 - Portada del portal con hero personalizado, ilustración de biblioteca ficticia,
