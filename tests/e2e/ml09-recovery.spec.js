@@ -38,7 +38,8 @@ test('ML-09: quota stops peers, reload cannot bypass pause, explicit recovery co
     const { sparkBudget } = await import('/src/utils/spark-budget.js')
     sparkBudget.record({ code: 'resource-exhausted' })
   })
-  for (const tab of [page, peer]) await expect(tab.getByRole('alert')).toContainText(/Cuota|cuota/)
+  for (const tab of [page, peer])
+    await expect(tab.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
   await peer.close()
   let targets = 0
   page.on('request', (request) => {
@@ -47,9 +48,9 @@ test('ML-09: quota stops peers, reload cannot bypass pause, explicit recovery co
       if (value.includes('"addTarget"')) targets++
   })
   await page.reload()
-  await expect(page.getByRole('alert')).toContainText(/Cuota|cuota/)
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
   await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
-  await expect(page.getByRole('alert')).toContainText(/Cuota|cuota/)
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
   expect(targets).toBe(0)
   // Advancing client time tests admission expiry, not Firebase's real quota reset.
   await page.clock.setSystemTime((await page.evaluate(() => Date.now())) + 901000)
