@@ -1,0 +1,3202 @@
+{
+  "scope": "Windows tool-cache cold/warm, no OS-cache flush; failures retained; concurrent local workload during later runs; not production timings",
+  "cohorts": [
+    {
+      "label": "baseline",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:42:53.789Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 2611.702
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 2586.392
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=ace90548",
+              "ms": 1251.965
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=2adb7317",
+              "ms": 1140.576
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=b185278b",
+              "ms": 946.222
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 940.12
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 935.652
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=14d604cb",
+              "ms": 898.441
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=8fa2d337",
+              "ms": 869.703
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=5d9cdb6e",
+              "ms": 844.368
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 791.368
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 749.71
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=c8bc2321",
+              "ms": 493.449
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 445.364
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8e63b87e",
+              "ms": 341.663
+            }
+          ],
+          "httpMs": 3181.7520999999997,
+          "initialPageMs": 5229.0926,
+          "spawnToPageMs": 8410.855300000001,
+          "firstRouteMs": 72.08649999999943
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 892.417
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 836.134
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 557.146
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 512.268
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 506.479
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8f4301ae",
+              "ms": 256.166
+            },
+            {
+              "url": "/",
+              "ms": 250.736
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 240.24
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 238.532
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 182.542
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 146.591
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8f4301ae",
+              "ms": 136.541
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 135.031
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 109.57
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 108.496
+            }
+          ],
+          "httpMs": 2379.250100000001,
+          "initialPageMs": 1949.0478000000003,
+          "spawnToPageMs": 4328.3024000000005,
+          "firstRouteMs": 121.35890000000109
+        },
+        {
+          "pair": 2,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [
+            "504 http://127.0.0.1:9118/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=e460534f"
+          ],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1126.692
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 841.364
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 778.796
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=eb5e0f6c",
+              "ms": 777.071
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=6bdc20ba",
+              "ms": 752.154
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=e190e2b5",
+              "ms": 736.773
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 708.395
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=6fd49c61",
+              "ms": 694.381
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 570.768
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=27bbc37b",
+              "ms": 491.043
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=37e60055",
+              "ms": 464.378
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 411.034
+            },
+            {
+              "url": "/",
+              "ms": 397.669
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 376.854
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 365.16
+            }
+          ],
+          "httpMs": 2163.720300000001,
+          "initialPageMs": 4017.2302999999993,
+          "spawnToPageMs": 6180.958699999999,
+          "firstRouteMs": 103.1286,
+          "failure": "Browser errors or external requests"
+        },
+        {
+          "pair": 2,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 1318.71
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 1021.535
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 987.927
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 744.287
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 537.641
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 536.543
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/material-icons/material-icons.css",
+              "ms": 488.077
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/roboto-font.css",
+              "ms": 485.831
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=8f4301ae",
+              "ms": 442.766
+            },
+            {
+              "url": "/",
+              "ms": 374.803
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 341.639
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8f4301ae",
+              "ms": 300.871
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 292.727
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 287.387
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 285.831
+            }
+          ],
+          "httpMs": 1852.2724000000017,
+          "initialPageMs": 2298.2429999999986,
+          "spawnToPageMs": 4150.5177,
+          "firstRouteMs": 133.14809999999852
+        },
+        {
+          "pair": 3,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [
+            "504 http://127.0.0.1:9118/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=182d8e8e"
+          ],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1324.514
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 1009.843
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=c4071467",
+              "ms": 974.619
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 943.007
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 833.008
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=e9abd4dd",
+              "ms": 716.13
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=876db7a4",
+              "ms": 694.57
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 618.385
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=a3d8b5b6",
+              "ms": 562.455
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 470.468
+            },
+            {
+              "url": "/",
+              "ms": 469.474
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 462.202
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=d40955ad",
+              "ms": 454.608
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 448.851
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 317.476
+            }
+          ],
+          "httpMs": 2149.871299999999,
+          "initialPageMs": 4309.5509999999995,
+          "spawnToPageMs": 6459.425299999999,
+          "firstRouteMs": 61.2844000000041,
+          "failure": "Browser errors or external requests"
+        },
+        {
+          "pair": 3,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 934.997
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 900.474
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 591.59
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 539.539
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 511.4
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8f4301ae",
+              "ms": 268.364
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 243.393
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 239.292
+            },
+            {
+              "url": "/",
+              "ms": 236.783
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 174.541
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 161.574
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 149.309
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8f4301ae",
+              "ms": 146.574
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 138.159
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 126.826
+            }
+          ],
+          "httpMs": 2370.4064999999973,
+          "initialPageMs": 2032.8966,
+          "spawnToPageMs": 4403.3073,
+          "firstRouteMs": 120.07110000000102
+        }
+      ]
+    },
+    {
+      "label": "candidate",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:46:29.428Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "authenticated": false,
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=9753834e",
+              "ms": 715.253
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 702.477
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 625.7
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=9b57df97",
+              "ms": 602.338
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 581.839
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=a33d1bfa",
+              "ms": 542.277
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 531.911
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 529.352
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=e5767601",
+              "ms": 517.159
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=b366b5d4",
+              "ms": 513.027
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=da4632e6",
+              "ms": 505.933
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 502.569
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 413.395
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=52c03985",
+              "ms": 246.537
+            },
+            {
+              "url": "/",
+              "ms": 194.032
+            }
+          ],
+          "httpMs": 1943.6864,
+          "initialPageMs": 1951.4906000000005,
+          "spawnToPageMs": 3895.1914,
+          "firstRouteMs": 74.6230000000005
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 707.605
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 660.073
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 449.033
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 413.158
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 399.24
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 200.08
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 199.722
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=1492d94b",
+              "ms": 197.849
+            },
+            {
+              "url": "/",
+              "ms": 187.628
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 134.893
+            },
+            {
+              "url": "/src/services/shared-library.js",
+              "ms": 133.839
+            },
+            {
+              "url": "/src/utils/manga-edit.js",
+              "ms": 131.481
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=1492d94b",
+              "ms": 129.027
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=1492d94b",
+              "ms": 110.561
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 97.738
+            }
+          ],
+          "httpMs": 1933.6653999999999,
+          "initialPageMs": 1578.8388000000004,
+          "spawnToPageMs": 3512.5083000000004,
+          "firstRouteMs": 75.65260000000126
+        },
+        {
+          "pair": 2,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=60823789",
+              "ms": 722.871
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 666.306
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 637.53
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=2f71926d",
+              "ms": 630.394
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 570.888
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=6ce7803a",
+              "ms": 570.061
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 551.862
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=2a670502",
+              "ms": 532.485
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=6f369b05",
+              "ms": 526.405
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 522.909
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=751c979e",
+              "ms": 510.728
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 425.371
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=28cb647f",
+              "ms": 229.531
+            },
+            {
+              "url": "/",
+              "ms": 196.855
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=28cb647f",
+              "ms": 185.233
+            }
+          ],
+          "httpMs": 2040.0195000000003,
+          "initialPageMs": 1963.2979999999989,
+          "spawnToPageMs": 4003.3233,
+          "firstRouteMs": 136.37870000000112
+        },
+        {
+          "pair": 2,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 747.684
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 718.503
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 465.678
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 453.978
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 400.86
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 209.52
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 208.899
+            },
+            {
+              "url": "/",
+              "ms": 196.747
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=1492d94b",
+              "ms": 154.822
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=1492d94b",
+              "ms": 141.843
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=1492d94b",
+              "ms": 139.197
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 137.173
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=1492d94b",
+              "ms": 131.646
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 127.788
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 102.161
+            }
+          ],
+          "httpMs": 2025.7785000000003,
+          "initialPageMs": 1631.0771000000004,
+          "spawnToPageMs": 3656.859400000001,
+          "firstRouteMs": 71.515199999998
+        },
+        {
+          "pair": 3,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=2c00a98f",
+              "ms": 1163.926
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 966.581
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 852.369
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=f3e4bcb1",
+              "ms": 731.242
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 721.956
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 623.128
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 620.296
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/material-icons/material-icons.css",
+              "ms": 598.472
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=4f96bfcf",
+              "ms": 539.93
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=96c326d6",
+              "ms": 529.911
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=ecb348b9",
+              "ms": 489.365
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 488.631
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 485.187
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=7715b05f",
+              "ms": 469.001
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/roboto-font.css",
+              "ms": 441.963
+            }
+          ],
+          "httpMs": 2006.9602999999988,
+          "initialPageMs": 1990.9575000000004,
+          "spawnToPageMs": 3997.9316,
+          "firstRouteMs": 120.21519999999873
+        },
+        {
+          "pair": 3,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/",
+              "ms": 623.416
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 500.73
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 394.556
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 284.447
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 225.963
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 219.417
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 218.222
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/index.esm-YoKUvZpS.js?v=3f57a719",
+              "ms": 151.856
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=3f57a719",
+              "ms": 139.336
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=3f57a719",
+              "ms": 137.402
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_app.js?v=3f57a719",
+              "ms": 130.499
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 102.891
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 95.544
+            },
+            {
+              "url": "/src/boot/firebase.js",
+              "ms": 93.266
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=3f57a719",
+              "ms": 89.54
+            }
+          ],
+          "httpMs": 2037.1144000000022,
+          "initialPageMs": 1662.2042000000001,
+          "spawnToPageMs": 3699.3202999999994,
+          "firstRouteMs": 80.54009999999835
+        },
+        {
+          "pair": 4,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 749.567
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=00c2bd12",
+              "ms": 698.063
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 692.992
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 635.766
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=ce4d9ccc",
+              "ms": 594.685
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=590024de",
+              "ms": 546.306
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=794cc67b",
+              "ms": 510.601
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 508.608
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=e059b7a4",
+              "ms": 504.703
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 491.954
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=d3cb7eb4",
+              "ms": 480.682
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 401.664
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 294.427
+            },
+            {
+              "url": "/",
+              "ms": 232.394
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=2c259af0",
+              "ms": 208.025
+            }
+          ],
+          "httpMs": 2025.7128000000012,
+          "initialPageMs": 2049.607899999999,
+          "spawnToPageMs": 4075.3230000000003,
+          "firstRouteMs": 70.58569999999963
+        },
+        {
+          "pair": 4,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 816.022
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 678.377
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 575.697
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 537.739
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 447.014
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=4989ffd4",
+              "ms": 309.133
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=4989ffd4",
+              "ms": 271.303
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 269.101
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 263.934
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 262.304
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 128.738
+            },
+            {
+              "url": "/src/services/shared-library.js",
+              "ms": 128.255
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=4989ffd4",
+              "ms": 119.378
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=4989ffd4",
+              "ms": 116.844
+            },
+            {
+              "url": "/",
+              "ms": 89.403
+            }
+          ],
+          "httpMs": 2216.399400000002,
+          "initialPageMs": 1638.1163000000015,
+          "spawnToPageMs": 3854.5174000000043,
+          "firstRouteMs": 116.69690000000264
+        },
+        {
+          "pair": 5,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=3b017739",
+              "ms": 694.35
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 660.312
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 605.335
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=478f089f",
+              "ms": 575.666
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 563.897
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=63ab02e2",
+              "ms": 555.283
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=57e75c79",
+              "ms": 507.96
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=ae22c242",
+              "ms": 503.829
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 492.33
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 490.174
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=12c049c8",
+              "ms": 481.784
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 381.847
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 299.113
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=793dce7a",
+              "ms": 248.553
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=793dce7a",
+              "ms": 187.742
+            }
+          ],
+          "httpMs": 2205.7007999999987,
+          "initialPageMs": 1718.267700000004,
+          "spawnToPageMs": 3923.9712999999974,
+          "firstRouteMs": 75.77459999999701
+        },
+        {
+          "pair": 5,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 958.906
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 721.628
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 672.879
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 614.156
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 469.968
+            },
+            {
+              "url": "/",
+              "ms": 350.06
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=4989ffd4",
+              "ms": 290.598
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 282.883
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 272.198
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 270.251
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=4989ffd4",
+              "ms": 230.206
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=4989ffd4",
+              "ms": 186.376
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=4989ffd4",
+              "ms": 146.463
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 109.718
+            },
+            {
+              "url": "/src/boot/firebase.js",
+              "ms": 107.915
+            }
+          ],
+          "httpMs": 1664.5160000000033,
+          "initialPageMs": 1991.292100000006,
+          "spawnToPageMs": 3655.8106000000043,
+          "firstRouteMs": 125.5431000000026
+        }
+      ]
+    },
+    {
+      "label": "reverse-baseline",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:48:29.597Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "authenticated": false,
+        "hashes": {
+          "quasar.config.js": "1c4cb4bdc3d5a9fec56aca1affd582004d56bd67718e2422b10e78c75ed86409",
+          "package-lock.json": "5f1b9b59d93626c20aedb6b88941a3366dbdb3c53cf7feb8314465b5a0a20adc",
+          "scripts/measure-startup.mjs": "df3061a516df55135d7a611613136f9288c9b078f44545f4021fbf4251b5127e"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [
+            "504 http://127.0.0.1:9118/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=72e75eea"
+          ],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 889.553
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=27ba5413",
+              "ms": 687.789
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=87235f8e",
+              "ms": 681.576
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=02a2d6f3",
+              "ms": 677.853
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 667.083
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=fa61ff0d",
+              "ms": 645.557
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 627.76
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 575.133
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 462.632
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=1c29baaf",
+              "ms": 411.65
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=fcd88f12",
+              "ms": 375.112
+            },
+            {
+              "url": "/",
+              "ms": 332.203
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 327.817
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 314.65
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 304.323
+            }
+          ],
+          "httpMs": 1759.3752000000002,
+          "initialPageMs": 3505.1254000000004,
+          "spawnToPageMs": 5264.5109,
+          "firstRouteMs": 63.914600000000064,
+          "failure": "Browser errors or external requests"
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 10184.842
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAw.woff",
+              "ms": 10045.136
+            },
+            {
+              "url": "/src/boot/i18n.js",
+              "ms": 10042.84
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 10040.763
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 10020.957
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 674.503
+            },
+            {
+              "url": "/",
+              "ms": 354.999
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 319.457
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 145.614
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 145.604
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 144.374
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 138.226
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/material-icons/material-icons.css",
+              "ms": 133.69
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/roboto-font.css",
+              "ms": 127.517
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 120.156
+            }
+          ],
+          "httpMs": 1742.2658999999994,
+          "initialPageMs": 21721.734600000003,
+          "spawnToPageMs": 23464.0043,
+          "firstRouteMs": 115.92619999999806
+        },
+        {
+          "pair": 2,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [
+            "504 http://127.0.0.1:9118/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=91753856"
+          ],
+          "slowRequests": [
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 1484.027
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=74f3b42f",
+              "ms": 1233.835
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 1227.64
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 1159.28
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=7b2e0195",
+              "ms": 909.881
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 811.221
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 809.004
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/material-icons/material-icons.css",
+              "ms": 784.935
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/roboto-font.css",
+              "ms": 779.342
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=0bd7d41f",
+              "ms": 659.971
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=c982736e",
+              "ms": 642.14
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=3b7850d4",
+              "ms": 621.591
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 546.14
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=cf1879c2",
+              "ms": 451.081
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 428.107
+            }
+          ],
+          "httpMs": 1905.5145000000011,
+          "initialPageMs": 3944.2795999999944,
+          "spawnToPageMs": 5849.800299999999,
+          "firstRouteMs": 128.0818999999974,
+          "failure": "Browser errors or external requests"
+        },
+        {
+          "pair": 2,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 906.992
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 889.709
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 555.986
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 536.4
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 482.038
+            },
+            {
+              "url": "/",
+              "ms": 318.854
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8f4301ae",
+              "ms": 260.829
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 256.479
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 256.077
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_auth.js?v=8f4301ae",
+              "ms": 176.686
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 172.762
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 149.628
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 141.361
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 138.529
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 125.165
+            }
+          ],
+          "httpMs": 2520.8187000000034,
+          "initialPageMs": 2085.0418999999965,
+          "spawnToPageMs": 4605.868499999997,
+          "firstRouteMs": 127.6903999999995
+        },
+        {
+          "pair": 3,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [
+            "504 http://127.0.0.1:9118/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=ad671a6d"
+          ],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1138.205
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=ef3ddb17",
+              "ms": 955.109
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 924.053
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=0a25e639",
+              "ms": 921.014
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=57a3d39c",
+              "ms": 914.374
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=c54ce5cd",
+              "ms": 887.426
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 797.459
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 726.566
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 670.278
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=4d06fd6b",
+              "ms": 589.696
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=e4227d28",
+              "ms": 579.108
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 530.138
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 512.905
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 507.574
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 357.32
+            }
+          ],
+          "httpMs": 2630.660600000003,
+          "initialPageMs": 4039.6475999999966,
+          "spawnToPageMs": 6670.3128,
+          "firstRouteMs": 147.51499999999942,
+          "failure": "Browser errors or external requests"
+        },
+        {
+          "pair": 3,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1263.932
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 1000.308
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 887.997
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 831.04
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 585.541
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 463.237
+            },
+            {
+              "url": "/",
+              "ms": 408.349
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 335.474
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 301.722
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 293.361
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=8f4301ae",
+              "ms": 279.221
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8f4301ae",
+              "ms": 241.168
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 202.78
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 144.419
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 137.784
+            }
+          ],
+          "httpMs": 2203.082000000002,
+          "initialPageMs": 2617.286700000004,
+          "spawnToPageMs": 4820.373,
+          "firstRouteMs": 144.13059999999678
+        }
+      ]
+    },
+    {
+      "label": "candidate-final",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:51:40.704Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "authenticated": false,
+        "hashes": {
+          "quasar.config.js": "40858dc9d25dc14fdff5879d152502739ffbd36c516ff0ebb50d813bd6195634",
+          "package-lock.json": "5f1b9b59d93626c20aedb6b88941a3366dbdb3c53cf7feb8314465b5a0a20adc",
+          "scripts/measure-startup.mjs": "739daf54f53cc1642528595305efefbad8549fa418c54540f484f082da97c52e"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; authenticated mode creates synthetic users only in local emulators"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=042846a0",
+              "ms": 962.341
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 867.959
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 807.247
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=f83dc6d6",
+              "ms": 783.316
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 732.033
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=849d459c",
+              "ms": 706.987
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=dee89f8c",
+              "ms": 686.872
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 685.863
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 670.337
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8213d60f",
+              "ms": 665.519
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=23fa8b9b",
+              "ms": 634.33
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 505.903
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=ee854d72",
+              "ms": 363.959
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=ee854d72",
+              "ms": 316.405
+            },
+            {
+              "url": "/",
+              "ms": 285.06
+            }
+          ],
+          "httpMs": 2841.9491,
+          "initialPageMs": 2568.0209000000004,
+          "spawnToPageMs": 5409.986000000001,
+          "firstRouteMs": 138.0091999999995
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1260.173
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 986.069
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 891.946
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 825.614
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 570.018
+            },
+            {
+              "url": "/",
+              "ms": 432.884
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=1492d94b",
+              "ms": 398.754
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 347.934
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 327.266
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 325.072
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=1492d94b",
+              "ms": 287.831
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=1492d94b",
+              "ms": 236.86
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=1492d94b",
+              "ms": 185.376
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 132.682
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 129.133
+            }
+          ],
+          "httpMs": 2297.283400000001,
+          "initialPageMs": 2621.5632000000005,
+          "spawnToPageMs": 4918.8525,
+          "firstRouteMs": 137.6298999999999
+        },
+        {
+          "pair": 2,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=5ebcc27b",
+              "ms": 874.422
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 869.379
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 822.751
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 738.049
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=c48f0d4b",
+              "ms": 732.684
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=990bc1c3",
+              "ms": 654.06
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=17fc603f",
+              "ms": 613.925
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=a3da7b14",
+              "ms": 609.806
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 601.422
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 598.741
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=052a2fb6",
+              "ms": 578.91
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 494.783
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=fe01a2f0",
+              "ms": 287.2
+            },
+            {
+              "url": "/",
+              "ms": 280.242
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=fe01a2f0",
+              "ms": 225.381
+            }
+          ],
+          "httpMs": 2577.7104,
+          "initialPageMs": 2452.9149000000016,
+          "spawnToPageMs": 5030.629199999999,
+          "firstRouteMs": 129.84280000000217
+        },
+        {
+          "pair": 2,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1257.964
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 1025.285
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 849.323
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 797.495
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 577.609
+            },
+            {
+              "url": "/",
+              "ms": 418.407
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=1492d94b",
+              "ms": 410.176
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 381.034
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 358.943
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 357.793
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=1492d94b",
+              "ms": 257.202
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=1492d94b",
+              "ms": 186.163
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=1492d94b",
+              "ms": 169.623
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 139.666
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 133.664
+            }
+          ],
+          "httpMs": 2147.3377,
+          "initialPageMs": 2645.4719000000005,
+          "spawnToPageMs": 4792.825499999999,
+          "firstRouteMs": 120.33200000000215
+        },
+        {
+          "pair": 3,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 719.321
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 680.179
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=df32d75e",
+              "ms": 671.085
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 620.851
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=2dde2a5d",
+              "ms": 575.843
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=c8a4b278",
+              "ms": 521.37
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=c11c6a7a",
+              "ms": 501.17
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=b64e5764",
+              "ms": 484.911
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 476.028
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 471.934
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=39ab3eb7",
+              "ms": 457.608
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 378.794
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=aa803590",
+              "ms": 231.186
+            },
+            {
+              "url": "/",
+              "ms": 215.892
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8fc53ac7",
+              "ms": 172.038
+            }
+          ],
+          "httpMs": 2301.714799999998,
+          "initialPageMs": 1980.0527000000002,
+          "spawnToPageMs": 4281.771499999999,
+          "firstRouteMs": 65.05450000000201
+        },
+        {
+          "pair": 3,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 1284.256
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 921.907
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 868.023
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 852.287
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 575.044
+            },
+            {
+              "url": "/",
+              "ms": 460.733
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=4989ffd4",
+              "ms": 380.537
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=4989ffd4",
+              "ms": 371.165
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 364.6
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 347.51
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 346.46
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=4989ffd4",
+              "ms": 174.751
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 135.984
+            },
+            {
+              "url": "/src/boot/firebase.js",
+              "ms": 129.126
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=4989ffd4",
+              "ms": 118.384
+            }
+          ],
+          "httpMs": 2110.2137999999977,
+          "initialPageMs": 2507.1852,
+          "spawnToPageMs": 4617.401299999998,
+          "firstRouteMs": 71.4230000000025
+        }
+      ]
+    },
+    {
+      "label": "authenticated-candidate",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:47:40.791Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "authenticated": true,
+        "hashes": {
+          "quasar.config.js": "72487b46f43f179b7777e41453c8cd67e279287e41cefdfffb9b1e931b9064aa",
+          "package-lock.json": "5f1b9b59d93626c20aedb6b88941a3366dbdb3c53cf7feb8314465b5a0a20adc",
+          "scripts/measure-startup.mjs": "df3061a516df55135d7a611613136f9288c9b078f44545f4021fbf4251b5127e"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=b4a7a5d1",
+              "ms": 812.269
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 661.335
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=94c9b38d",
+              "ms": 627.009
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 601.8
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=3579e5a1",
+              "ms": 561.822
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 555.316
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=6561c641",
+              "ms": 547.623
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=9eb923a3",
+              "ms": 536.663
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 510.819
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 505.406
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=828157ae",
+              "ms": 486.495
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 421.862
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=f59ad29b",
+              "ms": 237.163
+            },
+            {
+              "url": "/",
+              "ms": 193.473
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 178.348
+            }
+          ],
+          "httpMs": 1939.0751,
+          "initialPageMs": 1938.2105999999999,
+          "spawnToPageMs": 3877.2954999999997,
+          "firstRouteMs": 78.05429999999978,
+          "registrationToLibraryMs": 299.22789999999986,
+          "settingsMs": 138.91579999999976,
+          "importExportMs": 232.66640000000007
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 800.797
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 789.767
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 513.507
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 465.457
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 414.64
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 219.188
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 215.009
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=53cf15f2",
+              "ms": 211.462
+            },
+            {
+              "url": "/",
+              "ms": 185.869
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=53cf15f2",
+              "ms": 146.248
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=53cf15f2",
+              "ms": 142.571
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=53cf15f2",
+              "ms": 134.152
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 121.263
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 116.171
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 111.351
+            }
+          ],
+          "httpMs": 2074.1808,
+          "initialPageMs": 1715.1741000000002,
+          "spawnToPageMs": 3789.3615,
+          "firstRouteMs": 121.8127000000004,
+          "registrationToLibraryMs": 257.1256999999987,
+          "settingsMs": 132.3682000000008,
+          "importExportMs": 134.14220000000023
+        },
+        {
+          "pair": 2,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 720.456
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=1eaea662",
+              "ms": 702.145
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 659.56
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 603.066
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=36236588",
+              "ms": 598.358
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=b822b156",
+              "ms": 507.852
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=af37cb04",
+              "ms": 501.814
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=4a207e5d",
+              "ms": 475.644
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=04a3de37",
+              "ms": 450.737
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 435.52
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 431.972
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 409.961
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=ddbbcb72",
+              "ms": 225.804
+            },
+            {
+              "url": "/",
+              "ms": 202.256
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=ddbbcb72",
+              "ms": 201.691
+            }
+          ],
+          "httpMs": 2042.4038999999993,
+          "initialPageMs": 1946.7724999999991,
+          "spawnToPageMs": 3989.1803,
+          "firstRouteMs": 66.1882000000005,
+          "registrationToLibraryMs": 260.22700000000077,
+          "settingsMs": 141.9398000000001,
+          "importExportMs": 233.4989999999998
+        },
+        {
+          "pair": 2,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/",
+              "ms": 632.05
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 480.708
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 383.95
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 296.957
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 224.003
+            },
+            {
+              "url": "/src/utils/spark-budget.js",
+              "ms": 210.126
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 209.313
+            },
+            {
+              "url": "/src/boot/firebase.js",
+              "ms": 208.136
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 201.776
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/index.esm-YoKUvZpS.js?v=4989ffd4",
+              "ms": 170.612
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=4989ffd4",
+              "ms": 136.921
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=4989ffd4",
+              "ms": 126.09
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 101.441
+            },
+            {
+              "url": "/src/utils/chapter-utils.js",
+              "ms": 84.888
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 83.326
+            }
+          ],
+          "httpMs": 2029.8055000000022,
+          "initialPageMs": 1641.3758000000016,
+          "spawnToPageMs": 3671.188900000001,
+          "firstRouteMs": 126.009399999999,
+          "registrationToLibraryMs": 244.08290000000125,
+          "settingsMs": 126.87350000000151,
+          "importExportMs": 133.79190000000017
+        },
+        {
+          "pair": 3,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=14cf40f1",
+              "ms": 723.358
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 673.736
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=8ce06d4b",
+              "ms": 632.612
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 629.367
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 569.698
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=ffaf36be",
+              "ms": 539.926
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=7fa2b2e8",
+              "ms": 534.945
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=e8d02307",
+              "ms": 511.569
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 501.404
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 477.928
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=12480516",
+              "ms": 475.08
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 430.015
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=98c723cd",
+              "ms": 248.485
+            },
+            {
+              "url": "/",
+              "ms": 210.476
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/dist-BO-bZqa_.js?v=98c723cd",
+              "ms": 167.758
+            }
+          ],
+          "httpMs": 1910.6679000000004,
+          "initialPageMs": 1974.4146999999975,
+          "spawnToPageMs": 3885.0865000000013,
+          "firstRouteMs": 105.75170000000071,
+          "registrationToLibraryMs": 258.0083000000013,
+          "settingsMs": 141.3715000000011,
+          "importExportMs": 216.57790000000023
+        },
+        {
+          "pair": 3,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 952.656
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 677.206
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 668.813
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 626.524
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 417.753
+            },
+            {
+              "url": "/",
+              "ms": 306.014
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 276.468
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=fd4e8310",
+              "ms": 273.323
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 237.756
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 236.489
+            },
+            {
+              "url": "/src/services/manga-service.js",
+              "ms": 225.22
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=fd4e8310",
+              "ms": 161.29
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/index.esm-YoKUvZpS.js?v=fd4e8310",
+              "ms": 159.327
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_app.js?v=fd4e8310",
+              "ms": 140.804
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=fd4e8310",
+              "ms": 129.583
+            }
+          ],
+          "httpMs": 1674.4517000000014,
+          "initialPageMs": 1930.1461000000018,
+          "spawnToPageMs": 3604.5996000000014,
+          "firstRouteMs": 77.93209999999817,
+          "registrationToLibraryMs": 239.41649999999936,
+          "settingsMs": 139.87160000000222,
+          "importExportMs": 139.73589999999967
+        }
+      ]
+    },
+    {
+      "label": "baseline-debug",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:43:53.265Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 10120.135
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 10099.914
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 10015.236
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=9187e34a",
+              "ms": 453.542
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 425.329
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/index.esm-YoKUvZpS.js?v=4eeec7e7",
+              "ms": 149.872
+            },
+            {
+              "url": "/",
+              "ms": 139.742
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 138.075
+            },
+            {
+              "url": "/src/services/shared-library.js",
+              "ms": 129.767
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 127.557
+            },
+            {
+              "url": "/src/utils/manga-edit.js",
+              "ms": 126.689
+            },
+            {
+              "url": "/src/utils/normalize-title.js",
+              "ms": 126.492
+            },
+            {
+              "url": "/src/constants/manga-options.js",
+              "ms": 125.1
+            },
+            {
+              "url": "/node_modules/vite/dist/client/env.mjs",
+              "ms": 115.483
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=4eeec7e7",
+              "ms": 112.299
+            }
+          ],
+          "httpMs": 2150.4183000000003,
+          "initialPageMs": 11768.5051,
+          "spawnToPageMs": 13918.9334,
+          "firstRouteMs": 63.875
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/",
+              "ms": 686.222
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 491.235
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 424.567
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 265.745
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 214.97
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 197.917
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 193.779
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_app.js?v=8f4301ae",
+              "ms": 192.495
+            },
+            {
+              "url": "/src/services/shared-library.js",
+              "ms": 192.047
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/index.esm-YoKUvZpS.js?v=8f4301ae",
+              "ms": 191.122
+            },
+            {
+              "url": "/src/utils/manga-edit.js",
+              "ms": 187.946
+            },
+            {
+              "url": "/src/utils/normalize-title.js",
+              "ms": 186.869
+            },
+            {
+              "url": "/src/constants/manga-options.js",
+              "ms": 185.581
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_firestore.js?v=8f4301ae",
+              "ms": 137.336
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 94.778
+            }
+          ],
+          "httpMs": 2054.530499999999,
+          "initialPageMs": 1726.8788000000022,
+          "spawnToPageMs": 3781.4128999999975,
+          "firstRouteMs": 81.6333999999988
+        }
+      ]
+    },
+    {
+      "label": "entry-debug",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:44:27.011Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 968.058
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 950.941
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=05589d9d",
+              "ms": 705.076
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=2c9bdca3",
+              "ms": 562.914
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=438dd44e",
+              "ms": 559.626
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 548.626
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=4fa1cd7c",
+              "ms": 529.054
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 464.128
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-i18n_dist_vue-i18n__runtime__esm-bundler__js.js?v=01123d03",
+              "ms": 420.781
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 344.869
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 341.742
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=2204ae2a",
+              "ms": 339.618
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 328.446
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 284.025
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 240.363
+            }
+          ],
+          "httpMs": 1609.5321,
+          "initialPageMs": 3383.9591,
+          "spawnToPageMs": 4993.5,
+          "firstRouteMs": 114.7498999999998
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 1046.573
+            },
+            {
+              "url": "/@vite/client",
+              "ms": 853.78
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 811.041
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 597.268
+            },
+            {
+              "url": "/.quasar/dev-spa/quasar-user-options.js",
+              "ms": 408.947
+            },
+            {
+              "url": "/.quasar/dev-spa/app.js",
+              "ms": 404.792
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/material-icons/material-icons.css",
+              "ms": 393.709
+            },
+            {
+              "url": "/node_modules/@quasar/extras/exports/roboto-font/roboto-font.css",
+              "ms": 392.491
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=8f4301ae",
+              "ms": 384.828
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=8f4301ae",
+              "ms": 315.9
+            },
+            {
+              "url": "/",
+              "ms": 296.132
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8f4301ae",
+              "ms": 284.183
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 277.878
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 272.087
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 270.85
+            }
+          ],
+          "httpMs": 1714.1378000000004,
+          "initialPageMs": 1859.5146000000004,
+          "spawnToPageMs": 3573.6568000000007,
+          "firstRouteMs": 134.22929999999906
+        }
+      ]
+    },
+    {
+      "label": "include-debug",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:45:05.088Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "failed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [],
+          "failure": "Server exited 1"
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "failed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [],
+          "failure": "Server exited 1"
+        }
+      ]
+    },
+    {
+      "label": "include-bare-debug",
+      "metadata": {
+        "recordedAt": "2026-10-23T04:45:25.016Z",
+        "revision": "120efac60414fe914341f74b74096657a6bc17b4",
+        "platform": "win32",
+        "release": "10.0.26200",
+        "cpu": "AMD Ryzen 9 3900X 12-Core Processor            ",
+        "logicalCpus": 24,
+        "memoryGiB": 31.91971206665039,
+        "node": "v24.18.0",
+        "browser": "153.0.8010.12",
+        "versions": {
+          "@quasar/app-vite": "3.8.1",
+          "quasar": "2.35.1",
+          "vite": "8.2.4",
+          "sass-embedded": "1.103.1"
+        },
+        "definition": "cold = .quasar and node_modules/.q-cache/dev-spa removed; warm = retained; fresh browser context each time; OS file cache not cleared; CLI spawn excludes npm wrapper; no login/data operations"
+      },
+      "results": [
+        {
+          "pair": 1,
+          "cache": "cold",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 754.289
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 692.627
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=9659888c",
+              "ms": 651.334
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 642.174
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.js?v=76f025ad",
+              "ms": 505.03
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/pinia.js?v=acc51f97",
+              "ms": 438.793
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 424.619
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue-router.js?v=ac2d2ea0",
+              "ms": 412.29
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=8789e4aa",
+              "ms": 396.734
+            },
+            {
+              "url": "/src/stores/auth-store.js",
+              "ms": 366.676
+            },
+            {
+              "url": "/src/router/routes.js",
+              "ms": 363.536
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/@quasar_app-vite.js?v=16bd2566",
+              "ms": 356.712
+            },
+            {
+              "url": "/",
+              "ms": 285.191
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=5ce8b869",
+              "ms": 223.641
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 179.175
+            }
+          ],
+          "httpMs": 2075.3456,
+          "initialPageMs": 1997.3678999999997,
+          "spawnToPageMs": 4072.7334,
+          "firstRouteMs": 51.45859999999993
+        },
+        {
+          "pair": 1,
+          "cache": "warm",
+          "status": "passed",
+          "blocked": [],
+          "errors": [],
+          "slowRequests": [
+            {
+              "url": "/@vite/client",
+              "ms": 934.032
+            },
+            {
+              "url": "/@vite-plugin-checker-runtime",
+              "ms": 678.86
+            },
+            {
+              "url": "/.quasar/dev-spa/client-entry.js",
+              "ms": 638.653
+            },
+            {
+              "url": "/node_modules/quasar/dist/quasar.sass",
+              "ms": 635.347
+            },
+            {
+              "url": "/src/css/app.scss",
+              "ms": 380.865
+            },
+            {
+              "url": "/",
+              "ms": 289.564
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_dist_quasar__client__js.js?v=53cf15f2",
+              "ms": 281.282
+            },
+            {
+              "url": "/src/router/index.js",
+              "ms": 246.378
+            },
+            {
+              "url": "/src/App.vue",
+              "ms": 233.349
+            },
+            {
+              "url": "/src/stores/index.js",
+              "ms": 232.091
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/vue.runtime.esm-bundler-DfxAOUeA.js?v=53cf15f2",
+              "ms": 202.408
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/quasar_lang_es__js.js?v=53cf15f2",
+              "ms": 160.015
+            },
+            {
+              "url": "/src/services/library-cursors.js",
+              "ms": 135.707
+            },
+            {
+              "url": "/src/services/shared-library.js",
+              "ms": 135.137
+            },
+            {
+              "url": "/node_modules/.q-cache/dev-spa/vite-spa/deps/firebase_app.js?v=53cf15f2",
+              "ms": 134.518
+            }
+          ],
+          "httpMs": 1575.1086999999998,
+          "initialPageMs": 1880.5418999999993,
+          "spawnToPageMs": 3455.6534,
+          "firstRouteMs": 72.25860000000102
+        }
+      ]
+    }
+  ]
+}

@@ -46,6 +46,12 @@ y los emuladores según el [arranque Firebase](/reports/development/firebase-sta
 
 ## Calidad
 
+Para medir el servidor de desarrollo y la primera navegación en Windows, consulta
+el [diagnóstico ML-18](/reports/development/ml-18-windows-startup-2026-10-23).
+`npm run diagnose:startup -- local 3` conserva muestras y fallos; elimina únicamente
+las cachés generadas del checkout indicadas en ese procedimiento. Ejecútalo sin otro
+servidor de desarrollo en esa misma carpeta.
+
 ```sh
 npm run lint:check
 npm test

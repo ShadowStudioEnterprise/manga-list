@@ -243,6 +243,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-18: arranque Windows (23/10)',
+        link: '/reports/development/ml-18-windows-startup-2026-10-23',
+      },
+      {
         text: 'Arranque de Firebase',
         link: '/reports/development/firebase-startup',
       },

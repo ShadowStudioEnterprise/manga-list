@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-23",
+  "platform": "Windows 11 25H2, kernel 10.0.26200",
+  "base": "120efac60414fe914341f74b74096657a6bc17b4",
+  "checks": [
+    { "command": "npm run lint", "exitCode": 0 },
+    { "command": "npm run lint:check", "exitCode": 0 },
+    { "command": "npm test", "exitCode": 0, "passed": 121, "failed": 0 },
+    { "command": "npm run docs:build", "exitCode": 0, "warning": "Existing chunk >500 kB" },
+    {
+      "command": "npm run docs:check",
+      "exitCode": 0,
+      "pages": 76,
+      "fingerprints": 25,
+      "commits": 59,
+      "localTargets": 723
+    },
+    { "command": "npm run check:spark", "exitCode": 0, "scope": "local static only" },
+    { "command": "npm run audit:security", "exitCode": 0, "findings": 0 },
+    { "command": "npm run audit:security:built", "exitCode": 0, "findings": 0 },
+    {
+      "command": "npm run build",
+      "exitCode": 0,
+      "scope": "SPA with public demo configuration; no deployment"
+    },
+    { "command": "git diff --check", "exitCode": 0 }
+  ],
+  "diagnostics": {
+    "baselineCold": { "samples": 6, "failedWith504": 5 },
+    "candidateCold": { "samples": 8, "passed": 8 },
+    "candidateWarm": { "samples": 8, "passed": 8 },
+    "candidateAuthenticated": { "samples": 6, "passed": 6 },
+    "negativeControl": "The SDK-prebundle regression fails on the original configuration; production/mode preservation passes.",
+    "authenticatedBaselineAttempt": "No samples: other checkout occupied emulator ports. Other processes were neither stopped nor reused."
+  },
+  "limitations": [
+    "OS file cache and concurrent local workload were not controlled.",
+    "General Windows development stalls remain unresolved; retain the 23.46s baseline outlier.",
+    "CI must be checked on the PR SHA separately; Ubuntu CI is not Windows timing evidence.",
+    "No remote Firebase, real data, IAM, billing, merge or deployment operations."
+  ]
+}

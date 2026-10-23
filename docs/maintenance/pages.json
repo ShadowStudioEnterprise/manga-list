@@ -300,6 +300,10 @@
     "docs/security/public-inventory.md": {
       "scope": "ML-13 auditoría de repositorio y privacidad",
       "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
+    },
+    "docs/reports/development/ml-18-windows-startup-2026-10-23.md": {
+      "scope": "ML-18: evidencia local Windows del 23/10/2026",
+      "decision": "Mediciones frías/calientes, fallos y carga concurrente declarados; optimización solo SPA dev, sin certificar producción ni cierre de pausas históricas."
     }
   }
 }

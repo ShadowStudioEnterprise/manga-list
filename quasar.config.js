@@ -37,6 +37,18 @@ export default defineConfig((ctx) => {
     build: {
       defineEnv: { MANGALIST_BUILD_INFO: buildInfo },
       extendViteConf(config) {
+        // Quasar injects the entry into index.html after the optimizer scans it.
+        // Prebundle boot dependencies together to avoid late shared-chunk changes.
+        if (ctx.dev && ctx.mode.spa) {
+          config.optimizeDeps ||= {}
+          config.optimizeDeps.include ||= []
+          config.optimizeDeps.include.push(
+            'firebase/app',
+            'firebase/auth',
+            'firebase/firestore',
+            'vue-i18n',
+          )
+        }
         config.plugins ||= []
         config.plugins.push(buildInfoPlugin(buildInfo, ctx.mode.pwa ? 'pwa' : 'spa'))
         config.plugins.push(legalNoticesPlugin(ctx.appPaths?.appDir || process.cwd()))

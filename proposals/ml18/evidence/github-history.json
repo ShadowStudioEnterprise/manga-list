@@ -1,0 +1,38 @@
+{
+  "main": "120efac60414fe914341f74b74096657a6bc17b4",
+  "issuesExamined": 19,
+  "matches": [
+    {
+      "number": 19,
+      "title": "ML-09: prevención y recuperación local ante agotamiento Spark",
+      "state": "open",
+      "matches": [
+        "- [x] Chromium/Firefox: cohorte de regresión 44 aprobadas y una omitida en Windows; el nuevo caso tuvo dos fallos de selector en la primera ejecución, conservados. Corregido y repetido: 2/2 aprobados. La primera suite NO se presenta como un pase completo; CI ejecutará el conjunto final."
+      ]
+    },
+    {
+      "number": 7,
+      "title": "ML-08: auditar capacidad Spark y añadir copias divididas recuperables",
+      "state": "closed",
+      "matches": [
+        "Se aislaron incidencias de las herramientas: rutas largas de Windows producían File de 0 bytes y capturas completas de Chromium alteraban maxTouchPoints. Se conservan los intentos y diagnósticos; las validaciones del producto no se relajan. Los scripts auxiliares de Google detectados en WebKit se abortan antes de salir y se distinguen de solicitudes inesperadas. No hay certificación de cuota facturable, memoria física o móviles reales. Paquete local reproducible `ml08-mobile-proof.zip`, SHA-256 `C697947A9FBDED383A9D86A6D35DD42F4607769A062D24A87E0DB18D8B6E5B51`, con 2899 archivos verificados. No hay nuevo commit, despliegue ni modificación de la CI predeterminada por este ensayo."
+      ]
+    },
+    {
+      "number": 6,
+      "title": "ML-07: optimizar consultas y sincronización Firestore entre pestañas",
+      "state": "closed",
+      "matches": [
+        "En los cuatro recorridos se recibe la edición, se conserva la búsqueda, se exportan las 500 obras con el cambio y cerrar al propietario produce un único relevo. Cero solicitudes externas registradas. La reanudación de emergencia no se activó. La suspensión completa detiene todas las pestañas y usa una edición externa contra el emulador; el ciclo nativo prueba por separado una seguidora activa. Alcance completo: Chromium/Linux, sin extrapolar a suspensión del sistema, Windows o Firefox."
+      ]
+    },
+    {
+      "number": 3,
+      "title": "MangaList 1.0: cursores Firestore y propuestas de retención y asistencia",
+      "state": "closed",
+      "matches": [
+        "Windows local, 19/10: 16/16 pruebas de reglas/servicio y nueva prueba de 10000 obras correctas; conserva la evidencia previa de 78 regresiones y 5 pruebas selectivas. La ráfaga de fixtures puede agotar admisiones: se comprueba que JSON quede bloqueado, se adelanta el reloj local 61 segundos y se usa Reintentar, sin elevar límites. Se confirman las 10000 obras, se recorren las 417 páginas y se descargan todos los registros. Solo 24 tarjetas, 4601 nodos DOM y cero targets adicionales durante las interacciones. El arranque frío de desarrollo y los dispositivos reales siguen pendientes de aceptación; no cambian timeouts ni código de aplicación."
+      ]
+    }
+  ]
+}

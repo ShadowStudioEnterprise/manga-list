@@ -14,6 +14,8 @@ secciones principales del portal.
 
 ## Proyecto y arquitectura
 
+- [ML-18: diagnóstico de arranque en Windows (23/10)](development/ml-18-windows-startup-2026-10-23.md).
+
 - [ML-03: diagramas técnicos y verificación (22/10)](development/ml-03-diagrams-2026-10-22.md).
 
 - [Especificación de MangaList, versión 1](project/specification-v1.md).
