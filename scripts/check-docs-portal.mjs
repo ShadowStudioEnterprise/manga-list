@@ -63,7 +63,7 @@ try {
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 1000 })
       await page.emulateMedia({ colorScheme: mode, reducedMotion: 'reduce' })
-      await page.goto(site.origin)
+      await page.goto(`${site.origin}/project/`)
       await page.locator('.ml-hero').waitFor()
       await page.evaluate((theme) => {
         document.documentElement.classList.toggle('dark', theme === 'dark')
@@ -102,14 +102,14 @@ try {
   console.log('PASS: eight home layouts and WCAG AA scans')
   await page.setViewportSize({ width: 1440, height: 1000 })
   await page.emulateMedia({ colorScheme: 'light' })
-  await page.goto(site.origin)
+  await page.goto(`${site.origin}/project/`)
   await page.getByRole('switch', { name: 'Cambiar a modo oscuro' }).click()
   await page.locator('html.dark').waitFor()
   await page.reload()
   await page.locator('html.dark').waitFor()
   await page.getByRole('switch', { name: 'Cambiar a modo claro' }).click()
   await page.locator('html:not(.dark)').waitFor()
-  await page.goto(site.origin)
+  await page.goto(`${site.origin}/project/`)
   await page.keyboard.press('Tab')
   assert.equal(await page.locator(':focus').textContent(), 'Saltar al contenido')
   await page.keyboard.press('Enter')
@@ -174,7 +174,7 @@ try {
   }
   console.log('PASS: five contract/audit pages, mobile/desktop, light/dark and WCAG AA scans')
   await page.setViewportSize({ width: 390, height: 844 })
-  await page.goto(site.origin)
+  await page.goto(`${site.origin}/project/`)
   await page.getByRole('button', { name: 'mobile navigation' }).click()
   await page.locator('.VPNavScreen').getByRole('link', { name: 'Guía', exact: true }).click()
   await page.waitForURL('**/guide/introduction')
@@ -360,7 +360,7 @@ try {
     new URL(route.request().url()).origin === site.origin ? route.continue() : route.abort(),
   )
   ffPage.on('pageerror', (error) => errors.push(error.message))
-  await ffPage.goto(site.origin)
+  await ffPage.goto(`${site.origin}/project/`)
   await ffPage.locator('.ml-primary').click()
   await ffPage.waitForURL('**/guide/introduction')
   assert(await ffPage.evaluate(() => document.documentElement.scrollWidth <= innerWidth))

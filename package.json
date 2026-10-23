@@ -27,6 +27,7 @@
     "docs:preview": "vitepress preview docs",
     "deploy:docs": "npm run check:spark:remote && firebase deploy --only hosting:docs --project mangalist-61bb8",
     "docs:check": "node scripts/check-docs-integrity.mjs",
+    "test:landing": "node scripts/check-public-landing.mjs",
     "audit:security": "node scripts/security-audit.mjs",
     "audit:security:built": "node scripts/security-audit.mjs --built"
   },

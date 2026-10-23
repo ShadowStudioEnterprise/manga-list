@@ -53,6 +53,8 @@ jobs:
           npm run audit:security:built
       - name: Verify local documentation diagrams, accessibility and links
         run: node scripts/check-docs-portal.mjs
+      - name: Verify public landing locally (no Firebase)
+        run: npm run test:landing
       - name: Run regression tests
         run: npm test
       - name: Reproduce ML-08 capacity and offline payload sensitivities
