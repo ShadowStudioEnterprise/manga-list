@@ -1,0 +1,13 @@
+✔ fetch counts decoded protocol messages and forwards original arguments/result unchanged (34.194282ms)
+✔ XHR remains measured and original calls retain receiver, arguments and return values (1.484444ms)
+✔ unrelated requests and nested text do not create false target counts or leak auth bodies (1.156583ms)
+✔ Request bodies are read from a clone without consuming the original (14.483006ms)
+✔ unreadable or malformed payloads are explicitly reported rather than counted as success (1.578574ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 189.934974

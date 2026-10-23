@@ -112,3 +112,16 @@ explícito, conserva búsqueda y escritura concurrente y comprueba que cerrar al
 dueño retirado no abre otra escucha. Unitarias: 134 aprobadas. La suite completa
 Firestore/E2E y builds de esta nueva revisión se registran separadamente en CI y en
 la entrega final; los CI antiguos no los sustituyen. ML-09 permanece abierta.
+
+## Safari Mac — evidencia del 24/10/2026
+
+La validación automatizada en Safari real 18.6 confirma las 500 obras, recuperación
+de escritura pendiente, exportaciones completas y una sola escucha compartida
+entre dos pestañas. La captura fetch + XHR acredita cero aperturas durante la
+pausa y exactamente una tras Reintentar, con espera real de 15 minutos.
+
+**Safari Mac sigue sin aprobación completa:** al recargar durante la cuota se
+pierde la búsqueda. Ese fallo no se corrige con esta entrega de evidencia.
+[Informe, registros, verificadores y originales con hashes](evidence/safari-mac-2026-10-24/README.md).
+La revisión de runtime probada es 6712945; los nuevos archivos son de evidencia.
+Safari/iOS y los demás criterios operativos pendientes no se dan por cumplidos.
