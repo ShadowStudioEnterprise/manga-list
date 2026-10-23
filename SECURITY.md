@@ -62,3 +62,7 @@ procedimiento autorizado. Este documento no autoriza cambios remotos.
 
 La auditoría ML-13 y la lista de comprobaciones manuales están en
 [docs/security/iam-audit.md](docs/security/iam-audit.md).
+
+El [paquete de revisión manual ML-13](proposals/ml13/manual-review.md) organiza
+comprobaciones, decisiones y acta vacía. La copia cumplimentada debe permanecer
+fuera del repositorio en almacenamiento con acceso restringido confirmado.
