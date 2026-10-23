@@ -4,6 +4,17 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — candidata ML-09
+
+- Pausa local de cuota persistente por proyecto y compartida entre pestañas del
+  mismo origen; un error en cualquier operación detiene los listeners activos.
+- Plazo de un minuto sin confirmación de biblioteca, backoff de reconexión manual
+  y protección ante fallos síncronos, conservando búsqueda/filtros del mismo dueño.
+- Importación detenida al primer bloque con errores y causa visible; exportación
+  simultánea por cuenta rechazada antes de leer; admisión por intento del marcador.
+- Sin cambios de esquema, reglas, configuración remota o dependencias. Presupuestos
+  locales separados de cuota global; aceptación operativa y publicación pendientes.
+
 ## Sin publicar — propuesta ML-02
 
 - Portada del portal con hero personalizado, ilustración de biblioteca ficticia,

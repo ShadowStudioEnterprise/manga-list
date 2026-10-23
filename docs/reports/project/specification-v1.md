@@ -31,6 +31,22 @@ documento es independiente del esquema de obras, de la exportación y del sello 
 Los enlaces señalan pruebas relacionadas, no una demostración formal de cada requisito.
 Los casos de CI con emuladores no constituyen aceptación operativa en producción.
 
+## Ampliación compatible de recuperación Spark (tarea ML-09)
+
+La candidata sobre main `120efac` amplía ML-005, ML-007 y ML-008 con pausa local
+de cuota persistente por proyecto, cancelación de listeners activos, plazo de
+60 s sin confirmación y backoff para reintentos manuales. No abre reconexiones
+automáticas. Importaciones detienen grupos posteriores ante cualquier error,
+conservan éxitos e informan causa; exportaciones simultáneas de la misma cuenta
+se rechazan antes de otra lectura. La búsqueda/filtros se conservan al recuperar
+el mismo dueño y se limpian al cambiar cuenta o desuscribir.
+
+No cambian esquema, formato de copia, IDs recuperables, reglas ni marcador
+deleting; clientes anteriores siguen siendo compatibles con esas reglas.
+La pausa por origen/perfil no coordina otros dispositivos ni mide cuota global.
+Véanse [defensas, reproducción y aceptación pendiente](../firestore/ml-09-recovery-2026-10-23.md).
+Esta ampliación no declara ML-09 completada ni autoriza producción.
+
 ML-001 incluye la [validación temprana del arranque](../development/firebase-startup.md): una petición de
 emuladores incompatible se rechaza antes de inicializar servicios. Una app existente debe
 coincidir con la configuración declarada; esa coherencia local no certifica su plan remoto.
