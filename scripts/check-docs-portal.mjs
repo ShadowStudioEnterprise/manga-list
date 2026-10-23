@@ -143,6 +143,36 @@ try {
     await page.screenshot({ path: resolve(output, `guide-${mode}.png`), fullPage: true })
   }
   console.log('PASS: keyboard, search and document WCAG AA scans')
+  // ML-04/05: exercise the new reference pages, including wide contract tables.
+  results.contractPages = []
+  for (const route of [
+    '/reference/services',
+    '/reference/synchronization',
+    '/reference/import-export',
+    '/maintenance/documentation-audit',
+    '/maintenance/page-inventory',
+  ]) {
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 1000 })
+      await page.goto(`${site.origin}${route}`)
+      await page.locator('.vp-doc h1').waitFor()
+      assert.equal(await page.locator('.vp-doc h1').count(), 1)
+      assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), route)
+      for (const mode of ['light', 'dark']) {
+        await page.evaluate(
+          (theme) => document.documentElement.classList.toggle('dark', theme === 'dark'),
+          mode,
+        )
+        const axe = await new AxeBuilder({ page })
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+          .analyze()
+        results.accessibility.push({ page: route, mode, width, violations: axe.violations })
+        assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations))
+      }
+      results.contractPages.push({ route, width, overflow: false })
+    }
+  }
+  console.log('PASS: five contract/audit pages, mobile/desktop, light/dark and WCAG AA scans')
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto(site.origin)
   await page.getByRole('button', { name: 'mobile navigation' }).click()

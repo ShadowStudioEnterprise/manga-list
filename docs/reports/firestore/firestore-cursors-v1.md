@@ -1,5 +1,12 @@
 # Biblioteca con cursores Firestore — propuesta de implementación 1.0
 
+::: info Lectura de versión — ML-05, 23/10/2026
+Diseño histórico de bloques de 1000/1001, sustituido por ML-07 en main.
+Las cifras y fórmulas de este informe describen aquella versión; el contrato vigente
+usa 5000/5001 y aperturas escalonadas: [referencia](/reference/synchronization).
+Véase [estado y evidencias](/maintenance/documentation-audit).
+:::
+
 Iteración de costes desde `68ad672` (PR #3 integrado). El despliegue anterior
 se documentó fuera de esta iteración; esta rama no publica cambios ni modifica
 reglas, índices o configuración remota. Véase la [medición comparativa](firestore-cost-review-2026-10-19.md).

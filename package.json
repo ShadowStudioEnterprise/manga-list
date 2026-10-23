@@ -25,7 +25,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "deploy:docs": "npm run check:spark:remote && firebase deploy --only hosting:docs --project mangalist-61bb8"
+    "deploy:docs": "npm run check:spark:remote && firebase deploy --only hosting:docs --project mangalist-61bb8",
+    "docs:check": "node scripts/check-docs-integrity.mjs"
   },
   "dependencies": {
     "@quasar/extras": "^2.0.4",

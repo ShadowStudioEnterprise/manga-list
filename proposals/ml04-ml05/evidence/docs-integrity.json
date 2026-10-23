@@ -1,0 +1,2219 @@
+{
+  "sourceFiles": [
+    "src/services/account-service.js",
+    "src/services/auth-service.js",
+    "src/services/export-service.js",
+    "src/services/import-service.js",
+    "src/services/library-cursors.js",
+    "src/services/manga-service.js",
+    "src/services/multipart-backup.js",
+    "src/services/shared-library.js",
+    "src/stores/auth-store.js",
+    "src/stores/index.js",
+    "src/stores/manga-store.js",
+    "src/stores/settings-store.js",
+    "src/boot/firebase.js",
+    "src/router/index.js",
+    "src/router/routes.js",
+    "src/utils/spark-budget.js",
+    "src/utils/firebase-errors.js",
+    "src/utils/validators.js",
+    "src/utils/manga-edit.js",
+    "src/constants/manga-options.js",
+    "src/composables/use-library-pagination.js",
+    "src/pages/ImportExportPage.vue",
+    "src/components/import/MultipartBackupPanel.vue",
+    "firestore.rules",
+    "release-contract.json"
+  ],
+  "pages": [
+    {
+      "path": "docs/architecture/diagrams.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/architecture/overview.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/database/firestore.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/development/installation.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/guide/introduction.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/index.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/maintenance/documentation-audit.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/maintenance/page-inventory.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/operations/deployment.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/reference/import-export.md",
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    {
+      "path": "docs/reference/services.md",
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    {
+      "path": "docs/reference/synchronization.md",
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    {
+      "path": "docs/reports/accounts/abandoned-deletion-assistance.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/account-marker-retention-proposal.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/manual-marker-review.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-acceptance-2026-10-21.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-activation-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-d3-permissions-legal-review-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-operating-procedure.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-test-evidence.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-case-and-tests.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-identity-and-permissions-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-interrupted-deletion.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-mailbox-and-roles-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-rehearsal-and-custody-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/ml-12-test-evidence.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/nextcloud-implementation-proposal.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/proton-drive-implementation-proposal.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/proton-drive-rehearsal-pack.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/proton-drive-security-custody-procedure.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/accounts/proton-drive-service-rehearsal-2026-10-21.md",
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    {
+      "path": "docs/reports/development/dependencies-2026-10-18.md",
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    {
+      "path": "docs/reports/development/firebase-startup.md",
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    {
+      "path": "docs/reports/development/ml-03-diagrams-2026-10-22.md",
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    {
+      "path": "docs/reports/features/drafts-and-pwa-updates.md",
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    {
+      "path": "docs/reports/features/import-recovery.md",
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    {
+      "path": "docs/reports/features/multipart-backup-2026-10-21.md",
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    {
+      "path": "docs/reports/features/synchronization-and-export.md",
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    {
+      "path": "docs/reports/firestore/firestore-cost-review-2026-10-19.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/firestore-cursors-v1.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/library-scale-2026-10-18.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-07-acceptance-2026-10-20.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-08-policy-2026-10-21.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/ml-08-recovery-2026-10-21.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/transaction-read-budget-2026-10-19.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/verification-10000-2026-10-19.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/firestore/verification-cursors-2026-10-18.md",
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    {
+      "path": "docs/reports/index.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    {
+      "path": "docs/reports/operations/release-record-template.md",
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    {
+      "path": "docs/reports/operations/releases-and-recovery.md",
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    {
+      "path": "docs/reports/project/roadmap.md",
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    {
+      "path": "docs/reports/project/specification-v1.md",
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    {
+      "path": "docs/reports/project/technical-review-2026-10-16.md",
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    {
+      "path": "docs/reports/quality/accessibility-2026-10-18.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/quality/browser-coverage-2026-10-18.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/quality/live-resize-2026-10-18.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/quality/navigation-history-2026-10-18.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/quality/password-recovery-emulator.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/quality/verification-2026-10-16.md",
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    {
+      "path": "docs/reports/security/spark-guard-entrypoints.md",
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    {
+      "path": "docs/reports/security/spark-only.md",
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    {
+      "path": "docs/reports/security/verification-spark-2026-10-18.md",
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    {
+      "path": "docs/reports/security/verification-spark-console-2026-10-18.md",
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    {
+      "path": "docs/roadmap/index.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    {
+      "path": "docs/security/spark.md",
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    }
+  ],
+  "commits": [
+    {
+      "commit": "0148d5b8d7c06cd845be413cc1ecaccd4f354815",
+      "valid": true
+    },
+    {
+      "commit": "056ff69",
+      "valid": true
+    },
+    {
+      "commit": "14d65b4",
+      "valid": true
+    },
+    {
+      "commit": "161428642eaa41aaba78548ad2aeff3d90b90e25",
+      "valid": true
+    },
+    {
+      "commit": "163a098",
+      "valid": true
+    },
+    {
+      "commit": "1a6fdf6",
+      "valid": true
+    },
+    {
+      "commit": "23e9b1d",
+      "valid": true
+    },
+    {
+      "commit": "23e9b1da5b2ede0159038057fd46906d0bde513e",
+      "valid": true
+    },
+    {
+      "commit": "30ab82b",
+      "valid": true
+    },
+    {
+      "commit": "318a495",
+      "valid": true
+    },
+    {
+      "commit": "331d400",
+      "valid": true
+    },
+    {
+      "commit": "331d40021391fa8a6a1a459576f21e9f572a2aa6",
+      "valid": true
+    },
+    {
+      "commit": "36fe4f3",
+      "valid": true
+    },
+    {
+      "commit": "36fe4f3bd46615a4e18983d506fb79d2337c768c",
+      "valid": true
+    },
+    {
+      "commit": "3bbe47a",
+      "valid": true
+    },
+    {
+      "commit": "42a11f9",
+      "valid": true
+    },
+    {
+      "commit": "4547f7d",
+      "valid": true
+    },
+    {
+      "commit": "48a476e",
+      "valid": true
+    },
+    {
+      "commit": "5326add",
+      "valid": true
+    },
+    {
+      "commit": "5326add1e9fda07eba8a89ebd7eb3b7d76e9dfdb",
+      "valid": true
+    },
+    {
+      "commit": "55476c0683486909d005dd95f854d0ed71c782cf",
+      "valid": true
+    },
+    {
+      "commit": "5b35de937867b07504688e0909be1586a19befb4",
+      "valid": true
+    },
+    {
+      "commit": "61ac71a",
+      "valid": true
+    },
+    {
+      "commit": "68ad672",
+      "valid": true
+    },
+    {
+      "commit": "68ad6727e1c78201d7b45b217ae13a4d7cb66fc1",
+      "valid": true
+    },
+    {
+      "commit": "744cf70",
+      "valid": true
+    },
+    {
+      "commit": "74e454afd4ac2a4ff34d0eacaea7da9dcddfc5d1",
+      "valid": true
+    },
+    {
+      "commit": "7bf1d41",
+      "valid": true
+    },
+    {
+      "commit": "7df1aad",
+      "valid": true
+    },
+    {
+      "commit": "7eb4dae",
+      "valid": true
+    },
+    {
+      "commit": "9a43953",
+      "valid": true
+    },
+    {
+      "commit": "9a43953d1c0866fcf07cd8f33af53a88cf683d55",
+      "valid": true
+    },
+    {
+      "commit": "a420261",
+      "valid": true
+    },
+    {
+      "commit": "a6627d0",
+      "valid": true
+    },
+    {
+      "commit": "a6627d0a00371d2aaff0605884f05e7a1750f9f9",
+      "valid": true
+    },
+    {
+      "commit": "a72645d",
+      "valid": true
+    },
+    {
+      "commit": "a91cf02",
+      "valid": true
+    },
+    {
+      "commit": "a91cf026c24d7016e977ad1c4234b08179d78f49",
+      "valid": true
+    },
+    {
+      "commit": "aa9c8ca",
+      "valid": true
+    },
+    {
+      "commit": "ab34313",
+      "valid": true
+    },
+    {
+      "commit": "aeda50f",
+      "valid": true
+    },
+    {
+      "commit": "aeda50fde65f883caf60f61642ee57460017140d",
+      "valid": true
+    },
+    {
+      "commit": "aee7070",
+      "valid": true
+    },
+    {
+      "commit": "aee70706fbd638e164a7df16f75b1bee2a2d24c9",
+      "valid": true
+    },
+    {
+      "commit": "b1bc5f3b74b159fad0872a6227284d971a2d8bec",
+      "valid": true
+    },
+    {
+      "commit": "b92e90f",
+      "valid": true
+    },
+    {
+      "commit": "b92e90f72d89f7ddb9ad7daec6bc478be0ded337",
+      "valid": true
+    },
+    {
+      "commit": "c563bba781760a8433680d1e120d486b310b8e75",
+      "valid": true
+    },
+    {
+      "commit": "ca37d0b",
+      "valid": true
+    },
+    {
+      "commit": "d937549",
+      "valid": true
+    },
+    {
+      "commit": "e1d3fe1",
+      "valid": true
+    },
+    {
+      "commit": "e2de55edfe44e38c7a8322520ead0e73b60f0022",
+      "valid": true
+    },
+    {
+      "commit": "e799651",
+      "valid": true
+    },
+    {
+      "commit": "eb5136b7196b4796e394fa4d87ac12339fa20752",
+      "valid": true
+    },
+    {
+      "commit": "eb7a38b2f0f9c7807b3c4641817b091b65ff3f50",
+      "valid": true
+    },
+    {
+      "commit": "effcef43cef0585fe32f1dbb1dc2d435152ffc7f",
+      "valid": true
+    },
+    {
+      "commit": "fe82930",
+      "valid": true
+    }
+  ],
+  "repositoryLinks": [
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/router/index.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/stores/auth-store.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/firestore.rules",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/auth-service.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/shared-library.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/library-cursors.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/composables/use-library-pagination.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/import-service.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/pages/ImportExportPage.vue",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/multipart-backup.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/account-service.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/65e6a463f941d6c015f2caa1656cb86470dff467/docs/reports/accounts/ml-12-rules-audit.json",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/regressions.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/tree/a6627d0a00371d2aaff0605884f05e7a1750f9f9/proposals/ml03/evidence",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/4547f7d/tests/e2e/ml06-tabs.spec.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CONTRIBUTING.md",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/SECURITY.md",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CHANGELOG.md",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/spark-policy.json",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/scripts/check-spark.mjs",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/spark.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/firestore.rules",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/firestore/security.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/e2e/library.spec.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/services/manga-service.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/library-cursors.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/firestore/library-cursors.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/e2e/library-scale.spec.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/utils/spark-budget.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/services/account-service.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/account-service.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/import-recovery.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/export-verification.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/form-drafts.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/quasar.config.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/pwa/updates.test.js",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/release-contract.json",
+      "valid": true
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/build-evidence.test.js",
+      "valid": true
+    }
+  ],
+  "externalLinks": [
+    {
+      "url": "https://buy.thegood.cloud/en/faq",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://cloud.tab.digital/pricing",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://console.cloud.google.com/billing/linkedaccount?project=mangalist-61bb8",
+      "pages": [
+        "docs/reports/security/verification-spark-console-2026-10-18.md",
+        "rendered:reports/security/verification-spark-console-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://console.cloud.google.com/firestore/databases?project=mangalist-61bb8",
+      "pages": [
+        "docs/reports/security/verification-spark-console-2026-10-18.md",
+        "rendered:reports/security/verification-spark-console-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://console.firebase.google.com/project/mangalist-61bb8/overview",
+      "pages": [
+        "docs/reports/security/verification-spark-console-2026-10-18.md",
+        "rendered:reports/security/verification-spark-console-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://developer.chrome.com/docs/web-platform/page-lifecycle-api",
+      "pages": [
+        "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://developer.chrome.com/docs/workbox/handling-service-worker-updates",
+      "pages": [
+        "docs/reports/features/drafts-and-pwa-updates.md",
+        "rendered:reports/features/drafts-and-pwa-updates.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage",
+      "pages": [
+        "docs/reports/features/drafts-and-pwa-updates.md",
+        "rendered:reports/features/drafts-and-pwa-updates.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.github.com/en/pull-requests/how-tos/merge-and-close-pull-requests/troubleshooting-required-status-checks",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/available-rules-for-rulesets",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/creating-rulesets-for-a-repository",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/managing-rulesets-for-a-repository",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/configuration_files/files_locking_transactional.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/caching_configuration.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/logging_configuration.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/configuration_user/two_factor-auth.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/installation/harden_server.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/installation/system_requirements.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.nextcloud.com/server/stable/admin_manual/maintenance/backup.html",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "docs/reports/accounts/nextcloud-implementation-proposal.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier.htm",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://docs.syncthing.net/users/faq.html",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/eli/reg/2016/679/",
+      "pages": [
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://eur-lex.europa.eu/legal-content/ES/ALL/?uri=CELEX%3A32016R0679",
+      "pages": [
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/auth/admin/manage-sessions",
+      "pages": [
+        "docs/reports/accounts/account-marker-retention-proposal.md",
+        "docs/reports/accounts/manual-marker-review.md",
+        "docs/reports/accounts/ml-11-activation-pack.md",
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "rendered:reports/accounts/account-marker-retention-proposal.html",
+        "rendered:reports/accounts/manual-marker-review.html",
+        "rendered:reports/accounts/ml-11-activation-pack.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/auth/web/custom-dependencies",
+      "pages": [
+        "docs/reports/project/technical-review-2026-10-16.md",
+        "rendered:reports/project/technical-review-2026-10-16.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/cli#deployment_commands",
+      "pages": [
+        "docs/reports/operations/releases-and-recovery.md",
+        "rendered:reports/operations/releases-and-recovery.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/emulator-suite/connect_auth#non-interactive_testing",
+      "pages": [
+        "docs/reports/quality/password-recovery-emulator.md",
+        "rendered:reports/quality/password-recovery-emulator.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/emulator-suite/connect_firestore",
+      "pages": [
+        "docs/reports/development/firebase-startup.md",
+        "docs/reports/firestore/firestore-cost-review-2026-10-19.md",
+        "rendered:reports/development/firebase-startup.html",
+        "rendered:reports/firestore/firestore-cost-review-2026-10-19.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/emulator-suite/connect_firestore#how_the_cloud_firestore_emulator_differs_from_production",
+      "pages": [
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/data-model",
+      "pages": ["docs/reports/security/spark-only.md", "rendered:reports/security/spark-only.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/manage-data/delete-data",
+      "pages": [
+        "docs/reports/accounts/account-marker-retention-proposal.md",
+        "docs/reports/accounts/manual-marker-review.md",
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "rendered:reports/accounts/account-marker-retention-proposal.html",
+        "rendered:reports/accounts/manual-marker-review.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/manage-data/enable-offline",
+      "pages": [
+        "docs/reports/features/synchronization-and-export.md",
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "rendered:reports/features/synchronization-and-export.html",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/manage-data/transactions",
+      "pages": [
+        "docs/reports/firestore/transaction-read-budget-2026-10-19.md",
+        "rendered:reports/firestore/transaction-read-budget-2026-10-19.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/pricing",
+      "pages": [
+        "docs/reference/synchronization.md",
+        "docs/reports/features/multipart-backup-2026-10-21.md",
+        "docs/reports/firestore/firestore-cost-review-2026-10-19.md",
+        "docs/reports/firestore/firestore-cursors-v1.md",
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "docs/reports/firestore/ml-08-policy-2026-10-21.md",
+        "rendered:reference/synchronization.html",
+        "rendered:reports/features/multipart-backup-2026-10-21.html",
+        "rendered:reports/firestore/firestore-cost-review-2026-10-19.html",
+        "rendered:reports/firestore/firestore-cursors-v1.html",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html",
+        "rendered:reports/firestore/ml-08-policy-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/pricing#listening_to_query_results",
+      "pages": [
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "docs/reports/firestore/ml-07-acceptance-2026-10-20.md",
+        "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/query-data/listen",
+      "pages": [
+        "docs/reports/features/synchronization-and-export.md",
+        "rendered:reports/features/synchronization-and-export.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/query-data/query-cursors",
+      "pages": [
+        "docs/reports/firestore/firestore-cursors-v1.md",
+        "rendered:reports/firestore/firestore-cursors-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/quotas",
+      "pages": [
+        "docs/reference/synchronization.md",
+        "docs/reports/accounts/account-marker-retention-proposal.md",
+        "docs/reports/accounts/manual-marker-review.md",
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "docs/reports/features/multipart-backup-2026-10-21.md",
+        "docs/reports/firestore/firestore-cost-review-2026-10-19.md",
+        "docs/reports/firestore/firestore-cursors-v1.md",
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "docs/reports/firestore/ml-08-policy-2026-10-21.md",
+        "rendered:reference/synchronization.html",
+        "rendered:reports/accounts/account-marker-retention-proposal.html",
+        "rendered:reports/accounts/manual-marker-review.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/features/multipart-backup-2026-10-21.html",
+        "rendered:reports/firestore/firestore-cost-review-2026-10-19.html",
+        "rendered:reports/firestore/firestore-cursors-v1.html",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-policy-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/quotas?hl=en",
+      "pages": ["docs/reports/security/spark-only.md", "rendered:reports/security/spark-only.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/quotas#free-quota",
+      "pages": [
+        "docs/reports/firestore/ml-07-acceptance-2026-10-20.md",
+        "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/security/rules-conditions",
+      "pages": [
+        "docs/reports/project/technical-review-2026-10-16.md",
+        "rendered:reports/project/technical-review-2026-10-16.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/firestore/storage-size",
+      "pages": [
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/hosting/manage-hosting-resources#rollback",
+      "pages": [
+        "docs/reports/operations/releases-and-recovery.md",
+        "rendered:reports/operations/releases-and-recovery.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/hosting/multisites",
+      "pages": ["docs/operations/deployment.md", "rendered:operations/deployment.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/hosting/usage-quotas-pricing",
+      "pages": [
+        "docs/reports/firestore/ml-08-capacity-2026-10-21.md",
+        "docs/security/spark.md",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html",
+        "rendered:security/spark.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/reference/js/auth#connectauthemulator",
+      "pages": [
+        "docs/reports/development/firebase-startup.md",
+        "rendered:reports/development/firebase-startup.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/reference/rest/auth#section-confirm-reset-password",
+      "pages": [
+        "docs/reports/quality/password-recovery-emulator.md",
+        "rendered:reports/quality/password-recovery-emulator.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/docs/storage/faqs-storage-changes-announced-sept-2024",
+      "pages": ["docs/reports/security/spark-only.md", "rendered:reports/security/spark-only.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://firebase.google.com/pricing",
+      "pages": ["docs/reports/security/spark-only.md", "rendered:reports/security/spark-only.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/advisories/GHSA-698v-4r3x-3vcv",
+      "pages": [
+        "docs/reports/firestore/ml-07-acceptance-2026-10-20.md",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/grpc/grpc-node/releases/tag/%40grpc%2Fgrpc-js%401.13.6",
+      "pages": [
+        "docs/reports/development/dependencies-2026-10-18.md",
+        "rendered:reports/development/dependencies-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/grpc/grpc-node/security/advisories/GHSA-m9gg-hp2v-232j",
+      "pages": [
+        "docs/reports/development/dependencies-2026-10-18.md",
+        "rendered:reports/development/dependencies-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/quasarframework/quasar/security/advisories/GHSA-89vp-x45c-52cq",
+      "pages": [
+        "docs/reports/development/dependencies-2026-10-18.md",
+        "rendered:reports/development/dependencies-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list",
+      "pages": [
+        "rendered:architecture/diagrams.html",
+        "rendered:architecture/overview.html",
+        "rendered:database/firestore.html",
+        "rendered:development/installation.html",
+        "rendered:guide/introduction.html",
+        "rendered:index.html",
+        "rendered:maintenance/documentation-audit.html",
+        "rendered:maintenance/page-inventory.html",
+        "rendered:operations/deployment.html",
+        "rendered:reference/import-export.html",
+        "rendered:reference/services.html",
+        "rendered:reference/synchronization.html",
+        "rendered:reports/accounts/abandoned-deletion-assistance.html",
+        "rendered:reports/accounts/account-marker-retention-proposal.html",
+        "rendered:reports/accounts/manual-marker-review.html",
+        "rendered:reports/accounts/ml-11-acceptance-2026-10-21.html",
+        "rendered:reports/accounts/ml-11-activation-pack.html",
+        "rendered:reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html",
+        "rendered:reports/accounts/ml-11-operating-procedure.html",
+        "rendered:reports/accounts/ml-11-test-evidence.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/accounts/ml-12-case-and-tests.html",
+        "rendered:reports/accounts/ml-12-identity-and-permissions-pack.html",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html",
+        "rendered:reports/accounts/ml-12-mailbox-and-roles-pack.html",
+        "rendered:reports/accounts/ml-12-rehearsal-and-custody-pack.html",
+        "rendered:reports/accounts/ml-12-test-evidence.html",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html",
+        "rendered:reports/accounts/proton-drive-rehearsal-pack.html",
+        "rendered:reports/accounts/proton-drive-security-custody-procedure.html",
+        "rendered:reports/accounts/proton-drive-service-rehearsal-2026-10-21.html",
+        "rendered:reports/development/dependencies-2026-10-18.html",
+        "rendered:reports/development/firebase-startup.html",
+        "rendered:reports/development/ml-03-diagrams-2026-10-22.html",
+        "rendered:reports/features/drafts-and-pwa-updates.html",
+        "rendered:reports/features/import-recovery.html",
+        "rendered:reports/features/multipart-backup-2026-10-21.html",
+        "rendered:reports/features/synchronization-and-export.html",
+        "rendered:reports/firestore/firestore-cost-review-2026-10-19.html",
+        "rendered:reports/firestore/firestore-cursors-v1.html",
+        "rendered:reports/firestore/library-scale-2026-10-18.html",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html",
+        "rendered:reports/firestore/ml-08-policy-2026-10-21.html",
+        "rendered:reports/firestore/ml-08-recovery-2026-10-21.html",
+        "rendered:reports/firestore/transaction-read-budget-2026-10-19.html",
+        "rendered:reports/firestore/verification-10000-2026-10-19.html",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html",
+        "rendered:reports/index.html",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html",
+        "rendered:reports/operations/release-record-template.html",
+        "rendered:reports/operations/releases-and-recovery.html",
+        "rendered:reports/project/roadmap.html",
+        "rendered:reports/project/specification-v1.html",
+        "rendered:reports/project/technical-review-2026-10-16.html",
+        "rendered:reports/quality/accessibility-2026-10-18.html",
+        "rendered:reports/quality/browser-coverage-2026-10-18.html",
+        "rendered:reports/quality/live-resize-2026-10-18.html",
+        "rendered:reports/quality/navigation-history-2026-10-18.html",
+        "rendered:reports/quality/password-recovery-emulator.html",
+        "rendered:reports/quality/verification-2026-10-16.html",
+        "rendered:reports/security/spark-guard-entrypoints.html",
+        "rendered:reports/security/spark-only.html",
+        "rendered:reports/security/verification-spark-2026-10-18.html",
+        "rendered:reports/security/verification-spark-console-2026-10-18.html",
+        "rendered:roadmap/index.html",
+        "rendered:security/spark.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39099608485",
+      "pages": [
+        "docs/reports/security/verification-spark-2026-10-18.md",
+        "rendered:reports/security/verification-spark-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39099656177",
+      "pages": [
+        "docs/reports/security/verification-spark-2026-10-18.md",
+        "rendered:reports/security/verification-spark-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39167900668",
+      "pages": [
+        "docs/reports/firestore/verification-cursors-2026-10-18.md",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39173364129",
+      "pages": [
+        "docs/reports/firestore/verification-cursors-2026-10-18.md",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39275167984",
+      "pages": [
+        "docs/reports/firestore/verification-10000-2026-10-19.md",
+        "rendered:reports/firestore/verification-10000-2026-10-19.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430760261",
+      "pages": [
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39430766297",
+      "pages": [
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39446897610",
+      "pages": [
+        "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39446907539",
+      "pages": [
+        "docs/reports/firestore/ml-07-sync-2026-10-20.md",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39520669373",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39527193600",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39527212406",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39651073065",
+      "pages": [
+        "docs/reports/accounts/ml-11-acceptance-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-acceptance-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39651082325",
+      "pages": [
+        "docs/reports/accounts/ml-11-acceptance-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-acceptance-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39668553614",
+      "pages": [
+        "docs/reports/accounts/ml-12-test-evidence.md",
+        "rendered:reports/accounts/ml-12-test-evidence.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/39668588531",
+      "pages": [
+        "docs/reports/accounts/ml-12-test-evidence.md",
+        "rendered:reports/accounts/ml-12-test-evidence.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/4547f7d/tests/e2e/ml06-tabs.spec.js",
+      "pages": [
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/65e6a463f941d6c015f2caa1656cb86470dff467/docs/reports/accounts/ml-12-rules-audit.json",
+      "pages": [
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/firestore.rules",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/composables/use-library-pagination.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/pages/ImportExportPage.vue",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/router/index.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/account-service.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/auth-service.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/import-service.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/library-cursors.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/multipart-backup.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/services/shared-library.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/aee70706fbd638e164a7df16f75b1bee2a2d24c9/src/stores/auth-store.js",
+      "pages": ["docs/architecture/diagrams.md", "rendered:architecture/diagrams.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CHANGELOG.md",
+      "pages": ["docs/reports/project/roadmap.md", "rendered:reports/project/roadmap.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/CONTRIBUTING.md",
+      "pages": ["docs/reports/project/roadmap.md", "rendered:reports/project/roadmap.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/firestore.rules",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/quasar.config.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/release-contract.json",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/scripts/check-spark.mjs",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/SECURITY.md",
+      "pages": ["docs/reports/project/roadmap.md", "rendered:reports/project/roadmap.html"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/spark-policy.json",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/services/account-service.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/services/manga-service.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/src/utils/spark-budget.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/account-service.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/build-evidence.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/e2e/library-scale.spec.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/e2e/library.spec.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/export-verification.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/firestore/library-cursors.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/firestore/security.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/form-drafts.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/import-recovery.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/library-cursors.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/pwa/updates.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/regressions.test.js",
+      "pages": [
+        "docs/reports/development/firebase-startup.md",
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/development/firebase-startup.html",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/blob/main/tests/spark.test.js",
+      "pages": [
+        "docs/reports/project/specification-v1.md",
+        "rendered:reports/project/specification-v1.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/pull/15",
+      "pages": [
+        "docs/architecture/diagrams.md",
+        "docs/reports/development/ml-03-diagrams-2026-10-22.md",
+        "rendered:architecture/diagrams.html",
+        "rendered:reports/development/ml-03-diagrams-2026-10-22.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/pull/3",
+      "pages": [
+        "docs/reports/firestore/verification-cursors-2026-10-18.md",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/pull/7",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/pull/9",
+      "pages": [
+        "docs/reports/accounts/ml-11-acceptance-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-acceptance-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/rules/25518766",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/settings/rules",
+      "pages": [
+        "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://github.com/ShadowStudioEnterprise/manga-list/tree/a6627d0a00371d2aaff0605884f05e7a1750f9f9/proposals/ml03/evidence",
+      "pages": [
+        "docs/reports/development/ml-03-diagrams-2026-10-22.md",
+        "rendered:reports/development/ml-03-diagrams-2026-10-22.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://mangalist-61bb8.web.app",
+      "pages": ["docs/guide/introduction.md"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://mangalist-61bb8.web.app/",
+      "pages": [
+        "rendered:architecture/diagrams.html",
+        "rendered:architecture/overview.html",
+        "rendered:database/firestore.html",
+        "rendered:development/installation.html",
+        "rendered:guide/introduction.html",
+        "rendered:index.html",
+        "rendered:maintenance/documentation-audit.html",
+        "rendered:maintenance/page-inventory.html",
+        "rendered:operations/deployment.html",
+        "rendered:reference/import-export.html",
+        "rendered:reference/services.html",
+        "rendered:reference/synchronization.html",
+        "rendered:reports/accounts/abandoned-deletion-assistance.html",
+        "rendered:reports/accounts/account-marker-retention-proposal.html",
+        "rendered:reports/accounts/manual-marker-review.html",
+        "rendered:reports/accounts/ml-11-acceptance-2026-10-21.html",
+        "rendered:reports/accounts/ml-11-activation-pack.html",
+        "rendered:reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html",
+        "rendered:reports/accounts/ml-11-operating-procedure.html",
+        "rendered:reports/accounts/ml-11-test-evidence.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/accounts/ml-12-case-and-tests.html",
+        "rendered:reports/accounts/ml-12-identity-and-permissions-pack.html",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html",
+        "rendered:reports/accounts/ml-12-mailbox-and-roles-pack.html",
+        "rendered:reports/accounts/ml-12-rehearsal-and-custody-pack.html",
+        "rendered:reports/accounts/ml-12-test-evidence.html",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html",
+        "rendered:reports/accounts/nextcloud-implementation-proposal.html",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html",
+        "rendered:reports/accounts/proton-drive-rehearsal-pack.html",
+        "rendered:reports/accounts/proton-drive-security-custody-procedure.html",
+        "rendered:reports/accounts/proton-drive-service-rehearsal-2026-10-21.html",
+        "rendered:reports/development/dependencies-2026-10-18.html",
+        "rendered:reports/development/firebase-startup.html",
+        "rendered:reports/development/ml-03-diagrams-2026-10-22.html",
+        "rendered:reports/features/drafts-and-pwa-updates.html",
+        "rendered:reports/features/import-recovery.html",
+        "rendered:reports/features/multipart-backup-2026-10-21.html",
+        "rendered:reports/features/synchronization-and-export.html",
+        "rendered:reports/firestore/firestore-cost-review-2026-10-19.html",
+        "rendered:reports/firestore/firestore-cursors-v1.html",
+        "rendered:reports/firestore/library-scale-2026-10-18.html",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html",
+        "rendered:reports/firestore/ml-07-sync-2026-10-20.html",
+        "rendered:reports/firestore/ml-08-capacity-2026-10-21.html",
+        "rendered:reports/firestore/ml-08-policy-2026-10-21.html",
+        "rendered:reports/firestore/ml-08-recovery-2026-10-21.html",
+        "rendered:reports/firestore/transaction-read-budget-2026-10-19.html",
+        "rendered:reports/firestore/verification-10000-2026-10-19.html",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html",
+        "rendered:reports/index.html",
+        "rendered:reports/operations/ml-10-main-ruleset-2026-10-21.html",
+        "rendered:reports/operations/release-record-template.html",
+        "rendered:reports/operations/releases-and-recovery.html",
+        "rendered:reports/project/roadmap.html",
+        "rendered:reports/project/specification-v1.html",
+        "rendered:reports/project/technical-review-2026-10-16.html",
+        "rendered:reports/quality/accessibility-2026-10-18.html",
+        "rendered:reports/quality/browser-coverage-2026-10-18.html",
+        "rendered:reports/quality/live-resize-2026-10-18.html",
+        "rendered:reports/quality/navigation-history-2026-10-18.html",
+        "rendered:reports/quality/password-recovery-emulator.html",
+        "rendered:reports/quality/verification-2026-10-16.html",
+        "rendered:reports/security/spark-guard-entrypoints.html",
+        "rendered:reports/security/spark-only.html",
+        "rendered:reports/security/verification-spark-2026-10-18.html",
+        "rendered:reports/security/verification-spark-console-2026-10-18.html",
+        "rendered:roadmap/index.html",
+        "rendered:security/spark.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://manual.seafile.com/latest/administration/auditing/",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://manual.seafile.com/latest/introduction/seafile_professional_edition_software_license_agreement/",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://nextcloud.com/sign-up/",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://playwright.dev/docs/browsers",
+      "pages": [
+        "docs/reports/quality/browser-coverage-2026-10-18.md",
+        "rendered:reports/quality/browser-coverage-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://playwright.dev/docs/test-projects",
+      "pages": [
+        "docs/reports/quality/browser-coverage-2026-10-18.md",
+        "rendered:reports/quality/browser-coverage-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/account-monitor-individual-accounts",
+      "pages": [
+        "docs/reports/accounts/proton-drive-security-custody-procedure.md",
+        "rendered:reports/accounts/proton-drive-security-custody-procedure.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/drive-how-to-share-files-via-email",
+      "pages": [
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/drive-manage-access-shared-files",
+      "pages": [
+        "docs/reports/accounts/ml-11-d3-permissions-legal-review-pack.md",
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/inactive-accounts",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/more-storage-proton-drive",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/proton-drive-delete-restore-synced-files",
+      "pages": [
+        "docs/reports/accounts/proton-drive-service-rehearsal-2026-10-21.md",
+        "rendered:reports/accounts/proton-drive-service-rehearsal-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/set-account-recovery-methods",
+      "pages": [
+        "docs/reports/accounts/proton-drive-security-custody-procedure.md",
+        "rendered:reports/accounts/proton-drive-security-custody-procedure.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/two-factor-authentication-2fa",
+      "pages": [
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://proton.me/support/version-history",
+      "pages": [
+        "docs/reports/accounts/proton-drive-implementation-proposal.md",
+        "rendered:reports/accounts/proton-drive-implementation-proposal.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://quasar.dev/vue-components/resize-observer/",
+      "pages": [
+        "docs/reports/quality/live-resize-2026-10-18.md",
+        "rendered:reports/quality/live-resize-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://router.vuejs.org/guide/migration/#usage-of-history-state",
+      "pages": [
+        "docs/reports/quality/navigation-history-2026-10-18.md",
+        "rendered:reports/quality/navigation-history-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://support.google.com/firebase/answer/9628313?hl=en",
+      "pages": [
+        "docs/reports/firestore/ml-06-consumption-2026-10-20.md",
+        "rendered:reports/firestore/ml-06-consumption-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://vite.dev/config/server-options.html#server-ws",
+      "pages": [
+        "docs/reports/firestore/ml-07-acceptance-2026-10-20.md",
+        "rendered:reports/firestore/ml-07-acceptance-2026-10-20.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://vite.dev/config/server-options#server-warmup",
+      "pages": [
+        "docs/reports/firestore/verification-cursors-2026-10-18.md",
+        "rendered:reports/firestore/verification-cursors-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.aepd.es/derechos-y-deberes/conoce-tus-derechos/derecho-de-supresion-al-olvido",
+      "pages": [
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.aepd.es/preguntas-frecuentes/1-tus-derechos/2-tus-derechos-de-proteccion-de-datos/FAQ-0106-cual-es-el-plazo-para-responder-cuando-se-ejercitan-estos-derechos",
+      "pages": [
+        "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.aepd.es/preguntas-frecuentes/1-tus-derechos/3-identificacion-con-dni/FAQ-0108-para-el-ejercicio-de-estos-derechos-es-necesario-facilitar-la-copia-del-dni",
+      "pages": [
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "docs/reports/accounts/ml-12-identity-and-permissions-pack.md",
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html",
+        "rendered:reports/accounts/ml-12-identity-and-permissions-pack.html",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673",
+      "pages": [
+        "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673#a3-4",
+      "pages": [
+        "docs/reports/accounts/ml-11-activation-pack.md",
+        "docs/reports/accounts/ml-11-d3-permissions-legal-review-pack.md",
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-activation-pack.html",
+        "rendered:reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673#a32",
+      "pages": [
+        "docs/reports/accounts/ml-12-interrupted-deletion.md",
+        "rendered:reports/accounts/ml-12-interrupted-deletion.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.boe.es/buscar/doc.php?id=DOUE-L-2016-80807",
+      "pages": [
+        "docs/reports/accounts/ml-11-d3-permissions-legal-review-pack.md",
+        "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md",
+        "rendered:reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+        "rendered:reports/accounts/ml-12-legal-retention-and-deadlines-pack.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.boe.es/doue/2016/119/L00001-00088.pdf",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.edpb.europa.eu/sme/be-compliant/respect-individuals-rights_es",
+      "pages": [
+        "docs/reports/accounts/ml-11-activation-pack.md",
+        "docs/reports/accounts/ml-11-validation-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-activation-pack.html",
+        "rendered:reports/accounts/ml-11-validation-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.google.com/images/cleardot.gif",
+      "pages": ["docs/reports/quality/password-recovery-emulator.md"],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.hetzner.com/cloud/",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.hetzner.com/legal/storage-share/",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.hetzner.com/storage/storage-share/",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.ionos.es/soluciones-oficina/hosting-nextcloud-administrado",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.ovhcloud.com/es-es/vps/",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.ovhcloud.com/es-es/vps/configurator/?brick=VPS%2BModel%2B2&planCode=vps-2027-model2&pricing=upfront12&storage=75__SSD__NVMe&vcore=4__vCore",
+      "pages": [
+        "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md",
+        "rendered:reports/accounts/nextcloud-hosting-cost-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.seafile.com/en/pricing/",
+      "pages": [
+        "docs/reports/accounts/ml-11-free-options-2026-10-21.md",
+        "rendered:reports/accounts/ml-11-free-options-2026-10-21.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.w3.org/TR/resize-observer-1/",
+      "pages": [
+        "docs/reports/quality/live-resize-2026-10-18.md",
+        "rendered:reports/quality/live-resize-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG21/Understanding/reflow",
+      "pages": [
+        "docs/reports/quality/accessibility-2026-10-18.md",
+        "rendered:reports/quality/accessibility-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html",
+      "pages": [
+        "docs/reports/quality/accessibility-2026-10-18.md",
+        "rendered:reports/quality/accessibility-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    },
+    {
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible.html",
+      "pages": [
+        "docs/reports/quality/accessibility-2026-10-18.md",
+        "rendered:reports/quality/accessibility-2026-10-18.html"
+      ],
+      "status": "inventoried-offline; HTTP/auth/remote-state not certified"
+    }
+  ],
+  "compiledLinks": 697,
+  "failures": []
+}

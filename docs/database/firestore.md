@@ -21,15 +21,17 @@ el cliente no puede retirarlo para desbloquear la cuenta.
 
 ## Consultas y sincronización
 
-La propuesta ML-07 carga hasta 10000 obras con rangos disjuntos ordenados por ID
+La implementación ML-07 integrada carga hasta 10000 obras con rangos disjuntos ordenados por ID
 acotados a 5001 documentos, incluyendo el centinela de exceso. Coordina pestañas
 del mismo origen/proyecto/cuenta mediante Web Locks y BroadcastChannel sin persistir
 la biblioteca en disco. La exportación usa cursores de hasta 5001 documentos.
 La interfaz filtra y ordena globalmente antes de presentar páginas de 24 tarjetas.
 
-Las reglas propuestas permiten como máximo 5001 por consulta; no imponen una cuota
-diaria. El cliente nuevo requiere esas reglas: su transición queda pendiente de
-revisión y autorización separada. No se ha aplicado ningún cambio remoto.
+Las reglas versionadas permiten como máximo 5001 por consulta; no imponen una cuota
+diaria. El cliente requiere esas reglas. El roadmap conserva un registro histórico de
+publicación ML-07; esta revisión no comprueba reglas remotas ni la versión servida.
+Consulta los [contratos de lectura](/reference/services#inventario-de-acceso-y-reglas)
+y la [separación de evidencias](/maintenance/documentation-audit).
 
 El exceso de presupuesto produce un error explícito y cierra la suscripción;
 no entrega una biblioteca parcial. Las transacciones tienen hasta tres intentos.

@@ -1,0 +1,297 @@
+{
+  "reviewedOn": "2026-10-23",
+  "pages": {
+    "docs/architecture/diagrams.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/architecture/overview.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/database/firestore.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/development/installation.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/guide/introduction.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/index.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/maintenance/documentation-audit.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/maintenance/page-inventory.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/operations/deployment.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/reference/import-export.md": {
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    "docs/reference/services.md": {
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    "docs/reference/synchronization.md": {
+      "scope": "Contrato interno vigente",
+      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+    },
+    "docs/reports/accounts/abandoned-deletion-assistance.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/account-marker-retention-proposal.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/manual-marker-review.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-acceptance-2026-10-21.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-activation-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-d3-permissions-legal-review-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-free-options-2026-10-21.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-operating-procedure.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-test-evidence.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-11-validation-2026-10-21.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-case-and-tests.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-identity-and-permissions-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-interrupted-deletion.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-legal-retention-and-deadlines-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-mailbox-and-roles-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-rehearsal-and-custody-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/ml-12-test-evidence.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/nextcloud-hosting-cost-2026-10-21.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/nextcloud-implementation-proposal.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/proton-drive-implementation-proposal.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/proton-drive-rehearsal-pack.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/proton-drive-security-custody-procedure.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/accounts/proton-drive-service-rehearsal-2026-10-21.md": {
+      "scope": "Preparación y ensayos ML-11/12",
+      "decision": "Se conserva: decisiones de diseño y ensayo no activan canal, custodia ni retirada de marcador; límites operativos y legales explícitos."
+    },
+    "docs/reports/development/dependencies-2026-10-18.md": {
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    "docs/reports/development/firebase-startup.md": {
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    "docs/reports/development/ml-03-diagrams-2026-10-22.md": {
+      "scope": "Entorno o validación fechada",
+      "decision": "Referencias contrastadas con configuración/scripts actuales; resultados históricos no acreditan publicación. ML-03 con estado posterior de fusión."
+    },
+    "docs/reports/features/drafts-and-pwa-updates.md": {
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    "docs/reports/features/import-recovery.md": {
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    "docs/reports/features/multipart-backup-2026-10-21.md": {
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    "docs/reports/features/synchronization-and-export.md": {
+      "scope": "Contrato funcional y evidencia histórica",
+      "decision": "Se contrasta con referencia interna; exportación corregida a 5001, copia dividida distingue ensayo y publicación posterior."
+    },
+    "docs/reports/firestore/firestore-cost-review-2026-10-19.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/firestore-cursors-v1.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/library-scale-2026-10-18.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-06-consumption-2026-10-20.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-07-acceptance-2026-10-20.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-07-sync-2026-10-20.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-08-capacity-2026-10-21.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-08-policy-2026-10-21.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/ml-08-recovery-2026-10-21.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/transaction-read-budget-2026-10-19.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/verification-10000-2026-10-19.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/firestore/verification-cursors-2026-10-18.md": {
+      "scope": "Informe técnico fechado",
+      "decision": "Se conserva evidencia de su versión; ML-07 sustituye tamaños antiguos, ML-08 modela capacidad sin certificar cuotas reales. Aviso en diseños sustituidos."
+    },
+    "docs/reports/index.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/reports/operations/ml-10-main-ruleset-2026-10-21.md": {
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    "docs/reports/operations/release-record-template.md": {
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    "docs/reports/operations/releases-and-recovery.md": {
+      "scope": "Procedimiento y evidencia operativa",
+      "decision": "Separa instrucciones de acciones ejecutadas; ML-10 conserva activación histórica, sin renovar estado remoto."
+    },
+    "docs/reports/project/roadmap.md": {
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    "docs/reports/project/specification-v1.md": {
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    "docs/reports/project/technical-review-2026-10-16.md": {
+      "scope": "Especificación/roadmap revisados",
+      "decision": "Estados de ML-07/08/14 corregidos donde eran contradictorios; revisión técnica antigua conserva su fecha."
+    },
+    "docs/reports/quality/accessibility-2026-10-18.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/quality/browser-coverage-2026-10-18.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/quality/live-resize-2026-10-18.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/quality/navigation-history-2026-10-18.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/quality/password-recovery-emulator.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/quality/verification-2026-10-16.md": {
+      "scope": "Prueba histórica",
+      "decision": "Se conserva resultado y cobertura fechados; no representa nueva ejecución ni aceptación Safari/dispositivos/accesibilidad humana."
+    },
+    "docs/reports/security/spark-guard-entrypoints.md": {
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    "docs/reports/security/spark-only.md": {
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    "docs/reports/security/verification-spark-2026-10-18.md": {
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    "docs/reports/security/verification-spark-console-2026-10-18.md": {
+      "scope": "Política y evidencia fechada",
+      "decision": "Spark exclusivamente; tabla vigente corregida a 5001; evidencias remotas históricas no certifican plan actual."
+    },
+    "docs/roadmap/index.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/security/spark.md": {
+      "scope": "Referencia actual de portal",
+      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    }
+  }
+}

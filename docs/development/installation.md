@@ -20,7 +20,9 @@ npm run docs:preview
 
 Abre la dirección que muestre VitePress (desarrollo normalmente en el puerto 5173).
 La salida está en `docs/.vitepress/dist`; esa carpeta y la caché quedan fuera de Git.
-La compilación comprueba enlaces internos. Mantén activada esa validación y prueba
+La compilación comprueba enlaces internos. `npm run docs:check` añade inventario
+de páginas, referencias Git, huellas de contratos y destinos/anclas del HTML.
+Consulta el [procedimiento de mantenimiento](/maintenance/documentation-audit#validacion-reproducible). Mantén activada esa validación y prueba
 también la búsqueda local, navegación y rutas cargadas directamente.
 
 El repositorio mantiene VitePress 1.6.4 con un override de Vite 6.4.4 limitado a

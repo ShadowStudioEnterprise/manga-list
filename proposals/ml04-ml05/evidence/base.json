@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-10-22T23:43:54.589Z",
+  "base": "a6627d0a00371d2aaff0605884f05e7a1750f9f9",
+  "branch": "codex/ml04-ml05-contracts-audit",
+  "ml02Ancestor": true,
+  "ml03Ancestor": true,
+  "allDocumentedCommitsReachableFromOriginRefs": true,
+  "firebaseRemoteAccess": false,
+  "deployment": false,
+  "merge": false,
+  "nodeVersion": "v24.18.0",
+  "dependencies": "Local installed dependencies reused via a junction after checking identical package-lock.json; clean npm ci is the reproduction path in CI."
+}

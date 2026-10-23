@@ -1,0 +1,193 @@
+{
+  "baseCommit": "a6627d0a00371d2aaff0605884f05e7a1750f9f9",
+  "reviewedOn": "2026-10-23",
+  "sources": {
+    "src/services/account-service.js": {
+      "sha256": "ea416fe6259616b22dfb391203818858b4e3ebd94c4d83dd1ee22cb49e3d5952",
+      "exports": ["reauthenticateCurrentUser", "deleteUserFirestoreData", "deleteCurrentAccount"]
+    },
+    "src/services/auth-service.js": {
+      "sha256": "8707220493bad69991256828d2a055a32a5b3f89d319be9635d4d58e5cc0f5a8",
+      "exports": [
+        "initializeAuth",
+        "waitForAuthReady",
+        "authReady",
+        "observeAuthState",
+        "getCurrentAuthUser",
+        "serializeAuthUser",
+        "loginWithEmail",
+        "registerWithEmail",
+        "loginWithGoogle",
+        "logout",
+        "resetPassword",
+        "disposeAuthObserver"
+      ]
+    },
+    "src/services/export-service.js": {
+      "sha256": "07e1c4f7537a6d36c195fdc518f5526c7ec65352bfdb90950ce81839c97a1105",
+      "exports": [
+        "EXPORT_FORMATS",
+        "CSV_EXPORT_COLUMNS",
+        "exportLibraryToJson",
+        "exportLibraryToCsv",
+        "createLibraryExport",
+        "downloadExport",
+        "downloadLibraryExport"
+      ]
+    },
+    "src/services/import-service.js": {
+      "sha256": "9cd07d42782dc95fa3a51b32492eb6adcab10f6cb719299325182f5b251b5de0",
+      "exports": [
+        "IMPORT_FORMATS",
+        "detectImportFormat",
+        "parseImportContent",
+        "mapImportedRecord",
+        "createImportPreview",
+        "createRecoverableImportPreview",
+        "prepareImportSelection"
+      ]
+    },
+    "src/services/library-cursors.js": {
+      "sha256": "b256729071063d0df424ac2c8a2ecb38a2d0b2dec01b2a4a2d7bbfcf7dd91646",
+      "exports": ["subscribeCursorLibrary", "fetchCursorLibrary"]
+    },
+    "src/services/manga-service.js": {
+      "sha256": "75e4935ece0a1048d9a489346e26646c8a3f975a5bfdcb79970ee575b6ebcadd",
+      "exports": [
+        "normalizeMangaName",
+        "serializeMangaForCreate",
+        "serializeMangaForUpdate",
+        "deserializeManga",
+        "getMangaCollection",
+        "subscribeToMangas",
+        "fetchLibraryForExport",
+        "createManga",
+        "updateManga",
+        "deleteManga",
+        "getManga",
+        "findMangasByNormalizedName",
+        "calculateNextChapter",
+        "changeMangaChapter"
+      ]
+    },
+    "src/services/multipart-backup.js": {
+      "sha256": "d566c0e6afc9556cfabdebff6ebbb26fefecd2483122cee76f9fb8b82e9ed357",
+      "exports": [
+        "BACKUP_FILE_BYTES",
+        "BACKUP_PART_BYTES",
+        "isMultipartBackup",
+        "prepareMultipartExport",
+        "assertRestoreLibrary",
+        "verifyMultipartBackup",
+        "restoreMultipartBackup"
+      ]
+    },
+    "src/services/shared-library.js": {
+      "sha256": "80b4cb15bd021ac6370f181b6562cce2375db68804bb5fa16734cb6bb797bfd3",
+      "exports": ["subscribeSharedLibrary"]
+    },
+    "src/stores/auth-store.js": {
+      "sha256": "87b6d27cc48d2a71248ec3718e9552aa9df28ce5761c3399a16ea511901becc3",
+      "exports": ["useAuthStore"]
+    },
+    "src/stores/index.js": {
+      "sha256": "0ce4fbb5858db07e220899f057ed316f3f39facb760aa83c047075ecaac44dd3",
+      "exports": ["default"]
+    },
+    "src/stores/manga-store.js": {
+      "sha256": "1fa973845d9d5da55340b8072a1c92db2af7da08715632ce744107b904d14ba6",
+      "exports": ["useMangaStore"]
+    },
+    "src/stores/settings-store.js": {
+      "sha256": "7de7718b14469e2a5d2b7d6edc8275d743224e4cf6fa2d7698f050e689e7fc3e",
+      "exports": ["SETTINGS_STORAGE_KEY", "SORT_OPTIONS", "useSettingsStore"]
+    },
+    "src/boot/firebase.js": {
+      "sha256": "1fbc332abbfac0b5bc32f4ca54a19144d265a0fa8e9c326a605b607d5da42485",
+      "exports": [
+        "missingFirebaseEnv",
+        "isFirebaseConfigured",
+        "firebaseApp",
+        "auth",
+        "db",
+        "requireFirebase",
+        "default"
+      ]
+    },
+    "src/router/index.js": {
+      "sha256": "4452bf162992db436ed36ba366866bd3e1f8ba47a8af074cbb84dc0c44cb3032",
+      "exports": ["default"]
+    },
+    "src/router/routes.js": {
+      "sha256": "172292db91c9a92d15868f76c388f50c243c0dbe1a756e7d0b09e500e4ff854b",
+      "exports": ["default"]
+    },
+    "src/utils/spark-budget.js": {
+      "sha256": "66e9f4984c0631863df085cecd5745f60c0cd8c91a4fea08b635f419e8f31a27",
+      "exports": ["SPARK_LIMITS", "createSparkBudget", "sparkBudget"]
+    },
+    "src/utils/firebase-errors.js": {
+      "sha256": "cf3dcc0f36f906ff9e62e00ab8cacb230e776ab688dbb8fb078a32bbd7929222",
+      "exports": [
+        "AppError",
+        "getErrorCode",
+        "getFirebaseErrorMessage",
+        "toAppError",
+        "createAppError",
+        "isReauthenticationError"
+      ]
+    },
+    "src/utils/validators.js": {
+      "sha256": "1e1d92141d924b3590f8df84065ec5c7e10c752adbd874a09ee59c8d1c1659f7",
+      "exports": [
+        "isBlank",
+        "isValidHttpUrl",
+        "validateSource",
+        "validateManga",
+        "requiredRule",
+        "optionalUrlRule"
+      ]
+    },
+    "src/utils/manga-edit.js": {
+      "sha256": "f24b2d7db75f21b3df20db9a0b7182b2352e952e96ca3e797fac545251bb03d5",
+      "exports": ["sameMangaValue", "createMangaEdit", "conflictingMangaFields"]
+    },
+    "src/constants/manga-options.js": {
+      "sha256": "1b495668fb9b7e0179d380a2b12817f0b5af7249857d16ecd03d3b616406734b",
+      "exports": [
+        "MANGA_TYPES",
+        "READING_STATUSES",
+        "PUBLICATION_STATUSES",
+        "MANGA_GENRES",
+        "LIBRARY_SORT_OPTIONS",
+        "MANGA_LIMITS",
+        "MANGA_TYPE_VALUES",
+        "READING_STATUS_VALUES",
+        "PUBLICATION_STATUS_VALUES",
+        "DEFAULT_MANGA_VALUES",
+        "getOptionLabel",
+        "createEmptyManga"
+      ]
+    },
+    "src/composables/use-library-pagination.js": {
+      "sha256": "35e0d5727333222ba6f97a92233b004e0582177bc7ca2c4dc1cd321475ae067a",
+      "exports": ["LIBRARY_PAGE_SIZE", "useLibraryPagination"]
+    },
+    "src/pages/ImportExportPage.vue": {
+      "sha256": "601bbd7e538b353f4c81bf4b7bf1c1601b2fd1493c3f7891c40462ad848f68a8",
+      "exports": []
+    },
+    "src/components/import/MultipartBackupPanel.vue": {
+      "sha256": "40abbeae0c9f34888e0a121e16e8eea6b561df664130e3cd057c6e8d83c3e291",
+      "exports": []
+    },
+    "firestore.rules": {
+      "sha256": "cf45a862f3e4f11610284f390009f4caf6d838bf7bfd256e37a7b92e86a102dc",
+      "exports": []
+    },
+    "release-contract.json": {
+      "sha256": "c339a2c64eec3d16f7af4dfefca03603a588100be2ad1d35741c4633f0d0e138",
+      "exports": []
+    }
+  }
+}

@@ -1,5 +1,13 @@
 # ML-07: aceptación y capacidad para 50 cuentas de 500 obras
 
+::: info Lectura de versión — ML-05, 23/10/2026
+El estado de rama/PR y «sin publicar» del cuerpo corresponde a la fecha del ensayo.
+ML-07 y ML-08 constan integrados por PR #6 y #7; hay registros históricos de
+publicación posteriores. Esta revisión no certifica producción actual ni repite
+esos ensayos. Los contratos actuales están en [referencia interna](/reference/services).
+Véase [estado y evidencias](/maintenance/documentation-audit).
+:::
+
 Seguimiento de la [revisión ML-07](./ml-07-sync-2026-10-20.md), sobre el código
 `331d40021391fa8a6a1a459576f21e9f572a2aa6`. Se conservan sus resultados y los
 intentos fallidos; las comprobaciones nuevas tienen evidencia y alcance propios.

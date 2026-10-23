@@ -1,5 +1,12 @@
 # Sincronización y exportación comprobada
 
+::: info Lectura de versión — ML-05, 23/10/2026
+Referencia contrastada con el código actual: 5001 documentos por consulta, 5000 útiles.
+Los resultados de pruebas siguientes son históricos, no nuevas ejecuciones de ML-04/05.
+El contrato actual está en [importación/exportación](/reference/import-export).
+Véase [estado y evidencias](/maintenance/documentation-audit).
+:::
+
 Continuación H6 sobre `7bf1d41`. No cambia servicios, reglas, esquema remoto ni plan.
 Se utiliza Firestore Standard en Spark y no se publica ningún cambio.
 
@@ -27,7 +34,7 @@ no pueden modificar el estado de una sesión nueva.
 ## Cómo se obtiene una copia
 
 La descarga de la UI recorre de nuevo el servidor con `getDocsFromServer`, cursores
-por ID y límite de 501 documentos por página, sin usar la lista en memoria. Comprueba:
+por ID y límite de 5001 documentos por página, sin usar la lista en memoria. Comprueba:
 
 1. La cuenta actual antes y después de cada página, y de nuevo antes de descargar.
 2. Que la biblioteca no exceda el presupuesto de 10000 obras: no entrega un subconjunto.
@@ -65,8 +72,8 @@ La procedencia es información descriptiva, no un mecanismo antifalsificación d
 ## Red, persistencia y cuotas
 
 Cada descarga admitida consume una admisión de lectura por página, además de los
-listeners existentes. Las consultas usan cursores ID y límite 501; incorporan hasta
-500 obras y continúan hasta completar la biblioteca. Pueden consumir lecturas de
+listeners existentes. Las consultas usan cursores ID y límite 5001; incorporan hasta
+5000 obras y continúan hasta completar la biblioteca. Pueden consumir lecturas de
 reglas y mínimos por consulta vacía. Un fallo no revierte lecturas ya consumidas.
 El diseño, coste y límite local de 10000 obras se detallan en
 [cursores Firestore 1.0](../firestore/firestore-cursors-v1.md). Las páginas son lecturas sucesivas,

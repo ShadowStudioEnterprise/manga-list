@@ -80,7 +80,9 @@ La matriz utiliza dos contextos SDK independientes por tamaño como aproximació
 a pestañas sin coordinación. **Por sí sola no mide dos pestañas del mismo origen.**
 El intento local de navegador agotó 180 segundos al navegar al registro, antes de
 medir la biblioteca; no se considera evidencia de coste ni regresión demostrada.
-Se añade `tests/e2e/ml06-tabs.spec.js` para completar esta observación en CI:
+Se añadió la [prueba de pestañas de la versión ML-06](https://github.com/ShadowStudioEnterprise/manga-list/blob/4547f7d/tests/e2e/ml06-tabs.spec.js)
+para completar esta observación en CI. Su sucesora actual es
+`tests/e2e/ml07-tabs.spec.js`; el comando histórico anterior requiere aquella revisión:
 dos pestañas del mismo contexto y origen con 2500 obras, autenticación compartida,
 mensajes WebChannel `addTarget`, búsqueda, incremento y recarga de una pestaña.
 El ensayo bloquea peticiones fuera de los tres puertos locales. Pasó en ambos
