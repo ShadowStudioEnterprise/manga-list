@@ -69,6 +69,25 @@ function sources(count, primaryIndices = []) {
     isPrimary: primaryIndices.includes(index),
   }))
 }
+
+test('ML-13: admin-like claims and supplied identity fields never grant another UID access', async () => {
+  const db = environment
+    .authenticatedContext('mallory', {
+      admin: true,
+      role: 'owner',
+      email: 'synthetic@example.test',
+      email_verified: true,
+    })
+    .firestore()
+  const foreign = doc(db, 'users', 'alice', 'mangas', 'ml13-synthetic')
+  await assertFails(setDoc(foreign, manga()))
+  await assertFails(getDoc(foreign))
+  await assertFails(deleteDoc(foreign))
+  const own = doc(db, 'users', 'mallory', 'mangas', 'ml13-synthetic')
+  await assertFails(setDoc(own, { ...manga(), ownerId: 'alice', role: 'admin' }))
+  await assertSucceeds(setDoc(own, manga()))
+  await assertFails(updateDoc(own, { role: 'admin', updatedAt: serverTimestamp() }))
+})
 const dbFor = (uid) => environment.authenticatedContext(uid).firestore()
 const reference = (db, id = 'nano') => doc(db, 'users', 'alice', 'mangas', id)
 

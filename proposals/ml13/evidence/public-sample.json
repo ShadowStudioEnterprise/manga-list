@@ -1,0 +1,74 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "bytes": 28602,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  },
+  {
+    "path": "/security/spark",
+    "status": 200,
+    "bytes": 35670,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  },
+  {
+    "path": "/reports/accounts/ml-12-identity-and-permissions-pack",
+    "status": 200,
+    "bytes": 58398,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  },
+  {
+    "path": "/reports/accounts/ml-12-case-and-tests",
+    "status": 200,
+    "bytes": 59485,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  },
+  {
+    "path": "/measurements/ml10-main-ruleset-2026-10-21.json",
+    "status": 200,
+    "bytes": 2328,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  },
+  {
+    "path": "/legal/index.html",
+    "status": 200,
+    "bytes": 1359,
+    "headers": {
+      "X-Content-Type-Options": ["nosniff"],
+      "Content-Security-Policy": null,
+      "X-Frame-Options": null,
+      "Referrer-Policy": ["strict-origin-when-cross-origin"]
+    },
+    "privateKey": false
+  }
+]

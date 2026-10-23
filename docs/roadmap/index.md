@@ -31,3 +31,7 @@ con aperturas escalonadas y coordinación de pestañas en memoria; el límite de
 mantiene pendiente certificar capacidad y fijar un máximo definitivo. La
 [reserva del 20 % y los tramos](/reports/firestore/ml-08-policy-2026-10-21) están
 aprobados para planificación provisional, sin nuevos bloqueos ni cambios de producción.
+
+ML-13 añade [auditoría IAM y privacidad](/security/iam-audit), inventario público y
+controles offline. La aceptación de IAM real, canal privado y responsables sigue
+pendiente; no se certifica cierre operativo ni se despliega esta rama.

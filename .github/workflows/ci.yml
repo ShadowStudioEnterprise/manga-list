@@ -34,6 +34,8 @@ jobs:
           java-version: '21'
       - name: Enforce Spark compatibility (no credentials)
         run: node scripts/check-spark.mjs
+      - name: Audit tracked credentials and workflow privileges (offline)
+        run: npm run audit:security
       - name: Install dependencies
         run: |
           npm ci
@@ -48,6 +50,7 @@ jobs:
         run: |
           npm run docs:build
           npm run docs:check
+          npm run audit:security:built
       - name: Verify local documentation diagrams, accessibility and links
         run: node scripts/check-docs-portal.mjs
       - name: Run regression tests

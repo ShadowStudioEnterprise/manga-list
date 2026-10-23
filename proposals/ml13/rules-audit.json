@@ -1,0 +1,22 @@
+{
+  "score": 4,
+  "summary": "Revisión estática de rules en main 342ad9a: propiedad por UID de ruta, validación común create/update, límites por documento y denegación residual. No certifica reglas desplegadas ni IAM real. La cuota compartida sigue siendo un riesgo residual independiente del aislamiento entre usuarios.",
+  "findings": [
+    {
+      "check": "Resource exhaustion / cuota global",
+      "severity": "minor",
+      "issue": "Los límites de listas, cadenas y consultas no limitan el volumen total de documentos o la frecuencia de operaciones de un propietario autenticado. El presupuesto cliente es evitable por un cliente modificado.",
+      "recommendation": "Mantener Spark y presupuestos existentes, revisión manual de capacidad y abuso; no prometer protección de cuota desde las rules ni activar servicios de pago. Cualquier solución nueva requiere diseño y aceptación específicos."
+    }
+  ],
+  "checks": {
+    "updateBypass": "No identificado: create/update reutilizan mangaHasValidShape y userDocumentHasValidShape; createdAt inmutable en update.",
+    "authoritySource": "request.auth.uid coincide con UID de la ruta; no se confía en roles/email/ownerId aportados.",
+    "businessLogic": "La barrera deleting mantiene lectura/borrado del propietario con token aceptado, deliberadamente ML-10/11/12.",
+    "storageBounds": "Listas, fuentes, géneros, notas y cadenas acotados por documento; límite list 5001.",
+    "typeSafety": "Enums, bool, listas y timestamps; matches rechaza tipos incorrectos o campos ausentes.",
+    "identityAndFieldChecks": "isOwner precede validación de campos; subcolecciones no declaradas denegadas."
+  },
+  "remoteIamReviewed": false,
+  "deployedRulesReviewed": false
+}

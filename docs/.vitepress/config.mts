@@ -93,7 +93,11 @@ export default defineConfig({
         },
         {
           text: 'Seguridad',
-          items: [{ text: 'Firebase Spark', link: '/security/spark' }],
+          items: [
+            { text: 'Firebase Spark', link: '/security/spark' },
+            { text: 'IAM y privacidad ML-13', link: '/security/iam-audit' },
+            { text: 'Inventario público', link: '/security/public-inventory' },
+          ],
         },
         {
           text: 'Operaciones',

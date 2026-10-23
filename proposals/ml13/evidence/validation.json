@@ -1,0 +1,33 @@
+{
+  "reviewedOn": "2026-10-23",
+  "baseCommit": "342ad9aa848dfbe6c2a81caee0920cfcb681cf97",
+  "unit": {
+    "passed": 119,
+    "failed": 0
+  },
+  "firestore": {
+    "project": "demo-mangalist",
+    "passed": 26,
+    "failed": 0,
+    "remoteDataAccess": false
+  },
+  "dependencies": {
+    "rootVulnerabilities": 0,
+    "pwaVulnerabilities": 0,
+    "scope": "npm advisory query including development; not global CLI or unknown threats"
+  },
+  "docs": {
+    "pages": 75,
+    "sourceFingerprints": 25,
+    "localTargets": 712,
+    "builtFiles": 288
+  },
+  "remoteIam": "not reviewed; no explicit read connector",
+  "productionMutations": false,
+  "limitations": [
+    "Initial restricted local test run had two fixture permission failures; unchanged tests passed outside sandbox.",
+    "Portal sample is six unauthenticated public responses, not an inventory of remote Hosting versions.",
+    "Source scan covers tracked current tree; no full Git-history, OCR, arbitrary personal data or remote credentials audit.",
+    "Large documentation bundle warning remains."
+  ]
+}
