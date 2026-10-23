@@ -38,6 +38,8 @@ const ERROR_MESSAGES = Object.freeze({
     'Peticiones pausadas durante 15 minutos por una cuota agotada. Conserva tus cambios y espera antes de reintentar.',
   'app/listener-timeout':
     'No se ha podido confirmar toda la biblioteca en un minuto. La sincronización se ha detenido. Conserva tus cambios, comprueba la conexión y reintenta manualmente.',
+  'app/listener-suspended':
+    'La pestaña se ha suspendido y la sincronización se ha detenido. Conserva tus cambios y reintenta para comprobar de nuevo toda la biblioteca.',
   'app/reconnect-paused':
     'Reconexión pausada por fallos repetidos. Espera hasta un minuto antes de reintentar.',
   'app/request-budget':

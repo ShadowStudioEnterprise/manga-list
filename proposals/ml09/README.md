@@ -75,3 +75,40 @@ administrativa aprobada, nunca cuota global medida ni disponibilidad garantizada
 Los cambios son compatibles con esquema, copias, reglas y marcador deleting.
 No se modifican reglas, Firebase remoto, datos reales, billing, dependencias ni
 servicios. No hay Blaze, Functions, Run, merge ni deploy.
+
+## Continuación: recuperación tras congelación nativa
+
+La revisión anterior `1be7dcc` queda conservada con sus CI y resultados históricos.
+El nuevo ensayo físico reprodujo con 500 obras una escucha que conservaba un
+capítulo anterior durante más de un minuto después de reanudar. Se añadieron
+retirada al evento `freeze`, error visible y reintento manual con reinicio local
+del transporte del SDK. No se cancelan escrituras ni se certifica red/servidor
+por el mero hecho de reactivarlo. El reintento es único en vuelo, tiene admisión
+propia de tres por minuto y respeta la pausa de cuota y el backoff de escucha.
+
+Los JSON `evidence/redmi-freeze-before.json` y `evidence/redmi-freeze-recovery.json`
+conservan el fallo y la comprobación corregida por separado. El segundo corresponde
+al árbol de trabajo indicado por sus cinco SHA-256 de runtime, no al antiguo head
+que aparece como base. Permite comparar esos bytes con la nueva revisión Git.
+El Redmi 9A, Android 11, Chrome 155, congela el documento 20233 ms con cero ticks;
+no abre targets antes de la recuperación manual, confirma el cambio a los 3673 ms,
+exporta 500 IDs únicos y mantiene un único lock de biblioteca antes y después.
+Es congelación de documento en hardware físico; no certifica sueño del sistema,
+Safari/iOS ni consumo/reset global de cuota.
+
+La reproducción exige emuladores demo locales, origen de prueba nuevo y preparación
+atómica (400+100 documentos), no una ráfaga de escrituras REST independientes.
+Se comprobó antes una actualización con la página activa: 500 obras, recepción del
+cambio a los 1096 ms y exportación coincidente. Se descartó una interacción de
+coordenadas del controlador que no enviaba el formulario; la preparación usó el
+evento de submit nativo. Los fallos y los ensayos de instrumentación se conservan
+en la entrega local y no se convierten en aprobados.
+
+Pruebas añadidas: retirada de rangos y descarte de mensajes tardíos, limpieza del
+evento, semáforo/admisión de recuperación, identidad y restauración tras errores.
+El emulador comprueba que la promesa original de una escritura en cola se confirma
+sin perder aislamiento por cuenta. La regresión E2E de congelación usa relevo
+explícito, conserva búsqueda y escritura concurrente y comprueba que cerrar al
+dueño retirado no abre otra escucha. Unitarias: 134 aprobadas. La suite completa
+Firestore/E2E y builds de esta nueva revisión se registran separadamente en CI y en
+la entrega final; los CI antiguos no los sustituyen. ML-09 permanece abierta.

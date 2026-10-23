@@ -19,6 +19,7 @@ test(
         rules: await readFile('firestore.rules', 'utf8'),
       },
     })
+    await env.clearFirestore()
     let stop
     try {
       const db = env.authenticatedContext('owner').firestore()
@@ -92,6 +93,73 @@ test(
       )
     } finally {
       stop?.()
+      await env.cleanup()
+    }
+  },
+)
+
+test(
+  'ML-09: explicit transport recovery preserves the original pending write promise and ownership',
+  { timeout: 30000 },
+  async () => {
+    assert.equal(process.env.FIRESTORE_EMULATOR_HOST, '127.0.0.1:8188')
+    const env = await initializeTestEnvironment({
+      projectId: 'demo-mangalist-ml09-network',
+      firestore: {
+        host: '127.0.0.1',
+        port: 8188,
+        rules: await readFile('firestore.rules', 'utf8'),
+      },
+    })
+    await env.clearFirestore()
+    const db = env.authenticatedContext('owner').firestore()
+    const ref = sdk.doc(db, 'users', 'owner', 'mangas', 'queued')
+    try {
+      await env.withSecurityRulesDisabled(async (context) => {
+        await sdk.setDoc(sdk.doc(context.firestore(), ref.path), {
+          schemaVersion: 1,
+          name: 'Queued write',
+          normalizedName: 'queued-write',
+          chapter: '1',
+          type: 'manga',
+          genres: [],
+          readingStatus: 'following',
+          publicationStatus: 'unknown',
+          sources: [],
+          notes: '',
+          favorite: false,
+          createdAt: sdk.Timestamp.fromMillis(1700000000000),
+          updatedAt: sdk.Timestamp.fromMillis(1700000000000),
+        })
+      })
+      const recovery = await loadModule('src/services/library-recovery.js', {
+        '@/boot/firebase': {
+          requireFirebase: () => ({ auth: { currentUser: { uid: 'owner' } }, db }),
+        },
+        '@/utils/spark-budget': { sparkBudget: createSparkBudget() },
+        'firebase/firestore': sdk,
+      })
+      await sdk.disableNetwork(db)
+      let state = 'pending'
+      const originalWrite = sdk.updateDoc(ref, { chapter: '2', updatedAt: sdk.serverTimestamp() })
+      originalWrite.then(
+        () => {
+          state = 'committed'
+        },
+        () => {
+          state = 'failed'
+        },
+      )
+      await new Promise((resolve) => setTimeout(resolve, 30))
+      assert.equal(state, 'pending')
+      await recovery.recoverLibraryConnection('owner')
+      await originalWrite
+      assert.equal(state, 'committed')
+      assert.equal((await sdk.getDocFromServer(ref)).data().chapter, '2')
+      await assertFails(
+        sdk.getDoc(sdk.doc(env.authenticatedContext('intruder').firestore(), ref.path)),
+      )
+    } finally {
       await env.cleanup()
     }
   },

@@ -46,7 +46,14 @@
       <template #avatar><q-icon name="cloud_off" /></template>
       {{ mangaStore.syncError }}
       <template #action>
-        <q-btn flat no-caps color="negative" label="Reintentar" @click="retrySubscription" />
+        <q-btn
+          flat
+          no-caps
+          color="negative"
+          label="Reintentar"
+          :loading="retrying"
+          @click="retrySubscription"
+        />
       </template>
     </q-banner>
 
@@ -116,11 +123,14 @@ import MangaFilters from '@/components/manga/MangaFilters.vue'
 import { useAuthStore } from '@/stores/auth-store'
 import { useMangaStore } from '@/stores/manga-store'
 import { useSettingsStore } from '@/stores/settings-store'
+import { recoverLibraryConnection } from '@/services/library-recovery'
+import { toAppError } from '@/utils/firebase-errors'
 
 const authStore = useAuthStore()
 const mangaStore = useMangaStore()
 const settingsStore = useSettingsStore()
 const pageSummary = ref(null)
+const retrying = ref(false)
 
 const stats = computed(() => [
   { label: 'Total', value: mangaStore.counters.total, icon: 'library_books', color: 'primary' },
@@ -181,11 +191,20 @@ function resetFilters() {
   })
 }
 
-function retrySubscription() {
+async function retrySubscription() {
+  if (retrying.value || !authStore.user?.uid) return
+  const uid = authStore.user.uid
+  retrying.value = true
   try {
-    if (authStore.user?.uid) mangaStore.subscribe(authStore.user.uid)
-  } catch {
-    // subscribe records the failure in the banner.
+    await recoverLibraryConnection(uid)
+    if (authStore.user?.uid === uid) mangaStore.subscribe(uid)
+  } catch (error) {
+    if (authStore.user?.uid === uid) {
+      mangaStore.syncError = toAppError(error).message
+      mangaStore.snapshotFromCache = true
+    }
+  } finally {
+    retrying.value = false
   }
 }
 </script>

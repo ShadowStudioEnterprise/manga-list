@@ -35,7 +35,13 @@ export function createSparkBudget(now = Date.now, runtime, namespace = 'default'
     if (blockedUntil > now())
       for (const observer of [...observers]) observer(createAppError('app/quota-paused'))
   })
-  const limits = Object.assign(Object.create(null), { read: 60, write: 120, listen: 3, auth: 10 })
+  const limits = Object.assign(Object.create(null), {
+    read: 60,
+    write: 120,
+    listen: 3,
+    recover: 3,
+    auth: 10,
+  })
   return {
     onPause(observer) {
       observers.add(observer)
@@ -84,7 +90,7 @@ export function createSparkBudget(now = Date.now, runtime, namespace = 'default'
         if (recorded.has(error) || (error.cause && recorded.has(error.cause))) return error
         recorded.add(error)
       }
-      if (error?.code === 'app/listener-timeout' || error?.code === 'unavailable') {
+      if (['app/listener-timeout', 'app/listener-suspended', 'unavailable'].includes(error?.code)) {
         listenerFailures = Math.min(listenerFailures + 1, 7)
         listenUntil = Math.max(listenUntil, now() + Math.min(60000, 1000 * 2 ** listenerFailures))
       }

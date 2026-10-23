@@ -6,6 +6,9 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — candidata ML-09
 
+- Congelación nativa: escucha retirada y aviso; recuperación manual con transporte
+  local reiniciado, sin cancelar escrituras pendientes ni abrir reconexiones en bucle.
+
 - Pausa local de cuota persistente por proyecto y compartida entre pestañas del
   mismo origen; un error en cualquier operación detiene los listeners activos.
 - Plazo de un minuto sin confirmación de biblioteca, backoff de reconexión manual

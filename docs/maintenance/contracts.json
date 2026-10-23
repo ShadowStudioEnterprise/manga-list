@@ -48,7 +48,7 @@
       ]
     },
     "src/services/library-cursors.js": {
-      "sha256": "927bdecce04b952c1ad16231321d6165358575534e8ac519bf6077e943079a7f",
+      "sha256": "471ff745baf4c935cb5e48846c2923c3b67e8104ae883816d2feee7b22f76f0e",
       "exports": ["subscribeCursorLibrary", "fetchCursorLibrary"]
     },
     "src/services/manga-service.js": {
@@ -123,11 +123,11 @@
       "exports": ["default"]
     },
     "src/utils/spark-budget.js": {
-      "sha256": "65a60019955f47d64aabca95dd2485c6d50322fe3df5107ef38d6c17d5f9638f",
+      "sha256": "560820957926cdce4a644c8eb0595582c50fbd3cca8094225a1a5da06e65d010",
       "exports": ["SPARK_LIMITS", "createSparkBudget", "sparkBudget"]
     },
     "src/utils/firebase-errors.js": {
-      "sha256": "5bb1f755b26b139cdeabd34bca8dc84f9a00f5152d0e34455b2977ced874f248",
+      "sha256": "d316328e4329c3a2fe6f68366a9d27fc235fb2e3aab148a0a99a32d837bce0b4",
       "exports": [
         "AppError",
         "getErrorCode",
@@ -187,6 +187,14 @@
     },
     "release-contract.json": {
       "sha256": "c339a2c64eec3d16f7af4dfefca03603a588100be2ad1d35741c4633f0d0e138",
+      "exports": []
+    },
+    "src/services/library-recovery.js": {
+      "sha256": "0b6c884a69bc78fea75056f4868d17f20eebdc5193c9a7b80d64dc34d87bbf88",
+      "exports": ["recoverLibraryConnection"]
+    },
+    "src/pages/LibraryPage.vue": {
+      "sha256": "3d6847980ae4b3c1dba939a67e9ebcf594426ee54831c51026f8a40f10e6037c",
       "exports": []
     }
   }

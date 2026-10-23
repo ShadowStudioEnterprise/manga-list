@@ -303,7 +303,7 @@
     },
     "docs/reports/firestore/ml-09-recovery-2026-10-23.md": {
       "scope": "Candidata ML-09: recuperación Spark",
-      "decision": "Contratos y pruebas de la rama; aceptación operativa pendiente, sin certificación de producción."
+      "decision": "Candidata con retirada al congelar y recuperación manual del transporte; promesa pendiente verificada; aceptación operativa pendiente."
     }
   }
 }

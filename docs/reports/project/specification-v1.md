@@ -36,7 +36,7 @@ Los casos de CI con emuladores no constituyen aceptación operativa en producci�
 La candidata sobre main `120efac` amplía ML-005, ML-007 y ML-008 con pausa local
 de cuota persistente por proyecto, cancelación de listeners activos, plazo de
 60 s sin confirmación y backoff para reintentos manuales. No abre reconexiones
-automáticas. Importaciones detienen grupos posteriores ante cualquier error,
+automáticas. La congelación nativa retira la escucha y exige recuperación manual; esa preparación reinicia sólo el transporte local, conserva las escrituras en cola y tiene su propio límite de tres intentos por minuto. Importaciones detienen grupos posteriores ante cualquier error,
 conservan éxitos e informan causa; exportaciones simultáneas de la misma cuenta
 se rechazan antes de otra lectura. La búsqueda/filtros se conservan al recuperar
 el mismo dueño y se limpian al cambiar cuenta o desuscribir.

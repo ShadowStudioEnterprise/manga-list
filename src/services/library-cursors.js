@@ -23,7 +23,13 @@ function rangeQuery(reference, lower, upper) {
 
 // Stable, disjoint ID ranges retain deletions and insertions at page boundaries.
 // Ordering by mutable titles/timestamps here would move documents between listeners.
-export function subscribeCursorLibrary(reference, deserialize, onData, onError) {
+export function subscribeCursorLibrary(
+  reference,
+  deserialize,
+  onData,
+  onError,
+  runtime = globalThis,
+) {
   sparkBudget.take('listen')
   const ranges = new Set()
   let stopped = false
@@ -38,6 +44,7 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
   const stop = () => {
     stopped = true
     clearTimeout(confirmationTimer)
+    runtime.document?.removeEventListener?.('freeze', suspend)
     removePauseObserver?.()
     for (const range of ranges) stopRange(range)
     ranges.clear()
@@ -47,6 +54,11 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
     stop()
     onError?.(toAppError(sparkBudget.record(error)))
   }
+  // A resumed transport can replay an old confirmed snapshot. Retire this
+  // subscription before freezing; recovery must be explicit, without cancelling
+  // writes or starting a second listener while the page is suspended.
+  const suspend = () => fail(createAppError('app/listener-suspended'))
+  runtime.document?.addEventListener?.('freeze', suspend)
   const awaitConfirmation = () => {
     if (!confirmationTimer) {
       confirmationTimer = setTimeout(
