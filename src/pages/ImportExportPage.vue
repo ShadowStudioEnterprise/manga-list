@@ -257,6 +257,7 @@ async function importSelected() {
   importing.value = true
   let imported = 0
   let failed = 0
+  let firstFailure
 
   try {
     for (let index = 0; index < selection.selectedItems.length; index += 8) {
@@ -277,19 +278,10 @@ async function importSelected() {
           chunk[resultIndex].imported = true
         } else {
           failed += 1
+          firstFailure ||= result.reason
         }
       })
-      const stopped = results.some(
-        (result) =>
-          result.status === 'rejected' &&
-          [
-            'resource-exhausted',
-            'firestore/resource-exhausted',
-            'auth/quota-exceeded',
-            'app/quota-paused',
-            'app/request-budget',
-          ].includes(result.reason?.code),
-      )
+      const stopped = results.some((result) => result.status === 'rejected')
       if (stopped) {
         failed += selection.selectedItems.length - index - chunk.length
         break
@@ -300,7 +292,7 @@ async function importSelected() {
       type: failed ? 'warning' : 'positive',
       timeout: 6000,
       message: failed
-        ? `Se importaron ${imported} obras; ${failed} no pudieron guardarse.`
+        ? `Se importaron ${imported} obras; ${failed} no pudieron guardarse. ${getFirebaseErrorMessage(firstFailure, 'La importación se ha detenido. Revisa el error antes de reintentar.')}`
         : `${imported} obras importadas correctamente.`,
     })
   } finally {

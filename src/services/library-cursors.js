@@ -29,12 +29,16 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
   let stopped = false
   let attaching = 0
   let deferred = 0
+  let confirmationTimer
+  let removePauseObserver
   const stopRange = (range) => {
     range.active = false
     range.stop?.()
   }
   const stop = () => {
     stopped = true
+    clearTimeout(confirmationTimer)
+    removePauseObserver?.()
     for (const range of ranges) stopRange(range)
     ranges.clear()
   }
@@ -43,6 +47,17 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
     stop()
     onError?.(toAppError(sparkBudget.record(error)))
   }
+  const awaitConfirmation = () => {
+    if (!confirmationTimer) {
+      confirmationTimer = setTimeout(
+        () => fail(createAppError('app/listener-timeout')),
+        SPARK_LIMITS.listenerUnconfirmedMs,
+      )
+      confirmationTimer.unref?.()
+    }
+  }
+  removePauseObserver = sparkBudget.onPause?.(fail)
+  awaitConfirmation()
   const publish = () => {
     if (stopped || attaching || deferred || [...ranges].some((range) => !range.ready)) return
     // Preserve Firestore's ID order for stable ties in the existing client sorts.
@@ -55,6 +70,15 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
       fail(createAppError('app/library-budget'))
       return
     }
+    if (
+      leaves.every(
+        (range) => range.metadata.fromCache === false && range.metadata.hasPendingWrites === false,
+      )
+    ) {
+      clearTimeout(confirmationTimer)
+      confirmationTimer = null
+      sparkBudget.listenerConfirmed?.()
+    } else awaitConfirmation()
     onData(documents.map(deserialize), {
       fromCache: leaves.some((range) => range.metadata.fromCache !== false),
       hasPendingWrites: leaves.some((range) => range.metadata.hasPendingWrites !== false),
@@ -63,6 +87,7 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
   }
   const attach = (lower, upper, path = '', afterReady) => {
     if (stopped) return
+    awaitConfirmation()
     if (ranges.size >= SPARK_LIMITS.libraryRanges) {
       fail(createAppError('app/library-budget'))
       return
@@ -80,6 +105,7 @@ export function subscribeCursorLibrary(reference, deserialize, onData, onError) 
           if (stopped || !range.active) return
           const authoritative =
             snapshot.metadata?.fromCache === false && snapshot.metadata?.hasPendingWrites === false
+          if (!authoritative) awaitConfirmation()
           if (snapshot.docs.length > SPARK_LIMITS.pageDocuments) {
             range.ready = false
             if (!authoritative) return

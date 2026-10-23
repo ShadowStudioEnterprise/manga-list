@@ -28,6 +28,10 @@ es público: no publiques credenciales, bibliotecas, identificadores de usuarios
 evidencias privadas. Los presupuestos locales de la aplicación no son una barrera
 global contra abuso o agotamiento de cuotas.
 
+La candidata [ML-09](/reports/firestore/ml-09-recovery-2026-10-23) persiste una pausa
+local de cuota, detiene listeners y limita reconexiones sin confirmación; documenta
+la recuperación manual y lo pendiente de aceptar en producción.
+
 El borrado de cuenta se ejecuta en el cliente. Si se abandona, no hay un trabajador
 que lo termine automáticamente. La revisión humana a los 30 días es una propuesta
 pendiente de validación legal y técnica, sin eliminación programada.

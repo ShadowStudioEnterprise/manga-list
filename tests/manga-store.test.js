@@ -42,6 +42,37 @@ async function fixture(overrides = {}) {
   return { store: module.useMangaStore(), listeners }
 }
 
+test('ML-09: synchronous terminal callback cannot leave a stale handle that blocks recovery', async () => {
+  let starts = 0,
+    stops = 0
+  const { store } = await fixture({
+    subscribeToMangas(_uid, next, fail) {
+      starts++
+      if (starts === 1) fail({ code: 'resource-exhausted' })
+      else
+        next([{ id: 'recovered' }], { fromCache: false, hasPendingWrites: false, complete: true })
+      return () => stops++
+    },
+  })
+  store.subscribe('alice')
+  assert.ok(store.syncError)
+  store.searchQuery = 'recovered'
+  store.filters.favoritesOnly = true
+  assert.equal(stops, 1)
+  store.subscribe('alice')
+  assert.equal(starts, 2)
+  assert.equal(store.syncError, null)
+  assert.equal(store.mangas[0].id, 'recovered')
+  assert.equal(store.searchQuery, 'recovered')
+  assert.equal(store.filters.favoritesOnly, true)
+  store.subscribe('alice')
+  assert.equal(starts, 2, 'same-account duplicate subscription is a no-op')
+  store.subscribe('bob')
+  assert.equal(store.searchQuery, '')
+  assert.equal(store.filters.favoritesOnly, false)
+  store.unsubscribe()
+})
+
 test('operation failures never become synchronization errors or erase a real listener failure', async () => {
   const { store, listeners } = await fixture()
   store.subscribe('alice')

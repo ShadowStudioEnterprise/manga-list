@@ -300,6 +300,10 @@
     "docs/security/public-inventory.md": {
       "scope": "ML-13 auditoría de repositorio y privacidad",
       "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
+    },
+    "docs/reports/firestore/ml-09-recovery-2026-10-23.md": {
+      "scope": "Candidata ML-09: recuperación Spark",
+      "decision": "Contratos y pruebas de la rama; aceptación operativa pendiente, sin certificación de producción."
     }
   }
 }

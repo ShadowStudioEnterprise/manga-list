@@ -22,6 +22,8 @@ secciones principales del portal.
 
 ## Firestore y rendimiento
 
+- [ML-09: prevención y recuperación ante cuotas — candidata, aceptación operativa pendiente](firestore/ml-09-recovery-2026-10-23.md).
+
 - [ML-08: auditoría de capacidad Spark — 21/10/2026](firestore/ml-08-capacity-2026-10-21.md).
 - [ML-08: reserva y tramos aprobados para planificación](firestore/ml-08-policy-2026-10-21.md).
 - [ML-08: recuperación y tamaño de copias — continuación](firestore/ml-08-recovery-2026-10-21.md).

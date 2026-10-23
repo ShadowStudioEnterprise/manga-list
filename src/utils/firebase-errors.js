@@ -36,6 +36,10 @@ const ERROR_MESSAGES = Object.freeze({
     'El navegador no permite mantener la sesión. Revisa sus ajustes de privacidad.',
   'app/quota-paused':
     'Peticiones pausadas durante 15 minutos por una cuota agotada. Conserva tus cambios y espera antes de reintentar.',
+  'app/listener-timeout':
+    'No se ha podido confirmar toda la biblioteca en un minuto. La sincronización se ha detenido. Conserva tus cambios, comprueba la conexión y reintenta manualmente.',
+  'app/reconnect-paused':
+    'Reconexión pausada por fallos repetidos. Espera hasta un minuto antes de reintentar.',
   'app/request-budget':
     'Límite local de peticiones alcanzado. Espera un minuto antes de reintentar.',
   'app/deletion-budget':
