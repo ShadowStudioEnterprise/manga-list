@@ -54,6 +54,10 @@ Los logs, capturas y JSON sin resumir se generan en `test-results/startup/<etiqu
 las trazas seleccionadas y validaciones de esta entrega están en `proposals/ml18/evidence/`.
 Los hashes de configuración, lockfile y script se registran en las series posteriores
 a su incorporación al diagnóstico. Las primeras series no tenían aún esos campos.
+La plantilla inicial de `metadata.definition` decía «no login/data operations»
+también para la cohorte autenticada: ese texto era incorrecto; `authenticated: true`
+y `registrationToLibraryMs` registran el alta sintética local. Se conservan los
+registros originales con una aclaración en el JSON; el script final corrige la plantilla.
 
 ## Comparación antes/después
 

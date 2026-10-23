@@ -1,5 +1,6 @@
 {
   "scope": "Windows tool-cache cold/warm, no OS-cache flush; failures retained; concurrent local workload during later runs; not production timings",
+  "metadataClarification": "The early shared definition string says 'no login/data operations'. For authenticated-candidate this template text is incorrect: authenticated=true and registrationToLibraryMs record synthetic account creation in local emulators. Raw records are preserved; the final harness definition corrects the template. No real accounts or remote services were used.",
   "cohorts": [
     {
       "label": "baseline",
