@@ -1,0 +1,5 @@
+
+> manga-list@0.0.1 check:spark
+> node scripts/check-spark.mjs
+
+Spark local compatibility checks passed (remote state not certified).

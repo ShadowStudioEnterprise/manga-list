@@ -1,0 +1,117 @@
+
+> manga-list@0.0.1 build
+> quasar build && node scripts/build-evidence.mjs create spa
+
+
+ ██████╗ ██╗   ██╗ █████╗ ███████╗ █████╗ ██████╗
+██╔═══██╗██║   ██║██╔══██╗██╔════╝██╔══██╗██╔══██╗
+██║   ██║██║   ██║███████║███████╗███████║██████╔╝
+██║▄▄ ██║██║   ██║██╔══██║╚════██║██╔══██║██╔══██╗
+╚██████╔╝╚██████╔╝██║  ██║███████║██║  ██║██║  ██║
+ ╚══▀▀═╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+
+
+ Build mode............. SPA
+ Pkg quasar............. v2.35.1
+ Pkg @quasar/app-vite... v3.8.1
+ Pkg vite............... v8.2.4
+ Debugging.............. no
+
+ App • Compiling quasar.config.js (no env prefix; no dotenv files)
+ App • Env • Client code prefix: QCLI_ | VITE_FIREBASE_; no dotenv files
+ App • Removing build artifacts: <workspace>\dist\spa
+
+ App •  WAIT  • Vite • Compiling SPA UI...
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[PLUGIN_TIMINGS] Your build spent 83% of 3.2s inside plugin hooks (2.7s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - vite-plugin-checker buildEnd (37%, 1.2s, 1 call)
+Those rows are 37% of the build; the rest of the 83% is below.
+Not measurable — 1 hook whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+  - vite:css transform (4 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+
+ App •  DONE  • Vite • Compiled SPA UI • 3367ms
+
+ Build summary with important files:
+ ╔═════════════════════════════════════════════╦══════════════╦══════════════╗
+ ║                                       Asset ║         Size ║      Gzipped ║
+ ╟─────────────────────────────────────────────╫──────────────╫──────────────╢
+ ║             assets/AddMangaPage-vh7bz9Bp.js ║      4.04 KB ║      1.91 KB ║
+ ║            assets/auth-redirect-ALmOEG3y.js ║      0.32 KB ║      0.24 KB ║
+ ║               assets/AuthLayout-ByiWAsLI.js ║      1.94 KB ║      1.07 KB ║
+ ║        assets/bookmarklet-utils-D61xeVRT.js ║      1.47 KB ║      0.83 KB ║
+ ║               assets/ClosePopup-BtZbc0tG.js ║      0.70 KB ║      0.39 KB ║
+ ║            assets/ErrorNotFound-CSmlHSQW.js ║      0.79 KB ║      0.50 KB ║
+ ║                 assets/firebase-DDobuJ6h.js ║    536.86 KB ║    156.09 KB ║
+ ║       assets/ForgotPasswordPage-DzXL0M3L.js ║      2.03 KB ║      1.09 KB ║
+ ║                   assets/format-CsthplCJ.js ║      0.63 KB ║      0.39 KB ║
+ ║                     assets/i18n-Csu8CE5T.js ║     48.35 KB ║     16.52 KB ║
+ ║         assets/ImportExportPage-D2LvreQH.js ║     73.88 KB ║     25.27 KB ║
+ ║                    assets/index-BfXLzfDE.js ║    101.05 KB ║     36.59 KB ║
+ ║              assets/LibraryPage-B8yVIUv_.js ║     18.85 KB ║      6.28 KB ║
+ ║                assets/LoginPage-Cyah9gUy.js ║      3.39 KB ║      1.59 KB ║
+ ║               assets/MainLayout-BqZ0Ft5g.js ║     20.84 KB ║      7.48 KB ║
+ ║          assets/MangaDetailPage-DvBd80PD.js ║      3.39 KB ║      1.66 KB ║
+ ║                assets/MangaForm-M2w2dZRM.js ║      9.55 KB ║      3.58 KB ║
+ ║                  assets/QBanner-CCF6nYP-.js ║      0.86 KB ║      0.48 KB ║
+ ║                     assets/QBtn-CTrmW7gN.js ║     13.38 KB ║      5.33 KB ║
+ ║                    assets/QChip-BiLd3QVm.js ║      2.96 KB ║      1.25 KB ║
+ ║                    assets/QForm-DpQ-Bx3s.js ║      2.23 KB ║      1.05 KB ║
+ ║                    assets/QItem-uEHFpul4.js ║      3.25 KB ║      1.48 KB ║
+ ║                    assets/QList-B1mLoMdK.js ║      0.73 KB ║      0.42 KB ║
+ ║                    assets/QMenu-rTEnMRKC.js ║     21.62 KB ║      7.99 KB ║
+ ║                    assets/QPage-D8HUWj8b.js ║      0.88 KB ║      0.49 KB ║
+ ║                assets/QSkeleton-CBL_S_5F.js ║      1.15 KB ║      0.61 KB ║
+ ║                 assets/QTooltip-TOFY1OEU.js ║     32.99 KB ║     11.43 KB ║
+ ║             assets/RegisterPage-Dpzu5sw9.js ║      3.45 KB ║      1.54 KB ║
+ ║ assets/runtime-core.esm-bundler-Cjn8tZg3.js ║     59.39 KB ║     23.05 KB ║
+ ║             assets/SettingsPage-BvDMmowA.js ║      9.32 KB ║      3.59 KB ║
+ ║            assets/SkipToContent-qS9GgPFc.js ║      6.31 KB ║      2.91 KB ║
+ ║                    assets/touch-BowB9tqj.js ║      0.59 KB ║      0.36 KB ║
+ ║                 assets/use-dark-D0hL7q55.js ║      3.20 KB ║      1.46 KB ║
+ ║         assets/use-element-size-CHzqX2XH.js ║      0.90 KB ║      0.53 KB ║
+ ║       assets/use-file-dom-props-CfU-sxqY.js ║     55.55 KB ║     19.39 KB ║
+ ║               assets/validators-DEoygmIS.js ║      3.30 KB ║      1.25 KB ║
+ ║                       assets/vm-OKKIUD_y.js ║     17.92 KB ║      7.40 KB ║
+ ║                 assets/wrappers-Dd2sgqS9.js ║      0.04 KB ║      0.06 KB ║
+ ╟─────────────────────────────────────────────╫──────────────╫──────────────╢
+ ║                   assets/index-fhDrTUXf.css ║    219.54 KB ║     38.29 KB ║
+ ╟─────────────────────────────────────────────╫──────────────╫──────────────╢
+ ║                             build-info.json ║      0.34 KB ║            - ║
+ ╟─────────────────────────────────────────────╫──────────────╫──────────────╢
+ ║                                  index.html ║      1.44 KB ║      0.58 KB ║
+ ║                            legal/index.html ║      1.33 KB ║      0.75 KB ║
+ ╠═════════════════════════════════════════════╬══════════════╬══════════════╣
+ ║                         Total JS (38 files) ║   1068.08 KB ║            - ║
+ ║                          Total CSS (1 file) ║    219.54 KB ║            - ║
+ ║                        Total HTML (2 files) ║      2.76 KB ║            - ║
+ ╚═════════════════════════════════════════════╩══════════════╩══════════════╝
+
+
+ Build succeeded
+
+ Build mode............. SPA
+ Pkg quasar............. v2.35.1
+ Pkg @quasar/app-vite... v3.8.1
+ Pkg vite............... v8.2.4
+ Debugging.............. no
+ Browser target......... baseline-widely-available
+ =======================
+ Output folder.......... <workspace>\dist\spa
+
+ Tip: Built files are meant to be served over an HTTP server
+      Opening index.html over file:// won't work
+
+ Tip: You can use "quasar serve" command to create a web server,
+      both for testing or production. Type "quasar serve -h" for
+      parameters. Also, an npm script (usually named "start") can
+      be added for deployment environments.
+      If you're using Vue Router "history" mode, don't forget to
+      specify the "--history" parameter: "quasar serve --history"
+
+Build evidence created for spa; this is not deployment approval.

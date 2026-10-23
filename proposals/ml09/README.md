@@ -1,0 +1,77 @@
+# ML-09 — candidata para revisión
+
+Base final: main `120efac` (incluye ML-13). Rama independiente `fix/ml09-spark-recovery`.
+No se fusiona ni despliega. ML-09 sigue abierta hasta aceptación operativa.
+
+## Evidencia local del 23/10/2026
+
+| Comprobación                        | Resultado                                                                                                         |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Unitarias                           | 128 aprobadas                                                                                                     |
+| Firestore demo                      | 27 aprobadas, incluido cierre/recuperación de listener real con señal de cuota sintética y aislamiento por cuenta |
+| E2E completo inicial                | 44 aprobadas, 1 omitida por Windows, 2 fallos del selector ambiguo del nuevo caso ML-09                           |
+| Caso ML-09 corregido                | 2 aprobadas: Chromium y Firefox, cero targets nuevos durante pausa/recarga, un target tras recuperación           |
+| SPA/PWA demo                        | Compiladas y verificadas desde fuente limpia; revisión de build `f37716a`, sin cambios posteriores de runtime     |
+| PWA compilada                       | 3 aprobadas                                                                                                       |
+| Documentación                       | docs:build y docs:check aprobados: 76 páginas, 25 huellas de contratos                                            |
+| Formato, lint y Spark               | Aprobados                                                                                                         |
+| Privacidad offline de fuente/portal | Cero hallazgos                                                                                                    |
+
+La ejecución completa inicial **no es un pase limpio** de la suite final. Los
+fallos se conservan en `evidence/e2e-verified.log`: el test buscaba cualquier alert,
+coincidiendo con notificaciones de registro y guardado. El selector corregido
+busca el aviso dentro de main. La repetición se conserva separadamente en
+`evidence/e2e-quota-verified.log`. CI debe ejecutar la suite completa sobre el
+head final; su resultado se comunica en el PR, sin reescribir la evidencia inicial.
+
+El test omitido usa SIGSTOP/SIGCONT del proceso completo y requiere Linux. La
+congelación real de una página Chromium sí pasó, con 500 obras, escritura
+concurrente, exportación completa y relevo del propietario. Ambos navegadores
+comprobaron coordinación hasta 10000 obras. No certifica Safari ni suspensión OS.
+
+Los logs publicados omiten enlaces de un solo uso del emulador y sustituyen la
+ruta absoluta local por `<workspace>`. Las cuentas/UID que aparecen son sintéticos.
+No se incluyen credenciales, cuentas ni datos de producción. Los intentos
+interrumpidos de entorno y el primer runner aislado sin PATH no se cuentan como
+pruebas aprobadas. `evidence/validation.json` contiene alcance, hashes de runtime,
+hashes de logs y limitaciones; sus cifras se obtienen de las salidas conservadas.
+
+## Reproducción
+
+Desde un clon completo, instalar ambos lockfiles con Node de `.nvmrc`, Java 21+,
+Firebase CLI y Playwright Chromium/Firefox. Ejecutar:
+
+```sh
+npm test
+node scripts/test-firestore-local.mjs
+npm run test:e2e
+npm run lint:check
+npm run check:spark
+npm run docs:build
+npm run docs:check
+npm run audit:security:built
+```
+
+Los runners de Firestore y navegador usan localhost y proyectos demo; nunca
+reutilizar un servidor conectado a producción. El caso de cuota inyecta el código
+terminal en el presupuesto real y adelanta el reloj del cliente: no mide cuota
+facturable ni demuestra su reinicio diario. Para repetir solo ese caso, dentro de
+los emuladores demo ejecutar `playwright test tests/e2e/ml09-recovery.spec.js`.
+
+Para SPA/PWA usar las seis variables Firebase demo de `.github/workflows/ci.yml`,
+compilar con `npm run build` y `npm run build:pwa`, verificar ambos con
+`node scripts/build-evidence.mjs verify spa --project demo-mangalist` (también pwa)
+y ejecutar `npm run test:pwa`. No usar deploy ni el guard remoto.
+
+## Condiciones de aceptación pendientes
+
+Revisión humana del PR, redes lentas y móviles físicos/Safari, temporizadores de
+pestañas suspendidas, consumo agregado representativo y responsables de incidente.
+Validar con autorización separada recuperación tras reinicio real de cuota y
+tratamiento de escrituras pendientes. No agotar deliberadamente cuotas reales.
+La reserva del 20 %, 40000 lecturas y 16000 escrituras/borrados son planificación
+administrativa aprobada, nunca cuota global medida ni disponibilidad garantizada.
+
+Los cambios son compatibles con esquema, copias, reglas y marcador deleting.
+No se modifican reglas, Firebase remoto, datos reales, billing, dependencias ni
+servicios. No hay Blaze, Functions, Run, merge ni deploy.
