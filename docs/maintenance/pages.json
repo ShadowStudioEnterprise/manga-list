@@ -292,6 +292,14 @@
     "docs/security/spark.md": {
       "scope": "Referencia actual de portal",
       "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+    },
+    "docs/security/iam-audit.md": {
+      "scope": "ML-13 auditoría de repositorio y privacidad",
+      "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
+    },
+    "docs/security/public-inventory.md": {
+      "scope": "ML-13 auditoría de repositorio y privacidad",
+      "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
     }
   }
 }

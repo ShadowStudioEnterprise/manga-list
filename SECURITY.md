@@ -1,7 +1,7 @@
 # Seguridad y límites de soporte
 
-El trabajo del [PR #2](https://github.com/ShadowStudioEnterprise/manga-list/pull/2) sigue en
-revisión. Sus tests no certifican la versión publicada ni el estado remoto de reglas/IAM.
+La revisión ML-13 parte de main tras el PR #17. Sus tests no certifican la versión
+publicada ni el estado remoto de reglas/IAM.
 No se declara aquí un plazo de respuesta ni una lista de releases con soporte operativo:
 ambos requieren responsable y decisión del titular.
 
@@ -38,3 +38,31 @@ un despliegue de emergencia, cambios de IAM o modificación de cuentas/datos. La
 sigue el [procedimiento](docs/reports/operations/releases-and-recovery.md), preservando reglas y marcadores.
 Consulta la [especificación](docs/reports/project/specification-v1.md) y la [política Spark](docs/reports/security/spark-only.md)
 para distinguir contratos implementados de aceptación y controles remotos pendientes.
+
+## Ampliación ML-13: divulgación coordinada
+
+No publiques credenciales, UID, correos de usuarios, referencias de soporte,
+exportaciones, enlaces de recuperación, capturas de cuentas ni datos reales en
+issues, PR, Actions o documentación. No pruebes contra cuentas ajenas o producción.
+
+El canal privado de seguridad y sus responsables todavía requieren validación
+manual. Si GitHub muestra «Report a vulnerability» en la pestaña Security de este
+repositorio, úsalo para un informe privado mínimo. Su disponibilidad no se ha
+certificado en ML-13. Si no aparece, espera a que el mantenedor habilite o comunique
+un canal privado verificado; no abras un issue público con evidencia sensible.
+No se promete un plazo de respuesta ni una cobertura operativa todavía no aceptados.
+
+Incluye versión, impacto, ruta y pasos reproducibles con datos sintéticos. Evita
+adjuntar valores secretos: basta tipo y ubicación. El responsable debe acusar
+recibo, restringir acceso, contrastar alcance con un revisor y acordar corrección y
+divulgación coordinada. La publicación de detalles requiere revisión de privacidad.
+Si aparece un secreto, la retirada del texto no revoca la credencial ni elimina
+copias e historial: el titular debe evaluar revocación/rotación y alcance por un
+procedimiento autorizado. Este documento no autoriza cambios remotos.
+
+La auditoría ML-13 y la lista de comprobaciones manuales están en
+[docs/security/iam-audit.md](docs/security/iam-audit.md).
+
+El [paquete de revisión manual ML-13](proposals/ml13/manual-review.md) organiza
+comprobaciones, decisiones y acta vacía. La copia cumplimentada debe permanecer
+fuera del repositorio en almacenamiento con acceso restringido confirmado.
