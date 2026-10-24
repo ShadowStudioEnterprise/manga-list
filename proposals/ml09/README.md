@@ -152,3 +152,18 @@ Archivos de iOS. La segunda pestaña necesitó reactivar a la propietaria para r
 su primera copia, sin abrir otra suscripción. No certifica suspensión del sistema
 ni red móvil real. El producto probado sigue siendo c150b0c; esta entrega añade
 solo evidencia. [Informe, transporte, registros y verificador](evidence/safari-iphone-2026-10-24/README.md).
+
+## Bloqueo físico en Safari normal — 24/10/2026
+
+El ensayo final sin SafariDriver confirma el bloqueo físico del iPhone y una pausa
+nativa del temporizador de 219061 ms. Se guarda un cambio concurrente con el móvil
+bloqueado, se esperan 131336 ms antes de pedir desbloquearlo y vuelve la misma
+página, sin recarga ni Reintentar. La primera muestra confirmada llega 4599 ms
+después de la primera telemetría visible: 500 IDs únicos, capítulo 2, sin error
+ni pendientes, una sola apertura Listen y estabilidad de 60079 ms. Son tiempos
+de muestreo pasivo, no latencia exacta. Los intentos controlados que cerraron la
+página quedan inconclusos. [Informe, datos y verificador](evidence/iphone-physical-lock-2026-10-24/README.md).
+
+Este caso resuelve la comprobación observada de bloqueo físico en Safari normal;
+no certifica sueño completo de iOS, red móvil o guardado en Archivos. No cambia
+el producto ni sustituye los demás criterios operativos de ML-09.

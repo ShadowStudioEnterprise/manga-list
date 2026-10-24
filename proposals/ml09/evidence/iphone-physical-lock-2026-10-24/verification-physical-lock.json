@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-24T04:52:16.022Z",
+  "checks": {
+    "physicalLockConfirmed": true,
+    "lockedWaitMs": 131336,
+    "nativeTimerMaxGapMs": 219061,
+    "samePageAfterUnlock": true,
+    "all500Confirmed": true,
+    "concurrentChapterRecovered": true,
+    "firstObservedConfirmationMs": 4599,
+    "stableObservedMs": 60079,
+    "oneOutgoingAddTargetAcrossLock": true,
+    "noManualRetryOrReload": true,
+    "searchNotExercised": true,
+    "safariDriverStopped": true
+  },
+  "scope": "Real iPhone physical lock in normal Safari, native events/clock and passive telemetry; no OS-wide sleep, mobile networking or billed-quota certification"
+}

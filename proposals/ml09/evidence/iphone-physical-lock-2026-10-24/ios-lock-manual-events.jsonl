@@ -1,0 +1,2 @@
+{"at":"2026-10-24T04:47:29.372Z","label":"bloqueo-fisico-y-cambio-servidor","value":{"startedAt":1792817249204,"userConfirmedPhysicalLock":true,"passcodeRequired":true,"unlockedSinceBoot":true,"serverConfirmedChapter":"2","safariDriverStopped":true,"noSafariCommandsDuringWait":true}}
+{"at":"2026-10-24T04:49:40.540Z","label":"espera-completada","value":{"lockedWaitMs":131336,"noSafariCommandsDuringWait":true,"safariDriverStopped":true}}
