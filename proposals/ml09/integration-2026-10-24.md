@@ -24,6 +24,14 @@ el runtime de producto probado en Safari sigue siendo c150b0c. Las compilaciones
 deben repetirse por los cambios de dependencias. Ninguna comprobación offline
 repite ni amplía el alcance de los ensayos físicos registrados.
 
+El primer E2E local se interrumpió después de conservar sus trazas: el servidor
+se había arrancado en una revisión anterior a la esperada por el test de versión,
+y el test de pestañas esperaba el total visual sin filtrar tras recargar. Se
+corrige esa segunda expectativa para exigir la búsqueda conservada, una coincidencia
+visible y todos los documentos únicos confirmados en el store. No se modifica
+el producto ni se acepta una biblioteca parcial. La repetición debe arrancar
+desde una revisión fija; los intentos interrumpidos no se cuentan como pases.
+
 ## Reproducción y estado
 
 Usar Node 24, Java 21 y Firebase CLI 15.32.1. Instalar ambos lockfiles con npm ci.

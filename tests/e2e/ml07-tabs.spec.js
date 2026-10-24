@@ -102,10 +102,36 @@ for (const size of [100, 1000, 2500, 5000, 10000]) {
     )
     const beforeReload = tabs[0].targets
     await tabs[0].page.reload()
-    await expect(tabs[0].page.locator('.library-page-summary')).toContainText(`de ${size} obras`, {
+    // Reload restores the applied search: the visual total is filtered, while
+    // the server-confirmed library must still contain every unique document.
+    await expect(tabs[0].page.locator('.library-page-summary')).toContainText('de 1 obras', {
       timeout: 90000,
     })
+    await expect(
+      tabs[0].page.getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true }),
+    ).toHaveValue('Synthetic 0')
     await expect(tabs[0].page.getByRole('status')).toContainText('Última instantánea')
+    expect(
+      await tabs[0].page.evaluate(async () => {
+        const { useMangaStore } = await import('/src/stores/manga-store.js')
+        const store = useMangaStore()
+        return {
+          count: store.mangas.length,
+          unique: new Set(store.mangas.map((manga) => manga.id)).size,
+          fromCache: store.snapshotFromCache,
+          pending: store.hasPendingWrites,
+          error: store.syncError,
+          loading: store.loading,
+        }
+      }),
+    ).toEqual({
+      count: size,
+      unique: size,
+      fromCache: false,
+      pending: false,
+      error: null,
+      loading: false,
+    })
     const reloadTargets = tabs[0].targets - beforeReload
     expect(reloadTargets).toBe(0)
     expect(tabs[1].targets).toBe(size > 5000 ? 3 : 1)
