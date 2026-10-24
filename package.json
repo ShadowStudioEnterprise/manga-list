@@ -11,8 +11,8 @@
     "test:rules": "node --experimental-vm-modules --test tests/firestore/*.test.js",
     "test:e2e": "node tests/e2e/run.js",
     "test:pwa": "node --test tests/pwa/*.test.js",
-    "lint": "prettier --write \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
-    "lint:check": "prettier --check \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
+    "lint": "prettier --write \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore --ignore-path .prettierignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
+    "lint:check": "prettier --check \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore --ignore-path .prettierignore && eslint -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",
     "dev": "quasar dev",
     "build": "quasar build && node scripts/build-evidence.mjs create spa",
     "build:pwa": "quasar build -m pwa && node scripts/build-evidence.mjs create pwa",
@@ -27,6 +27,7 @@
     "docs:preview": "vitepress preview docs",
     "deploy:docs": "npm run check:spark:remote && firebase deploy --only hosting:docs --project mangalist-61bb8",
     "docs:check": "node scripts/check-docs-integrity.mjs",
+    "test:landing": "node scripts/check-public-landing.mjs",
     "audit:security": "node scripts/security-audit.mjs",
     "audit:security:built": "node scripts/security-audit.mjs --built"
   },

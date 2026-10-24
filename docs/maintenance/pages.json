@@ -22,8 +22,8 @@
       "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
     },
     "docs/index.md": {
-      "scope": "Referencia actual de portal",
-      "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
+      "scope": "Landing pública ML-P06",
+      "decision": "Página de producto estática; capacidades contrastadas con guía y contratos; sin cambios en Beta o Firebase."
     },
     "docs/maintenance/documentation-audit.md": {
       "scope": "Referencia actual de portal",
@@ -304,6 +304,14 @@
     "docs/reports/firestore/ml-09-recovery-2026-10-23.md": {
       "scope": "Candidata ML-09: recuperación Spark",
       "decision": "Candidata con retirada al congelar y recuperación manual del transporte; promesa pendiente verificada; aceptación operativa pendiente."
+    },
+    "docs/project/index.md": {
+      "scope": "Portal técnico conservado",
+      "decision": "Portada ML-02 conservada en /project/, con acceso a guía, contratos e informes."
+    },
+    "docs/reports/quality/public-landing.md": {
+      "scope": "Entrega ML-P06",
+      "decision": "Diseño, procedencia de capturas y verificación local; no certifica Beta ni Hosting."
     }
   }
 }

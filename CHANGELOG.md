@@ -19,8 +19,19 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
   y protección ante fallos síncronos, conservando búsqueda/filtros del mismo dueño.
 - Importación detenida al primer bloque con errores y causa visible; exportación
   simultánea por cuenta rechazada antes de leer; admisión por intento del marcador.
-- Sin cambios de esquema, reglas, configuración remota o dependencias. Presupuestos
+- Actualización transitiva de serialize-javascript a 7.1.4 en ambos lockfiles
+  y fast-uri a 3.1.9 en PWA para corregir los avisos de auditoría, sin cambiar
+  dependencias directas de la aplicación.
+- Sin cambios de esquema, reglas o configuración remota. Presupuestos
   locales separados de cuota global; aceptación operativa y publicación pendientes.
+
+## Sin publicar — ML-P06 landing pública
+
+- Portada responsive Ink/Paper/Violet con beneficios, capturas auténticas de
+  pruebas, FAQ accesible y CTA a la Beta. Portal técnico conservado en `/project/`.
+- HTML pre-renderizado, metadatos SEO/sociales y pruebas locales Chromium/Firefox
+  a 320, 390, 768 y 1440 px, con temas claro y oscuro, integradas en CI.
+- Sin cambios en la Beta o Firebase; sin fusión ni despliegue.
 
 ## Sin publicar — propuesta ML-02
 
