@@ -1,0 +1,41 @@
+i  emulators: Starting emulators: auth, firestore
+i  emulators: Detected demo project ID "demo-mangalist", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: node node_modules/@playwright/test/cli.js test tests/e2e/ml09-recovery.spec.js --project=chromium --project=firefox
+[WebServer] (node:13117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:13117) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:13977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAw.woff" is outside of Vite serving allow list.
+[WebServer]
+[WebServer] - <workspace>/ml09-search-fix
+[WebServer] - <workspace>/candidato/node_modules/vite/dist/client
+[WebServer]
+[WebServer] Refer to docs https://vite.dev/config/server-options.html#server-fs-allow for configurations and more details.
+[WebServer]
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/material-icons/web-font/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuZtalmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bVmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/material-icons/web-font/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjalmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWubEbVmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/material-icons/web-font/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuZtalmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWub2bVmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/roboto-font/web-font/KFOMCnqEu92Fr1ME7kSn66aGLdTylUAMQXC89YmC2DPNWuYjalmUiAw.woff" is outside of Vite serving allow list.
+[WebServer] The request id "<workspace>/candidato/node_modules/@quasar/extras/exports/material-icons/web-font/flUhRq6tzZclQEJ-Vdg-IuiaDsNa.woff" is outside of Vite serving allow list.
+
+i  emulators: Received SIGINT (Ctrl-C) for the first time. Starting a clean shutdown.
+i  emulators: Please wait for a clean shutdown or send the SIGINT (Ctrl-C) signal again to stop right now.
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator

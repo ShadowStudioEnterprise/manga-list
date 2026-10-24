@@ -1,5 +1,5 @@
 {
-  "reviewedOn": "2026-10-23",
+  "reviewedOn": "2026-10-24",
   "pages": {
     "docs/architecture/diagrams.md": {
       "scope": "Referencia actual de portal",
@@ -47,7 +47,7 @@
     },
     "docs/reference/synchronization.md": {
       "scope": "Contrato interno vigente",
-      "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."
+      "decision": "ML-09: búsqueda limitada en sessionStorage por pestaña/proyecto/cuenta; limpieza al salir, sin obras persistidas ni cambios de listeners. Revisión de contrato y regresión de recarga durante cuota."
     },
     "docs/reports/accounts/abandoned-deletion-assistance.md": {
       "scope": "Preparación y ensayos ML-11/12",

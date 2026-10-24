@@ -124,6 +124,17 @@ conserva el Map de operaciones en curso y no reinicia `libraryRevision`.
 El error de escucha conserva la última lista pero retira UID, marca caché y error;
 esa lista no debe tratarse como confirmada.
 
+ML-09 conserva además la búsqueda tras recargar, incluso si la cuota impide abrir
+la escucha. `src/utils/library-search.js` guarda solo versión, UID y consulta de
+hasta 512 caracteres en sessionStorage, con clave por proyecto y aislamiento de
+pestaña. Se restaura únicamente para la cuenta autenticada; cambiar de cuenta o
+desuscribir al salir borra esa selección. Un reinicio interno de la misma cuenta
+la conserva. La búsqueda vacía, sobredimensionada o corrupta se retira; si el
+navegador deniega almacenamiento se mantiene el funcionamiento en memoria.
+No persiste obras, filtros, credenciales ni confirmaciones de servidor, ni abre
+lecturas adicionales. Tras recargar, la lista sigue vacía y no confirmada mientras
+la cuota esté pausada; Reintentar sigue siendo necesario después del vencimiento.
+
 Acciones locales: `setSearchQuery(value)`, `setFilters(filters = {})`,
 `resetFilters()`, `requestSharedSnapshot()`. `runTrackedWrite(uid, operation)`
 incrementa/decrementa por cuenta con `finally`; las promesas de escrituras de otra

@@ -1,0 +1,200 @@
+(node:13013) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ deletion drains more than two batches and ignores presentation callback failures (33.803756ms)
+✔ failed second batch reports confirmed progress and retries the remaining records (9.800352ms)
+✔ failed Auth deletion retains the write barrier and can be retried (3.408609ms)
+✔ reauthentication and marker failures stop before deleting any records (5.695046ms)
+✔ a server read failure cannot be mistaken for an empty library (2.930027ms)
+✔ cleanup rejects another uid and a missing session (6.743844ms)
+✔ a session change during reauthentication stops before the write barrier (2.361175ms)
+✔ large deletion stops at a bounded budget and resumes without deleting Auth early (3.179006ms)
+✔ quota exhaustion keeps marker and Auth, and repeated confirmation performs no further reads (3.197837ms)
+✔ simultaneous deletion confirmations are rejected before a second cleanup starts (2.978846ms)
+✔ ML-12: lost Auth acknowledgement reports failure despite applied deletion, requiring independent inspection (3.234352ms)
+✔ build evidence verifies byte inventory and rejects changed, missing, added files and source inputs (153.445059ms)
+✔ release evidence rejects wrong projects, stale revisions, dirty builds and changed contracts (71.099492ms)
+✔ symbolic links are rejected and the CLI fails closed without build evidence (740.714606ms)
+✔ the Vite plugin emits only the resolved public project and the explicit source stamp (42.097428ms)
+(node:13014) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ version diagnostics whitelist public build fields and handle unidentified development builds (7.834707ms)
+✔ offline docs audit accepts a complete fixture and rejects drift, broken references, routes and anchors (1665.193792ms)
+✔ verified JSON/CSV record provenance, remain importable and reject unsupported evidence (8.153993ms)
+(node:13016) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ export fetch uses a bounded server query and rejects local, pending, excessive or failed data (76.275521ms)
+✔ ML-09: simultaneous export is rejected before another read and failure releases admission (9.389811ms)
+✔ download uses the fetched snapshot and cancels on failure, pending edits or an account change (502.133144ms)
+✔ drafts isolate accounts and forms, whitelist fields, expire and preserve foreign storage (29.709116ms)
+✔ draft bounds reject excess count and invalid content without evicting valid drafts (20.080511ms)
+(node:13017) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ form drafts require opt in and explicit restore; recovered baseline still detects remote conflicts (309.972252ms)
+✔ storage failure disables draft saving and reports failure without losing edits (23.857464ms)
+✔ PWA registration reports new and already waiting updates, with passive Workbox options (50.053027ms)
+✔ an account change during duplicate lookup never saves the previous account form to the next one (17.838948ms)
+✔ import IDs survive a new preview and source IDs but separate accounts, formats and edited files (14.336908ms)
+✔ a reselected file marks existing stable document IDs complete without relying on names (1.963134ms)
+(node:13018) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ lost acknowledgement and a fresh service instance reuse the committed document and preserve later edits (16.520498ms)
+✔ file preparation ignores a late result after reset or an account change (272.882678ms)
+✔ confirmation rejects another account and stops future chunks after a session change (226.072747ms)
+✔ license output preserves original texts and a missing required notice stops the build (24.937169ms)
+✔ all legacy icons are replaced with traceable original assets (10.221634ms)
+✔ legal document links retain their path after Hosting clean-URL canonicalization (2.050632ms)
+(node:13026) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ freezing retires every range once and ignores late snapshots until explicit recovery (58.375115ms)
+✔ real query constraints cover 0 documents once across bounded ranges and export (6.240361ms)
+✔ real query constraints cover 1 documents once across bounded ranges and export (8.071624ms)
+✔ real query constraints cover 500 documents once across bounded ranges and export (5.717277ms)
+✔ real query constraints cover 501 documents once across bounded ranges and export (7.266306ms)
+✔ real query constraints cover 1000 documents once across bounded ranges and export (3.022625ms)
+✔ real query constraints cover 1001 documents once across bounded ranges and export (3.346875ms)
+✔ real query constraints cover 2501 documents once across bounded ranges and export (4.37978ms)
+✔ real query constraints cover 5000 documents once across bounded ranges and export (11.985117ms)
+✔ real query constraints cover 10000 documents once across bounded ranges and export (29.18166ms)
+✔ stable ranges preserve inserts on both sides, boundary deletion, edits and empty results (6.410136ms)
+✔ cache cannot certify completeness; pending/cache metadata remain conservative (3.595782ms)
+✔ cancel and late callbacks cannot deliver or attach more targets (5.804036ms)
+✔ cancel while a split child awaits confirmation never opens the deferred sibling (2.594615ms)
+✔ a failed query stops its listener and never claims a complete partial library (3.414583ms)
+✔ document and fragmentation budgets fail closed and stop their targets (5.154565ms)
+✔ export page failure, cache, pending writes and session changes return no partial copy (12.737335ms)
+✔ ID tie order stays stable and cancellation ignores late target errors (4.942127ms)
+✔ pagination traverses every filtered record exactly once, including a partial final page (12.264074ms)
+✔ filter and sort changes reset to page one; realtime updates retain page and removals clamp it (2.753142ms)
+✔ pagination bounds invalid page numbers and resets when the owner changes (0.586053ms)
+(node:13068) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ manual recovery is serialized and limited before calling the SDK (170.26026ms)
+✔ quota and listener backoff prevent transport resets while writes retain admission (5.293974ms)
+✔ failed pausing still restores transport and keeps both failures (2.904107ms)
+✔ recovery rejects a different account and rechecks identity after restoration (2.150466ms)
+✔ library search survives a new instance only for the same project and account (1.63287ms)
+✔ library search bounds persisted input and removes empty, malformed or foreign state (1.381284ms)
+✔ denied session storage and quota failures do not interrupt library actions (1.875335ms)
+(node:13078) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ML-09: cold store restores search during synchronous quota failure and clears it on account change/logout (206.567392ms)
+✔ ML-09: synchronous terminal callback cannot leave a stale handle that blocks recovery (5.355467ms)
+✔ operation failures never become synchronization errors or erase a real listener failure (10.415758ms)
+✔ coordination recovery preserves filters and data and resets on account change (3.8835ms)
+✔ stale callbacks cannot overwrite a newer subscription for the same uid or a different account (4.315355ms)
+✔ favorites carry the displayed value as a transaction precondition (101.07645ms)
+✔ metadata-only events distinguish cache, pending writes and server and cannot cross sessions (14.825478ms)
+✔ retry controls handle synchronous listener initialization failures (1215.622455ms)
+✔ in-flight operations remain visible even if query metadata reports no pending writes (7.900755ms)
+✔ ML-11 proposal: exact UTC threshold across Madrid DST only permits a recommendation (2.312772ms)
+✔ ML-11 proposal: every missing or uncertain prerequisite preserves and escalates (0.400479ms)
+✔ ML-11 proposal: recent Auth confirmation requires both clocks and a separate token assessment (0.178636ms)
+✔ ML-08: empty query minimum and 5000/5001 split discontinuity (8.172853ms)
+✔ ML-08: weighted mixtures use per-account cold overhead and device deliveries (0.477079ms)
+✔ ML-08: reserve is a proposal and import/retry costs consume real headroom (4.149891ms)
+(node:13081) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ML-08 recovery: actual page accepts exactly 5 MiB and rejects one more byte before reading (808.280127ms)
+✔ ML-08 recovery: real export action can produce a file its import action rejects (210.281783ms)
+✔ ML-08 recovery: byte-bounded Unicode parts preserve all exported fields and pass the actual page preview (918.217971ms)
+✔ ML-08 recovery: immutable parts retain retry IDs; repartitioning changes them (37.514368ms)
+✔ ML-09: quota pause survives reload, crosses tabs, stays project scoped and stores no user data (5.215202ms)
+✔ ML-09: denied/corrupt storage preserves in-memory pause and original errors (1.798858ms)
+✔ ML-09: each terminal failure is counted once across wrappers and backoff is capped (3.374125ms)
+(node:13082) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ ML-09: quota from another operation stops active listeners once, then manual recovery succeeds (22.836629ms)
+✔ ML-09: silent listener times out; repeated manual failures back off without automatic reconnects (3.646201ms)
+✔ ML-09: cached/partial data never cancels the deadline; server confirmation does (3.970809ms)
+✔ ML-09: a split after an already confirmed library starts a fresh deadline (9.480973ms)
+✔ multipart export: exact UTF-8 packing, stable sealed downloads and every exported field (18.459674ms)
+✔ multipart export: real 4 MiB parts make an oversized legacy JSON recoverable (4930.76553ms)
+✔ multipart preflight: missing, extra, repeated, altered and invalid files cannot produce a plan (11.115181ms)
+✔ multipart recovery: changed bytes after preflight and unrelated libraries stop before a write (5.803356ms)
+✔ multipart recovery: local read admission pauses, reload resumes original IDs and preserves edits (19.579114ms)
+✔ multipart recovery: lost acknowledgement, duplicate names and manual pause remain idempotent (4.978287ms)
+✔ multipart recovery: changing account during a chunk awaits started writes and starts no more (15.657428ms)
+✔ budget introspection does not consume admissions or shorten quota cooldown (0.452523ms)
+(node:13084) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ multipart panel: downloads use a single sealed server result and account changes clear it (389.148711ms)
+✔ multipart panel: pending data, revision changes, unmount and account changes cancel preparation (229.787588ms)
+✔ multipart panel: preparing another export preserves a completed restore state (140.432323ms)
+(node:13085) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ Quasar exposes the documented Firebase dotenv values, including numeric sender ID (87.200842ms)
+✔ emulator requests reject unsafe or malformed configuration before any Firebase SDK call (140.010578ms)
+✔ emulator connections occur in service order and failures never fall back to cloud (3.553271ms)
+✔ disabled emulator mode preserves ordinary startup and incomplete configuration stays inert (5.407741ms)
+✔ an existing default Firebase app must match configuration before Auth or Firestore starts (21.850522ms)
+✔ editing notes preserves a chapter updated remotely after the form opened (320.321624ms)
+✔ concurrent edits to the same field conflict, while identical edits and reordered map keys do not (0.388194ms)
+✔ bookmarklet destination survives registration with email and Google (95.019747ms)
+✔ CSV rows with missing or extra columns cannot be selected (11.089205ms)
+✔ explicit sources without URLs are reported, while omitted sources remain optional (1.932174ms)
+✔ JSON and CSV exports still round-trip multiple sources, quotes and multiline notes (1.591849ms)
+✔ successful import clears both the preview and selected file (605.426293ms)
+✔ retrying a partial import never writes successful records again (45.640846ms)
+✔ quota failure stops import after the current chunk and preserves confirmed successes (105.936957ms)
+✔ credential detector reports location without reproducing secrets (25.458327ms)
+✔ workflow guard rejects privilege escalation, credentials and mutable actions (0.844047ms)
+(node:13087) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ same-account tabs share one listener, cloned dates, updates and ownership after close (265.076169ms)
+✔ account/project namespaces, canceled waiters and late account callbacks remain isolated (44.61187ms)
+✔ quota errors stop all peers and queued/new leaders cannot reopen during the shared pause (32.539372ms)
+✔ unsupported browsers use the bounded independent listener (0.319825ms)
+✔ silence stays stale through heartbeats; explicit recovery requests data without another listener (159.402836ms)
+✔ unavailable coordination storage fails safely before opening Firestore (11.807425ms)
+Spark local compatibility checks passed (remote state not certified).
+✔ Spark CLI rejects unknown, duplicate and misspelled options before invoking gcloud (1054.095199ms)
+✔ protected npm scripts retain the exact remote, release and audit command chain (1.613004ms)
+✔ workflow scan rejects npm deployment aliases and Hosting publication or cloning (0.800785ms)
+✖ deployment guard CLI accepts only successful unlinked evidence and fails closed (11334.275593ms)
+✔ Spark policy rejects paid services, dynamic rewrites, changed targets and missing guard (133.06239ms)
+✔ docs deploy rejects changed paths, missing guards, dynamic features and swapped mappings (1.554102ms)
+✔ report redirects reject external URLs, dynamic routes and unsupported features (0.809681ms)
+✔ remote deployment evidence must be explicit, current project, unlinked billing and Standard (0.410164ms)
+✔ admission budgets stop bursts and reset only after the time window (1.23752ms)
+(node:13088) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ cursor listener quota failure stops targets and blocks reconnect before SDK (21.078964ms)
+✔ client scan rejects side-effect imports, literal dynamic imports, reexports and internal SDKs (0.631642ms)
+✔ server dependency scan checks root manifests and transitive lockfile package paths (0.345934ms)
+✔ suspension uses manual listener backoff without pausing writes (0.233033ms)
+(node:13091) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ chapter: exhausted read budget prevents SDK reads and writes, then recovers after the window (131.488452ms)
+✔ edit: exhausted read budget prevents SDK reads and writes, then recovers after the window (10.244388ms)
+✔ import: exhausted read budget prevents SDK reads and writes, then recovers after the window (8.291555ms)
+ℹ tests 138
+ℹ suites 0
+ℹ pass 137
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17568.600775
+
+✖ failing tests:
+
+test at tests/spark.test.js:130:1
+✖ deployment guard CLI accepts only successful unlinked evidence and fails closed (11334.275593ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  null !== 1
+
+      at TestContext.<anonymous> (file://<workspace>/ml09-search-fix/tests/spark.test.js:159:14)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1106:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:788:18)
+      at Test.postRun (node:internal/test_runner/test:1235:19)
+      at Test.run (node:internal/test_runner/test:1163:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:788:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

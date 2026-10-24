@@ -1,5 +1,10 @@
 # Safari Mac: evidencia del 24/10/2026
 
+**Actualización posterior:** el fallo de búsqueda descrito en esta evidencia de
+6712945 se ha corregido y validado en Safari real. Véase el
+[nuevo ensayo de búsqueda](../safari-search-2026-10-24/README.md). Se conservan sin
+reescribir los registros originales del fallo.
+
 Revisión probada: **6712945f9c0afa26ec6082e3b112b4fbf4c14211**. Safari real 18.6
 (20621.3.11.11.3), macOS 15.7.9 (24G830). Sesiones automatizadas mediante
 SafariDriver contra Auth/Firestore demo en localhost, con 500 obras sintéticas.

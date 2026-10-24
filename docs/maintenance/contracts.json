@@ -1,6 +1,6 @@
 {
   "baseCommit": "a6627d0a00371d2aaff0605884f05e7a1750f9f9",
-  "reviewedOn": "2026-10-23",
+  "reviewedOn": "2026-10-24",
   "sources": {
     "src/services/account-service.js": {
       "sha256": "7c79207cbedfa252524ae06307aa068e95c82fb7c2c77889e380ae7b8bad92e9",
@@ -95,7 +95,7 @@
       "exports": ["default"]
     },
     "src/stores/manga-store.js": {
-      "sha256": "073e77840627dfb954202cbb2d0b068cec111fcb88fd7fc3a92a0329a9d4cb76",
+      "sha256": "837e420445804eee882d1e1da5364b23ca53fe4dd53eaf5472fd6896b1aac856",
       "exports": ["useMangaStore"]
     },
     "src/stores/settings-store.js": {
@@ -196,6 +196,10 @@
     "src/pages/LibraryPage.vue": {
       "sha256": "3d6847980ae4b3c1dba939a67e9ebcf594426ee54831c51026f8a40f10e6037c",
       "exports": []
+    },
+    "src/utils/library-search.js": {
+      "sha256": "42370c7a249319a02c2812e74b87732a780b02299cce80c8636d35cba964169f",
+      "exports": ["createLibrarySearchStorage", "librarySearchStorage"]
     }
   }
 }

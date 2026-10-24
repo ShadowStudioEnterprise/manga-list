@@ -2,8 +2,9 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import { createPinia, setActivePinia } from 'pinia'
 import { loadModule } from './helpers/load-module.js'
+import { createLibrarySearchStorage } from '../src/utils/library-search.js'
 
-async function fixture(overrides = {}) {
+async function fixture(overrides = {}, searchStorage) {
   const listeners = []
   const conflict = Object.assign(new Error('Conflicto de edición'), { code: 'app/edit-conflict' })
   const service = {
@@ -38,9 +39,50 @@ async function fixture(overrides = {}) {
   const module = await loadModule('src/stores/manga-store.js', {
     '@/services/manga-service': service,
     '@/stores/settings-store': { useSettingsStore: () => ({ sortBy: 'updated-desc' }) },
+    ...(searchStorage ? { '@/utils/library-search': { librarySearchStorage: searchStorage } } : {}),
   })
   return { store: module.useMangaStore(), listeners }
 }
+
+test('ML-09: cold store restores search during synchronous quota failure and clears it on account change/logout', async () => {
+  const values = new Map()
+  const saved = createLibrarySearchStorage(
+    () => ({
+      getItem: (key) => values.get(key),
+      setItem: (key, value) => values.set(key, value),
+      removeItem: (key) => values.delete(key),
+    }),
+    'demo-test',
+  )
+  const first = await fixture({}, saved)
+  first.store.subscribe('alice')
+  first.store.searchQuery = 'ML09 Safari 0000'
+  assert.equal(saved.read('alice'), 'ML09 Safari 0000', 'v-model changes persist synchronously')
+  first.store.$dispose()
+  const second = await fixture(
+    {
+      subscribeToMangas(_uid, _next, fail) {
+        fail({ code: 'resource-exhausted' })
+        return () => {}
+      },
+    },
+    saved,
+  )
+  second.store.subscribe('alice')
+  assert.ok(second.store.syncError)
+  assert.equal(second.store.searchQuery, 'ML09 Safari 0000')
+  second.store.subscribe('alice')
+  assert.equal(second.store.searchQuery, 'ML09 Safari 0000')
+  second.store.subscribe('bob')
+  assert.equal(second.store.searchQuery, '')
+  assert.equal(saved.read('alice'), '')
+  second.store.searchQuery = 'Bob selection'
+  assert.equal(saved.read('bob'), 'Bob selection')
+  second.store.unsubscribe()
+  second.store.searchQuery = 'Retired view'
+  assert.equal(saved.read('bob'), '', 'sign-out also stops the persistence watcher')
+  first.store.unsubscribe()
+})
 
 test('ML-09: synchronous terminal callback cannot leave a stale handle that blocks recovery', async () => {
   let starts = 0,

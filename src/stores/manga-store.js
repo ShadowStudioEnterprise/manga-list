@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { watch } from 'vue'
 import {
   changeMangaChapter,
   createManga as createMangaDocument,
@@ -11,9 +12,11 @@ import {
 import { toAppError } from '@/utils/firebase-errors'
 import { useSettingsStore } from '@/stores/settings-store'
 import { compareChapters } from '@/utils/chapter-utils'
+import { librarySearchStorage } from '@/utils/library-search'
 
 let stopMangaListener = null
 let subscriptionVersion = 0
+const searchWatchers = new WeakMap()
 
 const DEFAULT_FILTERS = Object.freeze({
   readingStatus: '',
@@ -172,9 +175,14 @@ export const useMangaStore = defineStore('mangas', {
         return
       }
 
-      const search = this.libraryOwnerUid === uid ? this.searchQuery : ''
+      const search =
+        this.libraryOwnerUid === uid
+          ? this.searchQuery
+          : this.libraryOwnerUid
+            ? ''
+            : librarySearchStorage.read(uid)
       const filters = this.libraryOwnerUid === uid ? this.filters : { ...DEFAULT_FILTERS }
-      this.unsubscribe()
+      this.unsubscribe({ preserveSearch: true })
       this.searchQuery = search
       this.filters = filters
       const version = subscriptionVersion
@@ -182,6 +190,15 @@ export const useMangaStore = defineStore('mangas', {
       this.syncError = null
       this.subscribedUid = uid
       this.libraryOwnerUid = uid
+      librarySearchStorage.write(uid, search)
+      searchWatchers.set(
+        this,
+        watch(
+          () => this.searchQuery,
+          (query) => librarySearchStorage.write(uid, query),
+          { flush: 'sync' },
+        ),
+      )
 
       try {
         let failedSynchronously = false
@@ -226,7 +243,10 @@ export const useMangaStore = defineStore('mangas', {
       }
     },
 
-    unsubscribe() {
+    unsubscribe({ preserveSearch = false } = {}) {
+      searchWatchers.get(this)?.()
+      searchWatchers.delete(this)
+      if (!preserveSearch) librarySearchStorage.clear()
       subscriptionVersion += 1
       stopMangaListener?.()
       stopMangaListener = null

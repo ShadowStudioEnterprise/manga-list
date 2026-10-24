@@ -3,6 +3,21 @@
 Base final: main `120efac` (incluye ML-13). Rama independiente `fix/ml09-spark-recovery`.
 No se fusiona ni despliega. ML-09 sigue abierta hasta aceptación operativa.
 
+## Estado vigente — corrección de búsqueda del 24/10/2026
+
+La búsqueda aplicada se restaura tras recargar durante cuota mediante
+sessionStorage por pestaña/proyecto/cuenta, limitada a 512 unidades UTF-16 y
+borrada al salir o cambiar de usuario. Sin persistir biblioteca ni filtros.
+Regresiones finales: 138 unitarias aprobadas, dos E2E dirigidos (Chromium y
+Firefox) y Safari real con 500 obras y 915330 ms de espera sin cambiar el reloj.
+Safari conserva búsqueda al recargar y recuperar capítulo 2, con un solo target;
+exportación íntegra y limpieza de selección al salir comprobadas.
+
+[Código probado, informe, verificadores y evidencias](evidence/safari-search-2026-10-24/README.md).
+Los fallos y resultados de revisiones anteriores que siguen debajo son históricos;
+el fallo de búsqueda observado en el runtime 6712945 queda corregido por este
+cambio. ML-09 sigue abierta para aceptación y las demás validaciones operativas.
+
 ## Evidencia local del 23/10/2026
 
 | Comprobación                        | Resultado                                                                                                         |

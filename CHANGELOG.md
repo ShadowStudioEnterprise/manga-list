@@ -6,6 +6,10 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — candidata ML-09
 
+- Búsqueda de biblioteca restaurada tras recargar, incluida la pausa de cuota:
+  selección de hasta 512 caracteres en sessionStorage por pestaña, proyecto y
+  cuenta, borrada al salir o cambiar de usuario. Sin persistir obras ni filtros.
+
 - Congelación nativa: escucha retirada y aviso; recuperación manual con transporte
   local reiniciado, sin cancelar escrituras pendientes ni abrir reconexiones en bucle.
 

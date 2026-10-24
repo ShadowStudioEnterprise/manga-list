@@ -33,6 +33,10 @@ test('ML-09: quota stops peers, reload cannot bypass pause, explicit recovery co
   const peer = await context.newPage()
   await peer.goto('/#/library')
   await expect(peer.getByRole('status')).toContainText('Última instantánea')
+  const search = page.getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
+  await search.fill('ML09 recovery')
+  // Wait for the debounced input to update the shared model before interrupting it.
+  await expect(page.locator('input[aria-label="Buscar por nombre"]')).toHaveValue('ML09 recovery')
   // Inject only the terminal service signal; all app callbacks/IPC/UI are real.
   await page.evaluate(async () => {
     const { sparkBudget } = await import('/src/utils/spark-budget.js')
@@ -49,6 +53,7 @@ test('ML-09: quota stops peers, reload cannot bypass pause, explicit recovery co
   })
   await page.reload()
   await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
+  await expect(search).toHaveValue('ML09 recovery')
   await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
   await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
   expect(targets).toBe(0)
@@ -56,6 +61,7 @@ test('ML-09: quota stops peers, reload cannot bypass pause, explicit recovery co
   await page.clock.setSystemTime((await page.evaluate(() => Date.now())) + 901000)
   await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
   await expect(page.getByRole('status')).toContainText('Última instantánea')
+  await expect(search).toHaveValue('ML09 recovery')
   await expect(page.locator('.library-page-summary')).toContainText('de 1 obras')
   await page
     .getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
