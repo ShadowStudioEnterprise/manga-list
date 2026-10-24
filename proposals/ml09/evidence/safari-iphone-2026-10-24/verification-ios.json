@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-24T02:33:29.095Z",
+  "checks": {
+    "realDevice": true,
+    "syntheticQuota": true,
+    "realWaitMs": 911132,
+    "searchSurvivesQuotaReload": true,
+    "libraryNotPersistedAcrossReload": true,
+    "oneSharedListener": true,
+    "followerNeedsOwnerReactivationObserved": true,
+    "noAutomaticReopen": true,
+    "retryOneTargetStable60s": true,
+    "export500": true,
+    "nativeFilesAppNotInspected": true,
+    "logoutClearsSearch": true
+  },
+  "limitations": [
+    "Local HTTPS relay and demo emulators; not production networking or billed quota",
+    "No OS suspension, physical loss of connectivity, Files download UI or daily quota reset certified"
+  ]
+}

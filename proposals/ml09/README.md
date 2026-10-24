@@ -140,3 +140,15 @@ pierde la búsqueda. Ese fallo no se corrige con esta entrega de evidencia.
 [Informe, registros, verificadores y originales con hashes](evidence/safari-mac-2026-10-24/README.md).
 La revisión de runtime probada es 6712945; los nuevos archivos son de evidencia.
 Safari/iOS y los demás criterios operativos pendientes no se dan por cumplidos.
+
+## Safari iPhone físico — 24/10/2026
+
+El iPhone 11 con iOS 26.3.1 y Safari 26.3 confirma las comprobaciones principales
+observadas en el laboratorio: búsqueda conservada tras recarga con cuota, cero
+reaperturas durante 911132 ms reales y recuperación manual de 500 obras únicas,
+capítulo actualizado y un target estable más de un minuto. Salir borra la búsqueda.
+La copia JSON generada coincide con el emulador; no se certifica su guardado en
+Archivos de iOS. La segunda pestaña necesitó reactivar a la propietaria para recibir
+su primera copia, sin abrir otra suscripción. No certifica suspensión del sistema
+ni red móvil real. El producto probado sigue siendo c150b0c; esta entrega añade
+solo evidencia. [Informe, transporte, registros y verificador](evidence/safari-iphone-2026-10-24/README.md).

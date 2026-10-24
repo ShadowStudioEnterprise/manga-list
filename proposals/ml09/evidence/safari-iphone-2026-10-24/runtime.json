@@ -1,0 +1,22 @@
+{
+  "testedCommit": "c150b0c8bb557f292425e1ca711711de2057fb1f",
+  "device": "iPhone 11",
+  "os": "iOS 26.3.1 (23D8133)",
+  "browser": "Safari 26.3",
+  "realDevice": true,
+  "driver": "Native macOS SafariDriver",
+  "acceptInsecureCerts": true,
+  "transport": "Protected temporary HTTPS relay on local Wi-Fi, same-origin paths to loopback Auth/Firestore demo emulators; Request bodies buffered to ArrayBuffer for Safari compatibility",
+  "clock": "Native; no override",
+  "project": "demo-mangalist",
+  "sourceHashes": {
+    "src/stores/manga-store.js": "837e420445804eee882d1e1da5364b23ca53fe4dd53eaf5472fd6896b1aac856",
+    "src/utils/library-search.js": "42370c7a249319a02c2812e74b87732a780b02299cce80c8636d35cba964169f",
+    "src/services/library-recovery.js": "0b6c884a69bc78fea75056f4868d17f20eebdc5193c9a7b80d64dc34d87bbf88",
+    "src/services/library-cursors.js": "471ff745baf4c935cb5e48846c2923c3b67e8104ae883816d2feee7b22f76f0e",
+    "src/services/shared-library.js": "80b4cb15bd021ac6370f181b6562cce2375db68804bb5fa16734cb6bb797bfd3",
+    "src/utils/spark-budget.js": "560820957926cdce4a644c8eb0595582c50fbd3cca8094225a1a5da06e65d010",
+    "src/boot/firebase.js": "1fbc332abbfac0b5bc32f4ca54a19144d265a0fa8e9c326a605b607d5da42485"
+  },
+  "helperFixtureBase": "6712945f9c0afa26ec6082e3b112b4fbf4c14211"
+}
