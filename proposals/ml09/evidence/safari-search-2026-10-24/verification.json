@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-24T00:18:28.874Z",
+  "realWaitMs": 915330,
+  "searchSurvivesQuotaReload": true,
+  "blockedRetryNoListener": true,
+  "noAutomaticReopen": true,
+  "oneListenerAfterRecovery": true,
+  "all500Confirmed": true,
+  "sameSearchVisibleAfterRecovery": true,
+  "logoutClearsSelection": true,
+  "loginStartsWithEmptySearch": true,
+  "scope": "Real Safari, synthetic quota and local emulators; not real Firebase quota reset."
+}

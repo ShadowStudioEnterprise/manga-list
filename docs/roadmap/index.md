@@ -3,6 +3,11 @@
 La [lista de trabajo y criterios de aceptación](/reports/project/roadmap) conserva el detalle de
 las auditorías. Las implementaciones y pruebas de la rama no certifican producción.
 
+[ML-09: defensas y recuperación Spark](/reports/firestore/ml-09-recovery-2026-10-23)
+presenta la implementación candidata y sus pruebas reproducibles. Sigue abierta
+hasta aceptar redes/dispositivos, consumo agregado y procedimiento de incidente
+en producción; fusión y despliegue requieren autorización separada.
+
 | Área          | Pendiente                                                            |
 | ------------- | -------------------------------------------------------------------- |
 | Autenticación | Aceptación real de OAuth y recuperación de credenciales              |

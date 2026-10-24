@@ -46,6 +46,8 @@ jobs:
         run: npm run audit:dependencies
       - name: Check formatting and lint
         run: npm run lint:check
+      - name: Verify sealed ML-09 observations without rewriting originals
+        run: node scripts/check-ml09-evidence.mjs
       - name: Build documentation and check links
         run: |
           npm run docs:build

@@ -1,0 +1,144 @@
+{
+  "testedRevision": "6712945f9c0afa26ec6082e3b112b4fbf4c14211",
+  "localDate": "2026-10-24",
+  "timezone": "Europe/Madrid",
+  "archive": {
+    "file": "raw-evidence.zip",
+    "sha256": "7eafbd70a59c6a079ad2fe76f25506617bd6c4e8fe55fdf88eb4ad2ab985d6fc",
+    "bytes": 29554
+  },
+  "originalFiles": [
+    {
+      "file": "safari-automatizado-2026-10-24.jsonl",
+      "sha256": "18ea8291b656ac78fe300e021b2c653b27efd4fcad6d9fbb7f4b55612275d810",
+      "bytes": 28737,
+      "archived": true
+    },
+    {
+      "file": "safari-listeners-2026-10-24.jsonl",
+      "sha256": "9353be390fc19888a0800fd5077a728e3bbe42e0939c353e419718a70e34ab02",
+      "bytes": 34334,
+      "archived": true
+    },
+    {
+      "file": "safari-export-capitulo-3.json",
+      "sha256": "febf8cb15d2a4789c61f5541042aff0165f916dbc9c8842a509831e1fef0dec1",
+      "bytes": 219672,
+      "archived": true
+    },
+    {
+      "file": "safari-export-capitulo-5.json",
+      "sha256": "c84f9b0db52094e40b79aabb218f41433cb233d235e08455a607a1b598b56d1c",
+      "bytes": 219672,
+      "archived": true
+    },
+    {
+      "file": "safari-registro-cuota-2026-10-24.json",
+      "sha256": "08083004d0a0411ee91086a81f01971258af0a2997f8ede986bc7b585191cfb3",
+      "bytes": 10560,
+      "archived": true
+    },
+    {
+      "file": "safari-registro-final-2026-10-24.json",
+      "sha256": "16776faab8e70bc57abdfa325067798fd53c7ca3062493d86cdd4e8f013719fc",
+      "bytes": 22991,
+      "archived": true
+    },
+    {
+      "file": "exportacion-1792796614633.json",
+      "sha256": "8bc103ea97756950076a18b61be0a0d39a2de97e75eabc4606a704990bf8897e",
+      "bytes": 360,
+      "archived": true
+    },
+    {
+      "file": "exportacion-1792797613203.json",
+      "sha256": "f896a37aab5b178ee726e2e5b575f7b5edc12df28651e595e95a89d5cf365a1c",
+      "bytes": 360,
+      "archived": true
+    },
+    {
+      "file": "verificacion-listeners-safari.json",
+      "sha256": "b1419e0be055517db727f64b5f8d785fdb06f694c0d2f9191daa7e43d5a3a1e4",
+      "bytes": 498,
+      "archived": true
+    },
+    {
+      "file": "tests-kit-reejecucion.log",
+      "sha256": "1e0e20752a03dd8085f2d748ae52dbf04e77307ffce6763ecc7c1ea82dc031ac",
+      "bytes": 601,
+      "archived": true
+    },
+    {
+      "file": "tests-candidato-reejecucion.log",
+      "sha256": "0e7e24effe8bf1ba8c42dbbbf392c59844c2539e2a3ccae72fd98deb233e66a3",
+      "bytes": 16201,
+      "archived": true
+    },
+    {
+      "file": "tests-safari-listen-observer.log",
+      "sha256": "0bf8c7bf3a16e6ba39fb502b4baf89b3a51b995e18eae71205a8b805209648fe",
+      "bytes": 620,
+      "archived": true
+    },
+    {
+      "file": "SAFARI-2026-10-24.md",
+      "sha256": "b4cc0e61cae50d0bcdf893ee7eea1fca4356bd3c11e4d67cfcd3f56b625dede9",
+      "bytes": 5301,
+      "archived": false
+    },
+    {
+      "file": "SAFARI-LISTENERS-2026-10-24.md",
+      "sha256": "24ac11c5c998235ce7502f35c9e55ef724d19c2ade40c60583e103338c816560",
+      "bytes": 5069,
+      "archived": false
+    },
+    {
+      "file": "safari-listen-observer.js",
+      "sha256": "cd0925210324ddc0958c61c688d3d1b2f986c605816d899285db39367503e46b",
+      "bytes": 3225,
+      "archived": false
+    },
+    {
+      "file": "safari-listen-observer.test.mjs",
+      "sha256": "df42371a0f2b383dd170e9957bae946dbfe80f119d83358f9c1adc24785a1b91",
+      "bytes": 3610,
+      "archived": false
+    },
+    {
+      "file": "verificar-listeners-safari.mjs",
+      "sha256": "c0c74e1f0ea20f5bafa6530a0aad9a805067abccf2d84847bd70add1184db705",
+      "bytes": 3721,
+      "archived": false
+    },
+    {
+      "file": "safari-cuota-tras-recarga.png",
+      "sha256": "178195d830c691ff9274cc6aa3087870df59b2b120fb53179fd26c545af50cc8",
+      "bytes": 167066,
+      "archived": false
+    },
+    {
+      "file": "safari-cuota-espera.png",
+      "sha256": "7f6ff3a566deff8d9196fb145b6469811fcb09bd4ead7dc21584059c661086f0",
+      "bytes": 167067,
+      "archived": false
+    },
+    {
+      "file": "safari-recuperacion-cuota.png",
+      "sha256": "dbcc70bf10de2a23712f16c26863cd7b51a9b60dde245919486350f50c8a229f",
+      "bytes": 166100,
+      "archived": false
+    },
+    {
+      "file": "safari-final.png",
+      "sha256": "a16721b2b87df1bfa288f3315c187ef9087905dc58e4871ed636e94353ba4f2f",
+      "bytes": 164566,
+      "archived": false
+    }
+  ],
+  "notes": [
+    "Raw ZIP members retain original bytes and hashes.",
+    "Readable JS/MJS/Markdown and verification JSON copies may be formatted for repository style; original JSON/JSONL/log evidence remains unchanged.",
+    "No credentials, tools, node_modules, fixture-local.json, or production library included.",
+    "Synthetic account data only."
+  ]
+}

@@ -182,12 +182,12 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(1)
     const freezeObservedAt = Date.now()
     const recover = follower.getByRole('button', {
-      name: 'Solicitar estado a la otra pestaña',
+      name: 'Reintentar',
       exact: true,
     })
     await expect(recover).toBeVisible({ timeout: 30000 })
-    // The stale timer is relative to the last heartbeat, not to freeze entry.
-    // Guarantee an independently measured interval before starting the write.
+    // The suspended owner retires its listener and broadcasts a terminal error.
+    // Keep it frozen for a real interval before the independent concurrent write.
     await new Promise((resolve) =>
       setTimeout(resolve, Math.max(0, 20000 - (Date.now() - freezeObservedAt))),
     )
@@ -208,14 +208,10 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
         return chapter
       })
       .toBe('2')
-    // A native lifecycle may respond/recover before an explicit active command.
-    // Do not require the recovery action to remain visible after fresh data.
-    let recoveryRequested = false
-    if (await recover.isVisible()) {
-      await recover.click()
-      recoveryRequested = true
-    }
     expect(followerTargets).toBe(0)
+    await recover.click()
+    const recoveryRequested = true
+    await expect.poll(() => followerTargets).toBe(1)
     await recordCoordination('before-active-command')
     const resumedBeforeExplicitCommand = lifecycle.some((event) => event.type === 'resume')
     await owner.send('Page.setWebLifecycleState', { state: 'active' })
@@ -241,9 +237,10 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
       .catch((error) => ({ error: error.message }))
     expect(ownerNavigations).toHaveLength(1)
     expect(ownerSockets).toEqual([])
-    expect(coordination.at(-1).locks.held).toEqual(coordination[0].locks.held)
+    expect(coordination.at(-1).locks.held).toHaveLength(1)
+    expect(ownerPageAfterResume.alert).toContain('suspendido')
     const resumeTargets = { owner: ownerTargets, follower: followerTargets }
-    expect(followerTargets).toBe(0)
+    expect(followerTargets).toBe(1)
     await follower.goto('/#/settings/import-export')
     const download = follower.waitForEvent('download')
     await follower.getByRole('button', { name: 'Descargar JSON', exact: true }).click()
@@ -262,7 +259,9 @@ test('ML-07: real freeze/resume preserves 500 works, a concurrent write and owne
     await owner.send('Page.setWebLifecycleState', { state: 'frozen' })
     await expect.poll(() => lifecycle.filter((e) => e.type === 'freeze').length).toBe(2)
     await owner.close()
-    await expect.poll(() => followerTargets).toBe(targetsAfterExport + 1)
+    // Closing the retired owner must not reopen the recovered listener.
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    expect(followerTargets).toBe(targetsAfterExport)
     await expect(follower.getByRole('status')).toContainText('Última instantánea')
     await expect(follower.locator('.library-page-summary')).toContainText('de 500 obras')
     expect(external).toEqual([])

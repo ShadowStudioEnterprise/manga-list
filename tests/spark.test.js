@@ -375,3 +375,13 @@ test('server dependency scan checks root manifests and transitive lockfile packa
     }),
   )
 })
+
+test('suspension uses manual listener backoff without pausing writes', () => {
+  let now = 0
+  const budget = createSparkBudget(() => now)
+  budget.record({ code: 'app/listener-suspended' })
+  assert.throws(() => budget.take('listen'), { code: 'app/reconnect-paused' })
+  assert.doesNotThrow(() => budget.take('write'))
+  now = 2000
+  assert.doesNotThrow(() => budget.take('listen'))
+})

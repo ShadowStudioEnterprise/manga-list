@@ -1,0 +1,74 @@
+{
+  "head": "1be7dcc5e987ebcaf7751bd76c4de30f8003f201",
+  "device": "Redmi 9A M2006C3LG",
+  "browser": "Chrome 155.0.8059.84",
+  "method": "direct target CDP; no Playwright focus emulation",
+  "external": [],
+  "errors": [],
+  "sourceDirty": true,
+  "sourceFiles": {
+    "src/services/library-cursors.js": "471ff745baf4c935cb5e48846c2923c3b67e8104ae883816d2feee7b22f76f0e",
+    "src/utils/spark-budget.js": "560820957926cdce4a644c8eb0595582c50fbd3cca8094225a1a5da06e65d010",
+    "src/utils/firebase-errors.js": "d316328e4329c3a2fe6f68366a9d27fc235fb2e3aab148a0a99a32d837bce0b4",
+    "src/services/library-recovery.js": "0b6c884a69bc78fea75056f4868d17f20eebdc5193c9a7b80d64dc34d87bbf88",
+    "src/pages/LibraryPage.vue": "3d6847980ae4b3c1dba939a67e9ebcf594426ee54831c51026f8a40f10e6037c"
+  },
+  "recoveryAddTargets": 1,
+  "localTrafficInterception": false,
+  "before": {
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "summary": " Mostrando 1–24 de 500 obras · Página 1 de 21",
+    "visibility": "hidden"
+  },
+  "background": "hidden",
+  "visibilityCaveat": null,
+  "libraryLocksBefore": 1,
+  "serverAfterWrite": "7",
+  "freeze": {
+    "elapsedMs": 20233,
+    "ticksBefore": 1,
+    "ticksAfter": 1,
+    "delta": 0,
+    "lifecycle": [
+      {
+        "type": "freeze",
+        "at": 1792774748937,
+        "visibility": "hidden",
+        "ticks": 1
+      },
+      {
+        "type": "resume",
+        "at": 1792774768976,
+        "visibility": "hidden",
+        "ticks": 1
+      }
+    ]
+  },
+  "suspendedState": {
+    "error": "La pestaña se ha suspendido y la sincronización se ha detenido. Conserva tus cambios y reintenta para comprobar de nuevo toda la biblioteca.",
+    "chapter": "6"
+  },
+  "targetsBeforeManualRetry": 0,
+  "manualRecovery": true,
+  "resumeObservations": [
+    {
+      "elapsedMs": 627,
+      "chapter": "6",
+      "status": "Mostrando datos locales; su actualización con el servidor no está confirmada."
+    },
+    {
+      "elapsedMs": 3673,
+      "chapter": "7",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    }
+  ],
+  "uidUnchanged": true,
+  "exported": {
+    "count": 500,
+    "unique": 500,
+    "chapter": "7"
+  },
+  "libraryLocksAfter": 1,
+  "result": "passed",
+  "timestamp": "2026-10-23T16:59:36.747Z"
+}

@@ -1,0 +1,81 @@
+{
+  "localDate": "2026-10-24",
+  "timezone": "Europe/Madrid",
+  "rawArchive": {
+    "file": "raw-evidence.zip",
+    "sha256": "4a70a9d2b74d8a30ebb03c67639e2052b8c47384b9810123045333e306920d77",
+    "bytes": 8336,
+    "members": [
+      {
+        "file": "safari-search-export-capitulo-2.json",
+        "sha256": "8de3b6f3295ee88605966751f16d55c01a0956b8835312495ee8bf444660c224",
+        "bytes": 219673
+      },
+      {
+        "file": "exportacion-1792801099696.json",
+        "sha256": "3caa0b28280de5f03782ac1c8ba3f6b5cfded410699380ef2fa7ee443b50992c",
+        "bytes": 360
+      },
+      {
+        "file": "safari-search-2026-10-24.jsonl",
+        "sha256": "6bc1391a908a104c7d98f025c3099a05ee23daa39480c741c6e9d2ad1829e463",
+        "bytes": 25370
+      }
+    ]
+  },
+  "normalizedLogs": [
+    {
+      "file": "ml09-search-unitarias.log",
+      "originalLocalSha256": "9c4294d9654f3173871234ac5346c44fa3e75956c9d9f2affb06139d269113ce",
+      "publishedSha256": "9c4294d9654f3173871234ac5346c44fa3e75956c9d9f2affb06139d269113ce",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-e2e.log",
+      "originalLocalSha256": "27424738a932d31692df94374e6a1b10f80a94e13a925cca552b73c1d50bdfc3",
+      "publishedSha256": "27424738a932d31692df94374e6a1b10f80a94e13a925cca552b73c1d50bdfc3",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-unitarias-primer-intento.log",
+      "originalLocalSha256": "ea763d5e49ebe9d44f0387365cfed3af2c0327a50eadd22eb8d38a1191f2b2b3",
+      "publishedSha256": "3656ee19a87b7ca86045b218f83e9bf68c6bd6dfa753f5367625ba94b3b28e23",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-e2e-entorno-interrumpido.log",
+      "originalLocalSha256": "9629eff80575350fc276d6a22728bfb79d516cb0fdbaea1369b3415f6a8108b3",
+      "publishedSha256": "5d813687990d474b6894e18cc9c4aa9d0a519efb2e12f0b35121ad18f57af7f5",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-e2e-selector-fallido.log",
+      "originalLocalSha256": "e30e8b4cf0eeeb995e861ee1c615f082f46dc90c90f5ef8e66dad0a516cd9612",
+      "publishedSha256": "9ed431f16d20e9895fd60de1d67eacff877adcd88fa0624ca9aab72dd1fe036d",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-e2e-debounce.log",
+      "originalLocalSha256": "933e0adabfab1b6148fd8a77f4cc554fab6cdea9e11cb3c58026b721441207b1",
+      "publishedSha256": "71863b21f6b41c757a59c7eb88c95728bf9cc62c59266740b615d11ba01d5ea3",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-lint-final.log",
+      "originalLocalSha256": "dec5e5641af3eceec3ccc6c554e260d8333df19375c06ec5f20fe07a6b35cc46",
+      "publishedSha256": "dec5e5641af3eceec3ccc6c554e260d8333df19375c06ec5f20fe07a6b35cc46",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    },
+    {
+      "file": "ml09-search-docs.log",
+      "originalLocalSha256": "171e65066de5b01384ba321c539bdaa796f49ef8fef3289e9557fd5df558fa01",
+      "publishedSha256": "82411648869701c3b37efa69608556db3d561194508fa31add3a645e56c12ef0",
+      "redactions": "workspace path; ANSI colors; trailing whitespace"
+    }
+  ],
+  "notes": [
+    "Original raw export and protocol records preserved byte-for-byte.",
+    "Published logs omit workspace paths and terminal color sequences; originals remain local.",
+    "No real user library or authentication tokens included."
+  ]
+}

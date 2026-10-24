@@ -109,6 +109,20 @@ test('export fetch uses a bounded server query and rejects local, pending, exces
   assert.equal(wrong.reads(), 0)
 })
 
+test('ML-09: simultaneous export is rejected before another read and failure releases admission', async () => {
+  const f = await exportService()
+  const first = f.service.fetchLibraryForExport('alice')
+  await assert.rejects(f.service.fetchLibraryForExport('alice'), { code: 'app/request-budget' })
+  await first
+  assert.equal(f.reads(), 1)
+  await f.service.fetchLibraryForExport('alice')
+  assert.equal(f.reads(), 2)
+  const failed = await exportService({ failure: 'unavailable' })
+  for (let i = 0; i < 2; i++)
+    await assert.rejects(failed.service.fetchLibraryForExport('alice'), { code: 'unavailable' })
+  assert.equal(failed.reads(), 2)
+})
+
 test('download uses the fetched snapshot and cancels on failure, pending edits or an account change', async () => {
   for (const scenario of [
     'success',

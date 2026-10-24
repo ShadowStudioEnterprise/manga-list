@@ -1,0 +1,10 @@
+{
+  "head": "6712945f9c0afa26ec6082e3b112b4fbf4c14211",
+  "checkedAt": "2026-10-24T02:32:29.954Z",
+  "scope": "Exportación real descargada; comparada con 500 documentos sintéticos del emulador",
+  "passed": true,
+  "records": 500,
+  "uniqueIds": 500,
+  "expectedChapter": "2",
+  "sha256": "2da9bf8f82ffa3a3be039b43701b173a8469b696f5cd4c5d6caa7891f9073bf1"
+}

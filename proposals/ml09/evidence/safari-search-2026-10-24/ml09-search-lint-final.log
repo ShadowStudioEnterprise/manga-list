@@ -1,0 +1,6 @@
+
+> manga-list@0.0.1 lint:check
+> prettier --check "**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}" --ignore-path .gitignore && eslint -c ./eslint.config.js "./src*/**/*.{js,cjs,mjs,vue}" "./tests/**/*.js" "./scripts/**/*.mjs"
+
+Checking formatting...
+All matched files use Prettier code style!

@@ -4,6 +4,27 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — candidata ML-09
+
+- Búsqueda de biblioteca restaurada tras recargar, incluida la pausa de cuota:
+  selección de hasta 512 caracteres en sessionStorage por pestaña, proyecto y
+  cuenta, borrada al salir o cambiar de usuario. Sin persistir obras ni filtros.
+
+- Congelación nativa: escucha retirada y aviso; recuperación manual con transporte
+  local reiniciado, sin cancelar escrituras pendientes ni abrir reconexiones en bucle.
+
+- Pausa local de cuota persistente por proyecto y compartida entre pestañas del
+  mismo origen; un error en cualquier operación detiene los listeners activos.
+- Plazo de un minuto sin confirmación de biblioteca, backoff de reconexión manual
+  y protección ante fallos síncronos, conservando búsqueda/filtros del mismo dueño.
+- Importación detenida al primer bloque con errores y causa visible; exportación
+  simultánea por cuenta rechazada antes de leer; admisión por intento del marcador.
+- Actualización transitiva de serialize-javascript a 7.1.4 en ambos lockfiles
+  y fast-uri a 3.1.9 en PWA para corregir los avisos de auditoría, sin cambiar
+  dependencias directas de la aplicación.
+- Sin cambios de esquema, reglas o configuración remota. Presupuestos
+  locales separados de cuota global; aceptación operativa y publicación pendientes.
+
 ## Sin publicar — ML-P06 landing pública
 
 - Portada responsive Ink/Paper/Violet con beneficios, capturas auténticas de
