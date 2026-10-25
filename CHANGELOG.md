@@ -25,6 +25,21 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 - Sin cambios de esquema, reglas o configuración remota. Presupuestos
   locales separados de cuota global; aceptación operativa y publicación pendientes.
 
+## Sin publicar — seguimiento ML-16
+
+- Aviso de actualización también en pestañas sin controlador cuando existe un worker
+  esperando por otro cliente. Regresión con ambos tipos de cliente, sin forzar activación.
+- Guía de recuperación alineada con el contrato vigente: consulta acotada a 5001
+  e importación recuperable v1. No publicado.
+
+## Sin publicar — candidata de release ML-16
+
+- Actualización de serialize-javascript 7.1.2 a 7.1.4 en ambos lockfiles y de
+  fast-uri 3.1.8 a 3.1.9 en el lockfile PWA para resolver los avisos conocidos
+  detectados al preparar la release. Sin cambios de código de aplicación,
+  reglas, contratos ni configuración Hosting. Pendiente de revisión y
+  autorización separada para publicar; no se ha desplegado.
+
 ## Sin publicar — ML-P06 landing pública
 
 - Portada responsive Ink/Paper/Violet con beneficios, capturas auténticas de
