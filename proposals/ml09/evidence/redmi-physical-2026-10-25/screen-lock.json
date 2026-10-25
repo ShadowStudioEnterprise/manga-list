@@ -1,0 +1,147 @@
+{
+  "head": "b435371af8d75071857667daaab69852543a9c42",
+  "synthetic": true,
+  "method": "Physical screen lock; native clocks; direct CDP, USB demo transport; no forced doze or battery changes",
+  "power": [
+    {
+      "at": "2026-10-25T02:55:25.057Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:30.455Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:35.823Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:41.190Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:46.553Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:51.931Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:55:57.342Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:56:02.710Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x23"
+    },
+    {
+      "at": "2026-10-25T02:56:08.155Z",
+      "wakefulness": "Asleep",
+      "powered": "true",
+      "wakeLockSummary": "0x0"
+    },
+    {
+      "at": "2026-10-25T02:56:13.743Z",
+      "wakefulness": "Asleep",
+      "powered": "true",
+      "wakeLockSummary": "0x0"
+    },
+    {
+      "at": "2026-10-25T02:56:19.117Z",
+      "wakefulness": "Asleep",
+      "powered": "true",
+      "wakeLockSummary": "0x0"
+    },
+    {
+      "at": "2026-10-25T02:56:24.536Z",
+      "wakefulness": "Awake",
+      "powered": "true",
+      "wakeLockSummary": "0x1"
+    }
+  ],
+  "targets": 0,
+  "errors": [],
+  "wholeSystemSuspensionProven": false,
+  "before": {
+    "at": 1792896927400,
+    "count": 500,
+    "unique": 500,
+    "chapter": "1",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "concurrentServerWrite": "2",
+  "observedScreenLockMs": 16381,
+  "resumed": {
+    "at": 1792896987324,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "hidden"
+  },
+  "lifecycle": {
+    "events": [
+      {
+        "type": "visibilitychange",
+        "at": 1792896967867,
+        "visibility": "hidden"
+      }
+    ],
+    "ticks": 180,
+    "maxGap": 1045,
+    "last": 1792896986975
+  },
+  "observations": [
+    {
+      "at": 1792896987345,
+      "count": 500,
+      "unique": 500,
+      "chapter": "2",
+      "error": null,
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+      "search": "ML09 física 0000",
+      "visibility": "hidden"
+    }
+  ],
+  "exported": {
+    "count": 500,
+    "unique": 500,
+    "chapter": "2"
+  },
+  "targetsAtRecovery": 0,
+  "stable30": {
+    "at": 1792897017429,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "hidden"
+  },
+  "result": "failed-or-blocked",
+  "failure": "CDP timeout Runtime.evaluate",
+  "timestamp": "2026-10-25T02:57:44.737Z"
+}

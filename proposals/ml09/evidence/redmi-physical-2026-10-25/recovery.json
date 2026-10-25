@@ -1,0 +1,89 @@
+{
+  "stage": "Separate follow-up; does not replace interrupted lock attempt",
+  "head": "b435371af8d75071857667daaab69852543a9c42",
+  "addTargets": 1,
+  "before": {
+    "at": 1792897265547,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": "La pestaña se ha suspendido y la sincronización se ha detenido. Conserva tus cambios y reintenta para comprobar de nuevo toda la biblioteca.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "lifecycle": {
+    "events": [
+      {
+        "type": "visibilitychange",
+        "at": 1792896967867,
+        "visibility": "hidden"
+      },
+      {
+        "type": "freeze",
+        "at": 1792897028015,
+        "visibility": "hidden"
+      },
+      {
+        "type": "visibilitychange",
+        "at": 1792897215022,
+        "visibility": "visible"
+      },
+      {
+        "type": "resume",
+        "at": 1792897215045,
+        "visibility": "visible"
+      }
+    ],
+    "ticks": 220,
+    "maxGap": 1045,
+    "last": 1792897026976
+  },
+  "manualRetry": true,
+  "recovered": {
+    "at": 1792897267523,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "after20": {
+    "at": 1792897287543,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "after40": {
+    "at": 1792897307567,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "after60": {
+    "at": 1792897327605,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": null,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "exported": {
+    "count": 500,
+    "unique": 500,
+    "chapter": "2"
+  },
+  "result": "passed-explicit-recovery-only",
+  "timestamp": "2026-10-25T03:02:04.950Z"
+}

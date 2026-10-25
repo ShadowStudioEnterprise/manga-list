@@ -54,6 +54,49 @@ assert.ok(iphone.checks.realWaitMs >= 905000)
 const lock = await json(base + 'iphone-physical-lock-2026-10-24/ios-lock-manual-result.json')
 assert.equal(lock.passed, true)
 assert.ok(lock.stableObservedMs >= 60000)
+// Preserve the failed attempts as well as the successful, separately scoped
+// Redmi follow-up. Read data only; never execute the archived instruments.
+const redmi = base + 'redmi-physical-2026-10-25/'
+for (const entry of await json(redmi + 'manifest-sha256.json'))
+  await verify(redmi, entry.path, entry.sha256)
+const redmiRevision = 'b435371af8d75071857667daaab69852543a9c42'
+for (const entry of await json(redmi + 'source-sha256.json')) {
+  if (!entry.path.startsWith('src/')) continue
+  assert.ok(!entry.path.split('/').includes('..'))
+  const recorded = execFileSync('git', ['show', `${redmiRevision}:${entry.path}`], {
+    cwd: root,
+  })
+  assert.equal(hash(recorded), entry.sha256, `Redmi recorded runtime ${entry.path}`)
+  if (hash(await read(entry.path)) === entry.sha256) currentMatches++
+  runtime++
+}
+const redmiAttempt = await json(redmi + 'screen-lock.json')
+const redmiFollowup = await json(redmi + 'followup.json')
+const redmiRecovery = await json(redmi + 'recovery.json')
+for (const result of [redmiAttempt, redmiFollowup, redmiRecovery])
+  assert.equal(result.head, redmiRevision)
+assert.equal(redmiAttempt.result, 'failed-or-blocked')
+assert.equal(redmiAttempt.wholeSystemSuspensionProven, false)
+assert.equal(redmiFollowup.result, 'failed-or-blocked')
+assert.equal(redmiRecovery.result, 'passed-explicit-recovery-only')
+assert.match(redmiRecovery.before.error, /suspendido/)
+assert.equal(redmiRecovery.before.status, undefined)
+assert.equal(redmiRecovery.manualRetry, true)
+assert.equal(redmiRecovery.addTargets, 1)
+for (const sample of ['recovered', 'after20', 'after40', 'after60']) {
+  const result = redmiRecovery[sample]
+  assert.equal(result.count, 500)
+  assert.equal(result.unique, 500)
+  assert.equal(result.chapter, '2')
+  assert.equal(result.search, 'ML09 física 0000')
+  assert.equal(result.error, null)
+  assert.match(result.status, /Última instantánea/)
+}
+assert.deepEqual(redmiRecovery.exported, { count: 500, unique: 500, chapter: '2' })
+const redmiFreeze = redmiRecovery.lifecycle.events.find((event) => event.type === 'freeze')
+const redmiResume = redmiRecovery.lifecycle.events.find((event) => event.type === 'resume')
+assert.equal(redmiResume.at - redmiFreeze.at, 187030)
+assert.ok(redmiRecovery.after60.at - redmiRecovery.recovered.at >= 60000)
 console.log(
   `PASS: ${files} sealed evidence hashes and ${runtime} recorded runtime hashes; ${currentMatches}/${runtime} match the current tree. Historical passes never certify untested changes, repeat a physical test or certify production quotas.`,
 )
