@@ -4,6 +4,13 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — seguimiento ML-16
+
+- Aviso de actualización también en pestañas sin controlador cuando existe un worker
+  esperando por otro cliente. Regresión con ambos tipos de cliente, sin forzar activación.
+- Guía de recuperación alineada con el contrato vigente: consulta acotada a 5001
+  e importación recuperable v1. No publicado.
+
 ## Sin publicar — candidata de release ML-16
 
 - Actualización de serialize-javascript 7.1.2 a 7.1.4 en ambos lockfiles y de

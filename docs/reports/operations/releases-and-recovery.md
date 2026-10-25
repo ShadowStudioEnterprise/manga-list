@@ -69,7 +69,7 @@ por consola, otro checkout o herramientas que no ejecuten estos hooks.
 ## Contratos y compatibilidad
 
 `release-contract.json` declara Spark sin facturación, barrera de borrado v1, consultas acotadas
-a 1001, identidad de importación v1 y exportación comprobada v2. Cambiar la declaración exige
+a 5001, importación recuperable v1 y exportación comprobada v2. Cambiar la declaración exige
 modificar explícitamente el control Spark y revisar sus pruebas. La declaración no sustituye
 las pruebas reales de reglas, reanudación, concurrencia, exportación y aislamiento del CI.
 

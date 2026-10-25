@@ -147,10 +147,15 @@ test('PWA registration reports new and already waiting updates, with passive Wor
   )
   callbacks.registered({ waiting: null })
   assert.equal(update.pwaUpdateAvailable.value, false)
-  callbacks.updated({ waiting: {} })
+  callbacks.cached({ active: null, waiting: {} })
+  assert.equal(update.pwaUpdateAvailable.value, false)
+  callbacks.updated({ active: {}, waiting: {} })
   assert.equal(update.pwaUpdateAvailable.value, true)
   update.pwaUpdateAvailable.value = false
-  callbacks.registered({ waiting: {} })
+  callbacks.registered({ active: {}, waiting: {} })
+  assert.equal(update.pwaUpdateAvailable.value, true)
+  update.pwaUpdateAvailable.value = false
+  callbacks.cached({ active: {}, waiting: {} })
   assert.equal(update.pwaUpdateAvailable.value, true)
   const config = (await loadModule('quasar.config.js')).default({
     mode: {},
