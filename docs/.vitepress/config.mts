@@ -3,9 +3,12 @@ import { cpSync, mkdirSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { reportsSidebar } from './reports.mts'
 import { legalNoticesPlugin } from '../../scripts/legal-notices.mjs'
+import { sidebarAccessibility } from './sidebar-accessibility.mjs'
 
 export default defineConfig({
-  vite: { plugins: [legalNoticesPlugin(resolve(import.meta.dirname, '../..'))] },
+  vite: {
+    plugins: [legalNoticesPlugin(resolve(import.meta.dirname, '../..')), sidebarAccessibility()],
+  },
   lang: 'es-ES',
   title: 'MangaList Docs',
   description: 'Guía, arquitectura y desarrollo de tu biblioteca privada de lecturas.',

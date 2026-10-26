@@ -1,0 +1,198 @@
+[
+  {
+    "source": "/specification-v1.html",
+    "destination": "/reports/project/specification-v1",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/firestore-cursors-v1.html",
+    "destination": "/reports/firestore/firestore-cursors-v1",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/firestore-cost-review-2026-10-19.html",
+    "destination": "/reports/firestore/firestore-cost-review-2026-10-19",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/transaction-read-budget-2026-10-19.html",
+    "destination": "/reports/firestore/transaction-read-budget-2026-10-19",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/verification-cursors-2026-10-18.html",
+    "destination": "/reports/firestore/verification-cursors-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/technical-review-2026-10-16.html",
+    "destination": "/reports/project/technical-review-2026-10-16",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/verification-10000-2026-10-19.html",
+    "destination": "/reports/firestore/verification-10000-2026-10-19",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/library-scale-2026-10-18.html",
+    "destination": "/reports/firestore/library-scale-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/spark-only.html",
+    "destination": "/reports/security/spark-only",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/spark-guard-entrypoints.html",
+    "destination": "/reports/security/spark-guard-entrypoints",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/verification-spark-2026-10-18.html",
+    "destination": "/reports/security/verification-spark-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/verification-spark-console-2026-10-18.html",
+    "destination": "/reports/security/verification-spark-console-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/account-marker-retention-proposal.html",
+    "destination": "/reports/accounts/account-marker-retention-proposal",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/abandoned-deletion-assistance.html",
+    "destination": "/reports/accounts/abandoned-deletion-assistance",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/manual-marker-review.html",
+    "destination": "/reports/accounts/manual-marker-review",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/import-recovery.html",
+    "destination": "/reports/features/import-recovery",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/synchronization-and-export.html",
+    "destination": "/reports/features/synchronization-and-export",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/verification-2026-10-16.html",
+    "destination": "/reports/quality/verification-2026-10-16",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/accessibility-2026-10-18.html",
+    "destination": "/reports/quality/accessibility-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/drafts-and-pwa-updates.html",
+    "destination": "/reports/features/drafts-and-pwa-updates",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/browser-coverage-2026-10-18.html",
+    "destination": "/reports/quality/browser-coverage-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/password-recovery-emulator.html",
+    "destination": "/reports/quality/password-recovery-emulator",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/navigation-history-2026-10-18.html",
+    "destination": "/reports/quality/navigation-history-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/releases-and-recovery.html",
+    "destination": "/reports/operations/releases-and-recovery",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/live-resize-2026-10-18.html",
+    "destination": "/reports/quality/live-resize-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/release-record-template.html",
+    "destination": "/reports/operations/release-record-template",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/firebase-startup.html",
+    "destination": "/reports/development/firebase-startup",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  },
+  {
+    "source": "/dependencies-2026-10-18.html",
+    "destination": "/reports/development/dependencies-2026-10-18",
+    "type": 301,
+    "publicStatus": 404,
+    "location": null
+  }
+]

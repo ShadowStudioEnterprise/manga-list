@@ -1,0 +1,1516 @@
+{
+  "version": "sites/mangalist-docs/versions/335d0b18ab1863cc",
+  "files": [
+    {
+      "path": "/404.html",
+      "hash": "524342179a74f170ea8576eaa344c9e843c0ba0f587f65d7f1873c8d58333393",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/__/firebase/init.js",
+      "hash": "8141c9329cd5a0d79dfc534ec4f69f582d3dbddba47b15aebc801fc1002a6c6a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/__/firebase/init.json",
+      "hash": "9bf205a0cf096b3ea08c221df4c2e29b2ab989ecf579c92bafc082cdfd8bcf70",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/architecture/diagrams.html",
+      "hash": "160af2f8145ea8631d584eb220d45ec184604738cece905723ba8c6f0d6e4510",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/architecture/overview.html",
+      "hash": "27b6d782806fd53d48018f673fa01f589124848a18dcde76caeee3b0f989f2f2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/app.D2CGpE8-.js",
+      "hash": "24b3ca3e47217221b05f676ff7828277050559dc7d163b1a94b25b97056d1193",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/architecture_diagrams.md.Dm0Liju5.js",
+      "hash": "6c0d67973c7e24e2a677861fe38025d7417c801c7b08b6a92eccea49a9cae12f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/architecture_diagrams.md.Dm0Liju5.lean.js",
+      "hash": "6a895f3df5cbc54bc672653c016ce56ef14c4a1ee77bd42bbefa955d658fa0c0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/architecture_overview.md.DyFzM2-o.js",
+      "hash": "3224061aff3898dba8ba430f706deb459a92e8570f0d1648b2f64c91c298fc79",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/architecture_overview.md.DyFzM2-o.lean.js",
+      "hash": "fca03336c4ffba2d09d21646d32d90543991e1085c999a089b50917bd23d913e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/chunks/@localSearchIndexroot.BQHiIpQe.js",
+      "hash": "fdefe5818bcc2c5285b3fec1f8182d0d8a76e093854188f36d87a857cd243f7b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/chunks/VPLocalSearchBox.BkhiiWI1.js",
+      "hash": "b4e5edf7cef047a06413bd28d3273d2787f8e7d80262650c9e955ada1c44e0d1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/chunks/framework.DYPTBNgj.js",
+      "hash": "9a8d2d1d46b38b35960332ffb7adc39c3799e54f5104e1dacffdea107d663ec6",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/chunks/theme.CcQ2eQhc.js",
+      "hash": "702389a88093a9e9fe8ce8709563b12a7c2d9d54918a36bfdaf2b953d4592818",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/database_firestore.md.CNmx0N0L.js",
+      "hash": "1d3a326d7384c80f3fd1633b471e6b167adbd85231a0b75b7ed174e77e40f22b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/database_firestore.md.CNmx0N0L.lean.js",
+      "hash": "dd86a88e74772f34bf33a3f6873974785229f517244f0142961d5fd79a0bb146",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/development_installation.md.ADNNM0mX.js",
+      "hash": "ac82eefb67de353be7353b39a2b66b9dc3fc9f202b8eb029ec4119136c094a96",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/development_installation.md.ADNNM0mX.lean.js",
+      "hash": "c569c1d0310cfe2e9d71e08b51c056a5e4a059282edd60b392af704700fed5a1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/guide_introduction.md.DcpolvD3.js",
+      "hash": "790541096936a5ed30dd8dbc3467a703918edb9d5854683e856386858cfd541c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/guide_introduction.md.DcpolvD3.lean.js",
+      "hash": "7831516229ff1f6d9741a0e87b55556bfe57627600e441945dac1c626d084db9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/index.md.BrxD-i_-.js",
+      "hash": "766827d5f23759987f6f978f3d38ac0567990762162011cf06472c1088749a80",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/index.md.BrxD-i_-.lean.js",
+      "hash": "766827d5f23759987f6f978f3d38ac0567990762162011cf06472c1088749a80",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-cyrillic-ext.r48I6akx.woff2",
+      "hash": "671adde322f1acf797f84bd4236d636fcc144e62231fef7553335dfdbdad8a21",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-cyrillic.By2_1cv3.woff2",
+      "hash": "7c6647e4f44b3536cf21975acf520ba2318d84e0871c4ed0bbff228acc3c4f97",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-greek-ext.1u6EdAuj.woff2",
+      "hash": "c03a5276523ae679adacb4253370b0a9fef83d8426bc584504998866b1f9de40",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-greek.DJ8dCoTZ.woff2",
+      "hash": "b41028d7a84433cd3e77aa228f86e07f3ed1d238f3efb7712719bf5d0614fcdb",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-latin-ext.CN1xVJS-.woff2",
+      "hash": "3218126e8771169ee2d49fd328bf2e0db7dd0edf0e8fc57a68fca80dd3864dd7",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-latin.C2AdPX0b.woff2",
+      "hash": "ceff34e8c1ebdac17a45b25efcb8efe41c45b71c50870cc679ab0c2ffddf24b3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-italic-vietnamese.BSbpV94h.woff2",
+      "hash": "9732292cae61203158ca17308e3a67bbbfce71c66aca4b7832b7c77c013fc8ad",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-cyrillic-ext.BBPuwvHQ.woff2",
+      "hash": "9a9e3efe5b5142c13d442ec916784e705baeb7b83f523f3f9aa29d1af8ce586b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-cyrillic.C5lxZ8CY.woff2",
+      "hash": "34a77bf42905594ec5a486d77a8379ea407f0094c2a56d9edf2935716e78c2e2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-greek-ext.CqjqNYQ-.woff2",
+      "hash": "e76b0ec93b013fdb4bca8fd3a15d10ce2db8bff3ee4a703848042d7f8642359d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-greek.BBVDIX6e.woff2",
+      "hash": "f118ef885d286b9d2be0bcf8b5859db83eb633687d1271395bb653fdcac814da",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-latin-ext.4ZJIpNVo.woff2",
+      "hash": "d53b51b6ff39c89928cf31bf11492f5526e80a56cad088a6e2ccaf0a94d0dd79",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-latin.Di8DUHzh.woff2",
+      "hash": "0a9e086e4463ce5cb33d4aa8e205187fb50a47c88e1836502b4faf9ab545930c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/inter-roman-vietnamese.BjW4sHH5.woff2",
+      "hash": "4cb0cafc5a6aec775ea817d7c2b9a55c2b466689bbb079a013dd4d47262b601f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/maintenance_documentation-audit.md.DjzFgJgJ.js",
+      "hash": "ee32080a073678ad1345235cff747d0302aa82d887f1e95d151d462f582f156a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/maintenance_documentation-audit.md.DjzFgJgJ.lean.js",
+      "hash": "71bd587a1fb325fa0fd4f66776afcf29a2bf87dd6bdbc4b4f3d03876fefe4bf6",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/maintenance_page-inventory.md.CbbZHo76.js",
+      "hash": "d29c90c74dc1043e68583a577baeabcd22a7148ffc34717ff1fe2de234f6032d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/maintenance_page-inventory.md.CbbZHo76.lean.js",
+      "hash": "9e226590888b04f9808149f1b1c2c0a4bebb4fb0e05e2f63ae10d10a0565f632",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/operations_deployment.md.CytuAPls.js",
+      "hash": "506f4dee5e9c14634d7c92d6e302b8e5d8262963746c5999413520b2428878e2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/operations_deployment.md.CytuAPls.lean.js",
+      "hash": "d7d697cd521261fde9c0d9e8936e720d19b9ea49528b5bf187f0160edc0e6f3d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/project_index.md.BOqya59u.js",
+      "hash": "3db9877e15b6d58acc1a2b5add16b66405a0f8a6bdb36cb2af7ad55dc2231a9e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/project_index.md.BOqya59u.lean.js",
+      "hash": "3db9877e15b6d58acc1a2b5add16b66405a0f8a6bdb36cb2af7ad55dc2231a9e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_import-export.md.CCegfKxd.js",
+      "hash": "dfb8218e975afdcc56634556170e7afbd420ee6efcb1dd14f837bd07a267f53e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_import-export.md.CCegfKxd.lean.js",
+      "hash": "fbe136f91f08bf69325b5634071010e1817d16d3cc50a7fe9e596ac4ef24759e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_services.md.DrgrJ1wx.js",
+      "hash": "64d0a2ac083a85518a92c635b3ee8cdeeed9f52094b0190d947825287487ed92",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_services.md.DrgrJ1wx.lean.js",
+      "hash": "22414b9448ca63ec1491064deda8e37738c0f5a0fb19b9c626a832d11b86eeda",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_synchronization.md.DDvbKMFr.js",
+      "hash": "95a6649b8c83f4d2f0263f475ec7d4905e63e559d29608cdcdc8204fc2bc4c08",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reference_synchronization.md.DDvbKMFr.lean.js",
+      "hash": "ff44972477069a8173b29a8d09109207da15eb90b2a277b728b24d145a4d78a2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_abandoned-deletion-assistance.md.s4Q7zXpx.js",
+      "hash": "10ab5ccb052626a23882b269785aacab40662361d2afbc4ff0efe80ca8722af7",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_abandoned-deletion-assistance.md.s4Q7zXpx.lean.js",
+      "hash": "331e8ad00cf1e757a3a64447ba8876761ca8abd76e635614110afad78c7a227f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_account-marker-retention-proposal.md.CFRHhww_.js",
+      "hash": "5f01b3cbe1b946ecb6a5a9cdc8707730cfa3a25e8d98989058e2695a279c9f1f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_account-marker-retention-proposal.md.CFRHhww_.lean.js",
+      "hash": "16d010a42b7a6c52662caf94e4144b923272181bea816f1719b4f9e182c1735e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_manual-marker-review.md.BZ0kxYN3.js",
+      "hash": "a952c0b4e3a154e8f205037fc74519bd8a8501385a17a9e49bf0a97de8368dab",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_manual-marker-review.md.BZ0kxYN3.lean.js",
+      "hash": "8d026282dd7d6b869ca55e3cc0a0655816634aa97391c672d7f9e210f3d57f2a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-acceptance-2026-10-21.md.cTGmCCUA.js",
+      "hash": "c0112f6d744fae233b5ce5981300d0b5adfaf0d82bb7acd02af4810e8cc5697b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-acceptance-2026-10-21.md.cTGmCCUA.lean.js",
+      "hash": "d4a3a105fec10d597384d9641c60908d3a22fdaf3c4d394310cbfa2ff5fd4d4f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-activation-pack.md.CB7XLgFD.js",
+      "hash": "4ed3e0bb2d0c600bb50c78f7542f430b95a4d2c066f8c3894e4297fce5184363",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-activation-pack.md.CB7XLgFD.lean.js",
+      "hash": "1a41756feeff8abfe7df70f5b50e9741869bb4d339eee8e10ce67e7794bca257",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-d3-permissions-legal-review-pack.md.CiqDWTxR.js",
+      "hash": "86b6480b5a8b7569836e75668e63b4fc3e705046a7bdafeb69c4fdf93b46d05b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-d3-permissions-legal-review-pack.md.CiqDWTxR.lean.js",
+      "hash": "ee5649d41cdcd1ca855253883583c468233869813f6236aa2eacb3df08031a95",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-free-options-2026-10-21.md.BZlohDiK.js",
+      "hash": "6186e3bf0a793dc92ddb81fd8f509b7526bacbaa862fe953eec14f834cf08e56",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-free-options-2026-10-21.md.BZlohDiK.lean.js",
+      "hash": "34cd5e049bf0a5d34ddd49bbda1d1214bcd103566f257ec6106c44812899ebf2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-operating-procedure.md.DET1pAtU.js",
+      "hash": "101bcb73eea98c1ea2cb12c1691d86ccea952422b9173af922d910a2943a97c3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-operating-procedure.md.DET1pAtU.lean.js",
+      "hash": "2397f0c7ba1c2f611f8cdf58f0e6812e6aeae2a27bb7f2490f9fe3901cd501de",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-test-evidence.md.D3HkpV2w.js",
+      "hash": "edea7943790d8a0593ec510088e52147a8040ec7f00b1ef531dc357086718611",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-test-evidence.md.D3HkpV2w.lean.js",
+      "hash": "360c347045cc5dbb75d68fe4b21c3d7d63c3c79b7ec18a5d192b35d8e45b0de1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-validation-2026-10-21.md.CnkV4SEY.js",
+      "hash": "db97d3d8ea7e2e3cc5123b7d03e0bd3d2f0cb383a6968a0d0f1d7819986e632f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-11-validation-2026-10-21.md.CnkV4SEY.lean.js",
+      "hash": "a1091e365e558a916fc1e32744a6b800c2c21bf52539011533dbb3e5f3354f6e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-case-and-tests.md.BypSHzWB.js",
+      "hash": "47938cff2140941846a8ec262b9496a40a24ad462ad47738711f8d3fd26f58af",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-case-and-tests.md.BypSHzWB.lean.js",
+      "hash": "9f4a483b6a01eb6a9d7538b3deb1b111617f0775a9164a35ce29ba5d17883def",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-identity-and-permissions-pack.md.HIy6h16T.js",
+      "hash": "d2864637d5c36b4a7be08f0337c179f1db36efe1b49222f4fcd7bdbfc104f9b3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-identity-and-permissions-pack.md.HIy6h16T.lean.js",
+      "hash": "c95a734e5e64d4f9875a2a6be142a4d4f7dce9f462e3d1691754e21ae8d13a2e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-interrupted-deletion.md.CPjYtdHM.js",
+      "hash": "0f09f006506b48fe6aa1206069c98dd35b9f403158f942e0e1608895a4734dd1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-interrupted-deletion.md.CPjYtdHM.lean.js",
+      "hash": "f7b5a15c847266f1fbd75b1263d6f718444385cbaef517fada0a7958aee0aedb",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-legal-retention-and-deadlines-pack.md.DKI2YJJC.js",
+      "hash": "0f20f404cd689cbb7904584e3e496982be10498f4d1189731a0b7a8327e74cca",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-legal-retention-and-deadlines-pack.md.DKI2YJJC.lean.js",
+      "hash": "01fab124dce10b59bd476f1a96ba14814d61dfa7b65f493c31403eeb699b0950",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-mailbox-and-roles-pack.md.Bvjw0tng.js",
+      "hash": "baffee8c86a57a9e892424f2e971ab5cdcb0b26e5cb9977fe3149cfb3fba89c8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-mailbox-and-roles-pack.md.Bvjw0tng.lean.js",
+      "hash": "c9748cd86aca15ac235d7e7bca581ea9c584cbd41160b36b657ebc1ecd18e47e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-rehearsal-and-custody-pack.md.Ct5SmO6c.js",
+      "hash": "be74bbc1c0efff17e252c1b624946745e8ae1b034e0f4f8c6b364d003164f6ba",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-rehearsal-and-custody-pack.md.Ct5SmO6c.lean.js",
+      "hash": "65f1ea4a5b80f8ba0d7db0b6ca8465c1b2036d82622afba954a9e7ad25bd2af9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-test-evidence.md.CNP0Ti2B.js",
+      "hash": "6472bc05432acd4650ac204525124e65280e9bfad5d1cecd238bf616d0c370c0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_ml-12-test-evidence.md.CNP0Ti2B.lean.js",
+      "hash": "7f61d04fa72b814ca02cd355704f5cb0d6c51ab9ad13fcda56bafd77e8361fea",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_nextcloud-hosting-cost-2026-10-21.md.D2Q5WlG2.js",
+      "hash": "54ee3de3fc4f72215365d836869b8e3d9028cbd347b6aaf2c0c7b10d7bfc750c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_nextcloud-hosting-cost-2026-10-21.md.D2Q5WlG2.lean.js",
+      "hash": "5fb0a39fd29b6152b53c639d7c0035777775f5264876c3ccee659cac5d2244d9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_nextcloud-implementation-proposal.md.Cjesb7RC.js",
+      "hash": "bf41e0681921c04f57fdb25638632bbdac661cdadceb0cf1b9b42b6beaf983e4",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_nextcloud-implementation-proposal.md.Cjesb7RC.lean.js",
+      "hash": "f5be56ce71adebc26228e522a58fbb20018d97686632e006f2bc1dd150a67869",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-implementation-proposal.md.CMibLWrv.js",
+      "hash": "44e4899af69d63427b4141ff8be0df44aa9e64c802c4e9e2a7ecf40c1fece470",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-implementation-proposal.md.CMibLWrv.lean.js",
+      "hash": "cbf861275ee0882c656e98d5eb0b7f0adcb8f379833fcd32249a855cc1287a4f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-rehearsal-pack.md.Dej7FzG5.js",
+      "hash": "f0e8d812ea21acdd753996d726ac6000be61ca44d43fadd355fb38d346db9654",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-rehearsal-pack.md.Dej7FzG5.lean.js",
+      "hash": "681f811afc013548dcd2f43cd87a28cbac84f810d90ce9abeeba5fc4b2b649f5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-security-custody-procedure.md.B93vK40s.js",
+      "hash": "cfc07fefe925700c0164396b8660a361f6783de52af6f382bb1dc4e4c39be481",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-security-custody-procedure.md.B93vK40s.lean.js",
+      "hash": "76b4361aa7f7ba448cf0cbc3c47233eb5209e32dba4630829138a0556d433824",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-service-rehearsal-2026-10-21.md.TxBK3Q1p.js",
+      "hash": "457a9c0cae5387a9c51c2ab334a1f78f3af6cdf624d0b4b3e4cb396151f758b1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_accounts_proton-drive-service-rehearsal-2026-10-21.md.TxBK3Q1p.lean.js",
+      "hash": "fe4600d7fa83279f8e144fb0350d672828a996b9e0bf8bbd176f8026ded30b1e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_dependencies-2026-10-18.md.CnhiSUZn.js",
+      "hash": "7ec7e443fb3fec2dd817bd2a2d9ccc11f430bab9128a0f4ede2a5743d431ffa4",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_dependencies-2026-10-18.md.CnhiSUZn.lean.js",
+      "hash": "98a45fe1a405378f3979ebbd21645e2cf05c6d381f636337494e79acd1d06b36",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_firebase-startup.md.B3k1FhHm.js",
+      "hash": "f16e7ac0a1f685b84905675c8b70f885e71a17b3a35b93e596aa1c1f702e679e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_firebase-startup.md.B3k1FhHm.lean.js",
+      "hash": "992e01f3f210d09567dd52ef102402f4753080dc8223a3498c4d9bdd2b90bcb9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_ml-03-diagrams-2026-10-22.md.Bj2fF4Cg.js",
+      "hash": "e5501096ac95786e01e38d53bff39daa18517ac30183977d1021267700b101f0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_development_ml-03-diagrams-2026-10-22.md.Bj2fF4Cg.lean.js",
+      "hash": "a10379ed2735bc277d266f7a08f9c50b0e3b21844b46cb396a39f23f0e41d336",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_drafts-and-pwa-updates.md.CXqz6Wh4.js",
+      "hash": "7909e8aaecdf79cac90b7f888b4d6d1293d8d8157b17940bca9068b542e25e5d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_drafts-and-pwa-updates.md.CXqz6Wh4.lean.js",
+      "hash": "4eba4d7345c4c98e211ab2692c710ea5f84e5e0c993afb261e411a5e565af33c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_import-recovery.md.CDPobjMb.js",
+      "hash": "c4fe4712d5412b090c4f1a7369b32c8e2cf8ce612db297ca214ff2bfa87d10dc",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_import-recovery.md.CDPobjMb.lean.js",
+      "hash": "ba5df6cc670690c16a8db4e256ec76b7b1e881d16d65d5f27ba77aaf1f7df60b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_multipart-backup-2026-10-21.md.pw0lj00c.js",
+      "hash": "230444384f66bc09223c43dcc4f7e77431dcd15e5d87454972a3dbecadf57b41",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_multipart-backup-2026-10-21.md.pw0lj00c.lean.js",
+      "hash": "3aa8d55ff84a387dadeca0fe2301ad0af02a0f01289be5dce8e266554187c069",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_synchronization-and-export.md.DaiQZtPt.js",
+      "hash": "f732a3e9127513524434c1e599ae96636adb895ad62fcf53702294b1b8920a6f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_features_synchronization-and-export.md.DaiQZtPt.lean.js",
+      "hash": "0d09f0e5d9ce242499f737b74cc799d41330257166660845d7e3802a9622f606",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_firestore-cost-review-2026-10-19.md.BcD7G_HE.js",
+      "hash": "c09e8cb99af1a8a5816b41a00b2a17f085979c4a41dc335685a2207a08b773ac",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_firestore-cost-review-2026-10-19.md.BcD7G_HE.lean.js",
+      "hash": "b535414445ef83d099f73457aeb3b545c7743d7a7e65088f6d679e2242d79ed5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_firestore-cursors-v1.md.BPRE_B3j.js",
+      "hash": "a331807e99718429e1a5eb4c6b0231df2a29e83635229cc72a100acaee38e336",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_firestore-cursors-v1.md.BPRE_B3j.lean.js",
+      "hash": "7552693915b0234517f537640dd64a9272e9d3b623b79610bccbfaddee232482",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_library-scale-2026-10-18.md.CfOrF3rV.js",
+      "hash": "fdff430cd5a3b0221f4248e4af0aab1b63f9da9267bf14b560851ca139668861",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_library-scale-2026-10-18.md.CfOrF3rV.lean.js",
+      "hash": "53c9a9f623b5f9de50ac42b88a78fafaa640f21c21e4035ff6f41168d4fcee18",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-06-consumption-2026-10-20.md.BKEgKIyy.js",
+      "hash": "9bba473915fa138d62a69043008620aa638926b7f2040eddb063d4bb78c6bef7",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-06-consumption-2026-10-20.md.BKEgKIyy.lean.js",
+      "hash": "dc944c1229355d45a541e0a5294f4a166d0d9c01ef2a99eaf2013884fa2a675a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-07-acceptance-2026-10-20.md.BI1vtK7u.js",
+      "hash": "4d53b9a217f5da205dda938e4e209445cbe2dcb2639da3e1acca1e93f0cf7627",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-07-acceptance-2026-10-20.md.BI1vtK7u.lean.js",
+      "hash": "c25dec3f46592dc4118f5883c15f194d2384b53001c1665daeaba65140a6f8c1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-07-sync-2026-10-20.md.CcSqr4_n.js",
+      "hash": "6c05bbe6c10c0483eadecffc6dc3a87c084bce7315606081450c2e4272674eca",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-07-sync-2026-10-20.md.CcSqr4_n.lean.js",
+      "hash": "c77388f3ecb8174545e8d0112159f698d530e0c72a057e6d3bdb7e8199bce8ec",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-capacity-2026-10-21.md.DQ-_xwQu.js",
+      "hash": "85686c6e4ae294d0eff8a73b79c28eb446cc6e487fb7dd250edcacdd65cb51ec",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-capacity-2026-10-21.md.DQ-_xwQu.lean.js",
+      "hash": "aaf1efc2d3ef02c3824350f5c80bace83bb0392879cba8f3b80ce32f8ff23a95",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-policy-2026-10-21.md.Bwrq4V6k.js",
+      "hash": "2f402e37763a20c8c0543d7153fb0084ca1fb119a660ad0b7ca7ef708edd8bec",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-policy-2026-10-21.md.Bwrq4V6k.lean.js",
+      "hash": "5603ec2d7bc53b7e8917ec18e70d7233a8733f79d3a96ce83982cd0350232a1d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-recovery-2026-10-21.md.C0ad_sNf.js",
+      "hash": "7362b84e1783cb42246cfe8e967ff8bedb7616c48b009bf06c57b97788b08fda",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-08-recovery-2026-10-21.md.C0ad_sNf.lean.js",
+      "hash": "d49ec2ea1afb64a559e6abfcb1ffb69737e9d71539fc72e179ed23bfe66dd328",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-09-recovery-2026-10-23.md.B-5v23yk.js",
+      "hash": "459bdab22a3834dc4120a566aeb2f494c798af3181d3d6e8b2620bf5d9f4515f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_ml-09-recovery-2026-10-23.md.B-5v23yk.lean.js",
+      "hash": "0180f3cb482c014a0d4a1d8258eb81fa91a63a306d9d24e11f2264b3323992b8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_transaction-read-budget-2026-10-19.md.CLmZkbFj.js",
+      "hash": "f6c0deebcf4aa6dc9e9e4b59b39e4695bacf0de6ce4f29076ed4a288e3eff5e5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_transaction-read-budget-2026-10-19.md.CLmZkbFj.lean.js",
+      "hash": "eb6141a104bef570136e6c19a2de2cb1faff826310b9b31317dcd3b31e163a0f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_verification-10000-2026-10-19.md.BHMiXIIQ.js",
+      "hash": "bea364502f3961d370c9ea11660cd17b071b0acdde0490e7b47253ea48571283",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_verification-10000-2026-10-19.md.BHMiXIIQ.lean.js",
+      "hash": "c27d58c354117508828b41a9e9ccbbb30f3669f341242879342efc1c27bc006a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_verification-cursors-2026-10-18.md.DNmVhQTi.js",
+      "hash": "802dc766db9dbd77331e4cbb6a58859f39f7763eb24b65cb4d1feda4404167a7",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_firestore_verification-cursors-2026-10-18.md.DNmVhQTi.lean.js",
+      "hash": "b506efe0f6382b847d378b4ce7c10ac82c462af117d8ed61c62b03d9d55912a2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_index.md.dYqvvQxU.js",
+      "hash": "076171e593de5974127291d09deac3649f4fb86ab5ced8d605b1102503f8ea5b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_index.md.dYqvvQxU.lean.js",
+      "hash": "ff8e9c88dfad90f661f89fa11ce760b7c17f5afc8204761f6cd292c08ee6fd8f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_ml-10-main-ruleset-2026-10-21.md.DVlhBdQt.js",
+      "hash": "9155a14f5a9c446756a98bc920769385cab8f0a43cc1a00ec31a5ee88a64043b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_ml-10-main-ruleset-2026-10-21.md.DVlhBdQt.lean.js",
+      "hash": "ea80366779713f537545aadb1a4d113949ffa9ef7b425a4c3e84f3306c967c99",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_release-record-template.md.B_nV1D27.js",
+      "hash": "7207eb08d415287902daee148f3438638856277cd178df9dcaf9aa3e3cb177a5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_release-record-template.md.B_nV1D27.lean.js",
+      "hash": "8fbf990357ce5201a77e4df1be50843fc57b8d4842d12c2652980950c89bf823",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_releases-and-recovery.md.DyRswGrS.js",
+      "hash": "e3178a9d430ecf2eb4d6cddfdfbc92d4b66502a943e9c7e3252a749c0e45e244",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_operations_releases-and-recovery.md.DyRswGrS.lean.js",
+      "hash": "1d663bfdda4026b5836d4c9c078c5003ab7ef7197161ea1302ed8c17c7803dea",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_roadmap.md.Bd2vYrLX.js",
+      "hash": "b0d112e2cf1f6c70dcde1ba82405f43770cb0c4d95284ae5d6256b22d10f2496",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_roadmap.md.Bd2vYrLX.lean.js",
+      "hash": "9ddb4855d878f6f5ef94caf65b7ac5bdc7ff8489723e986176cf7c737463523f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_specification-v1.md.BJsoDd-B.js",
+      "hash": "85aeb912f7bd2476ee785017cac94b28318f88b7efe110c573a597061a2c2c9e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_specification-v1.md.BJsoDd-B.lean.js",
+      "hash": "95343d66c0a379d9ce0aebc5828ce905ece01673fe55d4f812ce47d0fecd7576",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_technical-review-2026-10-16.md.BzqKtLNw.js",
+      "hash": "a288cf1b3a7e5bbdadbae94a9b1e8f1a16067894b297e64404c9f671d158d9d9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_project_technical-review-2026-10-16.md.BzqKtLNw.lean.js",
+      "hash": "0cda32448ba08a718c76b3734725eeb1207f49167896817d25ebb23d2acad627",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_accessibility-2026-10-18.md.CyrMdd7U.js",
+      "hash": "db6541c5460b6a18a07b2b4ba5ccfe925a9405a482fb6df50377ae71f1898cf5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_accessibility-2026-10-18.md.CyrMdd7U.lean.js",
+      "hash": "7eb301b4dae640d69ff41cb56dff5650c9606b17194c7c483df55d2adab9db5f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_browser-coverage-2026-10-18.md.Dhz_PtVA.js",
+      "hash": "815ba2f4f3ebb4b495d75f43573c47d238720203320ba18fb0fba550e1f9b340",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_browser-coverage-2026-10-18.md.Dhz_PtVA.lean.js",
+      "hash": "e8020d692c384bcad90f6ae936d9f198a0ea70d94ee74fedb22e58ffcb71ff5b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_live-resize-2026-10-18.md.BKjnegRd.js",
+      "hash": "ee03e7d713c448a5f581ab1b92379b16b19ef4ebd0721f78a17403505e766840",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_live-resize-2026-10-18.md.BKjnegRd.lean.js",
+      "hash": "65535dd2d15fcc69683fc6782b7123ba470b7df00fbbca0c91d38ba980d9f4a6",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_navigation-history-2026-10-18.md.DzwNVTw_.js",
+      "hash": "67ce41fbefba67346c0fe44e5326446a4350505b801171fabe41bd1c78569ebf",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_navigation-history-2026-10-18.md.DzwNVTw_.lean.js",
+      "hash": "cb3884f0c1e54354bdcc2c35d240a1ce707d51e9e261502f186fa0faf5a47d64",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_password-recovery-emulator.md.DrxVlRyk.js",
+      "hash": "61b32d513edcb63580e7df9c3f96b68101d868543ac74094127fc23620571782",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_password-recovery-emulator.md.DrxVlRyk.lean.js",
+      "hash": "77f341587bc8488f0c33b280f5cc7a1fa38078fd60f0a91d1f835813122e75db",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_public-landing.md.nFGCR9Hl.js",
+      "hash": "ff999bfe58d93f3c3011b4cd8cf409cf91935b8c1058ba60a2b0ef2bfe6016da",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_public-landing.md.nFGCR9Hl.lean.js",
+      "hash": "f32c0f1723931fe1fc368a26a2a8a4e3c90ebb960cd84172be5f8da7eb07418e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_verification-2026-10-16.md.HLu5iNQE.js",
+      "hash": "c47b00b346ee6df5c9cdcf6e49c90c903457ea54cdf7a41d69b6d6346b1b44a3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_quality_verification-2026-10-16.md.HLu5iNQE.lean.js",
+      "hash": "560a9a459f595b7753289bf4a2ff004834da149eeffac0931404b167d19e26c2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_spark-guard-entrypoints.md.CrPW4_jJ.js",
+      "hash": "9909754566c691f9329d46c4654370572bc186988cccfe571dc6595ed5148773",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_spark-guard-entrypoints.md.CrPW4_jJ.lean.js",
+      "hash": "1e60de0ad32d544a0cbd0b936ce74285095b6ae30a3a5c16518225e1e5831504",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_spark-only.md.CuWFOEGa.js",
+      "hash": "b6a9dc58118c8e37241ccf93ef0135b330320b7a1d764742e0935daa71842c75",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_spark-only.md.CuWFOEGa.lean.js",
+      "hash": "eb8cc77814caeb849308a032e0aa93fffe27675cc1c59b37cf6f4f65b41ff1f5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_verification-spark-2026-10-18.md.CnEAB1Qc.js",
+      "hash": "9ef1926a9687454cb132bf8d48fee1c97aa6f64c8206542bdf7e3f3d8a688dc2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_verification-spark-2026-10-18.md.CnEAB1Qc.lean.js",
+      "hash": "93e3e14d4c5ee01102f1bcf26f3433227f8efb2bd6fb305d822a5736c0fc4e83",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_verification-spark-console-2026-10-18.md.C-HgFfQa.js",
+      "hash": "a4a6da7b8817176b4ab1c81d0ceee5d5249569b97f6e0f5dc4a39c2cab7944fb",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/reports_security_verification-spark-console-2026-10-18.md.C-HgFfQa.lean.js",
+      "hash": "aec2f0184413b02f6e5e77af41b18b6b00b98366bf2b7f0e4c753668ac9e694d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/roadmap_index.md.Cf5t1P6j.js",
+      "hash": "c7c7e7f79084d9c90a6a9f4f4521c78421b6762b5b01295fc23e563899b901e8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/roadmap_index.md.Cf5t1P6j.lean.js",
+      "hash": "1b9e0769a0105fef6629979e5b419175f491c12ad02f4b7c804618c5a1d2dc1f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_iam-audit.md.DI2b82AT.js",
+      "hash": "323a06f4f299e514f06b96fc39d7cceacd493e71bb9fef44d82ed259d65c9fec",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_iam-audit.md.DI2b82AT.lean.js",
+      "hash": "40afb28a4bfe0da20db35d2ef01d3325dd3f69eefad60fe079536da273ea33e2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_public-inventory.md.D_8h7tgi.js",
+      "hash": "d68d29d15c6c972a7d5a656e3ddc44dd61325c571b4531ab02348a75fc6efbb8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_public-inventory.md.D_8h7tgi.lean.js",
+      "hash": "12ca1d6acaa1008051cc2558c945b09f196986e413bf1b30c74ee161d8ee0db4",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_spark.md.DPVzOGGp.js",
+      "hash": "45ad8e29c555183a767d5bc943a367cd84a267af3163a9e5f2fc0f52d875c21c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/security_spark.md.DPVzOGGp.lean.js",
+      "hash": "ffe72a65da2e0e147f4d6e32bb856ca669e039b77b0cd8fa62fcf36b0b838541",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/assets/style.Do4mfpxi.css",
+      "hash": "ce75fc6738c2481b207466097aaea496022afff75f366ec0f7a3488bbbb4ee11",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/database/firestore.html",
+      "hash": "58847b5513b58c6baba43298d547756df7e8dff1db50eb1c3a96013ee9547daa",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/development/installation.html",
+      "hash": "ec281594cf649806a3af068d29c47e58ba8036482c00e7dcd6e3836a526e3ec5",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/auth.svg",
+      "hash": "483ae7e334c95d17340b56023e6c59094d5406718a3fd82a6ec545c3a57f370c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/components.svg",
+      "hash": "907843332fdf1fc76c0abfa2d1751325d50d0708447eb3e0bdb8d917c67d0c14",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/data.svg",
+      "hash": "491416e4694c00ccb185f4439826a48d53a5a1caf1905e5cb4af7654d7149cce",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/deletion.svg",
+      "hash": "2cc11f38ef718d7e2143b5a2ddb8719bdda657bb329a5d83a2bad55045bfb394",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/export.svg",
+      "hash": "f91991d727f2ccae164bf8266eebd1c5ad9bf5e923c74958ad3ff8bf6044f4fd",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/import.svg",
+      "hash": "c33138f82e751b9ad799058d6cb0b9fe2b002311b031f1bbcf64d0cf5a33f318",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/loading.svg",
+      "hash": "4b4e2da7701e059e2d89684fd1cb7761ed3558f223c9b4b7ba19f829ff590968",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/manual.svg",
+      "hash": "b1444ed33fbb0725ba41f0b22245d38472f16fba7c989b8a562f37f9f135f874",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/diagrams/sync.svg",
+      "hash": "86f8096257bdcce261fba7d725c3fcc041136716f75d255ab27532d381e50731",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/guide/introduction.html",
+      "hash": "49e590de87383b2db7b154ec3c06c5cc3be5aef02d9c84fd3729999c1542661d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/hashmap.json",
+      "hash": "961308ad8e2c6004f3be5e78f3eb13dcd60168d5a122f2a8d92ad68490b49a4f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/index.html",
+      "hash": "be78d858396546c54331772321e3eff8d5f2d563fc4274c746a453665c2c8e25",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/ASSET-PROVENANCE.txt",
+      "hash": "f8cf0d8db3eda933e82b5504d4cbc163a6ae88ebb95fbb7866bb441daa30681a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/COMPONENT-LICENSES.txt",
+      "hash": "d1290f0f66d80e06fc413c5c7c173ad27c8494ad28aece7e103e7d00113e8d1a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/LICENSE-SCOPE.txt",
+      "hash": "56023f5efb9e5ed42ae5be266f49605e8fca18838f2e8c40f1e12c5cfd9b3f27",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/LICENSE.txt",
+      "hash": "ee32ee4f762de401f8bfed3b592234037f324135f19408044585c6ec82ff56b8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/NOTICE.txt",
+      "hash": "261d2caed225c08f999608ca0e05f243743a417c93ded123934bd00289f40589",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/THIRD-PARTY-NOTICES.txt",
+      "hash": "f0580697d8c7ba7f7e59650fbf92440e2675efbeb68d5b0af6f9f4136f1662de",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/legal/index.html",
+      "hash": "29ad602cee6ccafe04ccde8d1d945a762413ec32244a6e65de451fb98817e51c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/maintenance/documentation-audit.html",
+      "hash": "d5f146a69b5a161e2b74a9df886c863dacb6f406c35fe3c9a1f6190b4db68029",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/maintenance/page-inventory.html",
+      "hash": "4840d7faa8f5f752642152b71ec647c27047859af39859979604bc57d94c9829",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/mangalist.svg",
+      "hash": "efa4f55a6860427330d7ff5d393251248ce1e85d2886ccceae72debd8bcae042",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/firestore-cost-browser-2026-10-19.json",
+      "hash": "e73023c81695c5e1eadac39fed9de4a1731af95a39a5b628ffb554b6000a5fa9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/firestore-read-cost-2026-10-19.json",
+      "hash": "bc5b9292dd83e126ea10923aad07be18f8ca16e37b7d60c41ef769334eca1466",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/library-10000-2026-10-19.json",
+      "hash": "6c2d466c941d0b2c837c59d58c5fa0dead7418449f6a55d5136a5353c86e4acf",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/library-cursors-2026-10-18.json",
+      "hash": "366e437576888456b6a1f2e2a68723cf6b7db4a318fea5191486a99e9db8ce6d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/library-cursors-2026-10-19.json",
+      "hash": "0b75eccdb6f95ab3dae7f7bf1e9fa70a57e1dce3796639c1790b3c81d2df9c1d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/library-scale-2026-10-18.json",
+      "hash": "a1969dc82bb60d1f1886478c6baab33da0731bd937ec503930fce66873ae3c1a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml06-consumption-2026-10-20.json",
+      "hash": "2c20c011482bf23ed70a25ee0bbd8690f45b98f5511ee7e5877f06d24c38ee75",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml06-model-2026-10-20.json",
+      "hash": "c5b78b8df190667f622b8f43c9ce5a41b79cfe63e127ea4e279d3d67a2530149",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml06-tabs-2026-10-20.json",
+      "hash": "8c16f58e2dbc167fb9d3956ce1a110b94648059a0ca1e05c38ca06eb4e4f3643",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml07-service-2026-10-20.json",
+      "hash": "ed501b8c05bfd169fb11b19bae577fc0a41e6d390502e3eadfddfb80cf32c591",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml07-spark-capacity-2026-10-20.json",
+      "hash": "ae9029c545a60820c2c3d21d2c422bcbe6a9183b62c999fb2a12746df59ab35e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml07-tabs-2026-10-20.json",
+      "hash": "38a1b9f19cf84ffbbee621b0be9e496f78d9dc645c18e319b88beb7d04a37d77",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml08-capacity-2026-10-21.json",
+      "hash": "a2bf7d8b553091ce9f1eac70630c41ddd0c8413e4a5451d012972d6a7a492183",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml08-emulator-2026-10-21.json",
+      "hash": "8a79370d4213a7e43ecc40de836152860f58d6a93bae87410103c52708141c39",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml08-payload-2026-10-21.json",
+      "hash": "ad196d8a8a906a6f1130a15027ca1faa25b8035093111620af4dcdadfd69e6e2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml08-recovery-2026-10-21.json",
+      "hash": "f019ba2e12f080022597290f230efea57cdbc39c5526474c1305b010e207b1b1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml10-main-ruleset-2026-10-21.json",
+      "hash": "8412acbfbdad5814024324de7e0660c5f44f9ef0f4afdbe4e712ff3b63894cc3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/ml14-original-icons.json",
+      "hash": "40f369b7a7f5c79f6cdb0efdb62a96984f5049245ddd2b977b11daf50041ec00",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/transaction-budget-after-2026-10-19.json",
+      "hash": "ffef260e9b89b0c17a83da9d8b61ac81fcb024ed7aceb0b6dc28f9f38fcb3bbe",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/transaction-budget-before-2026-10-19.json",
+      "hash": "41a88795af6daa4c9262b41c7095abd20b113891910a283f10f5bffde0453b6d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/measurements/transaction-budget-browser-10000-2026-10-19.json",
+      "hash": "59259b82c96de129eb6a5ef3ff202c7985543aa1c23116370c685aa9443ba149",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/operations/deployment.html",
+      "hash": "2001e018a09ebe7ca4136503c4b45fc0e760e7c2517a4b5eb0a72eae28674dca",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/project/index.html",
+      "hash": "61f932e484f08b1382192940b68e9bf4d2ca5da6cb6b441cdc2af5392476447a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reference/import-export.html",
+      "hash": "de314fe83f44facff98f16a4c9864dcdf5f00933fa904540a096673cbbc38912",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reference/services.html",
+      "hash": "a2d12a83a66b086df0cf0966cbb65b5c820b85757e0980c17586772c0ab6ea61",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reference/synchronization.html",
+      "hash": "caa28ebd9b7fa70367d5d19db4597478e6a20c03eb185074a4693862f87c992b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/abandoned-deletion-assistance.html",
+      "hash": "284594bb5fa17c2c536c0c338612c7f39e48414731714e860d83c2d76ad59a77",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/account-marker-retention-proposal.html",
+      "hash": "b238ec77657fde506d12eac047921416449880d73c8131e57cee51c09e6b9a6d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/manual-marker-review.html",
+      "hash": "28df58a0caec8b7b0f0ff45b1bd42a6b2672513379b67d7ffd1c3136d0b0ca7c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-acceptance-2026-10-21.html",
+      "hash": "3a5da294b07ec28ad19050d4aba5776a2c07440e32d8dc5ff3e794cf243e2ceb",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-activation-pack.html",
+      "hash": "b48862e440585c4b26e3f32175d0e111d9f620ad20e26b1c9fef3ded8d81a8b3",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-d3-permissions-legal-review-pack.html",
+      "hash": "c3229209a950c3c0d110753693282dd004e4d9608552e797cc054818a6d1c550",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-free-options-2026-10-21.html",
+      "hash": "ce41d83fa1af32a2effe2e4074bbd803e1c9528477d1e3571adbce2ab1241cdd",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-operating-procedure.html",
+      "hash": "da440f948f8bd282233528737374b8fb757094dd656edfced36a8853effcb287",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-rules-audit.json",
+      "hash": "fe72dd2574328d5bfbd791c6ffbfea54c66a02636ea15c43ff7ebcd800254b9e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-test-evidence.html",
+      "hash": "1c91bdeb7705e4cc07752d0560ae586c6a4560949c105f31aeced889f992ecb8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-11-validation-2026-10-21.html",
+      "hash": "8d39eb3aef862ec1058d30975d5c230fe9d5173ee3bd56174e9618b80fb9900c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-case-and-tests.html",
+      "hash": "6b1fc13ea45dc66121e32727e8dc6daa7dc818b57ae28838e869a145151c8bc2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-identity-and-permissions-pack.html",
+      "hash": "2ac5b4947eaf854306b938212b1574bfae415d547a809dc888378c9872a322fd",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-interrupted-deletion.html",
+      "hash": "a91310bd5bb9432eca06d40ffda674c6596e19f5a592e923d5c35e75b86558e1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-legal-retention-and-deadlines-pack.html",
+      "hash": "7d5c4e844ee88ca4743b6dc61c0f27d0062256e69bd06d23061c2d99270d49be",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-mailbox-and-roles-pack.html",
+      "hash": "c3973e2001efa55619e92bb5668e57a081964981064cbdbf5feb678599434dd0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-rehearsal-and-custody-pack.html",
+      "hash": "650158eb93e5eeb40bfd9a6ea9a89ad6f3750262359686befbc1f932733df0e6",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-rules-audit.json",
+      "hash": "d09aad8b0cad48e77a6e1776ad4e3bfbfad6b5ebe11e6242b989e0bcb763eed4",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/ml-12-test-evidence.html",
+      "hash": "fead53b484f79ca7ce95f93485db8fd1ff4671d23286761d9da884f69506f15a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/nextcloud-hosting-cost-2026-10-21.html",
+      "hash": "f15d5f620073b989934ae5e1826b0f286df7b92bcaf6a9858151cbd5edc40f70",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/nextcloud-implementation-proposal.html",
+      "hash": "98287c32eba3e716a7b67a6b224b13b821bc24ea05dcc423dabad91101fe4cb1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/proton-drive-implementation-proposal.html",
+      "hash": "a41c984ea7e5d05483f289784e76f031e87933619c496a340e14274cc8657983",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/proton-drive-rehearsal-pack.html",
+      "hash": "16ebf904fcf3366ea312334cd8899483589fa55909ca3f529b416bcf32a043d0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/proton-drive-security-custody-procedure.html",
+      "hash": "b5cd71eea0b9c5ca14b5574a577802cb2c75f379e1cd720a03f24d7e94751855",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/accounts/proton-drive-service-rehearsal-2026-10-21.html",
+      "hash": "a29401c7338efd314060c0f953180578cad572d1ac34749752b91b3fd3f603d1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/development/dependencies-2026-10-18.html",
+      "hash": "050c6376dc8a0f51b871adbf3e683357fcc6802f499d7ded2161f89577958b90",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/development/firebase-startup.html",
+      "hash": "aad62a98738f5e01149bdc71e73b3da56b07bbcb6da42bd3b688d905e70bf321",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/development/ml-03-diagrams-2026-10-22.html",
+      "hash": "2b5094540c2b339d433f1bb3a2dd863e8036a9b3b47e83e309f71dfc47db5177",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/features/drafts-and-pwa-updates.html",
+      "hash": "9a74ca91e0f59981f30364cabe0faf0282c47230fdc16198f7f35cf01a7ee0a8",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/features/import-recovery.html",
+      "hash": "37f80e0651a61cd9782059bd514bdc25a85abb566d86e94bf68015bdfdf80936",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/features/multipart-backup-2026-10-21.html",
+      "hash": "08d8af44c008d272fa79ab12e0c1ac087f5ea90e2306c93567ffb134c1351ec1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/features/synchronization-and-export.html",
+      "hash": "532047e0f5891cc256ddf3669ff110129bd7a5fefd3c2e107205edb04f2a101c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/firestore-cost-review-2026-10-19.html",
+      "hash": "13ee6ea61bba11419b07b5575fab6f08ca6ab763bc3909ef275dcee9fc3c783c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/firestore-cursors-v1.html",
+      "hash": "b6294cf0e94fda76c11a76098a8284a034fe11e63c26fda1079c2ec3aea50186",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/library-scale-2026-10-18.html",
+      "hash": "7e3fa183d99f80db0d7c78b0b1637684f52f1b8ab2aa9b27de6d81a44499c1fe",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-06-consumption-2026-10-20.html",
+      "hash": "f5a8727baabf454609de00a370cd3877a356ed84e13bc1110b5706a77d98615e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-07-acceptance-2026-10-20.html",
+      "hash": "9f78a55d29add129f1681df90bf7f7e412e65ab9ee39e30649f2245e360e51c1",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-07-sync-2026-10-20.html",
+      "hash": "434b0e973639165c986669b776b9977dc14cfd722ca578815a9177674d854ae0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-08-capacity-2026-10-21.html",
+      "hash": "be8d5936e8e79e3e666f1492a1b2bd9daa097775406a42050548f17a5d8bb913",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-08-policy-2026-10-21.html",
+      "hash": "3bb941c219ae05dcb6c6c5de4ce059432524187241b6385bea1717b760ed1274",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-08-recovery-2026-10-21.html",
+      "hash": "daa6732b2a103d4f2f6efb1114291d34ed8e63ed0c7f95f80091ace8af7b8fa9",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/ml-09-recovery-2026-10-23.html",
+      "hash": "abbcf1601b92d71425a3da46e88538b63c63fe7f809d627b5c78c581663474dd",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/transaction-read-budget-2026-10-19.html",
+      "hash": "9d0054d24d7505f2a6ce3e3627a4ccf313c103f6b00993236cd95756aaec7503",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/verification-10000-2026-10-19.html",
+      "hash": "337d8cdda86cf804604b207af5fd02066bb8831c9f17aba7a5c9113f6f04021f",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/firestore/verification-cursors-2026-10-18.html",
+      "hash": "36f2afe11ac354c777592089b988e1f95c3da936319bd459130910d6e413cd36",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/index.html",
+      "hash": "bc33e6fd67d1909dd28c2639576daaa9baf62059db70022339ce55ffcafff762",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/operations/ml-10-main-ruleset-2026-10-21.html",
+      "hash": "92aba427b606aec1c1af83372799234fe00e51b462ac902c1a5412958964223d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/operations/release-record-template.html",
+      "hash": "7b08586914abfdddb351642529a4f16d57529b02134b8125488965714df39c68",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/operations/releases-and-recovery.html",
+      "hash": "054497321905793f15195ed372bff3adf2a6f04db019cc1fecb1d5f79ab90610",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/project/roadmap.html",
+      "hash": "1b791919bc98cfa4cf758c375a9aa2e01166432cbfc7843baa71f9a279ab55c2",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/project/specification-v1.html",
+      "hash": "c77bf6e41f1d1161fe1a5312fe49972d30bef03acf4889c1fa3e5914bb41990e",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/project/technical-review-2026-10-16.html",
+      "hash": "87cfb5e5c02e9e85851edcf4c21fb77afccbecd8e5e93076a288603453d80f7d",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/accessibility-2026-10-18.html",
+      "hash": "090696f41ba00a182a171e5d0f43ab06866b388dbabaa3c60ceb188d0f9ac309",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/browser-coverage-2026-10-18.html",
+      "hash": "3a3a48dd8342d2f563f2d724cfb65ce908d5049e5ac7170a9fcdfecb281b7501",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/live-resize-2026-10-18.html",
+      "hash": "75488119f043ba035f9fa2ee905d215cfb4652c275878b490f542357dffca3fd",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/navigation-history-2026-10-18.html",
+      "hash": "6ede1fc6ee0beff7fafa07de073558f5bb1fb99f03b6ac89e723ecf37a5c335a",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/password-recovery-emulator.html",
+      "hash": "01c843e699f5ec9ea82bbe6f45b985481f2c6094f83197385ee2d4865af55f86",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/public-landing.html",
+      "hash": "43a321bd302fa376d11632c3da7d4a39e4c9508054936b3f6a21bd2fffab362c",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/quality/verification-2026-10-16.html",
+      "hash": "f390222a6ef62c7534d9a3a3b51af156330223e7c69287efb05cb1ae8aa94ac4",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/security/spark-guard-entrypoints.html",
+      "hash": "42caafc0920a0f48d6c1c52ba03f68d305278af0889b231d4334c58b8375f745",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/security/spark-only.html",
+      "hash": "07f1ac9ec1635bab72274918dffe7e7ab4439c41588f6eda98fb62908599da3b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/security/verification-spark-2026-10-18.html",
+      "hash": "aa5be1c0009a1add725e43ecc0c16757773be3be5a82de6588a79c766cf30e84",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/reports/security/verification-spark-console-2026-10-18.html",
+      "hash": "c8aaded7875403639b286c29de81c4a02c804811e8d976f64ddc8ebd3ac4d470",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/roadmap/index.html",
+      "hash": "a3dec4bf700a5f4e03a442db8d2a6ae4613bc7c17a8c7ff9aefc57070c5b58e0",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/screenshots/import-preview.jpg",
+      "hash": "db9ad67513ab69ffab96c600b3ce368adb4ee0b7fb92ad22ff5cff6c877f0576",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/screenshots/library-desktop.jpg",
+      "hash": "525949e7c3ae35bb4977fc7b3b7e1df9a1684af023b64d184f85ed48b6784baf",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/screenshots/library-mobile.jpg",
+      "hash": "8231a2aa58fa7c14a20080837c74985719b623440b7c98f85e3f56fd8e085f1b",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/security/iam-audit.html",
+      "hash": "413a48e35a2a19efcfbb622f905d7e6afb9b2d9d5f7b48ff67dd771c41f7c3cc",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/security/public-inventory.html",
+      "hash": "48a35a4febcfc4dd038e837e4216a624042f3c7159fe85df3efd0be077778058",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/security/spark.html",
+      "hash": "4795ae3e06ae42e2818c36c155dcc412c39d5a244d836cdaeb1427349f7687f6",
+      "status": "ACTIVE"
+    },
+    {
+      "path": "/vp-icons.css",
+      "hash": "ab155de44a82af13aa4eca2092159b11618975574739865d253d1ba765c37607",
+      "status": "ACTIVE"
+    }
+  ],
+  "nextPageToken": null
+}
