@@ -1,0 +1,44 @@
+{
+  "stage": "Separate follow-up; does not replace interrupted lock attempt",
+  "head": "b435371af8d75071857667daaab69852543a9c42",
+  "addTargets": 0,
+  "before": {
+    "at": 1792897248086,
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "error": "La pestaña se ha suspendido y la sincronización se ha detenido. Conserva tus cambios y reintenta para comprobar de nuevo toda la biblioteca.",
+    "search": "ML09 física 0000",
+    "visibility": "visible"
+  },
+  "lifecycle": {
+    "events": [
+      {
+        "type": "visibilitychange",
+        "at": 1792896967867,
+        "visibility": "hidden"
+      },
+      {
+        "type": "freeze",
+        "at": 1792897028015,
+        "visibility": "hidden"
+      },
+      {
+        "type": "visibilitychange",
+        "at": 1792897215022,
+        "visibility": "visible"
+      },
+      {
+        "type": "resume",
+        "at": 1792897215045,
+        "visibility": "visible"
+      }
+    ],
+    "ticks": 220,
+    "maxGap": 1045,
+    "last": 1792897026976
+  },
+  "result": "failed-or-blocked",
+  "failure": "The \"string\" argument must be of type string. Received type undefined (undefined)",
+  "timestamp": "2026-10-25T03:00:45.388Z"
+}

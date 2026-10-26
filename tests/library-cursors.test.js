@@ -8,6 +8,7 @@ const id = (number) => String(number).padStart(6, '0')
 const doc = (key) => ({ id: key, data: () => ({ name: key }) })
 
 async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) {
+  const lifecycle = new EventTarget()
   let documents = Array.from({ length: size }, (_, i) => doc(id(i)))
   const targets = [],
     queries = [],
@@ -77,12 +78,14 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
     deliveries,
     budget,
     flush,
+    freeze: () => lifecycle.dispatchEvent(new Event('freeze')),
     start: () =>
       service.subscribeCursorLibrary(
         {},
         (d) => d.id,
         (docs, meta) => deliveries.push({ docs, meta }),
         (e) => errors.push(e),
+        { document: lifecycle },
       ),
     change: async (transform, nextMetadata = server) => {
       documents = transform(documents).sort((a, b) => a.id.localeCompare(b.id))
@@ -100,6 +103,29 @@ async function fixture(size, { metadata = server, limits = SPARK_LIMITS } = {}) 
     },
   }
 }
+
+test('freezing retires every range once and ignores late snapshots until explicit recovery', async () => {
+  const f = await fixture(1500)
+  f.start()
+  await f.flush()
+  const before = f.deliveries.length
+  const targets = f.targets.length
+  f.freeze()
+  f.freeze()
+  assert.equal(f.errors.length, 1)
+  assert.equal(f.errors[0].code, 'app/listener-suspended')
+  assert.equal(f.targets.filter((target) => target.active).length, 0)
+  await f.change((docs) => [...docs, doc('new-after-freeze')])
+  assert.equal(f.deliveries.length, before)
+  assert.equal(f.targets.length, targets)
+  const stop = f.start()
+  await f.flush()
+  assert.equal(f.deliveries.at(-1).docs.length, 1501)
+  assert.equal(f.deliveries.at(-1).meta.complete, true)
+  stop()
+  f.freeze()
+  assert.equal(f.errors.length, 1)
+})
 
 for (const size of [0, 1, 500, 501, 1000, 1001, 2501, 5000, 10000]) {
   test(`real query constraints cover ${size} documents once across bounded ranges and export`, async () => {

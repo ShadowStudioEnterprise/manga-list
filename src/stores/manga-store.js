@@ -1,4 +1,5 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
+import { watch } from 'vue'
 import {
   changeMangaChapter,
   createManga as createMangaDocument,
@@ -11,9 +12,11 @@ import {
 import { toAppError } from '@/utils/firebase-errors'
 import { useSettingsStore } from '@/stores/settings-store'
 import { compareChapters } from '@/utils/chapter-utils'
+import { librarySearchStorage } from '@/utils/library-search'
 
 let stopMangaListener = null
 let subscriptionVersion = 0
+const searchWatchers = new WeakMap()
 
 const DEFAULT_FILTERS = Object.freeze({
   readingStatus: '',
@@ -92,6 +95,7 @@ export const useMangaStore = defineStore('mangas', {
     searchQuery: '',
     filters: { ...DEFAULT_FILTERS },
     subscribedUid: null,
+    libraryOwnerUid: null,
   }),
 
   getters: {
@@ -171,14 +175,34 @@ export const useMangaStore = defineStore('mangas', {
         return
       }
 
-      this.unsubscribe()
+      const search =
+        this.libraryOwnerUid === uid
+          ? this.searchQuery
+          : this.libraryOwnerUid
+            ? ''
+            : librarySearchStorage.read(uid)
+      const filters = this.libraryOwnerUid === uid ? this.filters : { ...DEFAULT_FILTERS }
+      this.unsubscribe({ preserveSearch: true })
+      this.searchQuery = search
+      this.filters = filters
       const version = subscriptionVersion
       this.loading = true
       this.syncError = null
       this.subscribedUid = uid
+      this.libraryOwnerUid = uid
+      librarySearchStorage.write(uid, search)
+      searchWatchers.set(
+        this,
+        watch(
+          () => this.searchQuery,
+          (query) => librarySearchStorage.write(uid, query),
+          { flush: 'sync' },
+        ),
+      )
 
       try {
-        stopMangaListener = subscribeToMangas(
+        let failedSynchronously = false
+        const stop = subscribeToMangas(
           uid,
           (mangas, metadata = {}) => {
             if (this.subscribedUid !== uid || version !== subscriptionVersion) {
@@ -200,6 +224,7 @@ export const useMangaStore = defineStore('mangas', {
             }
 
             const appError = toAppError(error, 'No se ha podido sincronizar la biblioteca.')
+            failedSynchronously = true
             stopMangaListener = null
             this.subscribedUid = null
             this.syncError = appError.message
@@ -207,6 +232,8 @@ export const useMangaStore = defineStore('mangas', {
             this.loading = false
           },
         )
+        if (failedSynchronously) stop?.()
+        else stopMangaListener = stop
       } catch (error) {
         const appError = toAppError(error, 'No se ha podido abrir la biblioteca.')
         this.syncError = appError.message
@@ -216,11 +243,15 @@ export const useMangaStore = defineStore('mangas', {
       }
     },
 
-    unsubscribe() {
+    unsubscribe({ preserveSearch = false } = {}) {
+      searchWatchers.get(this)?.()
+      searchWatchers.delete(this)
+      if (!preserveSearch) librarySearchStorage.clear()
       subscriptionVersion += 1
       stopMangaListener?.()
       stopMangaListener = null
       this.subscribedUid = null
+      this.libraryOwnerUid = null
       this.mangas = []
       this.loading = false
       this.syncError = null

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "firstResumeAt": "2026-10-24T04:50:42.455Z",
+  "firstConfirmedAt": "2026-10-24T04:50:47.054Z",
+  "confirmationAfterFirstTelemetryMs": 4599,
+  "stableObservedMs": 60079,
+  "physicalLockConfirmed": true,
+  "userConfirmedPhysicalLock": true,
+  "maxGapMs": 219061,
+  "baselinePageId": "05c13b4d-cc6c-4309-8b55-0d479af00a88",
+  "baselineSearch": "",
+  "searchPreserved": null,
+  "nativeHidden": true,
+  "nativeVisible": true,
+  "pageIdsDuringRecovery": [
+    "05c13b4d-cc6c-4309-8b55-0d479af00a88"
+  ],
+  "network": {
+    "addTarget": 1,
+    "removeTarget": 0,
+    "fetch": 4,
+    "xhr": 0,
+    "unreadableBodies": 0
+  },
+  "finalState": {
+    "label": "telemetria-bloqueo",
+    "count": 500,
+    "unique": 500,
+    "chapter": "2",
+    "favorite": false,
+    "fromCache": false,
+    "loading": false,
+    "pending": false,
+    "pendingOperations": 0,
+    "error": null,
+    "search": "",
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "summary": "Mostrando 1–24 de 500 obras · Página 1 de 21",
+    "libraryLocks": 1,
+    "remainingQuotaPauseMs": 0,
+    "counters": {
+      "addTargetRequests": 0,
+      "removeTargetRequests": 0
+    }
+  },
+  "scope": "Physical lock and passive telemetry from real iPhone; no Safari commands during locked interval; no synthetic lifecycle or clock"
+}

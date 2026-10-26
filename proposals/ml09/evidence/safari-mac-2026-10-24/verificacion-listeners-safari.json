@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-23T23:45:05.672Z",
+  "scope": "Observed outgoing Listen protocol in real Safari; synthetic quota signal, local emulators. Not billed reads or real Firebase quota reset.",
+  "checks": {
+    "twoTabsOneTarget": true,
+    "sameTargetRemovedOnQuota": true,
+    "blockedRetryNoTarget": true,
+    "realWaitMs": 931779,
+    "noAutomaticReopen": true,
+    "validRetryExactlyOneTarget": true,
+    "stableForAtLeast60s": true,
+    "noUnreadableBodies": true
+  }
+}

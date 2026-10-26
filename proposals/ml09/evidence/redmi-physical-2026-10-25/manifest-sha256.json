@@ -1,0 +1,62 @@
+[
+  {
+    "path": "followup.json",
+    "sha256": "344f56ee50161d66ff81afb8f4f93b370a35c6b62a25e540962872b94b500460",
+    "bytes": 1193
+  },
+  {
+    "path": "Informe.md",
+    "sha256": "807a3a29fc79bbe00de52b9170bce146c6ac24d9562d4552677267ad90f2d12e",
+    "bytes": 4183
+  },
+  {
+    "path": "preparation.json",
+    "sha256": "c677fa3738c615ea0802508dc79bd5ff19997abda9d895bc8978491b29eed5de",
+    "bytes": 343
+  },
+  {
+    "path": "ready.png",
+    "sha256": "28cafe39408e4d2f44e0b8be4bc88c151cb1c4fdd0ce350777f5b31891a5e6f3",
+    "bytes": 86364
+  },
+  {
+    "path": "recovery.json",
+    "sha256": "5f3547996bce211248618ea0999bea04021fa915e2a61e16763e7f6aa21d5d3d",
+    "bytes": 2443
+  },
+  {
+    "path": "redmi-20261025-followup-original.mjs",
+    "sha256": "62a071fe2a444c0748944db931b33a2ee2afd32058a07fa4afb2c35e508cf6d4",
+    "bytes": 3790
+  },
+  {
+    "path": "redmi-20261025-lock.mjs",
+    "sha256": "c8da5ed1e45757d35355e853735f7462cdbb610ee69174f275d5c3c8d394f635",
+    "bytes": 7358
+  },
+  {
+    "path": "redmi-20261025-prepare.mjs",
+    "sha256": "9852aeff14755a3b42efa9beb509f602c0304f4e137c193a6b7b893b1e4e72e3",
+    "bytes": 3538
+  },
+  {
+    "path": "redmi-20261025-recovery.mjs",
+    "sha256": "c5d08e4cefdee83e4607a01eb6419354e2e6f300bb9cd45e7ad6c8948a5bbdb5",
+    "bytes": 4404
+  },
+  {
+    "path": "screen-lock.json",
+    "sha256": "54b67d507aa253826984fc010025c3862fd172d1865a5873364f5348f3ce908d",
+    "bytes": 3740
+  },
+  {
+    "path": "source-sha256.json",
+    "sha256": "9616230b730c6bb1083bae1cd7e01d357d36046aaf94a9afe7b04a99ba7ac815",
+    "bytes": 1009
+  },
+  {
+    "path": "verify.mjs",
+    "sha256": "6638724e76f6190299a7a351b519a7705036e9d4fca678bdbc8a4dc9c12591c3",
+    "bytes": 2047
+  }
+]

@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile,writeFile} from 'node:fs/promises';
+const root=new URL('./',import.meta.url),read=async name=>JSON.parse(await readFile(new URL(name,root),'utf8'));
+const lines=async name=>(await readFile(new URL(name,root),'utf8')).trim().split('\n').map(JSON.parse);
+const before=await read('ios-lock-manual-before.json'),control=await read('ios-lock-manual-wait.json'),events=await lines('ios-lock-manual-events.jsonl'),rows=await lines('ios-lock-manual-telemetry.jsonl'),result=await read('ios-lock-manual-result.json');
+const confirmed=(s,chapter)=>{assert.equal(s.count,500);assert.equal(s.unique,500);assert.equal(s.chapter,chapter);assert.equal(s.fromCache,false);assert.equal(s.error,null);assert.equal(s.pending,false);assert.equal(s.pendingOperations,0);};
+confirmed(before.value.state,'1');assert.equal(before.value.network.addTarget,1);assert.equal(before.value.network.removeTarget,0);
+assert.equal(control.userConfirmedPhysicalLock,true);assert.equal(control.passcodeRequired,true);assert.equal(control.safariDriverStopped,true);assert.equal(control.noSafariCommandsDuringWait,true);assert.equal(control.serverConfirmedChapter,'2');
+const waited=events.find(r=>r.label==='espera-completada');assert.ok(waited.value.lockedWaitMs>=120000);
+assert.equal(result.passed,true);assert.equal(result.baselinePageId,before.value.pageId);assert.deepEqual(result.pageIdsDuringRecovery,[before.value.pageId]);assert.equal(result.nativeHidden,true);assert.equal(result.nativeVisible,true);assert.ok(result.maxGapMs>=120000);assert.ok(result.stableObservedMs>=60000);confirmed(result.finalState,'2');assert.equal(result.network.addTarget,1);assert.equal(result.network.removeTarget,0);assert.equal(result.network.unreadableBodies,0);
+const samples=rows.filter(r=>r.value.pageId===before.value.pageId),after=samples.filter(r=>Date.parse(r.receivedAt)>control.startedAt);assert.ok(after.length>0);
+for(const row of samples){if(row.value.network&&Date.parse(row.receivedAt)>=Date.parse(before.receivedAt)){assert.equal(row.value.network.addTarget,1);assert.equal(row.value.network.removeTarget,0);assert.equal(row.value.network.unreadableBodies,0);}}
+const hidden=samples.find(r=>r.value.events.some(e=>e.name==='visibilitychange'&&e.visibility==='hidden'&&e.trusted));assert.ok(hidden);
+const firstVisible=after.find(r=>r.value.visibility==='visible');assert.ok(firstVisible);const firstConfirmed=after.find(r=>r.value.visibility==='visible'&&r.value.state?.chapter==='2'&&!r.value.state.fromCache);assert.ok(firstConfirmed);
+const checks={physicalLockConfirmed:true,lockedWaitMs:waited.value.lockedWaitMs,nativeTimerMaxGapMs:result.maxGapMs,samePageAfterUnlock:true,all500Confirmed:true,concurrentChapterRecovered:true,firstObservedConfirmationMs:Date.parse(firstConfirmed.receivedAt)-Date.parse(firstVisible.receivedAt),stableObservedMs:result.stableObservedMs,oneOutgoingAddTargetAcrossLock:true,noManualRetryOrReload:true,searchNotExercised:before.value.state.search==='',safariDriverStopped:true};
+const report={passed:true,checkedAt:new Date().toISOString(),checks,scope:'Real iPhone physical lock in normal Safari, native events/clock and passive telemetry; no OS-wide sleep, mobile networking or billed-quota certification'};
+if(process.argv.includes('--write'))await writeFile(new URL('verification-physical-lock.json',root),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

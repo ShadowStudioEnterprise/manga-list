@@ -43,8 +43,9 @@ géneros y fuentes para las obras seleccionadas.
 dice MB), espera carga sin error y protege el preview contra lecturas antiguas y
 cambio de UID. No persiste el archivo. Importa grupos de hasta ocho mediante
 `Promise.allSettled` y `mangaStore.createManga(uid, item.manga, { importDocumentId })`.
-Solo marca éxitos confirmados; cuenta fallos y detiene grupos posteriores ante cuota
-o presupuesto. No hay rollback global de las filas ya guardadas.
+Solo marca éxitos confirmados; cuenta fallos y detiene grupos posteriores ante
+cualquier error. Muestra la primera causa mediante el catálogo seguro de errores,
+conservando las filas confirmadas. No hay rollback global de las filas ya guardadas.
 
 No realiza espera automática ni checkpoint durable. Para continuar se conserva el
 archivo original y se selecciona con la misma cuenta/formato. La transacción
@@ -53,6 +54,10 @@ posteriores. No deduplica importaciones antiguas creadas con IDs aleatorios. La
 importación normal no certifica una biblioteca vacía ni capacidad global disponible.
 
 ## Exportación normal
+
+`fetchLibraryForExport` rechaza una segunda exportación simultánea de la misma
+cuenta en esta instancia antes de leer páginas. Siempre libera el bloqueo al
+resolver o fallar; no comparte bibliotecas ni bloqueos entre cuentas.
 
 `src/services/export-service.js` exporta `EXPORT_FORMATS` (json/csv),
 `CSV_EXPORT_COLUMNS`, `exportLibraryToJson(mangas, { pretty = true, verification } = {})`,

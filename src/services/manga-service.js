@@ -341,7 +341,11 @@ export function subscribeToMangas(uid, onData, onError) {
   )
 }
 
+const activeExports = new Set()
+
 export async function fetchLibraryForExport(uid) {
+  if (activeExports.has(uid)) throw createAppError('app/request-budget')
+  activeExports.add(uid)
   try {
     const { auth } = requireFirebase()
     const assertSession = () => {
@@ -366,6 +370,8 @@ export async function fetchLibraryForExport(uid) {
       sparkBudget.record(error),
       'No se ha podido confirmar la copia con el servidor.',
     )
+  } finally {
+    activeExports.delete(uid)
   }
 }
 

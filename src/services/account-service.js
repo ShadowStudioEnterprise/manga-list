@@ -84,6 +84,7 @@ async function beginAccountDeletion(uid) {
   await runTransaction(
     db,
     async (transaction) => {
+      sparkBudget.take('read')
       const snapshot = await transaction.get(reference)
       if (snapshot.data()?.status === 'deleting') return
       transaction.set(reference, {

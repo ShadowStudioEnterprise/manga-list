@@ -1,0 +1,369 @@
+{
+  "head": "1be7dcc5e987ebcaf7751bd76c4de30f8003f201",
+  "device": "Redmi 9A M2006C3LG",
+  "browser": "Chrome 155.0.8059.84",
+  "method": "direct target CDP; no Playwright focus emulation",
+  "external": [],
+  "errors": [],
+  "recoveryAddTargets": 0,
+  "localTrafficInterception": false,
+  "before": {
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+    "summary": " Mostrando 1–24 de 500 obras · Página 1 de 21",
+    "visibility": "visible"
+  },
+  "background": "visible",
+  "visibilityCaveat": "Android background visibility not demonstrated; freeze requires independent timer evidence",
+  "libraryLocksBefore": 1,
+  "serverAfterWrite": "3",
+  "freeze": {
+    "elapsedMs": 20124,
+    "ticksBefore": 4,
+    "ticksAfter": 4,
+    "delta": 0,
+    "lifecycle": [
+      {
+        "type": "freeze",
+        "at": 1792773461389,
+        "visibility": "hidden",
+        "ticks": 4
+      },
+      {
+        "type": "resume",
+        "at": 1792773481474,
+        "visibility": "hidden",
+        "ticks": 4
+      }
+    ]
+  },
+  "resumeObservations": [
+    {
+      "elapsedMs": 261,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 1286,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 2314,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 3339,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 4370,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 5402,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 6427,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 7457,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 8486,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 9509,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 10531,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 11557,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 12589,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 13609,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 14633,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 15661,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 16690,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 17712,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 18745,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 19767,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 20786,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 21806,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 22827,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 23852,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 24881,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 25903,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 26926,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 27955,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 28989,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 30016,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 31041,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 32070,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 33092,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 34116,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 35143,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 36170,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 37197,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 38224,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 39254,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 40285,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 41310,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 42338,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 43360,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 44379,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 45396,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 46423,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 47442,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 48469,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 49498,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 50518,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 51545,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 52569,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 53602,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 54624,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 55641,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 56674,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 57696,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 58716,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 59746,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 60776,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 61808,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 62840,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 63862,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 64893,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    },
+    {
+      "elapsedMs": 65918,
+      "chapter": "2",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+    }
+  ],
+  "result": "failed",
+  "failure": "Expected values to be strictly equal:\n\n'2' !== '3'\n",
+  "timestamp": "2026-10-23T16:39:08.656Z"
+}

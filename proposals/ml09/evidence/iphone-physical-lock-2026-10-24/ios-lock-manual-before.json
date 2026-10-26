@@ -1,0 +1,49 @@
+{
+  "receivedAt": "2026-10-24T04:47:00.044Z",
+  "value": {
+    "reason": "sample",
+    "clientAt": 1792817220137,
+    "pageId": "05c13b4d-cc6c-4309-8b55-0d479af00a88",
+    "armedAt": 1792817209941,
+    "ticks": 10,
+    "maxGapMs": 1004,
+    "events": [
+      {
+        "name": "pageshow",
+        "at": 1792817211172,
+        "trusted": true,
+        "visibility": "visible",
+        "persisted": false
+      }
+    ],
+    "state": {
+      "label": "telemetria-bloqueo",
+      "count": 500,
+      "unique": 500,
+      "chapter": "1",
+      "favorite": false,
+      "fromCache": false,
+      "loading": false,
+      "pending": false,
+      "pendingOperations": 0,
+      "error": null,
+      "search": "",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+      "summary": "Mostrando 1–24 de 500 obras · Página 1 de 21",
+      "libraryLocks": 1,
+      "remainingQuotaPauseMs": 0,
+      "counters": {
+        "addTargetRequests": 0,
+        "removeTargetRequests": 0
+      }
+    },
+    "visibility": "visible",
+    "network": {
+      "addTarget": 1,
+      "removeTarget": 0,
+      "fetch": 2,
+      "xhr": 0,
+      "unreadableBodies": 0
+    }
+  }
+}

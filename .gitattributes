@@ -5,3 +5,6 @@
 *.jpeg binary
 *.woff binary
 *.woff2 binary
+
+# Preserve sealed physical evidence byte for byte, including original line endings.
+proposals/ml09/evidence/redmi-physical-2026-10-25/** -text

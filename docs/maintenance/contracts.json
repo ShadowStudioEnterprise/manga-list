@@ -1,9 +1,9 @@
 {
-  "baseCommit": "a6627d0a00371d2aaff0605884f05e7a1750f9f9",
-  "reviewedOn": "2026-10-23",
+  "baseCommit": "7f5ff099510e13b8c186bbd67b2f767cdeaed014",
+  "reviewedOn": "2026-10-24",
   "sources": {
     "src/services/account-service.js": {
-      "sha256": "ea416fe6259616b22dfb391203818858b4e3ebd94c4d83dd1ee22cb49e3d5952",
+      "sha256": "7c79207cbedfa252524ae06307aa068e95c82fb7c2c77889e380ae7b8bad92e9",
       "exports": ["reauthenticateCurrentUser", "deleteUserFirestoreData", "deleteCurrentAccount"]
     },
     "src/services/auth-service.js": {
@@ -48,11 +48,11 @@
       ]
     },
     "src/services/library-cursors.js": {
-      "sha256": "b256729071063d0df424ac2c8a2ecb38a2d0b2dec01b2a4a2d7bbfcf7dd91646",
+      "sha256": "471ff745baf4c935cb5e48846c2923c3b67e8104ae883816d2feee7b22f76f0e",
       "exports": ["subscribeCursorLibrary", "fetchCursorLibrary"]
     },
     "src/services/manga-service.js": {
-      "sha256": "75e4935ece0a1048d9a489346e26646c8a3f975a5bfdcb79970ee575b6ebcadd",
+      "sha256": "4715d02a7f6c7b83c2ba4e103059a5707a9c77a197c6ef5473d77a2d3de44ff7",
       "exports": [
         "normalizeMangaName",
         "serializeMangaForCreate",
@@ -95,7 +95,7 @@
       "exports": ["default"]
     },
     "src/stores/manga-store.js": {
-      "sha256": "1fa973845d9d5da55340b8072a1c92db2af7da08715632ce744107b904d14ba6",
+      "sha256": "837e420445804eee882d1e1da5364b23ca53fe4dd53eaf5472fd6896b1aac856",
       "exports": ["useMangaStore"]
     },
     "src/stores/settings-store.js": {
@@ -123,11 +123,11 @@
       "exports": ["default"]
     },
     "src/utils/spark-budget.js": {
-      "sha256": "66e9f4984c0631863df085cecd5745f60c0cd8c91a4fea08b635f419e8f31a27",
+      "sha256": "560820957926cdce4a644c8eb0595582c50fbd3cca8094225a1a5da06e65d010",
       "exports": ["SPARK_LIMITS", "createSparkBudget", "sparkBudget"]
     },
     "src/utils/firebase-errors.js": {
-      "sha256": "cf3dcc0f36f906ff9e62e00ab8cacb230e776ab688dbb8fb078a32bbd7929222",
+      "sha256": "d316328e4329c3a2fe6f68366a9d27fc235fb2e3aab148a0a99a32d837bce0b4",
       "exports": [
         "AppError",
         "getErrorCode",
@@ -174,7 +174,7 @@
       "exports": ["LIBRARY_PAGE_SIZE", "useLibraryPagination"]
     },
     "src/pages/ImportExportPage.vue": {
-      "sha256": "601bbd7e538b353f4c81bf4b7bf1c1601b2fd1493c3f7891c40462ad848f68a8",
+      "sha256": "e0d86a6a2226340b8d695911155953762ce45361b9dee3e26164669b5f3f3ca6",
       "exports": []
     },
     "src/components/import/MultipartBackupPanel.vue": {
@@ -188,6 +188,18 @@
     "release-contract.json": {
       "sha256": "c339a2c64eec3d16f7af4dfefca03603a588100be2ad1d35741c4633f0d0e138",
       "exports": []
+    },
+    "src/services/library-recovery.js": {
+      "sha256": "0b6c884a69bc78fea75056f4868d17f20eebdc5193c9a7b80d64dc34d87bbf88",
+      "exports": ["recoverLibraryConnection"]
+    },
+    "src/pages/LibraryPage.vue": {
+      "sha256": "3d6847980ae4b3c1dba939a67e9ebcf594426ee54831c51026f8a40f10e6037c",
+      "exports": []
+    },
+    "src/utils/library-search.js": {
+      "sha256": "42370c7a249319a02c2812e74b87732a780b02299cce80c8636d35cba964169f",
+      "exports": ["createLibrarySearchStorage", "librarySearchStorage"]
     }
   }
 }

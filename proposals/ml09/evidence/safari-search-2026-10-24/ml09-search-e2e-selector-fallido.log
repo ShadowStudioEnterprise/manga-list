@@ -1,0 +1,105 @@
+i  emulators: Starting emulators: auth, firestore
+i  emulators: Detected demo project ID "demo-mangalist", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: node node_modules/@playwright/test/cli.js test tests/e2e/ml09-recovery.spec.js --project=chromium --project=firefox
+[WebServer] (node:15545) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:15545) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:15586) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (2.0m)
+(node:15891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 [firefox] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (28.4s)
+
+
+  1) [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+
+    Test timeout of 120000ms exceeded.
+
+    Error: locator.fill: Test timeout of 120000ms exceeded.
+    Call log:
+      - waiting for getByRole('textbox', { name: 'Buscar por nombre', exact: true })
+
+
+      35 |   await expect(peer.getByRole('status')).toContainText('Última instantánea')
+      36 |   const search = page.getByRole('textbox', { name: 'Buscar por nombre', exact: true })
+    > 37 |   await search.fill('ML09 recovery')
+         |                ^
+      38 |   // Inject only the terminal service signal; all app callbacks/IPC/UI are real.
+      39 |   await page.evaluate(async () => {
+      40 |     const { sparkBudget } = await import('/src/utils/spark-budget.js')
+        at <workspace>/ml09-search-fix/tests/e2e/ml09-recovery.spec.js:37:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+
+    Test was interrupted.
+
+    Error: locator.fill: Test ended.
+    Call log:
+      - waiting for getByRole('textbox', { name: 'Buscar por nombre', exact: true })
+
+
+      35 |   await expect(peer.getByRole('status')).toContainText('Última instantánea')
+      36 |   const search = page.getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
+    > 37 |   await search.fill('ML09 recovery')
+         |                ^
+      38 |   // Inject only the terminal service signal; all app callbacks/IPC/UI are real.
+      39 |   await page.evaluate(async () => {
+      40 |     const { sparkBudget } = await import('/src/utils/spark-budget.js')
+        at <workspace>/ml09-search-fix/tests/e2e/ml09-recovery.spec.js:37:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox/test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+  1 interrupted
+    [firefox] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+⚠  Script exited unsuccessfully (code 130)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "node node_modules/@playwright/test/cli.js test tests/e2e/ml09-recovery.spec.js --project=chromium --project=firefox" exited with code 130

@@ -1,0 +1,18 @@
+✔ accepts 500 unique synthetic works matching the current server, including concurrent change (8.99172ms)
+✔ rejects partial export (3.447233ms)
+✔ rejects lost favorite edit (2.407441ms)
+✔ rejects duplicate ID (8.543327ms)
+✔ rejects foreign ID (2.679703ms)
+✔ rejects stale chapter (2.916135ms)
+✔ rejects changed notes (2.56903ms)
+✔ rejects unconfirmed pending writes (3.157983ms)
+✔ rejects cache provenance (2.48524ms)
+✔ rejects incomplete server page (2.092317ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 217.328596

@@ -1,0 +1,5 @@
+
+> manga-list@0.0.1 audit:security:built
+> node scripts/security-audit.mjs --built
+
+339 tracked files; 291 built files; 0 findings (values suppressed)

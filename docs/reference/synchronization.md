@@ -28,6 +28,13 @@ lectura y cada suscripción lógica consume `listen`. Más de 10000 documentos o
 64 rangos produce `app/library-budget`, cancela todo y no certifica una carga parcial.
 Un fallo de rango también cancela la suscripción completa.
 
+ML-09 añade un plazo de 60 s sin confirmación completa del servidor al abrir,
+dividir rangos o volver a caché/cambios pendientes. Repetir snapshots locales no
+reinicia el plazo. Al vencer, cancela todos los targets, informa
+`app/listener-timeout` y requiere reintento manual. Una confirmación completa
+cancela el plazo. El SDK puede reconectar internamente dentro de ese intervalo;
+no se afirma un número exacto de intentos ni lecturas facturadas.
+
 La exportación lee las primeras 5000 obras de cada página de hasta 5001; continúa
 después de la última incorporada, releyendo el centinela. Comprueba sesión antes y
 después de cada lectura. Rechaza metadatos ausentes, caché, escrituras pendientes,
@@ -61,19 +68,30 @@ El canal no es frontera de seguridad frente a scripts del mismo origen.
 
 ## Presupuestos y Spark
 
-`src/utils/spark-budget.js`: `createSparkBudget(now = Date.now)` devuelve
-`remaining(kind)`, `retryAfterMs(kind)`, `take(kind)` y `record(error)`;
+`src/utils/spark-budget.js`: `createSparkBudget(now = Date.now, runtime, namespace = 'default')` devuelve
+`remaining(kind)`, `retryAfterMs(kind)`, `take(kind)`, `record(error)`,
+`onPause(observer)` (devuelve cancelador) y `listenerConfirmed()`;
 `sparkBudget` es la instancia del cliente. Ventanas de 60 s por pestaña: read 60,
 write 120, listen 3, auth 10. Un tipo desconocido o ventana agotada rechaza la
 admisión. `record` pausa 15 min ante `resource-exhausted`,
 `firestore/resource-exhausted`, `auth/quota-exceeded` y `auth/too-many-requests`.
-No cancela por sí mismo listeners abiertos ni garantiza restauración de cuota diaria.
+Los listeners de rangos se registran con `onPause`: una cuota recibida desde
+cualquier operación los detiene. La instancia del cliente persiste solo el plazo
+numérico en localStorage por proyecto y lo propaga mediante eventos storage.
+Sobrevive recargas y cierra listeners de otras pestañas del mismo origen/perfil.
+Sin almacenamiento funciona en memoria; otros dispositivos no comparten la pausa.
+No se guardan obras, UID, mensajes ni contadores remotos. Vencer la pausa permite
+un intento manual, nunca certifica restauración de cuota diaria.
+`unavailable` y `app/listener-timeout` retrasan nuevas escuchas 2, 4, 8, 16, 32 y
+60 s (máximo), además del límite de 3 admisiones/minuto. Una confirmación completa
+reinicia esa progresión. No hay temporizador que reabra listeners automáticamente.
 
 `SPARK_LIMITS`: libraryDocuments 10000, pageDocuments 5000, libraryRanges 64,
-deletionBatch 400, deletionBatches 5, transactionAttempts 3. Son límites de cliente,
+deletionBatch 400, deletionBatches 5, transactionAttempts 3,
+listenerUnconfirmedMs 60000. Son límites de cliente,
 no máximos de Firestore, capacidad garantizada ni permisos de reglas.
 Los 60 reads cuentan admisiones a consultas/targets/intentos, **no documentos**.
-La lectura del marcador en la transacción de borrado no consume esa admisión;
+Cada intento de lectura del marcador en la transacción de borrado consume admisión;
 las evaluaciones de reglas y reconexiones pueden añadir lecturas fuera del contador.
 
 Como referencia de planificación, Firestore Standard publica cuota gratuita de
@@ -89,21 +107,33 @@ exclusivamente; no habilitar billing para resolver un agotamiento.
 
 `src/stores/manga-store.js`, `useMangaStore`, ID Pinia `mangas`.
 
-| Estado / getter                                                                  | Significado                                                                    |
-| -------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `mangas`, `libraryRevision`                                                      | Array completo en memoria; revisión aumenta en cada entrega, incluso metadatos |
-| `loading`, `syncError`, `subscribedUid`                                          | Carga inicial, mensaje de error de escucha y cuenta suscrita                   |
-| `snapshotReceived`, `snapshotFromCache`, `coordinationStale`, `hasPendingWrites` | Evidencia de observación; no certifica conectividad presente                   |
-| `pendingWritesByUid`, `pendingOperations`                                        | Map de escrituras de store aún en curso y contador para cuenta suscrita        |
-| `searchQuery`, `filters`                                                         | Consulta local, estado/tipo/géneros/favoritos                                  |
-| `filteredMangas`                                                                 | Filtra toda la biblioteca y ordena según settings; intersección de géneros     |
-| `counters`, `syncStatusMessage`                                                  | Contadores globales y explicación conservadora de sincronización               |
+| Estado / getter                                                                  | Significado                                                                                                                                   |
+| -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mangas`, `libraryRevision`                                                      | Array completo en memoria; revisión aumenta en cada entrega, incluso metadatos                                                                |
+| `loading`, `syncError`, `subscribedUid`                                          | Carga inicial, mensaje de error de escucha y cuenta suscrita                                                                                  |
+| `snapshotReceived`, `snapshotFromCache`, `coordinationStale`, `hasPendingWrites` | Evidencia de observación; no certifica conectividad presente                                                                                  |
+| `pendingWritesByUid`, `pendingOperations`                                        | Map de escrituras de store aún en curso y contador para cuenta suscrita                                                                       |
+| `searchQuery`, `filters`                                                         | Consulta local, estado/tipo/géneros/favoritos                                                                                                 |
+| `libraryOwnerUid`                                                                | Dueño de la selección local; permite conservar búsqueda/filtros al reintentar la misma cuenta y los limpia al cambiar de cuenta o desuscribir |
+| `filteredMangas`                                                                 | Filtra toda la biblioteca y ordena según settings; intersección de géneros                                                                    |
+| `counters`, `syncStatusMessage`                                                  | Contadores globales y explicación conservadora de sincronización                                                                              |
 
 `subscribe(uid)` evita duplicar cuenta activa, cancela anterior y protege callbacks
 con UID y versión. `unsubscribe()` limpia obras, búsqueda, filtros y metadatos;
 conserva el Map de operaciones en curso y no reinicia `libraryRevision`.
 El error de escucha conserva la última lista pero retira UID, marca caché y error;
 esa lista no debe tratarse como confirmada.
+
+ML-09 conserva además la búsqueda tras recargar, incluso si la cuota impide abrir
+la escucha. `src/utils/library-search.js` guarda solo versión, UID y consulta de
+hasta 512 caracteres en sessionStorage, con clave por proyecto y aislamiento de
+pestaña. Se restaura únicamente para la cuenta autenticada; cambiar de cuenta o
+desuscribir al salir borra esa selección. Un reinicio interno de la misma cuenta
+la conserva. La búsqueda vacía, sobredimensionada o corrupta se retira; si el
+navegador deniega almacenamiento se mantiene el funcionamiento en memoria.
+No persiste obras, filtros, credenciales ni confirmaciones de servidor, ni abre
+lecturas adicionales. Tras recargar, la lista sigue vacía y no confirmada mientras
+la cuota esté pausada; Reintentar sigue siendo necesario después del vencimiento.
 
 Acciones locales: `setSearchQuery(value)`, `setFilters(filters = {})`,
 `resetFilters()`, `requestSharedSnapshot()`. `runTrackedWrite(uid, operation)`

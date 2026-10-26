@@ -1,0 +1,193 @@
+
+> manga-list@0.0.1 test:e2e
+> node tests/e2e/run.js
+
+i  emulators: Starting emulators: auth, firestore
+i  emulators: Detected demo project ID "demo-mangalist", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
++  firestore: Firestore Emulator was started in standard edition.
++  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: playwright test
+[WebServer] (node:40552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:40552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 47 tests using 1 worker
+
+(node:18368) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"size":100,"browser":"153.0.8010.12","mode":"local-dev-with-emulators","renderedCards":24,"loadMs":222,"loaded":{"documents":1,"nodes":4692,"jsEventListeners":1205,"metrics":[{"name":"JSHeapUsedSize","value":28734500},{"name":"JSHeapTotalSize","value":29835264}]},"searchMs":246,"updateMs":988,"clearSearchMs":269,"traverseMs":995,"additionalListenTargetsForInteractions":0,"exportedRecords":100}
+  ok  1 [chromium] › tests\e2e\library-scale.spec.js:57:3 › library scale 100: load, search, update and bounded representation (11.2s)
+{"size":1000,"browser":"153.0.8010.12","mode":"local-dev-with-emulators","renderedCards":24,"loadMs":220,"loaded":{"documents":1,"nodes":5325,"jsEventListeners":1301,"metrics":[{"name":"JSHeapUsedSize","value":33370388},{"name":"JSHeapTotalSize","value":34816000}]},"searchMs":205,"updateMs":1110,"clearSearchMs":258,"traverseMs":8301,"additionalListenTargetsForInteractions":0,"exportedRecords":1000}
+  ok  2 [chromium] › tests\e2e\library-scale.spec.js:57:3 › library scale 1000: load, search, update and bounded representation (20.3s)
+{"size":2500,"browser":"153.0.8010.12","mode":"local-dev-with-emulators","renderedCards":24,"loadMs":174,"loaded":{"documents":1,"nodes":5325,"jsEventListeners":1301,"metrics":[{"name":"JSHeapUsedSize","value":38434284},{"name":"JSHeapTotalSize","value":40853504}]},"searchMs":199,"updateMs":1198,"clearSearchMs":269,"traverseMs":19496,"additionalListenTargetsForInteractions":0,"exportedRecords":2500}
+  ok  3 [chromium] › tests\e2e\library-scale.spec.js:57:3 › library scale 2500: load, search, update and bounded representation (27.5s)
+{"size":10000,"browser":"153.0.8010.12","mode":"local-dev-with-emulators","renderedCards":24,"fixtureBudgetRecovery":false,"loadScenario":"existing-listener","loadMs":5729,"loaded":{"documents":1,"nodes":4704,"jsEventListeners":1211,"metrics":[{"name":"JSHeapUsedSize","value":71277840},{"name":"JSHeapTotalSize","value":78016512}]},"searchMs":219,"updateMs":2685,"clearSearchMs":269,"traverseMs":76478,"additionalListenTargetsForInteractions":0,"exportedRecords":10000}
+  ok  4 [chromium] › tests\e2e\library-scale.spec.js:57:3 › library scale 10000: load, search, update and bounded representation (1.7m)
+  ok  5 [chromium] › tests\e2e\library.spec.js:113:1 › 320px main screens retain usable controls and pass automated accessibility checks (22.7s)
+  ok  6 [chromium] › tests\e2e\library.spec.js:192:1 › settings copy the running version without account data and handle unavailable clipboard @chromium-only (8.3s)
+  ok  7 [chromium] › tests\e2e\library.spec.js:236:1 › keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery (4.1s)
+  ok  8 [chromium] › tests\e2e\library.spec.js:297:1 › live resizing preserves library controls and unsaved form fields across responsive breakpoints (8.6s)
+  ok  9 [chromium] › tests\e2e\library.spec.js:371:1 › router history survives dialog cancellation and browser back and forward without saving edits (8.2s)
+  ok 10 [chromium] › tests\e2e\library.spec.js:422:1 › optional drafts survive reload, require recovery and clear after save or logout (3.5s)
+  ok 11 [chromium] › tests\e2e\library.spec.js:453:1 › bookmarklet survives recovery and registration, then session persists across reload and login (4.6s)
+[Synthetic emulator reset link omitted]
+  ok 12 [chromium] › tests\e2e\library.spec.js:489:1 › password recovery keeps responses generic and rejects invalid or reused reset codes (12.7s)
+  ok 13 [chromium] › tests\e2e\library.spec.js:598:1 › two tabs preserve unrelated edits and show a recoverable same-field conflict (12.0s)
+  ok 14 [chromium] › tests\e2e\library.spec.js:646:1 › invalid import rows remain errors, successful import resets, export preserves data and accounts stay isolated (4.9s)
+  ok 15 [chromium] › tests\e2e\library.spec.js:711:1 › offline export never downloads a cache copy and recovers after the connection returns (2.6s)
+  ok 16 [chromium] › tests\e2e\library.spec.js:753:1 › mobile library supports manual chapters and confirmed deletion (10.6s)
+  ok 17 [chromium] › tests\e2e\library.spec.js:786:1 › account deletion rejects a wrong password without data loss and then removes emulator Auth (5.2s)
+  -  18 [chromium] › tests\e2e\ml07-browser-process-freeze.spec.js:18:1 › ML-07: complete isolated browser process freeze preserves synchronization @chromium-only
+{"size":100,"measuredAt":"2026-10-23T04:34:44.075Z","project":"chromium","browser":"153.0.8010.12","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":{"mechanism":"CDP Emulation.setScriptExecutionDisabled true/false","fullLifecycleFreezeTested":false,"staleWarningObserved":true,"explicitSnapshotRequestRecovered":true,"additionalTargets":[0,0]},"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 19 [chromium] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 100 works share a listener across tabs and recover ownership (28.0s)
+{"size":1000,"measuredAt":"2026-10-23T04:34:51.722Z","project":"chromium","browser":"153.0.8010.12","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 20 [chromium] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 1000 works share a listener across tabs and recover ownership (7.7s)
+{"size":2500,"measuredAt":"2026-10-23T04:35:01.461Z","project":"chromium","browser":"153.0.8010.12","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 21 [chromium] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 2500 works share a listener across tabs and recover ownership (9.7s)
+{"size":5000,"measuredAt":"2026-10-23T04:35:15.069Z","project":"chromium","browser":"153.0.8010.12","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 22 [chromium] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 5000 works share a listener across tabs and recover ownership (13.6s)
+{"size":10000,"measuredAt":"2026-10-23T04:35:46.328Z","project":"chromium","browser":"153.0.8010.12","initialTargetsPerTab":[3,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":3,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 23 [chromium] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 10000 works share a listener across tabs and recover ownership (31.2s)
+  x  24 [chromium] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (3.4s)
+(node:46264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 25 [chromium] › tests\e2e\multipart-backup.spec.js:9:3 › ML-08: 70 works download, validate and resume after reload (21.3s)
+  ok 26 [chromium] › tests\e2e\multipart-backup.spec.js:9:3 › ML-08: 1000 works download, validate and resume after reload (13.0s)
+(node:31676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+{"sourceHead":"cfff92aefecce662b4db3c273a7a1e1b5dbf3657","sourceDirty":true,"size":500,"browser":"153.0.8010.12","measuredAt":"2026-10-23T04:36:55.789Z","mechanism":"Native CDP Page.setWebLifecycleState on a hidden target in the isolated browser context","scope":"Real document freeze/resume; not OS sleep, process suspension or Firefox lifecycle","lifecycle":[{"type":"freeze","ticks":10,"at":1792730193425,"visibility":"hidden"},{"type":"resume","ticks":10,"at":1792730213934,"visibility":"hidden"},{"type":"freeze","ticks":15,"at":1792730215155,"visibility":"hidden"}],"coordination":[{"stage":"before-freeze","at":1792730193413,"locks":{"held":[{"clientId":"531C82C9677781BFD438D3E0B7E6DB9E","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}],"pending":[{"clientId":"6D99FB7A12F46766EAACD2F022564C9D","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}]}},{"stage":"frozen-before-write","at":1792730213536,"locks":{"held":[{"clientId":"531C82C9677781BFD438D3E0B7E6DB9E","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}],"pending":[{"clientId":"6D99FB7A12F46766EAACD2F022564C9D","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}]}},{"stage":"before-active-command","at":1792730213922,"locks":{"held":[{"clientId":"531C82C9677781BFD438D3E0B7E6DB9E","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}],"pending":[{"clientId":"6D99FB7A12F46766EAACD2F022564C9D","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}]}},{"stage":"after-resume","at":1792730214072,"locks":{"held":[{"clientId":"531C82C9677781BFD438D3E0B7E6DB9E","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}],"pending":[{"clientId":"6D99FB7A12F46766EAACD2F022564C9D","mode":"exclusive","name":"mangalist:library:v1:demo-mangalist:users/fnmloe6ZwF5GfPlEELvx9ipHJ1UD/mangas"}]}}],"ownerNavigations":[{"at":1792730190920,"url":"http://127.0.0.1:9100/"}],"ownerSockets":[],"ownerSocketAttempts":[{"requestId":"28588.21","url":"ws://127.0.0.1:9100/"},{"requestId":"28588.28","url":"ws://127.0.0.1:9100/"}],"frozenDurationMs":20509,"frozenTimerTicks":0,"concurrentWriteStartedAt":1792730213544,"recoveryRequested":true,"resumedBeforeExplicitCommand":false,"initialTargets":{"owner":1,"follower":0},"resumeTargets":{"owner":1,"follower":0},"confirmedConcurrentChapter":"2","exportedRecords":500,"targetsAfterExport":1,"frozenOwnerCloseAdditionalTargets":1,"externalRequests":0,"fixtureReadsExcludedFromApplicationTargets":true}
+  ok 27 [chromium] › tests\e2e\ml07-freeze.spec.js:12:1 › ML-07: real freeze/resume preserves 500 works, a concurrent write and ownership @chromium-only (27.2s)
+(node:55904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 28 [firefox] › tests\e2e\library.spec.js:113:1 › 320px main screens retain usable controls and pass automated accessibility checks (29.0s)
+  ok 29 [firefox] › tests\e2e\library.spec.js:236:1 › keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery (5.8s)
+  ok 30 [firefox] › tests\e2e\library.spec.js:297:1 › live resizing preserves library controls and unsaved form fields across responsive breakpoints (10.4s)
+  ok 31 [firefox] › tests\e2e\library.spec.js:371:1 › router history survives dialog cancellation and browser back and forward without saving edits (9.0s)
+  ok 32 [firefox] › tests\e2e\library.spec.js:422:1 › optional drafts survive reload, require recovery and clear after save or logout (4.2s)
+  ok 33 [firefox] › tests\e2e\library.spec.js:453:1 › bookmarklet survives recovery and registration, then session persists across reload and login (4.8s)
+[Synthetic emulator reset link omitted]
+  ok 34 [firefox] › tests\e2e\library.spec.js:489:1 › password recovery keeps responses generic and rejects invalid or reused reset codes (13.6s)
+  ok 35 [firefox] › tests\e2e\library.spec.js:598:1 › two tabs preserve unrelated edits and show a recoverable same-field conflict (33.8s)
+  ok 36 [firefox] › tests\e2e\library.spec.js:646:1 › invalid import rows remain errors, successful import resets, export preserves data and accounts stay isolated (5.5s)
+  ok 37 [firefox] › tests\e2e\library.spec.js:711:1 › offline export never downloads a cache copy and recovers after the connection returns (4.1s)
+  ok 38 [firefox] › tests\e2e\library.spec.js:753:1 › mobile library supports manual chapters and confirmed deletion (10.0s)
+  ok 39 [firefox] › tests\e2e\library.spec.js:786:1 › account deletion rejects a wrong password without data loss and then removes emulator Auth (5.9s)
+{"size":100,"measuredAt":"2026-10-23T04:39:21.357Z","project":"firefox","browser":"155.0","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 40 [firefox] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 100 works share a listener across tabs and recover ownership (7.2s)
+{"size":1000,"measuredAt":"2026-10-23T04:39:29.830Z","project":"firefox","browser":"155.0","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 41 [firefox] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 1000 works share a listener across tabs and recover ownership (8.5s)
+{"size":2500,"measuredAt":"2026-10-23T04:39:41.794Z","project":"firefox","browser":"155.0","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 42 [firefox] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 2500 works share a listener across tabs and recover ownership (11.9s)
+{"size":5000,"measuredAt":"2026-10-23T04:40:01.662Z","project":"firefox","browser":"155.0","initialTargetsPerTab":[1,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":1,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 43 [firefox] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 5000 works share a listener across tabs and recover ownership (22.2s)
+{"size":10000,"measuredAt":"2026-10-23T04:40:48.039Z","project":"firefox","browser":"155.0","initialTargetsPerTab":[3,0],"extraTargetsForSearchAndUpdate":[0,0],"reloadTargets":0,"leaderCloseTargets":3,"suspensionRecovery":null,"productionRequests":0,"scope":"Actual same-origin tabs; WebChannel addTarget messages, NOT billed reads"}
+  ok 44 [firefox] › tests\e2e\ml07-tabs.spec.js:8:3 › ML-07: 10000 works share a listener across tabs and recover ownership (44.0s)
+  x  45 [firefox] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (4.9s)
+(node:5044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 46 [firefox] › tests\e2e\multipart-backup.spec.js:9:3 › ML-08: 70 works download, validate and resume after reload (24.7s)
+  ok 47 [firefox] › tests\e2e\multipart-backup.spec.js:9:3 › ML-08: 1000 works download, validate and resume after reload (19.0s)
+
+
+  1) [chromium] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected pattern: /Cuota|cuota/
+    Error: strict mode violation: getByRole('alert') resolved to 3 elements:
+        1) <div role="alert" class="q-banner row items-center rounded-borders q-banner--top-padding bg-red-1 text-negative q-mb-lg">…</div> aka getByText('cloud_off Cuota del servicio')
+        2) <div role="alert" class="q-notification row items-stretch q-notification--standard bg-positive text-white">…</div> aka getByRole('alert').filter({ hasText: 'check_circleObra añadida a tu' })
+        3) <div role="alert" class="q-notification row items-stretch q-notification--standard bg-positive text-white">…</div> aka getByRole('alert').filter({ hasText: 'check_circleCuenta creada. Tu' })
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 15000ms
+      - waiting for getByRole('alert')
+
+
+      39 |     sparkBudget.record({ code: 'resource-exhausted' })
+      40 |   })
+    > 41 |   for (const tab of [page, peer]) await expect(tab.getByRole('alert')).toContainText(/Cuota|cuota/)
+         |                                                                        ^
+      42 |   await peer.close()
+      43 |   let targets = 0
+      44 |   page.on('request', (request) => {
+        at <workspace>\tests\e2e\ml09-recovery.spec.js:41:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [firefox] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library 
+
+    Error: expect(locator).toContainText(expected) failed
+
+    Locator: getByRole('alert')
+    Expected pattern: /Cuota|cuota/
+    Error: strict mode violation: getByRole('alert') resolved to 3 elements:
+        1) <div role="alert" class="q-banner row items-center rounded-borders q-banner--top-padding bg-red-1 text-negative q-mb-lg">…</div> aka getByText('cloud_off Cuota del servicio')
+        2) <div role="alert" class="q-notification row items-stretch q-notification--standard bg-positive text-white">…</div> aka getByRole('alert').filter({ hasText: 'check_circleObra añadida a tu' })
+        ...
+
+    Call log:
+      - Expect "toContainText" getByRole('alert') with timeout 15000ms
+      - waiting for getByRole('alert')
+
+
+      39 |     sparkBudget.record({ code: 'resource-exhausted' })
+      40 |   })
+    > 41 |   for (const tab of [page, peer])
+         |                                  ^
+      42 |     await expect(tab.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
+      43 |   await peer.close()
+      44 |   let targets = 0
+        at <workspace>\tests\e2e\ml09-recovery.spec.js:41:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox\test-failed-2.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace test-results\ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    [chromium] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library 
+    [firefox] › tests\e2e\ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library 
+  1 skipped
+  44 passed (12.1m)
+!  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+!  Firestore Emulator has exited upon receiving signal: SIGINT
+i  auth: Stopping Authentication Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "playwright test" exited with code 1

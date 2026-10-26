@@ -1,0 +1,71 @@
+i  emulators: Starting emulators: auth, firestore
+i  emulators: Detected demo project ID "demo-mangalist", emulated services will use a demo configuration and attempts to access non-emulated services for this project will fail.
+i  firestore: Firestore Emulator logging to firestore-debug.log
+✔  firestore: Firestore Emulator was started in standard edition.
+✔  firestore: Firestore Emulator UI websocket is running on 9150.
+i  Running script: node node_modules/@playwright/test/cli.js test tests/e2e/ml09-recovery.spec.js --project=chromium --project=firefox
+[WebServer] (node:16193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] (node:16193) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 2 tests using 1 worker
+
+(node:16223) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (25.2s)
+(node:16245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 [firefox] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library (8.2s)
+
+
+  1) [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+
+    Error: expect(locator).toHaveValue(expected) failed
+
+    Locator:  getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
+    Expected: "ML09 recovery"
+    Received: ""
+    Timeout:  15000ms
+
+    Call log:
+      - Expect "toHaveValue" getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true }) with timeout 15000ms
+      - waiting for getByRole('textbox', { name: 'Buscar en la biblioteca', exact: true })
+        34 × locator resolved to <input value="" type="text" tabindex="0" placeholder="Buscar por nombre…" aria-label="Buscar en la biblioteca" class="q-field__native q-placeholder" id="f_fcbd480c-466e-477e-a1de-561517115f37"/>
+           - unexpected value ""
+
+
+      52 |   await page.reload()
+      53 |   await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
+    > 54 |   await expect(search).toHaveValue('ML09 recovery')
+         |                        ^
+      55 |   await page.getByRole('button', { name: 'Reintentar', exact: true }).click()
+      56 |   await expect(page.getByRole('main').getByRole('alert')).toContainText(/Cuota|cuota/)
+      57 |   expect(targets).toBe(0)
+        at <workspace>/ml09-search-fix/tests/e2e/ml09-recovery.spec.js:54:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ml09-recovery-ML-09-quota--dff34--confirms-the-whole-library-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium] › tests/e2e/ml09-recovery.spec.js:4:1 › ML-09: quota stops peers, reload cannot bypass pause, explicit recovery confirms the whole library
+  1 passed (42.4s)
+⚠  Script exited unsuccessfully (code 1)
+i  emulators: Shutting down emulators.
+i  firestore: Stopping Firestore Emulator
+i  auth: Stopping Authentication Emulator
+i  hub: Stopping emulator hub
+i  logging: Stopping Logging Emulator
+
+Error: Script "node node_modules/@playwright/test/cli.js test tests/e2e/ml09-recovery.spec.js --project=chromium --project=firefox" exited with code 1
