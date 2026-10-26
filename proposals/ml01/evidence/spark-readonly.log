@@ -1,0 +1,6 @@
+
+> manga-list@0.0.1 check:spark:remote
+> node scripts/check-spark.mjs --remote
+
+Spark local compatibility checks passed (remote state not certified).
+Remote billing disabled/unlinked and Firestore Standard confirmed.

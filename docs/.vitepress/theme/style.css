@@ -498,3 +498,13 @@
     scroll-behavior: auto !important;
   }
 }
+.VPSidebarItem .caret {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.VPSidebarItem .caret:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 2px;
+}

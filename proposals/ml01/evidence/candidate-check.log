@@ -1,0 +1,6 @@
+
+> manga-list@0.0.1 docs:check
+> node scripts/check-docs-integrity.mjs
+
+78 pages reviewed; 28 source fingerprints; 63 commits; 742 rendered local targets; 169 external URLs inventoried
+PASS: offline documentation integrity (external availability and semantic completeness require human review)

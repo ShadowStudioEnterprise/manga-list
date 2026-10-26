@@ -1,0 +1,2267 @@
+{
+  "startedAt": "2026-10-26T17:42:09.397Z",
+  "scans": [
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/ml01-deliberate-nonexistent-route",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/iam-audit",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/iam-audit",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/public-inventory",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/public-inventory",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/spark",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/security/spark",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/roadmap/",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/spark-guard-entrypoints",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/spark-guard-entrypoints",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/spark-only",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/spark-only",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/verification-spark-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/verification-spark-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/verification-spark-console-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/security/verification-spark-console-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/accessibility-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/accessibility-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/browser-coverage-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/browser-coverage-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/live-resize-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/live-resize-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/navigation-history-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/navigation-history-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/password-recovery-emulator",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/password-recovery-emulator",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/public-landing",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/public-landing",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/verification-2026-10-16",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/quality/verification-2026-10-16",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/roadmap",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/roadmap",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/specification-v1",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/specification-v1",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/technical-review-2026-10-16",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/project/technical-review-2026-10-16",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/ml-10-main-ruleset-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/ml-10-main-ruleset-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/release-record-template",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/release-record-template",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/releases-and-recovery",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/operations/releases-and-recovery",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/firestore-cost-review-2026-10-19",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/firestore-cost-review-2026-10-19",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/firestore-cursors-v1",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/firestore-cursors-v1",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/library-scale-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/library-scale-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-06-consumption-2026-10-20",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-06-consumption-2026-10-20",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-07-acceptance-2026-10-20",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-07-acceptance-2026-10-20",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-07-sync-2026-10-20",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-07-sync-2026-10-20",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-capacity-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-capacity-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-policy-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-policy-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-recovery-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-08-recovery-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-09-recovery-2026-10-23",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/ml-09-recovery-2026-10-23",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/transaction-read-budget-2026-10-19",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/transaction-read-budget-2026-10-19",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/verification-10000-2026-10-19",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/verification-10000-2026-10-19",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/verification-cursors-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/firestore/verification-cursors-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/drafts-and-pwa-updates",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/drafts-and-pwa-updates",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/import-recovery",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/import-recovery",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/multipart-backup-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/multipart-backup-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/synchronization-and-export",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/features/synchronization-and-export",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/dependencies-2026-10-18",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/dependencies-2026-10-18",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/firebase-startup",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/firebase-startup",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/ml-03-diagrams-2026-10-22",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/development/ml-03-diagrams-2026-10-22",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/abandoned-deletion-assistance",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/abandoned-deletion-assistance",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/account-marker-retention-proposal",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/account-marker-retention-proposal",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/manual-marker-review",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/manual-marker-review",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-acceptance-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-acceptance-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-activation-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-activation-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-d3-permissions-legal-review-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-d3-permissions-legal-review-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-free-options-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-free-options-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-operating-procedure",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-operating-procedure",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-test-evidence",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-test-evidence",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-validation-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-11-validation-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-case-and-tests",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-case-and-tests",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-identity-and-permissions-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-identity-and-permissions-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-interrupted-deletion",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-interrupted-deletion",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-legal-retention-and-deadlines-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-legal-retention-and-deadlines-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-mailbox-and-roles-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-mailbox-and-roles-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-rehearsal-and-custody-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-rehearsal-and-custody-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-test-evidence",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/ml-12-test-evidence",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/nextcloud-hosting-cost-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/nextcloud-hosting-cost-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/nextcloud-implementation-proposal",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/nextcloud-implementation-proposal",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-implementation-proposal",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-implementation-proposal",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-rehearsal-pack",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-rehearsal-pack",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-security-custody-procedure",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-security-custody-procedure",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-service-rehearsal-2026-10-21",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reports/accounts/proton-drive-service-rehearsal-2026-10-21",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/import-export",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/services",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/synchronization",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/reference/synchronization",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/project/",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/operations/deployment",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/operations/deployment",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/documentation-audit",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/documentation-audit",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/maintenance/page-inventory",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/legal/",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/guide/introduction",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/development/installation",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/development/installation",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/database/firestore",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/database/firestore",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 320,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 320,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 390,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 390,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 768,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 768,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/diagrams",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/overview",
+      "width": 1440,
+      "mode": "light",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    },
+    {
+      "route": "/architecture/overview",
+      "width": 1440,
+      "mode": "dark",
+      "layout": {
+        "overflow": false,
+        "main": 1
+      },
+      "violations": []
+    }
+  ],
+  "failures": [],
+  "finishedAt": "2026-10-26T17:46:37.417Z"
+}

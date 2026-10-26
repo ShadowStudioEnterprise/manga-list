@@ -17,10 +17,18 @@ const mime = {
   '.svg': 'image/svg+xml',
   '.woff2': 'font/woff2',
 }
+const historicalRedirects = JSON.parse(
+  await readFile(resolve(root, 'firebase.json'), 'utf8'),
+).hosting.find((site) => site.target === 'docs').redirects
 async function serve(folder) {
   const server = createServer(async (req, res) => {
     try {
       const pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname)
+      const redirect = historicalRedirects.find((item) => item.source === pathname)
+      if (redirect) {
+        res.writeHead(redirect.type, { Location: redirect.destination }).end()
+        return
+      }
       let path = resolve(folder, `.${pathname}`)
       assert(!relative(folder, path).startsWith('..'))
       if (pathname.endsWith('/')) path = resolve(path, 'index.html')
@@ -28,7 +36,9 @@ async function serve(folder) {
       res.setHeader('Content-Type', mime[extname(path)] || 'application/octet-stream')
       res.end(await readFile(path))
     } catch {
-      res.writeHead(404).end('Not found')
+      res
+        .writeHead(404, { 'Content-Type': 'text/html' })
+        .end(await readFile(resolve(folder, '404.html')))
     }
   })
   await new Promise((done) => server.listen(0, '127.0.0.1', done))
@@ -57,8 +67,73 @@ try {
   const page = await context.newPage()
   page.on('pageerror', (error) => errors.push(error.message))
   page.on('console', (message) => {
-    if (message.type() === 'error') errors.push(message.text())
+    const expected404 =
+      message.location().url === `${site.origin}/missing-documentation-route` &&
+      message.text().includes('404')
+    if (message.type() === 'error' && !expected404) errors.push(message.text())
   })
+  // Cover the fallback page and report disclosures, which the home/guide scans miss.
+  const missing = await page.goto(`${site.origin}/missing-documentation-route`)
+  assert.equal(missing.status(), 404)
+  await page.getByRole('main').getByRole('heading', { level: 1 }).waitFor()
+  for (const mode of ['light', 'dark']) {
+    await page.evaluate(async (theme) => {
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+      await Promise.allSettled(
+        document
+          .getAnimations()
+          .filter((a) => a.effect?.getTiming().iterations !== Infinity)
+          .map((a) => a.finished),
+      )
+    }, mode)
+    const audit = await new AxeBuilder({ page }).analyze()
+    assert.deepEqual(audit.violations, [], JSON.stringify(audit.violations))
+    results.accessibility.push({ page: '404', mode, violations: audit.violations })
+  }
+  await page.getByRole('link', { name: 'Volver a la portada' }).focus()
+  await page.keyboard.press('Enter')
+  await page.waitForURL(`${site.origin}/`)
+  await page.setViewportSize({ width: 1440, height: 1000 })
+  await page.goto(`${site.origin}/reports/`)
+  const disclosure = page.getByRole('button', { name: 'Proyecto y arquitectura', exact: true })
+  assert.equal(await disclosure.getAttribute('aria-expanded'), 'false')
+  await disclosure.focus()
+  await page.keyboard.press('Space')
+  assert.equal(await disclosure.getAttribute('aria-expanded'), 'true')
+  assert(
+    await page
+      .locator('.VPSidebar')
+      .getByRole('link', { name: 'Especificación v1', exact: true })
+      .isVisible(),
+  )
+  await page.keyboard.press('Enter')
+  assert.equal(await disclosure.getAttribute('aria-expanded'), 'false')
+  for (const mode of ['light', 'dark']) {
+    await page.evaluate(async (theme) => {
+      document.documentElement.classList.toggle('dark', theme === 'dark')
+      await Promise.allSettled(
+        document
+          .getAnimations()
+          .filter((a) => a.effect?.getTiming().iterations !== Infinity)
+          .map((a) => a.finished),
+      )
+    }, mode)
+    const audit = await new AxeBuilder({ page }).analyze()
+    assert.deepEqual(audit.violations, [], JSON.stringify(audit.violations))
+    results.accessibility.push({ page: '/reports/', mode, violations: audit.violations })
+  }
+  await page.screenshot({ path: resolve(output, 'reports-sidebar.png'), fullPage: true })
+  console.log('PASS: custom 404 recovery and report sidebar accessibility/keyboard')
+  for (const redirect of historicalRedirects) {
+    const response = await context.request.get(`${site.origin}${redirect.source}`, {
+      maxRedirects: 0,
+    })
+    assert.equal(response.status(), 301, redirect.source)
+    assert.equal(response.headers().location, redirect.destination, redirect.source)
+    const destination = await context.request.get(`${site.origin}${redirect.destination}`)
+    assert.equal(destination.status(), 200, redirect.destination)
+  }
+  console.log(`PASS: ${historicalRedirects.length} legacy redirects and compiled destinations`)
   for (const mode of ['light', 'dark']) {
     for (const width of [320, 390, 768, 1440]) {
       await page.setViewportSize({ width, height: 1000 })
