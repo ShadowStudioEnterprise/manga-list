@@ -46,7 +46,7 @@ const sections = [
 </script>
 
 <template>
-  <div class="ml-portal">
+  <main class="ml-portal">
     <section id="sobre-mangalist" class="ml-hero" aria-labelledby="portal-title">
       <div class="ml-hero-copy">
         <p class="ml-eyebrow">MANGALIST / DOCUMENTACIÓN</p>
@@ -165,5 +165,5 @@ const sections = [
     <p class="ml-portal-note">
       Este portal es público y estático. No accede a tu biblioteca ni requiere iniciar sesión.
     </p>
-  </div>
+  </main>
 </template>

@@ -4,6 +4,13 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — revisión de accesibilidad ML-P06
+
+- Landmark principal en la landing y el portal técnico; búsqueda con texto visible
+  coherente con su nombre accesible, conservando el atajo de teclado.
+- Pruebas ampliadas a WCAG 2.1 nivel A, con comprobación explícita del landmark
+  y apertura de búsqueda por teclado.
+
 ## Sin publicar — candidata ML-09
 
 - Búsqueda de biblioteca restaurada tras recargar, incluida la pausa de cuota:

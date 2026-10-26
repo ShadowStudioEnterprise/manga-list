@@ -70,6 +70,8 @@ try {
       }, mode)
       await page.evaluate(() => document.fonts.ready)
       assert.equal(await page.locator('h1').count(), 1)
+      assert.equal(await page.getByRole('main').count(), 1, 'One main landmark')
+      assert.equal(await page.getByRole('main').locator('h1').count(), 1)
       assert.equal(await page.locator('#sobre-mangalist').count(), 1, 'Historical home anchor')
       await page.screenshot({ path: resolve(output, `after-${mode}-${width}.png`), fullPage: true })
       if (!(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth))) {
@@ -91,7 +93,7 @@ try {
         `Overflow ${mode}/${width}`,
       )
       const axe = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
         .analyze()
       results.accessibility.push({ page: '/', mode, width, violations: axe.violations })
       assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations))
@@ -137,7 +139,9 @@ try {
       (theme) => document.documentElement.classList.toggle('dark', theme === 'dark'),
       mode,
     )
-    const axe = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze()
+    const axe = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+      .analyze()
     results.accessibility.push({ page: '/guide/introduction', mode, violations: axe.violations })
     assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations))
     await page.screenshot({ path: resolve(output, `guide-${mode}.png`), fullPage: true })
@@ -164,7 +168,7 @@ try {
           mode,
         )
         const axe = await new AxeBuilder({ page })
-          .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
           .analyze()
         results.accessibility.push({ page: route, mode, width, violations: axe.violations })
         assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations))
@@ -272,7 +276,7 @@ try {
         )
       assert(smallestNodeTextPx >= 12, 'Diagram node text must remain readable on mobile')
       const axe = await new AxeBuilder({ page })
-        .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+        .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
         .analyze()
       results.accessibility.push({
         page: '/architecture/diagrams',

@@ -80,6 +80,8 @@ try {
           ),
         )
         assert.equal(await page.locator('h1').count(), 1)
+        assert.equal(await page.getByRole('main').count(), 1, 'One main landmark')
+        assert.equal(await page.getByRole('main').locator('h1').count(), 1)
         assert(
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
           `${name}/${mode}/${width}: overflow ${JSON.stringify(await page.evaluate(() => [...document.querySelectorAll('.ml-landing *')].filter((el) => el.getBoundingClientRect().right > innerWidth + 1).map((el) => ({ tag: el.tagName, cls: el.className, right: el.getBoundingClientRect().right }))))}`,
@@ -91,7 +93,7 @@ try {
           }),
         )
         const scan = await new AxeBuilder({ page })
-          .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
+          .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
           .analyze()
         assert.deepEqual(scan.violations, [], JSON.stringify(scan.violations))
         for (const link of await page.locator('.lp-section-nav a').all()) {
@@ -131,6 +133,11 @@ try {
     )
     await cta.focus()
     assert(await cta.evaluate((element) => getComputedStyle(element).outlineStyle !== 'none'))
+    await page.keyboard.press('ControlOrMeta+k')
+    await page.locator('#localsearch-input').fill('sincronización')
+    await page.locator('.VPLocalSearchBox .result').first().waitFor()
+    await page.keyboard.press('Escape')
+    await page.locator('.VPLocalSearchBox').waitFor({ state: 'hidden' })
     await page.getByRole('link', { name: 'Portal técnico', exact: true }).last().click()
     await page.waitForURL('**/project/')
     await page.locator('.ml-hero').waitFor()
@@ -141,6 +148,8 @@ try {
     const staticPage = await browser.newPage({ javaScriptEnabled: false })
     await staticPage.goto(origin)
     assert.equal(await staticPage.locator('h1').count(), 1)
+    assert.equal(await staticPage.getByRole('main').count(), 1)
+    assert.equal(await staticPage.getByRole('main').locator('h1').count(), 1)
     await staticPage.locator('.lp-questions summary').first().click()
     assert(
       await staticPage
