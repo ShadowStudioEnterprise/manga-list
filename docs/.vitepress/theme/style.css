@@ -41,6 +41,11 @@
 .VPNavBarTitle .title {
   letter-spacing: -0.6px;
 }
+/* VitePress renders the decorative K as button text, outside its accessible name.
+   Keep the search label consistent; the keyboard shortcut remains available. */
+.VPNavBarSearch .DocSearch-Button-Keys {
+  display: none;
+}
 .VPSidebarItem.level-0 {
   padding-bottom: 14px;
 }
@@ -419,9 +424,6 @@
   white-space: nowrap;
 }
 @media (max-width: 959px) {
-  .VPNavBarSearch .DocSearch-Button-Keys {
-    display: none;
-  }
   .ml-hero {
     gap: 32px;
     padding-top: 48px;

@@ -78,3 +78,18 @@ correctos sus recorridos, diagramas y enlaces. El control de formato/lint y el
 control local Spark pasan; el inventario de seguridad del código y del build no
 encuentra incidencias. La compilación conserva el aviso previo de bundles mayores
 de 500 kB. No se ha ejecutado una publicación ni una prueba contra cuentas reales.
+
+## Revisión de accesibilidad del 26/10/2026
+
+La revisión posterior detectó que el filtro de auditoría omitía `wcag21a` y que
+las dos portadas carecían de landmark principal. Las pruebas ahora incluyen los
+criterios WCAG 2.1 A y AA y exigen exactamente un `main` con el H1, también en
+la landing sin JavaScript. Las portadas usan el elemento semántico `main`.
+
+La auditoría ampliada también señaló el indicador decorativo «K» del botón de
+búsqueda de VitePress, que quedaba fuera del nombre accesible «Buscar en la
+documentación». Se retira ese indicador visual en todos los tamaños; se conservan
+el texto «Buscar», el nombre accesible y el atajo funcional. La prueba de landing
+abre la búsqueda con Ctrl/Command+K, busca una referencia y la cierra con Escape.
+No se cambian dependencias, la Beta o Firebase. Esta revisión se prepara en un
+PR separado, sin fusión ni despliegue.

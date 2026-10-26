@@ -42,7 +42,7 @@ const questions = [
 </script>
 
 <template>
-  <div class="ml-landing">
+  <main class="ml-landing">
     <nav class="lp-section-nav" aria-label="En esta portada">
       <span>UNA BIBLIOTECA. MUCHAS HISTORIAS.</span>
       <div>
@@ -211,5 +211,5 @@ const questions = [
       ><a href="/reports/">Informes y evidencias</a
       ><a href="https://github.com/ShadowStudioEnterprise/manga-list">Código fuente</a>
     </nav>
-  </div>
+  </main>
 </template>
