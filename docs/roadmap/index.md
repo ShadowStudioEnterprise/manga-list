@@ -3,6 +3,10 @@
 La [lista de trabajo y criterios de aceptación](/reports/project/roadmap) conserva el detalle de
 las auditorías. Las implementaciones y pruebas de la rama no certifican producción.
 
+[ML-16: validación Android físico del 27/10/2026](/reports/quality/ml-16-android-2026-10-27)
+conserva los PASS acreditados y sigue abierta: entrada natural en Doze profundo y
+transición WiFi↔datos móviles quedan pendientes por indicación del usuario.
+
 [ML-09: defensas y recuperación Spark](/reports/firestore/ml-09-recovery-2026-10-23)
 presenta la implementación candidata y sus pruebas reproducibles. Sigue abierta
 hasta aceptar redes/dispositivos, consumo agregado y procedimiento de incidente

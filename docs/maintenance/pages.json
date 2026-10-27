@@ -312,6 +312,10 @@
     "docs/reports/quality/public-landing.md": {
       "scope": "Entrega ML-P06",
       "decision": "Diseño, procedencia de capturas y verificación local; no certifica Beta ni Hosting."
+    },
+    "docs/reports/quality/ml-16-android-2026-10-27.md": {
+      "scope": "Physical Android observations with production read-only, synthetic local backends and explicitly deferred tests",
+      "decision": "Publish sanitized evidence; ML-16 remains OPEN pending natural Doze and WiFi-cellular transition"
     }
   }
 }
