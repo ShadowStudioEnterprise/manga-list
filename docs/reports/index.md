@@ -75,6 +75,7 @@ secciones principales del portal.
 
 ## Calidad y verificación
 
+- [ML-16: validación Android físico — 27/10/2026; dos pruebas pendientes](quality/ml-16-android-2026-10-27.md).
 - [Verificación de la rama de desarrollo — 16/10/2026](quality/verification-2026-10-16.md).
 - [Revisión local de accesibilidad y pantallas pequeñas](quality/accessibility-2026-10-18.md).
 - [Cobertura de navegador con emuladores](quality/browser-coverage-2026-10-18.md).

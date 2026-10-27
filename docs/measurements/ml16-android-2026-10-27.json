@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "task": "ML-16",
+  "status": "OPEN",
+  "recordDate": "2026-10-27",
+  "provenance": "Sanitized summary derived from private physical-session logs; not CI hardware attestation",
+  "sourceRevision": "189de461de44febe73f5b0a30289ff21973c6bab",
+  "publicRelease": "e58da9bda82d3cc7245f5e0ea8c4375467adb00d",
+  "publicBuiltAt": "2026-10-26T14:23:09.664Z",
+  "device": {
+    "physical": true,
+    "model": "M2006C3LG",
+    "android": "11",
+    "api": 30,
+    "build": "RP1A.200720.011 / V12.5.7.0.RCDEUXM",
+    "securityPatch": "2022-11-01",
+    "chromeInitial": "155.0.8059.84",
+    "chromeFinalCacheTest": "156.0.8078.47",
+    "webViewInventoryOnly": "155.0.8059.43",
+    "connection": ["USB ADB", "WiFi"],
+    "simPresent": false
+  },
+  "results": [
+    { "case": "public-installed-pwa-demo-read-only", "status": "PASS" },
+    {
+      "case": "synthetic-library-search-pagination-tabs",
+      "status": "PASS",
+      "backend": "local Firebase emulators",
+      "records": 27,
+      "pageSizes": [24, 3]
+    },
+    {
+      "case": "native-json-download-selection-duplicate-and-new-import",
+      "status": "PASS",
+      "bytes": 635,
+      "backend": "local Firebase emulators"
+    },
+    {
+      "case": "native-csv-download-selection-duplicate-and-new-import",
+      "status": "PASS",
+      "bytes": 226,
+      "backend": "local Firebase emulators",
+      "initialSelectionChromeVersion": null
+    },
+    {
+      "case": "public-offline-cold-shell-wifi-recovery",
+      "status": "PASS",
+      "populatedPersistentLibraryTested": false
+    },
+    {
+      "case": "volatile-cache-cold-data-transport-isolation",
+      "status": "PASS",
+      "backend": "local Firebase emulators",
+      "fullRadioOffline": false,
+      "falseServerEmptyState": false,
+      "originalRecordRecovered": true
+    },
+    { "case": "physical-lock-resume", "status": "PASS", "minimumScreenOffSeconds": 107 },
+    {
+      "case": "forced-deep-doze",
+      "status": "PASS",
+      "durationMs": 104264,
+      "idleSamples": 4,
+      "naturalEntry": false,
+      "pidContinuityEstablished": false
+    },
+    {
+      "case": "installed-lab-service-worker-update",
+      "status": "PASS",
+      "activeBefore": 1,
+      "waiting": 2,
+      "draftPreserved": true,
+      "activeAfterLastClientClosed": 2,
+      "publicReleaseMigration": false
+    },
+    {
+      "case": "physical-landscape-system-font",
+      "status": "PASS",
+      "fontScale": 1.5,
+      "cssViewport": [724, 332],
+      "horizontalOverflow": false
+    },
+    {
+      "case": "guided-talkback",
+      "status": "PASS",
+      "userConfirmed": true,
+      "audioRecorded": false,
+      "allScreensCertified": false
+    },
+    {
+      "case": "natural-deep-doze",
+      "status": "PENDING",
+      "reason": "Explicitly deferred by user; requires unplugged stationary phone and original system timers"
+    },
+    {
+      "case": "wifi-cellular-transition",
+      "status": "PENDING",
+      "reason": "Explicitly deferred by user; physical phone has no SIM"
+    }
+  ],
+  "restoration": {
+    "forcedDoze": false,
+    "talkBack": false,
+    "accessibilityMenu": false,
+    "fontScale": 1,
+    "autoRotate": false,
+    "wifi": true,
+    "mobileData": false,
+    "localServersAndTunnelsStopped": true
+  },
+  "androidEmulatorUsed": false,
+  "productionWrites": false,
+  "pendingTestsScheduled": false,
+  "rawEvidencePublic": false
+}

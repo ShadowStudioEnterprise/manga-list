@@ -195,6 +195,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-16: Android físico (27/10)',
+        link: '/reports/quality/ml-16-android-2026-10-27',
+      },
+      {
         text: 'Verificación general (16/10)',
         link: '/reports/quality/verification-2026-10-16',
       },
