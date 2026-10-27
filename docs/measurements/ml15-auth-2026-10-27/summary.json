@@ -45,9 +45,10 @@
   },
   "unit": {
     "status": "PASS",
-    "passed": 141,
+    "passed": 143,
     "failed": 0,
-    "syntheticGoogleBoundaryCases": 3
+    "syntheticGoogleBoundaryCases": 3,
+    "syntheticPersistenceCases": 2
   },
   "browser": {
     "status": "PASS",
@@ -311,7 +312,7 @@
     "external": []
   },
   "blocked": [
-    "Expiración natural y revocación real no ejecutadas",
+    "Revocación real y otras sesiones no ensayadas; renovación automática versus bajo demanda no diferenciada",
     "Safari/iOS nativos no disponibles en host Windows",
     "Cambio email, contraseña autenticada y linking: sin UI en 1.0; requiere decisión de alcance",
     "Caducidad temporal natural del enlace de recuperación no ensayada"
@@ -361,6 +362,11 @@
       "kind": "android harness",
       "reason": "blocked proactive gapi counted as unexpected; CDP navigation/timing and shared server shutdown",
       "resolvedBy": "Count and abort exact gapi bootstrap, navigate through router, own server lifecycle; final six checks pass"
+    },
+    {
+      "kind": "storage denial probe",
+      "reason": "Vue DevTools reads global localStorage during development module initialization",
+      "outcome": "Discarded blocked browser probe; keep two synthetic service boundary tests; no production defect inferred"
     }
   ],
   "productionOAuth": {
@@ -407,15 +413,16 @@
   },
   "branchCI": {
     "status": "PASS",
-    "head": "6648a28174ff6c18d80982a1f09cf003e4a258bd",
-    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40555548770",
+    "head": "11b4a6dff8087aedffd258ae0f1067d521459e30",
+    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40562475069",
     "unit": 141,
     "rules": 28,
     "ml12": 2,
     "browser": 59,
     "pwa": 4,
-    "appliesTo": "Code and docs at 6648a281, before this recovery documentation-only follow-up",
-    "completedAt": "2026-10-27T18:18:35Z"
+    "appliesTo": "Code and docs at 11b4a6df, before this follow-up with two new synthetic unit tests",
+    "completedAt": "2026-10-27T20:42:55Z",
+    "attempt": 2
   },
   "remoteConfigurationChanges": 0,
   "remoteLibraryWrites": 0,
@@ -432,5 +439,28 @@
     "count": 1,
     "performedBy": "human",
     "scope": "existing email/password demo recovery"
+  },
+  "productionSession": {
+    "status": "PASS_LIMITED",
+    "evidence": "session-prolonged-real.json",
+    "elapsedObservedSeconds": 7707,
+    "renewalHumanReported": {
+      "method": "POST",
+      "status": 200,
+      "timeUTC": "2026-10-27T22:16:46Z"
+    },
+    "automaticRefreshVerified": false
+  },
+  "branchCIFirstAttempt": {
+    "status": "CANCELLED",
+    "reason": "25 minute job timeout; installation alone took 18m34s",
+    "browserAndPWAComplete": false
+  },
+  "storageRestriction": {
+    "browser": "BLOCKED_BY_DEV_INSTRUMENTATION",
+    "reason": "Global Web Storage getter denial fails inside Vue DevTools before application startup; not certified as release defect",
+    "syntheticServiceFallback": "PASS",
+    "syntheticServiceRetry": "PASS",
+    "nativePrivacyModeVerified": false
   }
 }

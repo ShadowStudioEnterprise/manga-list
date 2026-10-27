@@ -3,7 +3,7 @@
   "files": [
     {
       "file": "summary.json",
-      "sha256": "f34dc8f725ba3b3f65d0b4f58f55ca64305e3880bedcb4203cfd4934675397d2"
+      "sha256": "9b42490a77a0353d72dd6b1250802b1f8134aaab64b8b823064af966c62ea6ff"
     },
     {
       "file": "android-library.png",
@@ -16,6 +16,10 @@
     {
       "file": "password-recovery-real.json",
       "sha256": "4674ad8673836674ca24024e4210c3b4687f0b2597aa42b5524988af149853ea"
+    },
+    {
+      "file": "session-prolonged-real.json",
+      "sha256": "f18a7dfdc0175edaae8e8e2d7393f7fa0043416be4a56722d77f037ddf080b1a"
     }
   ]
 }
