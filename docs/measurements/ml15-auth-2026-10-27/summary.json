@@ -311,10 +311,10 @@
     "external": []
   },
   "blocked": [
-    "Recuperación real: buzón, enlace alojado y cambio de credenciales requieren consentimiento concreto",
     "Expiración natural y revocación real no ejecutadas",
     "Safari/iOS nativos no disponibles en host Windows",
-    "Cambio email, contraseña autenticada y linking: sin UI en 1.0; requiere decisión de alcance"
+    "Cambio email, contraseña autenticada y linking: sin UI en 1.0; requiere decisión de alcance",
+    "Caducidad temporal natural del enlace de recuperación no ensayada"
   ],
   "historicalSafari": {
     "status": "DECLARED_ONLY",
@@ -407,16 +407,30 @@
   },
   "branchCI": {
     "status": "PASS",
-    "head": "d40b40522b9584d5fbf559c71ea0743468779b05",
-    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40550698937",
+    "head": "6648a28174ff6c18d80982a1f09cf003e4a258bd",
+    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40555548770",
     "unit": 141,
     "rules": 28,
     "ml12": 2,
     "browser": 59,
     "pwa": 4,
-    "appliesTo": "Code and docs at d40b4052, before this documentation-only follow-up"
+    "appliesTo": "Code and docs at 6648a281, before this recovery documentation-only follow-up",
+    "completedAt": "2026-10-27T18:18:35Z"
   },
   "remoteConfigurationChanges": 0,
   "remoteLibraryWrites": 0,
-  "realAuthSignInAuthorized": true
+  "realAuthSignInAuthorized": true,
+  "productionRecovery": {
+    "status": "PASS_LIMITED",
+    "evidence": "password-recovery-real.json",
+    "preservedVisibleWorks": 1,
+    "credentialChangePerformedByHuman": true,
+    "newPasswordRemainsCurrent": true
+  },
+  "realPasswordResetAuthorized": true,
+  "remoteCredentialChanges": {
+    "count": 1,
+    "performedBy": "human",
+    "scope": "existing email/password demo recovery"
+  }
 }

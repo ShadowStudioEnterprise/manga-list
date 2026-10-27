@@ -323,7 +323,7 @@
     },
     "docs/reports/quality/ml-15-auth-2026-10-27.md": {
       "scope": "ML-15: matriz de autenticación local, evidencia física Android y bloqueos de validación real",
-      "decision": "ML-15 abierta; OAuth real limitado autorizado y CI sobre d40b4052 acreditados; recuperación, expiración y otros límites siguen bloqueados"
+      "decision": "ML-15 abierta; OAuth y recuperación reales limitados autorizados, CI 6648a281 acreditado; expiración, aislamiento remoto directo y otros límites siguen pendientes"
     }
   }
 }
