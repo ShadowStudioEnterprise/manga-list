@@ -3,11 +3,15 @@
   "files": [
     {
       "file": "summary.json",
-      "sha256": "ce2ab2952662530ad93326be9b6d12020b7592c78985a25904ca05045cdd77ea"
+      "sha256": "20a666af68b5488c572c1c80203d9ff0fab0dac394c05da6a056c8f60b556e1a"
     },
     {
       "file": "android-library.png",
       "sha256": "683fad1509eab1b6b8b1bf849a1c735173735502c6d7d63f667548c855171993"
+    },
+    {
+      "file": "oauth-real.json",
+      "sha256": "4f925645bcf5d759519cd18563f829c56a40ea4a74c4b8e4f88c6d8c0331c7c7"
     }
   ]
 }

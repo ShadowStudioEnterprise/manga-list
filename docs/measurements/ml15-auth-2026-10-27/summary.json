@@ -311,7 +311,6 @@
     "external": []
   },
   "blocked": [
-    "OAuth real actual: cuenta demo e interacción humana no autorizadas para este ensayo",
     "Recuperación real: buzón, enlace alojado y cambio de credenciales requieren consentimiento concreto",
     "Expiración natural y revocación real no ejecutadas",
     "Safari/iOS nativos no disponibles en host Windows",
@@ -323,7 +322,6 @@
     "githubLookup": "HTTP 422 no commit found",
     "currentValidation": false
   },
-  "remoteMutations": 0,
   "merge": false,
   "deployment": false,
   "checks": {
@@ -364,5 +362,61 @@
       "reason": "blocked proactive gapi counted as unexpected; CDP navigation/timing and shared server shutdown",
       "resolvedBy": "Count and abort exact gapi bootstrap, navigate through router, own server lifecycle; final six checks pass"
     }
-  ]
+  ],
+  "productionOAuth": {
+    "status": "PASS_LIMITED",
+    "evidence": "oauth-real.json",
+    "browser": {
+      "name": "Google Chrome",
+      "version": "156.0.8078.48",
+      "platform": "Windows"
+    },
+    "checks": [
+      {
+        "id": "R01",
+        "status": "PASS",
+        "check": "Cancellation returns to /login, Google button enabled and next attempt possible"
+      },
+      {
+        "id": "R02",
+        "status": "PASS",
+        "check": "User completes OAuth with existing demo; app returns to /library"
+      },
+      {
+        "id": "R03",
+        "status": "PASS",
+        "check": "Reload restores /library and confirmed empty library"
+      },
+      {
+        "id": "R04",
+        "status": "PASS",
+        "check": "New same-origin tab opens authenticated /library; confirmed empty library"
+      },
+      {
+        "id": "R05",
+        "status": "PASS",
+        "check": "Logout in second tab changes both tabs to /login"
+      },
+      {
+        "id": "R06",
+        "status": "PASS",
+        "check": "Opening /library after logout redirects to /login"
+      }
+    ],
+    "accountIdentity": "Existing demo confirmed by human; no UID published"
+  },
+  "branchCI": {
+    "status": "PASS",
+    "head": "d40b40522b9584d5fbf559c71ea0743468779b05",
+    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40550698937",
+    "unit": 141,
+    "rules": 28,
+    "ml12": 2,
+    "browser": 59,
+    "pwa": 4,
+    "appliesTo": "Code and docs at d40b4052, before this documentation-only follow-up"
+  },
+  "remoteConfigurationChanges": 0,
+  "remoteLibraryWrites": 0,
+  "realAuthSignInAuthorized": true
 }

@@ -5,7 +5,8 @@ las auditorías. Las implementaciones y pruebas de la rama no certifican producc
 
 [ML-15: autenticación y recuperación (27/10)](/reports/quality/ml-15-auth-2026-10-27)
 permanece abierta: la matriz diferencia emuladores, SDK simulado y Android físico
-de OAuth, correo y credenciales reales pendientes de autorización concreta.
+del ensayo OAuth real limitado ya autorizado; recuperación, credenciales y
+expiración reales siguen pendientes de autorización concreta y evidencia.
 
 ML-01 tiene [cierre técnico con verificación pública posterior al PR #26](/reports/quality/ml-01-postdeploy-2026-10-27):
 404, sidebar y 28 variantes legacy comprobados de nuevo el 27/10/2026, con capturas
