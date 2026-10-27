@@ -1,5 +1,10 @@
 # Inventario de revisión por página
 
+Actualización ML-01, 27/10/2026: el [registro postdespliegue del PR #26](/reports/quality/ml-01-postdeploy-2026-10-27)
+se incorpora como evidencia histórica de la versión pública observada ese día,
+con capturas, resultados descargables y límites de cobertura. Consta también en
+`docs/maintenance/pages.json`; no sustituye la revisión histórica de las demás páginas.
+
 ML-05, 23/10/2026. Todas las páginas Markdown fuente de VitePress, incluidas
 las no enlazadas en sidebar, están registradas en `docs/maintenance/pages.json`.
 La página legal se genera por `scripts/legal-notices.mjs` y se comprueba en HTML.

@@ -1,0 +1,13 @@
+{
+  "capturedAt": "2026-10-27T09:51:00.9338154Z",
+  "release": "sites/mangalist-docs/channels/live/releases/1793064698106000",
+  "version": "sites/mangalist-docs/versions/a92bd49679203b5d",
+  "releaseTime": "2026-10-27T01:31:38.106Z",
+  "status": "FINALIZED",
+  "fileCount": "306",
+  "versionBytes": "2470587",
+  "labels": {
+    "deployment-tool": "cli-firebase"
+  },
+  "cleanUrls": true
+}

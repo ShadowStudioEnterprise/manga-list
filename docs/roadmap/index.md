@@ -3,6 +3,11 @@
 La [lista de trabajo y criterios de aceptación](/reports/project/roadmap) conserva el detalle de
 las auditorías. Las implementaciones y pruebas de la rama no certifican producción.
 
+ML-01 tiene [cierre técnico con verificación pública posterior al PR #26](/reports/quality/ml-01-postdeploy-2026-10-27):
+404, sidebar y 28 variantes legacy comprobados de nuevo el 27/10/2026, con capturas
+y evidencia de la versión observada. Se conservan los límites de aceptación humana
+y dispositivos; este registro no cierra otras tareas de calidad.
+
 [ML-16: validación Android físico del 27/10/2026](/reports/quality/ml-16-android-2026-10-27)
 conserva los PASS acreditados y sigue abierta: entrada natural en Doze profundo y
 transición WiFi↔datos móviles quedan pendientes por indicación del usuario.

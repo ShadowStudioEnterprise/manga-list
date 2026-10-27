@@ -75,6 +75,8 @@ secciones principales del portal.
 
 ## Calidad y verificación
 
+- [ML-01 / PR #26: verificación postdespliegue (27/10)](quality/ml-01-postdeploy-2026-10-27.md).
+
 - [ML-16: validación Android físico — 27/10/2026; dos pruebas pendientes](quality/ml-16-android-2026-10-27.md).
 - [Verificación de la rama de desarrollo — 16/10/2026](quality/verification-2026-10-16.md).
 - [Revisión local de accesibilidad y pantallas pequeñas](quality/accessibility-2026-10-18.md).

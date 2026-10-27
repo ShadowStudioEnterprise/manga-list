@@ -1,0 +1,14 @@
+{
+  "mergeCommit": "189de461de44febe73f5b0a30289ff21973c6bab",
+  "currentMain": "2aada7c1c33e2c24b8bb1b19871fbe4289ab69ed",
+  "paths": [
+    {
+      "path": "docs/.vitepress/theme/Layout.vue",
+      "unchanged": true
+    },
+    {
+      "path": "docs/.vitepress/sidebar-accessibility.mjs",
+      "unchanged": true
+    }
+  ]
+}

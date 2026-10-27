@@ -1,0 +1,61 @@
+{
+  "observedOn": "2026-10-27",
+  "purpose": "Packaged copies of post-deployment observations; formatting may differ from original local files.",
+  "files": [
+    {
+      "file": "404-1440-light.png",
+      "bytes": 38376,
+      "sha256": "baec42f8772c193bcd59ebb7a58232bce64557464297cd1ac1c1c5d6ff0274ad"
+    },
+    {
+      "file": "404-320-dark.png",
+      "bytes": 26336,
+      "sha256": "ae733a75ffa3767821a8837e2bb1c64ff98fb36ecae059db48daf88dfbc7e1be"
+    },
+    {
+      "file": "defect-verification.json",
+      "bytes": 23214,
+      "sha256": "51af11ee63e7fcd510811580ab81893ac40d261c515ec3eced8fae04c8d7e016"
+    },
+    {
+      "file": "hosting-current.json",
+      "bytes": 390,
+      "sha256": "f4af8bc6724155ec3dcde25fcc147133465c3b2cac56ace840056836dc76003f"
+    },
+    {
+      "file": "pr-integration.json",
+      "bytes": 466,
+      "sha256": "845c364e48d8d6ebde62e9b6dd1d9dabc83a111107119a3cf1b77a22388ba9b3"
+    },
+    {
+      "file": "publication-provenance.json",
+      "bytes": 684,
+      "sha256": "326c15ba7399e0dfcbb3022bc30794b5d273513e5d28599e3c53796b9d612f77"
+    },
+    {
+      "file": "release-file-parity.json",
+      "bytes": 288195,
+      "sha256": "7f3ef9dc7d155a8bb843344b8b734a68862814c067b9ac051ea287cd2d68bf42"
+    },
+    {
+      "file": "sidebar-320-dark.png",
+      "bytes": 33534,
+      "sha256": "87325c1e908f686e658f49203a5b89083c9cdf8fe045bd22062e77953e37fd72"
+    },
+    {
+      "file": "sidebar-keyboard-focus.png",
+      "bytes": 166532,
+      "sha256": "db2aa3c4993e94d9b42ad40c781cdf85656d6c888f770a29f1226b337655d4b4"
+    },
+    {
+      "file": "source-comparison.json",
+      "bytes": 325,
+      "sha256": "2a036ec4e24b3ddb7c80f862659b78e55f9a104c5cb30c53c05d368784dc1ddb"
+    },
+    {
+      "file": "summary.json",
+      "bytes": 536,
+      "sha256": "f01bf0bc1951548d86569c7eb3f923d9237c0b304aac49da49a7980bedbd6918"
+    }
+  ]
+}
