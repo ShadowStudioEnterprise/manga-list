@@ -1,0 +1,19 @@
+{
+  "revision": "2aada7c1c33e2c24b8bb1b19871fbe4289ab69ed",
+  "sites": [
+    {
+      "site": "mangalist-61bb8",
+      "release": "sites/mangalist-61bb8/channels/live/releases/1793024609519000",
+      "version": "sites/mangalist-61bb8/versions/41d1d77e5cb17f66",
+      "time": "2026-10-26T14:23:29.519Z"
+    },
+    {
+      "site": "mangalist-docs",
+      "release": "sites/mangalist-docs/channels/live/releases/1793064698106000",
+      "version": "sites/mangalist-docs/versions/a92bd49679203b5d",
+      "time": "2026-10-27T01:31:38.106Z"
+    }
+  ],
+  "ruleset": "projects/mangalist-61bb8/rulesets/3c65a4cd-c059-4751-8491-20eeba30878e",
+  "capturedAt": "2026-10-27T01:31:38.6048812Z"
+}
