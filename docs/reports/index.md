@@ -75,6 +75,7 @@ secciones principales del portal.
 
 ## Calidad y verificación
 
+- [ML-15: autenticación y recuperación — matriz local y bloqueos de cierre (27/10)](quality/ml-15-auth-2026-10-27.md).
 - [ML-01 / PR #26: verificación postdespliegue (27/10)](quality/ml-01-postdeploy-2026-10-27.md).
 
 - [ML-16: validación Android físico — 27/10/2026; dos pruebas pendientes](quality/ml-16-android-2026-10-27.md).

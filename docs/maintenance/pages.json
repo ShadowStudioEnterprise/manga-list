@@ -320,6 +320,10 @@
     "docs/reports/quality/ml-01-postdeploy-2026-10-27.md": {
       "scope": "Registro histórico de verificación pública postdespliegue ML-01",
       "decision": "Observación del 27/10/2026: integración del PR #26, tres defectos verificados en Hosting, evidencias descargables y límites explícitos; no supone publicación de este informe."
+    },
+    "docs/reports/quality/ml-15-auth-2026-10-27.md": {
+      "scope": "ML-15: matriz de autenticación local, evidencia física Android y bloqueos de validación real",
+      "decision": "ML-15 abierta; distinguir emuladores, SDK simulado, historial y ensayos reales autorizados pendientes"
     }
   }
 }

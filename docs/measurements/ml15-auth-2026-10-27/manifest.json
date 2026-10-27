@@ -1,0 +1,13 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "file": "summary.json",
+      "sha256": "ce2ab2952662530ad93326be9b6d12020b7592c78985a25904ca05045cdd77ea"
+    },
+    {
+      "file": "android-library.png",
+      "sha256": "683fad1509eab1b6b8b1bf849a1c735173735502c6d7d63f667548c855171993"
+    }
+  ]
+}
