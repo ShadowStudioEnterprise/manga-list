@@ -336,6 +336,10 @@
     "docs/reports/quality/ml-15-followup-2026-10-28.md": {
       "scope": "Corrección y seguimiento de validación",
       "decision": "Defecto real de fallback en memoria con SDK emulado, regresión de sesión y vinculación sintética; Android físico con datos locales; sin aceptación real ni cierre ML-15."
+    },
+    "docs/reports/quality/ml-15-built-auth-2026-10-28.md": {
+      "scope": "Validación local compilada y corrección para revisión",
+      "decision": "Sesión en memoria con Auth emulado y almacenamiento global denegado; fallo de callback Firefox contenido; sin aceptación remota ni cierre ML-15."
     }
   }
 }

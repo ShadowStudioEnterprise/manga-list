@@ -210,3 +210,41 @@ test('unavailable coordination storage fails safely before opening Firestore', a
     tab.stop()
   }
 })
+
+for (const denial of ['access', 'writes']) {
+  test('storage ' + denial + ' denial stays inside the Web Locks callback', async () => {
+    const f = fixture()
+    const rejected = []
+    const request = f.runtime.navigator.locks.request
+    f.runtime.navigator.locks.request = (key, options, callback) =>
+      request(key, options, async () => {
+        try {
+          await callback()
+        } catch (error) {
+          rejected.push(error)
+          throw error
+        }
+      })
+    if (denial === 'access')
+      Object.defineProperty(f.runtime, 'localStorage', {
+        get() {
+          throw new DOMException('Denied', 'SecurityError')
+        },
+      })
+    else
+      f.runtime.localStorage.setItem = () => {
+        throw new DOMException('Full', 'QuotaExceededError')
+      }
+    const session = f.subscribe(randomUUID())
+    try {
+      await wait(() => session.errors.length)
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      assert.equal(session.errors.length, 1)
+      assert.equal(f.listeners.length, 0)
+      assert.deepEqual(session.data, [])
+      assert.deepEqual(rejected, [])
+    } finally {
+      session.stop()
+    }
+  })
+}

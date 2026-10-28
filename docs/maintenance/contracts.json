@@ -83,7 +83,7 @@
       ]
     },
     "src/services/shared-library.js": {
-      "sha256": "80b4cb15bd021ac6370f181b6562cce2375db68804bb5fa16734cb6bb797bfd3",
+      "sha256": "620846f94e5f4ddbd8bbecd8c948f6a4f44375eddc989112dfb4c06dc256444a",
       "exports": ["subscribeSharedLibrary"]
     },
     "src/stores/auth-store.js": {

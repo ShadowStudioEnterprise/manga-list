@@ -11,6 +11,7 @@
     "test:rules": "node --experimental-vm-modules --test tests/firestore/*.test.js",
     "test:e2e": "node tests/e2e/run.js",
     "test:auth": "node tests/e2e/run.js --auth",
+    "test:auth:built": "node scripts/test-built-auth-local.mjs",
     "test:auth:android": "node tests/e2e/run.js --android",
     "test:pwa": "node --test tests/pwa/*.test.js",
     "lint": "prettier --write \"**/*.{js,mjs,vue,css,scss,html,md,json,yml,yaml}\" --ignore-path .gitignore --ignore-path .prettierignore && eslint --fix -c ./eslint.config.js \"./src*/**/*.{js,cjs,mjs,vue}\" \"./tests/**/*.js\" \"./scripts/**/*.mjs\"",

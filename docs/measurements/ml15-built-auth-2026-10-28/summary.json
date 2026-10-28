@@ -1,0 +1,331 @@
+{
+  "date": "2026-10-28",
+  "scope": "Synthetic compiled SDK integration with loopback Auth Emulator; no remote certification",
+  "result": "PASS",
+  "ml15": "OPEN",
+  "versions": {
+    "node": "v24.18.0",
+    "firebase": "12.18.0",
+    "firebaseCLI": "15.32.1",
+    "playwright": "1.63.0"
+  },
+  "builds": [
+    {
+      "mode": "spa",
+      "info": {
+        "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+        "dirty": true,
+        "builtAt": "2026-10-28T22:55:51.652Z",
+        "compatibility": {
+          "version": 1,
+          "sparkOnly": true,
+          "deletionBarrier": 1,
+          "boundedLibraryQuery": 5001,
+          "recoverableImport": 1,
+          "verifiedExport": 2
+        },
+        "mode": "spa",
+        "project": "demo-mangalist"
+      },
+      "evidenceSha256": "740f2224db3a603d0ef947f7fb2e8f931b948bb64b5d6a7af6155eb849f12847"
+    },
+    {
+      "mode": "pwa",
+      "info": {
+        "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+        "dirty": true,
+        "builtAt": "2026-10-28T22:56:23.638Z",
+        "compatibility": {
+          "version": 1,
+          "sparkOnly": true,
+          "deletionBarrier": 1,
+          "boundedLibraryQuery": 5001,
+          "recoverableImport": 1,
+          "verifiedExport": 2
+        },
+        "mode": "pwa",
+        "project": "demo-mangalist"
+      },
+      "evidenceSha256": "c9494ee885a11a1e014ca2819e85a159cdf6748b159d7440e2c75fe3a60851be"
+    }
+  ],
+  "sources": {
+    "src/services/shared-library.js": "620846f94e5f4ddbd8bbecd8c948f6a4f44375eddc989112dfb4c06dc256444a",
+    "tests/shared-library.test.js": "5b747f9a9eda41eb223b4527caa3ae78c01c720cb0e57855e06c53f760b9abf6",
+    "tests/built-auth/storage-session.test.js": "2d22a8e437804e372b0a2310541b1173ef9698b00cd57340030c69ef708071b0",
+    "scripts/test-built-auth-local.mjs": "72cccddcce2aec52d7b6be73ddb525d0abb20faf5ab8c969306204fd3afcf70b"
+  },
+  "cases": [
+    {
+      "artifact": "spa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "denial": "access",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": true,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "spa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "denial": "writes",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": true,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "spa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "firefox",
+      "browser": "155.0",
+      "denial": "access",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": false,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "spa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "firefox",
+      "browser": "155.0",
+      "denial": "writes",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": false,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "pwa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "denial": "access",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": true,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "pwa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "chromium",
+      "browser": "153.0.8010.12",
+      "denial": "writes",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": true,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "pwa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "firefox",
+      "browser": "155.0",
+      "denial": "access",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": false,
+      "worker": "blocked",
+      "result": "PASS"
+    },
+    {
+      "artifact": "pwa",
+      "revision": "336ae9a2a66cfe7265bf4969781eff4d0df8ad39",
+      "engine": "firefox",
+      "browser": "155.0",
+      "denial": "writes",
+      "authResponses": [
+        {
+          "operation": "/v1/accounts:signUp",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:signInWithPassword",
+          "status": 200
+        },
+        {
+          "operation": "/v1/accounts:lookup",
+          "status": 200
+        }
+      ],
+      "blockedFirestore": 0,
+      "externallyForwarded": 0,
+      "browserOffline": false,
+      "worker": "blocked",
+      "result": "PASS"
+    }
+  ],
+  "history": [
+    {
+      "attempt": "offline-both-engines",
+      "pass": 4,
+      "fail": 4,
+      "classification": "Firefox navigation instrumentation NS_ERROR_OFFLINE"
+    },
+    {
+      "attempt": "engine-specific-transport-before-fix",
+      "pass": 4,
+      "fail": 4,
+      "classification": "Product defect: Firefox reported storage failures globally from Web Locks callback"
+    },
+    {
+      "attempt": "after-callback-containment",
+      "pass": 8,
+      "fail": 0
+    }
+  ],
+  "unit": {
+    "pass": 171,
+    "fail": 0
+  },
+  "limitations": [
+    "Dirty local builds identify the parent revision plus the changed source hash; not clean parent certification",
+    "Firestore requests aborted; no library content certification",
+    "Service workers blocked; not installed PWA or native privacy",
+    "Synthetic transport; not real Auth acceptance",
+    "No Safari/iOS device"
+  ],
+  "externalFirebaseWrites": 0
+}

@@ -151,3 +151,7 @@ Pruebas relacionadas: `tests/regressions.test.js`, `tests/account-service.test.j
 `tests/transaction-budget.test.js`, `tests/firestore/security.test.js` y
 `tests/firestore/transaction-budget.test.js`. Su presencia no demuestra ejecución
 en esta revisión: véase el registro de [validaciones](/maintenance/documentation-audit#validacion-reproducible).
+
+La coordinación de biblioteca contiene también los fallos del callback de Web Locks:
+si el almacenamiento está denegado, notifica el error y termina sin abrir un listener
+adicional. Esto evita errores globales de Firefox y no acredita datos de biblioteca.

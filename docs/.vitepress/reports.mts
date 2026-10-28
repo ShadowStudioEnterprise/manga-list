@@ -3,6 +3,10 @@ export const reportsSidebar = [
     text: 'Informes',
     items: [
       {
+        text: 'ML-15: Auth compilado y almacenamiento',
+        link: '/reports/quality/ml-15-built-auth-2026-10-28',
+      },
+      {
         text: 'Índice de informes',
         link: '/reports/',
       },
