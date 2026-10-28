@@ -73,6 +73,9 @@ produce `app/firebase-not-configured`. Auth usa persistencia local del navegador
 con fallback a memoria; Firestore mantiene caché en memoria, sin activar IndexedDB.
 Los emuladores solo se conectan con modo desarrollo, flag válido y proyecto `demo-`;
 Auth usa 127.0.0.1:9199 y Firestore 127.0.0.1:8188, sin fallback a cloud.
+La persistencia se elige una sola vez en el boot entre local y memoria según
+disponibilidad. El servicio espera el primer estado sin volver a forzar local:
+el SDK puede aceptar ese cambio sin usuario y fallar después al guardar el login.
 
 | Símbolo                                                                  | Contrato                                                                                 |
 | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |

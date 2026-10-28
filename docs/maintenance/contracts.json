@@ -7,7 +7,7 @@
       "exports": ["reauthenticateCurrentUser", "deleteUserFirestoreData", "deleteCurrentAccount"]
     },
     "src/services/auth-service.js": {
-      "sha256": "8707220493bad69991256828d2a055a32a5b3f89d319be9635d4d58e5cc0f5a8",
+      "sha256": "da2fd55b0c4a6c76581b1e0766d0c9390021087cea8f0eb4459f35fc76e521ac",
       "exports": [
         "initializeAuth",
         "waitForAuthReady",

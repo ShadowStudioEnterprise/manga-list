@@ -18,7 +18,7 @@ if (process.platform === 'win32') {
 const browserCommand = process.argv.includes('--android')
   ? 'playwright test --config playwright.android.config.js'
   : process.argv.includes('--auth')
-    ? 'playwright test ml15-auth.spec.js library.spec.js'
+    ? 'playwright test ml15-auth.spec.js ml15-session-admin.spec.js library.spec.js'
     : 'playwright test'
 const child = spawn(
   `firebase emulators:exec --project demo-mangalist --only auth,firestore "${browserCommand}"`,

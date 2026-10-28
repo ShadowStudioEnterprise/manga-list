@@ -2,6 +2,11 @@ import { randomUUID } from 'node:crypto'
 import { test, expect } from '@playwright/test'
 
 const password = 'Synthetic-ml15-123!'
+
+function syntheticGoogleToken(email) {
+  const encode = (value) => Buffer.from(JSON.stringify(value)).toString('base64url')
+  return `${encode({ alg: 'none', typ: 'JWT' })}.${encode({ sub: randomUUID(), email, email_verified: true, aud: 'demo-mangalist', iss: 'https://accounts.google.com' })}.`
+}
 let external
 
 test.beforeEach(async ({ context }) => {
@@ -51,6 +56,130 @@ async function currentUid(page) {
     return getCurrentAuthUser()?.uid ?? null
   })
 }
+
+test('ML-15: denied Firebase persistence keeps authenticated memory sessions separate and reload loses them', async ({
+  page,
+  context,
+}) => {
+  await context.addInitScript(() => {
+    window.ml15DeniedAuthStorage = 0
+    const set = Storage.prototype.setItem
+    Storage.prototype.setItem = function (key, value) {
+      if (key === '__sak' || String(key).startsWith('firebase:')) {
+        window.ml15DeniedAuthStorage++
+        throw new DOMException('Synthetic Auth-only storage denial', 'QuotaExceededError')
+      }
+      return set.call(this, key, value)
+    }
+  })
+  await register(page)
+  const firstUid = await currentUid(page)
+  expect(await page.evaluate(() => window.ml15DeniedAuthStorage)).toBeGreaterThan(0)
+  await page.goto('/#/add')
+  await page.getByLabel('Nombre *', { exact: true }).fill('Memory session A')
+  await page.getByLabel('Capítulo *', { exact: true }).fill('2')
+  await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+  await expect(page).toHaveURL(/#\/manga\//)
+  const second = await context.newPage()
+  await second.goto('/#/library')
+  await expect(second).toHaveURL(/#\/login/)
+  expect(await currentUid(second)).toBeNull()
+  expect(await currentUid(page)).toBe(firstUid)
+  await register(second)
+  expect(await currentUid(second)).not.toBe(firstUid)
+  await expect(second.getByRole('heading', { name: 'Memory session A', exact: true })).toHaveCount(
+    0,
+  )
+  await second.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(second).toHaveURL(/#\/login/)
+  expect(await currentUid(page)).toBe(firstUid)
+  await page.reload()
+  await expect(page).toHaveURL(/#\/login/)
+  expect(await currentUid(page)).toBeNull()
+})
+
+test('ML-15: direct SDK linking of a synthetic Google credential preserves UID and library across both login methods', async ({
+  page,
+}) => {
+  const email = await register(page)
+  const uid = await currentUid(page)
+  await page.goto('/#/add')
+  await page.getByLabel('Nombre *', { exact: true }).fill('Linked methods same library')
+  await page.getByLabel('Capítulo *', { exact: true }).fill('5')
+  await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+  await expect(page).toHaveURL(/#\/manga\//)
+  const token = syntheticGoogleToken(email)
+  const linked = await page.evaluate(async (idToken) => {
+    const { auth, GoogleAuthProvider, linkWithCredential } =
+      await import('/tests/e2e/fixtures/auth-sdk.js')
+    const result = await linkWithCredential(
+      auth.currentUser,
+      GoogleAuthProvider.credential(idToken),
+    )
+    return { uid: result.user.uid, providers: result.user.providerData.map((p) => p.providerId) }
+  }, token)
+  expect(linked.uid).toBe(uid)
+  expect(linked.providers.sort()).toEqual(['google.com', 'password'])
+  await page.evaluate(async () => (await import('/src/services/auth-service.js')).logout())
+  await expect(page).toHaveURL(/#\/login/)
+  await page.evaluate(async (idToken) => {
+    const { auth, GoogleAuthProvider, signInWithCredential } =
+      await import('/tests/e2e/fixtures/auth-sdk.js')
+    await signInWithCredential(auth, GoogleAuthProvider.credential(idToken))
+  }, token)
+  await page.goto('/#/library')
+  await expect(
+    page.getByRole('heading', { name: 'Linked methods same library', exact: true }),
+  ).toBeVisible()
+  expect(await currentUid(page)).toBe(uid)
+  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  await login(page, email)
+  await expect(page).toHaveURL(/#\/library/)
+  expect(await currentUid(page)).toBe(uid)
+  await expect(
+    page.getByRole('heading', { name: 'Linked methods same library', exact: true }),
+  ).toBeVisible()
+})
+
+test('ML-15: synthetic Google credential already owned by B cannot link to A or replace its library', async ({
+  page,
+}) => {
+  const email = await register(page)
+  const uid = await currentUid(page)
+  await page.goto('/#/add')
+  await page.getByLabel('Nombre *', { exact: true }).fill('Conflict keeps A private')
+  await page.getByLabel('Capítulo *', { exact: true }).fill('6')
+  await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+  await expect(page).toHaveURL(/#\/manga\//)
+  await page.evaluate(async () => (await import('/src/services/auth-service.js')).logout())
+  const token = syntheticGoogleToken(`separate-google-${randomUUID()}@example.test`)
+  const otherUid = await page.evaluate(async (idToken) => {
+    const { auth, GoogleAuthProvider, signInWithCredential } =
+      await import('/tests/e2e/fixtures/auth-sdk.js')
+    return (await signInWithCredential(auth, GoogleAuthProvider.credential(idToken))).user.uid
+  }, token)
+  expect(otherUid).not.toBe(uid)
+  await page.evaluate(async () => (await import('/src/services/auth-service.js')).logout())
+  await page.goto('/#/login')
+  await login(page, email)
+  await expect(page).toHaveURL(/#\/library/)
+  const code = await page.evaluate(async (idToken) => {
+    const { auth, GoogleAuthProvider, linkWithCredential } =
+      await import('/tests/e2e/fixtures/auth-sdk.js')
+    try {
+      await linkWithCredential(auth.currentUser, GoogleAuthProvider.credential(idToken))
+      return 'unexpected-success'
+    } catch (error) {
+      return error.code
+    }
+  }, token)
+  expect(code).toBe('auth/credential-already-in-use')
+  expect(await currentUid(page)).toBe(uid)
+  await expect(
+    page.getByRole('heading', { name: 'Conflict keeps A private', exact: true }),
+  ).toBeVisible()
+})
 
 test('ML-15: authenticated password change rejects wrong confirmation, preserves library and replaces login credential', async ({
   page,
