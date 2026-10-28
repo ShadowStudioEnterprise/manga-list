@@ -24,7 +24,12 @@ function fixture(run, { project = 'demo-mangalist', dirty = false } = {}) {
       'firebase.json',
       'package-lock.json',
       'src-pwa/package-lock.json',
+      'vendor/deepmerge-safe/index.cjs',
+      'vendor/deepmerge-safe/package.json',
+      'vendor/deepmerge-safe/provenance.json',
+      'vendor/deepmerge-safe/LICENSE',
     ]) {
+      mkdirSync(dirname(resolve(root, file)), { recursive: true })
       writeFileSync(resolve(root, file), readFileSync(file))
     }
     const source = { revision, dirty }
@@ -70,6 +75,14 @@ test('build evidence verifies byte inventory and rejects changed, missing, added
     assert.throws(verify, /files changed/)
     writeFileSync(worker, '// worker')
     writeFileSync(resolve(root, 'firestore.rules'), '// old rules')
+    assert.throws(verify, /inputs changed/)
+  })
+})
+
+test('build evidence rejects changes to the local dependency source, beyond its lockfile', () => {
+  fixture(({ root, verify }) => {
+    const path = resolve(root, 'vendor/deepmerge-safe/index.cjs')
+    writeFileSync(path, readFileSync(path, 'utf8') + '\n// changed vendor implementation')
     assert.throws(verify, /inputs changed/)
   })
 })

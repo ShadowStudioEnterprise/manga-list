@@ -328,6 +328,10 @@
     "docs/reports/quality/ml-15-credentials-2026-10-28.md": {
       "scope": "Implementación para revisión",
       "decision": "Cambios de credenciales y vinculación incluidos en 1.0 por decisión humana; pruebas locales separadas de aceptación real pendiente; sin despliegue ni cierre ML-15."
+    },
+    "docs/reports/security/deepmerge-local-2026-10-28.md": {
+      "scope": "Corrección para revisión",
+      "decision": "Fork MIT local de deepmerge para Workbox 7; auditoría sin excepciones, tests de seguridad y huellas de código; sin cierre ML-15 ni despliegue."
     }
   }
 }

@@ -12,6 +12,10 @@ const SOURCE_FILES = [
   'firebase.json',
   'package-lock.json',
   'src-pwa/package-lock.json',
+  'vendor/deepmerge-safe/index.cjs',
+  'vendor/deepmerge-safe/package.json',
+  'vendor/deepmerge-safe/provenance.json',
+  'vendor/deepmerge-safe/LICENSE',
 ]
 const hash = (value) => createHash('sha256').update(value).digest('hex')
 const readJson = (path) => JSON.parse(readFileSync(path, 'utf8'))
