@@ -4,6 +4,10 @@ La [lista de trabajo y criterios de aceptación](/reports/project/roadmap) conse
 las auditorías. Las implementaciones y pruebas de la rama no certifican producción.
 
 [ML-15: autenticación y recuperación (27/10)](/reports/quality/ml-15-auth-2026-10-27)
+se amplió por decisión de producto el 28/10: cambios de correo y contraseña desde
+ajustes y vinculación email/Google forman parte de 1.0. La
+[implementación para revisión](/reports/quality/ml-15-credentials-2026-10-28)
+requiere aceptación real autorizada antes del cierre. La validación anterior
 permanece abierta: la matriz diferencia emuladores, SDK simulado y Android físico
 de los ensayos reales autorizados de OAuth y recuperación de una demo existente.
 Hay además continuidad prolongada y renovación reportada por humano; revocación,

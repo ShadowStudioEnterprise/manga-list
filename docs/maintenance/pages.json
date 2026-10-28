@@ -324,6 +324,10 @@
     "docs/reports/quality/ml-15-auth-2026-10-27.md": {
       "scope": "ML-15: matriz de autenticación local, evidencia física Android y bloqueos de validación real",
       "decision": "ML-15 abierta; OAuth, recuperación y sesión prolongada reales limitados; CI 11b4a6df intento 2 correcto; dos nuevos unitarios de fallback SDK; revocación y otros límites pendientes"
+    },
+    "docs/reports/quality/ml-15-credentials-2026-10-28.md": {
+      "scope": "Implementación para revisión",
+      "decision": "Cambios de credenciales y vinculación incluidos en 1.0 por decisión humana; pruebas locales separadas de aceptación real pendiente; sin despliegue ni cierre ML-15."
     }
   }
 }

@@ -16,6 +16,12 @@ const ERROR_MESSAGES = Object.freeze({
   'auth/account-exists-with-different-credential':
     'Ya existe una cuenta con este correo y otro método de acceso.',
   'auth/email-already-in-use': 'Ya existe una cuenta con este correo electrónico.',
+  'auth/credential-already-in-use':
+    'Este método de acceso pertenece a otra cuenta. No se han fusionado las bibliotecas.',
+  'auth/provider-already-linked': 'Este método de acceso ya está vinculado a tu cuenta.',
+  'auth/operation-not-allowed': 'Este cambio no está disponible. Contacta con soporte.',
+  'auth/invalid-action-code': 'El enlace no es válido o ya se ha utilizado.',
+  'auth/expired-action-code': 'El enlace ha caducado. Solicita uno nuevo.',
   'auth/invalid-credential': 'El correo o la contraseña no son correctos.',
   'auth/invalid-email': 'Introduce un correo electrónico válido.',
   'auth/missing-password': 'Introduce tu contraseña.',

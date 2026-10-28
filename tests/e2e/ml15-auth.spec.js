@@ -52,6 +52,108 @@ async function currentUid(page) {
   })
 }
 
+test('ML-15: authenticated password change rejects wrong confirmation, preserves library and replaces login credential', async ({
+  page,
+}) => {
+  const email = await register(page)
+  const uid = await currentUid(page)
+  await page.goto('/#/add')
+  await page.getByLabel('Nombre *', { exact: true }).fill('Credential change keeps this work')
+  await page.getByLabel('Capítulo *', { exact: true }).fill('3')
+  await page.getByRole('button', { name: 'Guardar obra', exact: true }).click()
+  await expect(page).toHaveURL(/#\/manga\//)
+  await page.goto('/#/settings')
+  const viewport = page.viewportSize()
+  await page.setViewportSize({ width: 375, height: 812 })
+  await expect(page.getByRole('heading', { name: 'Acceso y seguridad', exact: true })).toBeVisible()
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
+    true,
+  )
+  await page.screenshot({ path: test.info().outputPath('account-security-mobile.png') })
+  await page.setViewportSize(viewport)
+  await page.getByRole('button', { name: 'Cambiar contraseña ahora', exact: true }).click()
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('Contraseña actual', { exact: true }).fill('Wrong-synthetic-123!')
+  await dialog.getByLabel('Nueva contraseña', { exact: true }).fill('Updated-synthetic-456!')
+  await dialog
+    .getByLabel('Confirmar nueva contraseña', { exact: true })
+    .fill('Updated-synthetic-456!')
+  await dialog.getByRole('button', { name: 'Confirmar cambio' }).click()
+  await expect(dialog.locator('.q-banner[role="alert"]')).toContainText(/contraseña|correctos/)
+  await expect(dialog.getByLabel('Contraseña actual', { exact: true })).toHaveValue('')
+  await dialog.getByLabel('Contraseña actual', { exact: true }).fill(password)
+  await dialog.getByLabel('Nueva contraseña', { exact: true }).fill('Updated-synthetic-456!')
+  await dialog
+    .getByLabel('Confirmar nueva contraseña', { exact: true })
+    .fill('Updated-synthetic-456!')
+  await dialog.getByRole('button', { name: 'Confirmar cambio' }).click()
+  await expect(dialog).toHaveCount(0)
+  await expect(page.getByRole('status')).toContainText('Acceso actualizado')
+  expect(await currentUid(page)).toBe(uid)
+  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  await login(page, email)
+  await expect(
+    page.getByText(/correo o la contraseña no son correctos|contraseña no es correcta/).first(),
+  ).toBeVisible()
+  await expect(page).toHaveURL(/#\/login/)
+  await login(page, email, 'Updated-synthetic-456!')
+  await expect(page).toHaveURL(/#\/library/)
+  expect(await currentUid(page)).toBe(uid)
+  await expect(
+    page.getByRole('heading', { name: 'Credential change keeps this work', exact: true }),
+  ).toBeVisible()
+})
+
+test('ML-15: cancel credentials clears secrets and sending verified email change preserves current identity', async ({
+  page,
+  request,
+}) => {
+  const email = await register(page)
+  const uid = await currentUid(page)
+  const newEmail = `updated-${randomUUID()}@example.test`
+  await page.goto('/#/settings')
+  await page.getByRole('button', { name: 'Cambiar correo', exact: true }).click()
+  let dialog = page.getByRole('dialog')
+  await dialog.getByLabel('Contraseña actual', { exact: true }).fill(password)
+  await dialog.getByLabel('Nuevo correo electrónico', { exact: true }).fill(newEmail)
+  await dialog.getByRole('button', { name: 'Cancelar', exact: true }).click()
+  await expect(dialog).toHaveCount(0)
+  await page.getByRole('button', { name: 'Cambiar correo', exact: true }).click()
+  dialog = page.getByRole('dialog')
+  await expect(dialog.getByLabel('Contraseña actual', { exact: true })).toHaveValue('')
+  await expect(dialog.getByLabel('Nuevo correo electrónico', { exact: true })).toHaveValue('')
+  await dialog.getByLabel('Contraseña actual', { exact: true }).fill(password)
+  await dialog.getByLabel('Nuevo correo electrónico', { exact: true }).fill(newEmail)
+  await dialog.getByRole('button', { name: 'Confirmar cambio' }).click()
+  await expect(dialog).toHaveCount(0)
+  await expect(page.getByRole('status')).toContainText('La dirección actual se conserva')
+  await expect(page.getByText(email, { exact: true }).first()).toBeVisible()
+  expect(await currentUid(page)).toBe(uid)
+  const response = await request.get(
+    'http://127.0.0.1:9199/emulator/v1/projects/demo-mangalist/oobCodes',
+  )
+  expect(response.ok()).toBeTruthy()
+  const { oobCodes } = await response.json()
+  const code = oobCodes.find(
+    (entry) => entry.requestType === 'VERIFY_AND_CHANGE_EMAIL' && entry.newEmail === newEmail,
+  )
+  expect(code).toBeTruthy()
+  const applied = await request.post(
+    'http://127.0.0.1:9199/identitytoolkit.googleapis.com/v1/accounts:update?key=demo-mangalist-key',
+    { data: { oobCode: code.oobCode }, maxRedirects: 0 },
+  )
+  expect(applied.ok()).toBeTruthy()
+  await page.getByRole('button', { name: 'Actualizar datos de acceso', exact: true }).click()
+  await expect(page.getByText(newEmail, { exact: true }).first()).toBeVisible()
+  expect(await currentUid(page)).toBe(uid)
+  await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
+  await expect(page).toHaveURL(/#\/login/)
+  await login(page, newEmail)
+  await expect(page).toHaveURL(/#\/library/)
+  expect(await currentUid(page)).toBe(uid)
+})
+
 test('ML-15: local persistence, new tab and logout propagation protect every private route', async ({
   page,
   context,

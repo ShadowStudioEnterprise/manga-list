@@ -1,5 +1,7 @@
 # Informes técnicos
 
+- [ML-15: cambios de credenciales y vinculación para 1.0 — 28/10/2026](quality/ml-15-credentials-2026-10-28.md).
+
 La [auditoría ML-05](/maintenance/documentation-audit) distingue informes históricos,
 contratos actuales, pruebas y registros de publicación.
 

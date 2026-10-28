@@ -93,6 +93,25 @@ hay catch-all 404. La guarda espera inicialización, envía al login al visitant
 a biblioteca al usuario en rutas de invitados. Un fallo de inicialización en ruta
 privada añade `sessionError=1` y destino de retorno. Son rutas de UI, sin endpoints.
 
+## Cambios de credenciales y vinculación
+
+Ampliación ML-15 del 28/10/2026 para revisión, sin despliegue. Fuente:
+`src/services/credential-service.js`. Requiere sesión activa; serializa las
+operaciones de este servicio y rechaza sustitución de identidad durante la
+confirmación. Los cambios confirman identidad con contraseña o popup Google.
+
+| Símbolo                                                | Contrato                                                                                                              |
+| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `changeAccountPassword(currentPassword, newPassword)`  | Confirma identidad y actualiza contraseña; devuelve usuario SDK, conserva UID                                         |
+| `requestAccountEmailChange(currentPassword, newEmail)` | Recorta email, confirma identidad y envía verificación a la nueva dirección; no cambia email local antes de verificar |
+| `addPasswordAccess(currentPassword, newPassword)`      | Vincula email/contraseña al email actual; no crea otro usuario                                                        |
+| `addGoogleAccess(currentPassword)`                     | Vincula Google con popup; conflicto de credencial ajena se propaga sin fusionar cuentas                               |
+| `refreshAccountIdentity()`                             | Recarga usuario desde Auth y comprueba identidad; puede fallar si la sesión ya no es válida                           |
+
+Cada llamada SDK consume admisión Auth. Los errores se convierten a AppError,
+sin guardar contraseñas o credenciales. Véanse [pruebas y límites de aceptación
+real](/reports/quality/ml-15-credentials-2026-10-28).
+
 ## Eliminación de cuenta
 
 Fuente: `src/services/account-service.js`. `reauthenticateCurrentUser(options = {})`
