@@ -1,0 +1,35 @@
+{
+  "checkedOn": "2026-10-28",
+  "timezone": "Europe/Madrid",
+  "result": "PASS_LIMITED",
+  "artifactRevision": "3ac6a026349d151518cd3bcea883858ced19f0f8",
+  "artifactProject": "demo-mangalist",
+  "artifacts": ["spa", "pwa"],
+  "browsers": { "chromium": "153.0.8010.12", "firefox": "155.0" },
+  "syntheticStoragePolicies": [
+    "localStorage and sessionStorage getters throw SecurityError",
+    "Storage.prototype.setItem throws QuotaExceededError"
+  ],
+  "matrix": { "cases": 8, "passed": 8, "failed": 0, "skipped": 0 },
+  "aggregatePwaSuite": { "cases": 12, "passed": 12, "failed": 0, "skipped": 0 },
+  "observed": [
+    "Storage denial counter incremented in every case",
+    "Guest private route redirected to login",
+    "Login fields accepted synthetic input",
+    "Recovery route opened, survived reload and returned to login",
+    "No unhandled page errors"
+  ],
+  "network": { "externalAttempts": 0, "externalForwarded": 0, "serviceWorkers": "blocked" },
+  "accountsUsed": false,
+  "authFormsSubmitted": false,
+  "remoteFirebaseAccess": false,
+  "applicationBehaviorChanged": false,
+  "notCertified": [
+    "Authenticated in-memory session or cross-tab persistence",
+    "Native private browsing policy",
+    "Safari or iOS",
+    "Installed PWA and service worker behavior",
+    "Dependency audit or CI success"
+  ],
+  "reproduce": "Build SPA/PWA with demo-mangalist configuration, then npm run test:pwa"
+}

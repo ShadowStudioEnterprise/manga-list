@@ -38,6 +38,29 @@ Referencias primarias: [gestión de usuarios](https://firebase.google.com/docs/a
 
 ## Validación y cierre
 
+### Arranque compilado con almacenamiento denegado
+
+PASS limitado: [resumen de evidencia](../../measurements/ml15-built-storage-2026-10-28/summary.json).
+Ocho casos nuevos en `tests/pwa/auth-storage.test.js`, ejecutados
+con los artefactos SPA y PWA demo de `3ac6a02`, Chromium 153.0.8010.12 y Firefox
+155.0. Se denegaron por separado los getters de localStorage/sessionStorage con
+SecurityError y las escrituras con QuotaExceededError. El contador del ensayo
+confirma que el bundle encontró la denegación; no es una configuración inactiva.
+
+En cada caso la ruta privada vuelve al login sin sesión, los campos son utilizables,
+la recuperación abre y sobrevive a recarga y se puede volver al login. No hay
+errores no controlados ni solicitudes fuera del servidor local. No se envían
+formularios ni se simulan respuestas de login. Se usa el SDK compilado, sin
+Vue DevTools. No fue necesario cambiar la aplicación.
+
+Esto resuelve el bloqueo instrumental del arranque que se había observado en
+desarrollo. No certifica una sesión autenticada en memoria, continuidad entre
+pestañas, política nativa de modo privado, Safari/iOS ni PWA instalada: el ensayo
+bloquea service workers deliberadamente para interceptar toda la red. Los ocho
+casos se incluyen en `npm run test:pwa`, después de generar ambos builds demo.
+
+### Evidencia funcional y límites
+
 Los tests unitarios usan límites SDK simulados; los tests de navegador usan
 exclusivamente Auth/Firestore emulados con el proyecto `demo-mangalist`. Ninguna
 prueba de esta ampliación opera cuentas reales ni envía correo real.
@@ -54,6 +77,9 @@ prueba de esta ampliación opera cuentas reales ni envía correo real.
   completó 39/41 (esas 37 y dos casos nuevos de email); los otros dos se detuvieron
   por un selector ambiguo de alertas del test. Tras precisarlo, los cuatro casos
   nuevos pasaron sin reintentos. No se presenta la primera ejecución como 41/41.
+  Después se repitió la matriz completa sobre `3ac6a02`: **41/41 PASS en 4,8 min**,
+  sin reintentos ni omisiones. Las reglas y regresiones Firestore se repitieron:
+  **28/28 PASS**, cero fallos u omisiones. Los emuladores se detuvieron al terminar.
 - PASS: comprobación de ancho y revisión visual de Ajustes a 375 px; no certifica
   un navegador móvil nativo. Los diálogos permiten cancelar y limpiar campos.
 - PASS: lint, auditoría offline de credenciales, check:spark local y documentación.
@@ -71,6 +97,27 @@ Reproducir con `npm test`, `npm run test:auth`, `npm run lint:check`,
 aislamiento de red hacia los emuladores. El CI de la PR de validación anterior
 (`e48ffa4e`) no acredita estos cambios de comportamiento. Logs, trazas y códigos
 sintéticos permanecen locales; no se publican ni se guardan códigos reales.
+
+### CI y dependencia PWA
+
+FAIL: [CI de PR 40682926910](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40682926910)
+y [push 40682875984](https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40682875984)
+de `3ac6a02` se detuvieron en la auditoría de dependencias; los pasos siguientes
+quedaron omitidos. La auditoría principal devuelve cero avisos, pero el lockfile
+PWA presenta tres low por `workbox-build@7.4.1` → `@rollup/plugin-node-resolve@16.0.3`
+→ `deepmerge@4.3.1`. Los lockfiles no cambian con esta implementación.
+
+El [aviso GHSA-gcqx-w48m-w2h4](https://github.com/advisories/GHSA-gcqx-w48m-w2h4)
+no declara parche; el 28/10 npm sigue publicando esas versiones como últimas.
+Una sonda sintética local reproduce la herencia de una propiedad inyectada en el
+objeto devuelto por deepmerge, sin modificar Object.prototype; no demuestra que
+sea explotable en MangaList. Es dependencia de compilación y el uso observado
+en el plugin es `deepMerge({}, defaults)`. Ese alcance no elimina el hallazgo.
+
+Se mantiene la auditoría sin excepciones ni cambios de umbral. No se aplica la
+bajada automática a Workbox 5.1.4. El desbloqueo exige un parche o sustitución
+compatible verificados. Las pruebas funcionales locales no convierten este CI
+ni la auditoría en PASS. El estado de revisiones posteriores se registra en la PR.
 
 Siguen pendientes para cierre integral: pruebas reales autorizadas del correo de
 verificación y su página alojada, vuelta a la app, Google popup y conflictos entre
