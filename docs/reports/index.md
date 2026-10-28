@@ -1,5 +1,7 @@
 # Informes técnicos
 
+- [ML-15: sesión en memoria, vinculación emulada y Android — 28/10/2026](quality/ml-15-followup-2026-10-28.md).
+
 - [Parche local de deepmerge para Workbox 7 — 28/10/2026](security/deepmerge-local-2026-10-28.md).
 
 - [ML-15: cambios de credenciales y vinculación para 1.0 — 28/10/2026](quality/ml-15-credentials-2026-10-28.md).

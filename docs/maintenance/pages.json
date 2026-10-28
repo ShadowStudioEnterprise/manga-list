@@ -332,6 +332,10 @@
     "docs/reports/security/deepmerge-local-2026-10-28.md": {
       "scope": "Corrección para revisión",
       "decision": "Fork MIT local de deepmerge para Workbox 7; auditoría sin excepciones, tests de seguridad y huellas de código; sin cierre ML-15 ni despliegue."
+    },
+    "docs/reports/quality/ml-15-followup-2026-10-28.md": {
+      "scope": "Corrección y seguimiento de validación",
+      "decision": "Defecto real de fallback en memoria con SDK emulado, regresión de sesión y vinculación sintética; Android físico con datos locales; sin aceptación real ni cierre ML-15."
     }
   }
 }

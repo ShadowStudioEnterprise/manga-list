@@ -158,11 +158,15 @@ test('ML-15: verified email change rejects invalid and reused local codes and th
   expect((await reused.json()).error.message).toBe('INVALID_OOB_CODE')
   await page.evaluate(async () => (await import('/src/services/auth-service.js')).logout())
   await expect(page).toHaveURL(/#\/login/)
+  const rejected = page.waitForResponse(
+    (response) =>
+      response.request().method() === 'POST' &&
+      response.url().includes('/accounts:signInWithPassword'),
+  )
   await login(page, oldEmail)
-  await expect(
-    page.locator('.q-notification__message').filter({ hasText: /contraseña|correctos/ }),
-  ).toBeVisible()
+  expect((await rejected).status()).toBe(400)
   await expect(page).toHaveURL(/#\/login/)
+  expect(await identity(page)).toBeNull()
   await login(page, email)
   await expect(page).toHaveURL(/#\/library/)
   expect((await identity(page)).uid).toBe(before.uid)
