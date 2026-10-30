@@ -340,6 +340,10 @@
     "docs/reports/quality/ml-15-built-auth-2026-10-28.md": {
       "scope": "Validación local compilada y corrección para revisión",
       "decision": "Sesión en memoria con Auth emulado y almacenamiento global denegado; fallo de callback Firefox contenido; sin aceptación remota ni cierre ML-15."
+    },
+    "docs/reports/security/dependencies-2026-10-30.md": {
+      "scope": "Informe fechado de seguridad y validación de ML-15",
+      "decision": "Versiones vulnerables y correcciones del lockfile; resultados locales y CI diferenciados; sin certificación de Hosting ni cierre de ML-15."
     }
   }
 }

@@ -40,14 +40,14 @@
     "pinia": "^4.0.2",
     "quasar": "^2.32.2",
     "vue": "^3.5.22",
-    "vue-i18n": "^11.3.0",
+    "vue-i18n": "^11.4.15",
     "vue-router": "^5.0.6"
   },
   "devDependencies": {
     "@axe-core/playwright": "4.14.0",
     "@eslint/js": "^10.0.1",
     "@firebase/rules-unit-testing": "^5.0.2",
-    "@intlify/unplugin-vue-i18n": "^11.2.6",
+    "@intlify/unplugin-vue-i18n": "^11.2.8",
     "@playwright/test": "^1.63.0",
     "@quasar/app-vite": "^3.8.1",
     "@vue/eslint-config-prettier": "^10.2.0",
@@ -79,7 +79,7 @@
       "@grpc/grpc-js": "1.13.6"
     },
     "vitepress": {
-      "vite": "6.4.4"
+      "vite": "6.4.5"
     }
   },
   "license": "Apache-2.0"

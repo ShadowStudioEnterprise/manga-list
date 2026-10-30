@@ -1,5 +1,7 @@
 # Informes técnicos
 
+- [Dependencias y CI de ML-15 — 30/10/2026](security/dependencies-2026-10-30.md).
+
 - [ML-15: Auth compilado y almacenamiento denegado — 28/10/2026](quality/ml-15-built-auth-2026-10-28.md).
 
 - [ML-15: sesión en memoria, vinculación emulada y Android — 28/10/2026](quality/ml-15-followup-2026-10-28.md).

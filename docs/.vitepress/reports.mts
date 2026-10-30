@@ -2,6 +2,7 @@ export const reportsSidebar = [
   {
     text: 'Informes',
     items: [
+      { text: 'ML-15: dependencias y CI', link: '/reports/security/dependencies-2026-10-30' },
       {
         text: 'ML-15: Auth compilado y almacenamiento',
         link: '/reports/quality/ml-15-built-auth-2026-10-28',
