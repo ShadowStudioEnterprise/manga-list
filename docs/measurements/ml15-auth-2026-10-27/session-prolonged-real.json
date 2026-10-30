@@ -1,0 +1,88 @@
+{
+  "status": "PASS_LIMITED",
+  "recordedAt": "2026-10-27T22:40:58Z",
+  "timezone": "Europe/Madrid",
+  "origin": "https://mangalist-61bb8.web.app",
+  "authorization": "User explicitly accepted prolonged demo session and human network observation",
+  "account": "Existing email/password demo, human handles credentials; no identifier or UID stored",
+  "timing": {
+    "t0ObservedUTC": "2026-10-27T20:27:02Z",
+    "t0CET": "2026-10-27 21:27:02 CET",
+    "finalObservedUTC": "2026-10-27T22:35:29Z",
+    "finalCET": "2026-10-27 23:35:29 CET",
+    "elapsedObservedSeconds": 7707,
+    "initialInstructionTimezoneError": "T0 was initially announced as 22:27 CET instead of 21:27 CET; corrected after reviewing UTC clocks",
+    "minimumPlannedMinutes": 65
+  },
+  "renewal": {
+    "evidence": "Human report, not an exported network capture",
+    "host": "securetoken.googleapis.com",
+    "method": "POST",
+    "httpStatus": 200,
+    "responseDateReportedUTC": "2026-10-27T22:16:46Z",
+    "responseDateCET": "2026-10-27 23:16:46 CET",
+    "secondsAfterT0": 6584,
+    "computerStayedAwakeConfirmedByUser": true,
+    "absenceOfReloadOrNewLoginExplicitlyConfirmed": false,
+    "trigger": "Not established; do not certify automatic cadence",
+    "tokenBodyInspected": false,
+    "tokenClaimsDecoded": false
+  },
+  "uiChecks": {
+    "initialLibrary": {
+      "works": 1,
+      "chapter": "1",
+      "serverConfirmed": true
+    },
+    "finalLibrary": {
+      "works": 1,
+      "chapter": "1",
+      "serverConfirmed": true
+    },
+    "agentFinalReloadRetainedSession": true,
+    "agentFinalReloadConfirmedSameVisibleWork": true
+  },
+  "cleanup": {
+    "logoutPerformedBy": "human after extension input timeouts",
+    "loginPageVerifiedByAgent": true,
+    "testTabClosedByAgent": true
+  },
+  "libraryWrites": 0,
+  "credentialChanges": 0,
+  "remoteConfigurationChanges": 0,
+  "limits": [
+    "No direct token expiry claim inspection",
+    "No proof of automatic versus demand-triggered refresh",
+    "No revocation or other-session invalidation test",
+    "No natural expiry of recovery link",
+    "No Safari/iOS renewal",
+    "No full document hash or remote UID inspection"
+  ],
+  "reference": "https://firebase.google.com/docs/auth/admin/manage-sessions",
+  "browser": {
+    "name": "Google Chrome",
+    "version": "156.0.8078.48",
+    "platform": "Windows",
+    "source": "Binary version read after test"
+  },
+  "finalPublicBuildProbe": {
+    "checkedAt": "2026-10-27T22:43:38.8628158Z",
+    "chromeVersions": ["156.0.8078.48"],
+    "http": 200,
+    "build": {
+      "revision": "e58da9bda82d3cc7245f5e0ea8c4375467adb00d",
+      "dirty": false,
+      "builtAt": "2026-10-26T14:23:09.664Z",
+      "compatibility": {
+        "version": 1,
+        "sparkOnly": true,
+        "deletionBarrier": 1,
+        "boundedLibraryQuery": 5001,
+        "recoverableImport": 1,
+        "verifiedExport": 2
+      },
+      "mode": "pwa",
+      "project": "mangalist-61bb8"
+    }
+  }
+}

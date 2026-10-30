@@ -1,0 +1,466 @@
+{
+  "task": "ML-15",
+  "overall": "BLOCKED",
+  "date": "2026-10-27",
+  "timezone": "Europe/Madrid",
+  "source": "d157d2165b16492537c01a7ec559bd062dee7ff1",
+  "productionReadOnly": {
+    "http": [
+      {
+        "url": "https://mangalist-61bb8.web.app/build-info.json",
+        "status": 200
+      },
+      {
+        "url": "https://mangalist-61bb8.web.app/",
+        "status": 200
+      }
+    ],
+    "buildInfo": {
+      "revision": "e58da9bda82d3cc7245f5e0ea8c4375467adb00d",
+      "dirty": false,
+      "builtAt": "2026-10-26T14:23:09.664Z",
+      "compatibility": {
+        "version": 1,
+        "sparkOnly": true,
+        "deletionBarrier": 1,
+        "boundedLibraryQuery": 5001,
+        "recoverableImport": 1,
+        "verifiedExport": 2
+      },
+      "mode": "pwa",
+      "project": "mangalist-61bb8"
+    }
+  },
+  "mainCI": {
+    "status": "PASS",
+    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40496842656"
+  },
+  "toolchain": {
+    "node": "24.18.0",
+    "npm": "11.16.0",
+    "java": "23.0.1",
+    "firebaseCLI": "15.32.1",
+    "firebaseJS": "12.18.0",
+    "playwright": "1.63.0"
+  },
+  "unit": {
+    "status": "PASS",
+    "passed": 143,
+    "failed": 0,
+    "syntheticGoogleBoundaryCases": 3,
+    "syntheticPersistenceCases": 2
+  },
+  "browser": {
+    "status": "PASS",
+    "stats": {
+      "startTime": "2026-10-27T17:16:18.159Z",
+      "duration": 274190.327,
+      "expected": 37,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "versions": {
+      "chromium": "153.0.8010.12",
+      "firefox": "155.0"
+    },
+    "results": [
+      {
+        "title": "320px main screens retain usable controls and pass automated accessibility checks",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 24969
+      },
+      {
+        "title": "settings copy the running version without account data and handle unavailable clipboard",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 8622
+      },
+      {
+        "title": "keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 4638
+      },
+      {
+        "title": "live resizing preserves library controls and unsaved form fields across responsive breakpoints",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 8968
+      },
+      {
+        "title": "router history survives dialog cancellation and browser back and forward without saving edits",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 10447
+      },
+      {
+        "title": "optional drafts survive reload, require recovery and clear after save or logout",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 3391
+      },
+      {
+        "title": "bookmarklet survives recovery and registration, then session persists across reload and login",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 3470
+      },
+      {
+        "title": "password recovery keeps responses generic and rejects invalid or reused reset codes",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 12220
+      },
+      {
+        "title": "two tabs preserve unrelated edits and show a recoverable same-field conflict",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 12099
+      },
+      {
+        "title": "invalid import rows remain errors, successful import resets, export preserves data and accounts stay isolated",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 4694
+      },
+      {
+        "title": "offline export never downloads a cache copy and recovers after the connection returns",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 2491
+      },
+      {
+        "title": "mobile library supports manual chapters and confirmed deletion",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 9887
+      },
+      {
+        "title": "account deletion rejects a wrong password without data loss and then removes emulator Auth",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 4587
+      },
+      {
+        "title": "320px main screens retain usable controls and pass automated accessibility checks",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 30927
+      },
+      {
+        "title": "keyboard reaches forms, mobile navigation and chapter dialog with visible focus and Escape recovery",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 6327
+      },
+      {
+        "title": "live resizing preserves library controls and unsaved form fields across responsive breakpoints",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 11304
+      },
+      {
+        "title": "router history survives dialog cancellation and browser back and forward without saving edits",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 9330
+      },
+      {
+        "title": "optional drafts survive reload, require recovery and clear after save or logout",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 4318
+      },
+      {
+        "title": "bookmarklet survives recovery and registration, then session persists across reload and login",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 4551
+      },
+      {
+        "title": "password recovery keeps responses generic and rejects invalid or reused reset codes",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 13947
+      },
+      {
+        "title": "two tabs preserve unrelated edits and show a recoverable same-field conflict",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 13390
+      },
+      {
+        "title": "invalid import rows remain errors, successful import resets, export preserves data and accounts stay isolated",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 5069
+      },
+      {
+        "title": "offline export never downloads a cache copy and recovers after the connection returns",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 4235
+      },
+      {
+        "title": "mobile library supports manual chapters and confirmed deletion",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 11027
+      },
+      {
+        "title": "account deletion rejects a wrong password without data loss and then removes emulator Auth",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 6188
+      },
+      {
+        "title": "ML-15: local persistence, new tab and logout propagation protect every private route",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 3885
+      },
+      {
+        "title": "ML-15: same-origin account replacement propagates UID and clears another account library",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 3278
+      },
+      {
+        "title": "ML-15: expired local token refreshes using emulator and rejected refresh clears session",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 1611
+      },
+      {
+        "title": "ML-15: rejected login and controlled network failure allow a successful retry",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 1990
+      },
+      {
+        "title": "ML-15: blocked Google bootstrap reports failure and allows email login",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 1894
+      },
+      {
+        "title": "ML-15: independent Auth clients and actual emulator tokens cannot read or delete another UID",
+        "project": "chromium",
+        "status": "passed",
+        "durationMs": 2021
+      },
+      {
+        "title": "ML-15: local persistence, new tab and logout propagation protect every private route",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 5363
+      },
+      {
+        "title": "ML-15: same-origin account replacement propagates UID and clears another account library",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 4285
+      },
+      {
+        "title": "ML-15: expired local token refreshes using emulator and rejected refresh clears session",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 2128
+      },
+      {
+        "title": "ML-15: rejected login and controlled network failure allow a successful retry",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 2664
+      },
+      {
+        "title": "ML-15: blocked Google bootstrap reports failure and allows email login",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 2606
+      },
+      {
+        "title": "ML-15: independent Auth clients and actual emulator tokens cannot read or delete another UID",
+        "project": "firefox",
+        "status": "passed",
+        "durationMs": 2539
+      }
+    ]
+  },
+  "rules": {
+    "status": "PASS",
+    "passed": 28,
+    "failed": 0,
+    "durationMs": 117939.1796
+  },
+  "android": {
+    "checkedAt": "2026-10-27T17:24:23.929Z",
+    "status": "PASS",
+    "browser": "156.0.8078.47",
+    "backend": "demo-emulators-only",
+    "blockedBootstrap": 3,
+    "checks": [
+      "register-email",
+      "reload-persistence",
+      "new-tab-persistence",
+      "logout-propagation",
+      "email-login",
+      "final-logout"
+    ],
+    "external": []
+  },
+  "blocked": [
+    "Revocación real y otras sesiones no ensayadas; renovación automática versus bajo demanda no diferenciada",
+    "Safari/iOS nativos no disponibles en host Windows",
+    "Cambio email, contraseña autenticada y linking: sin UI en 1.0; requiere decisión de alcance",
+    "Caducidad temporal natural del enlace de recuperación no ensayada"
+  ],
+  "historicalSafari": {
+    "status": "DECLARED_ONLY",
+    "revision": "0bb93e755d76fc5cd92f54978e732c5924ba27e7",
+    "githubLookup": "HTTP 422 no commit found",
+    "currentValidation": false
+  },
+  "merge": false,
+  "deployment": false,
+  "checks": {
+    "lint": "PASS",
+    "sparkLocal": "PASS",
+    "docsBuild": "PASS",
+    "docsCheck": "PASS",
+    "securityOffline": "PASS"
+  },
+  "sourceComparison": {
+    "paths": [
+      "src/services/auth-service.js",
+      "src/stores/auth-store.js",
+      "src/boot/firebase.js",
+      "src/pages/auth",
+      "src/router",
+      "firestore.rules"
+    ],
+    "from": "e58da9bda82d3cc7245f5e0ea8c4375467adb00d",
+    "to": "d157d2165b16492537c01a7ec559bd062dee7ff1",
+    "changed": false,
+    "compiledParityVerified": false
+  },
+  "instrumentationFailures": [
+    {
+      "kind": "sandbox",
+      "unit": 136,
+      "total": 138,
+      "resolvedBy": "Repeat outside filesystem sandbox; all pass"
+    },
+    {
+      "kind": "desktop harness",
+      "reason": "incorrect empty-library label and blocked gapi bootstrap",
+      "resolvedBy": "Correct selector; classify full popup BLOCKED; verify bootstrap failure separately"
+    },
+    {
+      "kind": "android harness",
+      "reason": "blocked proactive gapi counted as unexpected; CDP navigation/timing and shared server shutdown",
+      "resolvedBy": "Count and abort exact gapi bootstrap, navigate through router, own server lifecycle; final six checks pass"
+    },
+    {
+      "kind": "storage denial probe",
+      "reason": "Vue DevTools reads global localStorage during development module initialization",
+      "outcome": "Discarded blocked browser probe; keep two synthetic service boundary tests; no production defect inferred"
+    }
+  ],
+  "productionOAuth": {
+    "status": "PASS_LIMITED",
+    "evidence": "oauth-real.json",
+    "browser": {
+      "name": "Google Chrome",
+      "version": "156.0.8078.48",
+      "platform": "Windows"
+    },
+    "checks": [
+      {
+        "id": "R01",
+        "status": "PASS",
+        "check": "Cancellation returns to /login, Google button enabled and next attempt possible"
+      },
+      {
+        "id": "R02",
+        "status": "PASS",
+        "check": "User completes OAuth with existing demo; app returns to /library"
+      },
+      {
+        "id": "R03",
+        "status": "PASS",
+        "check": "Reload restores /library and confirmed empty library"
+      },
+      {
+        "id": "R04",
+        "status": "PASS",
+        "check": "New same-origin tab opens authenticated /library; confirmed empty library"
+      },
+      {
+        "id": "R05",
+        "status": "PASS",
+        "check": "Logout in second tab changes both tabs to /login"
+      },
+      {
+        "id": "R06",
+        "status": "PASS",
+        "check": "Opening /library after logout redirects to /login"
+      }
+    ],
+    "accountIdentity": "Existing demo confirmed by human; no UID published"
+  },
+  "branchCI": {
+    "status": "PASS",
+    "head": "11b4a6dff8087aedffd258ae0f1067d521459e30",
+    "url": "https://github.com/ShadowStudioEnterprise/manga-list/actions/runs/40562475069",
+    "unit": 141,
+    "rules": 28,
+    "ml12": 2,
+    "browser": 59,
+    "pwa": 4,
+    "appliesTo": "Code and docs at 11b4a6df, before this follow-up with two new synthetic unit tests",
+    "completedAt": "2026-10-27T20:42:55Z",
+    "attempt": 2
+  },
+  "remoteConfigurationChanges": 0,
+  "remoteLibraryWrites": 0,
+  "realAuthSignInAuthorized": true,
+  "productionRecovery": {
+    "status": "PASS_LIMITED",
+    "evidence": "password-recovery-real.json",
+    "preservedVisibleWorks": 1,
+    "credentialChangePerformedByHuman": true,
+    "newPasswordRemainsCurrent": true
+  },
+  "realPasswordResetAuthorized": true,
+  "remoteCredentialChanges": {
+    "count": 1,
+    "performedBy": "human",
+    "scope": "existing email/password demo recovery"
+  },
+  "productionSession": {
+    "status": "PASS_LIMITED",
+    "evidence": "session-prolonged-real.json",
+    "elapsedObservedSeconds": 7707,
+    "renewalHumanReported": {
+      "method": "POST",
+      "status": 200,
+      "timeUTC": "2026-10-27T22:16:46Z"
+    },
+    "automaticRefreshVerified": false
+  },
+  "branchCIFirstAttempt": {
+    "status": "CANCELLED",
+    "reason": "25 minute job timeout; installation alone took 18m34s",
+    "browserAndPWAComplete": false
+  },
+  "storageRestriction": {
+    "browser": "BLOCKED_BY_DEV_INSTRUMENTATION",
+    "reason": "Global Web Storage getter denial fails inside Vue DevTools before application startup; not certified as release defect",
+    "syntheticServiceFallback": "PASS",
+    "syntheticServiceRetry": "PASS",
+    "nativePrivacyModeVerified": false
+  }
+}

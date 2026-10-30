@@ -14,7 +14,7 @@ export default defineConfig({
   workers: 1,
   timeout: 60000,
   expect: { timeout: 15000 },
-  reporter: 'list',
+  reporter: [['list'], ['json', { outputFile: 'test-results/browser-results.json' }]],
   use: {
     baseURL: 'http://127.0.0.1:9100',
     trace: 'retain-on-failure',

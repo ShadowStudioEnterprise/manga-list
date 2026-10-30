@@ -320,6 +320,30 @@
     "docs/reports/quality/ml-01-postdeploy-2026-10-27.md": {
       "scope": "Registro histórico de verificación pública postdespliegue ML-01",
       "decision": "Observación del 27/10/2026: integración del PR #26, tres defectos verificados en Hosting, evidencias descargables y límites explícitos; no supone publicación de este informe."
+    },
+    "docs/reports/quality/ml-15-auth-2026-10-27.md": {
+      "scope": "ML-15: matriz de autenticación local, evidencia física Android y bloqueos de validación real",
+      "decision": "ML-15 abierta; OAuth, recuperación y sesión prolongada reales limitados; CI 11b4a6df intento 2 correcto; dos nuevos unitarios de fallback SDK; revocación y otros límites pendientes"
+    },
+    "docs/reports/quality/ml-15-credentials-2026-10-28.md": {
+      "scope": "Implementación para revisión",
+      "decision": "Cambios de credenciales y vinculación incluidos en 1.0 por decisión humana; pruebas locales separadas de aceptación real pendiente; sin despliegue ni cierre ML-15."
+    },
+    "docs/reports/security/deepmerge-local-2026-10-28.md": {
+      "scope": "Corrección para revisión",
+      "decision": "Fork MIT local de deepmerge para Workbox 7; auditoría sin excepciones, tests de seguridad y huellas de código; sin cierre ML-15 ni despliegue."
+    },
+    "docs/reports/quality/ml-15-followup-2026-10-28.md": {
+      "scope": "Corrección y seguimiento de validación",
+      "decision": "Defecto real de fallback en memoria con SDK emulado, regresión de sesión y vinculación sintética; Android físico con datos locales; sin aceptación real ni cierre ML-15."
+    },
+    "docs/reports/quality/ml-15-built-auth-2026-10-28.md": {
+      "scope": "Validación local compilada y corrección para revisión",
+      "decision": "Sesión en memoria con Auth emulado y almacenamiento global denegado; fallo de callback Firefox contenido; sin aceptación remota ni cierre ML-15."
+    },
+    "docs/reports/security/dependencies-2026-10-30.md": {
+      "scope": "Informe fechado de seguridad y validación de ML-15",
+      "decision": "Versiones vulnerables y correcciones del lockfile; resultados locales y CI diferenciados; sin certificación de Hosting ni cierre de ML-15."
     }
   }
 }

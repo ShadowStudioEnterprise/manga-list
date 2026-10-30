@@ -7,6 +7,7 @@
     </header>
 
     <div class="settings-stack q-mt-lg">
+      <AccountSecurityCard />
       <q-card flat bordered>
         <q-card-section class="row items-center q-gutter-md">
           <q-avatar size="52px" color="primary" text-color="white" icon="person" />
@@ -175,6 +176,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import AccountSecurityCard from '@/components/AccountSecurityCard.vue'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
 import { buildBookmarkletCode } from '@/utils/bookmarklet-utils'

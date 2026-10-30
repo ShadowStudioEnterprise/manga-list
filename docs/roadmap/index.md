@@ -3,6 +3,17 @@
 La [lista de trabajo y criterios de aceptación](/reports/project/roadmap) conserva el detalle de
 las auditorías. Las implementaciones y pruebas de la rama no certifican producción.
 
+[ML-15: autenticación y recuperación (27/10)](/reports/quality/ml-15-auth-2026-10-27)
+se amplió por decisión de producto el 28/10: cambios de correo y contraseña desde
+ajustes y vinculación email/Google forman parte de 1.0. La
+[implementación para revisión](/reports/quality/ml-15-credentials-2026-10-28)
+requiere aceptación real autorizada antes del cierre. La validación anterior
+permanece abierta: la matriz diferencia emuladores, SDK simulado y Android físico
+de los ensayos reales autorizados de OAuth y recuperación de una demo existente.
+Hay además continuidad prolongada y renovación reportada por humano; revocación,
+caducidad temporal del enlace, aislamiento remoto directo y Safari/iOS actual
+siguen pendientes.
+
 ML-01 tiene [cierre técnico con verificación pública posterior al PR #26](/reports/quality/ml-01-postdeploy-2026-10-27):
 404, sidebar y 28 variantes legacy comprobados de nuevo el 27/10/2026, con capturas
 y evidencia de la versión observada. Se conservan los límites de aceptación humana

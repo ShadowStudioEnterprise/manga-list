@@ -2,6 +2,11 @@ export const reportsSidebar = [
   {
     text: 'Informes',
     items: [
+      { text: 'ML-15: dependencias y CI', link: '/reports/security/dependencies-2026-10-30' },
+      {
+        text: 'ML-15: Auth compilado y almacenamiento',
+        link: '/reports/quality/ml-15-built-auth-2026-10-28',
+      },
       {
         text: 'Índice de informes',
         link: '/reports/',
@@ -194,6 +199,10 @@ export const reportsSidebar = [
     text: 'Calidad y verificación',
     collapsed: true,
     items: [
+      {
+        text: 'ML-15: autenticación y recuperación (27/10)',
+        link: '/reports/quality/ml-15-auth-2026-10-27',
+      },
       {
         text: 'ML-01: verificación postdespliegue (27/10)',
         link: '/reports/quality/ml-01-postdeploy-2026-10-27',

@@ -23,7 +23,12 @@ if (import.meta.env.QUASAR_PROD) {
   // Production SSR/SSG fallbacks to offline.html (except for dev)
   registerRoute(
     new NavigationRoute(createHandlerBoundToURL(import.meta.env.QUASAR_PWA_FALLBACK_HTML), {
-      denylist: [new RegExp(import.meta.env.QUASAR_PWA_SERVICE_WORKER_REGEX), /workbox-(.)*\.js$/],
+      denylist: [
+        new RegExp(import.meta.env.QUASAR_PWA_SERVICE_WORKER_REGEX),
+        /workbox-(.)*\.js$/,
+        // Preserve Firebase Hosting's Auth helpers and reserved endpoints.
+        /^\/__\//,
+      ],
     }),
   )
 }

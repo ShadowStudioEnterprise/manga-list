@@ -7,7 +7,7 @@
       "exports": ["reauthenticateCurrentUser", "deleteUserFirestoreData", "deleteCurrentAccount"]
     },
     "src/services/auth-service.js": {
-      "sha256": "8707220493bad69991256828d2a055a32a5b3f89d319be9635d4d58e5cc0f5a8",
+      "sha256": "da2fd55b0c4a6c76581b1e0766d0c9390021087cea8f0eb4459f35fc76e521ac",
       "exports": [
         "initializeAuth",
         "waitForAuthReady",
@@ -83,7 +83,7 @@
       ]
     },
     "src/services/shared-library.js": {
-      "sha256": "80b4cb15bd021ac6370f181b6562cce2375db68804bb5fa16734cb6bb797bfd3",
+      "sha256": "620846f94e5f4ddbd8bbecd8c948f6a4f44375eddc989112dfb4c06dc256444a",
       "exports": ["subscribeSharedLibrary"]
     },
     "src/stores/auth-store.js": {
@@ -127,7 +127,7 @@
       "exports": ["SPARK_LIMITS", "createSparkBudget", "sparkBudget"]
     },
     "src/utils/firebase-errors.js": {
-      "sha256": "d316328e4329c3a2fe6f68366a9d27fc235fb2e3aab148a0a99a32d837bce0b4",
+      "sha256": "e6ab559286c3b48d91aa12783c32f844bce28765cf391432afb5d7c44458a78a",
       "exports": [
         "AppError",
         "getErrorCode",
@@ -200,6 +200,16 @@
     "src/utils/library-search.js": {
       "sha256": "42370c7a249319a02c2812e74b87732a780b02299cce80c8636d35cba964169f",
       "exports": ["createLibrarySearchStorage", "librarySearchStorage"]
+    },
+    "src/services/credential-service.js": {
+      "sha256": "04a329ecbc49b84cd57d54d70492b9700c7ba1279bd5f1b7e5976d9731b81335",
+      "exports": [
+        "changeAccountPassword",
+        "requestAccountEmailChange",
+        "addPasswordAccess",
+        "addGoogleAccess",
+        "refreshAccountIdentity"
+      ]
     }
   }
 }

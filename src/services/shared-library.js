@@ -77,53 +77,58 @@ export function subscribeSharedLibrary(
   locks
     .request(`mangalist:library:v1:${key}`, { signal: controller.signal }, async () => {
       if (stopped || !isCurrent()) return
-      // Store only an error code/time, never library data. A suspended follower
-      // must see terminal failure before taking ownership, even if it missed IPC.
-      const fault = JSON.parse(runtime.localStorage.getItem(faultKey) || 'null')
-      if (fault && (fault.at >= requestedAt || fault.until > Date.now())) {
-        fail(createAppError(fault.code))
-        return
+      try {
+        // Store only an error code/time, never library data. A suspended follower
+        // must see terminal failure before taking ownership, even if it missed IPC.
+        const fault = JSON.parse(runtime.localStorage.getItem(faultKey) || 'null')
+        if (fault && (fault.at >= requestedAt || fault.until > Date.now())) {
+          fail(createAppError(fault.code))
+          return
+        }
+        epoch = Number(runtime.localStorage.getItem(epochKey) || 0) + 1
+        if (!Number.isSafeInteger(epoch) || epoch < 1) throw createAppError('app/unknown')
+        runtime.localStorage.setItem(epochKey, String(epoch))
+        leader = true
+        last = undefined
+        await new Promise((resolve) => {
+          release = resolve
+          stopListener = start(
+            (items, metadata) => {
+              if (stopped || !isCurrent()) return
+              deliver(items, metadata)
+              send({ type: 'data', items, metadata })
+            },
+            (error) => {
+              if (stopped) return
+              const at = Date.now()
+              const quota = [
+                'resource-exhausted',
+                'firestore/resource-exhausted',
+                'app/quota-paused',
+              ].includes(error.code)
+              try {
+                runtime.localStorage.setItem(
+                  faultKey,
+                  JSON.stringify({
+                    code: error.code || 'app/unknown',
+                    at,
+                    until: quota ? at + 15 * 60000 : at,
+                  }),
+                )
+              } catch {
+                // Still terminate safely if storage becomes unavailable mid-session.
+              } finally {
+                send({ type: 'error', code: error.code || 'app/unknown' })
+                fail(error)
+              }
+            },
+          )
+          if (stopped) stopListener?.()
+        })
+      } catch (error) {
+        // Contain callback rejection before it crosses the Web Locks boundary.
+        if (!stopped) fail(error)
       }
-      epoch = Number(runtime.localStorage.getItem(epochKey) || 0) + 1
-      if (!Number.isSafeInteger(epoch) || epoch < 1) throw createAppError('app/unknown')
-      runtime.localStorage.setItem(epochKey, String(epoch))
-      leader = true
-      last = undefined
-      await new Promise((resolve) => {
-        release = resolve
-        stopListener = start(
-          (items, metadata) => {
-            if (stopped || !isCurrent()) return
-            deliver(items, metadata)
-            send({ type: 'data', items, metadata })
-          },
-          (error) => {
-            if (stopped) return
-            const at = Date.now()
-            const quota = [
-              'resource-exhausted',
-              'firestore/resource-exhausted',
-              'app/quota-paused',
-            ].includes(error.code)
-            try {
-              runtime.localStorage.setItem(
-                faultKey,
-                JSON.stringify({
-                  code: error.code || 'app/unknown',
-                  at,
-                  until: quota ? at + 15 * 60000 : at,
-                }),
-              )
-            } catch {
-              // Still terminate safely if storage becomes unavailable mid-session.
-            } finally {
-              send({ type: 'error', code: error.code || 'app/unknown' })
-              fail(error)
-            }
-          },
-        )
-        if (stopped) stopListener?.()
-      })
     })
     .catch((error) => {
       if (!stopped) fail(error)

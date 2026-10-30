@@ -1,0 +1,14 @@
+{
+  "name": "@mangalist/deepmerge-safe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local MIT fork of deepmerge 4.3.1 hardened against GHSA-gcqx-w48m-w2h4",
+  "main": "index.cjs",
+  "license": "MIT",
+  "files": [
+    "index.cjs",
+    "LICENSE",
+    "provenance.json",
+    "README.md"
+  ]
+}

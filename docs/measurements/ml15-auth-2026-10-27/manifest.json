@@ -1,0 +1,25 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "file": "summary.json",
+      "sha256": "9b42490a77a0353d72dd6b1250802b1f8134aaab64b8b823064af966c62ea6ff"
+    },
+    {
+      "file": "android-library.png",
+      "sha256": "683fad1509eab1b6b8b1bf849a1c735173735502c6d7d63f667548c855171993"
+    },
+    {
+      "file": "oauth-real.json",
+      "sha256": "4f925645bcf5d759519cd18563f829c56a40ea4a74c4b8e4f88c6d8c0331c7c7"
+    },
+    {
+      "file": "password-recovery-real.json",
+      "sha256": "4674ad8673836674ca24024e4210c3b4687f0b2597aa42b5524988af149853ea"
+    },
+    {
+      "file": "session-prolonged-real.json",
+      "sha256": "f18a7dfdc0175edaae8e8e2d7393f7fa0043416be4a56722d77f037ddf080b1a"
+    }
+  ]
+}

@@ -1,5 +1,15 @@
 # Informes técnicos
 
+- [Dependencias y CI de ML-15 — 30/10/2026](security/dependencies-2026-10-30.md).
+
+- [ML-15: Auth compilado y almacenamiento denegado — 28/10/2026](quality/ml-15-built-auth-2026-10-28.md).
+
+- [ML-15: sesión en memoria, vinculación emulada y Android — 28/10/2026](quality/ml-15-followup-2026-10-28.md).
+
+- [Parche local de deepmerge para Workbox 7 — 28/10/2026](security/deepmerge-local-2026-10-28.md).
+
+- [ML-15: cambios de credenciales y vinculación para 1.0 — 28/10/2026](quality/ml-15-credentials-2026-10-28.md).
+
 La [auditoría ML-05](/maintenance/documentation-audit) distingue informes históricos,
 contratos actuales, pruebas y registros de publicación.
 
@@ -75,6 +85,7 @@ secciones principales del portal.
 
 ## Calidad y verificación
 
+- [ML-15: autenticación y recuperación — matriz local y bloqueos de cierre (27/10)](quality/ml-15-auth-2026-10-27.md).
 - [ML-01 / PR #26: verificación postdespliegue (27/10)](quality/ml-01-postdeploy-2026-10-27.md).
 
 - [ML-16: validación Android físico — 27/10/2026; dos pruebas pendientes](quality/ml-16-android-2026-10-27.md).

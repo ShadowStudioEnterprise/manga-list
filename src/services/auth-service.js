@@ -1,15 +1,12 @@
 import { sparkBudget } from '@/utils/spark-budget'
 import {
   GoogleAuthProvider,
-  browserLocalPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   sendPasswordResetEmail,
-  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  inMemoryPersistence,
 } from 'firebase/auth'
 import { auth, requireFirebase } from '@/boot/firebase'
 import { toAppError } from '@/utils/firebase-errors'
@@ -41,11 +38,9 @@ export function initializeAuth() {
 
   authInitializationPromise = (async () => {
     requireFirebase()
-    try {
-      await setPersistence(auth, browserLocalPersistence)
-    } catch {
-      await setPersistence(auth, inMemoryPersistence)
-    }
+    // Boot already selects an available persistence before Auth initializes.
+    // setPersistence(local) may resolve with no current user even when writes
+    // are denied, undoing boot's memory fallback and breaking the next login.
 
     return new Promise((resolve, reject) => {
       let initialStatePending = true
