@@ -68,3 +68,44 @@ caducidad temporal de enlaces y revocación reales; aislamiento remoto por UID.
 Safari/iOS sigue BLOCKED por falta de dispositivo confirmada por el usuario.
 Los ensayos reales previos y los límites de los emuladores constan en
 [el seguimiento anterior](ml-15-followup-2026-10-28.md).
+
+## Seguimiento del 30 de octubre: rutas reservadas de Auth
+
+Durante la aceptación humana del candidato local cbd1c98ca9e4, la ventana
+de vinculación mostró Biblioteca en firebaseapp.com antes de seleccionar
+ninguna identidad Google. La demo original conservó su obra. Al cerrar esa
+ventana apareció «Se ha cerrado la ventana de acceso antes de terminar».
+Se registra cancelación real observada; no demuestra conflicto de credenciales,
+vinculación ni creación de otra cuenta. Esos casos siguen BLOCKED.
+
+La regresión local con el PWA compilado anterior reprodujo en Chromium y Firefox
+que el service worker devolvía la aplicación para /__/auth/handler, sin llegar
+al endpoint reservado del servidor. Es un defecto sintético reproducido,
+compatible con el incidente humano; no se inspeccionó el worker de su perfil.
+
+La corrección excluye todo /__/ del fallback de navegación, conservando las
+exclusiones existentes y el fallback de las rutas ordinarias. Se aplica a
+GenerateSW y también a la plantilla alternativa InjectManifest. La prueba
+tests/pwa/auth-reserved-routes.test.js usa Chromium y Firefox, un servidor
+local con respuestas identificables y configuración demo; bloquea solicitudes
+externas y no autentica usuarios. Comprueba handler, iframe, action y el
+endpoint de inicialización, además de una navegación normal de la aplicación.
+
+Reproducción: compilar con las seis variables Firebase demo del CI, ejecutar
+npm run build:pwa y npm run test:pwa. Antes de corregir, ambos motores fallaron
+porque handler fue servido por el worker. El resultado posterior se documentará
+con los controles de esta rama. Esta corrección requiere revisión y no se ha
+desplegado: no cambia la PWA ya instalada ni la configuración remota. ML-15
+permanece abierta.
+
+Validación posterior: 14/14 pruebas PWA PASS (incluidas las dos nuevas),
+171/171 unitarias PASS; lint:check, docs:check y check:spark PASS.
+Versiones: Chromium 153.0.8010.12 y Firefox 155.0. El build PWA usa
+la revisión padre cbd1c98ca9e4 con cambios locales; no certifica un artefacto
+desplegado ni el padre limpio. La compilación terminó correctamente.
+
+La auditoría raíz del 30/10 detecta 7 vulnerabilidades (1 moderada y 6 altas)
+en la cadena de Vue I18n, re2js y Vite de VitePress. Es un FAIL independiente
+del enrutamiento; el resultado histórico de cero no se reutiliza. Al fallar
+la primera parte de audit:dependencies, la auditoría PWA debe ejecutarse
+por separado. No se aplicaron actualizaciones forzadas ni cambios remotos.

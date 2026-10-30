@@ -213,6 +213,8 @@ export default defineConfig((ctx) => {
     pwa: {
       workboxMode: 'GenerateSW', // 'GenerateSW' or 'InjectManifest'
       extendPWAGenerateSWOptions(cfg) {
+        // Firebase Hosting owns /__/ (Auth helpers and SDK initialization).
+        cfg.navigateFallbackDenylist = [...(cfg.navigateFallbackDenylist || []), /^\/__\//]
         // Wait for every existing client to close; never activate/reload over unfinished work.
         cfg.skipWaiting = false
         cfg.clientsClaim = false

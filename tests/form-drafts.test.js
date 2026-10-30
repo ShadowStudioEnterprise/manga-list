@@ -164,7 +164,15 @@ test('PWA registration reports new and already waiting updates, with passive Wor
   const options = { skipWaiting: true, clientsClaim: true }
   assert.equal(config.pwa.workboxMode, 'GenerateSW')
   config.pwa.extendPWAGenerateSWOptions(options)
-  assert.deepEqual(options, { skipWaiting: false, clientsClaim: false })
+  assert.deepEqual(options, {
+    skipWaiting: false,
+    clientsClaim: false,
+    navigateFallbackDenylist: [/^\/__\//],
+  })
+  const existing = /existing-route/
+  const inherited = { navigateFallbackDenylist: [existing] }
+  config.pwa.extendPWAGenerateSWOptions(inherited)
+  assert.equal(inherited.navigateFallbackDenylist[0], existing)
 })
 
 test('an account change during duplicate lookup never saves the previous account form to the next one', async () => {
