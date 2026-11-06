@@ -9,6 +9,7 @@
           dense
           icon="menu"
           aria-label="Abrir navegación"
+          :aria-expanded="drawerOpen"
           class="lt-md"
           @click="drawerOpen = !drawerOpen"
         />

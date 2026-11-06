@@ -95,6 +95,7 @@ secciones principales del portal.
 - [Reproducción del aviso de historial y regresión](quality/navigation-history-2026-10-18.md).
 - [Redimensionamiento con la página abierta](quality/live-resize-2026-10-18.md).
 - [Recuperación de contraseña con credenciales emuladas](quality/password-recovery-emulator.md).
+- [ML-17 · Auditoría de accesibilidad y matriz humana](quality/ml-17-accessibility.md).
 
 ## Versiones y recuperación
 

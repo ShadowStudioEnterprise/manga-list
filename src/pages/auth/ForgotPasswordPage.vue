@@ -40,49 +40,47 @@
           :loading="submitting"
         />
       </q-form>
+      <div role="status">
+        <p v-if="notice" class="text-positive q-mt-md q-mb-none">{{ notice }}</p>
+      </div>
+      <div role="alert">
+        <p v-if="errorMessage" class="text-negative q-mt-md q-mb-none">{{ errorMessage }}</p>
+      </div>
     </q-card-section>
   </q-card>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import { useRoute } from 'vue-router'
 import { authRoute } from '@/utils/auth-redirect'
 import { useAuthStore } from '@/stores/auth-store'
 import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
 
-const $q = useQuasar()
 const route = useRoute()
 const authStore = useAuthStore()
 const email = ref('')
 const submitting = ref(false)
+const notice = ref('')
+const errorMessage = ref('')
+const genericNotice = 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.'
 const emailRules = [
   (value) => Boolean(value) || 'El correo es obligatorio.',
   (value) => /^\S+@\S+\.\S+$/.test(value) || 'Introduce un correo válido.',
 ]
 
 async function submit() {
+  notice.value = ''
+  errorMessage.value = ''
   submitting.value = true
   try {
     await authStore.resetPassword(email.value)
-    $q.notify({
-      type: 'positive',
-      timeout: 6000,
-      message: 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.',
-    })
+    notice.value = genericNotice
   } catch (error) {
     if (error?.code === 'auth/user-not-found') {
-      $q.notify({
-        type: 'positive',
-        timeout: 6000,
-        message: 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.',
-      })
+      notice.value = genericNotice
     } else {
-      $q.notify({
-        type: 'negative',
-        message: getFirebaseErrorMessage(error, 'No se ha podido enviar el enlace.'),
-      })
+      errorMessage.value = getFirebaseErrorMessage(error, 'No se ha podido enviar el enlace.')
     }
   } finally {
     submitting.value = false

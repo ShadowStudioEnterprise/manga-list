@@ -382,9 +382,7 @@ test('ML-15: rejected login and controlled network failure allow a successful re
   await page.getByRole('button', { name: 'Cerrar sesión', exact: true }).click()
   await expect(page).toHaveURL(/#\/login/)
   await login(page, email, 'Incorrect-123!')
-  await expect(
-    page.locator('.q-notification__message').filter({ hasText: /contraseña/ }),
-  ).toBeVisible()
+  await expect(page.getByRole('alert')).toContainText(/contraseña/)
   expect(await currentUid(page)).toBeNull()
   const pattern = '**/accounts:signInWithPassword*'
   await context.route(pattern, (route) => route.abort('internetdisconnected'))

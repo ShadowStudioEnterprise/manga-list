@@ -120,6 +120,20 @@ test('320px main screens retain usable controls and pass automated accessibility
   await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await auditAccessibility(page, testInfo, 'login-320')
+  await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
+  await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
+  await page.getByRole('button', { name: 'Enviar enlace' }).click()
+  const recoveryEmail = page.getByLabel('Correo electrónico')
+  await expect(recoveryEmail).toBeFocused()
+  await expect(recoveryEmail).toHaveAttribute('aria-invalid', 'true')
+  await expect(recoveryEmail).toHaveAccessibleDescription('El correo es obligatorio.')
+  await expect(page.getByText('El correo es obligatorio.')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'recovery-invalid-320')
+  await page.goto('/#/register')
+  await expect(page.getByRole('heading', { name: 'Crea tu cuenta' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'register-320')
   await register(page)
   await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
   await expectNoHorizontalOverflow(page)
@@ -166,6 +180,24 @@ test('320px main screens retain usable controls and pass automated accessibility
       await viewportPage.close()
     }
   }
+})
+
+test('unknown app route exposes a main landmark and a keyboard return link', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 320, height: 740 })
+  await page.goto('/#/ruta-inexistente')
+  const main = page.getByRole('main')
+  await expect(main.getByRole('heading', { level: 1 })).toHaveText(
+    'Esta página no está en la biblioteca',
+  )
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'not-found-320')
+  const back = main.getByRole('link', { name: 'Volver a MangaList' })
+  await page.keyboard.press('Tab')
+  await expect(back).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
 })
 
 async function tabTo(page, target, key = 'Tab') {
@@ -281,10 +313,12 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(page.getByRole('dialog')).toHaveCount(0)
   await expect(chapter).toBeFocused()
   const navigation = page.getByRole('button', { name: 'Abrir navegación' })
+  await expect(navigation).toHaveAttribute('aria-expanded', 'false')
   // Move backwards to the earlier header control rather than relying on the
   // browser chrome wrapping Tab from the last link back into the document.
   await tabTo(page, navigation, 'Shift+Tab')
   await page.keyboard.press('Enter')
+  await expect(navigation).toHaveAttribute('aria-expanded', 'true')
   const nav = page.getByRole('navigation', { name: 'Navegación principal' })
   await expect(nav).toBeVisible()
   await tabTo(page, nav.getByRole('link', { name: 'Importar / Exportar', exact: true }))
@@ -292,6 +326,7 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(
     page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
   ).toBeVisible()
+  await expect(navigation).toHaveAttribute('aria-expanded', 'false')
 })
 
 test('live resizing preserves library controls and unsaved form fields across responsive breakpoints', async ({
@@ -504,15 +539,12 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await expect(page).toHaveURL(/#\/login/)
   await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
   await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
-  const notice = page.getByText(
-    'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.',
-    { exact: true },
-  )
+  const notice = page.getByRole('status')
+  const genericNotice = 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.'
   const missingEmail = `missing-${randomUUID()}@example.test`
   await page.getByLabel('Correo electrónico', { exact: true }).fill(missingEmail)
   await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
-  await expect(notice).toBeVisible()
-  await expect(notice).toHaveCount(0)
+  await expect(notice).toHaveText(genericNotice)
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
   await expect(notice).toBeVisible()
