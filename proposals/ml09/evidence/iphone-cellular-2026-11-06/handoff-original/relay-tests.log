@@ -1,0 +1,17 @@
+✔ unknown/unauthenticated requests never reach any upstream (87.4229ms)
+✔ entry is single use and cookie is HttpOnly, strict and Secure for public HTTPS (33.8057ms)
+✔ allowed app modules preserve content, strip lab cookie and inject transport only in HTML (60.2142ms)
+✔ filesystem, emulator admin, production database and owner bypass are blocked (150.3589ms)
+✔ host and cross-site requests rejected without forwarding (32.1919ms)
+✔ expiry closes existing sessions; no automatic renewal (22.4256ms)
+✔ demo SDK channels and sign-in forwarded only to fixed loopback upstreams (43.5496ms)
+✔ oversized requests fail before forwarding and invalid configuration fails closed (24.9056ms)
+✔ malformed cookies cannot crash relay or reach upstream; public policy blocks external app connections (48.1336ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 660.2227

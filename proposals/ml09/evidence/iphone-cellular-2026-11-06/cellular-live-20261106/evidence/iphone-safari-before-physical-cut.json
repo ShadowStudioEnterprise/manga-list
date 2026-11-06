@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-11-06T14:16:04.189Z",
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "userConfirmsVisible": true,
+  "cellularRadioConfirmation": "pending explicit user observation",
+  "sample": {
+    "receivedAt": "2026-11-06T14:16:03.042Z",
+    "version": 1,
+    "run": "e930a85d-1c03-4fc1-a4c5-22c166e066fd",
+    "phase": "phone",
+    "clientId": "535f4a7d-c79b-48f0-855b-c27f0baa563b",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Mobile/15E148 Safari/604.1",
+    "latest": {
+      "count": 500,
+      "unique": 500,
+      "chapter": "1",
+      "favorite": false,
+      "fromCache": false,
+      "loading": false,
+      "pending": false,
+      "pendingOperations": 0,
+      "error": null,
+      "search": "",
+      "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+      "online": true,
+      "visibility": "visible",
+      "clientAt": "2026-11-06T14:16:03.070Z",
+      "lastProbeSuccess": "2026-11-06T14:16:01.280Z",
+      "lastProbeFailure": null
+    },
+    "events": [
+      {
+        "kind": "state",
+        "at": "2026-11-06T14:16:03.071Z",
+        "count": 500,
+        "unique": 500,
+        "chapter": "1",
+        "favorite": false,
+        "fromCache": false,
+        "loading": false,
+        "pending": false,
+        "pendingOperations": 0,
+        "error": null,
+        "search": "",
+        "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores.",
+        "online": true,
+        "visibility": "visible",
+        "clientAt": "2026-11-06T14:16:03.070Z",
+        "lastProbeSuccess": "2026-11-06T14:16:01.280Z",
+        "lastProbeFailure": null
+      }
+    ]
+  },
+  "ml09Complete": false
+}

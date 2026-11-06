@@ -1,0 +1,353 @@
+{
+  "createdAt": "2026-11-06T14:35:19.003Z",
+  "candidate": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "ml09Complete": false,
+  "privateFilesExcluded": true,
+  "entries": [
+    {
+      "path": "INFORME-CELULAR-2026-11-06.md",
+      "bytes": 9065,
+      "sha256": "a1f3c2b9af6f2ab81331de122b2aab85408096b700ade05bfbc0b0810bd2de54"
+    },
+    {
+      "path": "ESTADO.md",
+      "bytes": 6580,
+      "sha256": "85aac868501c68f22ddee98da1d08a8b699fa6e03ffc35e4f756f49b55d5e8bd"
+    },
+    {
+      "path": "cellular-probe.mjs",
+      "bytes": 5206,
+      "sha256": "42063d71889af9b4b78667644902bfa541c8dcb663c9ac2611d4456954d7a1ee"
+    },
+    {
+      "path": "cellular-public.mjs",
+      "bytes": 9709,
+      "sha256": "5315e7d407545413a039426563d89e3ea8c3ccd574f1dadaefd1172f2633d9c0"
+    },
+    {
+      "path": "diagnose-framing.mjs",
+      "bytes": 1405,
+      "sha256": "80d952c6e0ca251b62737ccab9651bed3d14720d56d3bb791b69b776a2df2ba3"
+    },
+    {
+      "path": "make-phone-qr.mjs",
+      "bytes": 1907,
+      "sha256": "3a12aae03fb81edcd2272a2d9781aec1fda02797d7893ea3617a15749fb6bc97"
+    },
+    {
+      "path": "public-preflight.mjs",
+      "bytes": 3760,
+      "sha256": "08d7bc0d9f97c7a5377158d14f18d593ed7ad1cf99e6e02a29c036c82de0005c"
+    },
+    {
+      "path": "services-run.mjs",
+      "bytes": 8405,
+      "sha256": "76e085175d8181c551debe0f37cdaa6907a02d0e4fd7206d5ff05ffda949580c"
+    },
+    {
+      "path": "tunnel-guardian.mjs",
+      "bytes": 2003,
+      "sha256": "550823aba1b54f90538fd416e0a282c23c6b2c25f9ad8b2cbd92bca6a742de57"
+    },
+    {
+      "path": "tunnel-guardian.test.mjs",
+      "bytes": 1725,
+      "sha256": "955cbef787f0edfde6001817aa35dde2a80d686d4faaf3ab370c60abe08f149a"
+    },
+    {
+      "path": "verify-cellular-export.mjs",
+      "bytes": 2638,
+      "sha256": "ede236e889ae876f383cb055b17fcc44888334d4ab0d410cd8b162b9c7a40d2b"
+    },
+    {
+      "path": "relay/relay-before-20261106.mjs",
+      "bytes": 10913,
+      "sha256": "1b0d7c2651b8ba1890cd13a1302573f758ea1d907100cb8853a712803f9bd764"
+    },
+    {
+      "path": "relay/relay.mjs",
+      "bytes": 13372,
+      "sha256": "a0afc1d6f90ceb9a89813d8afaaed755580a43d33c74e32340897af7ff5f31a1"
+    },
+    {
+      "path": "relay/relay.test.mjs",
+      "bytes": 14654,
+      "sha256": "a8d2f13a7eed96735ff8c4ee198290df55b7feb5fc33651c7e75c89b9333bca9"
+    },
+    {
+      "path": "handoff-original/LEEME-MAC.md",
+      "bytes": 2976,
+      "sha256": "1eb7abd148b0397c6e7ed8b4e5d0827d60357c4b42fbeec3ecce8762f52e8107"
+    },
+    {
+      "path": "handoff-original/manifest-sha256.json",
+      "bytes": 574,
+      "sha256": "fd3c8a4e9f4be304f2a70d861e7370570e95f0cf424ae3fbfb8d5cfe1dc11b69"
+    },
+    {
+      "path": "handoff-original/relay-tests.log",
+      "bytes": 945,
+      "sha256": "07d2ecd44e4963409e68ac5ed9ea114f747342d5b06f202d7f8b7046391ec8e6"
+    },
+    {
+      "path": "handoff-original/relay.mjs",
+      "bytes": 7848,
+      "sha256": "6c31dcdba79d61a42d8fd3f80b0e134e8bbf25d16d8bbe1e072c2bfb4d10e5d4"
+    },
+    {
+      "path": "handoff-original/relay.test.mjs",
+      "bytes": 5769,
+      "sha256": "2ac1e33f5a25acf93994c8e1fa3f656e1d1f738bcfa873c36be12b5ffe97337e"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/application.log",
+      "bytes": 8228,
+      "sha256": "975e48fdd5c266070e580a05b35e5db638b056359d86bb5838b351086b883a23"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/browser-entry-tests.log",
+      "bytes": 1725,
+      "sha256": "b9a6dbabdb8d55d95afb5d905601208625baa6d72a532074260d13f1c1df982f"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/cellular-telemetry.jsonl",
+      "bytes": 398635,
+      "sha256": "3fc5d1de204859ef8d5d678e4c405704cb6f268425e583e36103a725c40dcc68"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/concurrent-change-during-physical-cut.json",
+      "bytes": 259,
+      "sha256": "f207584a3be59b3a3c6f2ea0581b0d9aa8d35976efbb12188d376e26cf52084d"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/device-declaration.json",
+      "bytes": 351,
+      "sha256": "caf4f4357794720263798b1da7dfc085415e687cfd318d0f304e0cc4d1003c24"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/emulators.log",
+      "bytes": 2110,
+      "sha256": "f65c50827fb81022f4c5cbfe722e656306247db47d58cb1b284d471c2064ed33"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/explicit-entry-tests.log",
+      "bytes": 1810,
+      "sha256": "61bfc226963bef09c7d7e814428a447b6455c581ebfea4e7a27d2dacb71c6101"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/export-server-snapshot.json",
+      "bytes": 541006,
+      "sha256": "a15c9499613a4584c7eddc2c8f25f19d6950e1a1516060f18ed26bb3728a70df"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/export-verification.json",
+      "bytes": 504,
+      "sha256": "4c1dcf235d9eca4dd7c78c4e88e481966d180c4603f6318a0ef692713558e2dc"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/finite-backchannel-tests.log",
+      "bytes": 1600,
+      "sha256": "0ad1bdfac04bdb70ec58d6abc745562b66972fe024b38c29ed00343e6ee8530d"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-explicit-command.log",
+      "bytes": 436,
+      "sha256": "f9b41e6869287b6f8517f995048f563e567e2e77d9ee8bea101182f9beb8cbce"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-explicit-initial-failed.log",
+      "bytes": 436,
+      "sha256": "f9b41e6869287b6f8517f995048f563e567e2e77d9ee8bea101182f9beb8cbce"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-explicit-preflight-failed.png",
+      "bytes": 48729,
+      "sha256": "3f810e19b228b884d8b4c3a8d031aff8d298ac0922f6a0ec86846363d48b5fe9"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-explicit-preflight.jsonl",
+      "bytes": 714,
+      "sha256": "2d54efebf7806f52fcc31501ddc8c63caaf156da2cf259856c284caeaa153ee2"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-finite-command.log",
+      "bytes": 67,
+      "sha256": "71398c450c062a6a61534eb1cb5d4d3c6d95fd7527e567c2e7476fb8d45f8a04"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-finite-preflight-500.png",
+      "bytes": 168385,
+      "sha256": "39aff23241d9e216b2dc4737666f2f056e9f0571b4d4f4e33da715772aeab823"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-finite-preflight-result.json",
+      "bytes": 939,
+      "sha256": "86bb0141cb321258d751117d969da75d6a4c91d8b12b30935d65c90bdc37e043"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-finite-preflight.jsonl",
+      "bytes": 1131,
+      "sha256": "941aadbcf1cccf5b0276568937f81d15719de40e142eb7c719bae434ee51da06"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-preflight-command.log",
+      "bytes": 853,
+      "sha256": "0d2c909cabad28fdb553805d1337d697dc37ad4b0fd869844dcbefdfd0488d0a"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-preflight-failed.png",
+      "bytes": 174430,
+      "sha256": "227545f6b527e923e5d16dcb1572c904fa5d3ff00d3feac70518bfeedbfc85f2"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-preflight-streaming-failed.log",
+      "bytes": 853,
+      "sha256": "0d2c909cabad28fdb553805d1337d697dc37ad4b0fd869844dcbefdfd0488d0a"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-preflight.jsonl",
+      "bytes": 828,
+      "sha256": "7f18116ced3ea7d2cbf329fb7cf3dc69b5bc360da8d8f094b67a474473c4d572"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-safari-form-command.log",
+      "bytes": 67,
+      "sha256": "71398c450c062a6a61534eb1cb5d4d3c6d95fd7527e567c2e7476fb8d45f8a04"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-safari-form-preflight-500.png",
+      "bytes": 168385,
+      "sha256": "39aff23241d9e216b2dc4737666f2f056e9f0571b4d4f4e33da715772aeab823"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-safari-form-preflight-result.json",
+      "bytes": 933,
+      "sha256": "b62c0bb71abdd19818d617aef546cf73ff0424bca264fea6487e79218ba28ae6"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/https-safari-form-preflight.jsonl",
+      "bytes": 1131,
+      "sha256": "688b5847221b758f71a71dd0b94d06b2969e38c73c9eb9f97744fc0142386c95"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/iphone-export-delivery-verification.json",
+      "bytes": 1243,
+      "sha256": "88b50795ea70a2db8100da13979ce0e3889f8f4142c302a5699735a43289a17d"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/iphone-safari-before-physical-cut.json",
+      "bytes": 1843,
+      "sha256": "7af1f22c817cfe885c74d1840f9444708f056c7e98a9bd0fe9696d6feeec1080"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/iphone-safari-export-500.json",
+      "bytes": 220672,
+      "sha256": "0003cf1772dda9212c964bc856f00c9844d6b26f9ea3c2ddd5166c2ccaf485b8"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/local-wrapper-command.log",
+      "bytes": 67,
+      "sha256": "71398c450c062a6a61534eb1cb5d4d3c6d95fd7527e567c2e7476fb8d45f8a04"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/local-wrapper-preflight-500.png",
+      "bytes": 168383,
+      "sha256": "f5a65896eb9d7825a3c32faecf6e0cc81b8a8a99fa6dd61c99525dabae9df472"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/local-wrapper-preflight-result.json",
+      "bytes": 870,
+      "sha256": "ea17f000950948d60e81ba0ebde5dc432c1475317dc5bae290e2f2798e57bdfd"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/local-wrapper-preflight.jsonl",
+      "bytes": 1131,
+      "sha256": "c3fbe1d4b541c95ebd17f18dfe8074e469426e497d18c577873fecdd87dc0745"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/operator-actions.jsonl",
+      "bytes": 1229,
+      "sha256": "f547c42bd14ec5c57e06bef046ac83b221c701ea770ad11ba544158d153b6bb7"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/physical-recovery-observed.json",
+      "bytes": 7229,
+      "sha256": "68293e18422e1346a035650b8f22556faf120761a3f5ed4c399c0755ea0ea6e7"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/public-lifecycle.jsonl",
+      "bytes": 2700,
+      "sha256": "d15f98bbfc59b8bad021e14a02e893ac3e39d1998601122bb50cd163cb1d533a"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/public-relay-requests.jsonl",
+      "bytes": 207228,
+      "sha256": "98ee0466dbe0b75e2e15e4637575dfc375302f6745d18927ac3704b091149f35"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/relay-and-guardian-tests.log",
+      "bytes": 1679,
+      "sha256": "ebed6b60e22c413540d8abedc7c3992a88c1bc52389cc15c696eefde2fb31b82"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/request-framing-diagnostic.json",
+      "bytes": 252,
+      "sha256": "ce01c0483fdecce72d5a964d7dfdaa9521ab48e2e829793b02009f72adf999c4"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/runtime-source-sha256.json",
+      "bytes": 2049,
+      "sha256": "979d706bfc722db84e7651f364a827ae0b5262ee7abe349798301385a1d95afd"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/safari-entry-origin-tests.log",
+      "bytes": 1920,
+      "sha256": "dee0f8fb81ac74edb92e718a34f687ec4b34e1c21da5f32af888322254d1238a"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/seed-snapshot.json",
+      "bytes": 541003,
+      "sha256": "f1ee5b0b923e8945371a3ac70b59684a05206aefe18459bf0d48b8a5a5441991"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/server-after-physical-recovery.json",
+      "bytes": 147,
+      "sha256": "c909c2f9fc2f3467c4d6cfd7de925bcf1104ee693a9280741732c10de015625d"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/server-during-physical-pending.json",
+      "bytes": 237,
+      "sha256": "1832998fb434cbe0e58b234e13bfca546c0c0e452aecc9b94cf8812774fcdc20"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/services-launch.log",
+      "bytes": 92,
+      "sha256": "b88ba0a9ff9d4aa35c303d762fa3c3efcfeef9624f6a3ee8affcfbb41b2fe22d"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/session-ended-before-export.json",
+      "bytes": 626,
+      "sha256": "249d40dc5ed3c6f1c84345ece8baf94645100c3932ef275f621b1628bb1f84c8"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/shutdown-verification.json",
+      "bytes": 251,
+      "sha256": "995c2d6b00d8b4878ffafa8e7d5620e123e4a4c3775e5d74d6f97b2d69e8ffdb"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/tool-versions.json",
+      "bytes": 311,
+      "sha256": "40a94628bd5bf804f94fdbed73df04bbf28143c72ab6d721d46a4e8d1eda4ac0"
+    },
+    {
+      "path": "cellular-live-20261106/evidence/user-observations.jsonl",
+      "bytes": 1287,
+      "sha256": "43fb9a00aeaf3c92d2848e93421de381bcb5d9d9d43869f4b043268fdbd7fde3"
+    },
+    {
+      "path": "cellular-live-20261106/tools/binary-verification.json",
+      "bytes": 898,
+      "sha256": "07099e1d24bfac38f252504029b2bb23a11f2c273e44b3c5f24eb41c0befe06e"
+    }
+  ]
+}

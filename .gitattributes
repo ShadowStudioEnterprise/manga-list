@@ -8,3 +8,7 @@
 
 # Preserve sealed physical evidence byte for byte, including original line endings.
 proposals/ml09/evidence/redmi-physical-2026-10-25/** -text
+
+# Preserve sealed cellular observations and original CRLF handoff sources.
+proposals/ml09/evidence/iphone-cellular-2026-11-06/** -text
+proposals/ml09/evidence/iphone-cellular-2026-11-06/** -whitespace

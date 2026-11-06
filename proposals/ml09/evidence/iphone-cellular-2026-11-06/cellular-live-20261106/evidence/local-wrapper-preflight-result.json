@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "at": "2026-11-06T13:50:20.218Z",
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "origin": "http://127.0.0.1:50294",
+  "deadline": 1793975703289,
+  "scope": "Local instrumented proxy diagnostic only",
+  "state": {
+    "favorite": false,
+    "lastProbeSuccess": "2026-11-06T13:50:17.698Z",
+    "count": 500,
+    "chapter": "1",
+    "pendingOperations": 0,
+    "fromCache": false,
+    "error": null,
+    "clientAt": "2026-11-06T13:50:19.844Z",
+    "pending": false,
+    "unique": 500,
+    "visibility": "visible",
+    "search": "",
+    "lastProbeFailure": null,
+    "online": true,
+    "loading": false,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+  },
+  "identity": {
+    "project": "demo-mangalist",
+    "expectedAccount": true
+  },
+  "ml09Complete": false
+}

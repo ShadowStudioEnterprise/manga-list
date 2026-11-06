@@ -1,0 +1,3 @@
+{"at":"2026-11-06T14:09:39.942Z","kind":"anonymous-denied","status":403}
+{"at":"2026-11-06T14:09:41.204Z","kind":"navigation-complete","capabilities":{"safari:platformVersion":"15.7.9","safari:automaticInspection":false,"webkit:WebRTC":{"DisableICECandidateFiltering":false,"DisableInsecureMediaCapture":false},"browserVersion":"18.6","strictFileInteractability":false,"browserName":"Safari","safari:useSimulator":false,"safari:automaticProfiling":false,"safari:platformBuildVersion":"24G830","acceptInsecureCerts":false,"setWindowRect":true,"platformName":"macOS","safari:diagnose":false}}
+{"at":"2026-11-06T14:10:51.884Z","kind":"failed","message":"Expected values to be strictly equal:\n\nundefined !== 500\n"}

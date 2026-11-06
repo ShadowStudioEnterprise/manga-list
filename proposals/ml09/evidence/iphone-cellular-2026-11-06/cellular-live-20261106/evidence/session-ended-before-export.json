@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-06T14:27:05.999Z",
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "userReports": "MangaList login form shown during export step",
+  "gatewayStillActive": true,
+  "lastReceivedTelemetry": "2026-11-06T14:27:04.844Z",
+  "lastClientStateAt": "2026-11-06T14:23:37.983Z",
+  "measurementLimitation": "Probe can keep sending its last state after auth.currentUser becomes null; these stale states do not prove continued authentication.",
+  "cause": "Not determined; do not attribute to user action or candidate defect without further evidence",
+  "exportGeneratedObserved": false,
+  "ml09Complete": false
+}

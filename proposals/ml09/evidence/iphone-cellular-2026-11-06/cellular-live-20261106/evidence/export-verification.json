@@ -1,0 +1,13 @@
+{
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "checkedAt": "2026-11-06T14:30:36.110Z",
+  "sourceFile": "/Users/francisconavarrete/Downloads/mangalist-server-2026-11-06.json",
+  "sha256": "0003cf1772dda9212c964bc856f00c9844d6b26f9ea3c2ddd5166c2ccaf485b8",
+  "count": 500,
+  "unique": 500,
+  "allFieldsMatch": true,
+  "partialRejected": true,
+  "alteredRejected": true,
+  "scope": "Artifact comparison; physical attribution requires session and native-save evidence",
+  "ml09Complete": false
+}

@@ -1,0 +1,15 @@
+{
+  "provider": "Cloudflare",
+  "version": "2026.10.3",
+  "release": "https://github.com/cloudflare/cloudflared/releases/tag/2026.10.3",
+  "assetApi": "https://api.github.com/repos/cloudflare/cloudflared/releases/assets/662572905",
+  "assetBytes": 21823395,
+  "assetDigest": "sha256:81b7b85f2376815c4f59b1aa323887b62e16ce8b67555c2e1577dc23f2a82000",
+  "downloadDigestMatchesAssetApi": true,
+  "releaseBodyDigest": "947e2942d6a59922d80190d23b12f3ade8da16e23e3bd937182a48993b7c00db",
+  "releaseBodyDigestMatches": false,
+  "unauthenticatedApiAttempt": "HTTP 403; connected GitHub API used successfully afterwards",
+  "partialPkgAttempt": "Failed writing due to space; partial removed without execution",
+  "npmDownloadCacheCleanup": "308 MiB regenerable download cache removed; installed dependencies retained",
+  "binaryVersionOutput": "cloudflared version 2026.10.3 (built 2026-10-21-13:12 UTC)"
+}

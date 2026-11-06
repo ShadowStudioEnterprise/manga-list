@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-06T14:31:50.299Z",
+  "controllerClosed": true,
+  "guardianClosed": true,
+  "guardianReason": "operator-stop",
+  "tunnelProcessAlive": false,
+  "deadline": 1793975767064,
+  "publicStatus": 530,
+  "publicAppAvailable": false
+}
