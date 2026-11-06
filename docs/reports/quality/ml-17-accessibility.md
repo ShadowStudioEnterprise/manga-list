@@ -17,6 +17,11 @@ Al recuperar la 404, Axe midió un contraste de 4,27:1 en el texto de ayuda sobr
 En la cabecera oscura de acceso, el anillo índigo tenía 2,24:1 frente al fondo base.
 El foco de esos enlaces usa blanco para mantener contraste con el fondo (1.4.11).
 
+La revisión humana en Edge aprobó los tres recorridos de zoom y detectó que «Cerrar
+sesión» se superponía a «Ajustes» en un menú lateral de poca altura. La lista conserva
+su altura de contenido y el pie se desplaza con ella. La regresión verifica a
+960 × 474 CSS px que el botón queda debajo de los enlaces y funciona con teclado.
+
 `npm run test:e2e` incluye Chromium y Firefox. Los casos de biblioteca comprueban orden
 de foco, salto al contenido, Escape y retorno al control del capítulo, alta, filtros,
 importación/exportación y vistas a 320, 768 y 1280 px. Axe amplía el recorrido a 404,

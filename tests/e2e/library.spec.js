@@ -335,6 +335,28 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(navigation).toHaveAttribute('aria-expanded', 'false')
 })
 
+test('short drawer scrolls to the logout button without covering navigation links', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 960, height: 474 })
+  await register(page)
+  await page.getByRole('button', { name: 'Abrir navegación' }).press('Enter')
+  const nav = page.getByRole('navigation', { name: 'Navegación principal' })
+  const lastLink = nav.getByRole('link', { name: 'Licencias de software' })
+  const logout = nav.getByRole('button', { name: 'Cerrar sesión' })
+  await lastLink.press('Tab')
+  await expect(logout).toBeFocused()
+  await expect
+    .poll(async () => {
+      const [link, button] = await Promise.all([lastLink.boundingBox(), logout.boundingBox()])
+      return link !== null && button !== null && link.y + link.height <= button.y
+    })
+    .toBe(true)
+  await expect(logout).toBeInViewport({ ratio: 1 })
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
+})
+
 test('live resizing preserves library controls and unsaved form fields across responsive breakpoints', async ({
   page,
 }, testInfo) => {
