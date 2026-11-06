@@ -14,6 +14,8 @@ Las pruebas usan emuladores y datos sintéticos. La referencia es
 
 Al recuperar la 404, Axe midió un contraste de 4,27:1 en el texto de ayuda sobre
 `#f6f6fb`. Se usa gris 8 para superar el mínimo de 4,5:1 del criterio 1.4.3.
+En la cabecera oscura de acceso, el anillo índigo tenía 2,24:1 frente al fondo base.
+El foco de esos enlaces usa blanco para mantener contraste con el fondo (1.4.11).
 
 `npm run test:e2e` incluye Chromium y Firefox. Los casos de biblioteca comprueban orden
 de foco, salto al contenido, Escape y retorno al control del capítulo, alta, filtros,

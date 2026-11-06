@@ -131,6 +131,10 @@ body :focus-visible {
     radial-gradient(circle at 92% 70%, rgba(91, 80, 224, 0.5), transparent 34%), #17162a;
 }
 
+.auth-hero a:focus-visible {
+  outline-color: #fff !important;
+}
+
 .auth-hero__copy {
   max-width: 540px;
 }
