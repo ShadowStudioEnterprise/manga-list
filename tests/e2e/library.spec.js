@@ -539,7 +539,7 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await expect(page).toHaveURL(/#\/login/)
   await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
   await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
-  const notice = page.getByRole('status')
+  const notice = page.getByRole('main').getByRole('status')
   const genericNotice = 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.'
   const missingEmail = `missing-${randomUUID()}@example.test`
   await page.getByLabel('Correo electrónico', { exact: true }).fill(missingEmail)
@@ -590,7 +590,7 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(page.getByRole('alert')).toContainText(/contraseña.*no.*correct/)
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(/contraseña.*no.*correct/)
   await auditAccessibility(page, testInfo, 'login-rejected-password')
   await expect(page).toHaveURL(/#\/login/)
   await page.getByLabel('Contraseña', { exact: true }).fill(newPassword)
@@ -851,7 +851,7 @@ test('account deletion rejects a wrong password without data loss and then remov
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(page.getByRole('alert')).toContainText(
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(
     /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
   )
 })
