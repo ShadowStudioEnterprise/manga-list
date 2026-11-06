@@ -1,0 +1,6 @@
+{"at":"2026-11-06T13:54:32.756Z","kind":"controlled-controller-restart","retainedDeadline":1793975767064,"reason":"test finite backchannel transport; guardian closes previous tunnel; demo services retained"}
+{"at":"2026-11-06T14:02:43.970Z","kind":"renew-entry-for-safari","observed":"Phone Chrome had 500 confirmed; used entry subsequently denied; no Safari/SIM pass claimed","retainedDeadline":1793975767064}
+{"at":"2026-11-06T14:03:37.761Z","kind":"fresh-entry-header-check","anonymousStatus":403,"anonymousContentType":"text/plain; charset=utf-8","entryStatus":200,"appContentType":"text/html","deadline":1793975767064}
+{"at":"2026-11-06T14:09:00.702Z","kind":"explicit-entry-fix","reason":"GET consumed access without authenticated app load; new GET landing consumes only on explicit POST","retainedDeadline":1793975767064}
+{"at":"2026-11-06T14:11:48.293Z","kind":"safari-entry-origin-fix","reason":"Explicit Safari form was denied before redemption; retain same-origin Origin check and use same-origin referrer policy on landing only","retainedDeadline":1793975767064}
+{"at":"2026-11-06T14:13:16.745Z","kind":"phone-entry-preview-verified","getVisits":2,"grantsCookie":false,"consumesEntry":false,"deadline":1793975767064}

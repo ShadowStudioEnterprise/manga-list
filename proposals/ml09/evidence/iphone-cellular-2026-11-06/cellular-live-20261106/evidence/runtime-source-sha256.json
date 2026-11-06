@@ -1,0 +1,67 @@
+{
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "cleanTrackedSource": true,
+  "node": "v24.10.0",
+  "entries": [
+    {
+      "path": "src/boot/firebase.js",
+      "bytes": 3437,
+      "sha256": "1fbc332abbfac0b5bc32f4ca54a19144d265a0fa8e9c326a605b607d5da42485"
+    },
+    {
+      "path": "src/stores/manga-store.js",
+      "bytes": 11531,
+      "sha256": "837e420445804eee882d1e1da5364b23ca53fe4dd53eaf5472fd6896b1aac856"
+    },
+    {
+      "path": "src/services/library-recovery.js",
+      "bytes": 1661,
+      "sha256": "0b6c884a69bc78fea75056f4868d17f20eebdc5193c9a7b80d64dc34d87bbf88"
+    },
+    {
+      "path": "src/services/library-cursors.js",
+      "bytes": 6772,
+      "sha256": "471ff745baf4c935cb5e48846c2923c3b67e8104ae883816d2feee7b22f76f0e"
+    },
+    {
+      "path": "src/services/shared-library.js",
+      "bytes": 4834,
+      "sha256": "80b4cb15bd021ac6370f181b6562cce2375db68804bb5fa16734cb6bb797bfd3"
+    },
+    {
+      "path": "src/services/manga-service.js",
+      "bytes": 15203,
+      "sha256": "4715d02a7f6c7b83c2ba4e103059a5707a9c77a197c6ef5473d77a2d3de44ff7"
+    },
+    {
+      "path": "src/services/export-service.js",
+      "bytes": 6494,
+      "sha256": "07e1c4f7537a6d36c195fdc518f5526c7ec65352bfdb90950ce81839c97a1105"
+    },
+    {
+      "path": "src/utils/spark-budget.js",
+      "bytes": 4148,
+      "sha256": "560820957926cdce4a644c8eb0595582c50fbd3cca8094225a1a5da06e65d010"
+    },
+    {
+      "path": "src/utils/library-search.js",
+      "bytes": 1485,
+      "sha256": "42370c7a249319a02c2812e74b87732a780b02299cce80c8636d35cba964169f"
+    },
+    {
+      "path": "quasar.config.js",
+      "bytes": 9585,
+      "sha256": "a63ddbfbc154f2509a3f26b781ceb20ce014d9229c0ffb94bfc1628a35d72feb"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 339933,
+      "sha256": "7cbfbeee02d6c71122cf18e760edc5a3c850a47d4ecab16f92783cd4ac81d518"
+    },
+    {
+      "path": "firestore.rules",
+      "bytes": 6211,
+      "sha256": "cf45a862f3e4f11610284f390009f4caf6d838bf7bfd256e37a7b92e86a102dc"
+    }
+  ]
+}

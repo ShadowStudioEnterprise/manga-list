@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-11-06T14:31:50.296Z",
+  "model": "iPhone 11",
+  "modelSource": "Initial user declaration; no different model reported",
+  "iOS": "27.0.1",
+  "iOSSource": "User reply after export delivery",
+  "initialDeclaredIOS": "26.3.1",
+  "testedVersionAttribution": "27.0.1; prior Safari evidence keeps its original version attribution"
+}

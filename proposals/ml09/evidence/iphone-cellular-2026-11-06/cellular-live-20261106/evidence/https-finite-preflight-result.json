@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "at": "2026-11-06T13:55:36.032Z",
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "origin": "https://array-authorities-shield-knowledgestorm.trycloudflare.com",
+  "deadline": 1793975767064,
+  "scope": "Native Mac Safari through real public HTTPS; not physical cellular",
+  "state": {
+    "favorite": false,
+    "lastProbeSuccess": "2026-11-06T13:55:34.018Z",
+    "count": 500,
+    "chapter": "1",
+    "pendingOperations": 0,
+    "fromCache": false,
+    "error": null,
+    "clientAt": "2026-11-06T13:55:35.880Z",
+    "pending": false,
+    "unique": 500,
+    "visibility": "visible",
+    "search": "",
+    "lastProbeFailure": null,
+    "online": true,
+    "loading": false,
+    "status": "Última instantánea recibida del servidor sin cambios locales pendientes. Puede haber cambios posteriores."
+  },
+  "identity": {
+    "project": "demo-mangalist",
+    "expectedAccount": true
+  },
+  "ml09Complete": false
+}

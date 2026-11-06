@@ -1,0 +1,9 @@
+{
+  "node": "v24.10.0",
+  "firebaseSDK": "12.18.0",
+  "firebaseCLI": "15.34.1",
+  "firestoreEmulator": "1.22.0",
+  "cloudflared": "2026.10.3",
+  "candidate": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "dependencyProvisioning": "Reused local tree with semantically identical package lock, not fresh npm ci"
+}

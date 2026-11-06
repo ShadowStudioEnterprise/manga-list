@@ -1,0 +1,7 @@
+{"at":"2026-11-06T14:15:29.491Z","observation":"User confirms works visible in phone after Safari entry","text":"se ven","wifiOffAndSIM":"instructed; awaiting explicit confirmation"}
+{"at":"2026-11-06T14:19:46.817Z","observation":"Physical phone cut step reported pending and one-minute sync error","text":"hay cambios pendientes de confirmacion y TAMBIEN NO SE HA podido confirmar toda la biblioteca en un minuto","radioPathConfirmation":"not explicitly supplied yet"}
+{"at":"2026-11-06T14:21:15.144Z","text":"confirmo","confirms":["chapter 2","favorite active","server confirmation without pending","Wi-Fi off during test"],"context":"Reply to recovery instructions and Wi-Fi confirmation request"}
+{"at":"2026-11-06T14:25:44.276Z","text":"se ha cerrado la sesion","context":"During native iOS export step; cause pending investigation"}
+{"at":"2026-11-06T14:27:05.999Z","text":"El formulario de iniciar sesión de MangaList","context":"Clarifies session closure during export step"}
+{"at":"2026-11-06T14:30:36.321Z","observation":"User supplied requested native-export JSON","file":"mangalist-server-2026-11-06.json","sameBytesAsCapturedSafariIPhoneExport":true}
+{"at":"2026-11-06T14:31:50.298Z","text":"27.0.1","context":"User confirms current iOS version for this physical session"}

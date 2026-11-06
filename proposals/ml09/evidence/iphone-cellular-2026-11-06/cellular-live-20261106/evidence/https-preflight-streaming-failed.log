@@ -1,0 +1,10 @@
+file:///Users/francisconavarrete/Documents/ChatGPT/MangaList/ML09-Cellular-2026-11-06/public-preflight.mjs:12
+ const result=await response.json();if(result.value?.error)throw Error(result.value.error+': '+result.value.message);return result.value
+                                                                 ^
+
+Error: No se ha podido confirmar toda la biblioteca en un minuto. La sincronización se ha detenido. Conserva tus cambios, comprueba la conexión y reintenta manualmente.: undefined
+    at request (file:///Users/francisconavarrete/Documents/ChatGPT/MangaList/ML09-Cellular-2026-11-06/public-preflight.mjs:12:66)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///Users/francisconavarrete/Documents/ChatGPT/MangaList/ML09-Cellular-2026-11-06/public-preflight.mjs:30:9
+
+Node.js v24.10.0

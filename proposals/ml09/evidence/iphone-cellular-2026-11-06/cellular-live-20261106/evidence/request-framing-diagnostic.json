@@ -1,0 +1,16 @@
+[
+  {
+    "kind": "content-length",
+    "status": 200,
+    "headersAtMs": 24,
+    "firstChunkBytes": 55,
+    "elapsedMs": 25
+  },
+  {
+    "kind": "chunked",
+    "status": 200,
+    "headersAtMs": 22,
+    "firstChunkBytes": 55,
+    "elapsedMs": 23
+  }
+]

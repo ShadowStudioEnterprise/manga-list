@@ -19,6 +19,8 @@
   },
   "license": "Apache-2.0",
   "overrides": {
-    "deepmerge": "$deepmerge"
+    "deepmerge": "$deepmerge",
+    "minimatch@>=7 <11.0.1": "11.0.5",
+    "glob@>=9 <14.0.2": "14.0.2"
   }
 }

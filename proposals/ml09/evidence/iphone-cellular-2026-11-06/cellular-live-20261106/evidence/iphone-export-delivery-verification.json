@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-11-06T14:30:36.318Z",
+  "head": "28d876d394dc3e5bf458303abd181f10ecb33b3b",
+  "sha256": "0003cf1772dda9212c964bc856f00c9844d6b26f9ea3c2ddd5166c2ccaf485b8",
+  "bytes": 220672,
+  "count": 500,
+  "unique": 500,
+  "allFieldsMatchEmulator": true,
+  "chapter": "2",
+  "favorite": true,
+  "sameBytesAsCapturedSafariIPhoneExport": true,
+  "deliveryEvidence": "User supplied requested JSON after being instructed to save in Files; no independent inspection of iOS Files UI or transfer mechanism",
+  "captured": {
+    "receivedAt": "2026-11-06T14:28:03.381Z",
+    "clientId": "cf8a432c-1d07-4940-813c-21d361567ea6",
+    "userAgent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/27.0.1 Mobile/15E148 Safari/604.1",
+    "event": {
+      "kind": "export-generated",
+      "at": "2026-11-06T14:27:58.619Z",
+      "bytes": 220672,
+      "sha256": "0003cf1772dda9212c964bc856f00c9844d6b26f9ea3c2ddd5166c2ccaf485b8",
+      "count": 500,
+      "unique": 500,
+      "verification": {
+        "source": "server",
+        "observedAtClient": "2026-11-06T14:27:58.584Z",
+        "hasPendingWrites": false
+      },
+      "nativeFileSaved": false
+    }
+  },
+  "ml09Complete": false
+}

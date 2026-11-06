@@ -1,0 +1,27 @@
+✔ unknown/unauthenticated requests never reach any upstream (60.039586ms)
+✔ entry is single use and cookie is HttpOnly, strict and Secure for public HTTPS (24.995835ms)
+✔ allowed app modules preserve content, strip lab cookie and inject transport only in HTML (32.667898ms)
+✔ filesystem, emulator admin, production database and owner bypass are blocked (18.802697ms)
+✔ host and cross-site requests rejected without forwarding (9.61888ms)
+✔ expired timestamp rejects new requests; no automatic renewal (6.454299ms)
+✔ demo SDK channels and sign-in forwarded only to fixed loopback upstreams (11.403815ms)
+✔ oversized requests fail before forwarding and invalid configuration fails closed (9.952589ms)
+✔ malformed cookies cannot crash relay or reach upstream; public policy blocks external app connections (9.336064ms)
+✔ absolute expiry closes an active stream, its upstream and the listener (510.732254ms)
+✔ Vite Vue and Sass modules stay inside the explicit source prefixes (18.988096ms)
+✔ Request body rewrite uses ArrayBuffer and preserves an explicit init override (10.097601ms)
+✔ dependency aliases rewrite a pinned root and never enable arbitrary filesystem reads (511.309339ms)
+✔ only authenticated pinned font bytes are served; symlink escapes stay blocked (17.944974ms)
+✔ HTTPS browser Origin remains authoritative when a tunnel forwards loopback Host (7.874266ms)
+✔ optional finite backchannel changes only Listen GET streaming flag (9.394763ms)
+✔ used entry stays closed to a different browser but works with its existing cookie; denials render inline (9.284208ms)
+✔ link previews never consume an entry; explicit POST is required (11.207782ms)
+✔ entry form allows same-origin referrer for Safari POST while rejecting null or foreign Origins (7.969363ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1572.755521
