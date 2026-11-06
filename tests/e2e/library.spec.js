@@ -77,7 +77,7 @@ async function auditAccessibility(page, testInfo, name) {
   // Audit a stable screen, after transient feedback finishes covering controls.
   await expect(page.locator('.q-notification')).toHaveCount(0)
   const result = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice'])
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa', 'best-practice'])
     .analyze()
   const path = testInfo.outputPath(`accessibility-${name}.json`)
   await writeFile(path, JSON.stringify(result, null, 2))
