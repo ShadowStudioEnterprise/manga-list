@@ -195,9 +195,9 @@ test('ML-15: authenticated password change rejects wrong confirmation, preserves
   const viewport = page.viewportSize()
   await page.setViewportSize({ width: 375, height: 812 })
   await expect(page.getByRole('heading', { name: 'Acceso y seguridad', exact: true })).toBeVisible()
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(
-    true,
-  )
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth))
+    .toBe(true)
   await page.screenshot({ path: test.info().outputPath('account-security-mobile.png') })
   await page.setViewportSize(viewport)
   await page.getByRole('button', { name: 'Cambiar contraseña ahora', exact: true }).click()
