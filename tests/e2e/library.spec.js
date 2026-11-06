@@ -547,7 +547,7 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await expect(notice).toHaveText(genericNotice)
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
-  await expect(notice).toBeVisible()
+  await expect(notice).toHaveText(genericNotice)
 
   // The test-only admin endpoint and action API are hardcoded to the demo emulator.
   // Do not follow redirects or derive these URLs/keys from a production environment.
@@ -590,11 +590,8 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(
-    page
-      .locator('.q-notification__message')
-      .filter({ hasText: /contraseña.*no.*correct|contraseña no es correcta/ }),
-  ).toBeVisible()
+  await expect(page.getByRole('alert')).toContainText(/contraseña.*no.*correct/)
+  await auditAccessibility(page, testInfo, 'login-rejected-password')
   await expect(page).toHaveURL(/#\/login/)
   await page.getByLabel('Contraseña', { exact: true }).fill(newPassword)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
@@ -854,9 +851,7 @@ test('account deletion rejects a wrong password without data loss and then remov
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(
-    page.locator('.q-notification').filter({
-      hasText: /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
-    }),
-  ).toBeVisible()
+  await expect(page.getByRole('alert')).toContainText(
+    /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
+  )
 })

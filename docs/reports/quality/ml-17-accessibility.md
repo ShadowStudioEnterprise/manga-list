@@ -12,6 +12,9 @@ Las pruebas usan emuladores y datos sintéticos. La referencia es
 | El fallo de acceso y el resultado de recuperación dependían de avisos temporales | Rechazar credenciales, cortar el transporte o solicitar un enlace. El acceso expone el error junto a sus controles en un alert persistente. La recuperación expone su aviso genérico en un status y los fallos en un alert. Las regiones existen antes de la actualización. | 3.3.1, 4.1.3           |
 | El botón del menú móvil carecía de estado programático                           | Abrir navegación con teclado a 320 px, seguir un enlace y comprobar el estado expandido antes, durante y después.                                                                                                                                                           | 4.1.2                  |
 
+Al recuperar la 404, Axe midió un contraste de 4,27:1 en el texto de ayuda sobre
+`#f6f6fb`. Se usa gris 8 para superar el mínimo de 4,5:1 del criterio 1.4.3.
+
 `npm run test:e2e` incluye Chromium y Firefox. Los casos de biblioteca comprueban orden
 de foco, salto al contenido, Escape y retorno al control del capítulo, alta, filtros,
 importación/exportación y vistas a 320, 768 y 1280 px. Axe amplía el recorrido a 404,
