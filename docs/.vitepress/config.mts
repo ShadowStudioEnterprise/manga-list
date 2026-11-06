@@ -105,7 +105,10 @@ export default defineConfig({
         },
         {
           text: 'Operaciones',
-          items: [{ text: 'Despliegues', link: '/operations/deployment' }],
+          items: [
+            { text: 'Despliegues', link: '/operations/deployment' },
+            { text: 'Incidencias en Spark', link: '/operations/incidents' },
+          ],
         },
         {
           text: 'Proyecto',

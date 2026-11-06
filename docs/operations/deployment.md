@@ -46,6 +46,9 @@ scripts específicos. CI compila y valida la documentación, pero no publica.
 
 ## Verificar y recuperar
 
+Para clasificar un fallo antes de seleccionar una release, consulta
+[incidencias operativas en Spark](incidents.md).
+
 Después de publicar, abre la portada, una ruta interna directamente y una ruta
 inexistente; comprueba navegación, búsqueda y respuesta 404. Verifica también que
 la aplicación sigue disponible. Registra fecha y revisión de la publicación.
