@@ -9,6 +9,7 @@
           dense
           icon="menu"
           aria-label="Abrir navegación"
+          :aria-expanded="drawerOpen"
           class="lt-md"
           @click="drawerOpen = !drawerOpen"
         />
@@ -74,7 +75,7 @@
 
     <q-drawer v-model="drawerOpen" show-if-above :width="264" bordered class="app-drawer">
       <nav class="drawer-content column no-wrap" aria-label="Navegación principal">
-        <q-list padding role="presentation" class="col">
+        <q-list padding role="presentation" class="col-grow">
           <q-item-label header class="drawer-label">Mi biblioteca</q-item-label>
 
           <q-item clickable :active="isBaseLibrary" active-class="nav-active" @click="showAll">

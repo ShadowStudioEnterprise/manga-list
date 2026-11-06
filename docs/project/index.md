@@ -5,4 +5,8 @@ title: Documentación del proyecto
 description: Guía, arquitectura, contratos y evidencias del proyecto MangaList.
 ---
 
+<script setup>
+import HomePortal from '../.vitepress/theme/HomePortal.vue'
+</script>
+
 <HomePortal />

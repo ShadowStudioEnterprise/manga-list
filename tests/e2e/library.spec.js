@@ -77,7 +77,7 @@ async function auditAccessibility(page, testInfo, name) {
   // Audit a stable screen, after transient feedback finishes covering controls.
   await expect(page.locator('.q-notification')).toHaveCount(0)
   const result = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa', 'best-practice'])
+    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22a', 'wcag22aa', 'best-practice'])
     .analyze()
   const path = testInfo.outputPath(`accessibility-${name}.json`)
   await writeFile(path, JSON.stringify(result, null, 2))
@@ -120,6 +120,20 @@ test('320px main screens retain usable controls and pass automated accessibility
   await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
   await expectNoHorizontalOverflow(page)
   await auditAccessibility(page, testInfo, 'login-320')
+  await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
+  await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
+  await page.getByRole('button', { name: 'Enviar enlace' }).click()
+  const recoveryEmail = page.getByLabel('Correo electrónico')
+  await expect(recoveryEmail).toBeFocused()
+  await expect(recoveryEmail).toHaveAttribute('aria-invalid', 'true')
+  await expect(recoveryEmail).toHaveAccessibleDescription('El correo es obligatorio.')
+  await expect(page.getByText('El correo es obligatorio.')).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'recovery-invalid-320')
+  await page.goto('/#/register')
+  await expect(page.getByRole('heading', { name: 'Crea tu cuenta' })).toBeVisible()
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'register-320')
   await register(page)
   await expect(page.getByRole('heading', { name: 'Tu biblioteca está vacía' })).toBeVisible()
   await expectNoHorizontalOverflow(page)
@@ -166,6 +180,24 @@ test('320px main screens retain usable controls and pass automated accessibility
       await viewportPage.close()
     }
   }
+})
+
+test('unknown app route exposes a main landmark and a keyboard return link', async ({
+  page,
+}, testInfo) => {
+  await page.setViewportSize({ width: 320, height: 740 })
+  await page.goto('/#/ruta-inexistente')
+  const main = page.getByRole('main')
+  await expect(main.getByRole('heading', { level: 1 })).toHaveText(
+    'Esta página no está en la biblioteca',
+  )
+  await expectNoHorizontalOverflow(page)
+  await auditAccessibility(page, testInfo, 'not-found-320')
+  const back = main.getByRole('link', { name: 'Volver a MangaList' })
+  await page.keyboard.press('Tab')
+  await expect(back).toBeFocused()
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
 })
 
 async function tabTo(page, target, key = 'Tab') {
@@ -243,6 +275,12 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await page.keyboard.press('Tab')
   await expect(skip).toBeFocused()
   expect((await skip.boundingBox()).y).toBeGreaterThanOrEqual(0)
+  await page.keyboard.press('Tab')
+  const brand = page.getByRole('link', { name: 'Ir al inicio de MangaList' })
+  await expect(brand).toBeFocused()
+  await expect(brand).toHaveCSS('outline-color', 'rgb(255, 255, 255)')
+  await page.keyboard.press('Shift+Tab')
+  await expect(skip).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page.locator('#main-content')).toBeFocused()
   await page.keyboard.press('Tab')
@@ -281,10 +319,12 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(page.getByRole('dialog')).toHaveCount(0)
   await expect(chapter).toBeFocused()
   const navigation = page.getByRole('button', { name: 'Abrir navegación' })
+  await expect(navigation).toHaveAttribute('aria-expanded', 'false')
   // Move backwards to the earlier header control rather than relying on the
   // browser chrome wrapping Tab from the last link back into the document.
   await tabTo(page, navigation, 'Shift+Tab')
   await page.keyboard.press('Enter')
+  await expect(navigation).toHaveAttribute('aria-expanded', 'true')
   const nav = page.getByRole('navigation', { name: 'Navegación principal' })
   await expect(nav).toBeVisible()
   await tabTo(page, nav.getByRole('link', { name: 'Importar / Exportar', exact: true }))
@@ -292,6 +332,29 @@ test('keyboard reaches forms, mobile navigation and chapter dialog with visible 
   await expect(
     page.getByRole('heading', { name: 'Importar / Exportar', exact: true }),
   ).toBeVisible()
+  await expect(navigation).toHaveAttribute('aria-expanded', 'false')
+})
+
+test('short drawer scrolls to the logout button without covering navigation links', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 960, height: 474 })
+  await register(page)
+  await page.getByRole('button', { name: 'Abrir navegación' }).press('Enter')
+  const nav = page.getByRole('navigation', { name: 'Navegación principal' })
+  const lastLink = nav.getByRole('link', { name: 'Licencias de software' })
+  const logout = nav.getByRole('button', { name: 'Cerrar sesión' })
+  await lastLink.press('Tab')
+  await expect(logout).toBeFocused()
+  await expect
+    .poll(async () => {
+      const [link, button] = await Promise.all([lastLink.boundingBox(), logout.boundingBox()])
+      return link !== null && button !== null && link.y + link.height <= button.y
+    })
+    .toBe(true)
+  await expect(logout).toBeInViewport({ ratio: 1 })
+  await page.keyboard.press('Enter')
+  await expect(page.getByRole('heading', { name: 'Inicia sesión' })).toBeVisible()
 })
 
 test('live resizing preserves library controls and unsaved form fields across responsive breakpoints', async ({
@@ -504,18 +567,15 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await expect(page).toHaveURL(/#\/login/)
   await page.getByRole('link', { name: '¿Has olvidado la contraseña?' }).click()
   await expect(page.getByRole('heading', { name: 'Restablecer contraseña' })).toBeVisible()
-  const notice = page.getByText(
-    'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.',
-    { exact: true },
-  )
+  const notice = page.getByRole('main').getByRole('status')
+  const genericNotice = 'Si existe una cuenta con ese correo, recibirás un enlace en unos minutos.'
   const missingEmail = `missing-${randomUUID()}@example.test`
   await page.getByLabel('Correo electrónico', { exact: true }).fill(missingEmail)
   await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
-  await expect(notice).toBeVisible()
-  await expect(notice).toHaveCount(0)
+  await expect(notice).toHaveText(genericNotice)
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByRole('button', { name: 'Enviar enlace', exact: true }).click()
-  await expect(notice).toBeVisible()
+  await expect(notice).toHaveText(genericNotice)
 
   // The test-only admin endpoint and action API are hardcoded to the demo emulator.
   // Do not follow redirects or derive these URLs/keys from a production environment.
@@ -558,11 +618,8 @@ test('password recovery keeps responses generic and rejects invalid or reused re
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(
-    page
-      .locator('.q-notification__message')
-      .filter({ hasText: /contraseña.*no.*correct|contraseña no es correcta/ }),
-  ).toBeVisible()
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(/contraseña.*no.*correct/)
+  await auditAccessibility(page, testInfo, 'login-rejected-password')
   await expect(page).toHaveURL(/#\/login/)
   await page.getByLabel('Contraseña', { exact: true }).fill(newPassword)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
@@ -822,9 +879,7 @@ test('account deletion rejects a wrong password without data loss and then remov
   await page.getByLabel('Correo electrónico', { exact: true }).fill(email)
   await page.getByLabel('Contraseña', { exact: true }).fill(password)
   await page.getByRole('button', { name: 'Entrar', exact: true }).click()
-  await expect(
-    page.locator('.q-notification').filter({
-      hasText: /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
-    }),
-  ).toBeVisible()
+  await expect(page.getByRole('main').getByRole('alert')).toContainText(
+    /No existe una cuenta con estos datos|El correo o la contraseña no son correctos/,
+  )
 })

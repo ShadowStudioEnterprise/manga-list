@@ -37,6 +37,18 @@
       "scope": "Referencia actual de portal",
       "decision": "Navegación, rutas y fuentes locales comprobadas; no certifica versión de Hosting."
     },
+    "docs/operations/incidents.md": {
+      "scope": "Preparación operativa ML-20",
+      "decision": "Umbrales propuestos, responsables pendientes y simulacros limitados al entorno demo."
+    },
+    "docs/reports/development/ml-19-web-bundles.md": {
+      "scope": "Auditoría local ML-19",
+      "decision": "Auditorías de los dos lockfiles y medición de builds locales, con límites explícitos de la comparación."
+    },
+    "docs/reports/quality/ml-17-accessibility.md": {
+      "scope": "Auditoría local ML-17",
+      "decision": "Regresiones de accesibilidad y matriz humana pendiente de aceptación."
+    },
     "docs/reference/import-export.md": {
       "scope": "Contrato interno vigente",
       "decision": "Contrastado con servicios, consumidores UI, stores, reglas y pruebas existentes; no API pública ni despliegue."

@@ -75,6 +75,9 @@
         :loading="googleLoading"
         @click="loginWithGoogle"
       />
+      <div role="alert">
+        <p v-if="errorMessage" class="text-negative q-mt-md q-mb-none">{{ errorMessage }}</p>
+      </div>
     </q-card-section>
 
     <q-card-section class="text-center q-pt-none">
@@ -90,13 +93,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth-store'
 import { getFirebaseErrorMessage } from '@/utils/firebase-errors'
 import { authDestination, authRoute } from '@/utils/auth-redirect'
 
-const $q = useQuasar()
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
@@ -106,6 +107,7 @@ const password = ref('')
 const showPassword = ref(false)
 const submitting = ref(false)
 const googleLoading = ref(false)
+const errorMessage = ref('')
 
 const requiredRules = [(value) => Boolean(value) || 'Este campo es obligatorio.']
 const emailRules = [
@@ -118,30 +120,29 @@ function destination() {
 }
 
 async function submit() {
+  errorMessage.value = ''
   submitting.value = true
   try {
     await authStore.login(email.value, password.value)
     await router.replace(destination())
   } catch (error) {
-    $q.notify({
-      type: 'negative',
-      message: getFirebaseErrorMessage(error, 'No hemos podido iniciar sesión.'),
-    })
+    errorMessage.value = getFirebaseErrorMessage(error, 'No hemos podido iniciar sesión.')
   } finally {
     submitting.value = false
   }
 }
 
 async function loginWithGoogle() {
+  errorMessage.value = ''
   googleLoading.value = true
   try {
     await authStore.loginWithGoogle()
     await router.replace(destination())
   } catch (error) {
-    $q.notify({
-      type: 'negative',
-      message: getFirebaseErrorMessage(error, 'No hemos podido completar el acceso con Google.'),
-    })
+    errorMessage.value = getFirebaseErrorMessage(
+      error,
+      'No hemos podido completar el acceso con Google.',
+    )
   } finally {
     googleLoading.value = false
   }

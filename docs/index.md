@@ -43,4 +43,9 @@ head:
       content: https://mangalist-docs.web.app/screenshots/library-desktop.jpg
 ---
 
+<script setup>
+import PublicLanding from './.vitepress/theme/PublicLanding.vue'
+import './.vitepress/theme/landing.css'
+</script>
+
 <PublicLanding />
