@@ -12,6 +12,8 @@ La autorización actual permite subir los cambios e informes. No autoriza fusion
 
 ## Pasarela y reproducción
 
+**Corrección posterior a la revisión del PR #37:** usar la [pasarela mantenida](cellular-relay/README.md), que separa la clave de entrada del secreto de sesión. CI ejecuta sus 22 pruebas y el verificador celular. Las fuentes selladas descritas debajo conservan el defecto histórico y no deben reutilizarse para abrir otro laboratorio.
+
 Las fuentes finales están en [relay/relay.mjs](evidence/iphone-cellular-2026-11-06/relay/relay.mjs). Incluyen cierre absoluto de conexiones, entrada mediante POST, cookie protegida, comprobación de origen, rutas acotadas y adaptación de Request para Safari. La opción de respuestas finitas de Listen cambia el transporte del laboratorio; no representa acceso directo a Firestore de producción ni un cambio del candidato.
 
 Los instrumentos históricos están sellados junto con los intentos fallidos y el handoff original de Windows. Algunos dependen de rutas y herramientas locales de esa sesión: no son un CLI portable. No ejecutar los lanzadores archivados para verificar la evidencia. La pasarela no arranca al importarse; las pruebas siguientes usan servidores simulados en loopback y un proceso simulado de túnel, sin proveedor externo:
