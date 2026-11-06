@@ -107,6 +107,7 @@ secciones principales del portal.
 
 - [Validación de Firebase antes de inicializar servicios](development/firebase-startup.md).
 - [Dependencias: revisión H8 del 18/10/2026](development/dependencies-2026-10-18.md).
+- [ML-19 · Dependencias y bundles web](development/ml-19-web-bundles.md).
 
 ## Mantener el archivo
 
