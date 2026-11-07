@@ -96,17 +96,26 @@ export function addPasswordAccess(currentPassword, newPassword) {
   })
 }
 
-export function addGoogleAccess(currentPassword) {
+export function prepareGoogleAccess(currentPassword) {
   return run(async () => {
     const user = await confirmedUser(currentPassword)
-    const provider = new GoogleAuthProvider()
-    provider.setCustomParameters({ prompt: 'select_account' })
-    sparkBudget.take('auth')
-    // Firebase rejects credentials belonging to another UID. Do not sign in,
-    // merge libraries or unlink an existing provider to resolve that conflict.
-    await linkWithPopup(user, provider)
-    assertCurrent(user)
-    return user
+    const expiresAt = Date.now() + 5 * 60 * 1000
+    let used = false
+    // Return an in-memory, single-use action: the next explicit click opens
+    // Google without waiting for a network reauthentication first.
+    return () =>
+      run(async () => {
+        assertCurrent(user)
+        if (used || Date.now() >= expiresAt) throw createAppError('auth/requires-recent-login')
+        used = true
+        const provider = new GoogleAuthProvider()
+        provider.setCustomParameters({ prompt: 'select_account' })
+        sparkBudget.take('auth')
+        // Never sign in, merge accounts or unlink providers to resolve conflicts.
+        await linkWithPopup(user, provider)
+        assertCurrent(user)
+        return user
+      })
   })
 }
 
