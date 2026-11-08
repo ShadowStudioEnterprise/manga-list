@@ -62,11 +62,18 @@
               Elige la cuenta Google que quieras vincular. Si pertenece a otra cuenta de MangaList,
               el cambio se rechazará.
             </p>
+            <p v-if="googlePopupAction" role="status">
+              Contraseña confirmada. ¿Quieres abrir la ventana de Google para vincular tu cuenta?
+            </p>
+            <p v-if="action === 'google'">
+              Si Safari la bloquea, permite la ventana desde su aviso o desde Ajustes → Sitios web →
+              Ventanas emergentes, solo para MangaList, y vuelve a intentarlo.
+            </p>
             <p v-if="!usesPassword">Google abrirá una ventana para confirmar tu identidad.</p>
           </q-card-section>
           <q-card-section class="q-gutter-md">
             <q-input
-              v-if="usesPassword"
+              v-if="usesPassword && !googlePopupAction"
               v-model="currentPassword"
               outlined
               type="password"
@@ -112,6 +119,17 @@
           <q-card-actions align="right">
             <q-btn flat no-caps label="Cancelar" :disable="busy" @click="dialog = false" />
             <q-btn
+              v-if="googlePopupAction"
+              unelevated
+              no-caps
+              color="primary"
+              label="Abrir ventana de Google"
+              type="button"
+              :loading="busy"
+              @click="openGooglePopup"
+            />
+            <q-btn
+              v-else
               unelevated
               no-caps
               color="primary"
@@ -131,7 +149,7 @@ import { computed, ref, watch } from 'vue'
 import { useAuthStore } from '@/stores/auth-store'
 import { serializeAuthUser } from '@/services/auth-service'
 import {
-  addGoogleAccess,
+  prepareGoogleAccess,
   addPasswordAccess,
   changeAccountPassword,
   refreshAccountIdentity,
@@ -150,6 +168,7 @@ const confirmation = ref('')
 const newEmail = ref('')
 const error = ref('')
 const notice = ref('')
+const googlePopupAction = ref(null)
 const usesPassword = computed(() => authStore.user?.providerIds?.includes('password'))
 const usesGoogle = computed(() => authStore.user?.providerIds?.includes('google.com'))
 const methods = computed(() =>
@@ -178,6 +197,7 @@ watch(
 )
 
 function clearSecrets() {
+  googlePopupAction.value = null
   currentPassword.value = ''
   newPassword.value = ''
   confirmation.value = ''
@@ -193,7 +213,7 @@ function open(value) {
 }
 
 async function submit() {
-  if (busy.value) return
+  if (busy.value || googlePopupAction.value) return
   busy.value = true
   error.value = ''
   try {
@@ -204,7 +224,11 @@ async function submit() {
       user = await changeAccountPassword(currentPassword.value, newPassword.value)
     else if (action.value === 'linkPassword')
       user = await addPasswordAccess(currentPassword.value, newPassword.value)
-    else user = await addGoogleAccess(currentPassword.value)
+    else {
+      googlePopupAction.value = await prepareGoogleAccess(currentPassword.value)
+      currentPassword.value = ''
+      return
+    }
     if (authStore.user?.uid === user.uid) authStore.user = serializeAuthUser(user)
     notice.value =
       action.value === 'email'
@@ -217,6 +241,24 @@ async function submit() {
     currentPassword.value = ''
     newPassword.value = ''
     confirmation.value = ''
+  } finally {
+    busy.value = false
+  }
+}
+
+async function openGooglePopup() {
+  if (busy.value || !googlePopupAction.value) return
+  busy.value = true
+  error.value = ''
+  try {
+    const user = await googlePopupAction.value()
+    if (authStore.user?.uid === user.uid) authStore.user = serializeAuthUser(user)
+    notice.value = 'Acceso actualizado. Tu biblioteca se conserva.'
+    dialog.value = false
+    clearSecrets()
+  } catch (cause) {
+    googlePopupAction.value = null
+    error.value = getFirebaseErrorMessage(cause, 'No se ha podido vincular Google.')
   } finally {
     busy.value = false
   }

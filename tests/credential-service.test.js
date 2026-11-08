@@ -74,7 +74,7 @@ test('invalid input and absent identity never reach credential mutations', async
   })
   assert.equal(calls.length, 0)
   auth.currentUser = null
-  await assert.rejects(service.addGoogleAccess('old-secret'), { code: 'app/invalid-account' })
+  await assert.rejects(service.prepareGoogleAccess('old-secret'), { code: 'app/invalid-account' })
   assert.equal(calls.length, 0)
 })
 
@@ -136,9 +136,11 @@ for (const code of [
         return { user }
       },
     })
-    await assert.rejects(service.addGoogleAccess('old-secret'), { code })
+    const openFirst = await service.prepareGoogleAccess('old-secret')
+    await assert.rejects(openFirst(), { code })
     assert.equal(auth.currentUser, user)
-    assert.equal(await service.addGoogleAccess('old-secret'), user)
+    const openRetry = await service.prepareGoogleAccess('old-secret')
+    assert.equal(await openRetry(), user)
     assert.equal(attempts, 2)
     assert.deepEqual(
       calls.map((c) => c[0]),
@@ -146,6 +148,55 @@ for (const code of [
     )
   })
 }
+
+test('Google waits for explicit consent, then requests popup before returning to caller', async () => {
+  let popups = 0
+  const { service, user, calls } = await fixture(['password'], {
+    linkWithPopup() {
+      popups++
+      return Promise.resolve({ user })
+    },
+  })
+  const open = await service.prepareGoogleAccess('old-secret')
+  assert.equal(popups, 0)
+  assert.deepEqual(
+    calls.map((c) => c[0]),
+    ['reauthPassword'],
+  )
+  const result = open()
+  assert.equal(popups, 1, 'popup request must happen in the explicit click call stack')
+  assert.equal(await result, user)
+  await assert.rejects(open(), { code: 'auth/requires-recent-login' })
+  assert.equal(popups, 1)
+})
+
+test('prepared Google action cannot link a different current account', async () => {
+  const { service, auth, calls } = await fixture()
+  const open = await service.prepareGoogleAccess('old-secret')
+  auth.currentUser = { uid: 'demo-b' }
+  await assert.rejects(open(), { code: 'app/invalid-account' })
+  assert.deepEqual(
+    calls.map((c) => c[0]),
+    ['reauthPassword'],
+  )
+})
+
+test('prepared Google action expires without opening popup', async () => {
+  const { service, calls } = await fixture()
+  const now = Date.now
+  try {
+    Date.now = () => 1000
+    const open = await service.prepareGoogleAccess('old-secret')
+    Date.now = () => 1000 + 5 * 60 * 1000
+    await assert.rejects(open(), { code: 'auth/requires-recent-login' })
+    assert.deepEqual(
+      calls.map((c) => c[0]),
+      ['reauthPassword'],
+    )
+  } finally {
+    Date.now = now
+  }
+})
 
 test('concurrent credential operations are rejected until the first completes', async () => {
   let resume
@@ -156,7 +207,7 @@ test('concurrent credential operations are rejected until the first completes', 
       }),
   })
   const first = service.changeAccountPassword('old-secret', 'new-secret')
-  await assert.rejects(service.addGoogleAccess('old-secret'), { code: 'app/credential-busy' })
+  await assert.rejects(service.prepareGoogleAccess('old-secret'), { code: 'app/credential-busy' })
   resume()
   await first
   assert.deepEqual(

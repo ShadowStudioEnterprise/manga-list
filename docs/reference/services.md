@@ -103,17 +103,22 @@ Ampliación ML-15 del 28/10/2026 para revisión, sin despliegue. Fuente:
 operaciones de este servicio y rechaza sustitución de identidad durante la
 confirmación. Los cambios confirman identidad con contraseña o popup Google.
 
-| Símbolo                                                | Contrato                                                                                                              |
-| ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
-| `changeAccountPassword(currentPassword, newPassword)`  | Confirma identidad y actualiza contraseña; devuelve usuario SDK, conserva UID                                         |
-| `requestAccountEmailChange(currentPassword, newEmail)` | Recorta email, confirma identidad y envía verificación a la nueva dirección; no cambia email local antes de verificar |
-| `addPasswordAccess(currentPassword, newPassword)`      | Vincula email/contraseña al email actual; no crea otro usuario                                                        |
-| `addGoogleAccess(currentPassword)`                     | Vincula Google con popup; conflicto de credencial ajena se propaga sin fusionar cuentas                               |
-| `refreshAccountIdentity()`                             | Recarga usuario desde Auth y comprueba identidad; puede fallar si la sesión ya no es válida                           |
+| Símbolo                                                | Contrato                                                                                                                                                                                     |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `changeAccountPassword(currentPassword, newPassword)`  | Confirma identidad y actualiza contraseña; devuelve usuario SDK, conserva UID                                                                                                                |
+| `requestAccountEmailChange(currentPassword, newEmail)` | Recorta email, confirma identidad y envía verificación a la nueva dirección; no cambia email local antes de verificar                                                                        |
+| `addPasswordAccess(currentPassword, newPassword)`      | Vincula email/contraseña al email actual; no crea otro usuario                                                                                                                               |
+| `prepareGoogleAccess(currentPassword)`                 | Confirma identidad y devuelve una acción de un solo uso para abrir el popup con un clic explícito; caduca en cinco minutos y rechaza cambios de cuenta o conflictos sin fusionar bibliotecas |
+| `refreshAccountIdentity()`                             | Recarga usuario desde Auth y comprueba identidad; puede fallar si la sesión ya no es válida                                                                                                  |
 
 Cada llamada SDK consume admisión Auth. Los errores se convierten a AppError,
 sin guardar contraseñas o credenciales. Véanse [pruebas y límites de aceptación
 real](/reports/quality/ml-15-credentials-2026-10-28).
+
+La preparación no abre Google ni conserva la contraseña. La UI la borra y pide
+«Abrir ventana de Google»; cancelar o cambiar de cuenta descarta la acción.
+Safari controla el permiso de ventanas y la UI explica cómo permitir la ventana
+solo para MangaList si la bloquea. Véanse [validación y límites del cambio](/reports/quality/ml-15-google-popup-consent-2026-11-07).
 
 ## Eliminación de cuenta
 

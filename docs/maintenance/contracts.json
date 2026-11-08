@@ -202,12 +202,12 @@
       "exports": ["createLibrarySearchStorage", "librarySearchStorage"]
     },
     "src/services/credential-service.js": {
-      "sha256": "04a329ecbc49b84cd57d54d70492b9700c7ba1279bd5f1b7e5976d9731b81335",
+      "sha256": "a571e7e1235da9b4f5a69df020b7e5c10fda8ef95b1a1c738d9c70083db1ce06",
       "exports": [
         "changeAccountPassword",
         "requestAccountEmailChange",
         "addPasswordAccess",
-        "addGoogleAccess",
+        "prepareGoogleAccess",
         "refreshAccountIdentity"
       ]
     }
