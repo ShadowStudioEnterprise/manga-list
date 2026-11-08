@@ -46,3 +46,8 @@ ui-debug.log*
 /docs/.vitepress/cache/
 /docs/.vitepress/dist/
 /docs/.vitepress/.temp/
+
+# Local AI files
+/IA/
+/.agents/
+/AGENTS.md
