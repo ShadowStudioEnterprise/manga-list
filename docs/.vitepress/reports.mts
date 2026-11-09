@@ -40,6 +40,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-08: aceptación de capacidad operativa (09/11)',
+        link: '/reports/firestore/ml-08-capacity-acceptance-2026-11-09',
+      },
+      {
         text: 'ML-09: aceptación de riesgo residual (08/11)',
         link: '/reports/firestore/ml-09-risk-acceptance-2026-11-08',
       },

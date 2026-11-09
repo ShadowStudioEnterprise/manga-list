@@ -4,6 +4,11 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — acta ML-08
+
+- Acta del 09/11/2026 de aceptación de capacidad operativa en Firebase Spark,
+  registrada en el índice, el menú y el inventario de informes; sin cambios operativos.
+
 ## Sin publicar — acta ML-09
 
 - Acta del 08/11/2026 de aceptación del riesgo residual por abuso autenticado,
