@@ -313,6 +313,10 @@
       "scope": "ML-13 auditoría de repositorio y privacidad",
       "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
     },
+    "docs/reports/firestore/ml-08-capacity-acceptance-2026-11-09.md": {
+      "scope": "Acta fechada de aceptación de capacidad operativa ML-08",
+      "decision": "Registra la aceptación del titular del 09/11/2026: objetivo de 36 cuentas activas diarias y techo condicionado de 50 para bibliotecas ordinarias de hasta 500 obras, con reserva administrativa del 20 % y validación pendiente durante 31 días. No certifica disponibilidad garantizada ni consumo real; conserva las condiciones de revisión del acta."
+    },
     "docs/reports/firestore/ml-09-risk-acceptance-2026-11-08.md": {
       "scope": "Acta fechada de aceptación de riesgo residual ML-09",
       "decision": "Registra la aceptación del titular del 08/11/2026 y sus condiciones de revisión; conserva las exclusiones de consola y fija la próxima revisión para el 09/11/2027. No certifica configuración remota ni cierra la aceptación operativa."
