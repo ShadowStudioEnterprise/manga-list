@@ -4,6 +4,11 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — informe celular ML-09
+
+- Informe celular del 06/11/2026 e índices de seguimiento con referencias a evidencia
+  bruta local mediante SHA-256; se conservan incidencias y límites, y ML-09 sigue abierta.
+
 ## Sin publicar — acta ML-11 y ML-12
 
 - Acta del 09/11/2026 de revisión de marcadores y asistencia a eliminaciones
