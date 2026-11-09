@@ -32,6 +32,8 @@ secciones principales del portal.
 
 ## Firestore y rendimiento
 
+- [ML-09: aceptación de riesgo residual por abuso autenticado — 08/11/2026](firestore/ml-09-risk-acceptance-2026-11-08.md).
+
 - [ML-09: prevención y recuperación ante cuotas — candidata, aceptación operativa pendiente](firestore/ml-09-recovery-2026-10-23.md).
 
 - [ML-08: auditoría de capacidad Spark — 21/10/2026](firestore/ml-08-capacity-2026-10-21.md).
