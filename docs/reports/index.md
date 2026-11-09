@@ -62,6 +62,8 @@ secciones principales del portal.
 
 ## Cuentas y retención
 
+- [ML-11 y ML-12: preparados y no activados para MangaList 1.0 — 09/11/2026](accounts/ml-11-12-not-activated-acceptance-2026-11-09.md).
+
 - [Proton Drive: plataforma seleccionada y procedimiento propuesto para ML-11](accounts/proton-drive-implementation-proposal.md).
 - [Proton Drive: primer ensayo parcial en cuenta autorizada — 21/10/2026](accounts/proton-drive-service-rehearsal-2026-10-21.md).
 - [Proton Drive: MFA, recuperación, auditoría y custodia](accounts/proton-drive-security-custody-procedure.md).

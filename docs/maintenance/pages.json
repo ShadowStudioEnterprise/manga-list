@@ -313,6 +313,10 @@
       "scope": "ML-13 auditoría de repositorio y privacidad",
       "decision": "Control offline e inventario; IAM real y publicación pendientes de revisión manual."
     },
+    "docs/reports/accounts/ml-11-12-not-activated-acceptance-2026-11-09.md": {
+      "scope": "Acta fechada de decisión de no activación de ML-11 y ML-12",
+      "decision": "Registra la aprobación del titular del 09/11/2026: revisión de marcadores y asistencia a eliminaciones interrumpidas preparadas pero no activadas para MangaList 1.0. No ofrece asistencia humana, buzón operativo, plazos de respuesta ni recuperación externa acreditada; conserva las excepciones, condiciones de activación y revisión del acta, incluida la fecha de revisión pendiente de concretar. No autoriza operaciones sobre cuentas o datos reales."
+    },
     "docs/reports/firestore/ml-08-capacity-acceptance-2026-11-09.md": {
       "scope": "Acta fechada de aceptación de capacidad operativa ML-08",
       "decision": "Registra la aceptación del titular del 09/11/2026: objetivo de 36 cuentas activas diarias y techo condicionado de 50 para bibliotecas ordinarias de hasta 500 obras, con reserva administrativa del 20 % y validación pendiente durante 31 días. No certifica disponibilidad garantizada ni consumo real; conserva las condiciones de revisión del acta."
