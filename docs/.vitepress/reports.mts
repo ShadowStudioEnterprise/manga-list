@@ -124,6 +124,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-11 y ML-12: preparados y no activados (09/11)',
+        link: '/reports/accounts/ml-11-12-not-activated-acceptance-2026-11-09',
+      },
+      {
         text: 'Proton Drive: plataforma seleccionada',
         link: '/reports/accounts/proton-drive-implementation-proposal',
       },
