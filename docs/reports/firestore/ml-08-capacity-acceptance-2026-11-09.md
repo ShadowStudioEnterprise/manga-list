@@ -10,10 +10,10 @@ El titular del proyecto fija para MangaList 1.0 una capacidad operativa en dos n
 
 Una cuenta activa es la que abre su biblioteca al menos una vez al día. Los límites se refieren a bibliotecas ordinarias de hasta 500 obras; los demás tramos y sus excepciones de la política vigente no cambian y no se recortan datos existentes.
 
-| Nivel | Cuentas activas por día | Semáforo | Lecturas diarias previstas |
-|---|---|---|---|
-| Objetivo | hasta 36 | Verde (hasta 30.000) | unas 29.700 con el perfil esperado |
-| Techo | hasta 50 | Ámbar (30.001 a 40.000) | entre 33.050 y 39.300 según el perfil |
+| Nivel    | Cuentas activas por día | Semáforo                | Lecturas diarias previstas            |
+| -------- | ----------------------- | ----------------------- | ------------------------------------- |
+| Objetivo | hasta 36                | Verde (hasta 30.000)    | unas 29.700 con el perfil esperado    |
+| Techo    | hasta 50                | Ámbar (30.001 a 40.000) | entre 33.050 y 39.300 según el perfil |
 
 - Perfil esperado, tomado de la propuesta de capacidad y pendiente de validación: un dispositivo por cuenta, 20 cambios transaccionales y un duplicado vacío al día, una reconexión de listener cada diez cuentas, una exportación cada veinte y una recuperación cada diez.
 - Las cifras se derivan del modelo `scripts/model-ml08-capacity.mjs` con 5.000 lecturas y 1.000 escrituras diarias auxiliares incluidas en el presupuesto.
