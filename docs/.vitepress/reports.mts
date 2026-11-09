@@ -40,6 +40,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-09: aceptación de riesgo residual (08/11)',
+        link: '/reports/firestore/ml-09-risk-acceptance-2026-11-08',
+      },
+      {
         text: 'ML-08: capacidad Spark (21/10)',
         link: '/reports/firestore/ml-08-capacity-2026-10-21',
       },
