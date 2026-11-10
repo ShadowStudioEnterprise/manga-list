@@ -14,6 +14,10 @@ La reserva del 20 % y la planificación de 40000 lecturas, 16000 escrituras y 16
 
 ## Pendientes conservados
 
+Actualización del 6 de noviembre: [ensayo celular, exportación y pendientes actuales](cellular-followup-2026-11-06.md).
+La lista siguiente conserva el estado histórico del 26 de octubre; la nueva
+evidencia no cierra ML-09 ni autoriza otra fusión o despliegue.
+
 **ML-09 permanece abierta para aceptación operativa completa**, aunque se autorice publicar sus defensas verificadas.
 
 - Red celular representativa, pérdida física de conectividad y recuperación con integridad, búsqueda y sincronización comprobadas.

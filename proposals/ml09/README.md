@@ -3,6 +3,14 @@
 Base final: main `120efac` (incluye ML-13). Rama independiente `fix/ml09-spark-recovery`.
 No se fusiona ni despliega. ML-09 sigue abierta hasta aceptación operativa.
 
+## Seguimiento celular del 06/11/2026
+
+[Informe, pasarela y decisión del propietario](cellular-followup-2026-11-06.md):
+Safari del iPhone, pérdida física de red, escritura pendiente, recuperación y
+exportación íntegra de 500 obras sobre `28d876d394dc3e5bf458303abd181f10ecb33b3b`.
+Se conservan los errores; el propietario descarta investigar el cierre de sesión.
+ML-09 permanece abierta con los límites y pendientes indicados en ese seguimiento.
+
 ## Estado vigente — corrección de búsqueda del 24/10/2026
 
 La búsqueda aplicada se restaura tras recargar durante cuota mediante
