@@ -1,7 +1,7 @@
 # ML-13: IAM, permisos y publicación
 
 Revisión de 23/10/2026 sobre `342ad9a` (main, PR #17), en rama aislada.
-Estado: auditoría versionada; aceptación operativa pendiente. Firebase Spark
+Estado al 23/10/2026: auditoría versionada; aceptación operativa pendiente. Firebase Spark
 exclusivamente. No se consultaron IAM, Auth, secretos, cuentas o datos remotos;
 no se cambiaron permisos, rules desplegadas, facturación ni producción.
 No había un conector Firebase/GCP de lectura explícitamente disponible.
@@ -12,6 +12,38 @@ avisos legales) respondió HTTP 200 en seis lecturas sin autenticación el 23/10
 Se observaron nosniff y Referrer-Policy; no CSP ni X-Frame-Options. Es evidencia
 HTTP de esas respuestas, no un inventario de versiones de Hosting ni de IAM.
 La rama de auditoría todavía no está publicada en el portal.
+
+## Revisión de consola del 12/11/2026 UTC
+
+**PASS en el alcance observado**, según el resumen saneado del titular. Las
+capturas y el PDF quedan bajo su custodia local fuera del repositorio. La revisión
+fue de lectura.
+
+- **IAM y facturación.** Spark sin cuenta de facturación vinculada. En el IAM
+  del proyecto figuraban el titular como Propietario y una cuenta de servicio
+  administrada por Firebase con sus tres roles estándar. No se observaron
+  colaboradores externos ni claves privadas activas gestionadas por el usuario.
+- **Clave web e inventario de APIs.** Restricciones de origen HTTP y de API
+  activas, con 25 APIs permitidas por la clave. De 41 APIs habilitadas en el
+  proyecto, solo Firestore registró tráfico (2 solicitudes en 24 horas).
+  Cloud Functions y Cloud Run no estaban habilitadas. El titular acepta que
+  las APIs auxiliares habilitadas sin tráfico observado sigan disponibles.
+  Como mejora opcional, se puede evaluar reducir la lista de la clave a
+  Firestore, Identity Toolkit, Token Service y Firebase Installations, y
+  deshabilitar APIs auxiliares tras revisar sus dependencias.
+- **Auth y Firestore.** Solo Email/Password y Google activos. Dominios
+  autorizados: `mangalist-61bb8.web.app`, `mangalist-61bb8.firebaseapp.com`
+  y `localhost`. Protección contra enumeración verificada y reglas publicadas
+  concordantes con `firestore.rules`. La comprobación de configuración no
+  acredita los flujos reales de OAuth y recuperación de ML-15.
+- **GitHub.** Token de Actions de solo lectura por defecto, sin secretos de
+  producción en Actions y canal privado de vulnerabilidades verificado. No
+  consta su designación formal como canal oficial.
+
+El pase no equivale al cierre operativo de ML-13. El resumen no acredita todo
+el checklist histórico: por ejemplo, no cubre el contraste completo de herencia
+y permisos Firebase/GCP, Hosting efectivo ni el inventario de Apps, OAuth y PAT.
+Los demás puntos sin evidencia y las decisiones de riesgo siguen pendientes.
 
 ## Matriz de riesgos
 
@@ -58,7 +90,7 @@ No se acepta un UID/email aportado como prueba de identidad. Las plantillas
 ML-11/12 siguen vacías y privadas al completarse; los plazos de retención y
 revisión humana a los 30 días siguen pendientes, sin automatizar borrados.
 
-## Checklist manual de consola (sin ejecutar)
+## Checklist manual de consola (alcance original) {#checklist-manual-de-consola-sin-ejecutar}
 
 Conservar acta restringida con fecha, proyecto contrastado, operador, revisor,
 resultado por punto y referencia de evidencia mínima. La versión pública solo

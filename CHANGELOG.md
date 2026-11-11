@@ -6,6 +6,8 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — mensajes ML-12 y seguimiento de aceptación 1.0
 
+- ML-21 registra la revisión de consola del 12/11/2026 UTC para ML-13 y ML-10,
+  con el alcance observado y las comprobaciones que siguen pendientes.
 - ML-12 actualiza los avisos de cuenta, límite de biblioteca y copia dividida con
   indicaciones que el usuario puede seguir por su cuenta.
 - ML-20 incorpora la respuesta a indicios de abuso de cuota autenticado en la

@@ -24,17 +24,23 @@ requisitos para publicar 1.0. Cada fila conserva su condición de revisión.
 
 ## Capacidad, operación y comprobaciones remotas
 
-| Área                                | Estado                   | Evidencia o condición pendiente                                                                                                                                                                                            |
-| ----------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ML-08 · decisión de capacidad       | PASS · documental        | PR #41. Spark, objetivo 36 cuentas activas/día, techo condicionado de 50, bibliotecas ordinarias de hasta 500 obras y reserva administrativa del 20 %. [Acta ML-08](../firestore/ml-08-capacity-acceptance-2026-11-09.md). |
-| ML-08 · observación                 | BLOCKED                  | Completar 31 días de uso diario en consola. Comparar picos semanales de lecturas, escrituras y borrados con el modelo y reducir el objetivo si se supera el perfil esperado.                                               |
-| ML-09 · riesgo residual             | PASS · documental        | PR #40. Riesgo de indisponibilidad temporal aceptado para 1.0. Pausa local entre pestañas, Spark sin facturación y App Check diferido. [Acta ML-09](../firestore/ml-09-risk-acceptance-2026-11-08.md).                     |
-| ML-10 · protección de `main`        | PASS · lectura histórica | Activación y comprobación por lectura el 21/10/2026. [Informe ML-10](ml-10-main-ruleset-2026-10-21.md).                                                                                                                    |
-| ML-10 · validación remota pendiente | BLOCKED                  | Confirmar protección y ausencia de bypass vigentes, obligatoriedad de `verify` sobre el candidato y pendientes del ensayo controlado en PR.                                                                                |
-| ML-13 · validación remota pendiente | BLOCKED                  | Revisión manual de IAM y permisos efectivos, configuración de Authentication, restricciones de claves, protección contra enumeración y accesos de GitHub. [Auditoría ML-13](../../security/iam-audit.md).                  |
-| ML-15 · OAuth y recuperación        | BLOCKED                  | Cierre administrativo registrado. Validar Google OAuth real y página y correo reales de recuperación para la revisión servida. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                  |
-| ML-17 · lectores de pantalla        | BLOCKED                  | Excepción aceptada para 1.0. Pendientes sesiones asistidas con NVDA o Narrador, VoiceOver y TalkBack. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                           |
-| ML-20 · respuesta operativa         | BLOCKED                  | Procedimiento actualizado. Pendientes ejercicio de mesa con responsables, verificación de reinicio real de cuota y recuperación real de Hosting. [Incidencias](../../operations/incidents.md).                             |
+| Área                               | Estado                   | Evidencia o condición pendiente                                                                                                                                                                                                                                                                                                     |
+| ---------------------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ML-08 · decisión de capacidad      | PASS · documental        | PR #41. Spark, objetivo 36 cuentas activas/día, techo condicionado de 50, bibliotecas ordinarias de hasta 500 obras y reserva administrativa del 20 %. [Acta ML-08](../firestore/ml-08-capacity-acceptance-2026-11-09.md).                                                                                                          |
+| ML-08 · observación                | BLOCKED                  | Completar 31 días de uso diario en consola. Comparar picos semanales de lecturas, escrituras y borrados con el modelo y reducir el objetivo si se supera el perfil esperado.                                                                                                                                                        |
+| ML-09 · riesgo residual            | PASS · documental        | PR #40. Riesgo de indisponibilidad temporal aceptado para 1.0. Pausa local entre pestañas, Spark sin facturación y App Check diferido. [Acta ML-09](../firestore/ml-09-risk-acceptance-2026-11-08.md).                                                                                                                              |
+| ML-10 · protección de `main`       | PASS · lectura histórica | Activación y comprobación por lectura el 21/10/2026. [Informe ML-10](ml-10-main-ruleset-2026-10-21.md).                                                                                                                                                                                                                             |
+| ML-10 · lectura remota del ruleset | PASS · alcance observado | 12/11/2026 UTC. El titular vio el ruleset activo sobre `main`, sin bypass, con PR y checks obligatorios y bloqueo de borrado y de force push.                                                                                                                                                                                       |
+| ML-10 · candidato y ensayo en PR   | BLOCKED                  | Confirmar que el check exigido es `verify` para el candidato, el cierre sin fusión del PR #37 y el resultado del ensayo controlado en PR.                                                                                                                                                                                           |
+| ML-13 · revisión remota de consola | PASS · alcance observado | 12/11/2026 UTC. El titular verificó Spark sin facturación, IAM del proyecto, claves de cuentas de servicio, restricciones de la clave web, configuración de Auth, reglas de Firestore y controles de Actions y del canal privado. [Alcance y límites de ML-13](../../security/iam-audit.md#revision-de-consola-del-12-11-2026-utc). |
+| ML-15 · OAuth y recuperación       | BLOCKED                  | Cierre administrativo registrado. Validar Google OAuth real y página y correo reales de recuperación para la revisión servida. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                                                                                                           |
+| ML-17 · lectores de pantalla       | BLOCKED                  | Excepción aceptada para 1.0. Pendientes sesiones asistidas con NVDA o Narrador, VoiceOver y TalkBack. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                                                                                                                                    |
+| ML-20 · respuesta operativa        | BLOCKED                  | Procedimiento actualizado. Pendientes ejercicio de mesa con responsables, verificación de reinicio real de cuota y recuperación real de Hosting. [Incidencias](../../operations/incidents.md).                                                                                                                                      |
+
+El titular conserva las capturas y el PDF de ML-10 y ML-13 fuera del repositorio.
+En ML-13 se registró como mejora opcional reducir las 25 APIs permitidas por la
+clave web y revisar las APIs auxiliares del inventario de 41 habilitadas. Solo
+Firestore registró tráfico en la ventana observada de 24 horas (2 solicitudes).
 
 ## ML-11 y ML-12 — Procedimientos preparados y sin activar
 
@@ -78,11 +84,10 @@ resultados físicos previos, sus límites y el cierre de H1–H7.
 Antes de aprobar formalmente ML-21 y abrir ML-22, solo quedan estas comprobaciones
 remotas o manuales a cargo del titular:
 
-- **ML-10**. Verificar en GitHub el ruleset vigente de `main`, la ausencia de
-  bypass y la obligatoriedad de `verify` para el candidato.
-- **ML-13**. Realizar la revisión manual de consola con `.agents/consola-ml13.md`.
-  El [checklist de IAM](../../security/iam-audit.md#checklist-manual-de-consola-sin-ejecutar)
-  está disponible en el repositorio.
+- **ML-10**. Confirmar `verify` para el candidato y el estado del PR #37, y
+  documentar el ensayo controlado.
+- **ML-13**. Completar los puntos del checklist no acreditados por el resumen
+  del titular y registrar las decisiones pendientes para el cierre operativo.
 - **ML-15**. Validar Google OAuth y el flujo real de recuperación, incluidos el
   correo y la página de acción, en el candidato servido.
 - **ML-08 y ML-20**. Completar la observación de 31 días de cuota agregada real
