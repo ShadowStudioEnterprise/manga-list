@@ -212,6 +212,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-15 y ML-17: cierre administrativo y accesibilidad (11/11)',
+        link: '/reports/quality/ml-15-17-administrative-closure-2026-11-11',
+      },
+      {
         text: 'ML-15: autenticación y recuperación (27/10)',
         link: '/reports/quality/ml-15-auth-2026-10-27',
       },
@@ -253,6 +257,14 @@ export const reportsSidebar = [
     text: 'Versiones y recuperación',
     collapsed: true,
     items: [
+      {
+        text: 'ML-21: matriz de aceptación 1.0',
+        link: '/reports/operations/ml-21-acceptance-matrix-2026-11-11',
+      },
+      {
+        text: 'ML-20 y ML-16: aceptación parcial y excepciones',
+        link: '/reports/operations/ml-20-16-acceptance-2026-11-11',
+      },
       {
         text: 'ML-10: protección de main (21/10)',
         link: '/reports/operations/ml-10-main-ruleset-2026-10-21',

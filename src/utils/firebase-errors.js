@@ -19,7 +19,8 @@ const ERROR_MESSAGES = Object.freeze({
   'auth/credential-already-in-use':
     'Este método de acceso pertenece a otra cuenta. No se han fusionado las bibliotecas.',
   'auth/provider-already-linked': 'Este método de acceso ya está vinculado a tu cuenta.',
-  'auth/operation-not-allowed': 'Este cambio no está disponible. Contacta con soporte.',
+  'auth/operation-not-allowed':
+    'Esta acción no está disponible. Si necesitas entrar, usa tu método de acceso habitual.',
   'auth/invalid-action-code': 'El enlace no es válido o ya se ha utilizado.',
   'auth/expired-action-code': 'El enlace ha caducado. Solicita uno nuevo.',
   'auth/invalid-credential': 'El correo o la contraseña no son correctos.',
@@ -53,7 +54,7 @@ const ERROR_MESSAGES = Object.freeze({
   'app/deletion-budget':
     'Límite de 2000 borrados por intento alcanzado. Vuelve a confirmar para continuar.',
   'app/library-budget':
-    'La biblioteca alcanza el límite local de carga (hasta 10000 obras). No se puede confirmar una copia completa. Contacta con soporte antes de continuar.',
+    'La biblioteca alcanza el límite local de carga (hasta 10000 obras). No se puede confirmar una copia completa. Si tienes una copia anterior, consérvala.',
   'resource-exhausted':
     'Cuota del servicio agotada. Conserva tus cambios y espera antes de reintentar. Puede requerir el reinicio de la cuota diaria.',
   'firestore/resource-exhausted': 'Cuota de Firestore agotada. Espera antes de reintentar.',
