@@ -15,7 +15,8 @@ La rama de auditoría todavía no está publicada en el portal.
 
 ## Revisión de consola del 12/11/2026 UTC
 
-**PASS en el alcance observado**, según el resumen saneado del titular. Las
+**PASS — cierre operativo completo para MangaList 1.0**, según la revisión y
+las decisiones de gobernanza comunicadas por el titular. Las
 capturas y el PDF quedan bajo su custodia local fuera del repositorio. La revisión
 fue de lectura.
 
@@ -26,8 +27,9 @@ fue de lectura.
 - **Clave web e inventario de APIs.** Restricciones de origen HTTP y de API
   activas, con 25 APIs permitidas por la clave. De 41 APIs habilitadas en el
   proyecto, solo Firestore registró tráfico (2 solicitudes en 24 horas).
-  Cloud Functions y Cloud Run no estaban habilitadas. El titular acepta que
-  las APIs auxiliares habilitadas sin tráfico observado sigan disponibles.
+  Cloud Functions y Cloud Run no estaban habilitadas. El titular acepta para
+  1.0 las listas actuales de 25 APIs permitidas y 41 APIs habilitadas en Spark
+  sin facturación, incluidas las APIs auxiliares sin tráfico observado.
   Como mejora opcional, se puede evaluar reducir la lista de la clave a
   Firestore, Identity Toolkit, Token Service y Firebase Installations, y
   deshabilitar APIs auxiliares tras revisar sus dependencias.
@@ -37,16 +39,22 @@ fue de lectura.
   concordantes con `firestore.rules`. La comprobación de configuración no
   acredita los flujos reales de OAuth y recuperación de ML-15.
 - **GitHub.** Token de Actions de solo lectura por defecto, sin secretos de
-  producción en Actions y canal privado de vulnerabilidades verificado. No
-  consta su designación formal como canal oficial.
+  producción en Actions. El titular confirmó que el canal privado «Report a
+  vulnerability» está habilitado, sin requisito de asignar CWE, con límite de
+  10 avisos al día y con la cuenta del titular entre los informantes de confianza.
+- **Gobernanza para 1.0.** El titular único asume seguridad, recepción de
+  avisos y operación. Acepta la ausencia de un segundo revisor independiente
+  para 1.0, en línea con las excepciones E1–E9 de ML-11/12. No hay SLA de
+  respuesta garantizado y el soporte se limita a la revisión vigente en `main`.
 
-El pase no equivale al cierre operativo de ML-13. El resumen no acredita todo
-el checklist histórico: por ejemplo, no cubre el contraste completo de herencia
-y permisos Firebase/GCP, Hosting efectivo ni el inventario de Apps, OAuth y PAT.
-Los demás puntos sin evidencia y las decisiones de riesgo siguen pendientes.
+El cierre para 1.0 registra la aceptación del titular con ese alcance. El
+resumen no acredita de forma independiente todo el checklist histórico, como
+el contraste completo de herencia y permisos Firebase/GCP, Hosting efectivo
+o el inventario de Apps, OAuth y PAT.
 
 ## Matriz de riesgos
 
+Estados de la auditoría del 23/10/2026, anteriores al cierre operativo de 1.0.
 Severidad expresa impacto potencial; «pendiente» no implica exposición comprobada.
 Las ubicaciones son del árbol base revisado; el PR añade controles sin cambiar
 contratos de aplicación ni reglas.
