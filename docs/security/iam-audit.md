@@ -1,7 +1,7 @@
 # ML-13: IAM, permisos y publicación
 
 Revisión de 23/10/2026 sobre `342ad9a` (main, PR #17), en rama aislada.
-Estado: auditoría versionada; aceptación operativa pendiente. Firebase Spark
+Estado al 23/10/2026: auditoría versionada; aceptación operativa pendiente. Firebase Spark
 exclusivamente. No se consultaron IAM, Auth, secretos, cuentas o datos remotos;
 no se cambiaron permisos, rules desplegadas, facturación ni producción.
 No había un conector Firebase/GCP de lectura explícitamente disponible.
@@ -13,8 +13,48 @@ Se observaron nosniff y Referrer-Policy; no CSP ni X-Frame-Options. Es evidencia
 HTTP de esas respuestas, no un inventario de versiones de Hosting ni de IAM.
 La rama de auditoría todavía no está publicada en el portal.
 
+## Revisión de consola del 12/11/2026 UTC
+
+**PASS — cierre operativo completo para MangaList 1.0**, según la revisión y
+las decisiones de gobernanza comunicadas por el titular. Las
+capturas y el PDF quedan bajo su custodia local fuera del repositorio. La revisión
+fue de lectura.
+
+- **IAM y facturación.** Spark sin cuenta de facturación vinculada. En el IAM
+  del proyecto figuraban el titular como Propietario y una cuenta de servicio
+  administrada por Firebase con sus tres roles estándar. No se observaron
+  colaboradores externos ni claves privadas activas gestionadas por el usuario.
+- **Clave web e inventario de APIs.** Restricciones de origen HTTP y de API
+  activas, con 25 APIs permitidas por la clave. De 41 APIs habilitadas en el
+  proyecto, solo Firestore registró tráfico (2 solicitudes en 24 horas).
+  Cloud Functions y Cloud Run no estaban habilitadas. El titular acepta para
+  1.0 las listas actuales de 25 APIs permitidas y 41 APIs habilitadas en Spark
+  sin facturación, incluidas las APIs auxiliares sin tráfico observado.
+  Como mejora opcional, se puede evaluar reducir la lista de la clave a
+  Firestore, Identity Toolkit, Token Service y Firebase Installations, y
+  deshabilitar APIs auxiliares tras revisar sus dependencias.
+- **Auth y Firestore.** Solo Email/Password y Google activos. Dominios
+  autorizados: `mangalist-61bb8.web.app`, `mangalist-61bb8.firebaseapp.com`
+  y `localhost`. Protección contra enumeración verificada y reglas publicadas
+  concordantes con `firestore.rules`. La comprobación de configuración no
+  acredita los flujos reales de OAuth y recuperación de ML-15.
+- **GitHub.** Token de Actions de solo lectura por defecto, sin secretos de
+  producción en Actions. El titular confirmó que el canal privado «Report a
+  vulnerability» está habilitado, sin requisito de asignar CWE, con límite de
+  10 avisos al día y con la cuenta del titular entre los informantes de confianza.
+- **Gobernanza para 1.0.** El titular único asume seguridad, recepción de
+  avisos y operación. Acepta la ausencia de un segundo revisor independiente
+  para 1.0, en línea con las excepciones E1–E9 de ML-11/12. No hay SLA de
+  respuesta garantizado y el soporte se limita a la revisión vigente en `main`.
+
+El cierre para 1.0 registra la aceptación del titular con ese alcance. El
+resumen no acredita de forma independiente todo el checklist histórico, como
+el contraste completo de herencia y permisos Firebase/GCP, Hosting efectivo
+o el inventario de Apps, OAuth y PAT.
+
 ## Matriz de riesgos
 
+Estados de la auditoría del 23/10/2026, anteriores al cierre operativo de 1.0.
 Severidad expresa impacto potencial; «pendiente» no implica exposición comprobada.
 Las ubicaciones son del árbol base revisado; el PR añade controles sin cambiar
 contratos de aplicación ni reglas.
@@ -58,7 +98,7 @@ No se acepta un UID/email aportado como prueba de identidad. Las plantillas
 ML-11/12 siguen vacías y privadas al completarse; los plazos de retención y
 revisión humana a los 30 días siguen pendientes, sin automatizar borrados.
 
-## Checklist manual de consola (sin ejecutar)
+## Checklist manual de consola (alcance original) {#checklist-manual-de-consola-sin-ejecutar}
 
 Conservar acta restringida con fecha, proyecto contrastado, operador, revisor,
 resultado por punto y referencia de evidencia mínima. La versión pública solo

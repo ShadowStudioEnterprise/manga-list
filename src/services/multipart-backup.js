@@ -92,7 +92,7 @@ export async function prepareMultipartExport(
     }
     if (length + recordBytes > target)
       throw invalid(
-        'Una obra es demasiado grande para dividir esta copia sin perder información. Usa la copia JSON y contacta con soporte.',
+        'Una obra no cabe en una parte de la copia. Usa «Descargar JSON» para guardar la biblioteca en un solo archivo.',
       )
     length += (records.length ? 1 : 0) + recordBytes
     records.push(encoded)

@@ -39,7 +39,19 @@
     },
     "docs/operations/incidents.md": {
       "scope": "Preparación operativa ML-20",
-      "decision": "Umbrales propuestos, responsables pendientes y simulacros limitados al entorno demo."
+      "decision": "Respuesta a indicios de abuso autenticado según ML-08 y ML-09, con responsables pendientes y simulacros limitados al entorno demo."
+    },
+    "docs/reports/quality/ml-15-17-administrative-closure-2026-11-11.md": {
+      "scope": "Cierre administrativo ML-15 y excepción ML-17",
+      "decision": "Registra la implementación, la validación alojada pendiente y el aplazamiento de las sesiones con lectores de pantalla."
+    },
+    "docs/reports/operations/ml-20-16-acceptance-2026-11-11.md": {
+      "scope": "Acta de aceptación parcial y excepciones de ML-20 y ML-16",
+      "decision": "Registra la Fase 1B en PASS, el cierre de H1–H7, las cinco excepciones de ML-16 aceptadas para 1.0 y los pendientes operativos de ML-20."
+    },
+    "docs/reports/operations/ml-21-acceptance-matrix-2026-11-11.md": {
+      "scope": "Matriz de aceptación ML-21 pendiente de aprobación formal",
+      "decision": "Registra las excepciones aceptadas para 1.0 y las comprobaciones remotas y manuales del titular que quedan antes de ML-22."
     },
     "docs/reports/development/ml-19-web-bundles.md": {
       "scope": "Auditoría local ML-19",

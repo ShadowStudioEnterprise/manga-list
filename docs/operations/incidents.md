@@ -45,6 +45,33 @@ Consulta [las defensas ML-09](../reports/firestore/ml-09-recovery-2026-10-23.md)
 [cuotas de Hosting](https://firebase.google.com/docs/hosting/usage-quotas-pricing).
 El plan operativo es Spark con Auth, Firestore Standard y Hosting estático.
 
+### Sospecha de abuso de cuota autenticado
+
+Un aumento sostenido de consumo o rechazos en varios clientes independientes abre una
+investigación. Contrasta el recurso, la ventana y el uso agregado con reconexiones,
+importaciones o recuperaciones previstas. Un `resource-exhausted` por sí solo no atribuye
+abuso a una cuenta. Registra únicamente cifras agregadas y evidencia saneada.
+
+1. Aplica el [acta de capacidad ML-08](../reports/firestore/ml-08-capacity-acceptance-2026-11-09.md)
+   (PR #41). El objetivo es 36 cuentas activas al día y el techo condicionado es 50, con
+   bibliotecas ordinarias de hasta 500 obras. Entre 37 y 50, revisa el consumo antes de
+   admitir más actividad. Por encima de 50 o con cualquier recurso en rojo, escala al titular
+   antes de ampliar la cohorte. Coordina por separado bibliotecas mayores, restauraciones
+   y borrados masivos. Para Firestore, los límites operativos con reserva del 20 % son
+   40.000 lecturas, 16.000 escrituras y 16.000 borrados al día, 0,8 GiB de almacenamiento
+   y 8 GiB de transferencia mensual. Evalúa cada recurso por separado.
+2. Ante indicios de abuso, pausa las cargas voluntarias y reabre la evaluación de riesgo con
+   el titular. Mantén la pausa local de cuota de 15 minutos, compartida entre pestañas del mismo
+   origen, y conserva los cambios pendientes. El [acta ML-09](../reports/firestore/ml-09-risk-acceptance-2026-11-08.md)
+   (PR #40) acepta para 1.0 la posible indisponibilidad temporal por agotamiento de cuota.
+   La pausa no limita el consumo global. Mantén Spark sin Blaze ni facturación y App Check
+   diferido hasta después de 1.0.
+3. Cuando el recurso permita operar, reintenta desde un solo cliente y confirma un snapshot
+   completo de servidor y la resolución de operaciones pendientes. Si vuelve el rechazo,
+   detén la prueba y escala. Con acceso de lectura autorizado, observa durante 31 días el
+   uso diario en consola y registra los picos semanales de lecturas, escrituras y borrados.
+   Reduce el objetivo si el consumo real supera el perfil esperado, antes de ampliar la cohorte.
+
 ## Acceso y sesiones
 
 1. Identifica proveedor, flujo (inicio, retorno OAuth, cambio o recuperación) y síntoma

@@ -1,5 +1,11 @@
 # Informes técnicos
 
+- [ML-21: matriz de aceptación 1.0 — pendiente de aprobación formal](operations/ml-21-acceptance-matrix-2026-11-11.md).
+
+- [ML-20 y ML-16: acta de aceptación parcial y excepciones — 11/11/2026](operations/ml-20-16-acceptance-2026-11-11.md).
+
+- [ML-15 y ML-17: cierre administrativo y excepción de accesibilidad — 11/11/2026](quality/ml-15-17-administrative-closure-2026-11-11.md).
+
 - [Dependencias y CI de ML-15 — 30/10/2026](security/dependencies-2026-10-30.md).
 
 - [ML-15: Auth compilado y almacenamiento denegado — 28/10/2026](quality/ml-15-built-auth-2026-10-28.md).

@@ -4,6 +4,23 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
+## Sin publicar — mensajes ML-12 y seguimiento de aceptación 1.0
+
+- ML-21 registra el cierre operativo de ML-13 para 1.0 y confirma que el
+  ruleset de ML-10 exige `verify` y que el PR #37 se cerró sin fusionar.
+  Queda pendiente el ensayo controlado en el PR del candidato final.
+- ML-12 actualiza los avisos de cuenta, límite de biblioteca y copia dividida con
+  indicaciones que el usuario puede seguir por su cuenta.
+- ML-20 incorpora la respuesta a indicios de abuso de cuota autenticado en la
+  [guía de incidencias](docs/operations/incidents.md).
+- El [acta de ML-15 y ML-17](docs/reports/quality/ml-15-17-administrative-closure-2026-11-11.md),
+  el [acta de aceptación parcial de ML-20 y ML-16](docs/reports/operations/ml-20-16-acceptance-2026-11-11.md)
+  y la [matriz de ML-21](docs/reports/operations/ml-21-acceptance-matrix-2026-11-11.md)
+  se registran en el índice, el menú y el inventario de informes.
+- El acta ML-20/16 registra el PASS de la Fase 1B en PC y el cierre de H1–H7.
+  ML-21 recoge las excepciones aceptadas para 1.0 y las comprobaciones del
+  titular pendientes antes de su aprobación formal y de ML-22.
+
 ## Sin publicar — informe celular ML-09
 
 - Informe celular del 06/11/2026 e índices de seguimiento con referencias a evidencia
