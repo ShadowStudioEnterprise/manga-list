@@ -258,6 +258,10 @@ export const reportsSidebar = [
     collapsed: true,
     items: [
       {
+        text: 'ML-22: publicación de MangaList 1.0.0',
+        link: '/reports/operations/ml-22-release-record-2026-11-12',
+      },
+      {
         text: 'ML-21: matriz de aceptación 1.0',
         link: '/reports/operations/ml-21-acceptance-matrix-2026-11-11',
       },

@@ -1,6 +1,7 @@
 # Informes técnicos
 
-- [ML-21: matriz de aceptación 1.0 — pendiente de aprobación formal](operations/ml-21-acceptance-matrix-2026-11-11.md).
+- [ML-22: publicación de MangaList 1.0.0 — 12/11/2026](operations/ml-22-release-record-2026-11-12.md).
+- [ML-21: matriz de aceptación 1.0](operations/ml-21-acceptance-matrix-2026-11-11.md).
 
 - [ML-20 y ML-16: acta de aceptación parcial y excepciones — 11/11/2026](operations/ml-20-16-acceptance-2026-11-11.md).
 

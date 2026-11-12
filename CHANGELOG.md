@@ -4,16 +4,19 @@ Solo se registran como publicadas las versiones cuya publicación haya sido conf
 Los sellos de compilación, resultados CI y commits de una rama no constituyen una release.
 Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí sin evidencia.
 
-## Sin publicar — mensajes ML-12 y seguimiento de aceptación 1.0
+## 1.0.0 — 12/11/2026
+
+- Primera publicación de MangaList 1.0.0 en Firebase Hosting `app` desde
+  `a30da51f204781a21adc69ace1d163f19bb32868`. El titular confirmó la
+  comprobación de humo. [Acta de ML-22](docs/reports/operations/ml-22-release-record-2026-11-12.md).
 
 - El titular registra el PASS de ML-15 en la revisión servida y el ejercicio de
   mesa de ML-20. El reinicio real de cuota y la recuperación real de Hosting
   quedan como excepciones para 1.0. ML-08 pasa a seguimiento continuo y ML-21
-  queda aprobada a condición de completar el ensayo ML-10 en el PR del
-  candidato final. Se prepara ML-22 de forma local.
+  queda aprobada tras el ensayo ML-10 en el PR #45.
 - ML-21 registra el cierre operativo de ML-13 para 1.0 y confirma que el
   ruleset de ML-10 exige `verify` y que el PR #37 se cerró sin fusionar.
-  Queda pendiente el ensayo controlado en el PR del candidato final.
+  El PR #45 superó el check obligatorio `verify`.
 - ML-12 actualiza los avisos de cuenta, límite de biblioteca y copia dividida con
   indicaciones que el usuario puede seguir por su cuenta.
 - ML-20 incorpora la respuesta a indicios de abuso de cuota autenticado en la
