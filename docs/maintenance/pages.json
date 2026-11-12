@@ -49,8 +49,12 @@
       "scope": "Acta de aceptación parcial y excepciones de ML-20 y ML-16",
       "decision": "Registra la Fase 1B en PASS, el cierre de H1–H7, las cinco excepciones de ML-16 aceptadas para 1.0 y los pendientes operativos de ML-20."
     },
+    "docs/reports/operations/ml-22-release-record-2026-11-12.md": {
+      "scope": "Registro de publicación de MangaList 1.0.0 (ML-22)",
+      "decision": "Documenta el despliegue de Hosting app y el humo confirmados por el titular, con inventario local verificado."
+    },
     "docs/reports/operations/ml-21-acceptance-matrix-2026-11-11.md": {
-      "scope": "Matriz de aceptación ML-21 pendiente de aprobación formal",
+      "scope": "Matriz de aceptación ML-21",
       "decision": "Registra la aprobación del titular, las excepciones para 1.0 y el ensayo ML-10 pendiente en el PR del candidato final."
     },
     "docs/reports/development/ml-19-web-bundles.md": {
