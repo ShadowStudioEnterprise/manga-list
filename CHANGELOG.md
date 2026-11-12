@@ -6,6 +6,11 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
 
 ## Sin publicar — mensajes ML-12 y seguimiento de aceptación 1.0
 
+- El titular registra el PASS de ML-15 en la revisión servida y el ejercicio de
+  mesa de ML-20. El reinicio real de cuota y la recuperación real de Hosting
+  quedan como excepciones para 1.0. ML-08 pasa a seguimiento continuo y ML-21
+  queda aprobada a condición de completar el ensayo ML-10 en el PR del
+  candidato final. Se prepara ML-22 de forma local.
 - ML-21 registra el cierre operativo de ML-13 para 1.0 y confirma que el
   ruleset de ML-10 exige `verify` y que el PR #37 se cerró sin fusionar.
   Queda pendiente el ensayo controlado en el PR del candidato final.
@@ -18,8 +23,7 @@ Los despliegues históricos mencionados en el roadmap no se reconstruyen aquí s
   y la [matriz de ML-21](docs/reports/operations/ml-21-acceptance-matrix-2026-11-11.md)
   se registran en el índice, el menú y el inventario de informes.
 - El acta ML-20/16 registra el PASS de la Fase 1B en PC y el cierre de H1–H7.
-  ML-21 recoge las excepciones aceptadas para 1.0 y las comprobaciones del
-  titular pendientes antes de su aprobación formal y de ML-22.
+  ML-21 recoge las excepciones aceptadas para 1.0.
 
 ## Sin publicar — informe celular ML-09
 

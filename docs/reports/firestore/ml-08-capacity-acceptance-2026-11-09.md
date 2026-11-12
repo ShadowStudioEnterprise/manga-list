@@ -27,16 +27,16 @@ Una cuenta activa es la que abre su biblioteca al menos una vez al día. Los lí
 - Por encima del techo, o con cualquier recurso en rojo (más de 40.000 lecturas o exceso de otro recurso): revisión inmediata por el titular antes de seguir admitiendo cuentas. No hay bloqueos automáticos.
 - Restauraciones de copias, borrados masivos y bibliotecas de más de 500 obras se tratan como excepciones coordinadas, con plan específico.
 
-## Validación pendiente
+## Seguimiento de la cuota real
 
-Las cifras son supuestos del modelo, no telemetría. Durante una ventana de 31 días el titular anotará, a partir del uso diario que muestra la consola de Firestore, el pico semanal de lecturas, escrituras y borrados, y lo comparará con el semáforo. Si el uso real supera el perfil esperado, el objetivo se reduce antes de ampliar la cohorte.
+El 12/11/2026 el titular deja la ventana de 31 días de cuota agregada real en seguimiento continuo tras la aceptación, con el objetivo de 36 cuentas activas al día y el techo condicionado de 50. Las cifras del modelo quedan pendientes de contraste con el uso observado. Durante una ventana de 31 días el titular anotará, a partir del uso diario que muestra la consola de Firestore, el pico semanal de lecturas, escrituras y borrados, y lo comparará con el semáforo. Si el uso real supera el perfil esperado, el objetivo se reduce antes de ampliar la cohorte.
 
 ## Riesgos residuales
 
 - Abuso autenticado aceptado en ML-09: puede agotar la cuota compartida y causar indisponibilidad temporal hasta su reinicio (hacia la medianoche del huso del Pacífico), sin coste.
 - Sin mediciones de consumo facturable, bytes ni frecuencias reales. Hosting y Authentication tienen cuotas propias no modeladas aquí.
 - Pausas y reintentos del cliente son locales y no coordinan a todos los dispositivos.
-- Siguen pendientes los ensayos de red celular, suspensión en Android, Archivos en iOS y recuperación tras reinicio real (ML-16, ML-20).
+- Siguen pendientes los ensayos de red celular, suspensión en Android, Archivos en iOS (ML-16). El ensayo de recuperación tras reinicio real es una excepción operativa aceptada para 1.0 (ML-20).
 
 ## Condiciones de revisión
 

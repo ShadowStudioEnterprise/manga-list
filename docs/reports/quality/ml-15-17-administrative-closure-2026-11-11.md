@@ -6,8 +6,10 @@ Fecha: 11 de noviembre de 2026 · Referencia de código: `b6ee55a`
 
 ML-15 se cierra administrativamente para MangaList 1.0. Los PR #35 y #38 integraron
 la implementación de autenticación y la confirmación explícita antes de abrir
-Google. La aceptación de OAuth real y de recuperación alojada para el candidato
-vigente queda `BLOCKED` hasta su validación manual autorizada en producción.
+Google. El 12/11/2026 a las 13:51 UTC (14:51 en Europe/Madrid), el titular
+validó ambos flujos en Google Chrome sobre la revisión servida por
+`mangalist-61bb8.web.app`. El SHA servido no consta en el registro. El titular
+custodia la evidencia localmente, sin correos reales, UID ni tokens en el repositorio.
 
 En ML-17 se registra el aplazamiento aceptado de las pruebas con lectores de
 pantalla. La excepción queda `BLOCKED` y pasa a la matriz ML-21.
@@ -26,11 +28,13 @@ pantalla. La excepción queda `BLOCKED` y pasa a la matriz ML-21.
 
 ## Seguimiento
 
-| Área                 | Estado  | Evidencia necesaria para cambiar el estado                                                                                                         |
-| -------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Google OAuth         | BLOCKED | Ensayo autorizado sobre la revisión servida, incluido Safari normal, consentimiento del popup, éxito y cancelación, y acceso a la cuenta esperada. |
-| Recuperación alojada | BLOCKED | Entrega real del correo y apertura de la página alojada, cambio de contraseña, conservación de la biblioteca y rechazo de enlace usado o caducado. |
-| Lectores de pantalla | BLOCKED | Sesiones asistidas con la matriz ML-17, con evidencia saneada de anuncios, navegación y foco por dispositivo y lector.                             |
+| Área                 | Estado  | Resultado o evidencia pendiente                                                                                              |
+| -------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Google OAuth         | PASS    | Inicio de sesión con Google real, acceso a biblioteca y cierre de sesión sin errores de dominio ni redirección.              |
+| Recuperación alojada | PASS    | Recepción del correo real de Firebase Authentication, apertura de la página de acción alojada y restablecimiento completado. |
+| Lectores de pantalla | BLOCKED | Sesiones asistidas con la matriz ML-17, con evidencia saneada de anuncios, navegación y foco por dispositivo y lector.       |
 
 El titular conserva los pendientes en [ML-21](../operations/ml-21-acceptance-matrix-2026-11-11.md).
-La fecha y la revisión de cada ensayo se registrarán junto con su resultado.
+Los pases corresponden a los recorridos observados en Chrome sobre la revisión servida.
+El acta no acredita cancelación de OAuth ni uso de enlaces de recuperación
+usados o caducados en esa revisión.

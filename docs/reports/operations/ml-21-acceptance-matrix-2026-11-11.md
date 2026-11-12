@@ -1,6 +1,6 @@
 # ML-21 — Matriz de aceptación de MangaList 1.0
 
-Fecha: 11 de noviembre de 2026 · Base documental: `b6ee55a` · Pendiente de aprobación formal
+Fecha: 11 de noviembre de 2026 · Base documental: `b6ee55a` · Aprobada por el titular el 12/11/2026, condicionada al ensayo ML-10
 
 ## Criterios de registro
 
@@ -24,18 +24,18 @@ requisitos para publicar 1.0. Cada fila conserva su condición de revisión.
 
 ## Capacidad, operación y comprobaciones remotas
 
-| Área                               | Estado                   | Evidencia o condición pendiente                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ML-08 · decisión de capacidad      | PASS · documental        | PR #41. Spark, objetivo 36 cuentas activas/día, techo condicionado de 50, bibliotecas ordinarias de hasta 500 obras y reserva administrativa del 20 %. [Acta ML-08](../firestore/ml-08-capacity-acceptance-2026-11-09.md).                                                                                                           |
-| ML-08 · observación                | BLOCKED                  | Completar 31 días de uso diario en consola. Comparar picos semanales de lecturas, escrituras y borrados con el modelo y reducir el objetivo si se supera el perfil esperado.                                                                                                                                                         |
-| ML-09 · riesgo residual            | PASS · documental        | PR #40. Riesgo de indisponibilidad temporal aceptado para 1.0. Pausa local entre pestañas, Spark sin facturación y App Check diferido. [Acta ML-09](../firestore/ml-09-risk-acceptance-2026-11-08.md).                                                                                                                               |
-| ML-10 · protección de `main`       | PASS · lectura histórica | Activación y comprobación por lectura el 21/10/2026. [Informe ML-10](ml-10-main-ruleset-2026-10-21.md).                                                                                                                                                                                                                              |
-| ML-10 · lectura remota del ruleset | PASS                     | 12/11/2026 UTC. El titular confirmó el ruleset activo sobre `main`, sin bypass, con PR y el check `verify` obligatorios y bloqueo de borrado y de force push. El PR #37 histórico se cerró sin fusionar.                                                                                                                             |
-| ML-10 · ensayo en PR               | BLOCKED                  | Ejecutar y documentar el ensayo controlado en el PR del candidato final antes de fusionar.                                                                                                                                                                                                                                           |
-| ML-13 · cierre operativo para 1.0  | PASS                     | 12/11/2026 UTC. Spark sin facturación; revisión de IAM, clave web, Auth, reglas de Firestore, Actions y canal privado. El titular asume seguridad, recepción y operación y acepta la ausencia de un segundo revisor para 1.0. [Auditoría y decisiones de ML-13](../../security/iam-audit.md#revision-de-consola-del-12-11-2026-utc). |
-| ML-15 · OAuth y recuperación       | BLOCKED                  | Cierre administrativo registrado. Validar Google OAuth real y página y correo reales de recuperación para la revisión servida. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                                                                                                            |
-| ML-17 · lectores de pantalla       | BLOCKED                  | Excepción aceptada para 1.0. Pendientes sesiones asistidas con NVDA o Narrador, VoiceOver y TalkBack. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                                                                                                                                     |
-| ML-20 · respuesta operativa        | BLOCKED                  | Procedimiento actualizado. Pendientes ejercicio de mesa con responsables, verificación de reinicio real de cuota y recuperación real de Hosting. [Incidencias](../../operations/incidents.md).                                                                                                                                       |
+| Área                               | Estado                    | Evidencia o condición pendiente                                                                                                                                                                                                                                                                                                      |
+| ---------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ML-08 · decisión de capacidad      | PASS · documental         | PR #41. Spark, objetivo 36 cuentas activas/día, techo condicionado de 50, bibliotecas ordinarias de hasta 500 obras y reserva administrativa del 20 %. [Acta ML-08](../firestore/ml-08-capacity-acceptance-2026-11-09.md).                                                                                                           |
+| ML-08 · observación                | Seguimiento posaceptación | Ventana de 31 días de cuota agregada real bajo los umbrales aprobados: objetivo de 36 cuentas activas/día y techo condicionado de 50. [Acta ML-08](../firestore/ml-08-capacity-acceptance-2026-11-09.md).                                                                                                                            |
+| ML-09 · riesgo residual            | PASS · documental         | PR #40. Riesgo de indisponibilidad temporal aceptado para 1.0. Pausa local entre pestañas, Spark sin facturación y App Check diferido. [Acta ML-09](../firestore/ml-09-risk-acceptance-2026-11-08.md).                                                                                                                               |
+| ML-10 · protección de `main`       | PASS · lectura histórica  | Activación y comprobación por lectura el 21/10/2026. [Informe ML-10](ml-10-main-ruleset-2026-10-21.md).                                                                                                                                                                                                                              |
+| ML-10 · lectura remota del ruleset | PASS                      | 12/11/2026 UTC. El titular confirmó el ruleset activo sobre `main`, sin bypass, con PR y el check `verify` obligatorios y bloqueo de borrado y de force push. El PR #37 histórico se cerró sin fusionar.                                                                                                                             |
+| ML-10 · ensayo en PR               | BLOCKED                   | Ejecutar y documentar el ensayo controlado en el PR del candidato final antes de fusionar.                                                                                                                                                                                                                                           |
+| ML-13 · cierre operativo para 1.0  | PASS                      | 12/11/2026 UTC. Spark sin facturación; revisión de IAM, clave web, Auth, reglas de Firestore, Actions y canal privado. El titular asume seguridad, recepción y operación y acepta la ausencia de un segundo revisor para 1.0. [Auditoría y decisiones de ML-13](../../security/iam-audit.md#revision-de-consola-del-12-11-2026-utc). |
+| ML-15 · OAuth y recuperación       | PASS                      | 12/11/2026, 13:51 UTC, Google Chrome. Google OAuth real, acceso a biblioteca y cierre de sesión correctos. Correo real de Firebase Authentication, página de acción alojada y restablecimiento completados en `mangalist-61bb8.web.app`. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                  |
+| ML-17 · lectores de pantalla       | BLOCKED                   | Excepción aceptada para 1.0. Pendientes sesiones asistidas con NVDA o Narrador, VoiceOver y TalkBack. [Acta ML-15/17](../quality/ml-15-17-administrative-closure-2026-11-11.md).                                                                                                                                                     |
+| ML-20 · respuesta operativa        | PASS · ejercicio de mesa  | Realizado el 12/11/2026 con el titular único en todos los roles. Reinicio real de cuota y recuperación real de Hosting aceptados como excepciones para 1.0. [Incidencias](../../operations/incidents.md#ejercicio-de-mesa-del-12-11-2026).                                                                                           |
 
 El titular conserva las capturas y el PDF de ML-10 y ML-13 fuera del repositorio.
 En ML-13 se registró como mejora opcional reducir las 25 APIs permitidas por la
@@ -81,17 +81,7 @@ resultados físicos previos, sus límites y el cierre de H1–H7.
 
 ## Paso previo a ML-22
 
-Antes de aprobar formalmente ML-21 y abrir ML-22, solo quedan estas comprobaciones
-remotas o manuales a cargo del titular:
-
-- **ML-10**. Ejecutar y documentar el ensayo controlado en el PR del
-  candidato final antes de fusionar.
-- **ML-15**. Validar Google OAuth y el flujo real de recuperación, incluidos el
-  correo y la página de acción, en el candidato servido.
-- **ML-08 y ML-20**. Completar la observación de 31 días de cuota agregada real
-  y contrastarla con el modelo de ML-08. Registrar el ejercicio de mesa con
-  responsables y la evidencia del reinicio real de cuota y la recuperación real
-  de Hosting.
-
-El titular registrará el resultado de estas comprobaciones para la revisión
-candidata antes de aprobar la matriz que recibirá ML-22.
+El titular único aprueba la matriz el 12/11/2026. La aceptación final queda
+condicionada únicamente a ejecutar y documentar el ensayo controlado de
+**ML-10** en el PR del candidato final antes de fusionarlo. La preparación
+técnica local de ML-22 puede avanzar mientras se completa el ensayo.
