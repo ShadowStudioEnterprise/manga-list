@@ -51,7 +51,7 @@
     },
     "docs/reports/operations/ml-21-acceptance-matrix-2026-11-11.md": {
       "scope": "Matriz de aceptación ML-21 pendiente de aprobación formal",
-      "decision": "Registra las excepciones aceptadas para 1.0 y las comprobaciones remotas y manuales del titular que quedan antes de ML-22."
+      "decision": "Registra la aprobación del titular, las excepciones para 1.0 y el ensayo ML-10 pendiente en el PR del candidato final."
     },
     "docs/reports/development/ml-19-web-bundles.md": {
       "scope": "Auditoría local ML-19",

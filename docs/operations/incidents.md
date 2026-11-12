@@ -157,8 +157,10 @@ comprobó el resultado esperado, **FAIL** que difirió y **BLOCKED** que faltó 
 | Privacidad             | `npm run audit:security:built`, `node scripts/test-firestore-local.mjs` y casos ML-15 de E2E. Detecta patrones en archivos y comprueba que un UID sintético no accede al otro.                                     |
 | Borrado interrumpido   | `node scripts/test-firestore-local.mjs --ml12`. Acuse de lote perdido con reanudación, e identidad ausente con residuo y marcador preservado.                                                                      |
 
-Los ejercicios técnicos cubren los mecanismos indicados. La cuota agregada real, la
-restauración de Hosting, la contención de un incidente real y el ejercicio de mesa
-con operador y revisor designados quedan pendientes. Para la mesa, cada revisor recibe
-un escenario con una evidencia ausente (cuota, versión, identidad o inventario), anota
-la decisión y solo pasa cuando identifica la evidencia que falta y el punto de parada.
+Los ejercicios técnicos cubren los mecanismos indicados. En un ejercicio de mesa se identifica la evidencia ausente (cuota, versión, identidad o inventario), se anota la decisión y se indica el punto de parada.
+
+## Ejercicio de mesa del 12/11/2026
+
+El titular confirma que realizó el ejercicio de mesa de respuesta a incidentes el 12/11/2026 y asumió todos los roles operativos, incluidos operador y revisor.
+
+El titular acepta para 1.0 aplazar la verificación del reinicio real de cuota y la recuperación real de Hosting para evitar el agotamiento artificial de cuota y cambios en producción. Si ocurre un incidente de ese tipo, se registrará la evidencia observada.
